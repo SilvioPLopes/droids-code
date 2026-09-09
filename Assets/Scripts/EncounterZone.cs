@@ -51,7 +51,7 @@ public class EncounterZone : MonoBehaviour
         if (distanciaAcumulada >= distanciaPorPasso)
         {
             distanciaAcumulada = 0f;
-            SortearEncontro();
+            SortearEncontro(other.gameObject);
         }
     }
 
@@ -62,19 +62,25 @@ public class EncounterZone : MonoBehaviour
         rastreandoPosicao = false;
     }
 
-    void SortearEncontro()
+    void SortearEncontro(GameObject player)
     {
         float sorteio = Random.value; // valor entre 0.0 e 1.0
 
         if (sorteio <= chanceDeEncontro)
         {
-            IniciarBatalha();
+            IniciarBatalha(player);
         }
     }
 
-    void IniciarBatalha()
+    void IniciarBatalha(GameObject player)
     {
         Debug.Log("Encontro aleatório disparado! Iniciando batalha...");
+
+        // Salva onde o player estava antes de entrar na batalha, pra ele
+        // voltar pro lugar certo depois (ver GerenciadorDeEstado.cs e
+        // RestaurarPosicao.cs).
+        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        GerenciadorDeEstado.Instancia.SalvarPosicao(player.transform.position, cenaAtual);
 
         if (!string.IsNullOrEmpty(nomeCenaBatalha))
         {

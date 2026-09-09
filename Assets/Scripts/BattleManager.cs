@@ -39,10 +39,8 @@ public class BattleManager : MonoBehaviour
     public Button prefabBotaoAtaque;
 
     [Header("Status do Player")]
-    public string nomePlayer = "Herói";
-    public int hpMaxPlayer = 30;
-    public int forPlayer = 5; // usado em ObterTotal(For) para a formula de dano
-    public int vitPlayer = 3; // usado como Defesa (ObterTotal(Vit))
+    // nome/hp/atributos agora vêm do GerenciadorDeEstado.DroidDoJogador —
+    // esses campos foram removidos daqui de propósito (ver GerenciadorDeEstado.cs).
 
     [Header("Status do Inimigo")]
     public string nomeInimigo = "Esqueleto";
@@ -64,9 +62,7 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        droid = new Droid(nomePlayer, hpMaxPlayer);
-        droid.StatsBase.For = forPlayer;
-        droid.StatsBase.Vit = vitPlayer;
+        droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
 
         inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo);
         engine = new CombatEngine();
@@ -160,7 +156,7 @@ public class BattleManager : MonoBehaviour
         int cura = 5;
         droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + cura);
         AtualizarBarras();
-        MostrarMensagem($"{nomePlayer} usou um item e recuperou {cura} de HP!");
+        MostrarMensagem($"{droid.Nome} usou um item e recuperou {cura} de HP!");
 
         StartCoroutine(TurnoDoInimigo());
     }
