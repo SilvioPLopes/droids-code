@@ -1,36 +1,48 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using DroidsCode.Combat;
+using DroidsCode.DroidCore;
 
 /// <summary>
 /// Lógica de turnos da batalha. Este script NÃO cria nenhuma interface —
 /// ele espera que você já tenha montado os elementos no Editor e apenas
 /// arraste as referências nos campos abaixo, no Inspector.
 ///
-/// COMO USAR:
-/// 1. Crie um GameObject vazio na cena Battle, chame de "BattleManager".
-/// 2. Arraste este script para ele.
-/// 3. No Inspector, arraste cada elemento de UI que você já criou para o
-///    campo correspondente (Slider Player, Slider Inimigo, Texto Mensagem,
-///    Botao Atacar, Botao Item, Botao Fugir).
-/// 4. Dê Play e clique nos botões.
+/// Refatorado para consumir Droid/CombatEngine em vez de calcular dano
+/// aqui dentro (ver MATRIZ_DESENVOLVIMENTO.md e CORRECAO_ARQUITETURA_TERMINAL_MENU.md).
+/// "Atacar" agora abre uma lista de golpes se o Droid tiver mais de um
+/// configurado; se só tiver o Ataque Básico, ataca direto.
+///
+/// NOVO NO INSPECTOR — precisa criar 2 objetos na cena (ver instruções
+/// enviadas junto com este arquivo):
+///   - painelListaDeAtaques: painel vazio, inativo por padrão
+///   - prefabBotaoAtaque: prefab de botão com um texto (TMP) filho
 /// </summary>
 public class BattleManager : MonoBehaviour
 {
     [Header("Referências de UI (arraste os objetos da Hierarchy aqui)")]
     public Slider sliderPlayer;
     public Slider sliderInimigo;
-    public Text textoMensagem;
+    public TextMeshProUGUI textoMensagem;
     public Button botaoAtacar;
     public Button botaoItem;
     public Button botaoFugir;
 
+    [Header("Lista de golpes (novo)")]
+    [Tooltip("Painel vazio, desativado por padrão, que recebe os botões de cada golpe.")]
+    public Transform painelListaDeAtaques;
+    [Tooltip("Prefab de um botão simples (com TextMeshProUGUI filho), um por golpe.")]
+    public Button prefabBotaoAtaque;
+
     [Header("Status do Player")]
     public string nomePlayer = "Herói";
     public int hpMaxPlayer = 30;
-    public int atkPlayer = 8;
-    public int defPlayer = 2;
+    public int forPlayer = 5; // usado em ObterTotal(For) para a formula de dano
+    public int vitPlayer = 3; // usado como Defesa (ObterTotal(Vit))
 
     [Header("Status do Inimigo")]
     public string nomeInimigo = "Esqueleto";
@@ -44,20 +56,27 @@ public class BattleManager : MonoBehaviour
     [Range(0f, 1f)]
     public float chanceDeFugir = 0.5f;
 
-    private int hpAtualPlayer;
-    private int hpAtualInimigo;
+    private Droid droid;
+    private InimigoFixo inimigo;
+    private CombatEngine engine;
     private bool turnoDoJogador = true;
     private bool batalhaEncerrada = false;
 
     void Start()
     {
-        hpAtualPlayer = hpMaxPlayer;
-        hpAtualInimigo = hpMaxInimigo;
+        droid = new Droid(nomePlayer, hpMaxPlayer);
+        droid.StatsBase.For = forPlayer;
+        droid.StatsBase.Vit = vitPlayer;
 
-        // Conecta cada botão à sua função correspondente
+        inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo);
+        engine = new CombatEngine();
+
         botaoAtacar.onClick.AddListener(AoClicarAtacar);
         botaoItem.onClick.AddListener(AoClicarItem);
         botaoFugir.onClick.AddListener(AoClicarFugir);
+
+        if (painelListaDeAtaques != null)
+            painelListaDeAtaques.gameObject.SetActive(false);
 
         sliderPlayer.minValue = 0;
         sliderPlayer.maxValue = 1;
@@ -76,12 +95,57 @@ public class BattleManager : MonoBehaviour
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
 
-        int dano = Mathf.Max(1, atkPlayer - defInimigo);
-        hpAtualInimigo = Mathf.Max(0, hpAtualInimigo - dano);
-        AtualizarBarras();
-        MostrarMensagem($"{nomePlayer} atacou! {nomeInimigo} perdeu {dano} de HP.");
+        var acoes = new List<string>(droid.ObterAcoesDisponiveis());
 
-        if (hpAtualInimigo <= 0)
+        if (acoes.Count <= 1)
+        {
+            string unica = acoes.Count == 1 ? acoes[0] : Droid.NomeAtaqueBasico;
+            ExecutarAtaqueDoJogador(unica);
+        }
+        else
+        {
+            AbrirListaDeAtaques(acoes);
+        }
+    }
+
+    void AbrirListaDeAtaques(List<string> acoes)
+    {
+        if (painelListaDeAtaques == null || prefabBotaoAtaque == null)
+        {
+            Debug.LogWarning("painelListaDeAtaques/prefabBotaoAtaque não configurados no Inspector — atacando com o básico.");
+            ExecutarAtaqueDoJogador(Droid.NomeAtaqueBasico);
+            return;
+        }
+
+        foreach (Transform filho in painelListaDeAtaques)
+            Destroy(filho.gameObject);
+
+        foreach (string nomeAcao in acoes)
+        {
+            Button botao = Instantiate(prefabBotaoAtaque, painelListaDeAtaques);
+            botao.gameObject.SetActive(true);
+
+            var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
+            if (texto != null) texto.text = nomeAcao;
+
+            string nomeCapturado = nomeAcao; // evita captura errada da variavel de loop
+            botao.onClick.AddListener(() =>
+            {
+                painelListaDeAtaques.gameObject.SetActive(false);
+                ExecutarAtaqueDoJogador(nomeCapturado);
+            });
+        }
+
+        painelListaDeAtaques.gameObject.SetActive(true);
+    }
+
+    void ExecutarAtaqueDoJogador(string nomeAcao)
+    {
+        ResultadoAcao resultado = engine.ExecutarTurno(droid, inimigo, nomeAcao);
+        AtualizarBarras();
+        MostrarMensagem(resultado.Mensagem);
+
+        if (engine.VerificarDerrota(inimigo))
             StartCoroutine(FinalizarBatalha(true));
         else
             StartCoroutine(TurnoDoInimigo());
@@ -91,8 +155,10 @@ public class BattleManager : MonoBehaviour
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
 
+        // TODO: sistema de inventario real fica pra Fase 2 (fora de escopo
+        // do Ato 1, ver LEIA_PRIMEIRO.md). Mantido como cura fixa por ora.
         int cura = 5;
-        hpAtualPlayer = Mathf.Min(hpMaxPlayer, hpAtualPlayer + cura);
+        droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + cura);
         AtualizarBarras();
         MostrarMensagem($"{nomePlayer} usou um item e recuperou {cura} de HP!");
 
@@ -125,13 +191,13 @@ public class BattleManager : MonoBehaviour
         DefinirBotoesInterativos(false);
         yield return new WaitForSeconds(1f);
 
-        int dano = Mathf.Max(1, atkInimigo - defPlayer);
-        hpAtualPlayer = Mathf.Max(0, hpAtualPlayer - dano);
+        string acaoInimigo = new List<string>(inimigo.ObterAcoesDisponiveis())[0];
+        ResultadoAcao resultado = engine.ExecutarTurno(inimigo, droid, acaoInimigo);
         AtualizarBarras();
-        MostrarMensagem($"{nomeInimigo} atacou! {nomePlayer} perdeu {dano} de HP.");
+        MostrarMensagem(resultado.Mensagem);
         yield return new WaitForSeconds(1f);
 
-        if (hpAtualPlayer <= 0)
+        if (engine.VerificarDerrota(droid))
         {
             StartCoroutine(FinalizarBatalha(false));
         }
@@ -164,8 +230,8 @@ public class BattleManager : MonoBehaviour
 
     void AtualizarBarras()
     {
-        sliderPlayer.value = (float)hpAtualPlayer / hpMaxPlayer;
-        sliderInimigo.value = (float)hpAtualInimigo / hpMaxInimigo;
+        sliderPlayer.value = (float)droid.Hp / droid.HpMax;
+        sliderInimigo.value = (float)inimigo.Hp / inimigo.HpMax;
     }
 
     void MostrarMensagem(string mensagem)

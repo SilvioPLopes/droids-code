@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+
+namespace DroidsCode.Combat
+{
+    // Inimigo fixo simples (Ato 1/MVP). Comportamento 100% C#, sem Lua —
+    // decisao ja fechada na Matriz ("Decisoes de design fechadas").
+    // O sistema real de inimigos (Sucata/Droid Selvagem/Droid Improvisado
+    // via DroidDataSO + Factory) vem depois, conforme a ordem de
+    // implementacao (passo 7 — so depois do combate provado ponta a ponta).
+    public class InimigoFixo : IParticipanteDeCombate
+    {
+        private const string NomeAcaoUnica = "Atacar";
+        private readonly int _ataque;
+
+        public string Nome { get; }
+        public int Hp { get; set; }
+        public int HpMax { get; }
+        public int Defesa { get; }
+
+        public InimigoFixo(string nome, int hpMax, int ataque, int defesa)
+        {
+            Nome = nome;
+            HpMax = hpMax;
+            Hp = hpMax;
+            _ataque = ataque;
+            Defesa = defesa;
+        }
+
+        public IEnumerable<string> ObterAcoesDisponiveis()
+        {
+            yield return NomeAcaoUnica;
+        }
+
+        public ResultadoAcao ExecutarAcao(string nomeAcao, IParticipanteDeCombate alvo)
+        {
+            int dano = System.Math.Max(1, _ataque - alvo.Defesa);
+            return new ResultadoAcao
+            {
+                Sucesso = true,
+                DanoCausado = dano,
+                Mensagem = $"{Nome} atacou! Causou {dano} de dano."
+            };
+        }
+    }
+}
