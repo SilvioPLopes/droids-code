@@ -31,6 +31,8 @@ public class BattleManager : MonoBehaviour
     public Button botaoAtacar;
     public Button botaoItem;
     public Button botaoFugir;
+    public Button botaoStatus;
+    public TelaDeStatusManager telaDeStatus;
 
     [Header("Lista de golpes (novo)")]
     [Tooltip("Painel vazio, desativado por padrão, que recebe os botões de cada golpe.")]
@@ -70,6 +72,10 @@ public class BattleManager : MonoBehaviour
         botaoAtacar.onClick.AddListener(AoClicarAtacar);
         botaoItem.onClick.AddListener(AoClicarItem);
         botaoFugir.onClick.AddListener(AoClicarFugir);
+        if (botaoStatus != null && telaDeStatus != null)
+        {
+            botaoStatus.onClick.AddListener(() => telaDeStatus.Mostrar());
+        }
 
         if (painelListaDeAtaques != null)
             painelListaDeAtaques.gameObject.SetActive(false);

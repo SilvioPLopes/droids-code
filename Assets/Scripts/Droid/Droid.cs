@@ -22,6 +22,11 @@ namespace DroidsCode.DroidCore
         // Secao 9 — atributos base + calculo de total
         public DroidStats StatsBase { get; set; } = new DroidStats();
 
+        // Alinhado com ESPECIFICACAO_TECNICA.md secao 4 (versao atualizada).
+        // O proprio Droid guarda seus pontos — antes isso era passado por
+        // fora (TerminalDroidApi recebia um PontosDeProgressao separado).
+        public PontosDeProgressao Pontos { get; } = new PontosDeProgressao();
+
         // Defesa = VIT total, mesmo padrao do Player.java de referencia
         // (getTotalDef() = getTotalVit() + armadura). Droids Code ainda nao
         // tem armadura/equipamento com bonus de defesa — so VIT por ora.

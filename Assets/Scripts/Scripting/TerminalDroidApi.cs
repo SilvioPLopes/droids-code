@@ -8,12 +8,10 @@ namespace DroidsCode.Scripting
     public class TerminalDroidApi
     {
         private readonly Droid _droid;
-        private readonly PontosDeProgressao _pontos;
 
-        public TerminalDroidApi(Droid droid, PontosDeProgressao pontos)
+        public TerminalDroidApi(Droid droid)
         {
             _droid = droid;
-            _pontos = pontos;
         }
 
         // Ex. Lua: droid.subirAtributo("For", 1)
@@ -30,7 +28,7 @@ namespace DroidsCode.Scripting
             }
 
             int custo = quantidade * TabelaDeCustos.CustoUpgradeAtributo;
-            if (!_pontos.TentarGastar(custo))
+            if (!_droid.Pontos.TentarGastar(custo))
             {
                 return false; // pontos insuficientes
             }
@@ -49,7 +47,7 @@ namespace DroidsCode.Scripting
 
             var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
 
-            if (!_pontos.TentarGastar(tecnica.CustoTotal()))
+            if (!_droid.Pontos.TentarGastar(tecnica.CustoTotal()))
             {
                 return false;
             }
@@ -60,7 +58,7 @@ namespace DroidsCode.Scripting
 
         public int ObterPontosDisponiveis()
         {
-            return _pontos.PontosDisponiveis;
+            return _droid.Pontos.PontosDisponiveis;
         }
 
         private void AplicarUpgrade(TipoAtributo atributo, int quantidade)

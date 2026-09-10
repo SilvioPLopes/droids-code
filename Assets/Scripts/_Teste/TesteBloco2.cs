@@ -17,10 +17,10 @@ namespace DroidsCode._Teste
                 StatsBase = new DroidStats { For = 5, Agi = 4, Vit = 6, Int = 3, Dex = 4, Luk = 2 }
             };
 
-            var pontos = new PontosDeProgressao();
+            var pontos = droid.Pontos;
             pontos.GanharPontosPorNivel(3); // 15 pontos
 
-            var api = new TerminalDroidApi(droid, pontos);
+            var api = new TerminalDroidApi(droid);
             var runner = new DroidScriptRunner(api);
 
             // Fase de preparacao — terminal, fora de batalha.
