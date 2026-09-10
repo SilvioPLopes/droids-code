@@ -185,6 +185,8 @@ MonoBehaviour:
   botaoAtacar: {fileID: 2119895442}
   botaoItem: {fileID: 753102968}
   botaoFugir: {fileID: 2003631904}
+  botaoStatus: {fileID: 0}
+  telaDeStatus: {fileID: 0}
   painelListaDeAtaques: {fileID: 1815127158}
   prefabBotaoAtaque: {fileID: 293911551598078924, guid: c96b74a9f79832a41b9acdb3401aee8c, type: 3}
   nomeInimigo: Esqueleto
@@ -1162,6 +1164,7 @@ GameObject:
   - component: {fileID: 677110890}
   - component: {fileID: 677110892}
   - component: {fileID: 677110891}
+  - component: {fileID: 677110893}
   m_Layer: 5
   m_Name: PainelStatus
   m_TagString: Untagged
@@ -1232,6 +1235,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677110889}
   m_CullTransparentMesh: 1
+--- !u!114 &677110893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677110889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d19086efb7969441a09655b9ccd38b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelaDeStatusManager
+  painel: {fileID: 677110889}
+  textoNome: {fileID: 544503169}
+  textoHp: {fileID: 1889280085}
+  textoAtributos: {fileID: 1277574396}
+  textoTecnicas: {fileID: 464679612}
+  textoPontos: {fileID: 1680249806}
+  botaoVoltar: {fileID: 1126163264}
 --- !u!1 &753102966
 GameObject:
   m_ObjectHideFlags: 0
