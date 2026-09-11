@@ -33,6 +33,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Com um menu/terminal aberto, o player nao deve se mover -- sem
+        // isso, WASD digitado no campo de texto tambem mexia o personagem
+        // por baixo do painel. Ver GerenciadorDeEstado.MenuAberto.
+        if (GerenciadorDeEstado.Instancia.MenuAberto)
+        {
+            direcaoInput = Vector2.zero;
+            AtualizarAnimacao();
+            return;
+        }
+
         // Lê o input a cada frame (mais responsivo)
         float x = Input.GetAxisRaw("Horizontal"); // A/D ou Setas esquerda/direita
         float y = Input.GetAxisRaw("Vertical");   // W/S ou Setas cima/baixo

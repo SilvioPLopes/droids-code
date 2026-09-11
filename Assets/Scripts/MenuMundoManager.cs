@@ -63,15 +63,24 @@ public class MenuMundoManager : MonoBehaviour
         bool vaiAbrir = !painelMenu.activeSelf;
         painelMenu.SetActive(vaiAbrir);
 
-        if (vaiAbrir && textoAviso != null)
+        if (vaiAbrir)
         {
-            textoAviso.text = "";
+            GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
+            if (textoAviso != null) textoAviso.text = "";
+        }
+        else
+        {
+            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
         }
     }
 
     void Fechar()
     {
-        if (painelMenu != null) painelMenu.SetActive(false);
+        if (painelMenu != null && painelMenu.activeSelf)
+        {
+            painelMenu.SetActive(false);
+            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        }
     }
 
     void AoClicarTerminal()

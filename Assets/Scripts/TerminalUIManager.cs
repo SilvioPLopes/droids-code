@@ -10,27 +10,6 @@ using DroidsCode.DroidCore;
 /// UI do terminal de código — Modo Configuração (fora de batalha).
 /// Conecta o campo de texto onde o jogador digita Lua ao DroidScriptRunner.
 /// Não roda Lua em combate (ver CORRECAO_ARQUITETURA_TERMINAL_MENU.md).
-///
-/// VERSÃO EXPANDIDA — mecânica mais completa que a primeira versão:
-///
-/// - Histórico de comandos executados (setas Cima/Baixo no campo de texto,
-///   como um terminal de verdade), não só o último.
-/// - Log de saída ACUMULA por sessão (rola pra baixo), usando o log rico
-///   que TerminalDroidApi agora mantém internamente (Registrar/ObterLogDaSessao),
-///   não só sucesso/erro da última chamada.
-/// - Painel de "comandos disponíveis" fixo, sempre visível, pra o jogador
-///   não precisar decorar a sintaxe.
-/// - Atalho de teclado: Ctrl+Enter executa sem precisar clicar no botão.
-/// - Botão "Limpar" para esvaziar o campo de texto sem fechar o terminal.
-///
-/// NOVO NO INSPECTOR — precisa existir na cena:
-///   - painelTerminal: painel raiz, inativo por padrão
-///   - campoDeCodigo: TMP_InputField multi-linha (Line Type: Multi Line Newline)
-///   - botaoExecutar, botaoFechar, botaoLimpar: Button
-///   - textoSaida: TextMeshProUGUI DENTRO de um ScrollRect (pra rolar histórico)
-///   - scrollRectSaida: ScrollRect que contém textoSaida (para autoscroll)
-///   - textoPontos: TextMeshProUGUI
-///   - textoAjuda: TextMeshProUGUI, texto fixo com os comandos disponíveis
 /// </summary>
 public class TerminalUIManager : MonoBehaviour
 {
@@ -91,16 +70,12 @@ public class TerminalUIManager : MonoBehaviour
         if (painelTerminal == null || !painelTerminal.activeSelf) return;
         if (campoDeCodigo == null || !campoDeCodigo.isFocused) return;
 
-        // Ctrl+Enter executa sem precisar clicar
         bool ctrlSegurado = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
         if (ctrlSegurado && Input.GetKeyDown(KeyCode.Return))
         {
             AoClicarExecutar();
         }
 
-        // Setas Cima/Baixo navegam o histórico, como um terminal de verdade.
-        // [DEFAULT] só funciona quando o campo está vazio ou mostrando um
-        // item de histórico — evita atrapalhar edição de texto multi-linha.
         if (Input.GetKeyDown(KeyCode.UpArrow) && string.IsNullOrEmpty(campoDeCodigo.text))
         {
             NavegarHistorico(-1);
@@ -125,6 +100,7 @@ public class TerminalUIManager : MonoBehaviour
 
         AtualizarPontos();
         AdicionarLinhaDeLog("=== Terminal aberto. Digite um comando e clique Executar. ===");
+        GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
 
         if (painelTerminal != null) painelTerminal.SetActive(true);
 
@@ -137,7 +113,11 @@ public class TerminalUIManager : MonoBehaviour
 
     public void Fechar()
     {
-        if (painelTerminal != null) painelTerminal.SetActive(false);
+        if (painelTerminal != null && painelTerminal.activeSelf)
+        {
+            painelTerminal.SetActive(false);
+            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        }
     }
 
     void AoClicarExecutar()
@@ -166,6 +146,13 @@ public class TerminalUIManager : MonoBehaviour
         }
         else
         {
+            // Mesmo em falha, o Lua pode ter executado alguns comandos com
+            // sucesso ANTES do erro. Mostra o log acumulado antes do "ERRO".
+            foreach (string linha in api.ObterLogDaSessao())
+            {
+                AdicionarLinhaDeLog(linha);
+            }
+
             AdicionarLinhaDeLog($"ERRO: {resultado.MensagemErro}");
         }
 

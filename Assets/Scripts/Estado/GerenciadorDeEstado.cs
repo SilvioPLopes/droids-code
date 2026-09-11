@@ -38,6 +38,16 @@ public class GerenciadorDeEstado : MonoBehaviour
     public Vector3 PosicaoSalva { get; private set; }
     public string CenaDeOrigemDaPosicao { get; private set; }
 
+    // Contador, nao bool simples: Terminal abre DE DENTRO do Menu, entao
+    // fechar o Terminal nao pode reativar o movimento se o Menu ainda
+    // estiver aberto por tras dele. MenuAberto so fica false quando todos
+    // os paineis abertos foram fechados.
+    private int _contadorMenusAbertos;
+    public bool MenuAberto => _contadorMenusAbertos > 0;
+
+    public void RegistrarMenuAberto() => _contadorMenusAbertos++;
+    public void RegistrarMenuFechado() => _contadorMenusAbertos = Mathf.Max(0, _contadorMenusAbertos - 1);
+
     void Awake()
     {
         // Protege contra 2 instancias (ex: se por engano existir uma na cena
