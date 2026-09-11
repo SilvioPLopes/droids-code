@@ -4,9 +4,9 @@ using TMPro;
 
 /// <summary>
 /// Menu fora de batalha, estilo Pokémon: Status / Terminal / Bag / Droid /
-/// Opções / Voltar. Só o Status está funcional agora — os outros mostram
-/// um aviso "ainda não implementado" (menu completo, funcionalidade parcial,
-/// combinado assim de propósito).
+/// Opções / Voltar. Status e Terminal estão funcionais agora — os outros
+/// mostram um aviso "ainda não implementado" (menu completo, funcionalidade
+/// parcial, combinado assim de propósito).
 ///
 /// Abre e fecha com a tecla em teclaDeAbertura (padrão: Esc). Troque no
 /// Inspector se quiser outra tecla.
@@ -30,6 +30,9 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Tela de Status (arraste a instância do Prefab PainelStatus)")]
     public TelaDeStatusManager telaDeStatus;
 
+    [Header("Terminal de código (arraste a instância do Prefab PainelTerminal)")]
+    public TerminalUIManager terminal;
+
     [Header("Texto de aviso pros botões ainda não implementados")]
     public TextMeshProUGUI textoAviso;
 
@@ -38,7 +41,7 @@ public class MenuMundoManager : MonoBehaviour
         if (painelMenu != null) painelMenu.SetActive(false);
 
         if (botaoStatus != null) botaoStatus.onClick.AddListener(() => telaDeStatus.Mostrar());
-        if (botaoTerminal != null) botaoTerminal.onClick.AddListener(() => MostrarAviso("Terminal"));
+        if (botaoTerminal != null) botaoTerminal.onClick.AddListener(AoClicarTerminal);
         if (botaoBag != null) botaoBag.onClick.AddListener(() => MostrarAviso("Bag"));
         if (botaoDroid != null) botaoDroid.onClick.AddListener(() => MostrarAviso("Equipamentos"));
         if (botaoOpcoes != null) botaoOpcoes.onClick.AddListener(() => MostrarAviso("Opções"));
@@ -69,6 +72,18 @@ public class MenuMundoManager : MonoBehaviour
     void Fechar()
     {
         if (painelMenu != null) painelMenu.SetActive(false);
+    }
+
+    void AoClicarTerminal()
+    {
+        if (terminal != null)
+        {
+            terminal.Abrir();
+        }
+        else
+        {
+            MostrarAviso("Terminal");
+        }
     }
 
     void MostrarAviso(string nomeDaTela)

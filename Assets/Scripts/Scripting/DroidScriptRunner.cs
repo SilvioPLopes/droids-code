@@ -8,7 +8,12 @@ namespace DroidsCode.Scripting
 
         public DroidScriptRunner(TerminalDroidApi api)
         {
-            _vm = new Script();
+            // Sandbox: remove io, os (exceto tempo), load, require, dofile.
+            // O Lua digitado pelo jogador não deveria ter acesso a sistema de
+            // arquivos/SO — sem isso, new Script() carrega todos os módulos
+            // padrão, incluindo esses, o que é uma porta aberta desnecessária
+            // num terminal exposto ao jogador dentro do jogo.
+            _vm = new Script(CoreModules.Preset_SoftSandbox);
 
             UserData.RegisterType<TerminalDroidApi>();
             // So a fachada e exposta — Droid.cs nunca e registrado diretamente.
@@ -17,6 +22,8 @@ namespace DroidsCode.Scripting
 
         public ResultadoExecucao ExecutarCodigo(string codigoLua)
         {
+            // TODO: sem protecao contra loop infinito ainda (ex: "while true do end"
+            // travaria o jogo). Pendência conhecida, fora do escopo desta correção.
             try
             {
                 _vm.DoString(codigoLua);

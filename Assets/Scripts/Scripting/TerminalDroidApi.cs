@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DroidsCode.DroidCore;
 
 namespace DroidsCode.Scripting
@@ -8,6 +9,7 @@ namespace DroidsCode.Scripting
     public class TerminalDroidApi
     {
         private readonly Droid _droid;
+        private readonly List<string> _logDaSessao = new List<string>();
 
         public TerminalDroidApi(Droid droid)
         {
@@ -19,21 +21,25 @@ namespace DroidsCode.Scripting
         {
             if (quantidade <= 0)
             {
+                Registrar("Falha: quantidade deve ser maior que zero.");
                 return false;
             }
 
             if (!System.Enum.TryParse(nomeAtributo, ignoreCase: true, out TipoAtributo atributo))
             {
+                Registrar($"Falha: atributo '{nomeAtributo}' não existe.");
                 return false; // nome de atributo invalido — nao lanca excecao, so recusa
             }
 
             int custo = quantidade * TabelaDeCustos.CustoUpgradeAtributo;
             if (!_droid.Pontos.TentarGastar(custo))
             {
+                Registrar($"Falha: '{nomeAtributo}' custaria {custo} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
                 return false; // pontos insuficientes
             }
 
             AplicarUpgrade(atributo, quantidade);
+            Registrar($"Sucesso: {nomeAtributo} +{quantidade} (custou {custo} pontos).");
             return true;
         }
 
@@ -42,6 +48,7 @@ namespace DroidsCode.Scripting
         {
             if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0)
             {
+                Registrar("Falha: nome ou nível de dano inválido.");
                 return false;
             }
 
@@ -49,16 +56,29 @@ namespace DroidsCode.Scripting
 
             if (!_droid.Pontos.TentarGastar(tecnica.CustoTotal()))
             {
+                Registrar($"Falha: '{nome}' custaria {tecnica.CustoTotal()} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
                 return false;
             }
 
             _droid.TecnicasConfiguradas[nome] = tecnica;
+            Registrar($"Sucesso: técnica '{nome}' aprendida.");
             return true;
         }
 
         public int ObterPontosDisponiveis()
         {
             return _droid.Pontos.PontosDisponiveis;
+        }
+
+        // --- Adicionados para o terminal com histórico (TerminalUIManager) ---
+
+        public IReadOnlyList<string> ObterLogDaSessao() => _logDaSessao;
+
+        public void LimparLog() => _logDaSessao.Clear();
+
+        private void Registrar(string mensagem)
+        {
+            _logDaSessao.Add(mensagem);
         }
 
         private void AplicarUpgrade(TipoAtributo atributo, int quantidade)
