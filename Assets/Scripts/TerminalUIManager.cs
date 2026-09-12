@@ -41,7 +41,16 @@ public class TerminalUIManager : MonoBehaviour
     private Droid droid;
 
     private readonly List<string> historicoDeComandos = new List<string>();
-    private int indiceHistorico = -1;
+    // indiceHistorico == historicoDeComandos.Count representa a posicao
+    // "livre" (campo vazio, depois do ultimo comando) -- igual um terminal
+    // de verdade (bash). Comeca aqui, nao em -1.
+    private int indiceHistorico = 0;
+    // O que o campo deveria conter, segundo a navegacao do historico. Se o
+    // jogador editar o texto manualmente (sem usar seta), isso diverge do
+    // campoDeCodigo.text real -- e usamos essa divergencia pra bloquear a
+    // proxima navegacao em vez de apagar a edicao dele (mesma logica
+    // protetora que o ↑ ja tinha, so que generalizada pros dois lados).
+    private string textoEsperadoPeloHistorico = "";
 
     private readonly List<string> linhasDeLog = new List<string>();
 
@@ -51,10 +60,12 @@ public class TerminalUIManager : MonoBehaviour
         "  droid.aprenderTecnica(\"nome\", nivelDeDano)\n" +
         "  droid.aprenderTecnicaComVeneno(\"nome\", nivelDeDano, danoPorTurno, duracaoEmTurnos)\n" +
         "  droid.aprenderTecnicaComStun(\"nome\", nivelDeDano, duracaoEmTurnos)\n" +
+        "  droid.melhorarTecnica(\"nome\", nivelDeDanoAdicional) -- upgrade, cobra só a diferença\n" +
         "  droid.esquecerTecnica(\"nome\")\n" +
         "  droid.obterAtributo(\"nome\")        -- retorna número\n" +
         "  droid.listarTecnicas()              -- retorna texto\n" +
-        "  droid.obterPontosDisponiveis()       -- retorna número";
+        "  droid.obterPontosDisponiveis()       -- retorna número\n" +
+        "  droid.testeAdicionarPontos(quantidade) -- [TESTE] ignora XP/nível";
 
     void Start()
     {
@@ -78,13 +89,31 @@ public class TerminalUIManager : MonoBehaviour
             AoClicarExecutar();
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && string.IsNullOrEmpty(campoDeCodigo.text))
+        // CORRECAO (12/09/2026): ↑ e ↓ agora usam a MESMA regra protetora --
+        // so navegam se o texto atual do campo bate com o que o historico
+        // "acha" que colocou la (ou seja, o jogador nao editou manualmente
+        // desde a ultima navegacao). Antes o ↑ so checava campo vazio (o que
+        // por acaso protegia a digitacao inicial, mas nao uma edicao em cima
+        // de um item de historico ja carregado) e o ↓ nao checava nada.
+        bool textoNaoFoiEditadoManualmente = campoDeCodigo.text == textoEsperadoPeloHistorico;
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && textoNaoFoiEditadoManualmente)
         {
             NavegarHistorico(-1);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && indiceHistorico >= 0)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && textoNaoFoiEditadoManualmente)
         {
             NavegarHistorico(1);
+        }
+        else if (!textoNaoFoiEditadoManualmente)
+        {
+            // O jogador editou o texto manualmente (fora de uma navegacao
+            // de seta) -- essa edicao vira o novo baseline. Isso e o que
+            // permite digitar livremente depois de uma edicao, em vez de
+            // ficar bloqueado contra o texto antigo do historico pra
+            // sempre; a protecao so precisa valer pro PROXIMO toque de
+            // seta, nao pra digitacao normal.
+            textoEsperadoPeloHistorico = campoDeCodigo.text;
         }
     }
 
@@ -99,6 +128,12 @@ public class TerminalUIManager : MonoBehaviour
         {
             campoDeCodigo.text = codigoDeExemplo;
         }
+
+        // Sincroniza o baseline com o que de fato esta no campo ao abrir
+        // (vazio ou o exemplo pre-preenchido), senao a primeira seta
+        // pressionada seria bloqueada por uma falsa "edicao manual".
+        indiceHistorico = historicoDeComandos.Count;
+        textoEsperadoPeloHistorico = campoDeCodigo != null ? campoDeCodigo.text : "";
 
         AtualizarPontos();
         AdicionarLinhaDeLog("=== Terminal aberto. Digite um comando e clique Executar. ===");
@@ -170,17 +205,32 @@ public class TerminalUIManager : MonoBehaviour
     void AdicionarAoHistorico(string codigo)
     {
         historicoDeComandos.Add(codigo);
-        indiceHistorico = historicoDeComandos.Count;
+        indiceHistorico = historicoDeComandos.Count; // volta pra posicao "livre"
+        textoEsperadoPeloHistorico = "";
         if (campoDeCodigo != null) campoDeCodigo.text = "";
     }
 
+    // CORRECAO (12/09/2026): duas mudancas em relacao a versao antiga:
+    // 1) o range de Clamp agora vai ate historicoDeComandos.Count (nao
+    //    Count - 1) -- essa posicao extra representa o campo vazio "depois
+    //    do ultimo comando", entao dando ↓ repetidas vezes o jogador chega
+    //    de volta nele, em vez de travar no ultimo item pra sempre.
+    // 2) depois de mover o indice, guardamos o texto resultante em
+    //    textoEsperadoPeloHistorico -- e essa variavel que o Update() usa
+    //    pra saber se o jogador editou manualmente antes da proxima seta.
     void NavegarHistorico(int direcao)
     {
         if (historicoDeComandos.Count == 0) return;
 
-        indiceHistorico = Mathf.Clamp(indiceHistorico + direcao, 0, historicoDeComandos.Count - 1);
-        campoDeCodigo.text = historicoDeComandos[indiceHistorico];
+        indiceHistorico = Mathf.Clamp(indiceHistorico + direcao, 0, historicoDeComandos.Count);
+
+        string novoTexto = indiceHistorico < historicoDeComandos.Count
+            ? historicoDeComandos[indiceHistorico]
+            : ""; // posicao "livre": campo vazio, igual um terminal de verdade
+
+        campoDeCodigo.text = novoTexto;
         campoDeCodigo.caretPosition = campoDeCodigo.text.Length;
+        textoEsperadoPeloHistorico = novoTexto;
     }
 
     void AtualizarPontos()

@@ -17,29 +17,31 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-Nenhum no momento.
+Restam apenas os itens sem decisão de comportamento fechada — os demais foram corrigidos em 12/09/2026 (ver "✅ Concluído nesta sessão" abaixo). Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
+
+1. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje (só inimigos com técnica poderiam causar isso, e não existem ainda), mas é risco pra quando houver inimigo especial.
+2. [ ] **Empilhamento sem limite de Veneno/Stun.** Envenenar o mesmo alvo várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração de fato. **Decisão de comportamento ainda pendente** (cap de instâncias? renovar duração em vez de somar?) — não implementar sem definir isso primeiro.
 
 ---
 
 ## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
 
-- [ ] `BattleManager`: criar `painelListaDeItens` (painel vazio, inativo) e
-      `prefabBotaoItem` (pode reutilizar o mesmo prefab de `prefabBotaoAtaque`),
-      arrastar as referências no Inspector — sem isso o botão "Item" cai no
-      fallback (usa o primeiro item direto, sem mostrar a lista).
+- [ ] `BattleManager`: `painelListaDeItens`/`prefabBotaoItem` — apontado como "ainda mal otimizado" (12/09/2026); análise adiada para sessão futura, não mexer nisso sem revisão dedicada.
 
 ---
 
 ## 🎯 Próximos passos imediatos (curto prazo, em ordem sugerida)
 
 1. Corrigir os bugs abertos acima.
-2. Visor de experiência/XP (já estava planejado como próximo passo).
-3. Aplicar de fato os efeitos de `TecnicaComposta` em combate — hoje `Stun` e
-   `Envenenamento` têm custo calculado mas não fazem nada quando a técnica é usada
-   (`DOCUMENTACAO_TECNICA.md` §4.1). Sem isso, parte do sistema de progressão é
-   decorativa.
-4. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está
+2. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está
    declarada e não é referenciada em lugar nenhum.
+
+> ✅ Concluído nesta sessão (12/09/2026): detecção de vitória/derrota nos dois
+> lados do turno, Save/Load preservando efeitos (Veneno/Stun) de técnicas,
+> proteção do Ataque Básico contra sobrescrita, bloqueio de reaprendizado de
+> técnica com introdução de `droid.melhorarTecnica()` (upgrade incremental,
+> cobra só a diferença de custo), e correção das setas ↑/↓ do histórico do
+> terminal (proteção simétrica + posição "livre" de volta ao campo vazio).
 
 ---
 

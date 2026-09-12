@@ -162,9 +162,22 @@ public class BattleManager : MonoBehaviour
         AtualizarBarras();
         MostrarMensagem(resultado.Mensagem);
 
-        if (engine.VerificarDerrota(inimigo))
+        // CORRECAO (12/09/2026): checar os DOIS lados sempre, nao so o
+        // "obvio" deste metodo (inimigo). Dano por turno (veneno) pode
+        // zerar o HP do proprio atacante (droid) no inicio do turno dele,
+        // antes de agir -- se so checarmos o inimigo aqui, essa derrota do
+        // droid so seria percebida no proximo metodo, um turno depois.
+        // Prioridade: se ambos cairem no mesmo turno, tratamos como derrota
+        // do jogador (efeito de veneno nele mesmo nao deveria contar como
+        // vitoria contra o inimigo que ainda esta de pe).
+        if (engine.VerificarDerrota(droid))
+        {
+            StartCoroutine(FinalizarBatalha(false));
+        }
+        else if (engine.VerificarDerrota(inimigo))
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
+            MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
             StartCoroutine(FinalizarBatalha(true));
         }
         else
@@ -259,9 +272,19 @@ public class BattleManager : MonoBehaviour
         MostrarMensagem(resultado.Mensagem);
         yield return new WaitForSeconds(1f);
 
+        // CORRECAO (12/09/2026): mesma ideia do outro metodo -- checar os
+        // dois lados, nao so o droid. Se o inimigo tiver algum dano por
+        // turno no futuro (efeito nele mesmo) e morrer antes de agir, a
+        // vitoria precisa ser detectada aqui tambem.
         if (engine.VerificarDerrota(droid))
         {
             StartCoroutine(FinalizarBatalha(false));
+        }
+        else if (engine.VerificarDerrota(inimigo))
+        {
+            SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
+            MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            StartCoroutine(FinalizarBatalha(true));
         }
         else
         {
@@ -305,6 +328,7 @@ public class BattleManager : MonoBehaviour
         {
             if (string.IsNullOrWhiteSpace(linha)) continue;
             _logDeBatalha.Add(linha);
+            Debug.Log($"[Batalha] {linha}"); // histórico fica no Console também
         }
 
         while (_logDeBatalha.Count > MaximoDeLinhasDeLogDeBatalha)

@@ -45,6 +45,8 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 * O Droid ganha XP ao vencer batalhas e sobe de nível segundo uma curva simples (Nível × 100 de XP necessário).
 * Cada nível concedido gera pontos de progressão, gastos no terminal para investir em atributos ou aprender técnicas.
+* Técnicas podem ser aprendidas com efeitos extras — `aprenderTecnicaComVeneno` (dano contínuo) e `aprenderTecnicaComStun` (atordoamento, faz o alvo perder o turno) — que são de fato aplicados durante o combate.
+* Existe um comando `testeAdicionarPontos`, só para testes: soma pontos direto, ignorando XP/nível.
 
 ### 🧩 Customização e Herança de Peças
 
@@ -102,12 +104,11 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 ### ✅ Implementado e funcional
 
 - Droid com atributos base (FOR/AGI/VIT/INT/DEX/LUK), peças (sem comportamento próprio ainda) e defesa = VIT total
-- Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir
-- Botão "Item" na batalha abre uma lista fixa de itens (`ItensDeBatalha`: Poção Pequena +2, Poção Média +5, Poção Grande +8, Reparo Completo) em vez de curar sozinho
-- Motor de efeitos por turno: Stun (pula o turno) e Envenenamento (dano por turno) aplicados de verdade em combate, tanto no Droid quanto no inimigo; buffs/debuffs de atributo entram no cálculo de `ObterTotal`
-- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`)
-- Sistema de pontos de progressão e nível/XP
-- Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado, aplicação em combate ainda pendente
+- Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir, e um log de batalha (últimas linhas, não sobrescreve mensagem por mensagem)
+- Botão "Item" na batalha abre uma lista fixa de itens (`ItensDeBatalha`) em vez de curar sozinho
+- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `aprenderTecnicaComVeneno`, `aprenderTecnicaComStun`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`, `testeAdicionarPontos` [teste])
+- Sistema de pontos de progressão e nível/XP, com visor de Nível/XP na Tela de Status
+- Técnicas compostas com efeitos de atributo (Stun) e dano por turno (Envenenamento) — custo calculado **e aplicado de fato em combate**
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
 - Encontros aleatórios no mapa e menu principal
 
@@ -122,7 +123,7 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 
 ### 🐞 Bugs conhecidos
 
-Nenhum no momento.
+Veja a lista completa e priorizada em `CHECKLIST_DE_DESENVOLVIMENTO.md` (seção "🔴 Bugs abertos"). Destaque: dano por turno pode matar um participante sem que a vitória/derrota seja detectada na hora, e salvar/carregar o jogo descarta o Veneno/Stun configurado numa técnica.
 
 ---
 

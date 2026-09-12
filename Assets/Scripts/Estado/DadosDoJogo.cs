@@ -4,11 +4,35 @@ using System.Collections.Generic;
 // Separado do Droid/GerenciadorDeEstado de proposito -- esses sao os
 // objetos de dominio reais, isso aqui e so o "retrato" que vai pro disco.
 
+// CORRECAO (12/09/2026): TecnicaSalva so guardava nome/nivelDeDano -- os
+// efeitos (Stun/Envenenamento) da tecnica eram perdidos ao salvar/carregar.
+// EfeitoDeAtributoSalvo/EfeitoDeDanoPorTurnoSalvo sao DTOs planos, mesma
+// logica das outras classes desta pagina (JsonUtility nao serializa
+// Dictionary, mas List<T> de tipos [Serializable] funciona normalmente).
+[System.Serializable]
+public class EfeitoDeAtributoSalvo
+{
+    public string nomeExibicao;
+    public int atributo; // enum TipoAtributo salvo como int (JsonUtility serializa enum como int)
+    public int valor;
+    public int duracaoEmTurnos;
+}
+
+[System.Serializable]
+public class EfeitoDeDanoPorTurnoSalvo
+{
+    public string nomeExibicao;
+    public int danoPorTurno;
+    public int duracaoEmTurnos;
+}
+
 [System.Serializable]
 public class TecnicaSalva
 {
     public string nome;
     public int nivelDeDano;
+    public List<EfeitoDeAtributoSalvo> efeitosDeAtributo = new List<EfeitoDeAtributoSalvo>();
+    public List<EfeitoDeDanoPorTurnoSalvo> efeitosDeDanoPorTurno = new List<EfeitoDeDanoPorTurnoSalvo>();
 }
 
 [System.Serializable]

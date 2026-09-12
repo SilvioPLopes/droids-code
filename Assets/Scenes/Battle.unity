@@ -195,7 +195,7 @@ MonoBehaviour:
   hpMaxInimigo: 20
   atkInimigo: 5
   defInimigo: 1
-  recompensaXpInimigo: 10
+  recompensaXpInimigo: 100
   nomeCenaMundo: Game
   chanceDeFugir: 0.5
 --- !u!4 &164412324

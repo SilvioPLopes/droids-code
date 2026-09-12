@@ -52,6 +52,16 @@ namespace DroidsCode.Scripting
                 return false;
             }
 
+            // CORRECAO (12/09/2026 — Bug 3): mesma protecao que ja existia em
+            // EsquecerTecnica, replicada aqui -- sem isso dava pra
+            // sobrescrever o Ataque Basico chamando aprenderTecnica com o
+            // mesmo nome (e depois nao tinha como desfazer).
+            if (nome == Droid.NomeAtaqueBasico)
+            {
+                Registrar("Falha: o Ataque Básico não pode ser sobrescrito.");
+                return false;
+            }
+
             var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
             return TentarAprender(tecnica);
         }
@@ -63,6 +73,14 @@ namespace DroidsCode.Scripting
             if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 || danoPorTurno <= 0 || duracaoEmTurnos <= 0)
             {
                 Registrar("Falha: nome, nível de dano, dano por turno ou duração inválidos.");
+                return false;
+            }
+
+            // CORRECAO (12/09/2026 — Bug 3): mesma protecao do Ataque Basico
+            // replicada aqui (ver AprenderTecnica).
+            if (nome == Droid.NomeAtaqueBasico)
+            {
+                Registrar("Falha: o Ataque Básico não pode ser sobrescrito.");
                 return false;
             }
 
@@ -87,6 +105,14 @@ namespace DroidsCode.Scripting
                 return false;
             }
 
+            // CORRECAO (12/09/2026 — Bug 3): mesma protecao do Ataque Basico
+            // replicada aqui (ver AprenderTecnica).
+            if (nome == Droid.NomeAtaqueBasico)
+            {
+                Registrar("Falha: o Ataque Básico não pode ser sobrescrito.");
+                return false;
+            }
+
             var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
             tecnica.EfeitosDeAtributo.Add(new EfeitoDeAtributo
             {
@@ -105,8 +131,23 @@ namespace DroidsCode.Scripting
 
         // Cobra o custo total da tecnica (dano + efeitos, ver TecnicaComposta.CustoTotal)
         // e registra, se houver pontos suficientes. Compartilhado pelas 3 variantes acima.
+        //
+        // CORRECAO (12/09/2026 — Bug 4): antes, reaprender um nome ja existente
+        // sobrescrevia a tecnica antiga cobrando o custo total de novo -- os
+        // pontos investidos na versao anterior sumiam sem reembolso ("perder e
+        // recomecar do zero" a cada ajuste). Decisao tomada: BLOQUEAR
+        // reaprendizado do mesmo nome aqui, e direcionar pro fluxo correto
+        // (MelhorarTecnica, upgrade incremental que cobra so a diferenca).
+        // A mensagem de log ja indica ao jogador qual comando usar em vez
+        // disso -- serve de dica de uso dentro do proprio terminal.
         private bool TentarAprender(TecnicaComposta tecnica)
         {
+            if (_droid.TecnicasConfiguradas.ContainsKey(tecnica.Nome))
+            {
+                Registrar($"Falha: a técnica '{tecnica.Nome}' já existe. Use droid.melhorarTecnica(\"{tecnica.Nome}\", nivelDeDanoAdicional) para evoluí-la, ou droid.esquecerTecnica(\"{tecnica.Nome}\") antes de reaprendê-la do zero.");
+                return false;
+            }
+
             int custo = tecnica.CustoTotal();
             if (!_droid.Pontos.TentarGastar(custo))
             {
@@ -119,9 +160,69 @@ namespace DroidsCode.Scripting
             return true;
         }
 
+        // Ex. Lua: droid.melhorarTecnica("Soco de Sobrecarga", 2)
+        // CORRECAO (12/09/2026 — Bug 4): upgrade incremental de uma tecnica ja
+        // aprendida -- soma nivelDeDanoAdicional ao NivelDeDano existente e
+        // cobra so a DIFERENCA de custo (CustoTotal novo - CustoTotal antigo),
+        // nunca o custo cheio de novo. Segue o padrao mais elogiado em ARPGs
+        // de referencia (releitar uma gema no PoE e upar, nao apagar e
+        // recriar): menos punitivo, sem "sobrescrita silenciosa", e sem
+        // reembolso+recompra manual. Efeitos (Veneno/Stun) da tecnica NAO sao
+        // alterados por este metodo -- so o nivel de dano direto. Melhorar
+        // efeitos fica fora de escopo por ora (nao pedido).
+        public bool MelhorarTecnica(string nome, int nivelDeDanoAdicional)
+        {
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDanoAdicional <= 0)
+            {
+                Registrar("Falha: nome ou nível de dano adicional inválido.");
+                return false;
+            }
+
+            if (nome == Droid.NomeAtaqueBasico)
+            {
+                Registrar("Falha: o Ataque Básico não pode ser melhorado.");
+                return false;
+            }
+
+            if (!_droid.TecnicasConfiguradas.TryGetValue(nome, out TecnicaComposta tecnica))
+            {
+                Registrar($"Falha: a técnica '{nome}' não existe. Use droid.aprenderTecnica(\"{nome}\", nivelDeDano) primeiro.");
+                return false;
+            }
+
+            int custoAntigo = tecnica.CustoTotal();
+            int nivelAntigo = tecnica.NivelDeDano;
+            tecnica.NivelDeDano += nivelDeDanoAdicional; // aplicado direto no objeto ja em TecnicasConfiguradas
+            int custoNovo = tecnica.CustoTotal();
+            int diferenca = custoNovo - custoAntigo;
+
+            if (!_droid.Pontos.TentarGastar(diferenca))
+            {
+                // Reverte o aumento de nivel -- sem pontos suficientes, a
+                // tecnica nao pode ficar num estado "melhorada mas nao paga".
+                tecnica.NivelDeDano = nivelAntigo;
+                Registrar($"Falha: melhorar '{nome}' de nível {nivelAntigo} para {nivelAntigo + nivelDeDanoAdicional} custaria {diferenca} pontos (diferença), você só tem {_droid.Pontos.PontosDisponiveis}.");
+                return false;
+            }
+
+            Registrar($"Sucesso: técnica '{nome}' melhorada de nível {nivelAntigo} para {tecnica.NivelDeDano} (custou {diferenca} pontos de diferença).");
+            return true;
+        }
+
         public int ObterPontosDisponiveis()
         {
             return _droid.Pontos.PontosDisponiveis;
+        }
+
+        // Ex. Lua: droid.testeAdicionarPontos(500)
+        // SOMENTE PARA TESTES -- ignora completamente a economia normal do
+        // jogo (nivel/XP). Serve pra você testar builds de técnica/atributo
+        // sem precisar farmar batalha toda vez. Considere remover ou esconder
+        // isso antes de qualquer build final/demo pra terceiros.
+        public void TesteAdicionarPontos(int quantidade)
+        {
+            _droid.Pontos.DefinirPontos(_droid.Pontos.PontosDisponiveis + quantidade);
+            Registrar($"[TESTE] +{quantidade} pontos (total agora: {_droid.Pontos.PontosDisponiveis}).");
         }
 
         // Ex. Lua: droid.obterAtributo("For") -- leitura pura, nao gasta pontos

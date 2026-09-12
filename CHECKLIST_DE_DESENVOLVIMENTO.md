@@ -17,29 +17,36 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-Nenhum no momento.
+Levantados numa varredura dedicada em 12/09/2026, após o motor de efeitos (Veneno/Stun) entrar em combate. Detalhe técnico de cada um em `DOCUMENTACAO_TECNICA.md` §4.2/§4.3/§9.
+
+1. [ ] **Vitória/derrota não detectada na hora quando dano por turno mata quem ia agir.** `BattleManager.TurnoDoInimigo()` só checa `VerificarDerrota(droid)`; `ExecutarAtaqueDoJogador()` só checa `VerificarDerrota(inimigo)`. Se o veneno matar o próprio atacante da vez no início do turno dele, a batalha só percebe no turno seguinte.
+2. [ ] **Salvar/Carregar descarta Veneno/Stun de uma técnica.** `TecnicaSalva` só grava nome/nível de dano — os efeitos da técnica somem ao carregar o save.
+3. [ ] **Ataque Básico pode ser sobrescrito.** `AprenderTecnica`/`AprenderTecnicaComVeneno`/`AprenderTecnicaComStun` não bloqueiam o nome `Droid.NomeAtaqueBasico` (só `EsquecerTecnica` bloqueia).
+4. [ ] **Reaprender uma técnica existente não reembolsa a versão antiga.** `TentarAprender` cobra o custo total de novo sem checar se o nome já estava configurado — os pontos da versão anterior somem.
+5. [ ] **Terminal — seta ↓ do histórico sem proteção.** Diferente da seta ↑ (só navega se o campo estiver vazio), ↓ troca o texto do campo mesmo no meio de uma digitação nova.
+6. [ ] **Terminal — não dá pra sair do histórico de volta pro campo vazio só com ↓.** `NavegarHistorico` trava no último comando do histórico como teto.
+7. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje (só inimigos com técnica poderiam causar isso, e não existem ainda), mas é risco pra quando houver inimigo especial.
+8. [ ] **Empilhamento sem limite de Veneno/Stun.** Envenenar o mesmo alvo várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração de fato. Confirmar se é intencional antes de decidir se é bug.
 
 ---
 
 ## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
 
-- [ ] `PainelListaDeItens` e `PainelListaDeAtaques`: adicionar `Vertical Layout
-      Group` (Spacing ~5-10) + `Content Size Fitter` (Vertical Fit: Preferred
-      Size) em cada painel — hoje os botões instanciados ficam sobrepostos
-      (texto por cima de texto) porque não há layout empilhando eles.
+- [ ] `BattleManager`: criar `painelListaDeItens` (painel vazio, inativo) e
+      `prefabBotaoItem` (pode reutilizar o mesmo prefab de `prefabBotaoAtaque`),
+      arrastar as referências no Inspector — sem isso o botão "Item" cai no
+      fallback (usa o primeiro item direto, sem mostrar a lista).
 
 ---
 
 ## 🎯 Próximos passos imediatos (curto prazo, em ordem sugerida)
 
 1. Corrigir os bugs abertos acima.
-2. Visor de experiência/XP (já estava planejado como próximo passo).
-3. Aplicar de fato os efeitos de `TecnicaComposta` em combate — hoje `Stun` e
-   `Envenenamento` têm custo calculado mas não fazem nada quando a técnica é usada
-   (`DOCUMENTACAO_TECNICA.md` §4.1). Sem isso, parte do sistema de progressão é
-   decorativa.
-4. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está
+2. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está
    declarada e não é referenciada em lugar nenhum.
+
+> ✅ Concluído nesta sessão (12/09/2026): visor de experiência/XP na Tela de Status,
+> e aplicação de fato dos efeitos (Stun/Envenenamento) de `TecnicaComposta` em combate.
 
 ---
 

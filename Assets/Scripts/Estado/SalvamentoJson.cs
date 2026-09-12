@@ -49,9 +49,34 @@ public class SalvamentoJson : ISistemaDeSalvamento
             cena = cenaAtual
         };
 
+        // CORRECAO (12/09/2026): gravar tambem os efeitos da tecnica (antes
+        // so nome/nivelDeDano eram salvos -- Veneno/Stun sumiam ao carregar).
         foreach (var tecnica in droid.TecnicasConfiguradas.Values)
         {
-            dados.droid.tecnicas.Add(new TecnicaSalva { nome = tecnica.Nome, nivelDeDano = tecnica.NivelDeDano });
+            var tecnicaSalva = new TecnicaSalva { nome = tecnica.Nome, nivelDeDano = tecnica.NivelDeDano };
+
+            foreach (var efeito in tecnica.EfeitosDeAtributo)
+            {
+                tecnicaSalva.efeitosDeAtributo.Add(new EfeitoDeAtributoSalvo
+                {
+                    nomeExibicao = efeito.NomeExibicao,
+                    atributo = (int)efeito.Atributo,
+                    valor = efeito.Valor,
+                    duracaoEmTurnos = efeito.DuracaoEmTurnos
+                });
+            }
+
+            foreach (var efeito in tecnica.EfeitosDeDanoPorTurno)
+            {
+                tecnicaSalva.efeitosDeDanoPorTurno.Add(new EfeitoDeDanoPorTurnoSalvo
+                {
+                    nomeExibicao = efeito.NomeExibicao,
+                    danoPorTurno = efeito.DanoPorTurno,
+                    duracaoEmTurnos = efeito.DuracaoEmTurnos
+                });
+            }
+
+            dados.droid.tecnicas.Add(tecnicaSalva);
         }
 
         foreach (var kv in gerenciador.TodasAsFlags)
@@ -91,10 +116,35 @@ public class SalvamentoJson : ISistemaDeSalvamento
         droid.Pontos.DefinirPontos(dados.droid.pontosDisponiveis);
         droid.Progressao.Definir(dados.droid.nivel, dados.droid.experiencia);
 
+        // CORRECAO (12/09/2026): reconstruir tambem os efeitos salvos (antes
+        // a tecnica voltava do save como ataque comum, sem Veneno/Stun).
         droid.TecnicasConfiguradas.Clear();
         foreach (var t in dados.droid.tecnicas)
         {
-            droid.TecnicasConfiguradas[t.nome] = new TecnicaComposta { Nome = t.nome, NivelDeDano = t.nivelDeDano };
+            var tecnica = new TecnicaComposta { Nome = t.nome, NivelDeDano = t.nivelDeDano };
+
+            foreach (var efeitoSalvo in t.efeitosDeAtributo)
+            {
+                tecnica.EfeitosDeAtributo.Add(new EfeitoDeAtributo
+                {
+                    NomeExibicao = efeitoSalvo.nomeExibicao,
+                    Atributo = (TipoAtributo)efeitoSalvo.atributo,
+                    Valor = efeitoSalvo.valor,
+                    DuracaoEmTurnos = efeitoSalvo.duracaoEmTurnos
+                });
+            }
+
+            foreach (var efeitoSalvo in t.efeitosDeDanoPorTurno)
+            {
+                tecnica.EfeitosDeDanoPorTurno.Add(new EfeitoDeDanoPorTurno
+                {
+                    NomeExibicao = efeitoSalvo.nomeExibicao,
+                    DanoPorTurno = efeitoSalvo.danoPorTurno,
+                    DuracaoEmTurnos = efeitoSalvo.duracaoEmTurnos
+                });
+            }
+
+            droid.TecnicasConfiguradas[t.nome] = tecnica;
         }
 
         var flags = new System.Collections.Generic.Dictionary<string, bool>();

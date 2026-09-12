@@ -83,24 +83,17 @@ Salvamento    (ISistemaDeSalvamento / SalvamentoJson / DadosDoJogo) — cruza Do
 
 ## 3. Estrutura de pastas (scripts)
 
-> **Corrigido (12/09/2026), confirmado por print do Explorer.** A estrutura
-> abaixo divergia da real (dizia `World/`, `DroidCore/`, `Salvamento/`, `UI/`
-> — nomes que não existem no projeto). As camadas lógicas da seção 2
-> continuam valendo como conceito; só os nomes de pasta físicos mudam.
-
 ```
 Assets/Scripts/
-├── (raiz)      MainMenuManager.cs, MenuMundoManager.cs, PlayerMovement.cs, RestaurarPosicao.cs,
-│               EncounterZone.cs, TelaDeStatusManager.cs, TerminalUIManager.cs, BattleManager.cs,
-│               readme.md, DOCUMENTACAO_TECNICA.md, CHECKLIST_DE_DESENVOLVIMENTO.md
-├── Combat/     CombatEngine.cs, IParticipanteDeCombate.cs, ResultadoAcao.cs, InimigoFixo.cs
-├── Droid/      Droid.cs, DroidPart.cs, Braco.cs, Perna.cs, Tronco.cs, Cabeca.cs, DroidStats.cs,
-│               TipoAtributo.cs, PontosDeProgressao.cs, ProgressaoDeNivel.cs, SistemaDeProgressao.cs,
-│               TabelaDeCustos.cs, TabelaDeCombate.cs, TecnicaComposta.cs, ItemConsumivel.cs,
-│               EfeitosTemporariosUtil.cs
-├── Estado/     GerenciadorDeEstado.cs, ISistemaDeSalvamento.cs, SalvamentoJson.cs, DadosDoJogo.cs
-├── Scripting/  DroidScriptRunner.cs, TerminalDroidApi.cs
-└── _Teste/     (conteúdo não verificado ainda — nenhum arquivo de lá foi enviado)
+├── World/        PlayerMovement.cs, EncounterZone.cs, RestaurarPosicao.cs, GerenciadorDeEstado.cs
+├── Combat/       CombatEngine.cs, IParticipanteDeCombate.cs, ResultadoAcao.cs, InimigoFixo.cs
+├── DroidCore/    Droid.cs, DroidPart.cs, Braco.cs, Perna.cs, Tronco.cs, Cabeca.cs, DroidStats.cs,
+│                 TipoAtributo.cs, PontosDeProgressao.cs, ProgressaoDeNivel.cs, SistemaDeProgressao.cs,
+│                 TabelaDeCustos.cs, TabelaDeCombate.cs, TecnicaComposta.cs, ItemConsumivel.cs
+├── Scripting/    DroidScriptRunner.cs, TerminalDroidApi.cs
+├── Salvamento/   ISistemaDeSalvamento.cs, SalvamentoJson.cs, DadosDoJogo.cs
+└── UI/           BattleManager.cs, MainMenuManager.cs, MenuMundoManager.cs, TerminalUIManager.cs,
+                  TelaDeStatusManager.cs
 ```
 
 ---
@@ -115,9 +108,9 @@ Assets/Scripts/
 - `Pontos`: `PontosDeProgressao` (orçamento gasto no terminal)
 - `Progressao`: `ProgressaoDeNivel` (nível/XP ganhos em combate — separado de `Pontos` por SRP)
 - `Defesa => ObterTotal(TipoAtributo.Vit)` — hoje é só VIT total; peças ainda não contribuem para defesa
-- `EfeitosAtivos`: `List<EfeitoDeAtributo>` (buffs/debuffs de atributo + Stun) e `EfeitosDeDanoAtivos`: `List<EfeitoDeDanoPorTurno>` (Envenenamento) — decrementados 1x por turno via `DecrementarEfeitosAtivos()` (usa `EfeitosTemporariosUtil.Decrementar<T>`, compartilhado com `InimigoFixo`)
-- `ExecutarAcao(nomeAcao, alvo)`: lê a técnica configurada, calcula dano (ver fórmula na seção 5), **copia** os efeitos da técnica (`EfeitosDeAtributo`/`EfeitosDeDanoPorTurno`) pro `alvo.EfeitosAtivos`/`alvo.EfeitosDeDanoAtivos` (cópia, não referência — cada uso da técnica gera uma instância própria, sem compartilhar `DuracaoEmTurnos`) — nunca chama Lua
-- `ObterTotal(TipoAtributo)`: base (`StatsBase`) + bônus de peça (hoje sempre 0) + **bônus de efeitos ativos** (soma `Valor` de cada `EfeitoDeAtributo` ativo que bate com o atributo consultado — corrigido em 12/09/2026, antes retornava sempre 0 de bônus de efeito)
+- `EfeitosAtivos`: `List<EfeitoDeAtributo>` — só o Droid do jogador tem, decrementado 1x por turno via `DecrementarEfeitosAtivos()`
+- `ExecutarAcao(nomeAcao, alvo)`: lê a técnica configurada, calcula dano (ver fórmula na seção 5) — nunca chama Lua
+- `ObterTotal(TipoAtributo)`: base (`StatsBase`) + bônus de peça (hoje sempre 0 — peças não têm bônus nomeado por atributo ainda)
 
 **`DroidPart`** (abstrata) + `Braco`/`Perna`/`Tronco`/`Cabeca` — só dado (`Nome`, `AtributoPrincipal`, `Raridade`), sem comportamento próprio. Isso é intencional na fase atual (Fase 1 do design); a herança de verdade com métodos sobrescritos é Fase 2 (roadmap).
 
@@ -134,17 +127,27 @@ Assets/Scripts/
 **`TabelaDeCombate`** (placeholder) — `DanoPorNivelDeTecnica = 5`. Separada de `TabelaDeCustos` de propósito: uma é custo em pontos, outra é output de dano.
 
 **`TecnicaComposta`** — `Nome`, `NivelDeDano`, `EfeitosDeAtributo` (`List<EfeitoDeAtributo>`), `EfeitosDeDanoPorTurno` (`List<EfeitoDeDanoPorTurno>`), `CustoTotal()`. `EfeitoDeAtributo` liga-se a um `TipoAtributo` + valor + duração (`-1` = permanente, convenção não usada ainda). `EfeitoDeDanoPorTurno` é dano contínuo (ex: Envenenamento), modelado como tipo próprio por não caber no formato de "alterar atributo".
-> ✅ **Corrigido (12/09/2026)** — motor de efeitos por turno implementado: `Droid.ExecutarAcao` agora copia `EfeitosDeAtributo`/`EfeitosDeDanoPorTurno` da técnica pro alvo; `CombatEngine.ExecutarTurno` aplica dano por turno no início do turno de quem está afetado e checa Stun (flag `NomeExibicao == "Stun"`) antes de deixar agir; `IParticipanteDeCombate` ganhou `EfeitosAtivos`/`EfeitosDeDanoAtivos`/`DecrementarEfeitosAtivos()` no contrato, então `InimigoFixo` também sofre Stun/Envenenamento (sem buff de atributo — ele não tem stats configuráveis como o Droid). Nova classe `EfeitosTemporariosUtil` (em `Droid/`) compartilha a lógica de decremento/expiração entre `Droid` e `InimigoFixo`.
+> ✅ **Implementado (12/09/2026)** — os efeitos de `TecnicaComposta` (Stun, Envenenamento) agora são aplicados de verdade: `Droid.ExecutarAcao` chama `AplicarEfeitosDaTecnica(tecnica, alvo)` (método privado estático), que copia cada `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` da técnica para `alvo.EfeitosAtivos`/`alvo.EfeitosDeDanoAtivos` (cópia, não referência — cada uso da técnica gera instâncias novas, com sua própria `DuracaoEmTurnos`). Quem realmente processa os efeitos durante o turno é o `CombatEngine` (ver 4.2).
+> ⚠️ **Risco não resolvido:** nada limpa `EfeitosAtivos`/`EfeitosDeDanoAtivos` do `Droid` entre batalhas (`FinalizarBatalha`/`BattleManager.Start()` não zeram essas listas). Hoje isso não tem efeito visível porque só o `Droid` aplica efeitos — `InimigoFixo` nunca tem `TecnicaComposta` — mas o dia em que um inimigo puder envenenar/atordoar o jogador, efeitos podem vazar de uma batalha pra outra. Ver seção 9.
+> ⚠️ **Sem dedupe/cap de empilhamento:** cada acerto de uma técnica com Veneno/Stun adiciona uma nova instância na lista do alvo. Envenenar o mesmo alvo várias vezes soma o dano por turno de todas as instâncias ativas; Stun repetido não estende a duração de fato (todas decrementam juntas a cada turno do alvo — o efeito prático nunca passa da maior duração individual). Não confirmado se é intencional.
 
 ### 4.2 `Combat` — combate
 
-**`IParticipanteDeCombate`** — contrato: `Nome`, `Hp` (get/set), `HpMax` (get), `Defesa` (get), `EfeitosAtivos`/`EfeitosDeDanoAtivos`/`DecrementarEfeitosAtivos()` (motor de efeitos, adicionado 12/09/2026), `ObterAcoesDisponiveis()`, `ExecutarAcao(nomeAcao, alvo)`.
+**`IParticipanteDeCombate`** — contrato: `Nome`, `Hp` (get/set), `HpMax` (get), `Defesa` (get), `ObterAcoesDisponiveis()`, `ExecutarAcao(nomeAcao, alvo)`.
 
 **`ResultadoAcao`** — `Sucesso`, `DanoCausado`, `Mensagem`. Mínima de propósito — não adicionar campos (efeito visual, combo, status) sem necessidade concreta.
 
-**`CombatEngine`** — sem estado. `ExecutarTurno(atacante, alvo, nomeAcao)`: aplica dano por turno em `atacante` (Envenenamento), checa Stun (pula a ação se `atacante` tiver `EfeitoDeAtributo` com `NomeExibicao == "Stun"` e duração > 0), senão delega para `atacante.ExecutarAcao` e aplica dano ao HP do alvo; decrementa os efeitos de `atacante` no fim. `VerificarDerrota(participante)` = `Hp <= 0` (nenhuma outra condição implementada).
+**`CombatEngine`** — sem estado. `ExecutarTurno(atacante, alvo, nomeAcao)`:
+1. Aplica dano por turno (`EfeitosDeDanoAtivos`, ex: Envenenamento) no **próprio `atacante`**, no início do turno dele — antes de decidir se ele age.
+2. Se isso zerar o HP do atacante, retorna direto ("sucumbiu a um efeito ativo antes de agir"), sem executar a ação.
+3. Se o atacante estiver atordoado (`EstaAtordoado` — checa `EfeitosAtivos` por `NomeExibicao == "Stun"` com duração > 0), perde o turno.
+4. Caso contrário, delega para `atacante.ExecutarAcao`, aplica o dano resultante ao HP do alvo.
+5. Ao final, chama `atacante.DecrementarEfeitosAtivos()` — **só do atacante desta chamada**, nunca do alvo.
 
-**`InimigoFixo`** (implementa `IParticipanteDeCombate`) — comportamento 100% fixo em C#, uma única ação ("Atacar"). Tem `RecompensaXp`, propositalmente fora da interface genérica (só o `BattleManager` referencia `InimigoFixo` diretamente). Sofre Stun/Envenenamento como o Droid, mas sem buff de atributo (não tem `ObterTotal`/stats configuráveis).
+`VerificarDerrota(participante)` = `Hp <= 0` (nenhuma outra condição implementada).
+> ⚠️ **Bug conhecido:** `BattleManager` só chama `VerificarDerrota` no participante "óbvio" de cada método (`VerificarDerrota(inimigo)` depois do ataque do jogador; `VerificarDerrota(droid)` depois do turno do inimigo). Se o dano por turno do passo 1 acima matar o atacante *antes* de agir, esse participante nunca é checado por `VerificarDerrota` naquele exato método — a batalha só percebe a derrota/vitória um turno depois. Ver seção 9.
+
+**`InimigoFixo`** (implementa `IParticipanteDeCombate`) — comportamento 100% fixo em C#, uma única ação ("Atacar"). Tem `RecompensaXp`, propositalmente fora da interface genérica (só o `BattleManager` referencia `InimigoFixo` diretamente).
 
 ### 4.3 `Scripting` — terminal
 
@@ -154,7 +157,12 @@ Assets/Scripts/
 **`TerminalDroidApi`** — única fachada exposta ao Lua; `Droid` nunca é registrado diretamente no MoonSharp.
 - `SubirAtributo(nomeAtributo, quantidade)`: valida quantidade > 0, nome de atributo válido, pontos suficientes; aplica e loga.
 - `AprenderTecnica(nome, nivelDeDano)`: valida nome/nível, checa `TecnicaComposta.CustoTotal()` contra pontos; aplica e loga.
+- `AprenderTecnicaComVeneno(nome, nivelDeDano, danoPorTurno, duracaoEmTurnos)`: mesma validação de `AprenderTecnica`, mais `danoPorTurno > 0` e `duracaoEmTurnos > 0`; monta a técnica com um `EfeitoDeDanoPorTurno` ("Envenenamento") e delega para `TentarAprender`.
+- `AprenderTecnicaComStun(nome, nivelDeDano, duracaoEmTurnos)`: mesma ideia, monta a técnica com um `EfeitoDeAtributo` ("Stun", `Atributo`/`Valor` no default de propósito — é uma flag checada por nome em `CombatEngine.EstaAtordoado`, não um buff real) e delega para `TentarAprender`.
 - `ObterPontosDisponiveis()`, `ObterLogDaSessao()`, `LimparLog()`.
+- `TesteAdicionarPontos(quantidade)`: **[TESTE]** soma pontos direto via `Pontos.DefinirPontos(...)`, ignorando XP/nível. Existe pra testar builds de técnica/atributo sem farmar batalha. Comentário no próprio código já sinaliza "considere remover ou esconder antes de qualquer build final/demo pra terceiros" — ainda não removido/protegido.
+> ⚠️ **Lacuna de validação:** nem `AprenderTecnica`, `AprenderTecnicaComVeneno` nem `AprenderTecnicaComStun` checam se `nome == Droid.NomeAtaqueBasico` antes de gravar em `TecnicasConfiguradas` — só `EsquecerTecnica` tem essa proteção. Ou seja, dá pra sobrescrever o Ataque Básico chamando `droid.aprenderTecnicaComVeneno("Ataque Basico", ...)`, e depois disso não tem como voltar (o nome continua "protegido" contra remoção, só que já não é mais o básico original). Ver seção 9.
+> ⚠️ **Sem reembolso ao reaprender:** `TentarAprender` (usado pelas 3 variantes acima) não verifica se `tecnica.Nome` já existe em `TecnicasConfiguradas` antes de cobrar o custo total — reaprender uma técnica existente sobrescreve a antiga e os pontos investidos nela somem, sem passar por `EsquecerTecnica` primeiro. Ver seção 9.
 > ✅ **Corrigido (12/09/2026)** — os três métodos que o texto de ajuda já citava foram implementados em `TerminalDroidApi`:
 > - `ObterAtributo(nomeAtributo)`: leitura pura (não gasta pontos), retorna `Droid.ObterTotal(atributo)`; nome inválido retorna 0 e loga falha.
 > - `ListarTecnicas()`: retorna os nomes de `TecnicasConfiguradas` separados por vírgula, ou "Nenhuma técnica configurada.".
@@ -189,6 +197,7 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 ### 4.6 `UI` — apresentação
 
 **`BattleManager`** — não calcula nada, só orquestra: botões fixos (Atacar/Item/Fugir/Status), lista dinâmica de técnicas se o Droid tiver mais de uma configurada, corrotinas de turno, integração com `TelaDeStatusManager`. Botão "Item" (corrigido em 12/09/2026) abre `painelListaDeItens` com os itens de `ItensDeBatalha.Disponiveis` (lista fixa, ver `ItemConsumivel.cs`) — não cura mais sozinho automaticamente.
+- **Log de batalha:** `MostrarMensagem` mantém as últimas 4 linhas (`_logDeBatalha`) em vez de sobrescrever a mensagem toda vez — mesmo padrão do log do Terminal (`TerminalUIManager.linhasDeLog`). Cada chamada separa a mensagem recebida por `\n` em várias entradas do log, porque `CombatEngine.ExecutarTurno` pode devolver mais de um evento no mesmo turno (ex: dano de veneno + resultado do ataque).
 
 **`MenuMundoManager`** — menu de pausa (tecla Esc): Status/Terminal/Bag/Droid/Opções/Salvar/Carregar/Voltar. Bag/Droid/Opções ainda são placeholders ("ainda não foi implementado").
 
@@ -250,11 +259,24 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 | Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável | Planejado, não implementado |
 | `DroidDataSO` / `ItemDataSO` / Factory | Migrar criação de Droid/itens de código direto para ScriptableObjects configuráveis no Inspector | Planejado, não implementado |
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
-| Inventário e equipamento completos | Hoje existe só `ItensDeBatalha.Disponiveis` (lista fixa de 4 itens de cura, sem quantidade/persistência/drop) — inventário real (biblioteca maior, quantidades, itens de status/situacionais) ainda não existe | Planejado, não implementado |
+| Inventário e equipamento completos | Além do que já existe para peças do Droid | Planejado, não implementado |
 
 ---
 
 ## 9. Pendências técnicas conhecidas
 
+> Itens abaixo marcados com data foram levantados numa varredura dedicada de bugs (não é lista de "coisas que faltam fazer" — isso é papel do `CHECKLIST_DE_DESENVOLVIMENTO.md`, que também lista os mesmos itens em "🔴 Bugs abertos").
+
 - `TabelaDeCustos.CustoResistenciaPorNivel` está declarada mas não é referenciada em nenhum cálculo — confirmar se ainda é necessária ou remover.
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.
+
+**Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos):**
+
+- **Detecção de vitória/derrota atrasa quando dano por turno mata quem ia agir.** `BattleManager.TurnoDoInimigo()` só chama `VerificarDerrota(droid)`; `ExecutarAtaqueDoJogador()` só chama `VerificarDerrota(inimigo)`. Se o dano por turno (veneno) zerar o HP do próprio atacante da vez (ver 4.2), nenhum dos dois métodos checa a derrota desse participante — a batalha só percebe no turno seguinte. Reprodutível hoje envenenando o inimigo até ele morrer do tick no início do próprio turno.
+- **Save/Load descarta Veneno/Stun de uma técnica.** `TecnicaSalva` (`DadosDoJogo.cs`) só tem `nome`/`nivelDeDano`. `SalvamentoJson.Salvar()` não grava `EfeitosDeAtributo`/`EfeitosDeDanoPorTurno`; `Carregar()` reconstrói a técnica sem eles. Uma técnica com veneno/stun configurada volta como ataque comum após salvar e carregar.
+- **Ataque Básico pode ser sobrescrito.** Ver aviso na seção 4.3 — só `EsquecerTecnica` protege o nome `Droid.NomeAtaqueBasico`; as 3 variantes de aprender técnica não.
+- **Reaprender uma técnica não reembolsa a versão anterior.** Ver aviso na seção 4.3 (`TentarAprender`).
+- **Terminal: seta ↓ do histórico sem a mesma proteção da seta ↑.** `TerminalUIManager.Update()` só bloqueia ↑ quando o campo já tem texto (evita apagar o que o jogador está digitando); ↓ não tem essa checagem, então navegar pra baixo troca o texto do campo mesmo no meio de uma digitação nova.
+- **Terminal: não dá pra "sair" do histórico de volta pro campo vazio só com ↓.** `NavegarHistorico` trava o índice em `historicoDeComandos.Count - 1` como teto — nunca solta de volta pra um campo vazio.
+- **`EfeitosAtivos`/`EfeitosDeDanoAtivos` do Droid nunca são zerados entre batalhas.** Nada em `BattleManager` limpa essas listas ao iniciar/terminar uma luta. Sem efeito visível hoje (só o Droid recebe efeitos, e só `InimigoFixo` os causaria — o que não existe ainda), mas é uma bomba-relógio pro dia em que um inimigo puder envenenar/atordoar o jogador.
+- **Empilhamento sem limite dos efeitos.** Cada acerto de uma técnica com Veneno soma mais uma instância de dano por turno (efeitos concorrentes se somam); Stun repetido não estende a duração de fato (todas as instâncias decrementam juntas). Não confirmado se é comportamento desejado.
