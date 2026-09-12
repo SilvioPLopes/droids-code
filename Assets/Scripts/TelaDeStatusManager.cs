@@ -19,6 +19,7 @@ public class TelaDeStatusManager : MonoBehaviour
     public TextMeshProUGUI textoAtributos;
     public TextMeshProUGUI textoTecnicas;
     public TextMeshProUGUI textoPontos;
+    public TextMeshProUGUI textoExp;
     public Button botaoVoltar;
 
     void Start()
@@ -57,6 +58,15 @@ public class TelaDeStatusManager : MonoBehaviour
         textoTecnicas.text = tecnicas.Length > 0 ? tecnicas.ToString() : "Nenhuma";
 
         textoPontos.text = $"Pontos disponíveis: {droid.Pontos.PontosDisponiveis}";
+
+        // Campo opcional: se você ainda não criou o TextMeshProUGUI de XP no
+        // Inspector, isso simplesmente não mostra nada, sem quebrar o resto.
+        if (textoExp != null)
+        {
+            textoExp.text =
+                $"Nível: {droid.Progressao.Nivel}\n" +
+                $"XP: {droid.Progressao.ExperienciaAtual}/{droid.Progressao.ExperienciaNecessariaProximoNivel}";
+        }
 
         painel.SetActive(true);
     }

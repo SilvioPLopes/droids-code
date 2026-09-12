@@ -16,7 +16,9 @@ namespace DroidsCode.DroidCore
     {
         public static readonly ItemConsumivel[] Disponiveis = new[]
         {
-            new ItemConsumivel { Nome = "Poção Pequena", CuraHp = 8 },
+            new ItemConsumivel { Nome = "Poção Pequena", CuraHp = 2 },
+            new ItemConsumivel { Nome = "Poção Média", CuraHp = 5 },
+            new ItemConsumivel { Nome = "Poção Grande", CuraHp = 8 },
             new ItemConsumivel { Nome = "Reparo Completo", CuraHp = 9999 } // valor alto o suficiente pra sempre encher o HpMax; UsarItem() limita ao HpMax
         };
     }

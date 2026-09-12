@@ -103,7 +103,9 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 
 - Droid com atributos base (FOR/AGI/VIT/INT/DEX/LUK), peças (sem comportamento próprio ainda) e defesa = VIT total
 - Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir
-- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`)
+- Botão "Item" na batalha abre uma lista fixa de itens (`ItensDeBatalha`: Poção Pequena +2, Poção Média +5, Poção Grande +8, Reparo Completo) em vez de curar sozinho
+- Motor de efeitos por turno: Stun (pula o turno) e Envenenamento (dano por turno) aplicados de verdade em combate, tanto no Droid quanto no inimigo; buffs/debuffs de atributo entram no cálculo de `ObterTotal`
+- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`)
 - Sistema de pontos de progressão e nível/XP
 - Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado, aplicação em combate ainda pendente
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
@@ -115,12 +117,12 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - **Modo Puzzle** do terminal (exercícios de lógica isolados, fora da configuração real do Droid)
 - **`DroidDataSO`/Factory** — hoje o Droid é criado direto em código; a ideia é migrar para ScriptableObjects configuráveis no Inspector
 - **Fase 2 de customização de peças** — herança real com Cartuchos de Código sobrescrevendo `DroidBase`
-- Inventário e equipamento completos
-- Aplicação em combate dos efeitos de atributo/dano por turno das técnicas (Stun, Envenenamento)
+- Inventário e equipamento completos (a lista fixa de itens da batalha é um placeholder mínimo, não um inventário real)
+- Bag/Droid/Opções no Menu do Mundo ainda são placeholders ("ainda não foi implementado")
 
 ### 🐞 Bugs conhecidos
 
-- Ao salvar e carregar o jogo, o personagem para de responder ao movimento (em investigação)
+Nenhum no momento.
 
 ---
 

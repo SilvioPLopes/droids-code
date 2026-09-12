@@ -53,15 +53,69 @@ namespace DroidsCode.Scripting
             }
 
             var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
+            return TentarAprender(tecnica);
+        }
 
-            if (!_droid.Pontos.TentarGastar(tecnica.CustoTotal()))
+        // Ex. Lua: droid.aprenderTecnicaComVeneno("Golpe Toxico", 2, 3, 2)
+        // nivelDeDano = dano direto do golpe; danoPorTurno/duracaoEmTurnos = o Envenenamento aplicado no alvo.
+        public bool AprenderTecnicaComVeneno(string nome, int nivelDeDano, int danoPorTurno, int duracaoEmTurnos)
+        {
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 || danoPorTurno <= 0 || duracaoEmTurnos <= 0)
             {
-                Registrar($"Falha: '{nome}' custaria {tecnica.CustoTotal()} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
+                Registrar("Falha: nome, nível de dano, dano por turno ou duração inválidos.");
                 return false;
             }
 
-            _droid.TecnicasConfiguradas[nome] = tecnica;
-            Registrar($"Sucesso: técnica '{nome}' aprendida.");
+            var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
+            tecnica.EfeitosDeDanoPorTurno.Add(new EfeitoDeDanoPorTurno
+            {
+                NomeExibicao = "Envenenamento",
+                DanoPorTurno = danoPorTurno,
+                DuracaoEmTurnos = duracaoEmTurnos
+            });
+
+            return TentarAprender(tecnica);
+        }
+
+        // Ex. Lua: droid.aprenderTecnicaComStun("Choque", 1, 1)
+        // nivelDeDano = dano direto do golpe; duracaoEmTurnos = por quantos turnos o alvo perde a ação.
+        public bool AprenderTecnicaComStun(string nome, int nivelDeDano, int duracaoEmTurnos)
+        {
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 || duracaoEmTurnos <= 0)
+            {
+                Registrar("Falha: nome, nível de dano ou duração inválidos.");
+                return false;
+            }
+
+            var tecnica = new TecnicaComposta { Nome = nome, NivelDeDano = nivelDeDano };
+            tecnica.EfeitosDeAtributo.Add(new EfeitoDeAtributo
+            {
+                // NomeExibicao "Stun" e o unico campo que importa aqui -- e uma
+                // flag checada por nome em CombatEngine.EstaAtordoado(), nao
+                // um buff/debuff de atributo de verdade. Atributo/Valor ficam
+                // no default (For/0) de proposito, pra nao afetar ObterTotal.
+                NomeExibicao = "Stun",
+                Atributo = TipoAtributo.For,
+                Valor = 0,
+                DuracaoEmTurnos = duracaoEmTurnos
+            });
+
+            return TentarAprender(tecnica);
+        }
+
+        // Cobra o custo total da tecnica (dano + efeitos, ver TecnicaComposta.CustoTotal)
+        // e registra, se houver pontos suficientes. Compartilhado pelas 3 variantes acima.
+        private bool TentarAprender(TecnicaComposta tecnica)
+        {
+            int custo = tecnica.CustoTotal();
+            if (!_droid.Pontos.TentarGastar(custo))
+            {
+                Registrar($"Falha: '{tecnica.Nome}' custaria {custo} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
+                return false;
+            }
+
+            _droid.TecnicasConfiguradas[tecnica.Nome] = tecnica;
+            Registrar($"Sucesso: técnica '{tecnica.Nome}' aprendida (custou {custo} pontos).");
             return true;
         }
 

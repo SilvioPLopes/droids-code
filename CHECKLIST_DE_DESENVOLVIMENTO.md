@@ -17,9 +17,16 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-- [ ] Texto de ajuda do terminal cita métodos que não existem (`esquecerTecnica`,
-      `obterAtributo`, `listarTecnicas`) — corrigir o texto ou implementar os métodos
-      (decidir qual das duas antes de mexer).
+Nenhum no momento.
+
+---
+
+## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
+
+- [ ] `PainelListaDeItens` e `PainelListaDeAtaques`: adicionar `Vertical Layout
+      Group` (Spacing ~5-10) + `Content Size Fitter` (Vertical Fit: Preferred
+      Size) em cada painel — hoje os botões instanciados ficam sobrepostos
+      (texto por cima de texto) porque não há layout empilhando eles.
 
 ---
 

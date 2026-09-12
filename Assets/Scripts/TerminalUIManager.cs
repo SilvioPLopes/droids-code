@@ -49,6 +49,8 @@ public class TerminalUIManager : MonoBehaviour
         "COMANDOS DISPONÍVEIS:\n" +
         "  droid.subirAtributo(\"For\"|\"Agi\"|\"Vit\"|\"Int\"|\"Dex\"|\"Luk\", quantidade)\n" +
         "  droid.aprenderTecnica(\"nome\", nivelDeDano)\n" +
+        "  droid.aprenderTecnicaComVeneno(\"nome\", nivelDeDano, danoPorTurno, duracaoEmTurnos)\n" +
+        "  droid.aprenderTecnicaComStun(\"nome\", nivelDeDano, duracaoEmTurnos)\n" +
         "  droid.esquecerTecnica(\"nome\")\n" +
         "  droid.obterAtributo(\"nome\")        -- retorna número\n" +
         "  droid.listarTecnicas()              -- retorna texto\n" +

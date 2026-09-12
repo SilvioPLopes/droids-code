@@ -38,6 +38,10 @@ namespace DroidsCode.DroidCore
         // Secao 13 — efeitos ativos (buffs/debuffs), so o Droid do jogador tem
         public List<EfeitoDeAtributo> EfeitosAtivos { get; } = new List<EfeitoDeAtributo>();
 
+        // Dano por turno ativo (ex: Envenenamento) -- separado de EfeitosAtivos
+        // porque EfeitoDeDanoPorTurno e um tipo proprio (ver TecnicaComposta.cs).
+        public List<EfeitoDeDanoPorTurno> EfeitosDeDanoAtivos { get; } = new List<EfeitoDeDanoPorTurno>();
+
         // Sempre disponivel, independente do que o jogador programou no
         // terminal — e o que aparece se "Lutar" for clicado sem nenhuma
         // tecnica configurada.
@@ -79,9 +83,7 @@ namespace DroidsCode.DroidCore
 
             int dano = System.Math.Max(1, totalAtk - alvo.Defesa);
 
-            // TODO: EfeitosDeAtributo/EfeitosDeDanoPorTurno da tecnica ainda nao
-            // sao aplicados aqui (nao existe fluxo de buff/DoT em combate ainda).
-            // Ver CombatEngine — quem chama DecrementarEfeitosAtivos.
+            AplicarEfeitosDaTecnica(tecnica, alvo);
 
             return new ResultadoAcao
             {
@@ -91,12 +93,52 @@ namespace DroidsCode.DroidCore
             };
         }
 
+        // Copia cada efeito da tecnica pro alvo -- copia, nao referencia direta,
+        // pra nao compartilhar o mesmo objeto (e a mesma DuracaoEmTurnos) entre
+        // usos diferentes da tecnica.
+        private static void AplicarEfeitosDaTecnica(TecnicaComposta tecnica, IParticipanteDeCombate alvo)
+        {
+            foreach (EfeitoDeAtributo efeito in tecnica.EfeitosDeAtributo)
+            {
+                alvo.EfeitosAtivos.Add(new EfeitoDeAtributo
+                {
+                    NomeExibicao = efeito.NomeExibicao,
+                    Atributo = efeito.Atributo,
+                    Valor = efeito.Valor,
+                    DuracaoEmTurnos = efeito.DuracaoEmTurnos
+                });
+            }
+
+            foreach (EfeitoDeDanoPorTurno efeito in tecnica.EfeitosDeDanoPorTurno)
+            {
+                alvo.EfeitosDeDanoAtivos.Add(new EfeitoDeDanoPorTurno
+                {
+                    NomeExibicao = efeito.NomeExibicao,
+                    DanoPorTurno = efeito.DanoPorTurno,
+                    DuracaoEmTurnos = efeito.DuracaoEmTurnos
+                });
+            }
+        }
+
         public int ObterTotal(TipoAtributo atributo)
         {
             int baseValor = ObterValorBase(atributo);
             int bonusPeca = ObterBonusDePecas(atributo);
-            // Bonus de buff fora do escopo — nao existe sistema de buff/duracao aplicado ainda.
-            return baseValor + bonusPeca;
+            int bonusEfeito = ObterBonusDeEfeitos(atributo);
+            return baseValor + bonusPeca + bonusEfeito;
+        }
+
+        private int ObterBonusDeEfeitos(TipoAtributo atributo)
+        {
+            int soma = 0;
+            foreach (EfeitoDeAtributo efeito in EfeitosAtivos)
+            {
+                if (efeito.Atributo == atributo)
+                {
+                    soma += efeito.Valor;
+                }
+            }
+            return soma;
         }
 
         private int ObterValorBase(TipoAtributo atributo)
@@ -122,20 +164,8 @@ namespace DroidsCode.DroidCore
         // Chamado pelo CombatEngine em um unico ponto do fluxo de turno.
         public void DecrementarEfeitosAtivos()
         {
-            for (int i = EfeitosAtivos.Count - 1; i >= 0; i--)
-            {
-                if (EfeitosAtivos[i].DuracaoEmTurnos < 0)
-                {
-                    continue; // permanente
-                }
-
-                EfeitosAtivos[i].DuracaoEmTurnos -= 1;
-
-                if (EfeitosAtivos[i].DuracaoEmTurnos <= 0)
-                {
-                    EfeitosAtivos.RemoveAt(i);
-                }
-            }
+            EfeitosTemporariosUtil.Decrementar(EfeitosAtivos);
+            EfeitosTemporariosUtil.Decrementar(EfeitosDeDanoAtivos);
         }
     }
 }

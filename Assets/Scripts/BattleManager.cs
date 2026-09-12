@@ -69,6 +69,11 @@ public class BattleManager : MonoBehaviour
     private bool turnoDoJogador = true;
     private bool batalhaEncerrada = false;
 
+    // Log de batalha: mesmo padrao do Terminal (TerminalUIManager.linhasDeLog)
+    // -- mantem as ultimas N linhas em vez de sobrescrever a mensagem toda vez.
+    private readonly List<string> _logDeBatalha = new List<string>();
+    private const int MaximoDeLinhasDeLogDeBatalha = 4;
+
     void Start()
     {
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
@@ -293,7 +298,21 @@ public class BattleManager : MonoBehaviour
 
     void MostrarMensagem(string mensagem)
     {
-        textoMensagem.text = mensagem;
+        // Uma chamada pode trazer mais de um evento junto (ex: dano de veneno
+        // + resultado da ação, separados por \n pelo CombatEngine) -- cada
+        // linha vira uma entrada própria no log, igual o Terminal já faz.
+        foreach (string linha in mensagem.Split('\n'))
+        {
+            if (string.IsNullOrWhiteSpace(linha)) continue;
+            _logDeBatalha.Add(linha);
+        }
+
+        while (_logDeBatalha.Count > MaximoDeLinhasDeLogDeBatalha)
+        {
+            _logDeBatalha.RemoveAt(0);
+        }
+
+        textoMensagem.text = string.Join("\n", _logDeBatalha);
     }
 
     void DefinirBotoesInterativos(bool ativo)

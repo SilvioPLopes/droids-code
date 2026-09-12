@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DroidsCode.DroidCore;
 
 namespace DroidsCode.Combat
 {
@@ -16,6 +17,12 @@ namespace DroidsCode.Combat
         // BattleManager referencia InimigoFixo diretamente, nao precisa
         // vazar isso pro contrato generico.
         public int RecompensaXp { get; }
+
+        // Motor de efeitos (Stun/Envenenamento) — mesmo contrato do Droid,
+        // mas sem buff de atributo: InimigoFixo nao tem atributos
+        // configuraveis, so stats fixos definidos no construtor.
+        public List<EfeitoDeAtributo> EfeitosAtivos { get; } = new List<EfeitoDeAtributo>();
+        public List<EfeitoDeDanoPorTurno> EfeitosDeDanoAtivos { get; } = new List<EfeitoDeDanoPorTurno>();
 
         public InimigoFixo(string nome, int hpMax, int ataque, int defesa, int recompensaXp)
         {
@@ -41,6 +48,12 @@ namespace DroidsCode.Combat
                 DanoCausado = dano,
                 Mensagem = $"{Nome} atacou! Causou {dano} de dano."
             };
+        }
+
+        public void DecrementarEfeitosAtivos()
+        {
+            EfeitosTemporariosUtil.Decrementar(EfeitosAtivos);
+            EfeitosTemporariosUtil.Decrementar(EfeitosDeDanoAtivos);
         }
     }
 }

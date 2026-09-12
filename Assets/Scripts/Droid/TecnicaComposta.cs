@@ -27,9 +27,17 @@ namespace DroidsCode.DroidCore
         }
     }
 
+    // Contrato minimo compartilhado pelos dois tipos de efeito ativo, so pra
+    // permitir um unico metodo generico de decremento/expiracao (ver
+    // Droid.DecrementarEfeitosAtivos / InimigoFixo.DecrementarEfeitosAtivos).
+    public interface IEfeitoTemporario
+    {
+        int DuracaoEmTurnos { get; set; }
+    }
+
     // Equivalente ao ActiveBuff do projeto de referencia (Ragnarok Core).
     // -1 turnos == permanente (nao usado nesta fase, mantido por consistencia).
-    public class EfeitoDeAtributo
+    public class EfeitoDeAtributo : IEfeitoTemporario
     {
         public string NomeExibicao { get; set; } // ex: "Stun"
         public TipoAtributo Atributo { get; set; }
@@ -49,7 +57,7 @@ namespace DroidsCode.DroidCore
 
     // Dano continuo por turno (ex: Envenenamento) — divergencia consciente do
     // ActiveBuff de referencia, modelado como tipo proprio.
-    public class EfeitoDeDanoPorTurno
+    public class EfeitoDeDanoPorTurno : IEfeitoTemporario
     {
         public string NomeExibicao { get; set; } // ex: "Envenenamento"
         public int DanoPorTurno { get; set; }
