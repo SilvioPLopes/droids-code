@@ -27,6 +27,9 @@ namespace DroidsCode.DroidCore
         // fora (TerminalDroidApi recebia um PontosDeProgressao separado).
         public PontosDeProgressao Pontos { get; } = new PontosDeProgressao();
 
+        // Nivel/XP ganhos em combate — separado de Pontos (SRP).
+        public ProgressaoDeNivel Progressao { get; } = new ProgressaoDeNivel();
+
         // Defesa = VIT total, mesmo padrao do Player.java de referencia
         // (getTotalDef() = getTotalVit() + armadura). Droids Code ainda nao
         // tem armadura/equipamento com bonus de defesa — so VIT por ora.

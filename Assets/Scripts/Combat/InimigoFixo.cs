@@ -2,11 +2,6 @@ using System.Collections.Generic;
 
 namespace DroidsCode.Combat
 {
-    // Inimigo fixo simples (Ato 1/MVP). Comportamento 100% C#, sem Lua —
-    // decisao ja fechada na Matriz ("Decisoes de design fechadas").
-    // O sistema real de inimigos (Sucata/Droid Selvagem/Droid Improvisado
-    // via DroidDataSO + Factory) vem depois, conforme a ordem de
-    // implementacao (passo 7 — so depois do combate provado ponta a ponta).
     public class InimigoFixo : IParticipanteDeCombate
     {
         private const string NomeAcaoUnica = "Atacar";
@@ -17,13 +12,19 @@ namespace DroidsCode.Combat
         public int HpMax { get; }
         public int Defesa { get; }
 
-        public InimigoFixo(string nome, int hpMax, int ataque, int defesa)
+        // Nao vai na interface IParticipanteDeCombate de proposito — so o
+        // BattleManager referencia InimigoFixo diretamente, nao precisa
+        // vazar isso pro contrato generico.
+        public int RecompensaXp { get; }
+
+        public InimigoFixo(string nome, int hpMax, int ataque, int defesa, int recompensaXp)
         {
             Nome = nome;
             HpMax = hpMax;
             Hp = hpMax;
             _ataque = ataque;
             Defesa = defesa;
+            RecompensaXp = recompensaXp;
         }
 
         public IEnumerable<string> ObterAcoesDisponiveis()

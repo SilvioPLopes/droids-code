@@ -31,6 +31,8 @@ public class DroidSalvo
     public int statsDex;
     public int statsLuk;
     public int pontosDisponiveis;
+    public int nivel;
+    public int experiencia;
     public List<TecnicaSalva> tecnicas = new List<TecnicaSalva>();
 }
 

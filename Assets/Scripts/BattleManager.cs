@@ -49,6 +49,7 @@ public class BattleManager : MonoBehaviour
     public int hpMaxInimigo = 20;
     public int atkInimigo = 5;
     public int defInimigo = 1;
+    public int recompensaXpInimigo = 10;
 
     [Header("Configuração")]
     [Tooltip("Cena para onde voltar depois da batalha.")]
@@ -66,7 +67,7 @@ public class BattleManager : MonoBehaviour
     {
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
 
-        inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo);
+        inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo, recompensaXpInimigo);
         engine = new CombatEngine();
 
         botaoAtacar.onClick.AddListener(AoClicarAtacar);
@@ -148,7 +149,10 @@ public class BattleManager : MonoBehaviour
         MostrarMensagem(resultado.Mensagem);
 
         if (engine.VerificarDerrota(inimigo))
+        {
+            SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             StartCoroutine(FinalizarBatalha(true));
+        }
         else
             StartCoroutine(TurnoDoInimigo());
     }

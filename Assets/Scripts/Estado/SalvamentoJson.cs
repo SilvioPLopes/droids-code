@@ -19,6 +19,13 @@ public class SalvamentoJson : ISistemaDeSalvamento
         GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
         Droid droid = gerenciador.DroidDoJogador;
 
+        // Posicao REAL e atual do Player agora — nao gerenciador.PosicaoSalva,
+        // que e so uma variavel de transito Game->Battle->Game (fica vazia
+        // quando o jogador so esta andando livre e clica em Salvar).
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        Vector3 posicaoAtual = playerObj != null ? playerObj.transform.position : Vector3.zero;
+        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
         var dados = new DadosDoJogo
         {
             droid = new DroidSalvo
@@ -32,14 +39,14 @@ public class SalvamentoJson : ISistemaDeSalvamento
                 statsInt = droid.StatsBase.Int,
                 statsDex = droid.StatsBase.Dex,
                 statsLuk = droid.StatsBase.Luk,
-                pontosDisponiveis = droid.Pontos.PontosDisponiveis
+                pontosDisponiveis = droid.Pontos.PontosDisponiveis,
+                nivel = droid.Progressao.Nivel,
+                experiencia = droid.Progressao.ExperienciaAtual
             },
-            posicaoX = gerenciador.TemPosicaoSalva ? gerenciador.PosicaoSalva.x : 0,
-            posicaoY = gerenciador.TemPosicaoSalva ? gerenciador.PosicaoSalva.y : 0,
-            posicaoZ = 0,
-            cena = gerenciador.TemPosicaoSalva
-                ? gerenciador.CenaDeOrigemDaPosicao
-                : UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+            posicaoX = posicaoAtual.x,
+            posicaoY = posicaoAtual.y,
+            posicaoZ = posicaoAtual.z,
+            cena = cenaAtual
         };
 
         foreach (var tecnica in droid.TecnicasConfiguradas.Values)
@@ -82,6 +89,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
         droid.StatsBase.Dex = dados.droid.statsDex;
         droid.StatsBase.Luk = dados.droid.statsLuk;
         droid.Pontos.DefinirPontos(dados.droid.pontosDisponiveis);
+        droid.Progressao.Definir(dados.droid.nivel, dados.droid.experiencia);
 
         droid.TecnicasConfiguradas.Clear();
         foreach (var t in dados.droid.tecnicas)
@@ -97,6 +105,12 @@ public class SalvamentoJson : ISistemaDeSalvamento
         gerenciador.CarregarFlags(flags);
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
+
+        // Recarrega a cena salva — isso faz o RestaurarPosicao.cs (que ja
+        // existe no Player) pegar TemPosicaoSalva e teleportar sozinho,
+        // reaproveitando o mecanismo do Game<->Battle em vez de duplicar
+        // logica de teleporte aqui.
+        UnityEngine.SceneManagement.SceneManager.LoadScene(dados.cena);
 
         Debug.Log("Jogo carregado.");
     }
