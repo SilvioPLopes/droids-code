@@ -185,8 +185,8 @@ MonoBehaviour:
   botaoAtacar: {fileID: 2119895442}
   botaoItem: {fileID: 753102968}
   botaoFugir: {fileID: 2003631904}
-  botaoStatus: {fileID: 0}
-  telaDeStatus: {fileID: 0}
+  botaoStatus: {fileID: 276317151}
+  telaDeStatus: {fileID: 770136228225574263}
   painelListaDeAtaques: {fileID: 1815127158}
   prefabBotaoAtaque: {fileID: 293911551598078924, guid: c96b74a9f79832a41b9acdb3401aee8c, type: 3}
   nomeInimigo: Esqueleto
@@ -2796,6 +2796,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae568be18bfc54a449e0d18ae3225fe9, type: 3}
+--- !u!114 &770136228225574263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5408575475617924531, guid: ae568be18bfc54a449e0d18ae3225fe9, type: 3}
+  m_PrefabInstance: {fileID: 770136228225574262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d19086efb7969441a09655b9ccd38b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelaDeStatusManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

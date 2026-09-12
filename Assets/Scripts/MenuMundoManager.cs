@@ -2,15 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Menu fora de batalha, estilo Pokémon: Status / Terminal / Bag / Droid /
-/// Opções / Voltar. Status e Terminal estão funcionais agora — os outros
-/// mostram um aviso "ainda não implementado" (menu completo, funcionalidade
-/// parcial, combinado assim de propósito).
-///
-/// Abre e fecha com a tecla em teclaDeAbertura (padrão: Esc). Troque no
-/// Inspector se quiser outra tecla.
-/// </summary>
 public class MenuMundoManager : MonoBehaviour
 {
     [Header("Painel raiz do menu")]
@@ -25,6 +16,8 @@ public class MenuMundoManager : MonoBehaviour
     public Button botaoBag;
     public Button botaoDroid;
     public Button botaoOpcoes;
+    public Button botaoSalvar;
+    public Button botaoCarregar;
     public Button botaoVoltar;
 
     [Header("Tela de Status (arraste a instância do Prefab PainelStatus)")]
@@ -33,8 +26,10 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Terminal de código (arraste a instância do Prefab PainelTerminal)")]
     public TerminalUIManager terminal;
 
-    [Header("Texto de aviso pros botões ainda não implementados")]
+    [Header("Texto de aviso pros botões ainda não implementados / feedback de save")]
     public TextMeshProUGUI textoAviso;
+
+    private ISistemaDeSalvamento _salvamento = new SalvamentoJson();
 
     void Start()
     {
@@ -45,6 +40,8 @@ public class MenuMundoManager : MonoBehaviour
         if (botaoBag != null) botaoBag.onClick.AddListener(() => MostrarAviso("Bag"));
         if (botaoDroid != null) botaoDroid.onClick.AddListener(() => MostrarAviso("Equipamentos"));
         if (botaoOpcoes != null) botaoOpcoes.onClick.AddListener(() => MostrarAviso("Opções"));
+        if (botaoSalvar != null) botaoSalvar.onClick.AddListener(AoClicarSalvar);
+        if (botaoCarregar != null) botaoCarregar.onClick.AddListener(AoClicarCarregar);
         if (botaoVoltar != null) botaoVoltar.onClick.AddListener(Fechar);
     }
 
@@ -93,6 +90,24 @@ public class MenuMundoManager : MonoBehaviour
         {
             MostrarAviso("Terminal");
         }
+    }
+
+    void AoClicarSalvar()
+    {
+        _salvamento.Salvar();
+        if (textoAviso != null) textoAviso.text = "Jogo salvo.";
+    }
+
+    void AoClicarCarregar()
+    {
+        if (!_salvamento.ExisteSave())
+        {
+            if (textoAviso != null) textoAviso.text = "Nenhum save encontrado.";
+            return;
+        }
+
+        _salvamento.Carregar();
+        if (textoAviso != null) textoAviso.text = "Jogo carregado.";
     }
 
     void MostrarAviso(string nomeDaTela)

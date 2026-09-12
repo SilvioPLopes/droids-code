@@ -22,5 +22,13 @@ namespace DroidsCode.DroidCore
             PontosDisponiveis -= quantidade;
             return true;
         }
+
+        // Usado exclusivamente pelo sistema de salvamento pra restaurar o
+        // valor exato salvo — nao usar em fluxo normal de jogo (esse usa
+        // GanharPontosPorNivel/TentarGastar).
+        public void DefinirPontos(int quantidade)
+        {
+            PontosDisponiveis = quantidade < 0 ? 0 : quantidade;
+        }
     }
 }
