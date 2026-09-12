@@ -70,6 +70,53 @@ namespace DroidsCode.Scripting
             return _droid.Pontos.PontosDisponiveis;
         }
 
+        // Ex. Lua: droid.obterAtributo("For") -- leitura pura, nao gasta pontos
+        public int ObterAtributo(string nomeAtributo)
+        {
+            if (!System.Enum.TryParse(nomeAtributo, ignoreCase: true, out TipoAtributo atributo))
+            {
+                Registrar($"Falha: atributo '{nomeAtributo}' não existe.");
+                return 0;
+            }
+
+            return _droid.ObterTotal(atributo);
+        }
+
+        // Ex. Lua: droid.listarTecnicas()
+        public string ListarTecnicas()
+        {
+            if (_droid.TecnicasConfiguradas.Count == 0)
+            {
+                return "Nenhuma técnica configurada.";
+            }
+
+            return string.Join(", ", _droid.TecnicasConfiguradas.Keys);
+        }
+
+        // Ex. Lua: droid.esquecerTecnica("Soco de Sobrecarga")
+        // Devolve os pontos gastos na técnica (via CustoTotal()) ao esquecer.
+        // O Ataque Básico nunca pode ser esquecido (é a ação padrão da Droid.cs).
+        public bool EsquecerTecnica(string nome)
+        {
+            if (nome == Droid.NomeAtaqueBasico)
+            {
+                Registrar("Falha: o Ataque Básico não pode ser esquecido.");
+                return false;
+            }
+
+            if (!_droid.TecnicasConfiguradas.TryGetValue(nome, out TecnicaComposta tecnica))
+            {
+                Registrar($"Falha: técnica '{nome}' não existe.");
+                return false;
+            }
+
+            int reembolso = tecnica.CustoTotal();
+            _droid.TecnicasConfiguradas.Remove(nome);
+            _droid.Pontos.DefinirPontos(_droid.Pontos.PontosDisponiveis + reembolso);
+            Registrar($"Sucesso: técnica '{nome}' esquecida ({reembolso} pontos devolvidos).");
+            return true;
+        }
+
         // --- Adicionados para o terminal com histórico (TerminalUIManager) ---
 
         public IReadOnlyList<string> ObterLogDaSessao() => _logDaSessao;

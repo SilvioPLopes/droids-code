@@ -40,6 +40,12 @@ public class BattleManager : MonoBehaviour
     [Tooltip("Prefab de um botão simples (com TextMeshProUGUI filho), um por golpe.")]
     public Button prefabBotaoAtaque;
 
+    [Header("Lista de itens (novo)")]
+    [Tooltip("Painel vazio, desativado por padrão, que recebe os botões de cada item. Pode ser uma cópia do painelListaDeAtaques.")]
+    public Transform painelListaDeItens;
+    [Tooltip("Prefab de botão pros itens. Pode reutilizar o mesmo prefabBotaoAtaque.")]
+    public Button prefabBotaoItem;
+
     [Header("Status do Player")]
     // nome/hp/atributos agora vêm do GerenciadorDeEstado.DroidDoJogador —
     // esses campos foram removidos daqui de propósito (ver GerenciadorDeEstado.cs).
@@ -80,6 +86,9 @@ public class BattleManager : MonoBehaviour
 
         if (painelListaDeAtaques != null)
             painelListaDeAtaques.gameObject.SetActive(false);
+
+        if (painelListaDeItens != null)
+            painelListaDeItens.gameObject.SetActive(false);
 
         sliderPlayer.minValue = 0;
         sliderPlayer.maxValue = 1;
@@ -161,12 +170,54 @@ public class BattleManager : MonoBehaviour
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
 
-        // TODO: sistema de inventario real fica pra Fase 2 (fora de escopo
-        // do Ato 1, ver LEIA_PRIMEIRO.md). Mantido como cura fixa por ora.
-        int cura = 5;
-        droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + cura);
+        AbrirListaDeItens();
+    }
+
+    void AbrirListaDeItens()
+    {
+        ItemConsumivel[] itens = ItensDeBatalha.Disponiveis;
+
+        if (itens.Length == 0)
+        {
+            MostrarMensagem("Nenhum item disponível.");
+            return;
+        }
+
+        if (painelListaDeItens == null || prefabBotaoItem == null)
+        {
+            Debug.LogWarning("painelListaDeItens/prefabBotaoItem não configurados no Inspector — usando o primeiro item direto.");
+            UsarItem(itens[0]);
+            return;
+        }
+
+        foreach (Transform filho in painelListaDeItens)
+            Destroy(filho.gameObject);
+
+        foreach (ItemConsumivel item in itens)
+        {
+            Button botao = Instantiate(prefabBotaoItem, painelListaDeItens);
+            botao.gameObject.SetActive(true);
+
+            var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
+            if (texto != null) texto.text = $"{item.Nome} (+{item.CuraHp} HP)";
+
+            ItemConsumivel itemCapturado = item; // evita captura errada da variavel de loop
+            botao.onClick.AddListener(() =>
+            {
+                painelListaDeItens.gameObject.SetActive(false);
+                UsarItem(itemCapturado);
+            });
+        }
+
+        painelListaDeItens.gameObject.SetActive(true);
+    }
+
+    void UsarItem(ItemConsumivel item)
+    {
+        int curaAplicada = Mathf.Min(item.CuraHp, droid.HpMax - droid.Hp);
+        droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + item.CuraHp);
         AtualizarBarras();
-        MostrarMensagem($"{droid.Nome} usou um item e recuperou {cura} de HP!");
+        MostrarMensagem($"{droid.Nome} usou {item.Nome} e recuperou {curaAplicada} de HP!");
 
         StartCoroutine(TurnoDoInimigo());
     }
