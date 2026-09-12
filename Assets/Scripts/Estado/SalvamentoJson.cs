@@ -106,6 +106,13 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
 
+        // Correcao do bug "personagem trava apos salvar/carregar": o
+        // LoadScene abaixo destroi o MenuMundoManager da cena antiga sem
+        // passar por RegistrarMenuFechado(), entao o contador de menus
+        // abertos precisa ser zerado explicitamente aqui, antes da troca de
+        // cena, ou MenuAberto fica true para sempre.
+        gerenciador.ZerarMenusAbertos();
+
         // Recarrega a cena salva — isso faz o RestaurarPosicao.cs (que ja
         // existe no Player) pegar TemPosicaoSalva e teleportar sozinho,
         // reaproveitando o mecanismo do Game<->Battle em vez de duplicar

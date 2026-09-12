@@ -169,11 +169,12 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 **`RestaurarPosicao`** — componente anexado ao Player na cena Game; teleporta para a posição salva se `GerenciadorDeEstado` tiver uma posição pendente **para aquela cena especificamente**, e limpa a posição salva em seguida.
 
-> 🐞 **Causa confirmada do bug "personagem para de andar após salvar/carregar"** (diagnosticado em 12/09/2026, com os arquivos reais em mãos): `GerenciadorDeEstado` persiste entre cenas via `DontDestroyOnLoad`. Ao abrir o Menu do Mundo, `_contadorMenusAbertos` sobe para 1. Ao clicar em "Carregar", `SalvamentoJson.Carregar()` chama `SceneManager.LoadScene`, que destrói o `MenuMundoManager` da cena antiga **sem que `RegistrarMenuFechado()` seja chamado** — o contador nunca volta a 0, `MenuAberto` fica `true` para sempre, e `PlayerMovement` zera o input permanentemente. A posição é restaurada corretamente porque isso usa outro mecanismo (`PosicaoSalva`, não o contador de menus).
+> ✅ **Corrigido (12/09/2026)** — bug "personagem para de andar após salvar/carregar": `GerenciadorDeEstado` persiste entre cenas via `DontDestroyOnLoad`. Ao abrir o Menu do Mundo, `_contadorMenusAbertos` sobe para 1. Ao clicar em "Carregar", `SalvamentoJson.Carregar()` chamava `SceneManager.LoadScene`, que destruía o `MenuMundoManager` da cena antiga **sem que `RegistrarMenuFechado()` fosse chamado** — o contador nunca voltava a 0. A posição sempre foi restaurada corretamente porque usa outro mecanismo (`PosicaoSalva`, não o contador de menus).
 >
-> **Correção proposta (ainda não aplicada — ver `CHECKLIST_DE_DESENVOLVIMENTO.md`):**
-> - `GerenciadorDeEstado.cs`: adicionar `public void ZerarMenusAbertos() => _contadorMenusAbertos = 0;`
-> - `SalvamentoJson.cs`, em `Carregar()`: chamar `gerenciador.ZerarMenusAbertos();` imediatamente antes do `SceneManager.LoadScene(dados.cena);`
+> **Correção aplicada:**
+> - `GerenciadorDeEstado.cs`: adicionado `public void ZerarMenusAbertos() => _contadorMenusAbertos = 0;`
+> - `SalvamentoJson.cs`, em `Carregar()`: chamado `gerenciador.ZerarMenusAbertos();` imediatamente antes do `SceneManager.LoadScene(dados.cena);`
+> - Roteiro de validação: `ROTEIRO_DE_TESTES_BUG_MENU_ABERTO.md`
 
 ### 4.6 `UI` — apresentação
 
@@ -248,5 +249,4 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 
 - `TabelaDeCustos.CustoResistenciaPorNivel` está declarada mas não é referenciada em nenhum cálculo — confirmar se ainda é necessária ou remover.
 - Texto de ajuda do terminal cita métodos inexistentes (`esquecerTecnica`, `obterAtributo`, `listarTecnicas`) — ver seção 4.3.
-- Bug: personagem para de responder a movimento após salvar/carregar — hipótese na seção 4.5.
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.

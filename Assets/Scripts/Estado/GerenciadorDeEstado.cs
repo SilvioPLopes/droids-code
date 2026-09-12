@@ -43,6 +43,13 @@ public class GerenciadorDeEstado : MonoBehaviour
     public void RegistrarMenuAberto() => _contadorMenusAbertos++;
     public void RegistrarMenuFechado() => _contadorMenusAbertos = Mathf.Max(0, _contadorMenusAbertos - 1);
 
+    // Correcao do bug "personagem trava apos salvar/carregar": o
+    // SceneManager.LoadScene chamado por SalvamentoJson.Carregar() destroi o
+    // MenuMundoManager da cena antiga sem passar por RegistrarMenuFechado(),
+    // entao o contador precisa ser zerado explicitamente antes da troca de
+    // cena (ver SalvamentoJson.Carregar()).
+    public void ZerarMenusAbertos() => _contadorMenusAbertos = 0;
+
     // Flags de historia: chave livre (ex: "derrotou_chefe_1"), aberto pra
     // uso futuro. Nao ha nenhuma flag definida ainda -- so a estrutura.
     private readonly Dictionary<string, bool> _flagsDeHistoria = new Dictionary<string, bool>();

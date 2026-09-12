@@ -17,13 +17,6 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-- [ ] **Personagem para de andar após salvar/carregar.** Causa confirmada em
-      12/09/2026 (`DOCUMENTACAO_TECNICA.md` §4.5): `_contadorMenusAbertos` de
-      `GerenciadorDeEstado` nunca volta a 0 quando o Menu do Mundo é destruído pelo
-      `SceneManager.LoadScene` durante o carregamento. Correção proposta, ainda não
-      aplicada: novo método `GerenciadorDeEstado.ZerarMenusAbertos()`, chamado em
-      `SalvamentoJson.Carregar()` antes do `LoadScene`. Falta aplicar no projeto e
-      testar.
 - [ ] Texto de ajuda do terminal cita métodos que não existem (`esquecerTecnica`,
       `obterAtributo`, `listarTecnicas`) — corrigir o texto ou implementar os métodos
       (decidir qual das duas antes de mexer).
