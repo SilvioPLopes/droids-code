@@ -189,6 +189,8 @@ public class TerminalUIManager : MonoBehaviour
 
     void AdicionarLinhaDeLog(string linha)
     {
+        Debug.Log($"[Terminal] {linha}"); // TEMPORARIO — remover depois que a UI estiver legivel
+
         linhasDeLog.Add(linha);
 
         while (linhasDeLog.Count > maximoDeLinhasDeLog)
