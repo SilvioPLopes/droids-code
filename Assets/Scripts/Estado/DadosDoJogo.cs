@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DroidsCode.DroidCore; // necessario p/ ItemSalvo (definido em CatalogoDeItens.cs)
 
 // DTOs planos, sem Dictionary (JsonUtility nao serializa Dictionary).
 // Separado do Droid/GerenciadorDeEstado de proposito -- esses sao os
@@ -68,7 +69,7 @@ public class DroidSalvo
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 2; // v2 (12/09/2026): hpMax -> hpMaxBase (ver DroidSalvo.hpMaxBase)
+    public int versao = 3; // v3 (13/09/2026): + itens (Inventario, ver ItemSalvo)
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;
@@ -78,4 +79,10 @@ public class DadosDoJogo
     // Escalavel: qualquer flag de historia futura (bosses derrotados, fases
     // completas, dialogos vistos) entra aqui sem mudar a estrutura.
     public List<FlagDeHistoria> flagsDeHistoria = new List<FlagDeHistoria>();
+
+    // Estagio 2 (13/09/2026): inventario real, DTO plano mesmo padrao de
+    // FlagDeHistoria/TecnicaSalva (JsonUtility nao serializa Dictionary).
+    // Saves v1/v2 (sem este campo) carregam lista vazia -- ver
+    // SalvamentoJson.Carregar.
+    public List<ItemSalvo> itens = new List<ItemSalvo>();
 }

@@ -228,11 +228,26 @@ public class BattleManager : MonoBehaviour
         AbrirListaDeItens();
     }
 
+    // REFATORACAO (Estagio 2 — 13/09/2026): antes lia ItensDeBatalha.Disponiveis
+    // (lista fixa, sem quantidade). Agora le o inventario real do jogador
+    // (GerenciadorDeEstado) -- so mostra itens com quantidade > 0, e o
+    // botao exibe "(xN)" com o estoque atual.
     void AbrirListaDeItens()
     {
-        ItemConsumivel[] itens = ItensDeBatalha.Disponiveis;
+        var gerenciador = GerenciadorDeEstado.Instancia;
+        var itensComEstoque = new List<DefinicaoDeItem>();
 
-        if (itens.Length == 0)
+        foreach (var kv in gerenciador.Inventario)
+        {
+            if (kv.Value <= 0) continue;
+            var def = CatalogoDeItens.Obter(kv.Key);
+            // Item desconhecido no catalogo (ex: save de versao futura) --
+            // ignora em vez de quebrar a lista inteira.
+            if (def == null || !def.UsavelEmBatalha) continue;
+            itensComEstoque.Add(def);
+        }
+
+        if (itensComEstoque.Count == 0)
         {
             MostrarMensagem("Nenhum item disponível.");
             return;
@@ -241,7 +256,7 @@ public class BattleManager : MonoBehaviour
         if (painelListaDeItens == null || prefabBotaoItem == null)
         {
             Debug.LogWarning("painelListaDeItens/prefabBotaoItem não configurados no Inspector — usando o primeiro item direto.");
-            UsarItem(itens[0]);
+            UsarItem(itensComEstoque[0]);
             return;
         }
 
@@ -253,15 +268,17 @@ public class BattleManager : MonoBehaviour
         foreach (Transform filho in painelListaDeItens)
             Destroy(filho.gameObject);
 
-        foreach (ItemConsumivel item in itens)
+        foreach (DefinicaoDeItem item in itensComEstoque)
         {
+            int quantidade = gerenciador.ObterQuantidadeDeItem(item.Id);
+
             Button botao = Instantiate(prefabBotaoItem, painelListaDeItens);
             botao.gameObject.SetActive(true);
 
             var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
-            if (texto != null) texto.text = $"{item.Nome} (+{item.CuraHp} HP)";
+            if (texto != null) texto.text = $"{item.Nome} (+{item.CuraHp} HP) x{quantidade}";
 
-            ItemConsumivel itemCapturado = item; // evita captura errada da variavel de loop
+            DefinicaoDeItem itemCapturado = item; // evita captura errada da variavel de loop
             botao.onClick.AddListener(() =>
             {
                 painelListaDeItens.gameObject.SetActive(false);
@@ -294,8 +311,24 @@ public class BattleManager : MonoBehaviour
     // percentual de INT (droid.BonusPercentualDeCura, ver Droid.cs/
     // TabelaDeCombate.PercentualBonusCuraPorInt), arredondado pra baixo.
     // Ex: item cura 10, INT dando 20% => cura efetiva 12.
-    void UsarItem(ItemConsumivel item)
+    // REFATORACAO (Estagio 2 — 13/09/2026): recebe DefinicaoDeItem (catalogo)
+    // em vez de ItemConsumivel. Decrementa o estoque real via
+    // GerenciadorDeEstado.TentarRemoverItem e SALVA na hora (SalvamentoJson)
+    // -- decisao: persistir o consumo imediatamente evita perder o item "de
+    // graca" se o jogo fechar no meio da batalha (o jogador ja recebeu o
+    // efeito, entao o consumo tem que ficar gravado).
+    void UsarItem(DefinicaoDeItem item)
     {
+        var gerenciador = GerenciadorDeEstado.Instancia;
+
+        if (!gerenciador.TentarRemoverItem(item.Id, 1))
+        {
+            // Guarda de seguranca: nao deveria acontecer (a lista so mostra
+            // itens com estoque > 0), mas evita curar de graca se acontecer.
+            MostrarMensagem($"Você não tem mais {item.Nome}.");
+            return;
+        }
+
         float multiplicador = 1f + (droid.BonusPercentualDeCura / 100f);
         int curaBase = Mathf.FloorToInt(item.CuraHp * multiplicador);
 
@@ -303,6 +336,9 @@ public class BattleManager : MonoBehaviour
         droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + curaBase);
         AtualizarBarras();
         MostrarMensagem($"{droid.Nome} usou {item.Nome} e recuperou {curaAplicada} de HP!");
+
+        // Persiste o consumo do item imediatamente (ver comentario acima).
+        new SalvamentoJson().Salvar();
 
         StartCoroutine(TurnoDoInimigo());
     }

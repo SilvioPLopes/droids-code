@@ -42,6 +42,10 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Terminal de código (arraste a instância do Prefab PainelTerminal)")]
     public TerminalUIManager terminal;
 
+    // Estagio 2 (13/09/2026): Bag real, substitui o aviso "não implementado".
+    [Header("Bag (arraste a instância do Prefab PainelBag)")]
+    public BagUIManager bag;
+
     [Header("Texto de aviso pros botões ainda não implementados / feedback de save")]
     public TextMeshProUGUI textoAviso;
 
@@ -58,7 +62,7 @@ public class MenuMundoManager : MonoBehaviour
 
         if (botaoStatus != null) botaoStatus.onClick.AddListener(AoClicarStatus);
         if (botaoTerminal != null) botaoTerminal.onClick.AddListener(AoClicarTerminal);
-        if (botaoBag != null) botaoBag.onClick.AddListener(() => MostrarAviso("Bag"));
+        if (botaoBag != null) botaoBag.onClick.AddListener(AoClicarBag);
         if (botaoDroid != null) botaoDroid.onClick.AddListener(() => MostrarAviso("Equipamentos"));
         if (botaoOpcoes != null) botaoOpcoes.onClick.AddListener(() => MostrarAviso("Opções"));
         if (botaoSalvar != null) botaoSalvar.onClick.AddListener(AoClicarSalvar);
@@ -69,6 +73,7 @@ public class MenuMundoManager : MonoBehaviour
         // Terminal — é assim que o Menu do Mundo sabe quando reaparecer.
         if (telaDeStatus != null) telaDeStatus.AoFechar = AoFecharOutroPainel;
         if (terminal != null) terminal.AoFechar = AoFecharOutroPainel;
+        if (bag != null) bag.AoFechar = AoFecharOutroPainel;
     }
 
     void Update()
@@ -119,6 +124,22 @@ public class MenuMundoManager : MonoBehaviour
         _outroPainelAberto = true;
         if (painelMenu != null) painelMenu.SetActive(false);
         telaDeStatus.Mostrar();
+    }
+
+    // NOVO (13/09/2026): substitui o aviso "não implementado" — abre a Bag
+    // real (BagUIManager), mesmo padrão de exclusividade de AoClicarStatus.
+    void AoClicarBag()
+    {
+        if (bag != null)
+        {
+            _outroPainelAberto = true;
+            if (painelMenu != null) painelMenu.SetActive(false);
+            bag.Mostrar();
+        }
+        else
+        {
+            MostrarAviso("Bag");
+        }
     }
 
     void AoClicarTerminal()

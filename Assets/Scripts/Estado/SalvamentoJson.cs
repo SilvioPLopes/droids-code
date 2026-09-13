@@ -84,6 +84,12 @@ public class SalvamentoJson : ISistemaDeSalvamento
             dados.flagsDeHistoria.Add(new FlagDeHistoria { chave = kv.Key, valor = kv.Value });
         }
 
+        // Estagio 2 (13/09/2026): persistir o inventario junto.
+        foreach (var kv in gerenciador.Inventario)
+        {
+            dados.itens.Add(new ItemSalvo { id = kv.Key, quantidade = kv.Value });
+        }
+
         string json = JsonUtility.ToJson(dados, prettyPrint: true);
         File.WriteAllText(CaminhoDoArquivo, json);
 
@@ -166,6 +172,18 @@ public class SalvamentoJson : ISistemaDeSalvamento
             flags[f.chave] = f.valor;
         }
         gerenciador.CarregarFlags(flags);
+
+        // COMPATIBILIDADE (Estagio 2 — 13/09/2026): saves v1/v2 nao tem o
+        // campo "itens" -- JsonUtility preenche como lista vazia nesse caso,
+        // entao o inventario so fica vazio (nao quebra o load). Isso
+        // significa que quem carregar um save antigo comeca sem os itens de
+        // kit inicial -- aceitavel, e so o inicio do jogo mesmo.
+        var inventario = new System.Collections.Generic.Dictionary<string, int>();
+        foreach (var itemSalvo in dados.itens)
+        {
+            inventario[itemSalvo.id] = itemSalvo.quantidade;
+        }
+        gerenciador.CarregarInventario(inventario);
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
 

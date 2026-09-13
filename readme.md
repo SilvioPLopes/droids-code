@@ -110,6 +110,7 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - Sistema de pontos de progressão e nível/XP
 - Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado **e aplicação em combate implementada**: `Droid.ExecutarAcao` copia os efeitos da técnica para o alvo, e `CombatEngine` processa dano por turno no início do turno de quem está afetado e verifica atordoamento antes de permitir a ação
 - **Atributos derivados (12/09/2026):** VIT aumenta HP máximo (%, além de Defesa), AGI vira FLEE e DEX vira HIT (sistema de acerto/erro real, chance = 50 + HIT − FLEE), LUK vira chance de crítico (dobra dano), INT vira resistência a Stun/Veneno e bônus de cura de item — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para os números exatos
+- **Inventário real de itens de Cura (13/09/2026):** quantidade real por item, persistida no save; Bag do Menu do Mundo funcional (cura fora de batalha sem gastar turno); lista de item da batalha mostra estoque — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para o que ainda falta (drop/loja, Buff/Debuff/Equipável)
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
 - Encontros aleatórios no mapa e menu principal
 
@@ -119,8 +120,8 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - **Modo Puzzle** do terminal (exercícios de lógica isolados, fora da configuração real do Droid)
 - **`DroidDataSO`/Factory** — hoje o Droid é criado direto em código; a ideia é migrar para ScriptableObjects configuráveis no Inspector
 - **Fase 2 de customização de peças** — herança real com Cartuchos de Código sobrescrevendo `DroidBase`
-- **Inventário e equipamento completos** (a lista fixa de itens da batalha é um placeholder mínimo, não um inventário real) — tratado como **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md` → "🚨 Mecânica essencial faltante" para o detalhamento (quantidade, obtenção, categorias de item, persistência)
-- Bag/Droid/Opções no Menu do Mundo ainda são placeholders ("ainda não foi implementado")
+- **Inventário e equipamento completos** (itens de Cura já têm quantidade/persistência real desde 13/09/2026 — ver "Inventário real de itens de Cura" acima; falta drop/loja, e as categorias Buff/Debuff/Equipável/Uso-fora-de-batalha além de cura) — tratado como **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md`
+- Droid/Opções no Menu do Mundo ainda são placeholders ("ainda não foi implementado") — **Bag já não é mais placeholder** (ver acima)
 
 ### 🐞 Bugs conhecidos
 

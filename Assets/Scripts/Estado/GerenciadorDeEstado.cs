@@ -70,6 +70,50 @@ public class GerenciadorDeEstado : MonoBehaviour
         }
     }
 
+    // --- Estagio 2 (13/09/2026): Inventario real (substitui ItensDeBatalha,
+    // lista fixa sem quantidade). Chave = DefinicaoDeItem.Id (ver
+    // CatalogoDeItens.cs). Persistido via SalvamentoJson como List<ItemSalvo>
+    // (JsonUtility nao serializa Dictionary).
+    private readonly Dictionary<string, int> _inventario = new Dictionary<string, int>();
+
+    public IReadOnlyDictionary<string, int> Inventario => _inventario;
+
+    public int ObterQuantidadeDeItem(string idItem) =>
+        _inventario.TryGetValue(idItem, out int qtd) ? qtd : 0;
+
+    public void AdicionarItem(string idItem, int quantidade)
+    {
+        if (quantidade <= 0) return;
+        _inventario[idItem] = ObterQuantidadeDeItem(idItem) + quantidade;
+    }
+
+    // Retorna false se nao houver estoque suficiente (nao deixa ficar negativo).
+    public bool TentarRemoverItem(string idItem, int quantidade = 1)
+    {
+        int atual = ObterQuantidadeDeItem(idItem);
+        if (atual < quantidade) return false;
+
+        int restante = atual - quantidade;
+        if (restante <= 0)
+        {
+            _inventario.Remove(idItem); // nao deixa lixo de "0 unidades" no dicionario
+        }
+        else
+        {
+            _inventario[idItem] = restante;
+        }
+        return true;
+    }
+
+    public void CarregarInventario(Dictionary<string, int> inventario)
+    {
+        _inventario.Clear();
+        foreach (var kv in inventario)
+        {
+            if (kv.Value > 0) _inventario[kv.Key] = kv.Value;
+        }
+    }
+
     void Awake()
     {
         if (instancia != null && instancia != this)
@@ -92,6 +136,12 @@ public class GerenciadorDeEstado : MonoBehaviour
             DroidDoJogador = new Droid("Heroi", hpMax: 30);
             DroidDoJogador.StatsBase.For = 5;
             DroidDoJogador.StatsBase.Vit = 3;
+
+            // [DEFAULT] Estagio 2: kit inicial de itens, pra Bag nao comecar
+            // vazia sem NENHUMA forma de obter item ainda (drop/loja ficam
+            // pra proxima fase, ver checklist). Placeholder de balanceamento.
+            AdicionarItem(CatalogoDeItens.IdPocaoPequena, 3);
+            AdicionarItem(CatalogoDeItens.IdPocaoMedia, 1);
         }
     }
 

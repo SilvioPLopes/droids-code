@@ -65,6 +65,51 @@ Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
 
 ---
 
+## ✅ Concluído nesta sessão (13/09/2026 — Estágio 2: Sistema de Item, fase 1/2)
+
+Primeira fatia do "🚨 Mecânica essencial faltante" abaixo — cobre **só itens
+de Cura**, com quantidade real e persistência. Buff/Debuff/Equipável/Fora-de-
+batalha (exceto Bag, que já usa o sistema novo) ficam para a fase 2.
+
+- **`CatalogoDeItens.cs` (novo)**: substitui `ItemConsumivel.cs`/
+  `ItensDeBatalha`. `DefinicaoDeItem` = dado estático (id, nome, cura, tipo,
+  usável em/fora de batalha); `TipoDeItem` enum com só `Cura` por ora — os
+  outros tipos (Buff, Debuff, Equipável, ForaDeBatalha) ficam comentados no
+  enum como lembrete, não implementados. IDs são estáveis (`pocao_pequena`
+  etc.) — nunca renomear um Id existente, isso quebraria saves.
+- **Inventário real** em `GerenciadorDeEstado` (`Dictionary<string,int>`,
+  id → quantidade): `AdicionarItem`, `TentarRemoverItem` (falha se não tiver
+  estoque), `ObterQuantidadeDeItem`. Droid novo começa com kit inicial (3
+  Poção Pequena + 1 Poção Média) — placeholder, não há drop/loja ainda.
+- **Persistência**: `DadosDoJogo` v3 ganhou `List<ItemSalvo>` (DTO plano,
+  mesmo padrão de `TecnicaSalva`). Saves v1/v2 carregam inventário vazio
+  (não quebra o load).
+- **`BattleManager.AbrirListaDeItens`**: agora lê do inventário real, mostra
+  quantidade (`Poção Pequena (+20 HP) x3`), e só lista itens com estoque > 0.
+  `UsarItem` decrementa o estoque e **salva o jogo na hora** (decisão: evita
+  que o jogador "perca de graça" o consumo se o jogo fechar no meio da
+  batalha — o efeito já foi aplicado, o gasto precisa ficar gravado).
+- **`BagUIManager.cs` (novo)** + botão "Bag" do `MenuMundoManager` real: cura
+  fora de batalha, sem gastar turno (não existe turno fora de combate), mas
+  ainda consome estoque e salva. Segue o mesmo padrão de painel + callback
+  `AoFechar` que `TelaDeStatusManager`/`TerminalUIManager` já usam.
+
+**Trabalho de Editor necessário para isso funcionar** (ver seção
+"🔧 Trabalho de Editor pendente" abaixo): criar o Prefab `PainelBag` (mesma
+estrutura do painel de itens da batalha) e arrastar as referências no
+`MenuMundoManager`.
+
+**Pendências abertas geradas por este trabalho:**
+- Nenhuma forma de OBTER item ainda (drop de inimigo / loja) — só o kit
+  inicial fixo. Continua bloqueante de lançamento (ver seção abaixo).
+- Categorias Buff/Debuff/Equipável/uso-fora-de-batalha (Sinalizador, Kit de
+  Acampamento, Chave de Acesso) ainda não têm `DefinicaoDeItem` nem lógica —
+  ficam para a fase 2 do sistema de item.
+- Sem limite de slots de inventário (lista livre) — decisão implícita desta
+  fase, não revisitada.
+
+---
+
 ## 🚨 Mecânica essencial faltante (bloqueante de lançamento)
 
 > Diferente da seção de bugs acima, isso não é "código quebrado" — é sistema que
@@ -74,39 +119,27 @@ Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
 
 ### Sistema de Item / Inventário real
 
-**Estado atual do código:** `ItemConsumivel.cs` define só uma lista **fixa e
-hardcoded** (`ItensDeBatalha.Disponiveis`) com 4 poções de cura. Isso significa,
-hoje:
-- **Sem quantidade/estoque.** Usar uma poção não consome nada — a lista é sempre
-  a mesma, pra sempre, pra qualquer jogador.
-- **Sem forma de obter item.** Não existe drop de inimigo derrotado, não existe
-  compra (não há loja/NPC vendedor), não existe achar item no mapa.
-- **Sem lugar pra guardar item.** Não há inventário persistido — `DadosDoJogo.cs`
-  (o save em JSON) não tem nenhum campo de itens; só salva Droid/posição/flags.
-- **Sem diferenciação de tipo de item.** Hoje é só "cura X de HP". Não existe
-  item de efeito (buff/debuff), item equipável, ou item que se usa fora de
-  batalha (vs. só dentro, como é hoje).
-- **Botão "Bag" do Menu do Mundo é só um aviso "não implementado"** — não abre
-  nenhuma tela de inventário, porque não existe inventário pra mostrar.
+**Estado atual do código (atualizado 13/09/2026 — fase 1 concluída, ver seção
+"✅ Concluído" no topo):** `CatalogoDeItens.cs` define itens de Cura com
+inventário real persistido. O que falta pra fase 2:
 
-**O que precisa existir, no mínimo, pra não ser mais um placeholder:**
-1. Item com **quantidade real** (estoque que diminui ao usar, ou pilha
-   ilimitada explicitamente decidida assim).
-2. **Pelo menos uma forma de obter item** — drop de inimigo derrotado e/ou
-   compra em algum ponto do mundo (loja/NPC). As duas não precisam existir de
-   lançamento, mas pelo menos uma.
-3. **Categorias de item**, não só "cura":
-   - Consumível de cura (já existe, mas precisa sair do hardcode);
-   - Item de efeito/utilidade (buff/debuff, cura de status como Veneno/Stun);
-   - Item equipável (relacionado à peça do Droid — ver também a tela de
-     "Droid"/equipar peças, mecânica separada mas conectada);
-   - Item utilizável em batalha vs. fora de batalha (hoje só existe dentro).
-4. **Inventário persistido** — `DadosDoJogo`/`SalvamentoJson` precisam ganhar
-   uma lista de itens do jogador (mesmo padrão de DTO plano já usado pra
-   técnicas: `TecnicaSalva`).
-5. **UI de inventário de verdade** — tanto a tela "Bag" do Menu do Mundo quanto
-   a lista de item da batalha (`BattleManager.AbrirListaDeItens`) precisam
-   mostrar quantidade, não só nome + efeito.
+- **Sem forma de obter item além do kit inicial.** Não existe drop de
+  inimigo derrotado, não existe compra (não há loja/NPC vendedor), não
+  existe achar item no mapa.
+- **Sem diferenciação de tipo de item além de Cura.** Falta: item de efeito
+  (buff/debuff, cura de status como Veneno/Stun), item equipável, item
+  utilizável fora de batalha que não seja cura (Sinalizador de Retorno, Kit
+  de Acampamento, Chave de Acesso).
+- **UI de inventário é mínima** — mostra nome + cura + quantidade, sem ícone,
+  sem descrição longa, sem categorização visual.
+
+**O que falta, no mínimo, pra fase 2:**
+1. **Pelo menos uma forma de obter item** — drop de inimigo derrotado e/ou
+   compra em algum ponto do mundo (loja/NPC).
+2. **Categorias Buff/Debuff/Equipável/ForaDeBatalha** em `TipoDeItem` — hoje
+   só `Cura` existe; os outros valores foram deixados como comentário no
+   enum como lembrete.
+3. **UI mais rica** — ícone, descrição, filtro por categoria.
 
 **Decisão de design pendente (não implementar sem fechar isso primeiro):**
 drop, compra, ou os dois? Existe limite de slots de inventário ou é lista
@@ -118,6 +151,7 @@ peças do Droid (design ainda mais amplo, fora desta seção)?
 ## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
 
 - [ ] `BattleManager`: `painelListaDeItens`/`prefabBotaoItem` — apontado como "ainda mal otimizado" (12/09/2026); análise adiada para sessão futura, não mexer nisso sem revisão dedicada.
+- [ ] **NOVO (13/09/2026):** criar o Prefab `PainelBag` na cena Game (mesma estrutura do painel de itens da batalha: painel raiz + lista + prefab de botão + botão Voltar) e arrastar as referências no `MenuMundoManager` (`bag`, e dentro do `BagUIManager`: `painel`, `painelListaDeItens`, `prefabBotaoItem`, `botaoVoltar`, `textoMensagem`). Sem isso o botão "Bag" cai no fallback de aviso "não implementado".
 
 ---
 
