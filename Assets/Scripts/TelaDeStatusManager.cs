@@ -9,6 +9,12 @@ using DroidsCode.DroidCore;
 /// direto do GerenciadorDeEstado toda vez que é aberto. Isso permite usar
 /// o MESMO script tanto no botão Status de dentro da batalha quanto, mais
 /// pra frente, no menu fora de batalha, sem duplicar nada.
+///
+/// CORRECAO (13/09/2026 — exclusividade de painéis): ganhou o callback
+/// opcional AoFechar, invocado em Fechar(). O MenuMundoManager usa isso
+/// pra saber quando reexibir o painel do Menu do Mundo depois que o
+/// Status é fechado. Na Batalha (BattleManager), AoFechar simplesmente
+/// fica null e não é chamado — nenhuma mudança de comportamento lá.
 /// </summary>
 public class TelaDeStatusManager : MonoBehaviour
 {
@@ -21,6 +27,10 @@ public class TelaDeStatusManager : MonoBehaviour
     public TextMeshProUGUI textoPontos;
     public TextMeshProUGUI textoExp;
     public Button botaoVoltar;
+
+    // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
+    // MenuMundoManager.Start()). Invocado ao final de Fechar().
+    public System.Action AoFechar;
 
     void Start()
     {
@@ -74,5 +84,10 @@ public class TelaDeStatusManager : MonoBehaviour
     public void Fechar()
     {
         painel.SetActive(false);
+
+        // NOVO (13/09/2026): avisa quem estiver ouvindo (ex: MenuMundoManager)
+        // que o painel de Status foi fechado. Seguro mesmo se ninguém tiver
+        // se inscrito (ex: uso dentro da Batalha).
+        AoFechar?.Invoke();
     }
 }

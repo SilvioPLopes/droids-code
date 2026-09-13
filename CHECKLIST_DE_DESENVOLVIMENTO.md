@@ -17,25 +17,66 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-Levantados numa varredura dedicada em 12/09/2026, após o motor de efeitos (Veneno/Stun) entrar em combate. Detalhe técnico de cada um em `DOCUMENTACAO_TECNICA.md` §4.2/§4.3/§9.
+Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
 
-1. [ ] **Vitória/derrota não detectada na hora quando dano por turno mata quem ia agir.** `BattleManager.TurnoDoInimigo()` só checa `VerificarDerrota(droid)`; `ExecutarAtaqueDoJogador()` só checa `VerificarDerrota(inimigo)`. Se o veneno matar o próprio atacante da vez no início do turno dele, a batalha só percebe no turno seguinte.
-2. [ ] **Salvar/Carregar descarta Veneno/Stun de uma técnica.** `TecnicaSalva` só grava nome/nível de dano — os efeitos da técnica somem ao carregar o save.
-3. [ ] **Ataque Básico pode ser sobrescrito.** `AprenderTecnica`/`AprenderTecnicaComVeneno`/`AprenderTecnicaComStun` não bloqueiam o nome `Droid.NomeAtaqueBasico` (só `EsquecerTecnica` bloqueia).
-4. [ ] **Reaprender uma técnica existente não reembolsa a versão antiga.** `TentarAprender` cobra o custo total de novo sem checar se o nome já estava configurado — os pontos da versão anterior somem.
-5. [ ] **Terminal — seta ↓ do histórico sem proteção.** Diferente da seta ↑ (só navega se o campo estiver vazio), ↓ troca o texto do campo mesmo no meio de uma digitação nova.
-6. [ ] **Terminal — não dá pra sair do histórico de volta pro campo vazio só com ↓.** `NavegarHistorico` trava no último comando do histórico como teto.
-7. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje (só inimigos com técnica poderiam causar isso, e não existem ainda), mas é risco pra quando houver inimigo especial.
-8. [ ] **Empilhamento sem limite de Veneno/Stun.** Envenenar o mesmo alvo várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração de fato. Confirmar se é intencional antes de decidir se é bug.
+1. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje (só inimigos com técnica poderiam causar isso, e não existem ainda), mas é risco pra quando houver inimigo especial.
+2. [ ] **Empilhamento sem limite de Veneno/Stun.** Envenenar o mesmo alvo várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração de fato. **Decisão de comportamento ainda pendente** (cap de instâncias? renovar duração em vez de somar?) — não implementar sem definir isso primeiro.
+
+---
+
+## 🚨 Mecânica essencial faltante (bloqueante de lançamento)
+
+> Diferente da seção de bugs acima, isso não é "código quebrado" — é sistema que
+> ainda não existe. Levantado em 12/09/2026, a partir de revisão do estado atual
+> do jogo. Mantido separado dos bugs porque exige decisão de design antes de
+> qualquer código (ver "Decisão de design pendente" no fim desta seção).
+
+### Sistema de Item / Inventário real
+
+**Estado atual do código:** `ItemConsumivel.cs` define só uma lista **fixa e
+hardcoded** (`ItensDeBatalha.Disponiveis`) com 4 poções de cura. Isso significa,
+hoje:
+- **Sem quantidade/estoque.** Usar uma poção não consome nada — a lista é sempre
+  a mesma, pra sempre, pra qualquer jogador.
+- **Sem forma de obter item.** Não existe drop de inimigo derrotado, não existe
+  compra (não há loja/NPC vendedor), não existe achar item no mapa.
+- **Sem lugar pra guardar item.** Não há inventário persistido — `DadosDoJogo.cs`
+  (o save em JSON) não tem nenhum campo de itens; só salva Droid/posição/flags.
+- **Sem diferenciação de tipo de item.** Hoje é só "cura X de HP". Não existe
+  item de efeito (buff/debuff), item equipável, ou item que se usa fora de
+  batalha (vs. só dentro, como é hoje).
+- **Botão "Bag" do Menu do Mundo é só um aviso "não implementado"** — não abre
+  nenhuma tela de inventário, porque não existe inventário pra mostrar.
+
+**O que precisa existir, no mínimo, pra não ser mais um placeholder:**
+1. Item com **quantidade real** (estoque que diminui ao usar, ou pilha
+   ilimitada explicitamente decidida assim).
+2. **Pelo menos uma forma de obter item** — drop de inimigo derrotado e/ou
+   compra em algum ponto do mundo (loja/NPC). As duas não precisam existir de
+   lançamento, mas pelo menos uma.
+3. **Categorias de item**, não só "cura":
+   - Consumível de cura (já existe, mas precisa sair do hardcode);
+   - Item de efeito/utilidade (buff/debuff, cura de status como Veneno/Stun);
+   - Item equipável (relacionado à peça do Droid — ver também a tela de
+     "Droid"/equipar peças, mecânica separada mas conectada);
+   - Item utilizável em batalha vs. fora de batalha (hoje só existe dentro).
+4. **Inventário persistido** — `DadosDoJogo`/`SalvamentoJson` precisam ganhar
+   uma lista de itens do jogador (mesmo padrão de DTO plano já usado pra
+   técnicas: `TecnicaSalva`).
+5. **UI de inventário de verdade** — tanto a tela "Bag" do Menu do Mundo quanto
+   a lista de item da batalha (`BattleManager.AbrirListaDeItens`) precisam
+   mostrar quantidade, não só nome + efeito.
+
+**Decisão de design pendente (não implementar sem fechar isso primeiro):**
+drop, compra, ou os dois? Existe limite de slots de inventário ou é lista
+livre? Itens equipáveis entram nesta mecânica ou ficam 100% dentro da tela de
+peças do Droid (design ainda mais amplo, fora desta seção)?
 
 ---
 
 ## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
 
-- [ ] `BattleManager`: criar `painelListaDeItens` (painel vazio, inativo) e
-      `prefabBotaoItem` (pode reutilizar o mesmo prefab de `prefabBotaoAtaque`),
-      arrastar as referências no Inspector — sem isso o botão "Item" cai no
-      fallback (usa o primeiro item direto, sem mostrar a lista).
+- [ ] `BattleManager`: `painelListaDeItens`/`prefabBotaoItem` — apontado como "ainda mal otimizado" (12/09/2026); análise adiada para sessão futura, não mexer nisso sem revisão dedicada.
 
 ---
 
@@ -45,8 +86,16 @@ Levantados numa varredura dedicada em 12/09/2026, após o motor de efeitos (Vene
 2. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está
    declarada e não é referenciada em lugar nenhum.
 
-> ✅ Concluído nesta sessão (12/09/2026): visor de experiência/XP na Tela de Status,
-> e aplicação de fato dos efeitos (Stun/Envenenamento) de `TecnicaComposta` em combate.
+> ✅ Concluído nesta sessão (13/09/2026): botão "Voltar" adicionado aos painéis
+> de Ataque e Item da batalha (reaproveita o mesmo prefab de botão, só fecha o
+> painel sem executar ação), ESC fecha o painel de Ataque/Item que estiver
+> aberto, correção de um bug encontrado durante essa mudança (abrir Ataque e
+> depois Item, sem fechar o primeiro, deixava os dois painéis abertos ao mesmo
+> tempo — agora cada painel fecha o outro antes de abrir), e exclusividade
+> entre os painéis de Status/Terminal e o Menu do Mundo (callback `AoFechar`
+> em `TelaDeStatusManager`/`TerminalUIManager`, usado por `MenuMundoManager`
+> pra esconder/reexibir seu próprio painel — com correção de um segundo bug:
+> apertar ESC com o Terminal aberto reabria o Menu do Mundo por baixo dele).
 
 ---
 
@@ -95,6 +144,8 @@ ideias, não uma exigência.
 
 Itens já decididos como "não agora" (ver roadmap completo em
 `DOCUMENTACAO_TECNICA.md` §8): sistema de acerto/erro (HIT/FLEE), Modo Puzzle do
-terminal, `DroidDataSO`/Factory, Fase 2 de peças (herança real), inventário completo.
+terminal, `DroidDataSO`/Factory, Fase 2 de peças (herança real).
 Se um agente sugerir atacar algum desses sem você ter puxado o assunto, é sinal de
-que ele não leu esta seção — redirecione pra cá.
+que ele não leu esta seção — redirecione pra cá. **Exceção:** inventário/sistema de
+item saiu desta lista em 12/09/2026 — ver seção "🚨 Mecânica essencial faltante"
+acima, agora tratado como bloqueante de lançamento, não mais "fora de escopo".

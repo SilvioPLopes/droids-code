@@ -21,6 +21,16 @@ using DroidsCode.DroidCore;
 /// enviadas junto com este arquivo):
 ///   - painelListaDeAtaques: painel vazio, inativo por padrão
 ///   - prefabBotaoAtaque: prefab de botão com um texto (TMP) filho
+///
+/// CORRECAO (13/09/2026 — botão Voltar / ESC / double-painel):
+///   - Ambos os painéis (Ataque e Item) agora ganham um botão extra
+///     "Voltar" no final da lista, reaproveitando o mesmo prefab — ele só
+///     fecha o painel, sem chamar ExecutarAtaqueDoJogador/UsarItem.
+///   - ESC fecha o painel que estiver aberto (Update() novo).
+///   - Bug encontrado durante a correção: nada impedia abrir Ataque e,
+///     sem fechar, clicar Item (botaoItem continuava interactable) —
+///     os dois painéis ficavam abertos ao mesmo tempo. Corrigido: cada
+///     Abrir...() agora fecha o outro painel antes de abrir o seu.
 /// </summary>
 public class BattleManager : MonoBehaviour
 {
@@ -104,6 +114,24 @@ public class BattleManager : MonoBehaviour
         MostrarMensagem($"Um {nomeInimigo} selvagem apareceu!");
     }
 
+    // NOVO (13/09/2026): ESC fecha o painel de Ataque ou Item que estiver
+    // aberto no momento. Assume que esta cena (Battle) não convive junto
+    // com o Menu do Mundo (que também usa Escape) — confirmar se algum dia
+    // as duas rodarem sobrepostas.
+    void Update()
+    {
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
+
+        if (painelListaDeAtaques != null && painelListaDeAtaques.gameObject.activeSelf)
+        {
+            painelListaDeAtaques.gameObject.SetActive(false);
+        }
+        else if (painelListaDeItens != null && painelListaDeItens.gameObject.activeSelf)
+        {
+            painelListaDeItens.gameObject.SetActive(false);
+        }
+    }
+
     // ------------------------------------------------------------------
     // AÇÕES DOS BOTÕES
     // ------------------------------------------------------------------
@@ -134,6 +162,11 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        // CORRECAO (13/09/2026 — double-painel): garante que o painel de
+        // itens não fique aberto por baixo do painel de ataques.
+        if (painelListaDeItens != null)
+            painelListaDeItens.gameObject.SetActive(false);
+
         foreach (Transform filho in painelListaDeAtaques)
             Destroy(filho.gameObject);
 
@@ -152,6 +185,10 @@ public class BattleManager : MonoBehaviour
                 ExecutarAtaqueDoJogador(nomeCapturado);
             });
         }
+
+        // NOVO (13/09/2026): botão "Voltar" no final da lista — só fecha o
+        // painel, sem executar nenhuma ação.
+        AdicionarBotaoVoltar(painelListaDeAtaques, prefabBotaoAtaque);
 
         painelListaDeAtaques.gameObject.SetActive(true);
     }
@@ -208,6 +245,11 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
+        // CORRECAO (13/09/2026 — double-painel): garante que o painel de
+        // ataques não fique aberto por baixo do painel de itens.
+        if (painelListaDeAtaques != null)
+            painelListaDeAtaques.gameObject.SetActive(false);
+
         foreach (Transform filho in painelListaDeItens)
             Destroy(filho.gameObject);
 
@@ -227,7 +269,25 @@ public class BattleManager : MonoBehaviour
             });
         }
 
+        // NOVO (13/09/2026): botão "Voltar" no final da lista — só fecha o
+        // painel, sem usar nenhum item.
+        AdicionarBotaoVoltar(painelListaDeItens, prefabBotaoItem);
+
         painelListaDeItens.gameObject.SetActive(true);
+    }
+
+    // NOVO (13/09/2026): reaproveitado pelos dois painéis (Ataque e Item).
+    // Instancia mais um botão do mesmo prefab, com texto "Voltar", que só
+    // desativa o painel — nunca chama ExecutarAtaqueDoJogador/UsarItem.
+    void AdicionarBotaoVoltar(Transform painel, Button prefabBotao)
+    {
+        Button botaoVoltar = Instantiate(prefabBotao, painel);
+        botaoVoltar.gameObject.SetActive(true);
+
+        var texto = botaoVoltar.GetComponentInChildren<TextMeshProUGUI>();
+        if (texto != null) texto.text = "Voltar";
+
+        botaoVoltar.onClick.AddListener(() => painel.gameObject.SetActive(false));
     }
 
     void UsarItem(ItemConsumivel item)

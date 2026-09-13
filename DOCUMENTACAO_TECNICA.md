@@ -83,18 +83,81 @@ Salvamento    (ISistemaDeSalvamento / SalvamentoJson / DadosDoJogo) — cruza Do
 
 ## 3. Estrutura de pastas (scripts)
 
+> **Regra (12/09/2026):** cada arquivo abaixo tem o **caminho completo**
+> listado explicitamente, um por linha — não apenas agrupado por pasta.
+> Motivo: em refatorações grandes é comum aparecerem arquivos com o mesmo
+> nome em lugares diferentes (ex: um `TecnicaSalva.cs` histórico vs. o atual
+> em `Salvamento/`), e uma lista solta de nomes dentro da pasta não deixa
+> isso claro. Sempre que este projeto for exportado/zipado para análise
+> externa, a árvore de pastas real deve corresponder a esta lista — se um
+> arquivo mudar de pasta, atualize a linha correspondente aqui no mesmo
+> commit/sessão (mesma regra de manutenção da seção 0).
+>
+> **✅ Correção (13/09/2026):** a árvore abaixo estava desatualizada —
+> descrevia pastas (`World/`, `DroidCore/`, `Salvamento/`, `UI/`) que **não
+> correspondem** à estrutura real do projeto. Substituída pela árvore real,
+> confirmada via print do Windows Explorer em 13/09/2026 (exatamente o tipo
+> de divergência silenciosa que a seção 0 pede pra evitar). Principais
+> diferenças: os arquivos de `UI/` (`BattleManager`, `MenuMundoManager`,
+> `TerminalUIManager`, `TelaDeStatusManager`, `MainMenuManager`) na verdade
+> ficam soltos na raiz de `Scripts/`, junto com `PlayerMovement`,
+> `EncounterZone`, `RestaurarPosicao` (que a versão antiga agrupava em
+> `World/`); `DroidCore/` chama-se `Droid/` na pasta real; `Salvamento/` e
+> `GerenciadorDeEstado.cs` (que estava em `World/`) foram unificados numa
+> única pasta `Estado/`. `GerenciadorDeEstado.cs` também está bem mais
+> recente (12/09 02:09) do que o resto de `Estado/`, mas isso é só data de
+> modificação — não indica arquivo desatualizado.
+
 ```
-Assets/Scripts/
-├── World/        PlayerMovement.cs, EncounterZone.cs, RestaurarPosicao.cs, GerenciadorDeEstado.cs
-├── Combat/       CombatEngine.cs, IParticipanteDeCombate.cs, ResultadoAcao.cs, InimigoFixo.cs
-├── DroidCore/    Droid.cs, DroidPart.cs, Braco.cs, Perna.cs, Tronco.cs, Cabeca.cs, DroidStats.cs,
-│                 TipoAtributo.cs, PontosDeProgressao.cs, ProgressaoDeNivel.cs, SistemaDeProgressao.cs,
-│                 TabelaDeCustos.cs, TabelaDeCombate.cs, TecnicaComposta.cs, ItemConsumivel.cs
-├── Scripting/    DroidScriptRunner.cs, TerminalDroidApi.cs
-├── Salvamento/   ISistemaDeSalvamento.cs, SalvamentoJson.cs, DadosDoJogo.cs
-└── UI/           BattleManager.cs, MainMenuManager.cs, MenuMundoManager.cs, TerminalUIManager.cs,
-                  TelaDeStatusManager.cs
+Assets/Scripts/BattleManager.cs
+Assets/Scripts/MainMenuManager.cs
+Assets/Scripts/MenuMundoManager.cs
+Assets/Scripts/TelaDeStatusManager.cs
+Assets/Scripts/TerminalUIManager.cs
+Assets/Scripts/EncounterZone.cs
+Assets/Scripts/PlayerMovement.cs
+Assets/Scripts/RestaurarPosicao.cs
+Assets/Scripts/readme.md
+Assets/Scripts/DOCUMENTACAO_TECNICA.md
+Assets/Scripts/CHECKLIST_DE_DESENVOLVIMENTO.md
+
+Assets/Scripts/Combat/CombatEngine.cs
+Assets/Scripts/Combat/IParticipanteDeCombate.cs
+Assets/Scripts/Combat/ResultadoAcao.cs
+Assets/Scripts/Combat/InimigoFixo.cs
+
+Assets/Scripts/Droid/Droid.cs
+Assets/Scripts/Droid/DroidPart.cs
+Assets/Scripts/Droid/Braco.cs
+Assets/Scripts/Droid/Perna.cs
+Assets/Scripts/Droid/Tronco.cs
+Assets/Scripts/Droid/Cabeca.cs
+Assets/Scripts/Droid/DroidStats.cs
+Assets/Scripts/Droid/TipoAtributo.cs
+Assets/Scripts/Droid/PontosDeProgressao.cs
+Assets/Scripts/Droid/ProgressaoDeNivel.cs
+Assets/Scripts/Droid/SistemaDeProgressao.cs
+Assets/Scripts/Droid/TabelaDeCustos.cs
+Assets/Scripts/Droid/TabelaDeCombate.cs
+Assets/Scripts/Droid/TecnicaComposta.cs
+Assets/Scripts/Droid/EfeitosTemporariosUtil.cs
+Assets/Scripts/Droid/ItemConsumivel.cs
+
+Assets/Scripts/Estado/GerenciadorDeEstado.cs
+Assets/Scripts/Estado/ISistemaDeSalvamento.cs
+Assets/Scripts/Estado/SalvamentoJson.cs
+Assets/Scripts/Estado/DadosDoJogo.cs
+
+Assets/Scripts/Scripting/DroidScriptRunner.cs
+Assets/Scripts/Scripting/TerminalDroidApi.cs
+
+Assets/Scripts/_Teste/InimigoTeste.cs
 ```
+
+> **Nota:** os namespaces (`DroidsCode.DroidCore`, `DroidsCode.Combat`,
+> `DroidsCode.Scripting` — seção 1) continuam com esses nomes mesmo a pasta
+> física sendo `Droid/` em vez de `DroidCore/`; isso é comum em C# (pasta e
+> namespace não precisam bater) e não é um erro a corrigir.
 
 ---
 
@@ -161,8 +224,29 @@ Assets/Scripts/
 - `AprenderTecnicaComStun(nome, nivelDeDano, duracaoEmTurnos)`: mesma ideia, monta a técnica com um `EfeitoDeAtributo` ("Stun", `Atributo`/`Valor` no default de propósito — é uma flag checada por nome em `CombatEngine.EstaAtordoado`, não um buff real) e delega para `TentarAprender`.
 - `ObterPontosDisponiveis()`, `ObterLogDaSessao()`, `LimparLog()`.
 - `TesteAdicionarPontos(quantidade)`: **[TESTE]** soma pontos direto via `Pontos.DefinirPontos(...)`, ignorando XP/nível. Existe pra testar builds de técnica/atributo sem farmar batalha. Comentário no próprio código já sinaliza "considere remover ou esconder antes de qualquer build final/demo pra terceiros" — ainda não removido/protegido.
-> ⚠️ **Lacuna de validação:** nem `AprenderTecnica`, `AprenderTecnicaComVeneno` nem `AprenderTecnicaComStun` checam se `nome == Droid.NomeAtaqueBasico` antes de gravar em `TecnicasConfiguradas` — só `EsquecerTecnica` tem essa proteção. Ou seja, dá pra sobrescrever o Ataque Básico chamando `droid.aprenderTecnicaComVeneno("Ataque Basico", ...)`, e depois disso não tem como voltar (o nome continua "protegido" contra remoção, só que já não é mais o básico original). Ver seção 9.
-> ⚠️ **Sem reembolso ao reaprender:** `TentarAprender` (usado pelas 3 variantes acima) não verifica se `tecnica.Nome` já existe em `TecnicasConfiguradas` antes de cobrar o custo total — reaprender uma técnica existente sobrescreve a antiga e os pontos investidos nela somem, sem passar por `EsquecerTecnica` primeiro. Ver seção 9.
+> ✅ **Corrigido (12/09/2026)** — proteção do Ataque Básico replicada nas 3
+> variantes de aprender técnica (`AprenderTecnica`, `AprenderTecnicaComVeneno`,
+> `AprenderTecnicaComStun`): todas recusam `nome == Droid.NomeAtaqueBasico`,
+> igual `EsquecerTecnica` já fazia. Decisão registrada: não foi criado um
+> campo `EhProtegida` separado em `TecnicaComposta` (ficaria pra quando
+> houver mais de uma técnica "protegida" — não é o caso hoje).
+>
+> ✅ **Corrigido (12/09/2026)** — reaprender uma técnica existente agora é
+> **bloqueado** em `TentarAprender` (as 3 variantes de aprender compartilham
+> esse método): se `nome` já está em `TecnicasConfiguradas`, a chamada falha
+> e o log de sessão já indica o comando correto (`droid.melhorarTecnica(...)`
+> ou `droid.esquecerTecnica(...)` antes de reaprender do zero) — funciona como
+> dica de uso dentro do próprio terminal, sem precisar de documentação externa.
+> Foi adicionado `MelhorarTecnica(nome, nivelDeDanoAdicional)`: soma ao
+> `NivelDeDano` já configurado e cobra **só a diferença** entre
+> `CustoTotal()` novo e antigo (nunca o custo cheio de novo). Se os pontos
+> disponíveis não cobrirem a diferença, o aumento de nível é revertido antes
+> de retornar falha — a técnica nunca fica num estado "melhorada mas não
+> paga". `MelhorarTecnica` só altera `NivelDeDano` (dano direto); não mexe
+> em `EfeitosDeAtributo`/`EfeitosDeDanoPorTurno` da técnica — evoluir um
+> efeito (ex: aumentar duração do Veneno) não foi pedido e fica fora deste
+> escopo. Texto de ajuda do terminal (`TerminalUIManager.TextoAjudaPadrao`)
+> atualizado com o novo comando.
 > ✅ **Corrigido (12/09/2026)** — os três métodos que o texto de ajuda já citava foram implementados em `TerminalDroidApi`:
 > - `ObterAtributo(nomeAtributo)`: leitura pura (não gasta pontos), retorna `Droid.ObterTotal(atributo)`; nome inválido retorna 0 e loga falha.
 > - `ListarTecnicas()`: retorna os nomes de `TecnicasConfiguradas` separados por vírgula, ou "Nenhuma técnica configurada.".
@@ -198,12 +282,16 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 **`BattleManager`** — não calcula nada, só orquestra: botões fixos (Atacar/Item/Fugir/Status), lista dinâmica de técnicas se o Droid tiver mais de uma configurada, corrotinas de turno, integração com `TelaDeStatusManager`. Botão "Item" (corrigido em 12/09/2026) abre `painelListaDeItens` com os itens de `ItensDeBatalha.Disponiveis` (lista fixa, ver `ItemConsumivel.cs`) — não cura mais sozinho automaticamente.
 - **Log de batalha:** `MostrarMensagem` mantém as últimas 4 linhas (`_logDeBatalha`) em vez de sobrescrever a mensagem toda vez — mesmo padrão do log do Terminal (`TerminalUIManager.linhasDeLog`). Cada chamada separa a mensagem recebida por `\n` em várias entradas do log, porque `CombatEngine.ExecutarTurno` pode devolver mais de um evento no mesmo turno (ex: dano de veneno + resultado do ataque).
+- ✅ **Corrigido (13/09/2026)** — `painelListaDeAtaques`/`painelListaDeItens` ganharam um botão "Voltar" (reaproveita `prefabBotaoAtaque`/`prefabBotaoItem`, só chama `SetActive(false)`, nunca executa ação) e um `Update()` que fecha o painel aberto com ESC. Corrigido no mesmo commit: `AbrirListaDeAtaques`/`AbrirListaDeItens` agora fecham o outro painel antes de abrir o seu — antes disso, abrir Ataque e depois Item (sem fechar o primeiro) deixava os dois painéis ativos ao mesmo tempo.
 
 **`MenuMundoManager`** — menu de pausa (tecla Esc): Status/Terminal/Bag/Droid/Opções/Salvar/Carregar/Voltar. Bag/Droid/Opções ainda são placeholders ("ainda não foi implementado").
+- ✅ **Corrigido (13/09/2026)** — exclusividade de painéis: ao abrir Status ou Terminal, `painelMenu` é escondido (`SetActive(false)`) via `AoClicarStatus`/`AoClicarTerminal`, e reexibido pelo callback `AoFecharOutroPainel` quando o Status/Terminal fecha (ver `TelaDeStatusManager`/`TerminalUIManager` abaixo). O contador de `GerenciadorDeEstado` (`RegistrarMenuAberto`/`Fechado`) não foi tocado por essa mudança. Nova flag `_outroPainelAberto` faz `Update()` ignorar ESC enquanto Status/Terminal estiverem abertos — sem ela, ESC com o Terminal aberto reabria `painelMenu` por baixo dele e incrementava o contador de novo (bug encontrado e corrigido no mesmo commit).
 
 **`TerminalUIManager`** — UI do terminal: campo de código, histórico de comandos (↑/↓), log de sessão, atalho Ctrl+Enter.
+- ✅ **Corrigido (13/09/2026)** — ganhou o campo público `AoFechar` (`System.Action`, opcional), invocado dentro do `if` de `Fechar()` (só quando o painel de fato estava aberto). Usado por `MenuMundoManager` pra saber quando reexibir seu próprio painel.
 
 **`TelaDeStatusManager`** — painel de status, busca o Droid direto do `GerenciadorDeEstado` (reutilizável entre batalha e mundo).
+- ✅ **Corrigido (13/09/2026)** — mesmo padrão do Terminal: ganhou `AoFechar` (`System.Action`, opcional), invocado ao final de `Fechar()`. Como o uso dentro da Batalha não atribui esse callback, fica `null` ali e não é chamado (`?.Invoke()`) — nenhuma mudança de comportamento na Batalha.
 
 **`MainMenuManager`** — navegação do menu principal (Novo Jogo/Configurações/Sair). Sem mudanças estruturais previstas.
 
@@ -270,13 +358,24 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 - `TabelaDeCustos.CustoResistenciaPorNivel` está declarada mas não é referenciada em nenhum cálculo — confirmar se ainda é necessária ou remover.
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.
 
-**Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos):**
+**Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos) — status atualizado:**
 
-- **Detecção de vitória/derrota atrasa quando dano por turno mata quem ia agir.** `BattleManager.TurnoDoInimigo()` só chama `VerificarDerrota(droid)`; `ExecutarAtaqueDoJogador()` só chama `VerificarDerrota(inimigo)`. Se o dano por turno (veneno) zerar o HP do próprio atacante da vez (ver 4.2), nenhum dos dois métodos checa a derrota desse participante — a batalha só percebe no turno seguinte. Reprodutível hoje envenenando o inimigo até ele morrer do tick no início do próprio turno.
-- **Save/Load descarta Veneno/Stun de uma técnica.** `TecnicaSalva` (`DadosDoJogo.cs`) só tem `nome`/`nivelDeDano`. `SalvamentoJson.Salvar()` não grava `EfeitosDeAtributo`/`EfeitosDeDanoPorTurno`; `Carregar()` reconstrói a técnica sem eles. Uma técnica com veneno/stun configurada volta como ataque comum após salvar e carregar.
-- **Ataque Básico pode ser sobrescrito.** Ver aviso na seção 4.3 — só `EsquecerTecnica` protege o nome `Droid.NomeAtaqueBasico`; as 3 variantes de aprender técnica não.
-- **Reaprender uma técnica não reembolsa a versão anterior.** Ver aviso na seção 4.3 (`TentarAprender`).
-- **Terminal: seta ↓ do histórico sem a mesma proteção da seta ↑.** `TerminalUIManager.Update()` só bloqueia ↑ quando o campo já tem texto (evita apagar o que o jogador está digitando); ↓ não tem essa checagem, então navegar pra baixo troca o texto do campo mesmo no meio de uma digitação nova.
-- **Terminal: não dá pra "sair" do histórico de volta pro campo vazio só com ↓.** `NavegarHistorico` trava o índice em `historicoDeComandos.Count - 1` como teto — nunca solta de volta pra um campo vazio.
-- **`EfeitosAtivos`/`EfeitosDeDanoAtivos` do Droid nunca são zerados entre batalhas.** Nada em `BattleManager` limpa essas listas ao iniciar/terminar uma luta. Sem efeito visível hoje (só o Droid recebe efeitos, e só `InimigoFixo` os causaria — o que não existe ainda), mas é uma bomba-relógio pro dia em que um inimigo puder envenenar/atordoar o jogador.
-- **Empilhamento sem limite dos efeitos.** Cada acerto de uma técnica com Veneno soma mais uma instância de dano por turno (efeitos concorrentes se somam); Stun repetido não estende a duração de fato (todas as instâncias decrementam juntas). Não confirmado se é comportamento desejado.
+- ✅ Corrigido: detecção de vitória/derrota atrasada (`BattleManager` agora checa os dois lados após todo `ExecutarTurno`).
+- ✅ Corrigido: Save/Load descartava Veneno/Stun (`TecnicaSalva` agora grava `EfeitosDeAtributo`/`EfeitosDeDanoPorTurno`).
+- ✅ Corrigido: Ataque Básico podia ser sobrescrito (proteção replicada nas 3 variantes de aprender).
+- ✅ Corrigido: reaprender uma técnica não reembolsava — decisão tomada: **bloquear reaprendizado do mesmo nome**, introduzir `MelhorarTecnica(nome, nivelAdicional)` cobrando a diferença de custo. Ver §4.3.
+- ✅ Corrigido: seta ↓ do terminal sem proteção contra edição manual, e sem posição "livre" pra voltar ao campo vazio.
+
+**Levantados/corrigidos em 13/09/2026 (botão Voltar + exclusividade de painéis):**
+
+- ✅ Corrigido: falta de botão "Voltar"/"Cancelar" nos menus de Ataque e Item da batalha — ver §4.6 (`BattleManager`).
+- ✅ Corrigido: bug encontrado durante a correção acima — abrir o painel de Ataque e, sem fechar, abrir o de Item (ou vice-versa) deixava os dois ativos ao mesmo tempo. Ver §4.6.
+- ✅ Corrigido: painéis de Status/Terminal não tinham exclusividade com o Menu do Mundo — ficavam sobrepostos visualmente. Ver §4.6 (`MenuMundoManager`/`TerminalUIManager`/`TelaDeStatusManager`).
+- ✅ Corrigido: bug encontrado durante a correção acima — ESC com o Terminal aberto reabria o Menu do Mundo por baixo dele e incrementava o contador de menus de novo. Ver §4.6 (`MenuMundoManager`).
+- Testado e confirmado pelo responsável do projeto.
+
+**Ainda em aberto (não implementado nesta sessão, por decisão explícita):**
+
+- **Efeitos ativos do Droid nunca são zerados entre batalhas** (`EfeitosAtivos`/`EfeitosDeDanoAtivos`). Sem efeito visível hoje (só `InimigoFixo` poderia causar isso e não tem `TecnicaComposta` ainda), mas é risco pro dia em que houver inimigo com efeito.
+- **Empilhamento sem limite de Veneno/Stun** (`TecnicaComposta`/`Droid.EfeitosAtivos`/`EfeitosDeDanoAtivos`). Cada acerto soma uma nova instância — Veneno acumula dano por turno de todas as instâncias; Stun repetido não estende a duração de fato (`EfeitosTemporariosUtil.Decrementar` decrementa cada instância independentemente). **Decisão explicitamente adiada** — não implementar cap/renovação sem definição de comportamento desejado primeiro.
+- **Painel de lista de itens/botão Item (`BattleManager.painelListaDeItens`/`prefabBotaoItem`)** ainda está "mal otimizado" — trabalho de configuração/revisão de UI pendente, fora do escopo desta sessão. Ver seção "Trabalho de Editor pendente" no `CHECKLIST_DE_DESENVOLVIMENTO.md`.

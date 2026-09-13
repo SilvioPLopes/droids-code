@@ -10,6 +10,12 @@ using DroidsCode.DroidCore;
 /// UI do terminal de código — Modo Configuração (fora de batalha).
 /// Conecta o campo de texto onde o jogador digita Lua ao DroidScriptRunner.
 /// Não roda Lua em combate (ver CORRECAO_ARQUITETURA_TERMINAL_MENU.md).
+///
+/// CORRECAO (13/09/2026 — exclusividade de painéis): ganhou o callback
+/// opcional AoFechar, invocado dentro do "if" de Fechar() (ou seja, só
+/// quando o painel de fato estava aberto e foi fechado agora). O
+/// MenuMundoManager usa isso pra saber quando reexibir o painel do Menu do
+/// Mundo depois que o Terminal é fechado.
 /// </summary>
 public class TerminalUIManager : MonoBehaviour
 {
@@ -35,6 +41,10 @@ public class TerminalUIManager : MonoBehaviour
     [Header("Configuração")]
     [Tooltip("Quantas linhas de log manter visíveis antes de descartar as mais antigas.")]
     public int maximoDeLinhasDeLog = 40;
+
+    // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
+    // MenuMundoManager.Start()). Invocado dentro de Fechar().
+    public System.Action AoFechar;
 
     private DroidScriptRunner runner;
     private TerminalDroidApi api;
@@ -154,6 +164,10 @@ public class TerminalUIManager : MonoBehaviour
         {
             painelTerminal.SetActive(false);
             GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+
+            // NOVO (13/09/2026): avisa quem estiver ouvindo (ex: MenuMundoManager)
+            // que o Terminal foi fechado.
+            AoFechar?.Invoke();
         }
     }
 
@@ -260,10 +274,29 @@ public class TerminalUIManager : MonoBehaviour
             textoSaida.text = sb.ToString();
         }
 
+        // CORRECAO (12/09/2026): scrollRectSaida.verticalNormalizedPosition = 0f
+        // direto aqui ia pro fim de um tamanho de conteudo DESATUALIZADO --
+        // o Unity so recalcula a altura real do texto (Content) um frame
+        // depois da mudanca, entao a régua do scroll mirava no fim antigo, nao
+        // no fim de verdade. Sintoma: precisar arrastar manualmente pra achar
+        // a mensagem nova. Corrigido rodando a rolagem numa coroutine que
+        // espera o fim do frame antes de mover o scroll (ver
+        // RolarParaFimNoProximoFrame abaixo).
         if (scrollRectSaida != null)
         {
-            Canvas.ForceUpdateCanvases();
-            scrollRectSaida.verticalNormalizedPosition = 0f;
+            StartCoroutine(RolarParaFimNoProximoFrame());
         }
+    }
+
+    private System.Collections.IEnumerator RolarParaFimNoProximoFrame()
+    {
+        // Espera o layout (tamanho real do Content) ser recalculado antes de
+        // mover o scroll -- e' esse atraso de um frame que causava o "vai pro
+        // fim errado" quando a rolagem era feita na mesma chamada que mudava
+        // o texto.
+        Canvas.ForceUpdateCanvases();
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+        scrollRectSaida.verticalNormalizedPosition = 0f;
     }
 }

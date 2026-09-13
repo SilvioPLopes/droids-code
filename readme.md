@@ -39,14 +39,13 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 * Menu fixo estilo Pokémon: **Lutar / Itens / Status / Fugir**.
 * Dentro de "Lutar", a lista de técnicas exibidas é dinâmica — vem das técnicas que o próprio jogador configurou no terminal.
+* As listas de golpes e de itens têm um botão "Voltar" (ou ESC) pra fechar o painel sem agir.
 * O dano é calculado inteiramente em C#, lendo dados já configurados pelo jogador — o Lua nunca participa do cálculo de combate.
 
 ### 📈 Progressão
 
 * O Droid ganha XP ao vencer batalhas e sobe de nível segundo uma curva simples (Nível × 100 de XP necessário).
 * Cada nível concedido gera pontos de progressão, gastos no terminal para investir em atributos ou aprender técnicas.
-* Técnicas podem ser aprendidas com efeitos extras — `aprenderTecnicaComVeneno` (dano contínuo) e `aprenderTecnicaComStun` (atordoamento, faz o alvo perder o turno) — que são de fato aplicados durante o combate.
-* Existe um comando `testeAdicionarPontos`, só para testes: soma pontos direto, ignorando XP/nível.
 
 ### 🧩 Customização e Herança de Peças
 
@@ -104,11 +103,12 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 ### ✅ Implementado e funcional
 
 - Droid com atributos base (FOR/AGI/VIT/INT/DEX/LUK), peças (sem comportamento próprio ainda) e defesa = VIT total
-- Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir, e um log de batalha (últimas linhas, não sobrescreve mensagem por mensagem)
+- Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir
 - Botão "Item" na batalha abre uma lista fixa de itens (`ItensDeBatalha`) em vez de curar sozinho
-- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `aprenderTecnicaComVeneno`, `aprenderTecnicaComStun`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`, `testeAdicionarPontos` [teste])
-- Sistema de pontos de progressão e nível/XP, com visor de Nível/XP na Tela de Status
-- Técnicas compostas com efeitos de atributo (Stun) e dano por turno (Envenenamento) — custo calculado **e aplicado de fato em combate**
+- Navegação de UI: botão "Voltar"/ESC nos painéis de Ataque e Item da batalha; exclusividade entre os painéis de Status/Terminal e o Menu do Mundo (não ficam sobrepostos, cada um esconde/reexibe o outro corretamente)
+- Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `aprenderTecnicaComVeneno`, `aprenderTecnicaComStun`, `melhorarTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`)
+- Sistema de pontos de progressão e nível/XP
+- Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado **e aplicação em combate implementada**: `Droid.ExecutarAcao` copia os efeitos da técnica para o alvo, e `CombatEngine` processa dano por turno no início do turno de quem está afetado e verifica atordoamento antes de permitir a ação
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
 - Encontros aleatórios no mapa e menu principal
 
@@ -118,12 +118,12 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - **Modo Puzzle** do terminal (exercícios de lógica isolados, fora da configuração real do Droid)
 - **`DroidDataSO`/Factory** — hoje o Droid é criado direto em código; a ideia é migrar para ScriptableObjects configuráveis no Inspector
 - **Fase 2 de customização de peças** — herança real com Cartuchos de Código sobrescrevendo `DroidBase`
-- Inventário e equipamento completos (a lista fixa de itens da batalha é um placeholder mínimo, não um inventário real)
+- **Inventário e equipamento completos** (a lista fixa de itens da batalha é um placeholder mínimo, não um inventário real) — tratado como **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md` → "🚨 Mecânica essencial faltante" para o detalhamento (quantidade, obtenção, categorias de item, persistência)
 - Bag/Droid/Opções no Menu do Mundo ainda são placeholders ("ainda não foi implementado")
 
 ### 🐞 Bugs conhecidos
 
-Veja a lista completa e priorizada em `CHECKLIST_DE_DESENVOLVIMENTO.md` (seção "🔴 Bugs abertos"). Destaque: dano por turno pode matar um participante sem que a vitória/derrota seja detectada na hora, e salvar/carregar o jogo descarta o Veneno/Stun configurado numa técnica.
+Ver `CHECKLIST_DE_DESENVOLVIMENTO.md` → seção "🔴 Bugs abertos": 2 itens confirmados no código, ambos sobre o motor de efeitos (Stun/Envenenamento): efeitos ativos do Droid não são zerados entre batalhas, e não há limite/renovação para instâncias empilhadas do mesmo efeito.
 
 ---
 
