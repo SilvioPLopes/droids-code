@@ -15,12 +15,6 @@
 > como "✅ Implementado" sem a seção 4 de `DOCUMENTACAO_TECNICA.md` descrever
 > o mesmo comportamento, nem sumir do roadmap aqui sem sumir também de lá —
 > ver a regra completa em `DOCUMENTACAO_TECNICA.md` §0.2.
->
-> ⚠️ **Nota desta entrega:** `DOCUMENTACAO_TECNICA.md` não foi atualizado
-> junto (o conteúdo completo dele não foi enviado nesta sessão) — só
-> `readme.md` e `CHECKLIST_DE_DESENVOLVIMENTO.md`. Atualizar o mapa de
-> classes/pastas em `DOCUMENTACAO_TECNICA.md` fica pendente pra próxima vez
-> que ele for enviado.
 
 ---
 
@@ -137,7 +131,8 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
   - Drop de item/Gold configurável por inimigo ao vencer uma batalha (ver `BattleManager`)
   - Equipar peça (Braço/Perna/Tronco/Cabeça) dá bônus real de atributo — consome o item, sem desequipar nesta fase; **duplicação de bônus ao equipar 2x ainda não foi testada** (ver checklist, seção "Pendência de teste")
   - Layout da lista de itens da Bag corrigido (Vertical Layout Group + Content Size Fitter) — mesmo ajuste ainda pendente nos painéis de Ataque/Item da cena Battle
-  - Ainda falta: loja/compra (só drop + kit inicial por ora); mostrar qual peça está equipada em cada slot (não aparece em lugar nenhum da UI hoje)
+  - **Painel do Droid (novo):** botão "Droid" do Menu do Mundo deixou de ser placeholder — abre um painel somente-leitura mostrando os 4 slots (Braço/Perna/Tronco/Cabeça), nome da peça e bônus de atributo (ou "Vazio" se o slot não tiver peça). Equipar continua acontecendo só pela Bag; sem "desequipar" nesta leva. Código pronto (`TelaDeDroidManager.cs` + patch em `MenuMundoManager.cs`); falta só criar o Prefab `PainelDroid` no Editor.
+  - Ainda falta: loja/compra (só drop + kit inicial por ora)
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história, inventário, Gold)
 - Encontros aleatórios no mapa e menu principal
 

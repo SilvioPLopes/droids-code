@@ -17,6 +17,9 @@ using TMPro;
 ///     == false) e incrementava o contador de novo, "vazando" um open.
 ///     Corrigido com a flag _outroPainelAberto, que o próprio
 ///     MenuMundoManager controla e o Update() respeita.
+///
+/// NOVO (Painel do Droid, sessão atual): botão "Droid" deixou de ser
+/// placeholder — segue exatamente o mesmo molde de AoClicarStatus/AoClicarBag.
 /// </summary>
 public class MenuMundoManager : MonoBehaviour
 {
@@ -46,6 +49,10 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Bag (arraste a instância do Prefab PainelBag)")]
     public BagUIManager bag;
 
+    // NOVO (Painel do Droid, sessão atual): mesmo padrão de telaDeStatus/bag.
+    [Header("Painel do Droid (arraste a instância do Prefab PainelDroid)")]
+    public TelaDeDroidManager telaDeDroid;
+
     [Header("Texto de aviso pros botões ainda não implementados / feedback de save")]
     public TextMeshProUGUI textoAviso;
 
@@ -63,7 +70,7 @@ public class MenuMundoManager : MonoBehaviour
         if (botaoStatus != null) botaoStatus.onClick.AddListener(AoClicarStatus);
         if (botaoTerminal != null) botaoTerminal.onClick.AddListener(AoClicarTerminal);
         if (botaoBag != null) botaoBag.onClick.AddListener(AoClicarBag);
-        if (botaoDroid != null) botaoDroid.onClick.AddListener(() => MostrarAviso("Equipamentos"));
+        if (botaoDroid != null) botaoDroid.onClick.AddListener(AoClicarDroid);
         if (botaoOpcoes != null) botaoOpcoes.onClick.AddListener(() => MostrarAviso("Opções"));
         if (botaoSalvar != null) botaoSalvar.onClick.AddListener(AoClicarSalvar);
         if (botaoCarregar != null) botaoCarregar.onClick.AddListener(AoClicarCarregar);
@@ -74,6 +81,7 @@ public class MenuMundoManager : MonoBehaviour
         if (telaDeStatus != null) telaDeStatus.AoFechar = AoFecharOutroPainel;
         if (terminal != null) terminal.AoFechar = AoFecharOutroPainel;
         if (bag != null) bag.AoFechar = AoFecharOutroPainel;
+        if (telaDeDroid != null) telaDeDroid.AoFechar = AoFecharOutroPainel;
     }
 
     void Update()
@@ -139,6 +147,24 @@ public class MenuMundoManager : MonoBehaviour
         else
         {
             MostrarAviso("Bag");
+        }
+    }
+
+    // NOVO (Painel do Droid, sessão atual): substitui o aviso "não
+    // implementado" (MostrarAviso("Equipamentos")) — abre o Painel do Droid
+    // real (TelaDeDroidManager, só visualização), mesmo padrão de
+    // exclusividade de AoClicarStatus/AoClicarBag.
+    void AoClicarDroid()
+    {
+        if (telaDeDroid != null)
+        {
+            _outroPainelAberto = true;
+            if (painelMenu != null) painelMenu.SetActive(false);
+            telaDeDroid.Mostrar();
+        }
+        else
+        {
+            MostrarAviso("Droid");
         }
     }
 

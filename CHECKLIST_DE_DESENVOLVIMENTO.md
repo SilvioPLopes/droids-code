@@ -7,9 +7,6 @@
 > atualização na mesma sessão — ver a regra completa e a tabela de
 > correspondências em `DOCUMENTACAO_TECNICA.md` §0.2.
 >
-> ⚠️ **Nota desta entrega:** `DOCUMENTACAO_TECNICA.md` não foi atualizado
-> junto nesta sessão (conteúdo completo não enviado) — pendência aberta pra
-> quando ele for enviado de novo.
 
 > Este documento existe pra responder uma pergunta específica: **"o que eu faço agora?"**
 > Ele é o terceiro pé da documentação, ao lado do `readme.md` (o que o jogo é) e do
@@ -26,7 +23,43 @@
 
 ---
 
-## ✅ Concluído nesta sessão (Estágio 3 — Sistema de Item, fase 2/2)
+## ✅ Concluído nesta sessão (Painel do Droid — visualização de peças)
+
+Implementado conforme `PLANO_PAINEL_DROID.md`, com as decisões da seção 3
+dele já fechadas por `PROMPT_AGENTE_PAINEL_DROID.md`: só visualização
+(Opção A), sem desequipar, slot vazio sempre mostra "Vazio", Droid inicial
+continua sem peças por padrão, botão do menu continua "Droid".
+
+- **`TelaDeDroidManager.cs`** (novo, `Assets/Scripts/`) — cópia estrutural
+  de `TelaDeStatusManager.cs`: busca o Droid direto do
+  `GerenciadorDeEstado`, mostra os 4 slots (Braço/Perna/Tronco/Cabeça) com
+  nome + bônus de atributo (ou "Vazio"), e segue o mesmo contrato de
+  painel + callback `AoFechar` dos outros painéis (Status/Terminal/Bag).
+- **Patch em `MenuMundoManager.cs` aplicado nesta sessão** (o arquivo real
+  chegou depois do resto do trabalho): botão "Droid" trocou
+  `MostrarAviso("Equipamentos")` pelo método `AoClicarDroid`, no mesmo
+  molde de `AoClicarStatus`/`AoClicarBag`; campo `telaDeDroid` novo; `AoFechar`
+  ligado em `Start()`. Nada mais mudou no arquivo.
+
+**Trabalho de Editor necessário para isso funcionar:**
+- Criar o Prefab `PainelDroid` (painel raiz + 4 `TextMeshProUGUI` + botão
+  Voltar, mesma estrutura do `PainelStatus`) e preencher os 5 campos do
+  `TelaDeDroidManager` no Inspector.
+- Arrastar a instância do prefab pro campo `telaDeDroid`, já existente no
+  `MenuMundoManager` atualizado.
+
+**Pendências abertas geradas por este trabalho:**
+- Só visualização — decisão explícita de escopo (Opção A do plano). Migrar
+  pra Opção B (equipar/trocar peça pelo próprio painel) fica como
+  evolução futura, se fizer falta na prática.
+- Testar de fato se equipar a mesma peça 2x duplica o bônus (pendência já
+  existente, ver "❓ Pendência de teste" abaixo) — o painel deixa esse
+  número visível, então qualquer bug de duplicação vai aparecer na cara
+  assim que for testado.
+
+---
+
+## ✅ Concluído em sessão anterior (Estágio 3 — Sistema de Item, fase 2/2)
 
 Fecha o "🚨 Mecânica essencial faltante" abaixo. Implementado sem alinhamento
 de design adicional (decisões tomadas e documentadas inline no código,
@@ -104,7 +137,7 @@ Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
 ## ❓ Pendência de teste (não confirmado ainda)
 
 - **Equipável (Núcleo de Energia/Servo-Motor) duplicando bônus de atributo ao usar 2x.** Levantado nesta sessão, mas o teste real usou Disruptor EMP (Debuff), não um item Equipável — a suspeita de duplicação **não foi confirmada nem descartada**. Pelo código, `Droid.EquiparPeca` deveria SUBSTITUIR a peça do slot, não somar (ver Estágio 3 abaixo) — mas isso precisa ser testado de fato com 2x Núcleo de Energia (mesmo slot) antes de assumir que está correto.
-- **Item equipado não aparece em lugar nenhum da UI.** Nem a Bag, nem a Tela de Status mostram qual peça está em qual slot hoje. Lacuna real, não é bug — falta feature. Ver seção de amadurecimento abaixo.
+- ~~**Item equipado não aparece em lugar nenhum da UI.**~~ — **Resolvido nesta sessão** via o novo Painel do Droid (ver "✅ Concluído nesta sessão" no topo). A Bag continua sem mostrar isso, mas o painel dedicado cobre a lacuna.
 
 ---
 
@@ -160,10 +193,13 @@ separada, uma linha por item.
 
 ## 🎯 Próximos passos imediatos (curto prazo, em ordem sugerida)
 
-1. Corrigir os 2 bugs abertos acima (motor de efeitos).
-2. Configurar `goldMinimo`/`goldMaximo`/`tabelaDeDrops` nos `BattleManager`s existentes — sem isso a fase 2 do item está implementada mas nenhum inimigo droppa nada na prática.
-3. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está declarada e não é referenciada em lugar nenhum.
-4. Decidir se/quando implementar loja (usaria `GerenciadorDeEstado.TentarGastarGold`, já pronto e sem uso).
+1. Criar o Prefab `PainelDroid` no Editor e ligar no `MenuMundoManager`
+   (o código já está pronto) — sem isso o botão "Droid" não abre nada em
+   runtime, mesmo com o patch aplicado.
+2. Corrigir os 2 bugs abertos acima (motor de efeitos).
+3. Configurar `goldMinimo`/`goldMaximo`/`tabelaDeDrops` nos `BattleManager`s existentes — sem isso a fase 2 do item está implementada mas nenhum inimigo droppa nada na prática.
+4. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está declarada e não é referenciada em lugar nenhum.
+5. Decidir se/quando implementar loja (usaria `GerenciadorDeEstado.TentarGastarGold`, já pronto e sem uso).
 
 ---
 

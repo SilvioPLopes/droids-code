@@ -216,6 +216,7 @@ Assets/Scripts/BattleManager.cs
 Assets/Scripts/MainMenuManager.cs
 Assets/Scripts/MenuMundoManager.cs
 Assets/Scripts/TelaDeStatusManager.cs
+Assets/Scripts/TelaDeDroidManager.cs
 Assets/Scripts/TerminalUIManager.cs
 Assets/Scripts/BagUIManager.cs
 Assets/Scripts/EncounterZone.cs
@@ -393,8 +394,12 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 - **Log de batalha:** `MostrarMensagem` mantém as últimas 4 linhas (`_logDeBatalha`) em vez de sobrescrever a mensagem toda vez — mesmo padrão do log do Terminal (`TerminalUIManager.linhasDeLog`). Cada chamada separa a mensagem recebida por `\n` em várias entradas do log, porque `CombatEngine.ExecutarTurno` pode devolver mais de um evento no mesmo turno (ex: dano de veneno + resultado do ataque).
 - ✅ **Corrigido (13/09/2026)** — `painelListaDeAtaques`/`painelListaDeItens` ganharam um botão "Voltar" (reaproveita `prefabBotaoAtaque`/`prefabBotaoItem`, só chama `SetActive(false)`, nunca executa ação) e um `Update()` que fecha o painel aberto com ESC. Corrigido no mesmo commit: `AbrirListaDeAtaques`/`AbrirListaDeItens` agora fecham o outro painel antes de abrir o seu — antes disso, abrir Ataque e depois Item (sem fechar o primeiro) deixava os dois painéis ativos ao mesmo tempo.
 
-**`MenuMundoManager`** — menu de pausa (tecla Esc): Status/Terminal/Bag/Droid/Opções/Salvar/Carregar/Voltar. Bag/Droid/Opções ainda são placeholders ("ainda não foi implementado").
+**`MenuMundoManager`** — menu de pausa (tecla Esc): Status/Terminal/Bag/Droid/Opções/Salvar/Carregar/Voltar. Opções ainda é placeholder ("ainda não foi implementado").
 - ✅ **Corrigido (13/09/2026)** — exclusividade de painéis: ao abrir Status ou Terminal, `painelMenu` é escondido (`SetActive(false)`) via `AoClicarStatus`/`AoClicarTerminal`, e reexibido pelo callback `AoFecharOutroPainel` quando o Status/Terminal fecha (ver `TelaDeStatusManager`/`TerminalUIManager` abaixo). O contador de `GerenciadorDeEstado` (`RegistrarMenuAberto`/`Fechado`) não foi tocado por essa mudança. Nova flag `_outroPainelAberto` faz `Update()` ignorar ESC enquanto Status/Terminal estiverem abertos — sem ela, ESC com o Terminal aberto reabria `painelMenu` por baixo dele e incrementava o contador de novo (bug encontrado e corrigido no mesmo commit).
+- ✅ **Corrigido (Estágio 2, 13/09/2026)** — Bag deixou de ser placeholder: `AoClicarBag` abre `BagUIManager` real, mesmo padrão de exclusividade de `AoClicarStatus`.
+- ✅ **Corrigido (sessão do Painel do Droid)** — botão "Droid" deixou de chamar `MostrarAviso("Equipamentos")`; agora `AoClicarDroid` abre `TelaDeDroidManager` (novo campo `telaDeDroid`), mesmo padrão de exclusividade dos demais painéis. `AoFechar` do novo painel ligado em `Start()` junto dos outros.
+
+**`TelaDeDroidManager`** (novo, sessão do Painel do Droid) — painel somente-leitura das 4 peças do Droid (`Braco`/`Perna`/`Tronco`/`Cabeca`), busca o Droid direto do `GerenciadorDeEstado` (mesmo padrão de `TelaDeStatusManager`). Mostra nome + `AtributoBonificado`/`ValorDoBonus` de cada peça, ou "Vazio" se o slot não tiver peça (nunca esconde o slot). Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager`/`BagUIManager`. Escopo desta leva é só visualização — equipar continua exclusivamente pela Bag (`BagUIManager.EquiparItem`); não há "desequipar".
 
 **`TerminalUIManager`** — UI do terminal: campo de código, histórico de comandos (↑/↓), log de sessão, atalho Ctrl+Enter.
 - ✅ **Corrigido (13/09/2026)** — ganhou o campo público `AoFechar` (`System.Action`, opcional), invocado dentro do `if` de `Fechar()` (só quando o painel de fato estava aberto). Usado por `MenuMundoManager` pra saber quando reexibir seu próprio painel.
