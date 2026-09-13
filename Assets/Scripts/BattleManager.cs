@@ -31,6 +31,13 @@ using DroidsCode.DroidCore;
 ///     sem fechar, clicar Item (botaoItem continuava interactable) —
 ///     os dois painéis ficavam abertos ao mesmo tempo. Corrigido: cada
 ///     Abrir...() agora fecha o outro painel antes de abrir o seu.
+///
+/// ESTAGIO 3 (fase 2 do sistema de item, sem alinhamento extra):
+///   - UsarItem agora trata Cura/Buff/Debuff (Equipavel/ForaDeBatalha nao
+///     sao UsavelEmBatalha, ver CatalogoDeItens — nao aparecem na lista).
+///   - Nova tabela de drop (tabelaDeDrops) + Gold (goldMinimo/goldMaximo),
+///     configuraveis no Inspector por inimigo. Rolados em AplicarRecompensas,
+///     chamado nos dois pontos onde a vitoria contra o inimigo é detectada.
 /// </summary>
 public class BattleManager : MonoBehaviour
 {
@@ -66,6 +73,29 @@ public class BattleManager : MonoBehaviour
     public int atkInimigo = 5;
     public int defInimigo = 1;
     public int recompensaXpInimigo = 10;
+
+    // Estagio 3 (fase 2 do sistema de item): recompensa de Gold/item ao
+    // vencer este inimigo especificamente. Cada entrada de tabelaDeDrops
+    // e rolada de forma INDEPENDENTE (varios itens podem dropar juntos).
+    [System.Serializable]
+    public class DropDeItem
+    {
+        [Tooltip("Id do item no CatalogoDeItens (ex: \"pocao_pequena\"). Ids invalidos sao ignorados silenciosamente.")]
+        public string idItem;
+        [Range(0f, 1f)]
+        [Tooltip("Chance deste drop especifico (0 a 1), independente dos outros.")]
+        public float chance = 1f;
+        public int quantidadeMinima = 1;
+        public int quantidadeMaxima = 1;
+    }
+
+    [Header("Recompensas de vitória (Estágio 3 — fase 2 do sistema de item)")]
+    [Tooltip("Gold minimo dropado ao vencer (0 = sem Gold garantido).")]
+    public int goldMinimo = 0;
+    [Tooltip("Gold maximo dropado ao vencer.")]
+    public int goldMaximo = 0;
+    [Tooltip("Cada entrada e um item que PODE dropar, com sua propria chance.")]
+    public List<DropDeItem> tabelaDeDrops = new List<DropDeItem>();
 
     [Header("Configuração")]
     [Tooltip("Cena para onde voltar depois da batalha.")]
@@ -215,6 +245,7 @@ public class BattleManager : MonoBehaviour
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
         else
@@ -276,7 +307,9 @@ public class BattleManager : MonoBehaviour
             botao.gameObject.SetActive(true);
 
             var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
-            if (texto != null) texto.text = $"{item.Nome} (+{item.CuraHp} HP) x{quantidade}";
+            // Estagio 3: descricao generica, ja que agora existem tipos
+            // alem de Cura (Buff/Debuff) na lista de batalha.
+            if (texto != null) texto.text = DescreverItem(item, quantidade);
 
             DefinicaoDeItem itemCapturado = item; // evita captura errada da variavel de loop
             botao.onClick.AddListener(() =>
@@ -293,6 +326,20 @@ public class BattleManager : MonoBehaviour
         painelListaDeItens.gameObject.SetActive(true);
     }
 
+    // NOVO (Estagio 3): texto do botao de item, generico por Tipo -- antes
+    // era hard-coded pra Cura ("(+X HP)").
+    string DescreverItem(DefinicaoDeItem item, int quantidade)
+    {
+        string detalhe = item.Tipo switch
+        {
+            TipoDeItem.Cura => $"(+{item.CuraHp} HP)",
+            TipoDeItem.Buff => item.EfeitoDeAtributoAplicado != null ? $"({item.EfeitoDeAtributoAplicado.NomeExibicao})" : "",
+            TipoDeItem.Debuff => $"({item.EfeitoDeAtributoAplicado?.NomeExibicao ?? item.EfeitoDeDanoAplicado?.NomeExibicao})",
+            _ => ""
+        };
+        return string.IsNullOrEmpty(detalhe) ? $"{item.Nome} x{quantidade}" : $"{item.Nome} {detalhe} x{quantidade}";
+    }
+
     // NOVO (13/09/2026): reaproveitado pelos dois painéis (Ataque e Item).
     // Instancia mais um botão do mesmo prefab, com texto "Voltar", que só
     // desativa o painel — nunca chama ExecutarAtaqueDoJogador/UsarItem.
@@ -307,16 +354,17 @@ public class BattleManager : MonoBehaviour
         botaoVoltar.onClick.AddListener(() => painel.gameObject.SetActive(false));
     }
 
-    // REFATORACAO (Estagio 1 — 12/09/2026): cura de item agora recebe bonus
-    // percentual de INT (droid.BonusPercentualDeCura, ver Droid.cs/
-    // TabelaDeCombate.PercentualBonusCuraPorInt), arredondado pra baixo.
-    // Ex: item cura 10, INT dando 20% => cura efetiva 12.
     // REFATORACAO (Estagio 2 — 13/09/2026): recebe DefinicaoDeItem (catalogo)
     // em vez de ItemConsumivel. Decrementa o estoque real via
     // GerenciadorDeEstado.TentarRemoverItem e SALVA na hora (SalvamentoJson)
     // -- decisao: persistir o consumo imediatamente evita perder o item "de
     // graca" se o jogo fechar no meio da batalha (o jogador ja recebeu o
     // efeito, entao o consumo tem que ficar gravado).
+    // REFATORACAO (Estagio 3 — fase 2 do sistema de item): generalizado pra
+    // tambem tratar Buff (aplica no proprio Droid) e Debuff (aplica no
+    // inimigo, rolando resistencia). Equipavel/ForaDeBatalha nao chegam
+    // aqui (UsavelEmBatalha=false no catalogo), mas o "default" abaixo
+    // devolve o item em vez de sumir com ele, por seguranca.
     void UsarItem(DefinicaoDeItem item)
     {
         var gerenciador = GerenciadorDeEstado.Instancia;
@@ -324,23 +372,133 @@ public class BattleManager : MonoBehaviour
         if (!gerenciador.TentarRemoverItem(item.Id, 1))
         {
             // Guarda de seguranca: nao deveria acontecer (a lista so mostra
-            // itens com estoque > 0), mas evita curar de graca se acontecer.
+            // itens com estoque > 0), mas evita usar de graca se acontecer.
             MostrarMensagem($"Você não tem mais {item.Nome}.");
             return;
         }
 
+        switch (item.Tipo)
+        {
+            case TipoDeItem.Cura:
+                UsarItemDeCura(item);
+                break;
+
+            case TipoDeItem.Buff:
+                AplicarEfeitoDeItem(item, droid);
+                MostrarMensagem($"{droid.Nome} usou {item.Nome}!");
+                break;
+
+            case TipoDeItem.Debuff:
+                AplicarEfeitoDeItem(item, inimigo);
+                MostrarMensagem($"{droid.Nome} usou {item.Nome} em {inimigo.Nome}!");
+                break;
+
+            default:
+                // Nao deveria chegar aqui (Equipavel/ForaDeBatalha tem
+                // UsavelEmBatalha=false), mas devolve o item em vez de
+                // consumir silenciosamente se acontecer.
+                gerenciador.AdicionarItem(item.Id, 1);
+                MostrarMensagem($"{item.Nome} não pode ser usado em batalha.");
+                return;
+        }
+
+        AtualizarBarras();
+        new SalvamentoJson().Salvar();
+        StartCoroutine(TurnoDoInimigo());
+    }
+
+    // NOVO (Estagio 3): cura de item, extraido de UsarItem sem mudar a
+    // formula (bonus de INT, ver TabelaDeCombate.PercentualBonusCuraPorInt).
+    void UsarItemDeCura(DefinicaoDeItem item)
+    {
         float multiplicador = 1f + (droid.BonusPercentualDeCura / 100f);
         int curaBase = Mathf.FloorToInt(item.CuraHp * multiplicador);
 
         int curaAplicada = Mathf.Min(curaBase, droid.HpMax - droid.Hp);
         droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + curaBase);
-        AtualizarBarras();
         MostrarMensagem($"{droid.Nome} usou {item.Nome} e recuperou {curaAplicada} de HP!");
+    }
 
-        // Persiste o consumo do item imediatamente (ver comentario acima).
+    // NOVO (Estagio 3): aplica o(s) efeito(s) de Buff/Debuff do item no
+    // alvo dado. Debuff rola resistencia (INT do alvo, mesma formula de
+    // efeito de tecnica — ver Droid.RolarResistencia); Buff nao rola
+    // resistencia (o proprio Droid nao "resiste" o proprio item).
+    void AplicarEfeitoDeItem(DefinicaoDeItem item, IParticipanteDeCombate alvo)
+    {
+        bool ehDebuff = item.Tipo == TipoDeItem.Debuff;
+
+        if (item.EfeitoDeAtributoAplicado != null)
+        {
+            if (ehDebuff && Droid.RolarResistencia(alvo.ChanceDeResistirEfeito))
+            {
+                MostrarMensagem($"{alvo.Nome} resistiu ao efeito!");
+            }
+            else
+            {
+                alvo.EfeitosAtivos.Add(new EfeitoDeAtributo
+                {
+                    NomeExibicao = item.EfeitoDeAtributoAplicado.NomeExibicao,
+                    Atributo = item.EfeitoDeAtributoAplicado.Atributo,
+                    Valor = item.EfeitoDeAtributoAplicado.Valor,
+                    DuracaoEmTurnos = item.EfeitoDeAtributoAplicado.DuracaoEmTurnos
+                });
+            }
+        }
+
+        if (item.EfeitoDeDanoAplicado != null)
+        {
+            if (ehDebuff && Droid.RolarResistencia(alvo.ChanceDeResistirEfeito))
+            {
+                MostrarMensagem($"{alvo.Nome} resistiu ao efeito!");
+            }
+            else
+            {
+                alvo.EfeitosDeDanoAtivos.Add(new EfeitoDeDanoPorTurno
+                {
+                    NomeExibicao = item.EfeitoDeDanoAplicado.NomeExibicao,
+                    DanoPorTurno = item.EfeitoDeDanoAplicado.DanoPorTurno,
+                    DuracaoEmTurnos = item.EfeitoDeDanoAplicado.DuracaoEmTurnos
+                });
+            }
+        }
+    }
+
+    // NOVO (Estagio 3): roda uma vez, na vitoria (chamado nos dois pontos
+    // onde a derrota do inimigo e detectada — ver ExecutarAtaqueDoJogador e
+    // TurnoDoInimigo). Rola Gold (goldMinimo..goldMaximo) e cada entrada de
+    // tabelaDeDrops de forma independente, credita no GerenciadorDeEstado e
+    // salva na hora -- mesmo padrao de "persistir imediatamente" que
+    // UsarItem/BagUIManager ja usam.
+    void AplicarRecompensas()
+    {
+        var gerenciador = GerenciadorDeEstado.Instancia;
+
+        if (goldMaximo > 0)
+        {
+            int goldGanho = Random.Range(goldMinimo, goldMaximo + 1);
+            if (goldGanho > 0)
+            {
+                gerenciador.AdicionarGold(goldGanho);
+                MostrarMensagem($"Você encontrou {goldGanho} de Gold!");
+            }
+        }
+
+        foreach (DropDeItem drop in tabelaDeDrops)
+        {
+            if (string.IsNullOrEmpty(drop.idItem)) continue;
+            if (Random.value > drop.chance) continue;
+
+            var definicao = CatalogoDeItens.Obter(drop.idItem);
+            if (definicao == null) continue; // id invalido no Inspector -- ignora em vez de quebrar
+
+            int quantidade = Random.Range(drop.quantidadeMinima, drop.quantidadeMaxima + 1);
+            if (quantidade <= 0) continue;
+
+            gerenciador.AdicionarItem(drop.idItem, quantidade);
+            MostrarMensagem($"Você obteve {definicao.Nome} x{quantidade}!");
+        }
+
         new SalvamentoJson().Salvar();
-
-        StartCoroutine(TurnoDoInimigo());
     }
 
     void AoClicarFugir()
@@ -387,6 +545,7 @@ public class BattleManager : MonoBehaviour
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
         else

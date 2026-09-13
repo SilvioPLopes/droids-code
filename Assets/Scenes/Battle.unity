@@ -196,6 +196,21 @@ MonoBehaviour:
   atkInimigo: 5
   defInimigo: 1
   recompensaXpInimigo: 100
+  goldMinimo: 1
+  goldMaximo: 5
+  tabelaDeDrops:
+  - idItem: pocao_pequena
+    chance: 1
+    quantidadeMinima: 1
+    quantidadeMaxima: 1
+  - idItem: nucleo_de_energia
+    chance: 1
+    quantidadeMinima: 1
+    quantidadeMaxima: 1
+  - idItem: disruptor_emp
+    chance: 1
+    quantidadeMinima: 1
+    quantidadeMaxima: 1
   nomeCenaMundo: Game
   chanceDeFugir: 0.5
 --- !u!4 &164412324

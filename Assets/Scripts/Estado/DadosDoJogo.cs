@@ -69,7 +69,7 @@ public class DroidSalvo
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 3; // v3 (13/09/2026): + itens (Inventario, ver ItemSalvo)
+    public int versao = 4; // v4 (Estagio 3, fase 2 do sistema de item): + gold
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;
@@ -85,4 +85,9 @@ public class DadosDoJogo
     // Saves v1/v2 (sem este campo) carregam lista vazia -- ver
     // SalvamentoJson.Carregar.
     public List<ItemSalvo> itens = new List<ItemSalvo>();
+
+    // Estagio 3 (fase 2 do sistema de item): Gold, usado por drop/recompensa
+    // de batalha (ver GerenciadorDeEstado/BattleManager). Saves v1/v2/v3
+    // (sem este campo) carregam 0 via JsonUtility -- nao quebra o load.
+    public int gold;
 }

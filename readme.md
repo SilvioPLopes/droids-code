@@ -15,6 +15,12 @@
 > como "✅ Implementado" sem a seção 4 de `DOCUMENTACAO_TECNICA.md` descrever
 > o mesmo comportamento, nem sumir do roadmap aqui sem sumir também de lá —
 > ver a regra completa em `DOCUMENTACAO_TECNICA.md` §0.2.
+>
+> ⚠️ **Nota desta entrega:** `DOCUMENTACAO_TECNICA.md` não foi atualizado
+> junto (o conteúdo completo dele não foi enviado nesta sessão) — só
+> `readme.md` e `CHECKLIST_DE_DESENVOLVIMENTO.md`. Atualizar o mapa de
+> classes/pastas em `DOCUMENTACAO_TECNICA.md` fica pendente pra próxima vez
+> que ele for enviado.
 
 ---
 
@@ -46,6 +52,7 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 * Menu fixo estilo Pokémon: **Lutar / Itens / Status / Fugir**.
 * Dentro de "Lutar", a lista de técnicas exibidas é dinâmica — vem das técnicas que o próprio jogador configurou no terminal.
+* Dentro de "Itens", a lista mostra Cura, Buff e Debuff disponíveis (com estoque real) — Buff aplica no próprio Droid, Debuff aplica no inimigo.
 * As listas de golpes e de itens têm um botão "Voltar" (ou ESC) pra fechar o painel sem agir.
 * O dano é calculado inteiramente em C#, lendo dados já configurados pelo jogador — o Lua nunca participa do cálculo de combate.
 
@@ -54,11 +61,19 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 * O Droid ganha XP ao vencer batalhas e sobe de nível segundo uma curva simples (Nível × 100 de XP necessário).
 * Cada nível concedido gera pontos de progressão, gastos no terminal para investir em atributos ou aprender técnicas.
 
+### 🎒 Itens e Equipamento
+
+* **Cura**: consumível clássico, com bônus percentual de INT na cura recebida. Usável em batalha e na Bag (fora de batalha).
+* **Buff/Debuff**: itens que aplicam um efeito temporário (mesmo motor de Stun/Envenenamento das técnicas) — Buff no próprio Droid, Debuff no inimigo (com chance de resistência por INT). Só usáveis em batalha.
+* **Equipável**: dá um bônus permanente de atributo a uma peça do Droid (Braço/Perna/Tronco/Cabeça) ao ser equipado pela Bag — equipar consome o item.
+* **Uso fora de batalha**: Sinalizador de Retorno (volta ao último save), Kit de Acampamento (cura total + salva) e Chave de Acesso (destrava flags de história), todos usáveis pela Bag.
+* **Obtenção**: kit inicial fixo + drop configurável por inimigo (item e/ou Gold) ao vencer uma batalha. Ainda não existe loja/compra.
+
 ### 🧩 Customização e Herança de Peças
 
 * Cada componente físico do robô (Cabeça, Tronco, Braços e Pernas) funciona como um módulo de código.
 * O jogador insere **Cartuchos de Código** nos conectores do Droid para declarar herança e sobrescrever ou estender os métodos nativos da classe base `DroidBase.cs`.
-* *(Fase 2 do design — ver [Status de Desenvolvimento](#status-de-desenvolvimento-e-roteiro): hoje as peças ainda não têm comportamento próprio.)*
+* *(Fase de herança real — ver [Status de Desenvolvimento](#status-de-desenvolvimento-e-roteiro): hoje as peças têm bônus fixo de atributo via itens Equipáveis, mas ainda não têm comportamento de código próprio.)*
 
 ### 🐞 Depuração Amigável (Apollo Debugger)
 
@@ -67,7 +82,7 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 ### 💾 Salvamento
 
-* Progresso salvo localmente em JSON: stats do Droid, HP, nível/XP, pontos disponíveis, técnicas configuradas, posição no mapa, cena atual e flags de história.
+* Progresso salvo localmente em JSON: stats do Droid, HP, nível/XP, pontos disponíveis, técnicas configuradas, posição no mapa, cena atual, flags de história, inventário e Gold.
 * Acessível pelo Menu do Mundo (Salvar / Carregar).
 
 ### 🗺️ Mundo e Encontros
@@ -109,30 +124,34 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 
 ### ✅ Implementado e funcional
 
-- Droid com atributos base (FOR/AGI/VIT/INT/DEX/LUK), peças (sem comportamento próprio ainda) e defesa = VIT total
+- Droid com atributos base (FOR/AGI/VIT/INT/DEX/LUK) e defesa = VIT total
 - Combate por turnos completo (jogador vs. inimigo fixo), com menu Lutar/Itens/Status/Fugir
-- Botão "Item" na batalha abre uma lista fixa de itens (`ItensDeBatalha`) em vez de curar sozinho
-- Navegação de UI: botão "Voltar"/ESC nos painéis de Ataque e Item da batalha; exclusividade entre os painéis de Status/Terminal e o Menu do Mundo (não ficam sobrepostos, cada um esconde/reexibe o outro corretamente)
+- Navegação de UI: botão "Voltar"/ESC nos painéis de Ataque e Item da batalha; exclusividade entre os painéis de Status/Terminal/Bag e o Menu do Mundo
 - Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `aprenderTecnicaComVeneno`, `aprenderTecnicaComStun`, `melhorarTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`)
 - Sistema de pontos de progressão e nível/XP
-- Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado **e aplicação em combate implementada**: `Droid.ExecutarAcao` copia os efeitos da técnica para o alvo, e `CombatEngine` processa dano por turno no início do turno de quem está afetado e verifica atordoamento antes de permitir a ação
-- **Atributos derivados (12/09/2026):** VIT aumenta HP máximo (%, além de Defesa), AGI vira FLEE e DEX vira HIT (sistema de acerto/erro real, chance = 50 + HIT − FLEE), LUK vira chance de crítico (dobra dano), INT vira resistência a Stun/Veneno e bônus de cura de item — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para os números exatos
-- **Inventário real de itens de Cura (13/09/2026):** quantidade real por item, persistida no save; Bag do Menu do Mundo funcional (cura fora de batalha sem gastar turno); lista de item da batalha mostra estoque — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para o que ainda falta (drop/loja, Buff/Debuff/Equipável)
-- Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
+- Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento), aplicação real em combate
+- **Atributos derivados (12/09/2026):** VIT (HP% e Defesa), AGI→FLEE, DEX→HIT, LUK→crítico, INT→resistência a efeito e bônus de cura — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para os números exatos
+- **Sistema de Item completo (fase 1 em 13/09/2026, fase 2 concluída na sessão seguinte):**
+  - Inventário real (quantidade + persistência), Bag funcional fora de batalha
+  - **Cura, Buff, Debuff, Equipável e uso Fora de Batalha** — todas as 5 categorias de `TipoDeItem` implementadas
+  - Drop de item/Gold configurável por inimigo ao vencer uma batalha (ver `BattleManager`)
+  - Equipar peça (Braço/Perna/Tronco/Cabeça) dá bônus real de atributo — consome o item, sem desequipar nesta fase; **duplicação de bônus ao equipar 2x ainda não foi testada** (ver checklist, seção "Pendência de teste")
+  - Layout da lista de itens da Bag corrigido (Vertical Layout Group + Content Size Fitter) — mesmo ajuste ainda pendente nos painéis de Ataque/Item da cena Battle
+  - Ainda falta: loja/compra (só drop + kit inicial por ora); mostrar qual peça está equipada em cada slot (não aparece em lugar nenhum da UI hoje)
+- Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história, inventário, Gold)
 - Encontros aleatórios no mapa e menu principal
 
 ### 🔜 Roadmap (ainda não implementado)
 
-- ~~Sistema de acerto/erro (HIT/FLEE)~~ — **implementado em 12/09/2026**, ver seção acima
 - **Modo Puzzle** do terminal (exercícios de lógica isolados, fora da configuração real do Droid)
 - **`DroidDataSO`/Factory** — hoje o Droid é criado direto em código; a ideia é migrar para ScriptableObjects configuráveis no Inspector
-- **Fase 2 de customização de peças** — herança real com Cartuchos de Código sobrescrevendo `DroidBase`
-- **Inventário e equipamento completos** (itens de Cura já têm quantidade/persistência real desde 13/09/2026 — ver "Inventário real de itens de Cura" acima; falta drop/loja, e as categorias Buff/Debuff/Equipável/Uso-fora-de-batalha além de cura) — tratado como **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md`
-- Droid/Opções no Menu do Mundo ainda são placeholders ("ainda não foi implementado") — **Bag já não é mais placeholder** (ver acima)
+- **Fase de herança real de peças** — Cartuchos de Código sobrescrevendo `DroidBase` (peças hoje só têm bônus fixo de atributo via item Equipável, não comportamento de código)
+- **Loja/compra de item** — hoje só existe kit inicial + drop de inimigo
+- **Sistema de "desequipar"** — equipar consome o item permanentemente nesta fase, sem devolver/trocar
 
 ### 🐞 Bugs conhecidos
 
-Ver `CHECKLIST_DE_DESENVOLVIMENTO.md` → seção "🔴 Bugs abertos": 2 itens confirmados no código, ambos sobre o motor de efeitos (Stun/Envenenamento): efeitos ativos do Droid não são zerados entre batalhas, e não há limite/renovação para instâncias empilhadas do mesmo efeito.
+Ver `CHECKLIST_DE_DESENVOLVIMENTO.md` → seção "🔴 Bugs abertos": 2 itens confirmados no código, ambos sobre o motor de efeitos (Stun/Envenenamento/Corrosivo): efeitos ativos do Droid não são zerados entre batalhas, e não há limite/renovação para instâncias empilhadas do mesmo efeito. O item Debuff "Corrosivo" (novo) herda esses mesmos bugs, por usar o mesmo motor.
 
 ---
 

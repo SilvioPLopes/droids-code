@@ -28,9 +28,11 @@ namespace DroidsCode.DroidCore
 
         private int ObterBonusDePecasHpFixo()
         {
-            // Placeholder pra Fase 2 (customizacao de pecas): pecas poderao
-            // dar HP fixo adicional aqui. Hoje sempre 0 -- DroidPart ainda so
-            // tem AtributoPrincipal generico (ver ObterBonusDePecas).
+            // Placeholder pra Fase 2 de customizacao de pecas (herenca real
+            // via Cartuchos de Codigo, fora do escopo do sistema de item):
+            // pecas poderao dar HP fixo adicional aqui. Hoje sempre 0 -- o
+            // bonus REAL de atributo (Equipavel, Estagio 3) usa
+            // ObterBonusDePecas (por TipoAtributo), nao este metodo.
             return 0;
         }
 
@@ -38,6 +40,23 @@ namespace DroidsCode.DroidCore
         public Perna Perna { get; set; }
         public Tronco Tronco { get; set; }
         public Cabeca Cabeca { get; set; }
+
+        // Estagio 3 (fase 2 do sistema de item) - Equipavel: instala uma
+        // nova peca no slot correspondente, substituindo a que estiver la
+        // (se houver). Decisao tomada sem alinhamento extra: equipar
+        // CONSOME o item (ver BagUIManager.EquiparItem) e nao ha
+        // "desequipar" nesta fase -- so troca direta. Virar um sistema de
+        // slot com desequipar/devolver item fica pra depois, se for pedido.
+        public void EquiparPeca(TipoDePeca slot, DroidPart novaPeca)
+        {
+            switch (slot)
+            {
+                case TipoDePeca.Braco: Braco = (Braco)novaPeca; break;
+                case TipoDePeca.Perna: Perna = (Perna)novaPeca; break;
+                case TipoDePeca.Tronco: Tronco = (Tronco)novaPeca; break;
+                case TipoDePeca.Cabeca: Cabeca = (Cabeca)novaPeca; break;
+            }
+        }
 
         // Substitui o antigo Dictionary<string, Closure>. O Lua so edita este
         // dado no terminal (fora de batalha) — nunca e chamado durante o turno.
@@ -225,7 +244,12 @@ namespace DroidsCode.DroidCore
             }
         }
 
-        private static bool RolarResistencia(float chanceDeResistir)
+        // Estagio 3 (fase 2 do sistema de item): virou PUBLICO -- antes so
+        // AplicarEfeitosDaTecnica (acima) usava. Agora BattleManager.
+        // AplicarEfeitoDeItem tambem chama isso pra rolar resistencia de
+        // Debuff aplicado por item, reaproveitando a mesma formula/logica
+        // em vez de duplicar.
+        public static bool RolarResistencia(float chanceDeResistir)
         {
             return UnityEngine.Random.Range(0f, 100f) < chanceDeResistir;
         }
@@ -265,10 +289,25 @@ namespace DroidsCode.DroidCore
             };
         }
 
+        // REFATORACAO (Estagio 3 — fase 2 do sistema de item, Equipavel):
+        // antes era um placeholder fixo retornando 0. Agora soma o
+        // ValorDoBonus de cada peca cujo AtributoBonificado bate com o
+        // atributo pedido. Pecas null (slot vazio) ou sem bonus definido
+        // (AtributoBonificado == null) simplesmente nao contribuem.
         private int ObterBonusDePecas(TipoAtributo atributo)
         {
-            // Placeholder: DroidPart so tem AtributoPrincipal generico nesta fase.
-            return 0;
+            int soma = 0;
+            soma += ObterBonusDeUmaPeca(Braco, atributo);
+            soma += ObterBonusDeUmaPeca(Perna, atributo);
+            soma += ObterBonusDeUmaPeca(Tronco, atributo);
+            soma += ObterBonusDeUmaPeca(Cabeca, atributo);
+            return soma;
+        }
+
+        private static int ObterBonusDeUmaPeca(DroidPart peca, TipoAtributo atributo)
+        {
+            if (peca == null || peca.AtributoBonificado == null) return 0;
+            return peca.AtributoBonificado == atributo ? peca.ValorDoBonus : 0;
         }
 
         // Chamado pelo CombatEngine em um unico ponto do fluxo de turno.

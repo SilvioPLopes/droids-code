@@ -4,9 +4,8 @@ using DroidsCode.DroidCore;
 
 /// <summary>
 /// Salva/carrega em Application.persistentDataPath/save.json.
-/// Cobre: Droid (stats, HP, pontos, tecnicas), posicao no mapa, cena, e uma
-/// lista aberta de flags de historia (vazia por enquanto — a estrutura ja
-/// existe pra quando houver o que salvar ali).
+/// Cobre: Droid (stats, HP, pontos, tecnicas), posicao no mapa, cena, flags
+/// de historia, inventario e (Estagio 3) Gold.
 /// </summary>
 public class SalvamentoJson : ISistemaDeSalvamento
 {
@@ -46,7 +45,9 @@ public class SalvamentoJson : ISistemaDeSalvamento
             posicaoX = posicaoAtual.x,
             posicaoY = posicaoAtual.y,
             posicaoZ = posicaoAtual.z,
-            cena = cenaAtual
+            cena = cenaAtual,
+            // Estagio 3 (fase 2 do sistema de item): persiste Gold junto.
+            gold = gerenciador.Gold
         };
 
         // CORRECAO (12/09/2026): gravar tambem os efeitos da tecnica (antes
@@ -175,15 +176,18 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
         // COMPATIBILIDADE (Estagio 2 — 13/09/2026): saves v1/v2 nao tem o
         // campo "itens" -- JsonUtility preenche como lista vazia nesse caso,
-        // entao o inventario so fica vazio (nao quebra o load). Isso
-        // significa que quem carregar um save antigo comeca sem os itens de
-        // kit inicial -- aceitavel, e so o inicio do jogo mesmo.
+        // entao o inventario so fica vazio (nao quebra o load).
         var inventario = new System.Collections.Generic.Dictionary<string, int>();
         foreach (var itemSalvo in dados.itens)
         {
             inventario[itemSalvo.id] = itemSalvo.quantidade;
         }
         gerenciador.CarregarInventario(inventario);
+
+        // COMPATIBILIDADE (Estagio 3 — fase 2 do sistema de item): saves
+        // v1/v2/v3 nao tem "gold" -- JsonUtility preenche com 0, carrega
+        // Gold zerado (aceitavel, mesma logica do inventario vazio acima).
+        gerenciador.CarregarGold(dados.gold);
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
 

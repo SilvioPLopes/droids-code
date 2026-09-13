@@ -114,6 +114,31 @@ public class GerenciadorDeEstado : MonoBehaviour
         }
     }
 
+    // --- Estagio 3 (13/09/2026, fase 2 do sistema de item): Gold. Usado
+    // pela recompensa de drop de batalha (ver BattleManager.AplicarRecompensas).
+    // Sem loja/gasto real ainda -- TentarGastarGold fica pronto pro proximo
+    // passo do checklist ("Sem forma de obter item alem do kit inicial" ja
+    // deixa de ser verdade com drop, mas loja continua fora desta entrega).
+    public int Gold { get; private set; }
+
+    public void AdicionarGold(int quantidade)
+    {
+        if (quantidade <= 0) return;
+        Gold += quantidade;
+    }
+
+    public bool TentarGastarGold(int quantidade)
+    {
+        if (quantidade <= 0 || Gold < quantidade) return false;
+        Gold -= quantidade;
+        return true;
+    }
+
+    public void CarregarGold(int quantidade)
+    {
+        Gold = Mathf.Max(0, quantidade);
+    }
+
     void Awake()
     {
         if (instancia != null && instancia != this)
@@ -138,8 +163,9 @@ public class GerenciadorDeEstado : MonoBehaviour
             DroidDoJogador.StatsBase.Vit = 3;
 
             // [DEFAULT] Estagio 2: kit inicial de itens, pra Bag nao comecar
-            // vazia sem NENHUMA forma de obter item ainda (drop/loja ficam
-            // pra proxima fase, ver checklist). Placeholder de balanceamento.
+            // vazia sem NENHUMA forma de obter item ainda. Estagio 3
+            // adiciona drop de batalha (ver BattleManager) -- kit inicial
+            // continua existindo, agora so como "ponto de partida".
             AdicionarItem(CatalogoDeItens.IdPocaoPequena, 3);
             AdicionarItem(CatalogoDeItens.IdPocaoMedia, 1);
         }
