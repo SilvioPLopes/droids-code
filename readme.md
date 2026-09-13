@@ -9,6 +9,13 @@
 
 > **RPG educativo de combate por turnos focado no ensino de lógica de programação e paradigmas de desenvolvimento de software.**
 
+> **Este documento faz parte de um trio tratado como uma única fonte de
+> verdade** — junto com `DOCUMENTACAO_TECNICA.md` e
+> `CHECKLIST_DE_DESENVOLVIMENTO.md`. Nenhuma feature deveria aparecer aqui
+> como "✅ Implementado" sem a seção 4 de `DOCUMENTACAO_TECNICA.md` descrever
+> o mesmo comportamento, nem sumir do roadmap aqui sem sumir também de lá —
+> ver a regra completa em `DOCUMENTACAO_TECNICA.md` §0.2.
+
 ---
 
 ## 📌 Sobre o Projeto

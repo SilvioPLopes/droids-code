@@ -1,5 +1,12 @@
 # Droids Code — Checklist e Roteiro de Desenvolvimento
 
+> **Este documento faz parte de um trio tratado como uma única fonte de
+> verdade** — junto com `readme.md` e `DOCUMENTACAO_TECNICA.md`. Marcar algo
+> como concluído aqui **exige** checar se `DOCUMENTACAO_TECNICA.md` (mapa de
+> classes/árvore de pastas) e `readme.md` (status/roadmap) também precisam de
+> atualização na mesma sessão — ver a regra completa e a tabela de
+> correspondências em `DOCUMENTACAO_TECNICA.md` §0.2.
+
 > Este documento existe pra responder uma pergunta específica: **"o que eu faço agora?"**
 > Ele é o terceiro pé da documentação, ao lado do `readme.md` (o que o jogo é) e do
 > `DOCUMENTACAO_TECNICA.md` (como o código está organizado hoje). Se você (dev solo,

@@ -39,6 +39,109 @@ Este projeto é trabalhado por sessões de chat zeradas (sem IDE, sem acesso ao 
 
 ---
 
+## 0.1 Regras obrigatórias de comportamento e entrega (13/09/2026)
+
+> Adicionado depois de retrabalho real causado por agentes que: (a) não leram
+> todos os arquivos enviados antes de responder, (b) questionaram código que
+> o responsável do projeto já havia afirmado ser o estado real (transplante),
+> (c) fizeram perguntas de esclarecimento em rodadas sucessivas em vez de uma
+> única vez, e (d) entregaram código solto em vez de zip com estrutura de
+> pasta. Estas regras existem pra fechar esse vácuo — elas são tão
+> vinculantes quanto a seção 6 (decisões fechadas).
+
+**a) Leitura é obrigatória e completa, não amostral.**
+Se o responsável do projeto enviar N arquivos (código ou documentação) e
+disser "leia tudo antes de responder", o agente lê o conteúdo de **todos os
+N arquivos**, um por um, antes de formular qualquer resposta — mesmo que
+sejam 40 arquivos, mesmo que pareçam repetitivos. Se algum arquivo listado
+como enviado não aparecer com conteúdo visível na conversa, o agente busca
+ativamente (ex: lendo do disco/upload) antes de dizer que não recebeu —
+"não recebi esse arquivo" só é uma resposta válida depois dessa checagem.
+Não é aceitável responder com base em título/nome de arquivo, resumo prévio,
+ou suposição do que o arquivo "provavelmente" contém.
+
+**b) Código informado como "estado real do projeto" não é questionado.**
+Quando o responsável do projeto reenvia um `.cs` afirmando que é o código
+atualmente no projeto (transplante), o agente trata isso como fato dado —
+não pergunta "isso já está assim?", não pede confirmação, não sugere que
+pode haver divergência. A dúvida documentada na seção 0 (item 4, sobre não
+afirmar "consistente" sem o arquivo em mãos) é sobre o agente **verificar
+antes de declarar consistência por conta própria** — nunca sobre
+desconfiar de uma afirmação direta do responsável do projeto sobre o que
+está no projeto dele.
+
+**c) Um único alinhamento, no início — não perguntas em série.**
+Se o agente precisa de mais contexto pra executar uma tarefa, ele levanta
+**todas** as dúvidas de uma vez, num único momento de alinhamento, antes de
+começar o trabalho. Depois desse alinhamento, o agente prossegue com as
+informações que tem, assumindo a interpretação mais razoável e registrando
+a suposição explicitamente na entrega — não interrompe de novo pra
+perguntar mais uma coisa, e mais outra, em rodadas separadas. Se o agente
+sente que vai precisar perguntar de novo depois, o momento de perguntar era
+antes, não depois.
+
+**d) Toda entrega de código vem como ZIP com a estrutura de pastas real.**
+Sempre que a tarefa envolver criar/alterar `.cs` (um arquivo ou vários), a
+entrega final é um `.zip` reproduzindo a árvore de pastas da seção 3 (ex:
+`Assets/Scripts/Droid/Droid.cs`, não só `Droid.cs` solto) — mesmo que seja
+uma alteração em um único arquivo. Isso evita o responsável do projeto ter
+que adivinhar em qual pasta cada arquivo entra ao importar de volta no
+Unity.
+
+**e) Passo a passo de Unity é completo e sem hedging.**
+Quando a tarefa exige configuração no Editor (arrastar referência, criar
+Prefab, configurar Inspector), o agente descreve o passo a passo completo e
+definitivo — nome exato de campo, ordem exata de ação — em vez de "você
+provavelmente vai precisar configurar algo como X" ou perguntas do tipo
+"você já tem um Prefab pra isso?". Se a resposta a essa pergunta mudasse o
+passo a passo, o agente apresenta as duas variações dentro da mesma
+resposta (ex: "se já existe o Prefab X, faça A; se não existe, crie assim:
+B"), em vez de parar e perguntar.
+
+**f) Respostas afirmativas, não hedged.**
+Evitar linguagem de dúvida desnecessária ("acho que", "pode ser que",
+"acredito que") quando a informação já está nos arquivos lidos. Se algo
+realmente não está determinável pelos arquivos, o agente diz isso
+explicitamente e de forma direta ("isso não está definido em nenhum arquivo
+recebido — decisão pendente"), em vez de especular com qualificadores
+vagos.
+
+---
+
+## 0.2 Os três documentos são UMA entidade, não três documentos separados (13/09/2026)
+
+`readme.md`, `DOCUMENTACAO_TECNICA.md` e `CHECKLIST_DE_DESENVOLVIMENTO.md` são
+**partes de um único sistema de contexto**, separados por conveniência de
+leitura (o que o jogo é / como o código está / o que fazer agora) — não são
+independentes e nunca devem ser tratados como se um pudesse mudar sem checar
+os outros dois.
+
+**Regra obrigatória:** sempre que uma sessão alterar o estado do projeto —
+classe nova, comportamento mudado, bug corrigido, item de roadmap concluído,
+decisão de design fechada — o agente verifica, **antes de encerrar a
+resposta**, se essa mudança exige atualização correspondente **nos três
+documentos**, não só naquele que estava "no assunto" da tarefa. Corrigir só
+um e deixar o outro desatualizado é o mesmo erro que a seção 0 já pede pra
+evitar dentro de um único documento — só que espalhado entre três arquivos,
+o que o torna mais fácil de passar despercebido, não menos grave.
+
+**Correspondências que precisam ficar sempre batendo:**
+
+| Se isto mudar em... | Isto tem que refletir em... |
+|---|---|
+| `CHECKLIST` marca algo como "✅ Concluído" envolvendo classe nova/alterada | `DOCUMENTACAO_TECNICA` §3 (árvore de pastas, se houver arquivo novo) e §4 (mapa de classes) |
+| Um item do roadmap (`DOCUMENTACAO_TECNICA` §8) é concluído | Remover/mover o mesmo item no roadmap do `readme.md` — nunca só num dos dois |
+| `readme.md` diz que algo está "✅ Implementado e funcional" | `DOCUMENTACAO_TECNICA` §4 tem que descrever exatamente esse comportamento — nunca "funcional" num lugar e "planejado" no outro para a mesma feature |
+| Uma pendência é resolvida (`DOCUMENTACAO_TECNICA` §9) | Se o `CHECKLIST` também listava o mesmo item em "🔴 Bugs abertos", removê-lo de lá também |
+
+**Verificação de saída:** ao final de qualquer resposta que altere um destes
+três documentos, o agente relê os outros dois e **relata explicitamente**
+(pro responsável do projeto) quais divergências encontrou e corrigiu — não
+corrige silenciosamente e não presume que "só esse documento estava
+desatualizado" sem checar.
+
+---
+
 ## 1. Ambiente confirmado
 
 | Item | Valor |
@@ -114,6 +217,7 @@ Assets/Scripts/MainMenuManager.cs
 Assets/Scripts/MenuMundoManager.cs
 Assets/Scripts/TelaDeStatusManager.cs
 Assets/Scripts/TerminalUIManager.cs
+Assets/Scripts/BagUIManager.cs
 Assets/Scripts/EncounterZone.cs
 Assets/Scripts/PlayerMovement.cs
 Assets/Scripts/RestaurarPosicao.cs
@@ -141,7 +245,8 @@ Assets/Scripts/Droid/TabelaDeCustos.cs
 Assets/Scripts/Droid/TabelaDeCombate.cs
 Assets/Scripts/Droid/TecnicaComposta.cs
 Assets/Scripts/Droid/EfeitosTemporariosUtil.cs
-Assets/Scripts/Droid/ItemConsumivel.cs
+Assets/Scripts/Droid/CatalogoDeItens.cs
+Assets/Scripts/Droid/ItemConsumivel.cs — DEPRECATED (13/09/2026): substituído por CatalogoDeItens.cs/Inventario real. Mantido no projeto sem uso ativo; candidato a remoção, não apagar sem confirmar que nada mais referencia ItensDeBatalha.Disponiveis.
 
 Assets/Scripts/Estado/GerenciadorDeEstado.cs
 Assets/Scripts/Estado/ISistemaDeSalvamento.cs
@@ -188,6 +293,9 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 **`TabelaDeCustos`** (placeholder, não balanceado) — `CustoUpgradeAtributo = 1`; `CustoDanoPorNivel = 1`; `CustoResistenciaPorNivel = 1` (**declarada mas não usada em nenhum cálculo hoje** — verificar se ainda é necessária); `CustoPorTurnoDeEfeito`: Stun = 3/turno, Envenenamento = 2 (não confirmado se escala por turno como Stun).
 
 **`TabelaDeCombate`** (placeholder) — `DanoPorNivelDeTecnica = 5`. Separada de `TabelaDeCustos` de propósito: uma é custo em pontos, outra é output de dano.
+
+**`CatalogoDeItens`** (Estágio 2, 13/09/2026 — substitui `ItemConsumivel.cs`/`ItensDeBatalha`) — catálogo estático (`Dictionary<string, DefinicaoDeItem>`) dos itens que existem no jogo. `DefinicaoDeItem`: `Id` (string estável — **nunca renomear**, é a chave do save e do inventário em runtime), `Nome`, `Tipo` (`TipoDeItem`, hoje só `Cura` implementado; `Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha` ficam comentados no enum como lembrete de Fase 2), `CuraHp`, `UsavelEmBatalha`/`UsavelForaDeBatalha` (flags que filtram o que aparece em `BattleManager.AbrirListaDeItens` vs. `BagUIManager`). Itens hoje: `pocao_pequena` (+20), `pocao_media` (+50), `pocao_grande` (+80), `reparo_completo` (+9999, "cura tudo"). O **catálogo** (o que existe) fica aqui; a **quantidade que o jogador possui** fica em `GerenciadorDeEstado.Inventario` (ver §4.5) — responsabilidades separadas de propósito.
+> ⚠️ `ItemConsumivel.cs`/`ItensDeBatalha` (lista fixa sem quantidade) ainda existem no projeto mas estão **deprecated**, sem nenhum código ativo os referenciando desde 13/09/2026 — ver §3.
 
 **`TecnicaComposta`** — `Nome`, `NivelDeDano`, `EfeitosDeAtributo` (`List<EfeitoDeAtributo>`), `EfeitosDeDanoPorTurno` (`List<EfeitoDeDanoPorTurno>`), `CustoTotal()`. `EfeitoDeAtributo` liga-se a um `TipoAtributo` + valor + duração (`-1` = permanente, convenção não usada ainda). `EfeitoDeDanoPorTurno` é dano contínuo (ex: Envenenamento), modelado como tipo próprio por não caber no formato de "alterar atributo".
 > ✅ **Implementado (12/09/2026)** — os efeitos de `TecnicaComposta` (Stun, Envenenamento) agora são aplicados de verdade: `Droid.ExecutarAcao` chama `AplicarEfeitosDaTecnica(tecnica, alvo)` (método privado estático), que copia cada `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` da técnica para `alvo.EfeitosAtivos`/`alvo.EfeitosDeDanoAtivos` (cópia, não referência — cada uso da técnica gera instâncias novas, com sua própria `DuracaoEmTurnos`). Quem realmente processa os efeitos durante o turno é o `CombatEngine` (ver 4.2).
@@ -263,7 +371,7 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 ### 4.5 `World` — mundo e estado entre cenas
 
-**`GerenciadorDeEstado`** (Singleton lazy, `DontDestroyOnLoad`) — guarda `DroidDoJogador` (mesma instância entre cenas), posição salva para transição Game↔Battle, flags de história, e um contador de menus abertos (`MenuAberto`, incrementado/decrementado por `RegistrarMenuAberto`/`RegistrarMenuFechado`) usado para congelar o movimento do player enquanto um menu/terminal está aberto.
+**`GerenciadorDeEstado`** (Singleton lazy, `DontDestroyOnLoad`) — guarda `DroidDoJogador` (mesma instância entre cenas), posição salva para transição Game↔Battle, flags de história, um contador de menus abertos (`MenuAberto`, incrementado/decrementado por `RegistrarMenuAberto`/`RegistrarMenuFechado`) usado para congelar o movimento do player enquanto um menu/terminal está aberto, e o **`Inventario`** (Estágio 2, 13/09/2026): `Dictionary<string, int>` (Id de `CatalogoDeItens` → quantidade). `AdicionarItem(id, quantidade)`, `TentarRemoverItem(id, quantidade)` (retorna `false` sem deixar estoque negativo, remove a chave se chegar a 0), `ObterQuantidadeDeItem(id)`, `CarregarInventario(dict)` (uso do sistema de salvamento). Droid novo começa com kit inicial fixo (3 Poção Pequena + 1 Poção Média, ver `Awake()`) — placeholder, não há drop/loja ainda (ver §8).
 
 **`PlayerMovement`** — move via `Rigidbody2D`, alimenta `Animator` (MoveX/MoveY/Speed), não se move se `GerenciadorDeEstado.MenuAberto`.
 
@@ -280,7 +388,8 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 ### 4.6 `UI` — apresentação
 
-**`BattleManager`** — não calcula nada, só orquestra: botões fixos (Atacar/Item/Fugir/Status), lista dinâmica de técnicas se o Droid tiver mais de uma configurada, corrotinas de turno, integração com `TelaDeStatusManager`. Botão "Item" (corrigido em 12/09/2026) abre `painelListaDeItens` com os itens de `ItensDeBatalha.Disponiveis` (lista fixa, ver `ItemConsumivel.cs`) — não cura mais sozinho automaticamente.
+**`BattleManager`** — não calcula nada, só orquestra: botões fixos (Atacar/Item/Fugir/Status), lista dinâmica de técnicas se o Droid tiver mais de uma configurada, corrotinas de turno, integração com `TelaDeStatusManager`.
+- ✅ **Corrigido/substituído (Estágio 2, 13/09/2026)** — a descrição antiga deste item (botão "Item" abrindo `ItensDeBatalha.Disponiveis`, lista fixa) está **obsoleta**. `AbrirListaDeItens` agora lê `GerenciadorDeEstado.Inventario` de verdade via `CatalogoDeItens.Obter`, filtra só itens com `UsavelEmBatalha` e estoque > 0, e mostra quantidade real no botão (`"Poção Pequena (+20 HP) x3"`). `UsarItem` decrementa o estoque (`TentarRemoverItem`) e **salva o jogo na hora** (`new SalvamentoJson().Salvar()`) — decisão: o efeito de cura já foi aplicado ao Droid, então o consumo do item precisa ficar gravado imediatamente, mesmo que o jogo feche antes do próximo save manual.
 - **Log de batalha:** `MostrarMensagem` mantém as últimas 4 linhas (`_logDeBatalha`) em vez de sobrescrever a mensagem toda vez — mesmo padrão do log do Terminal (`TerminalUIManager.linhasDeLog`). Cada chamada separa a mensagem recebida por `\n` em várias entradas do log, porque `CombatEngine.ExecutarTurno` pode devolver mais de um evento no mesmo turno (ex: dano de veneno + resultado do ataque).
 - ✅ **Corrigido (13/09/2026)** — `painelListaDeAtaques`/`painelListaDeItens` ganharam um botão "Voltar" (reaproveita `prefabBotaoAtaque`/`prefabBotaoItem`, só chama `SetActive(false)`, nunca executa ação) e um `Update()` que fecha o painel aberto com ESC. Corrigido no mesmo commit: `AbrirListaDeAtaques`/`AbrirListaDeItens` agora fecham o outro painel antes de abrir o seu — antes disso, abrir Ataque e depois Item (sem fechar o primeiro) deixava os dois painéis ativos ao mesmo tempo.
 
@@ -292,6 +401,9 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 **`TelaDeStatusManager`** — painel de status, busca o Droid direto do `GerenciadorDeEstado` (reutilizável entre batalha e mundo).
 - ✅ **Corrigido (13/09/2026)** — mesmo padrão do Terminal: ganhou `AoFechar` (`System.Action`, opcional), invocado ao final de `Fechar()`. Como o uso dentro da Batalha não atribui esse callback, fica `null` ali e não é chamado (`?.Invoke()`) — nenhuma mudança de comportamento na Batalha.
+
+**`BagUIManager`** (novo, Estágio 2, 13/09/2026) — painel da Bag, acessível pelo `MenuMundoManager` (substitui o placeholder "Bag ainda não foi implementado"). Cura fora de batalha, sem gastar turno (não existe turno fora de combate), filtra itens do `Inventario` por `UsavelForaDeBatalha`, decrementa estoque e salva na hora — mesmo padrão de `UsarItem` do `BattleManager`. Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager` (usado por `MenuMundoManager` pra reexibir seu próprio painel).
+> ⚠️ **Bug corrigido (13/09/2026):** `Mostrar()` ativa o painel (`SetActive(true)`) **antes** de popular a lista de botões e força `LayoutRebuilder.ForceRebuildLayoutImmediate` — a ordem antiga (popular primeiro, ativar depois) deixava o painel "ligado" mas com `ContentSizeFitter` travado em 0x0, porque o Unity só recalcula layout em objetos ativos.
 
 **`MainMenuManager`** — navegação do menu principal (Novo Jogo/Configurações/Sair). Sem mudanças estruturais previstas.
 
@@ -347,7 +459,7 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 | Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável | Planejado, não implementado |
 | `DroidDataSO` / `ItemDataSO` / Factory | Migrar criação de Droid/itens de código direto para ScriptableObjects configuráveis no Inspector | Planejado, não implementado |
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
-| Inventário e equipamento completos | Além do que já existe para peças do Droid | Planejado, não implementado |
+| Inventário e equipamento completos — Fase 2 | Itens de Cura com quantidade real e persistência **já implementados** (13/09/2026 — ver §4.1 `CatalogoDeItens`, §4.5 `Inventario`, §4.6 `BagUIManager`). Falta: forma de obter item além do kit inicial (drop de inimigo e/ou loja/NPC), categorias `Buff`/`Debuff`/`Equipavel`/itens de uso-fora-de-batalha não-cura, UI mais rica (ícone, descrição, filtro) | Fase 1 (Cura) concluída; Fase 2 planejada, não implementada — **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md` |
 
 ---
 
