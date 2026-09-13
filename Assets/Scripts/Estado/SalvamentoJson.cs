@@ -32,7 +32,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
             {
                 nome = droid.Nome,
                 hp = droid.Hp,
-                hpMax = droid.HpMax,
+                hpMaxBase = droid.HpMaxBase,
                 statsFor = droid.StatsBase.For,
                 statsAgi = droid.StatsBase.Agi,
                 statsVit = droid.StatsBase.Vit,
@@ -105,14 +105,27 @@ public class SalvamentoJson : ISistemaDeSalvamento
         Droid droid = gerenciador.DroidDoJogador;
 
         droid.Nome = dados.droid.nome;
-        droid.HpMax = dados.droid.hpMax;
-        droid.Hp = dados.droid.hp;
+
+        // COMPATIBILIDADE (Estagio 1 — 12/09/2026): saves v1 nao tinham
+        // hpMaxBase (so hpMax, campo que nem existe mais em DroidSalvo).
+        // JsonUtility preenche hpMaxBase com 0 nesse caso -- se vier 0,
+        // assume que e um save antigo e mantem o HpMaxBase atual do Droid
+        // (o valor default do construtor) em vez de zerar o teto de HP.
+        if (dados.droid.hpMaxBase > 0)
+        {
+            droid.HpMaxBase = dados.droid.hpMaxBase;
+        }
+
         droid.StatsBase.For = dados.droid.statsFor;
         droid.StatsBase.Agi = dados.droid.statsAgi;
         droid.StatsBase.Vit = dados.droid.statsVit;
         droid.StatsBase.Int = dados.droid.statsInt;
         droid.StatsBase.Dex = dados.droid.statsDex;
         droid.StatsBase.Luk = dados.droid.statsLuk;
+        // Hp precisa ser restaurado DEPOIS de StatsBase.Vit e HpMaxBase,
+        // porque droid.HpMax agora depende de VIT (calculado) -- restaurar
+        // antes poderia truncar Hp contra um HpMax desatualizado.
+        droid.Hp = System.Math.Min(dados.droid.hp, droid.HpMax);
         droid.Pontos.DefinirPontos(dados.droid.pontosDisponiveis);
         droid.Progressao.Definir(dados.droid.nivel, dados.droid.experiencia);
 

@@ -47,7 +47,12 @@ public class DroidSalvo
 {
     public string nome;
     public int hp;
-    public int hpMax;
+    // REFATORACAO (Estagio 1 — 12/09/2026): salvava "hpMax" direto; agora
+    // HpMax e CALCULADO (HpMaxBase + %VIT, ver Droid.cs), entao o que
+    // precisa ser persistido e a BASE, nao o total. Salvar o total antigo
+    // faria o bonus de VIT se acumular a cada save/load. Saves antigos (sem
+    // este campo) carregam hpMaxBase=0 -- ver nota em SalvamentoJson.Carregar.
+    public int hpMaxBase;
     public int statsFor;
     public int statsAgi;
     public int statsVit;
@@ -63,7 +68,7 @@ public class DroidSalvo
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 1; // pra migrar formato no futuro sem quebrar saves antigos
+    public int versao = 2; // v2 (12/09/2026): hpMax -> hpMaxBase (ver DroidSalvo.hpMaxBase)
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;

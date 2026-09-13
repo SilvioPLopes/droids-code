@@ -109,12 +109,13 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - Terminal Lua sandboxed, com métodos validados de progressão (`subirAtributo`, `aprenderTecnica`, `aprenderTecnicaComVeneno`, `aprenderTecnicaComStun`, `melhorarTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis`)
 - Sistema de pontos de progressão e nível/XP
 - Técnicas compostas com efeitos de atributo (ex: Stun) e dano por turno (ex: Envenenamento) — custo calculado **e aplicação em combate implementada**: `Droid.ExecutarAcao` copia os efeitos da técnica para o alvo, e `CombatEngine` processa dano por turno no início do turno de quem está afetado e verifica atordoamento antes de permitir a ação
+- **Atributos derivados (12/09/2026):** VIT aumenta HP máximo (%, além de Defesa), AGI vira FLEE e DEX vira HIT (sistema de acerto/erro real, chance = 50 + HIT − FLEE), LUK vira chance de crítico (dobra dano), INT vira resistência a Stun/Veneno e bônus de cura de item — ver `CHECKLIST_DE_DESENVOLVIMENTO.md` para os números exatos
 - Salvamento/carregamento em JSON (stats, técnicas, posição, cena, flags de história)
 - Encontros aleatórios no mapa e menu principal
 
 ### 🔜 Roadmap (ainda não implementado)
 
-- **Sistema de acerto/erro (HIT/FLEE)** e atributos derivados completos (ATK/DEF/HIT/FLEE) — hoje todo ataque sempre acerta
+- ~~Sistema de acerto/erro (HIT/FLEE)~~ — **implementado em 12/09/2026**, ver seção acima
 - **Modo Puzzle** do terminal (exercícios de lógica isolados, fora da configuração real do Droid)
 - **`DroidDataSO`/Factory** — hoje o Droid é criado direto em código; a ideia é migrar para ScriptableObjects configuráveis no Inspector
 - **Fase 2 de customização de peças** — herança real com Cartuchos de Código sobrescrevendo `DroidBase`

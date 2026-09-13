@@ -283,8 +283,15 @@ namespace DroidsCode.Scripting
             _logDaSessao.Add(mensagem);
         }
 
+        // CORRECAO/REFATORACAO (Estagio 1 — 12/09/2026): HpMax virou calculado
+        // a partir de VIT (ver Droid.HpMax). Subir VIT muda o teto de HP na
+        // hora -- precisa capturar o HpMax ANTES da mudanca e chamar
+        // RecalcularHpAposMudancaDeVit depois, ou o Hp atual nao acompanha o
+        // novo teto (jogador ficaria "devendo" cura pra sempre).
         private void AplicarUpgrade(TipoAtributo atributo, int quantidade)
         {
+            int hpMaxAntes = _droid.HpMax;
+
             switch (atributo)
             {
                 case TipoAtributo.For: _droid.StatsBase.For += quantidade; break;
@@ -293,6 +300,11 @@ namespace DroidsCode.Scripting
                 case TipoAtributo.Int: _droid.StatsBase.Int += quantidade; break;
                 case TipoAtributo.Dex: _droid.StatsBase.Dex += quantidade; break;
                 case TipoAtributo.Luk: _droid.StatsBase.Luk += quantidade; break;
+            }
+
+            if (atributo == TipoAtributo.Vit)
+            {
+                _droid.RecalcularHpAposMudancaDeVit(hpMaxAntes);
             }
         }
     }

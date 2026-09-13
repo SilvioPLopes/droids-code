@@ -15,6 +15,47 @@
 
 ---
 
+## ✅ Concluído nesta sessão (12/09/2026 — Estágio 1: Atributos Derivados)
+
+Decisão de design fechada e implementada, revertendo a marcação anterior de
+HIT/FLEE como "fora de escopo" (ver seção "🚫 Fora do escopo", atualizada):
+
+- **HpMax virou calculado**, não mais campo solto: `Droid.HpMaxBase` (setado
+  no construtor / save) + bônus de VIT (`+1% do HpMaxBase por ponto de VIT,
+  arredondado pra baixo`) + espaço reservado pra bônus fixo de peças (Fase 2,
+  hoje sempre 0). `TerminalDroidApi.AplicarUpgrade` recalcula o HP atual
+  (`Droid.RecalcularHpAposMudancaDeVit`) sempre que VIT sobe, dando a
+  diferença de teto sem "dever" cura.
+- **VIT**: mantém Defesa (sem mudança) **e** agora também aumenta HpMax (%).
+- **AGI → FLEE**, **DEX → HIT**: `IParticipanteDeCombate` ganhou `Hit`/`Flee`.
+  Chance de acerto = `50 + (HIT atacante − FLEE alvo)`, clamp 5%–95% (ver
+  `TabelaDeCombate`). Rolado em `Droid.ExecutarAcao`/`InimigoFixo.ExecutarAcao`
+  antes do cálculo de dano; se errar, retorna `Sucesso=false` com mensagem de
+  esquiva (sem novo campo em `ResultadoAcao`, mantendo a seção 3 congelada).
+- **LUK → crítico**: `1 LUK = 1%` de chance, dobra o dano. Rolado
+  separadamente do acerto (crítico não "salva" um ataque que errou).
+- **INT → resistência a efeito** (`1 INT = 1%` de chance de resistir
+  Stun/Veneno, rolado por efeito individual ao ser aplicado) **+ bônus de
+  cura de item** (`1 INT = 1%` a mais de HP curado, `BattleManager.UsarItem`).
+  Reaproveita a decisão de resistência; `TabelaDeCustos.CustoResistenciaPorLuk`
+  segue não referenciada (não confundir com este cálculo, que é % direto por
+  INT, sem custo em pontos).
+- **InimigoFixo** ganhou `Hit`/`Flee`/`ChanceCritica`/`ChanceDeResistirEfeito`
+  fixos (`TabelaDeCombate.*PadraoInimigo`) só para respeitar os mesmos
+  cálculos do jogador — valores placeholder, sem gameplay real ainda (ver
+  "Mais de um tipo de inimigo" abaixo, continua pendente).
+- **Save (`DadosDoJogo`) versão 2**: `hpMax` → `hpMaxBase`. Compatibilidade
+  com saves v1 tratada em `SalvamentoJson.Carregar` (se vier 0, mantém o
+  HpMaxBase padrão do Droid em vez de zerar).
+
+**Pendências abertas geradas por este trabalho** (não implementadas ainda):
+- Bônus fixo de HP por peça (`Droid.ObterBonusDePecasHpFixo`) é placeholder
+  retornando 0 — depende da Fase 2 de peças, fora de escopo.
+- Nenhum teste automatizado cobrindo os novos rolls (ver "Testes automatizados
+  mínimos" na seção de amadurecimento, abaixo).
+
+---
+
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
 Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
@@ -143,9 +184,14 @@ ideias, não uma exigência.
 ## 🚫 Fora do escopo por enquanto (não deixar a IA empurrar isso)
 
 Itens já decididos como "não agora" (ver roadmap completo em
-`DOCUMENTACAO_TECNICA.md` §8): sistema de acerto/erro (HIT/FLEE), Modo Puzzle do
-terminal, `DroidDataSO`/Factory, Fase 2 de peças (herança real).
+`DOCUMENTACAO_TECNICA.md` §8): Modo Puzzle do terminal, `DroidDataSO`/Factory,
+Fase 2 de peças (herança real).
 Se um agente sugerir atacar algum desses sem você ter puxado o assunto, é sinal de
-que ele não leu esta seção — redirecione pra cá. **Exceção:** inventário/sistema de
-item saiu desta lista em 12/09/2026 — ver seção "🚨 Mecânica essencial faltante"
-acima, agora tratado como bloqueante de lançamento, não mais "fora de escopo".
+que ele não leu esta seção — redirecione pra cá.
+
+**Exceções (removidas desta lista, ver seções correspondentes):**
+- Inventário/sistema de item saiu em 12/09/2026 — ver "🚨 Mecânica essencial
+  faltante", agora bloqueante de lançamento.
+- **Sistema de acerto/erro (HIT/FLEE) saiu em 12/09/2026** — decisão explícita
+  de reverter o "fora de escopo" anterior, ver "✅ Concluído nesta sessão
+  (Estágio 1: Atributos Derivados)" no topo deste documento. Já implementado.

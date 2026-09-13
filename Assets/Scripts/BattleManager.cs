@@ -290,10 +290,17 @@ public class BattleManager : MonoBehaviour
         botaoVoltar.onClick.AddListener(() => painel.gameObject.SetActive(false));
     }
 
+    // REFATORACAO (Estagio 1 — 12/09/2026): cura de item agora recebe bonus
+    // percentual de INT (droid.BonusPercentualDeCura, ver Droid.cs/
+    // TabelaDeCombate.PercentualBonusCuraPorInt), arredondado pra baixo.
+    // Ex: item cura 10, INT dando 20% => cura efetiva 12.
     void UsarItem(ItemConsumivel item)
     {
-        int curaAplicada = Mathf.Min(item.CuraHp, droid.HpMax - droid.Hp);
-        droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + item.CuraHp);
+        float multiplicador = 1f + (droid.BonusPercentualDeCura / 100f);
+        int curaBase = Mathf.FloorToInt(item.CuraHp * multiplicador);
+
+        int curaAplicada = Mathf.Min(curaBase, droid.HpMax - droid.Hp);
+        droid.Hp = Mathf.Min(droid.HpMax, droid.Hp + curaBase);
         AtualizarBarras();
         MostrarMensagem($"{droid.Nome} usou {item.Nome} e recuperou {curaAplicada} de HP!");
 

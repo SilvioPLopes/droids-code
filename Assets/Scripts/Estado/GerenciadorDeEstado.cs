@@ -85,6 +85,10 @@ public class GerenciadorDeEstado : MonoBehaviour
         {
             // [DEFAULT] valores iniciais de um Droid novo — ajustar quando
             // houver tela de criacao de personagem real.
+            // NOTA (Estagio 1): "hpMax: 30" aqui e o HpMaxBase (ver Droid.cs) —
+            // o HpMax REAL final ja sai maior por causa do VIT=3 abaixo
+            // (30 + 3% = +0 arredondado pra baixo neste caso especifico, mas
+            // sobe conforme StatsBase.Vit crescer no terminal).
             DroidDoJogador = new Droid("Heroi", hpMax: 30);
             DroidDoJogador.StatsBase.For = 5;
             DroidDoJogador.StatsBase.Vit = 3;
