@@ -196,8 +196,8 @@ MonoBehaviour:
   atkInimigo: 5
   defInimigo: 1
   recompensaXpInimigo: 100
-  goldMinimo: 1
-  goldMaximo: 5
+  goldMinimo: 10
+  goldMaximo: 50
   tabelaDeDrops:
   - idItem: pocao_pequena
     chance: 1
