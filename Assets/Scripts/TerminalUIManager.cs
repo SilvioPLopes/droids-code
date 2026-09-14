@@ -46,6 +46,18 @@ public class TerminalUIManager : MonoBehaviour
     // MenuMundoManager.Start()). Invocado dentro de Fechar().
     public System.Action AoFechar;
 
+    // NOVO (14/09/2026 — puzzle da casa/Sessão 1): exposto pra permitir que
+    // um script de puzzle específico de uma cena (ex: PuzzleAguaCasaChecker)
+    // leia o estado do Lua depois de cada execução, sem duplicar toda essa
+    // UI de novo (foi isso que o TerminalCasaManager fazia errado). Só
+    // leitura -- ninguém de fora deveria trocar o runner do terminal.
+    public DroidScriptRunner Runner => runner;
+
+    // Invocado ao final de AoClicarExecutar(), sempre (sucesso ou erro).
+    // O terminal geral não sabe nem precisa saber o que os ouvintes fazem
+    // com isso -- ex.: checar se uma variável Lua chegou num valor-alvo.
+    public System.Action AoExecutarCodigo;
+
     private DroidScriptRunner runner;
     private TerminalDroidApi api;
     private Droid droid;
@@ -209,6 +221,8 @@ public class TerminalUIManager : MonoBehaviour
 
         AdicionarAoHistorico(codigo);
         AtualizarPontos();
+
+        AoExecutarCodigo?.Invoke();
     }
 
     void AoClicarLimpar()

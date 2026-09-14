@@ -42,6 +42,7 @@ public class TransicaoDeCena : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("TRIGGER DA PORTA RODOU");
         if (transicaoDisparada) return;
         if (!other.CompareTag("Player")) return;
 

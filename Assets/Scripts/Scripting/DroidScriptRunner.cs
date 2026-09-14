@@ -38,6 +38,22 @@ namespace DroidsCode.Scripting
                 return new ResultadoExecucao { Sucesso = false, MensagemErro = ex.DecoratedMessage };
             }
         }
+
+        // ADICIONADO (cena de abertura — puzzle de casa, 14/09/2026): leitura
+        // pura de uma variável global Lua depois da execução, usada pra
+        // avaliar puzzles que não passam por droid.* nenhum (ex: "nivel_agua"
+        // da Sessão 1 do Enredo). Retorna null se a variável não existir
+        // ainda ou não for numérica — quem chama decide o que fazer com isso
+        // (ver TerminalCasaManager.ExecutarCodigoDigitado).
+        public double? ObterVariavelNumerica(string nomeDaVariavel)
+        {
+            DynValue valor = _vm.Globals.Get(nomeDaVariavel);
+            if (valor.Type != DataType.Number)
+            {
+                return null;
+            }
+            return valor.Number;
+        }
     }
 
     public class ResultadoExecucao
