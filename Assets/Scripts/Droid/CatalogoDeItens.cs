@@ -33,6 +33,15 @@ namespace DroidsCode.DroidCore
         public bool UsavelEmBatalha { get; set; } = true;
         public bool UsavelForaDeBatalha { get; set; } = true;
 
+        // NOVO (Cidade, Fatia Loja — 13/09/2026): preco em Gold para compra
+        // na loja. Decisao tomada sem alinhamento extra (ver conversa):
+        // TODOS os itens do catalogo valem o mesmo hoje (ver
+        // Preco = PrecoPadrao abaixo), so pra ter a loja funcionando de
+        // ponta a ponta -- balanceamento por item fica para depois. Venda
+        // (jogador -> loja) usa o mesmo valor, sem "spread" de loja por
+        // enquanto (decisao de design futura, nao implementada).
+        public int Preco { get; set; } = PrecoPadrao;
+
         // --- Cura (Estagio 2) ---
         public int CuraHp { get; set; }
 
@@ -59,6 +68,9 @@ namespace DroidsCode.DroidCore
         // nada de mapa especifico ainda (isso cruzaria com conteudo de
         // historia, fora de escopo tecnico) -- so seta a flag generica.
         public string ChaveDeFlag { get; set; }
+
+        // Valor unico usado por Preco acima -- ver comentario la em cima.
+        public const int PrecoPadrao = 1;
     }
 
     // Catalogo estatico -- mesmo espirito de TabelaDeCombate/TabelaDeCustos.
@@ -228,6 +240,13 @@ namespace DroidsCode.DroidCore
         {
             return Todos.TryGetValue(id, out var def) ? def : null;
         }
+
+        // NOVO (Cidade, Fatia Loja — 13/09/2026): lista de itens que a loja
+        // vende. Decisao tomada sem alinhamento extra: "a loja vai ter
+        // todos os itens" -- reaproveita Todos.Values inteiro, sem filtro
+        // por tipo. Se no futuro alguns itens nao deverem ser vendaveis
+        // (ex: exclusivos de drop de chefe), filtrar aqui.
+        public static IEnumerable<DefinicaoDeItem> ItensDaLoja => Todos.Values;
     }
 
     // --- DTO de save (JsonUtility nao serializa Dictionary) ---

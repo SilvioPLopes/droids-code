@@ -2,12 +2,11 @@ using UnityEngine;
 
 /// <summary>
 /// Componente genérico para qualquer NPC com o qual o player possa
-/// interagir (falar, comprar, etc). Nesta primeira fatia, só resolve
-/// a DETECÇÃO — o player chega perto, um indicador visual liga, e ao
-/// apertar a tecla de interação o NPC reage (por enquanto só um Debug.Log
-/// de placeholder). O que exatamente acontece na interação — abrir um
-/// diálogo (Fatia 2) ou abrir uma loja (Fatia 3) — é decidido depois,
-/// dentro do método Interagir() abaixo, sem precisar mexer na detecção.
+/// interagir (falar, comprar, etc). Detecção de proximidade + tecla de
+/// interação (Fatia 1). Interagir() agora sabe abrir a Loja (Fatia Loja,
+/// 13/09/2026) — a variante de Diálogo simples ainda não foi feita
+/// (pulada de propósito, ver conversa) e pode ser adicionada depois sem
+/// mexer na detecção abaixo.
 ///
 /// Colocar este script no GameObject do NPC, junto com um Collider2D
 /// marcado como "Is Trigger" (raio de detecção — não precisa ser do
@@ -17,9 +16,22 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class NpcInterativo : MonoBehaviour
 {
+    public enum TipoDeNpc
+    {
+        Generico, // placeholder (Debug.Log) — comportamento original da Fatia 1
+        Loja
+    }
+
     [Header("Identificação")]
-    [Tooltip("Nome do NPC, usado futuramente no painel de diálogo/loja (Fatia 2/3). Não afeta a detecção.")]
+    [Tooltip("Nome do NPC. Usado futuramente no painel de diálogo. Não afeta a detecção.")]
     public string nomeDoNpc = "NPC";
+
+    [Header("Comportamento")]
+    [Tooltip("O que acontece ao interagir. 'Loja' abre o painel configurado em Loja UI Manager abaixo.")]
+    public TipoDeNpc tipo = TipoDeNpc.Generico;
+
+    [Tooltip("Obrigatório se Tipo = Loja. Arraste aqui o GameObject que tem o componente LojaUIManager (geralmente um Canvas da cena).")]
+    public LojaUIManager lojaUIManager;
 
     [Header("Indicador visual (opcional)")]
     [Tooltip("GameObject filho (ex: um balão \"!\" ou ícone de interação) que liga quando o player está perto e desliga quando se afasta. Pode deixar vazio por enquanto.")]
@@ -43,7 +55,7 @@ public class NpcInterativo : MonoBehaviour
     void Update()
     {
         // Mesmo cuidado do PlayerMovement: não interagir com um
-        // menu/terminal/diálogo já aberto por cima.
+        // menu/terminal/diálogo/loja já aberto por cima.
         if (GerenciadorDeEstado.Instancia.MenuAberto) return;
 
         if (playerPerto && Input.GetKeyDown(teclaDeInteracao))
@@ -78,13 +90,34 @@ public class NpcInterativo : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Placeholder da Fatia 1. Nas próximas fatias, este método passa a
-    /// abrir o painel de Diálogo (Fatia 2) ou de Loja (Fatia 3), em vez
-    /// de só logar — a detecção acima (proximidade + tecla) não muda.
-    /// </summary>
     void Interagir()
     {
-        Debug.Log($"Interagiu com {nomeDoNpc} (placeholder — Fatia 2/3 vai abrir Diálogo/Loja aqui).");
+        switch (tipo)
+        {
+            case TipoDeNpc.Loja:
+                AbrirLoja();
+                break;
+
+            default:
+                Debug.Log($"Interagiu com {nomeDoNpc} (placeholder — Diálogo ainda não implementado).");
+                break;
+        }
+    }
+
+    void AbrirLoja()
+    {
+        if (lojaUIManager == null)
+        {
+            Debug.LogWarning($"NpcInterativo '{gameObject.name}': Tipo = Loja mas lojaUIManager não foi configurado no Inspector.");
+            return;
+        }
+
+        // Mesmo padrão de contador de menus que o resto do jogo já usa
+        // (TelaDeStatusManager/TerminalUIManager) — RegistrarMenuAberto
+        // impede o PlayerMovement de mover o player e este próprio script
+        // de reagir à tecla de interação enquanto a Loja está na tela.
+        GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
+        lojaUIManager.AoFechar = () => GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        lojaUIManager.Mostrar();
     }
 }
