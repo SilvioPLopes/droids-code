@@ -63,6 +63,35 @@ public class MenuMundoManager : MonoBehaviour
     // não reabrir o painelMenu por baixo do painel que está em foco.
     private bool _outroPainelAberto = false;
 
+    // NOVO: mesmo padrão de GerenciadorDeEstado — só uma instância do Menu
+    // do Mundo sobrevive entre cenas (DontDestroyOnLoad). Sem isso, o menu
+    // (e todos os painéis Status/Terminal/Bag/Droid) só existia na cena
+    // onde o Canvas foi colocado (Game) — abrir ESC na Cidade não achava
+    // nada, porque o objeto inteiro nunca chegava lá.
+    //
+    // IMPORTANTE (trabalho de Editor que isso exige):
+    // 1. O GameObject raiz do Canvas que contém o MenuMundoManager (e todos
+    //    os painéis filhos) deve ser o alvo do DontDestroyOnLoad — aqui uso
+    //    transform.root.gameObject, que é esse Canvas raiz.
+    // 2. Remova qualquer Canvas/Menu duplicado que você já tenha colocado
+    //    manualmente na cena City — só deve existir UM, criado na primeira
+    //    cena carregada (normalmente Game), que persiste daí em diante.
+    void Awake()
+    {
+        var instanciasExistentes = FindObjectsOfType<MenuMundoManager>();
+        if (instanciasExistentes.Length > 1)
+        {
+            // Já existe um Menu do Mundo persistente de uma cena anterior —
+            // este aqui é duplicado (ex: você entrou de novo na cena onde
+            // o objeto foi originalmente criado). Destrói o novo, mantém o
+            // que já estava sobrevivendo.
+            Destroy(transform.root.gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(transform.root.gameObject);
+    }
+
     void Start()
     {
         if (painelMenu != null) painelMenu.SetActive(false);

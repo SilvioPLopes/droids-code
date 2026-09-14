@@ -222,6 +222,9 @@ Assets/Scripts/BagUIManager.cs
 Assets/Scripts/EncounterZone.cs
 Assets/Scripts/PlayerMovement.cs
 Assets/Scripts/RestaurarPosicao.cs
+Assets/Scripts/TransicaoDeCena.cs
+Assets/Scripts/LojaUIManager.cs
+Assets/Scripts/NpcInterativo.cs
 Assets/Scripts/readme.md
 Assets/Scripts/DOCUMENTACAO_TECNICA.md
 Assets/Scripts/CHECKLIST_DE_DESENVOLVIMENTO.md
@@ -295,7 +298,7 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 
 **`TabelaDeCombate`** (placeholder) — `DanoPorNivelDeTecnica = 5`. Separada de `TabelaDeCustos` de propósito: uma é custo em pontos, outra é output de dano.
 
-**`CatalogoDeItens`** (Estágio 2, 13/09/2026 — substitui `ItemConsumivel.cs`/`ItensDeBatalha`) — catálogo estático (`Dictionary<string, DefinicaoDeItem>`) dos itens que existem no jogo. `DefinicaoDeItem`: `Id` (string estável — **nunca renomear**, é a chave do save e do inventário em runtime), `Nome`, `Tipo` (`TipoDeItem`, hoje só `Cura` implementado; `Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha` ficam comentados no enum como lembrete de Fase 2), `CuraHp`, `UsavelEmBatalha`/`UsavelForaDeBatalha` (flags que filtram o que aparece em `BattleManager.AbrirListaDeItens` vs. `BagUIManager`). Itens hoje: `pocao_pequena` (+20), `pocao_media` (+50), `pocao_grande` (+80), `reparo_completo` (+9999, "cura tudo"). O **catálogo** (o que existe) fica aqui; a **quantidade que o jogador possui** fica em `GerenciadorDeEstado.Inventario` (ver §4.5) — responsabilidades separadas de propósito.
+**`CatalogoDeItens`** (Estágio 2 em 13/09/2026, expandido nas sessões seguintes — substitui `ItemConsumivel.cs`/`ItensDeBatalha`) — catálogo estático (`Dictionary<string, DefinicaoDeItem>`) dos itens que existem no jogo. `DefinicaoDeItem`: `Id` (string estável — **nunca renomear**), `Nome`, `Tipo` (`TipoDeItem`: `Cura`, `Buff`, `Debuff`, `Equipavel`, `ForaDeBatalha` — as 5 categorias já implementadas), `CuraHp`, `UsavelEmBatalha`/`UsavelForaDeBatalha`, e **`Preco`** (novo, sessão da Loja — todo item vale `PrecoPadrao` = 1 Gold, decisão deliberada não balanceada). **`ItensDaLoja`** (nova propriedade, sessão da Loja) expõe `Todos.Values` inteiro como itens vendáveis, sem filtro por tipo. Buff/Debuff reaproveitam `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` (mesmo motor de técnica); Equipável carrega `TipoDePeca` + o bônus de atributo da peça (ver `Droid.EquiparPeca`/`ObterBonusDePecas`, §4.3). O **catálogo** (o que existe) fica aqui; a **quantidade que o jogador possui** fica em `GerenciadorDeEstado.Inventario` (ver §4.5).
 > ⚠️ `ItemConsumivel.cs`/`ItensDeBatalha` (lista fixa sem quantidade) ainda existem no projeto mas estão **deprecated**, sem nenhum código ativo os referenciando desde 13/09/2026 — ver §3.
 
 **`TecnicaComposta`** — `Nome`, `NivelDeDano`, `EfeitosDeAtributo` (`List<EfeitoDeAtributo>`), `EfeitosDeDanoPorTurno` (`List<EfeitoDeDanoPorTurno>`), `CustoTotal()`. `EfeitoDeAtributo` liga-se a um `TipoAtributo` + valor + duração (`-1` = permanente, convenção não usada ainda). `EfeitoDeDanoPorTurno` é dano contínuo (ex: Envenenamento), modelado como tipo próprio por não caber no formato de "alterar atributo".
@@ -372,7 +375,7 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 ### 4.5 `World` — mundo e estado entre cenas
 
-**`GerenciadorDeEstado`** (Singleton lazy, `DontDestroyOnLoad`) — guarda `DroidDoJogador` (mesma instância entre cenas), posição salva para transição Game↔Battle, flags de história, um contador de menus abertos (`MenuAberto`, incrementado/decrementado por `RegistrarMenuAberto`/`RegistrarMenuFechado`) usado para congelar o movimento do player enquanto um menu/terminal está aberto, e o **`Inventario`** (Estágio 2, 13/09/2026): `Dictionary<string, int>` (Id de `CatalogoDeItens` → quantidade). `AdicionarItem(id, quantidade)`, `TentarRemoverItem(id, quantidade)` (retorna `false` sem deixar estoque negativo, remove a chave se chegar a 0), `ObterQuantidadeDeItem(id)`, `CarregarInventario(dict)` (uso do sistema de salvamento). Droid novo começa com kit inicial fixo (3 Poção Pequena + 1 Poção Média, ver `Awake()`) — placeholder, não há drop/loja ainda (ver §8).
+**`GerenciadorDeEstado`** (Singleton lazy, `DontDestroyOnLoad`) — guarda `DroidDoJogador` (mesma instância entre cenas), posição salva para transição Game↔Battle, flags de história, um contador de menus abertos (`MenuAberto`, incrementado/decrementado por `RegistrarMenuAberto`/`RegistrarMenuFechado`) usado para congelar o movimento do player enquanto um menu/terminal está aberto, o **`Inventario`** (`Dictionary<string, int>`, Id de `CatalogoDeItens` → quantidade: `AdicionarItem`, `TentarRemoverItem`, `ObterQuantidadeDeItem`, `CarregarInventario`) e o **`Gold`** (`AdicionarGold`/`TentarGastarGold`/`CarregarGold`, persistido em save v4). Droid novo começa com kit inicial fixo (3 Poção Pequena + 1 Poção Média) e Gold = 0 — fontes reais de Gold em jogo normal: drop configurável por `BattleManager` (ver §8) e venda de item na Loja.
 
 **`PlayerMovement`** — move via `Rigidbody2D`, alimenta `Animator` (MoveX/MoveY/Speed), não se move se `GerenciadorDeEstado.MenuAberto`.
 
@@ -400,6 +403,12 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 - ✅ **Corrigido (sessão do Painel do Droid)** — botão "Droid" deixou de chamar `MostrarAviso("Equipamentos")`; agora `AoClicarDroid` abre `TelaDeDroidManager` (novo campo `telaDeDroid`), mesmo padrão de exclusividade dos demais painéis. `AoFechar` do novo painel ligado em `Start()` junto dos outros.
 
 **`TelaDeDroidManager`** (novo, sessão do Painel do Droid) — painel somente-leitura das 4 peças do Droid (`Braco`/`Perna`/`Tronco`/`Cabeca`), busca o Droid direto do `GerenciadorDeEstado` (mesmo padrão de `TelaDeStatusManager`). Mostra nome + `AtributoBonificado`/`ValorDoBonus` de cada peça, ou "Vazio" se o slot não tiver peça (nunca esconde o slot). Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager`/`BagUIManager`. Escopo desta leva é só visualização — equipar continua exclusivamente pela Bag (`BagUIManager.EquiparItem`); não há "desequipar".
+
+**`TransicaoDeCena`** (cena `City`) — leva o jogador entre o mapa principal e a Cidade nos dois sentidos. **Corrigido nesta sessão:** o campo de destino era `Transform`; trocado pra `Vector2` (coordenadas digitadas no Inspector), porque Unity não permite salvar referência de `Transform` entre cenas diferentes (cross-scene reference).
+
+**`NpcInterativo`** (cena `City`) — enum `TipoDeNpc` (`Generico`/`Loja`) + campo `lojaUIManager`. `Interagir()` despacha por tipo: `Generico` mantém placeholder (`Debug.Log`, diálogo simples foi pulado por decisão do responsável do projeto, não descartado); `Loja` chama `RegistrarMenuAberto`/(`AoFechar` → `RegistrarMenuFechado`) e abre `LojaUIManager`, mesmo padrão de exclusividade de `TelaDeStatusManager`/`TerminalUIManager`.
+
+**`LojaUIManager`** (novo, cena `City`) — painel com abas Comprar/Vender, mesmo contrato estrutural de `BagUIManager` (`AoFechar`, `LayoutRebuilder.ForceRebuildLayoutImmediate` ativando o painel antes de popular a lista — mesma correção de bug já usada na Bag). Comprar lê `CatalogoDeItens.ItensDaLoja`, gasta Gold via `TentarGastarGold` e soma item via `AdicionarItem`; Vender lê o inventário do jogador, remove item via `TentarRemoverItem` e credita Gold via `AdicionarGold`.
 
 **`TerminalUIManager`** — UI do terminal: campo de código, histórico de comandos (↑/↓), log de sessão, atalho Ctrl+Enter.
 - ✅ **Corrigido (13/09/2026)** — ganhou o campo público `AoFechar` (`System.Action`, opcional), invocado dentro do `if` de `Fechar()` (só quando o painel de fato estava aberto). Usado por `MenuMundoManager` pra saber quando reexibir seu próprio painel.
@@ -464,7 +473,7 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 | Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável | Planejado, não implementado |
 | `DroidDataSO` / `ItemDataSO` / Factory | Migrar criação de Droid/itens de código direto para ScriptableObjects configuráveis no Inspector | Planejado, não implementado |
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
-| Inventário e equipamento completos — Fase 2 | Itens de Cura com quantidade real e persistência **já implementados** (13/09/2026 — ver §4.1 `CatalogoDeItens`, §4.5 `Inventario`, §4.6 `BagUIManager`). Falta: forma de obter item além do kit inicial (drop de inimigo e/ou loja/NPC), categorias `Buff`/`Debuff`/`Equipavel`/itens de uso-fora-de-batalha não-cura, UI mais rica (ícone, descrição, filtro) | Fase 1 (Cura) concluída; Fase 2 planejada, não implementada — **bloqueante de lançamento**, ver `CHECKLIST_DE_DESENVOLVIMENTO.md` |
+| Inventário e equipamento completos | Todas as 5 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha`) implementadas, com quantidade real e persistência (ver `CatalogoDeItens`, `Inventario`, `BagUIManager`). Obtenção via kit inicial, drop configurável por `BattleManager` e Loja (compra/venda). UI ainda mínima (sem ícone/descrição longa/filtro). | **Concluído** — falta só UI mais rica (não bloqueante), ver "Amadurecimento" em `CHECKLIST_DE_DESENVOLVIMENTO.md` |
 
 ---
 

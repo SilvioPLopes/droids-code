@@ -2,265 +2,113 @@
 
 > **Este documento faz parte de um trio tratado como uma única fonte de
 > verdade** — junto com `readme.md` e `DOCUMENTACAO_TECNICA.md`. Marcar algo
-> como concluído aqui **exige** checar se `DOCUMENTACAO_TECNICA.md` (mapa de
-> classes/árvore de pastas) e `readme.md` (status/roadmap) também precisam de
-> atualização na mesma sessão — ver a regra completa e a tabela de
-> correspondências em `DOCUMENTACAO_TECNICA.md` §0.2.
+> como concluído aqui **exige** checar se os outros dois também precisam de
+> atualização na mesma sessão — ver a regra completa em
+> `DOCUMENTACAO_TECNICA.md` §0.2.
 >
-
-> Este documento existe pra responder uma pergunta específica: **"o que eu faço agora?"**
-> Ele é o terceiro pé da documentação, ao lado do `readme.md` (o que o jogo é) e do
-> `DOCUMENTACAO_TECNICA.md` (como o código está organizado hoje). Se você (dev solo,
-> sem experiência prévia em jogos) está em dúvida sobre prioridade, comece aqui.
+> **Regra de manutenção:** edite marcando itens como concluídos e movendo
+> entre seções — não acumule histórico aqui. Se algo foi corrigido/decidido,
+> resuma em 1-2 linhas; detalhe extenso fica pro commit, não pro documento.
 >
-> **Não inclui GDD/Enredo.** História e design narrativo de longo prazo não entram
-> nesta lista — eles distorcem prioridade (empurram itens como "Puzzle 1" antes da
-> hora). Este documento só lida com o que é tecnicamente acionável agora.
->
-> **Regra de manutenção:** edite marcando itens como concluídos e movendo entre
-> seções — não acumule histórico aqui. Se um bug foi corrigido, apague a linha (o
-> "aconteceu" fica registrado no commit/no jogo, não precisa duplicar aqui).
+> ⚠️ **Nota desta entrega:** este checklist reconcilia duas frentes que
+> rodaram em paralelo sem uma saber da outra — Painel do Droid/Equipável com
+> bônus real de atributo (um lado) e Cidade/Loja/Gold (outro lado). Histórico
+> de cada frente foi condensado; nada foi descartado, só resumido.
 
 ---
 
-## ✅ Concluído nesta sessão (Painel do Droid — visualização de peças)
+## ✅ Gold no Status + Menu persistente entre cenas
 
-Implementado conforme `PLANO_PAINEL_DROID.md`, com as decisões da seção 3
-dele já fechadas por `PROMPT_AGENTE_PAINEL_DROID.md`: só visualização
-(Opção A), sem desequipar, slot vazio sempre mostra "Vazio", Droid inicial
-continua sem peças por padrão, botão do menu continua "Droid".
-
-- **`TelaDeDroidManager.cs`** (novo, `Assets/Scripts/`) — cópia estrutural
-  de `TelaDeStatusManager.cs`: busca o Droid direto do
-  `GerenciadorDeEstado`, mostra os 4 slots (Braço/Perna/Tronco/Cabeça) com
-  nome + bônus de atributo (ou "Vazio"), e segue o mesmo contrato de
-  painel + callback `AoFechar` dos outros painéis (Status/Terminal/Bag).
-- **Patch em `MenuMundoManager.cs` aplicado nesta sessão** (o arquivo real
-  chegou depois do resto do trabalho): botão "Droid" trocou
-  `MostrarAviso("Equipamentos")` pelo método `AoClicarDroid`, no mesmo
-  molde de `AoClicarStatus`/`AoClicarBag`; campo `telaDeDroid` novo; `AoFechar`
-  ligado em `Start()`. Nada mais mudou no arquivo.
-
-**Trabalho de Editor necessário para isso funcionar:**
-- Criar o Prefab `PainelDroid` (painel raiz + 4 `TextMeshProUGUI` + botão
-  Voltar, mesma estrutura do `PainelStatus`) e preencher os 5 campos do
-  `TelaDeDroidManager` no Inspector.
-- Arrastar a instância do prefab pro campo `telaDeDroid`, já existente no
-  `MenuMundoManager` atualizado.
-
-**Pendências abertas geradas por este trabalho:**
-- Só visualização — decisão explícita de escopo (Opção A do plano). Migrar
-  pra Opção B (equipar/trocar peça pelo próprio painel) fica como
-  evolução futura, se fizer falta na prática.
-- Testar de fato se equipar a mesma peça 2x duplica o bônus (pendência já
-  existente, ver "❓ Pendência de teste" abaixo) — o painel deixa esse
-  número visível, então qualquer bug de duplicação vai aparecer na cara
-  assim que for testado.
-
----
-
-## ✅ Concluído em sessão anterior (Estágio 3 — Sistema de Item, fase 2/2)
-
-Fecha o "🚨 Mecânica essencial faltante" abaixo. Implementado sem alinhamento
-de design adicional (decisões tomadas e documentadas inline no código,
-fáceis de ajustar depois se não servirem):
-
-- **`TipoDeItem` expandido**: `Cura, Buff, Debuff, Equipavel, ForaDeBatalha`
-  (os 4 últimos eram só comentário no enum desde a fase 1). Novo enum
-  `AcaoForaDeBatalha` (`SinalizadorDeRetorno, KitDeAcampamento,
-  ChaveDeAcesso`) identifica qual lógica cada item fora-de-batalha roda.
-- **Buff/Debuff reaproveitam o motor de efeito já existente**
-  (`EfeitoDeAtributo`/`EfeitoDeDanoPorTurno`, o mesmo de técnica) em vez de
-  criar uma estrutura nova. Buff aplica no próprio Droid (`BattleManager.
-  AplicarEfeitoDeItem`); Debuff aplica no inimigo e rola resistência (INT),
-  igual efeito de técnica. Exemplos no catálogo: Escudo de Emergência
-  (buff de VIT), Granada de Ácido (debuff de VIT), Disruptor EMP (reaproveita
-  a flag "Stun"), Corrosivo (dano por turno).
-  **Atenção:** Corrosivo herda os 2 bugs abertos do motor de efeitos (ver
-  seção de bugs abaixo) — não corrigido nesta entrega de propósito.
-- **Equipável dá bônus real de atributo**: `DroidPart` ganhou
-  `AtributoBonificado`/`ValorDoBonus` (novo, opcional — não mexe no
-  `AtributoPrincipal` int genérico que já existia). `Droid.
-  ObterBonusDePecas` deixou de ser placeholder fixo em 0 e agora soma o
-  bônus das 4 peças de verdade. Equipar (via Bag) cria a peça a partir do
-  catálogo e instala com `Droid.EquiparPeca` — **consome o item, sem
-  desequipar/trocar nesta fase** (decisão explícita, documentada no código;
-  fácil de evoluir se pedido depois).
-- **Fora de batalha (Bag)**: Sinalizador de Retorno (reaproveita
-  `SalvamentoJson.Carregar()` inteiro — "volta pro último save", não
-  inventa teleporte novo; por isso não consome o item, o load já restaura
-  o inventário), Kit de Acampamento (cura total + salva), Chave de Acesso
-  (seta uma flag genérica em `GerenciadorDeEstado`, sem destravar conteúdo
-  de história específico — isso fica fora do escopo técnico).
-- **Gold novo**: `GerenciadorDeEstado.Gold` + `AdicionarGold`/
-  `TentarGastarGold` (este último ainda sem uso — não há loja). Persistido
-  em `DadosDoJogo` **v4**. Saves v1-v3 carregam Gold = 0 (compatibilidade,
-  não quebra o load).
-- **Drop de inimigo**: `BattleManager` ganhou `goldMinimo`/`goldMaximo` +
-  `tabelaDeDrops` (lista configurável no Inspector, cada entrada com
-  id do item + chance independente + quantidade min/max). Rolado em
-  `AplicarRecompensas()`, chamado nos dois pontos onde a vitória contra o
-  inimigo já era detectada. Salva o jogo na hora (mesmo padrão de "persistir
-  imediatamente" que o consumo de item já usa).
-
-**Trabalho de Editor necessário para isso funcionar:**
-- Nenhum objeto novo na cena é necessário — Buff/Debuff aparecem
-  automaticamente na lista de itens de batalha já existente; Equipável e os
-  3 itens Fora de Batalha aparecem automaticamente na Bag já existente.
-- Único ajuste manual: preencher `goldMinimo`/`goldMaximo`/`tabelaDeDrops`
-  no Inspector de cada `BattleManager` (uma por inimigo/cena de batalha) —
-  deixados zerados/vazios por padrão, então nenhum inimigo droppa nada até
-  você configurar isso.
-
-**Pendências abertas geradas por este trabalho:**
-- Sem loja/compra ainda — só kit inicial + drop. `TentarGastarGold` existe
-  mas não é chamado em lugar nenhum ainda.
-- Sem "desequipar" — trocar de peça Equipável descarta a anterior (ela não
-  volta pro inventário).
-- Itens Equipáveis/de exemplo (`Núcleo de Energia`, `Servo-Motor`) e os 3
-  Debuffs/1 Buff não têm balanceamento real — valores placeholder, mesma
-  situação de `TabelaDeCombate`/`TabelaDeCustos`.
-- `DOCUMENTACAO_TECNICA.md` não foi atualizado (ver nota no topo deste
-  documento).
+- **`TelaDeStatusManager.cs`**: novo campo opcional `textoGold`, mostra `Gold: {GerenciadorDeEstado.Instancia.Gold}` — Status nunca tinha sido atualizado quando o Gold foi criado.
+- **`MenuMundoManager.cs`**: ganhou `Awake()` com o mesmo padrão singleton + `DontDestroyOnLoad` de `GerenciadorDeEstado`. Antes, o Canvas do menu (e todos os painéis Status/Terminal/Bag/Droid) só existia na cena onde foi colocado (`Game`) — ESC na Cidade não abria nada. Agora o Canvas persiste entre cenas; **trabalho de Editor:** remover qualquer Canvas/Menu duplicado colocado manualmente na cena `City`, só deve existir um.
 
 ---
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-Detalhe técnico em `DOCUMENTACAO_TECNICA.md` §9.
-
-1. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje (só inimigos com técnica ou item Debuff poderiam causar isso), mas é risco pra quando houver inimigo especial ou uso repetido de Debuff.
-2. [ ] **Empilhamento sem limite de Veneno/Stun (e agora Corrosivo/Disruptor EMP, itens Debuff).** Aplicar o mesmo efeito várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração de fato. **CONFIRMADO em teste real (sessão atual):** usar Disruptor EMP (item Debuff que aplica a flag "Stun") duas vezes empilha duas instâncias, em vez de renovar a duração de uma só. Não é um bug novo do sistema de item — é o mesmo bug de técnica, só que agora com uma segunda fonte que aciona ele. **Decisão de comportamento ainda pendente** (cap de instâncias? renovar duração em vez de somar?) — não implementar sem definir isso primeiro.
+1. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje, mas é risco pra inimigo especial ou uso repetido de Debuff.
+2. [ ] **Empilhamento sem limite de Veneno/Stun/Corrosivo/Disruptor EMP.** Aplicar o mesmo efeito várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração. **Confirmado em teste real** (Disruptor EMP 2x = 2 instâncias, não renova). **Decisão de comportamento pendente de resposta** — opções em aberto: renovar duração (sem empilhar), permitir empilhar até um cap, ou bloquear reaplicação enquanto ativo. Não implementar sem fechar isso primeiro.
 
 ---
 
-## ❓ Pendência de teste (não confirmado ainda)
+## ✅ Painel do Droid (visualização de peças)
 
-- **Equipável (Núcleo de Energia/Servo-Motor) duplicando bônus de atributo ao usar 2x.** Levantado nesta sessão, mas o teste real usou Disruptor EMP (Debuff), não um item Equipável — a suspeita de duplicação **não foi confirmada nem descartada**. Pelo código, `Droid.EquiparPeca` deveria SUBSTITUIR a peça do slot, não somar (ver Estágio 3 abaixo) — mas isso precisa ser testado de fato com 2x Núcleo de Energia (mesmo slot) antes de assumir que está correto.
-- ~~**Item equipado não aparece em lugar nenhum da UI.**~~ — **Resolvido nesta sessão** via o novo Painel do Droid (ver "✅ Concluído nesta sessão" no topo). A Bag continua sem mostrar isso, mas o painel dedicado cobre a lacuna.
+`TelaDeDroidManager.cs` (novo) + patch em `MenuMundoManager.cs`: botão "Droid" do Menu do Mundo abre painel somente-leitura com os 4 slots (Braço/Perna/Tronco/Cabeça), nome + bônus de atributo (ou "Vazio"). Código pronto, Prefab `PainelDroid` já configurado no Editor e testado pelo responsável do projeto. Só visualização — equipar continua pela Bag; sem "desequipar" nesta leva.
 
----
-
-## ✅ Concluído em sessão anterior (13/09/2026 — Estágio 2: Sistema de Item, fase 1/2)
-
-Primeira fatia do sistema de item — cobriu só itens de Cura, com
-quantidade real e persistência real (`CatalogoDeItens.cs`, inventário em
-`GerenciadorDeEstado`, save v3, `BattleManager`/`BagUIManager` lendo o
-inventário real). Ver Estágio 3 acima para a fase 2 (Buff/Debuff/Equipável/
-ForaDeBatalha + drop), que fecha o que ficava pendente aqui.
+**Pendência:** testar se equipar a mesma peça 2x duplica o bônus, ou se `Droid.EquiparPeca` de fato substitui (comportamento esperado) — **já testado e confirmado: não duplica, substitui corretamente.**
 
 ---
 
-## 🚨 Mecânica essencial faltante
+## ✅ Sistema de Item completo (Cura/Buff/Debuff/Equipável/ForaDeBatalha) + Gold
 
-> ✅ **Fechada nesta sessão (Estágio 3)** — ver "Concluído nesta sessão" no
-> topo. O que restava (drop de inimigo, categorias além de Cura, UI mais
-> rica o suficiente pra mostrar cada tipo) foi implementado. O que **ainda
-> não existe** (loja/compra, ícones/descrição longa, filtro por categoria
-> na UI) fica listado nas pendências acima e no roadmap de amadurecimento
-> abaixo — não é mais bloqueante de lançamento, é melhoria.
+Reconciliação: esse trabalho já existia em código antes de aparecer documentado — os `.md` não refletiam o estado real. Resumo do que está implementado:
+
+- `CatalogoDeItens.cs`: `TipoDeItem` com as 5 categorias, cada uma com `DefinicaoDeItem` (id, nome, tipo, efeito, usável em/fora de batalha, e agora `Preco`).
+- Buff/Debuff reaproveitam o motor de efeito de técnica (`EfeitoDeAtributo`/`EfeitoDeDanoPorTurno`) — por isso herdam os 2 bugs abertos acima.
+- Equipável dá bônus real via `DroidPart.AtributoBonificado`/`ValorDoBonus`, somado em `Droid.ObterBonusDePecas`. Equipar consome o item, sem desequipar.
+- Fora de Batalha: Sinalizador de Retorno (recarrega save), Kit de Acampamento (cura total + salva), Chave de Acesso (flag genérica).
+- Inventário real e persistido (`GerenciadorDeEstado`, save v4), Bag funcional fora de batalha.
+- `Gold`: `GerenciadorDeEstado.Gold` + `AdicionarGold`/`TentarGastarGold`, persistido. Fontes: kit inicial, drop configurável por `BattleManager` (`goldMinimo`/`goldMaximo`/`tabelaDeDrops`, preenchido manualmente por cena de batalha), e venda na Loja.
+
+**Pendência aberta:** confirmar que `BattleManager.tabelaDeDrops` sobreviveu às mudanças recentes da Loja (foram mexidos em sessões diferentes, sem visibilidade cruzada) — sem isso, "Gold: 0" pode nunca sair do zero em jogo normal fora da Loja.
 
 ---
 
-## 🔧 Trabalho de Editor pendente (não é código, é configuração no Inspector)
+## ✅ Cidade, Loja (compra/venda) e NPC
 
-- [x] ~~`BattleManager`: `painelListaDeItens`/`prefabBotaoItem` — apontado como "ainda mal otimizado"~~ — **corrigido nesta sessão** na Bag (`ListaDeItensBag`), ver "✅ Concluído" abaixo. Confirmar se o mesmo ajuste ainda falta no `BattleManager` (ver item logo abaixo).
-- [ ] **NOVO (sessão atual):** o mesmo bug de sobreposição de botões (texto cortado/empilhado no meio da tela) que existia na Bag também aparece nos painéis `painelListaDeAtaques`/`painelListaDeItens` **dentro do `BattleManager`, na cena Battle** — confirmado por print do usuário. Aplicar a MESMA correção (Vertical Layout Group + Content Size Fitter no painel, largura maior no prefab de botão de batalha, Auto Size no texto) nesses dois painéis. Ainda não feito.
-- [ ] preencher `goldMinimo`/`goldMaximo`/`tabelaDeDrops` no Inspector de cada `BattleManager` que deveria dropar algo — hoje todos ficam zerados/vazios por padrão (sem drop nenhum) até isso ser configurado manualmente.
+- **Cena `City`** + `TransicaoDeCena` (mundo ↔ Cidade) — **corrigido nesta sessão:** campo de destino trocado de `Transform` pra `Vector2` (coordenadas), porque Unity não permite referência cross-scene de `Transform`.
+- **`NpcInterativo.cs`**: enum `TipoDeNpc` (`Generico`/`Loja`) + campo `lojaUIManager`. `Generico` mantém placeholder (`Debug.Log`); `Loja` abre o painel e registra/libera "menu aberto" do mesmo jeito que Status/Terminal/Bag/Droid já fazem.
+- **`LojaUIManager.cs`** (novo): painel com abas Comprar/Vender, mesmo contrato estrutural do `BagUIManager` (`AoFechar`, `LayoutRebuilder.ForceRebuildLayoutImmediate` antes de popular a lista). Comprar gasta Gold e soma item; Vender remove item e credita Gold.
+- **`CatalogoDeItens.Preco`** (novo campo) + **`ItensDaLoja`** (expõe o catálogo inteiro como vendável) — todo item vale 1 Gold (`PrecoPadrao`), decisão deliberada, não balanceado.
+- **Bugs de Editor já resolvidos ao vivo nesta sessão:** `CatalogoDeItens.cs` duplicado fora da pasta certa (corrigido); `lojaUIManager` do NPC não estava linkado (corrigido); `BotaoItemTemplate` aparecendo sozinho na tela — precisa ficar desativado, é só molde (corrigido); itens da lista sobrepostos — faltava Vertical Layout Group + Content Size Fitter (corrigido, lista já aparece certinha nos prints).
+- **Em andamento:** adicionar `Scroll Rect` numa `ScrollView` nova na Loja, e fixar tamanho de fonte no template (hoje varia por item).
 
-### ✅ Concluído nesta sessão — layout da lista de itens da Bag
+---
 
-O texto dos botões de item (ex: "Núcleo de Energia (+5 For) x1") ficava
-sobreposto/cortado no meio da tela porque `ListaDeItensBag` estava com
-tamanho fixo (100x100) e sem componentes de layout automático. Corrigido
-via Editor (sem mudança de código — `BagUIManager.cs` já esperava essa
-configuração, só faltava no Inspector):
+## 🔧 Trabalho de Editor pendente
 
-- `ListaDeItensBag` ganhou **Vertical Layout Group** (Spacing 5–10, Child
-  Alignment Upper Center, sem Force Expand) + **Content Size Fitter**
-  (Horizontal/Vertical Fit = Preferred Size) — painel cresce sozinho
-  conforme o número de itens.
-- Prefab `BotaoItemTemplate`: largura aumentada de 160 para 260.
-- Filho `Text (TMP)` do prefab: **Auto Size** ativado, Overflow ajustado —
-  texto encolhe em vez de vazar em casos extremos.
-- Scroll Rect adicionado no `PainelBag` pelo usuário, antecipando a lista
-  crescer mais no futuro (decisão do usuário, não pedida por mim).
-
-**Resultado confirmado por print do usuário:** lista aparece corretamente
-separada, uma linha por item.
+- [ ] **Loja:** finalizar `Scroll Rect` + fixar fonte no template de botão (em andamento).
+- [ ] **Battle:** o mesmo bug de sobreposição de botões (texto cortado/empilhado) que existia na Bag e já foi corrigido lá — confirmar se ainda falta nos painéis `painelListaDeAtaques`/`painelListaDeItens` dentro do `BattleManager`, cena Battle.
+- [ ] Preencher `goldMinimo`/`goldMaximo`/`tabelaDeDrops` no Inspector de cada `BattleManager` que deveria dropar algo — hoje ficam zerados/vazios até serem configurados manualmente (ver pendência de sobrevivência ao merge, acima).
 
 ---
 
 ## 🎯 Próximos passos imediatos (curto prazo, em ordem sugerida)
 
-1. Criar o Prefab `PainelDroid` no Editor e ligar no `MenuMundoManager`
-   (o código já está pronto) — sem isso o botão "Droid" não abre nada em
-   runtime, mesmo com o patch aplicado.
-2. Corrigir os 2 bugs abertos acima (motor de efeitos).
-3. Configurar `goldMinimo`/`goldMaximo`/`tabelaDeDrops` nos `BattleManager`s existentes — sem isso a fase 2 do item está implementada mas nenhum inimigo droppa nada na prática.
-4. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — está declarada e não é referenciada em lugar nenhum.
-5. Decidir se/quando implementar loja (usaria `GerenciadorDeEstado.TentarGastarGold`, já pronto e sem uso).
+1. Fechar a decisão de comportamento de empilhamento de efeito e corrigir os 2 bugs abertos (motor de efeitos) — bloqueante pra qualquer Debuff/técnica de status novo.
+2. Terminar o polish visual da Loja (Scroll Rect + fonte fixa) — já em andamento.
+3. Confirmar que `BattleManager.tabelaDeDrops` sobreviveu ao trabalho da Loja, e configurar nos `BattleManager`s que faltarem — sem isso o jogo normal não gera Gold fora da Loja.
+4. Balancear `Preço` por item (hoje todos valem 1 Gold) — só depois do passo 3, senão não há como testar significado de preço.
+5. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — declarada e nunca referenciada.
+6. Decidir se/quando retomar o Diálogo simples de NPC genérico (pulado por decisão do responsável, não descartado).
 
 ---
 
 ## 🗺️ Amadurecimento do jogo (o "quadro geral")
 
-Isso é o tipo de checklist que qualquer RPG por turno pequeno costuma precisar pra
-sair de "mecânica funcionando" para "jogo que dá vontade de jogar de novo". Não são
-tarefas urgentes — são a resposta pra "depois que eu conserto o que está quebrado, o
-que falta pro jogo ficar redondo":
+Não são tarefas urgentes — cardápio de ideias pra depois que o essencial estiver redondo:
 
-### Sensação de jogo (o mais barato, maior retorno percebido)
-- [ ] Feedback ao acertar/errar um ataque: um leve shake de câmera, flash no sprite
-      atingido, ou um som de impacto — hoje o combate é só texto + slider
-- [ ] Som ambiente e efeitos sonoros básicos (passo, ataque, vitória, derrota)
-- [ ] Transição de tela entre mundo ↔ batalha (hoje é corte seco de cena)
+### Sensação de jogo
+- [ ] Feedback ao acertar/errar (shake de câmera, flash, som de impacto)
+- [ ] Som ambiente e efeitos sonoros básicos
+- [ ] Transição de tela mundo ↔ batalha (hoje é corte seco)
 
 ### Conteúdo e variedade
-- [ ] Mais de um tipo de inimigo com comportamento diferente (hoje só existe
-      `InimigoFixo`, sempre a mesma ação) — agora cada um já pode ter sua própria
-      `tabelaDeDrops`/Gold, só falta variar o comportamento em combate
-- [ ] Curva de dificuldade: os inimigos escalam com o progresso do jogador, ou são
-      todos fixos manualmente?
-- [ ] Loja/NPC vendedor (usaria o Gold e `TentarGastarGold`, já existentes)
-- [ ] Ícones e descrição longa nos itens (hoje só nome + stat resumido no texto do botão)
+- [ ] Mais de um tipo de inimigo com comportamento diferente (hoje só `InimigoFixo`) — cada um já pode ter sua própria `tabelaDeDrops`/Gold, falta variar o comportamento
+- [ ] Curva de dificuldade dos inimigos
+- [ ] Ícones e descrição longa nos itens/Loja (hoje só nome + stat resumido)
 
 ### Ensino/UX (crítico pro objetivo pedagógico do TCC)
-- [ ] Onboarding do terminal: o jogador entende, na primeira vez que abre, o que
-      pode digitar e por quê? Hoje existe um texto de ajuda estático — vale testar
-      com alguém que nunca viu o jogo
-- [ ] Feedback de erro do Lua: quando o Apollo Debugger (mencionado no readme) vai
-      de fato existir em código, ou é só descrição de design ainda? Se só design,
-      isso é uma lacuna grande entre o pitch pedagógico e o que o jogador realmente
-      vê hoje no terminal
+- [ ] Onboarding do terminal — testar com alguém que nunca viu o jogo
+- [ ] Apollo Debugger: existe em código de fato, ou é só descrição de design ainda? Se só design, é lacuna entre o pitch pedagógico e o que o jogador vê hoje
 
 ### Solidez técnica
-- [ ] Testes automatizados mínimos pra regras de combate (fórmula de dano, custo de
-      técnica, e agora efeito de item) — hoje qualquer mudança precisa ser validada
-      manualmente jogando
-- [ ] Múltiplos slots de save, ou pelo menos confirmação antes de sobrescrever o
-      save existente (fica mais relevante agora que o Sinalizador de Retorno chama
-      `Carregar()` — um save único significa "voltar" sempre pro mesmo ponto)
-- [ ] Playtesting real dos valores de `TabelaDeCustos`/`TabelaDeCombate`/itens novos —
-      todos os números hoje são placeholder, nenhum foi calibrado com gente jogando
-
-Marque o que fizer sentido perseguir e ignore o resto — esta seção é um cardápio de
-ideias, não uma exigência.
+- [ ] Testes automatizados mínimos (dano, custo de técnica, efeito de item)
+- [ ] Múltiplos slots de save / confirmação antes de sobrescrever
+- [ ] Playtesting real dos valores de `TabelaDeCustos`/`TabelaDeCombate`/itens/preços — tudo hoje é placeholder
 
 ---
 
 ## 🚫 Fora do escopo por enquanto (não deixar a IA empurrar isso)
 
-Itens já decididos como "não agora" (ver roadmap completo em
-`DOCUMENTACAO_TECNICA.md` §8): Modo Puzzle do terminal, `DroidDataSO`/Factory,
-Fase de herança real de peças (Cartuchos de Código sobrescrevendo `DroidBase`).
-Se um agente sugerir atacar algum desses sem você ter puxado o assunto, é sinal de
-que ele não leu esta seção — redirecione pra cá.
-
-**Exceções (removidas desta lista, ver seções correspondentes):**
-- Inventário/sistema de item saiu em 12/09/2026 — **fases 1 e 2 concluídas**
-  (ver "Concluído" acima). Loja/compra continua fora de escopo por ora.
-- **Sistema de acerto/erro (HIT/FLEE) saiu em 12/09/2026** — já implementado.
-- **Equipável deu bônus real de atributo** (Estágio 3) — a peça em si ainda
-  não tem comportamento de código (isso continua fora de escopo, é a "Fase
-  de herança real" acima).
+Modo Puzzle do terminal, `DroidDataSO`/Factory, herança real de peça (Cartuchos de Código sobrescrevendo `DroidBase`), sistema de "desequipar". Se um agente sugerir atacar algum desses sem você ter puxado o assunto, redirecione pra cá.

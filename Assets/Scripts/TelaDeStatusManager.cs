@@ -26,6 +26,7 @@ public class TelaDeStatusManager : MonoBehaviour
     public TextMeshProUGUI textoTecnicas;
     public TextMeshProUGUI textoPontos;
     public TextMeshProUGUI textoExp;
+    public TextMeshProUGUI textoGold;
     public Button botaoVoltar;
 
     // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
@@ -76,6 +77,14 @@ public class TelaDeStatusManager : MonoBehaviour
             textoExp.text =
                 $"Nível: {droid.Progressao.Nivel}\n" +
                 $"XP: {droid.Progressao.ExperienciaAtual}/{droid.Progressao.ExperienciaNecessariaProximoNivel}";
+        }
+
+        // Campo opcional, mesmo padrão de textoExp: se você não tiver
+        // configurado o TextMeshProUGUI de Gold no Inspector ainda, isso
+        // simplesmente não mostra nada, sem quebrar o resto.
+        if (textoGold != null)
+        {
+            textoGold.text = $"Gold: {GerenciadorDeEstado.Instancia.Gold}";
         }
 
         painel.SetActive(true);
