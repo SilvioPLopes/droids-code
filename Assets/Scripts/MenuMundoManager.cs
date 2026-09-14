@@ -63,6 +63,11 @@ public class MenuMundoManager : MonoBehaviour
     // não reabrir o painelMenu por baixo do painel que está em foco.
     private bool _outroPainelAberto = false;
 
+    // NOVO: guarda qual painel fechar quando ESC for apertado com um painel
+    // aberto (Status/Terminal/Bag/Droid). Setado no mesmo AoClicarX que liga
+    // _outroPainelAberto = true; zerado em AoFecharOutroPainel.
+    private System.Action _fecharPainelAtual;
+
     // NOVO: mesmo padrão de GerenciadorDeEstado — só uma instância do Menu
     // do Mundo sobrevive entre cenas (DontDestroyOnLoad). Sem isso, o menu
     // (e todos os painéis Status/Terminal/Bag/Droid) só existia na cena
@@ -115,9 +120,18 @@ public class MenuMundoManager : MonoBehaviour
 
     void Update()
     {
-        // NOVO (13/09/2026): enquanto Status/Terminal estiverem abertos,
-        // Escape não deve mexer no painel do Menu do Mundo.
-        if (_outroPainelAberto) return;
+        // CORRIGIDO: antes, Escape era ignorado enquanto Status/Terminal/
+        // Bag/Droid estivessem abertos (só dava pra fechar clicando em
+        // Voltar). Agora ESC fecha o painel que estiver aberto, chamando o
+        // mesmo Fechar() que o botão Voltar de cada um já chama.
+        if (_outroPainelAberto)
+        {
+            if (Input.GetKeyDown(teclaDeAbertura))
+            {
+                _fecharPainelAtual?.Invoke();
+            }
+            return;
+        }
 
         if (Input.GetKeyDown(teclaDeAbertura))
         {
@@ -159,6 +173,7 @@ public class MenuMundoManager : MonoBehaviour
         if (telaDeStatus == null) return;
 
         _outroPainelAberto = true;
+        _fecharPainelAtual = telaDeStatus.Fechar;
         if (painelMenu != null) painelMenu.SetActive(false);
         telaDeStatus.Mostrar();
     }
@@ -170,6 +185,7 @@ public class MenuMundoManager : MonoBehaviour
         if (bag != null)
         {
             _outroPainelAberto = true;
+            _fecharPainelAtual = bag.Fechar;
             if (painelMenu != null) painelMenu.SetActive(false);
             bag.Mostrar();
         }
@@ -188,6 +204,7 @@ public class MenuMundoManager : MonoBehaviour
         if (telaDeDroid != null)
         {
             _outroPainelAberto = true;
+            _fecharPainelAtual = telaDeDroid.Fechar;
             if (painelMenu != null) painelMenu.SetActive(false);
             telaDeDroid.Mostrar();
         }
@@ -203,6 +220,7 @@ public class MenuMundoManager : MonoBehaviour
         {
             // NOVO (13/09/2026): esconde o Menu do Mundo antes de abrir o Terminal.
             _outroPainelAberto = true;
+            _fecharPainelAtual = terminal.Fechar;
             if (painelMenu != null) painelMenu.SetActive(false);
             terminal.Abrir();
         }
@@ -217,6 +235,7 @@ public class MenuMundoManager : MonoBehaviour
     void AoFecharOutroPainel()
     {
         _outroPainelAberto = false;
+        _fecharPainelAtual = null;
         if (painelMenu != null) painelMenu.SetActive(true);
     }
 
