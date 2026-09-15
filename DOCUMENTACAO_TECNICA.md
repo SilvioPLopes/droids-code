@@ -210,6 +210,15 @@ Salvamento    (ISistemaDeSalvamento / SalvamentoJson / DadosDoJogo) — cruza Do
 > única pasta `Estado/`. `GerenciadorDeEstado.cs` também está bem mais
 > recente (12/09 02:09) do que o resto de `Estado/`, mas isso é só data de
 > modificação — não indica arquivo desatualizado.
+>
+> **✅ Correção (14/09/2026):** confirmada via print do Windows Explorer.
+> Três pastas novas em `Scripts/`: `Casa/` (cena `CasaLip`, puzzle de
+> introdução — ver §4.7), `Camera/` (`CameraFollow.cs`, ver §4.6) e
+> `Mapas/` (existe na raiz de `Scripts/`, conteúdo ainda não visto nesta
+> sessão — não documentado abaixo até alguém confirmar o que tem dentro).
+> `CatalogoDeItens.cs` (pasta `Droid/`) foi confirmado como o nome real —
+> o "l" minúsculo no Explorer só parecia um "I" maiúsculo, não é um
+> arquivo/typo diferente.
 
 ```
 Assets/Scripts/BattleManager.cs
@@ -228,6 +237,13 @@ Assets/Scripts/NpcInterativo.cs
 Assets/Scripts/readme.md
 Assets/Scripts/DOCUMENTACAO_TECNICA.md
 Assets/Scripts/CHECKLIST_DE_DESENVOLVIMENTO.md
+
+Assets/Scripts/Camera/CameraFollow.cs — novo (14/09/2026), ver §4.6
+
+Assets/Scripts/Casa/InteragirComTerminalCasa.cs — novo (14/09/2026), ver §4.7
+Assets/Scripts/Casa/PuzzleAguaCasaChecker.cs — novo (14/09/2026), ver §4.7
+
+Assets/Scripts/Mapas/ — pasta existe na raiz de Scripts/ (confirmada via Explorer, 14/09/2026), conteúdo ainda não visto nesta sessão — não documentar até confirmar
 
 Assets/Scripts/Combat/CombatEngine.cs
 Assets/Scripts/Combat/IParticipanteDeCombate.cs
@@ -410,7 +426,27 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 **`LojaUIManager`** (novo, cena `City`) — painel com abas Comprar/Vender, mesmo contrato estrutural de `BagUIManager` (`AoFechar`, `LayoutRebuilder.ForceRebuildLayoutImmediate` ativando o painel antes de popular a lista — mesma correção de bug já usada na Bag). Comprar lê `CatalogoDeItens.ItensDaLoja`, gasta Gold via `TentarGastarGold` e soma item via `AdicionarItem`; Vender lê o inventário do jogador, remove item via `TentarRemoverItem` e credita Gold via `AdicionarGold`.
 
+**`CameraFollow`** (novo, 14/09/2026, pasta `Camera/`) — segue suavemente um `target` (Transform do Lip) via `Vector3.Lerp` em `LateUpdate`, com `offset` configurável (Z negativo, exigido pra câmera 2D enxergar sprites) e `smoothSpeed`. Opcionalmente (`usarLimites`) trava a câmera dentro de um retângulo (`limiteMin`/`limiteMax`, coordenadas de mundo) calculado a partir de `Camera.orthographicSize`/`aspect`, pra nunca mostrar área vazia fora do mapa; se o mapa for menor que a tela num eixo, trava no centro daquele eixo em vez de inverter os limites. Puro apresentação — não referencia `GerenciadorDeEstado`/Domínio, então não tem acoplamento com save/estado do jogo. Não documentado ainda em qual(is) cena(s) está de fato anexado (a doc no próprio arquivo sugere `City`, mas não está confirmado se também está em `Game`/`CasaLip`/`Battle`).
+
 **`TerminalUIManager`** — UI do terminal: campo de código, histórico de comandos (↑/↓), log de sessão, atalho Ctrl+Enter.
+> ✅ **Novo (14/09/2026 — puzzle da casa):** ganhou `public DroidScriptRunner Runner => runner` (só leitura — exposto pra permitir que um checker de puzzle específico de cena, como `PuzzleAguaCasaChecker`, leia o estado da VM Lua depois de cada execução, sem duplicar toda a UI do terminal) e `public System.Action AoExecutarCodigo`, invocado ao final de `AoClicarExecutar()` — sempre, sucesso ou erro. O terminal geral não sabe (nem precisa saber) o que os ouvintes fazem com isso.
+> ✅ **Confirmado (14/09/2026):** puzzle da água (`CasaLip`) testado ponta a ponta pelo responsável do projeto — funciona.
+> ⚠️ **Débito técnico não removido (14/09/2026):** `DroidScriptRunner.ObterVariavelNumerica` (ver §4.3) tem um `Debug.Log` de depuração explicitamente marcado no próprio código como "remover depois de confirmar o bug do puzzle de água" — o bug já foi confirmado corrigido, mas o log de debug **não foi removido ainda** (decisão explícita: não refatorar agora). Ver §9.
+
+### 4.7 `Casa` — cena `CasaLip` (puzzle de introdução, Sessão 1 do Enredo)
+
+> Cena nova (`CasaLip`, confirmada via print do Windows Explorer em
+> `Assets/Scenes`, 14/09/2026, junto com `Battle`/`City`/`Game`/`MainMenu`),
+> não descrita em nenhuma versão anterior deste documento. Cobre o puzzle
+> de água citado no Enredo ("Sessão 1":
+> `int nivel_agua = 0; while (nivel_agua < 100) { ... }`) como primeiro
+> contato do jogador com o terminal Lua, antes mesmo da cena `Game`.
+
+**`InteragirComTerminalCasa`** — trigger de interação simples (`Collider2D` como trigger, via `[RequireComponent]` + `Reset()` que já marca `isTrigger = true`). Jogador entra na área (`OnTriggerEnter2D`, checa `tagDoPlayer` = "Player"), aperta uma tecla (`teclaDeInteracao`, default `E`), e chama `terminal.Abrir()` — o mesmo `TerminalUIManager` geral do jogo, reaproveitado aqui, não uma classe própria de terminal da casa. **Não depende de `NpcInterativo`** — decisão deliberada de não travar a entrega numa dependência de padrão de interação que não estava confirmada em mãos na sessão; pode ser substituído pelo padrão de `NpcInterativo` da Cidade depois, sem tocar em `PuzzleAguaCasaChecker` (a única exigência entre os dois é que `Abrir()` seja chamado em algum momento).
+
+**`PuzzleAguaCasaChecker`** — checagem de vitória do puzzle de água. `[RequireComponent(typeof(TerminalUIManager))]`: mora no **mesmo GameObject** que o `TerminalUIManager` da casa (não existe uma classe `TerminalCasaManager` separada — é o terminal geral reaproveitado, confirmado). Assina `terminal.AoExecutarCodigo` em `OnEnable`/desassina em `OnDisable` (padrão seguro de evento em MonoBehaviour, evita assinatura duplicada ou vazamento). A cada execução de código, lê `terminal.Runner.ObterVariavelNumerica(nomeDaVariavel)` (default `"nivel_agua"`) — se `null` (variável ainda não existe na sessão Lua, ex: jogador digitou outro nome), loga e não faz nada; se `< valorDeVitoria` (default 100), não faz nada; se atingir o valor, marca `_puzzleResolvido` (idempotente — não reexecuta), ativa uma fala do Apollo (`textoDeApollo`, TMP) e destranca a porta de saída via `transicaoDaPortaDeSaida.trancada = false`.
+> ⚠️ **Decisão de arquitetura registrada (14/09/2026) — como a porta é trancada:** a versão anterior desativava o componente `TransicaoDeCena` da porta inteiro (`.enabled = false`) no `Awake()`. Dois problemas, ambos corrigidos: (1) componente desabilitado não recebe `OnTriggerEnter2D`, então a porta não conseguia nem avisar o jogador que precisava resolver o terminal primeiro; (2) `PuzzleAguaCasaChecker` mora no painel do terminal, que nasce **desativado** por padrão (só ativa em `Abrir()`) — `Awake()` de objeto inativo não roda, então a porta ficava destrancada até o jogador abrir o terminal pela 1ª vez. **Correção:** a porta usa um campo público `trancada` (`bool`) em `TransicaoDeCena`, marcado no Inspector da própria porta (ativa desde o início da cena); o trigger continua funcionando pra mostrar o aviso de bloqueio, e este script só desmarca a flag quando o puzzle é resolvido — nunca desabilita o componente.
+> **Nota:** este é o primeiro lugar no projeto onde `TransicaoDeCena` tem um campo `trancada`/bloqueio condicional — a §4.6 (bloco `TransicaoDeCena`, cena `City`) ainda descreve só a correção de `Transform`→`Vector2`; **verificar se esse campo `trancada`/`textoDeBloqueio` é genérico em `TransicaoDeCena` (reaproveitável em outras portas) ou específico desta instância da porta da Casa** antes de generalizar essa descrição na §4.6.
 - ✅ **Corrigido (13/09/2026)** — ganhou o campo público `AoFechar` (`System.Action`, opcional), invocado dentro do `if` de `Fechar()` (só quando o painel de fato estava aberto). Usado por `MenuMundoManager` pra saber quando reexibir seu próprio painel.
 
 **`TelaDeStatusManager`** — painel de status, busca o Droid direto do `GerenciadorDeEstado` (reutilizável entre batalha e mundo).
@@ -470,7 +506,7 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 | Item | Descrição | Status |
 |---|---|---|
 | Sistema de acerto/erro (HIT/FLEE) | Atributos derivados ATK/DEF/HIT/FLEE/HpMax completos, com chance de acerto baseada em HIT do atacante vs. FLEE do alvo | Planejado, não implementado — hoje todo ataque sempre acerta |
-| Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável | Planejado, não implementado |
+| Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável — sistema **genérico/reaproveitável** | Planejado, não implementado. **Não confundir** com `PuzzleAguaCasaChecker` (§4.7): esse é um checker ad-hoc específico da cena `CasaLip`, que já lê variável Lua direto via `DroidScriptRunner.ObterVariavelNumerica` e já está implementado e testado — mas não é uma instância deste sistema genérico, é uma solução pontual paralela |
 | `DroidDataSO` / `ItemDataSO` / Factory | Migrar criação de Droid/itens de código direto para ScriptableObjects configuráveis no Inspector | Planejado, não implementado |
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
 | Inventário e equipamento completos | Todas as 5 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha`) implementadas, com quantidade real e persistência (ver `CatalogoDeItens`, `Inventario`, `BagUIManager`). Obtenção via kit inicial, drop configurável por `BattleManager` e Loja (compra/venda). UI ainda mínima (sem ícone/descrição longa/filtro). | **Concluído** — falta só UI mais rica (não bloqueante), ver "Amadurecimento" em `CHECKLIST_DE_DESENVOLVIMENTO.md` |
@@ -483,6 +519,8 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 
 - `TabelaDeCustos.CustoResistenciaPorNivel` está declarada mas não é referenciada em nenhum cálculo — confirmar se ainda é necessária ou remover.
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.
+- **`DroidScriptRunner.ObterVariavelNumerica`** (14/09/2026) tem um `Debug.Log` de depuração (imprime todas as chaves globais do ambiente Lua a cada leitura) explicitamente comentado como temporário no código — o bug que motivou o debug já foi confirmado corrigido (puzzle da água testado e funcionando ponta a ponta), mas o log **não foi removido**; decisão explícita de não refatorar agora. Candidato a limpeza numa sessão futura.
+- **`TransicaoDeCena.trancada`/`textoDeBloqueio`** (campos usados pela porta da `CasaLip`, ver §4.7) ainda não têm confirmação se são genéricos (reaproveitáveis em qualquer porta do jogo) ou específicos desta instância — a descrição de `TransicaoDeCena` na §4.6 ainda não foi atualizada com esses campos por essa razão.
 
 **Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos) — status atualizado:**
 

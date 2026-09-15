@@ -16,11 +16,13 @@
 > o mesmo comportamento, nem sumir do roadmap aqui sem sumir também de lá —
 > ver a regra completa em `DOCUMENTACAO_TECNICA.md` §0.2.
 >
-> ⚠️ **Nota desta entrega:** este documento reconcilia duas frentes de
-> trabalho que estavam rodando em paralelo (sem uma saber da outra): o
-> **Painel do Droid** e o **sistema de Item com Equipável dando bônus real
-> de atributo** de um lado, e a **Cidade/Loja/Gold** de outro. Os dois times
-> de mudança são reais e coexistem — nada foi descartado.
+> ⚠️ **Nota desta entrega:** este documento reconcilia frentes de trabalho
+> que estavam rodando em paralelo (sem uma saber da outra): o **Painel do
+> Droid** e o **sistema de Item com Equipável dando bônus real de
+> atributo** de um lado, a **Cidade/Loja/Gold** de outro, e agora também a
+> **cena `CasaLip`** (puzzle de introdução ao terminal, ver seção de status
+> abaixo). Todas as frentes de mudança são reais e coexistem — nada foi
+> descartado.
 
 ---
 
@@ -45,6 +47,7 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 * O jogador nunca edita o Droid diretamente por propriedade — só através de métodos validados que conferem se há pontos de progressão suficientes antes de aplicar qualquer mudança:
   `droid.subirAtributo`, `droid.aprenderTecnica` (+ variantes com Veneno/Stun), `droid.melhorarTecnica`, `droid.esquecerTecnica`, `droid.obterAtributo`, `droid.listarTecnicas`, `droid.obterPontosDisponiveis`.
 * O terminal mantém histórico de comandos (setas ↑/↓) e um log de sessão com sucesso/erro de cada execução.
+* **Primeiro contato com o terminal:** a cena `CasaLip` abre o jogo com um puzzle guiado (ex: `int nivel_agua = 0; while (nivel_agua < 100) { ... }`) — o jogador precisa resolver esse código pra destrancar a porta de saída da casa, antes mesmo de chegar no mundo (`Game`). Usa o mesmo terminal geral do jogo, não um terminal separado.
 
 ### ⚔️ Combate por Turnos
 
@@ -71,7 +74,7 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 ### 🐞 Depuração Amigável (Apollo Debugger)
 
-* Erros de compilação/exceções não encerram o jogo. O robô **Apollo** atua como depurador interativo, destacando a linha da falha e dando dicas conceituais — descrição de design; ver pendência em "Amadurecimento" no checklist sobre se isso já existe em código.
+* Erros de compilação/exceções não encerram o jogo. O robô **Apollo** atua como depurador interativo, destacando a linha da falha e dando dicas conceituais — ainda **descrição de design**, não implementado como depurador reativo a erro. O que existe hoje em código é diferente: na cena `CasaLip`, Apollo mostra uma fala de texto fixo ao resolver o puzzle de introdução (não reage a erro, não destaca linha) — ver "Amadurecimento" no checklist.
 
 ### 💾 Salvamento
 
@@ -81,6 +84,7 @@ O principal objetivo do *Droids Code* é mitigar os altos índices de evasão e 
 
 * Movimentação top-down em 8 direções, encontros aleatórios configuráveis por zona.
 * **Cidade**: mapa/cena separada (`City`), com transição de cena de ida e volta e NPC interativo. Um NPC pode ser genérico ou do tipo Loja (abre o painel de compra/venda).
+* **Casa do Lip (`CasaLip`)**: cena inicial do jogo, antes de `Game`. Contém o puzzle de introdução ao terminal — porta de saída trancada até o jogador resolver o código proposto.
 
 ---
 
@@ -122,6 +126,8 @@ O currículo do jogo é estruturado no modelo de andaime cognitivo (*scaffolding
 - Gold + Loja (compra e venda) na Cidade; NPC interativo (genérico ou Loja); transição de cena mundo ↔ Cidade
 - Navegação de UI: exclusividade entre painéis (Status/Terminal/Bag/Droid/Loja) e o Menu do Mundo, todos com botão Voltar/ESC
 - Salvamento/carregamento em JSON completo (stats, técnicas, posição, cena, flags, inventário, Gold)
+- Cena `CasaLip`: puzzle de introdução ao terminal (Sessão 1 do Enredo), porta destranca ao resolver o código — testado e funcionando
+- Câmera segue o jogador suavemente, com limites opcionais de mapa (`CameraFollow`)
 
 ### 🔜 Roadmap (ainda não implementado)
 

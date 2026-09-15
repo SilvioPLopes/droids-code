@@ -17,6 +17,21 @@
 
 ---
 
+## ✅ Cena `CasaLip` — puzzle de introdução (água) + Camera Follow
+
+- **Cena nova `CasaLip`** (Sessão 1 do Enredo: `int nivel_agua = 0; while (nivel_agua < 100) { ... }`), primeiro contato do jogador com o terminal, antes da cena `Game`.
+- **`Casa/InteragirComTerminalCasa.cs`** (novo): trigger de interação (tecla `E`) que abre o `TerminalUIManager` geral — não é um terminal próprio da casa, é o mesmo do resto do jogo. Não depende de `NpcInterativo` de propósito (decisão deliberada, ver `DOCUMENTACAO_TECNICA.md` §4.7).
+- **`Casa/PuzzleAguaCasaChecker.cs`** (novo): mora no mesmo GameObject do `TerminalUIManager` da casa. Ouve `TerminalUIManager.AoExecutarCodigo` (evento novo), lê `nivel_agua` via `DroidScriptRunner.ObterVariavelNumerica` (método novo), e ao atingir 100 destranca a porta de saída + mostra fala do Apollo.
+- **`TerminalUIManager.cs`**: ganhou `AoExecutarCodigo` (Action, dispara sempre ao final de cada execução) e `Runner` (getter só-leitura do `DroidScriptRunner`), pra permitir esse tipo de checker sem duplicar a UI do terminal.
+- **`DroidScriptRunner.cs`**: ganhou `ObterVariavelNumerica(nome)`, leitura pura de variável global Lua após execução (retorna `null` se não existir/não for número).
+- **✅ Testado (14/09/2026):** puzzle testado ponta a ponta pelo responsável do projeto, porta destranca corretamente ao `nivel_agua` chegar em 100.
+- **Decisão de arquitetura:** porta usa campo `trancada` (bool) em `TransicaoDeCena`, marcado no Inspector, nunca desabilita o componente inteiro — ver `DOCUMENTACAO_TECNICA.md` §4.7 pro motivo (componente desabilitado não recebe trigger nem roda `Awake()` se nascer inativo).
+- **`Camera/CameraFollow.cs`** (novo): segue o Lip suavemente (`Lerp`), com limites de mapa opcionais. Ainda não confirmado em qual(is) cena(s) está de fato anexado.
+
+**Pendência de limpeza (não bloqueante, não fazer agora):** `DroidScriptRunner.ObterVariavelNumerica` tem um `Debug.Log` de depuração ainda no código, marcado como temporário — o bug que motivou já foi confirmado corrigido, mas o log não foi removido (decisão explícita de não refatorar nesta sessão).
+
+---
+
 ## ✅ Gold no Status + Menu persistente entre cenas
 
 - **`TelaDeStatusManager.cs`**: novo campo opcional `textoGold`, mostra `Gold: {GerenciadorDeEstado.Instancia.Gold}` — Status nunca tinha sido atualizado quando o Gold foi criado.
@@ -81,6 +96,7 @@ Reconciliação: esse trabalho já existia em código antes de aparecer document
 4. Balancear `Preço` por item (hoje todos valem 1 Gold) — só depois do passo 3, senão não há como testar significado de preço.
 5. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — declarada e nunca referenciada.
 6. Decidir se/quando retomar o Diálogo simples de NPC genérico (pulado por decisão do responsável, não descartado).
+7. Remover o `Debug.Log` temporário de `DroidScriptRunner.ObterVariavelNumerica` (puzzle da água já confirmado funcionando, o log não tem mais função) — baixa prioridade, não bloqueante.
 
 ---
 
@@ -100,7 +116,7 @@ Não são tarefas urgentes — cardápio de ideias pra depois que o essencial es
 
 ### Ensino/UX (crítico pro objetivo pedagógico do TCC)
 - [ ] Onboarding do terminal — testar com alguém que nunca viu o jogo
-- [ ] Apollo Debugger: existe em código de fato, ou é só descrição de design ainda? Se só design, é lacuna entre o pitch pedagógico e o que o jogador vê hoje
+- [ ] Apollo Debugger (destacar linha da falha + dica conceitual em erro de compilação/exceção): ainda **não existe em código** como depurador interativo. O que existe hoje (`PuzzleAguaCasaChecker`, cena `CasaLip`) é uma fala de **texto fixo** do Apollo só na vitória do puzzle — não reage a erro, não destaca linha, não dá dica conceitual dinâmica. Continua lacuna real entre o pitch pedagógico (readme) e o que o jogador vê — não confundir a fala fixa da Casa com o Apollo Debugger completo.
 
 ### Solidez técnica
 - [ ] Testes automatizados mínimos (dano, custo de técnica, efeito de item)
