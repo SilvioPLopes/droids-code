@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 266177032}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4, y: -0.76, z: 0}
+  m_LocalPosition: {x: 4.25, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TransicaoDeCena
   nomeCenaDestino: City
   pontoDeChegada: {x: 8.89, y: -9}
-  trancada: 0
+  trancada: 1
   textoDeBloqueio: {fileID: 988698170}
   mensagemDeBloqueio: Preciso terminar o terminal antes de sair.
 --- !u!61 &811581697
@@ -1373,7 +1373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2625515881553004334, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00002
+      value: 217.00003
       objectReference: {fileID: 0}
     - target: {fileID: 3040452809028199313, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchorMax.y

@@ -1,4 +1,6 @@
+using System.Linq;
 using MoonSharp.Interpreter;
+using UnityEngine;
 
 namespace DroidsCode.Scripting
 {
@@ -44,10 +46,20 @@ namespace DroidsCode.Scripting
         // avaliar puzzles que não passam por droid.* nenhum (ex: "nivel_agua"
         // da Sessão 1 do Enredo). Retorna null se a variável não existir
         // ainda ou não for numérica — quem chama decide o que fazer com isso
-        // (ver TerminalCasaManager.ExecutarCodigoDigitado).
+        // (ver PuzzleAguaCasaChecker.VerificarVitoria).
         public double? ObterVariavelNumerica(string nomeDaVariavel)
         {
             DynValue valor = _vm.Globals.Get(nomeDaVariavel);
+
+            // DEBUG TEMPORÁRIO (remover depois de confirmar o bug do puzzle
+            // de água) -- imprime TODAS as chaves que existem de fato no
+            // ambiente global do Lua agora, e o tipo exato do que foi lido
+            // pro nome procurado. Objetivo: comparar visualmente com
+            // "nomeDaVariavel" pra achar diferença de nome/espaço/maiúscula,
+            // ou confirmar que a variável simplesmente não está sendo escrita.
+            string chaves = string.Join(", ", _vm.Globals.Pairs.Select(par => par.Key.CastToString()));
+            Debug.Log($"[DroidScriptRunner] Procurando '{nomeDaVariavel}' (tipo lido: {valor.Type}) -- chaves atuais em _vm.Globals: [{chaves}]");
+
             if (valor.Type != DataType.Number)
             {
                 return null;
