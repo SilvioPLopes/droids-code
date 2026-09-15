@@ -1,6 +1,7 @@
-# Bug: puzzle de água da CasaLip não destrava a porta / não mostra fala do Apollo
+# Bug: puzzle de água da CasaLip não destrava a porta / não mostra fala do Apollo [RESOLVIDO]
 
 **Aberto em:** 14/09/2026
+**Resolvido em:** 14/09/2026 — confirmado pelo usuário: "o evento dispara normalmente" após o log de diagnóstico (`Scripts/Scripting/DroidScriptRunner.cs`). Causa exata não detalhada pelo usuário na confirmação; o log temporário pode ser removido quando conveniente.
 **Cena:** `CasaLip.unity`
 **Scripts envolvidos:** `PuzzleAguaCasaChecker.cs`, `TerminalUIManager.cs`, `DroidScriptRunner.cs` (ainda não visto nesta sessão), `TerminalDroidApi.cs` (ainda não visto nesta sessão)
 
@@ -39,9 +40,9 @@ Ou seja: a leitura de código, sozinha, não é suficiente pra achar a causa rai
 
 **Achado à parte (não é a causa deste bug, mas é comportamento real do sistema):** um `DroidScriptRunner` novo (com `_vm` zerado) é criado toda vez que `Abrir()` roda — ou seja, fechar e reabrir o terminal apaga `nivel_agua` e qualquer outra variável Lua da sessão anterior. Não foi o que causou esta falha específica (não houve reabertura entre as duas tentativas), mas é uma decisão de design que vale confirmar: o puzzle deveria permitir fechar/reabrir o terminal sem perder o progresso da variável, ou resolver tudo numa sessão só é intencional?
 
-## Próximo passo (diagnóstico, ainda não é a correção)
+## Resolução
 
-Como a leitura de código não achou a causa, o próximo passo é instrumentar `ObterVariavelNumerica` com um log temporário que lista TODAS as chaves que existem de fato em `_vm.Globals` no momento da checagem — assim dá pra ver se `nivel_agua` está lá com outro nome/tipo, ou se realmente não está lá. Patch enviado em zip (`Scripts/Scripting/DroidScriptRunner.cs`, marcado como DEBUG TEMPORÁRIO, mesmo padrão já usado antes no projeto). Pendente: rodar de novo com esse log e colar o resultado.
+Como a leitura de código não achou a causa, foi instrumentado `ObterVariavelNumerica` com um log temporário que lista TODAS as chaves que existem de fato em `_vm.Globals` no momento da checagem (patch em `Scripts/Scripting/DroidScriptRunner.cs`, marcado como DEBUG TEMPORÁRIO). Usuário rodou de novo com esse log e confirmou: **"o evento dispara normalmente"** — bug resolvido. Causa raiz exata (o que exatamente estava faltando em `_vm.Globals` antes) não foi detalhada na confirmação. O log temporário de diagnóstico continua no arquivo e pode ser removido quando conveniente.
 
 ## Bug secundário encontrado (cosmético, não é a causa do bug principal)
 
@@ -55,3 +56,34 @@ Em `TerminalUIManager.Abrir()`, a chamada `AdicionarLinhaDeLog("=== Terminal abe
 ## Pendência de arquitetura (separada do bug, levantada pelo usuário nesta sessão)
 
 O jogo precisa poder ser testado dando Play direto em qualquer cena (ex: `CasaLip`), sem depender de passar pelo Main Menu antes. Isso ainda não foi validado a fundo porque a hipótese nº8 acima não chegou a se confirmar como causa real neste caso — mas fica registrado como necessidade de projeto pra revisar como `GerenciadorDeEstado.Instancia` é inicializado (hoje, aparentemente, só no fluxo normal a partir do Main Menu).
+
+---
+
+# Bug 2: tecla E não abria o terminal da casa [RESOLVIDO]
+
+**Aberto em:** 14/09/2026
+**Resolvido em:** 14/09/2026 — confirmado pelo usuário.
+**Script envolvido:** `InteragirComTerminalCasa.cs`
+
+## Sintoma
+
+Jogador anda até a frente do terminal (o colisor do gatilho de interação) e aperta E. Nada acontece — sem erro no Console, sem o painel abrir.
+
+## Investigação
+
+Print do Inspector do GameObject com `InteragirComTerminalCasa` mostrou todos os campos do script corretos:
+- **Terminal**: `PainelTerminal (Terminal UI Manager)` — referenciado corretamente.
+- **Tecla De Interacao**: `E`.
+- **Tag Do Player**: `Player`.
+
+O problema não estava no script `InteragirComTerminalCasa` em si, e sim no **Box Collider 2D** do mesmo GameObject: o checkbox **"Is Trigger" estava desmarcado**. Sem `Is Trigger` marcado, o Unity trata o collider como sólido normal — `OnTriggerEnter2D`/`OnTriggerExit2D` nunca disparam, então `_playerPorPerto` nunca vira `true`, e o `if` dentro de `Update()` nunca chama `terminal.Abrir()`. Isso explica o silêncio total (nenhum erro, porque tecnicamente nada de errado acontece do ponto de vista do C#, o evento simplesmente nunca é gerado).
+
+`InteragirComTerminalCasa.Reset()` normalmente marca `isTrigger = true` sozinho, mas esse método só roda automaticamente na primeira vez que o componente é adicionado pelo Editor — se o Collider2D já existia antes (ou foi reconfigurado depois), o `Reset()` não é chamado de novo, e o valor pode ficar desmarcado sem nenhum aviso.
+
+## Correção
+
+Só configuração no Editor, sem mudança de código: marcar **Is Trigger** no Box Collider 2D do GameObject do gatilho de interação do terminal.
+
+## Observação adicional (mesma sessão de testes)
+
+Como parte de deixar a cena funcionando de ponta a ponta, o usuário também conferiu/marcou o campo **Trancada** (bool público adicionado em `TransicaoDeCena.cs`, ver correção anterior do bug da porta) no componente `Transicao De Cena` da `PortaDeSaidaCasa`, garantindo que a porta nasce travada. Essa configuração já fazia parte do guia de Editor entregue na correção do bug da porta (passo 4) — não é uma causa nova, só o fechamento desse passo pendente.
