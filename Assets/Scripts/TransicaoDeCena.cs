@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,20 @@ using UnityEngine.SceneManagement;
 /// deve aparecer e EM QUAL CENA essa posição é válida. RestaurarPosicao,
 /// anexado ao Player, já sabe ler isso sozinho ao carregar a cena nova —
 /// este script não precisa (e não deve) mexer em RestaurarPosicao.cs.
+///
+/// TRAVA/BLOQUEIO (14/09/2026): quem precisar impedir a passagem até uma
+/// condição ser cumprida (ex: puzzle da casa do Lip) NÃO deve mais
+/// desabilitar este componente (transicaoDeCena.enabled = false). Um
+/// componente desabilitado nunca recebe OnTriggerEnter2D, então não tem
+/// como reagir ao toque do player pra mostrar um aviso -- e se esse
+/// desabilitar acontecer no Awake() de outro script (ex: um checker que
+/// mora dentro de um painel de UI escondido por padrão), esse Awake pode
+/// nem ter rodado ainda quando o player já encosta na porta, já que Awake
+/// só dispara quando o GameObject é ativado pela primeira vez.
+/// Use o campo "trancada" em vez disso: o trigger continua sempre ativo,
+/// então ele consegue mostrar "textoDeBloqueio"/"mensagemDeBloqueio"
+/// quando o player esbarra travado, e destravar é só marcar
+/// trancada = false em código (ex: PuzzleAguaCasaChecker.VerificarVitoria).
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class TransicaoDeCena : MonoBehaviour
@@ -36,15 +51,30 @@ public class TransicaoDeCena : MonoBehaviour
     [Tooltip("Posição (X, Y) onde o player deve aparecer ao chegar na cena de destino. Para descobrir esses números: abra a cena de destino, veja a posição de um objeto marcador colocado no lugar certo, e digite os mesmos valores aqui.")]
     public Vector2 pontoDeChegada;
 
+    [Header("Bloqueio (opcional)")]
+    [Tooltip("Enquanto marcado, o trigger NÃO leva pra outra cena -- só mostra a mensagem de bloqueio (se atribuída) e ignora o toque. Deixe desmarcado em portas que nunca travam (ex: Cidade<->mundo). Controlado em código por quem tranca a porta (ex: PuzzleAguaCasaChecker).")]
+    public bool trancada;
+
+    [Tooltip("Texto (TMP) usado pra avisar o player que a porta está trancada. Fica ativado/desativado por este script -- pode deixar o próprio GameObject dele desativado na cena, não precisa mexer nisso manualmente. Deixe vazio se não quiser nenhum aviso.")]
+    public TMP_Text textoDeBloqueio;
+
+    [Tooltip("Mensagem mostrada em textoDeBloqueio quando o player esbarra na porta travada.")]
+    public string mensagemDeBloqueio = "Preciso terminar o terminal antes de sair.";
+
     // Evita disparar a transição várias vezes enquanto o player ainda
     // está sobrepondo o trigger no frame da troca de cena.
     private bool transicaoDisparada;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("TRIGGER DA PORTA RODOU");
         if (transicaoDisparada) return;
         if (!other.CompareTag("Player")) return;
+
+        if (trancada)
+        {
+            MostrarMensagemDeBloqueio();
+            return;
+        }
 
         if (string.IsNullOrEmpty(nomeCenaDestino))
         {
@@ -54,6 +84,14 @@ public class TransicaoDeCena : MonoBehaviour
 
         transicaoDisparada = true;
         IniciarTransicao();
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        // Some com o aviso quando o player se afasta da porta, senão o
+        // texto fica preso na tela depois que ele já saiu de perto.
+        if (!other.CompareTag("Player")) return;
+        EsconderMensagemDeBloqueio();
     }
 
     void IniciarTransicao()
@@ -67,5 +105,18 @@ public class TransicaoDeCena : MonoBehaviour
         GerenciadorDeEstado.Instancia.SalvarPosicao(pontoDeChegada, nomeCenaDestino);
 
         SceneManager.LoadScene(nomeCenaDestino);
+    }
+
+    private void MostrarMensagemDeBloqueio()
+    {
+        if (textoDeBloqueio == null) return;
+        textoDeBloqueio.text = mensagemDeBloqueio;
+        textoDeBloqueio.gameObject.SetActive(true);
+    }
+
+    private void EsconderMensagemDeBloqueio()
+    {
+        if (textoDeBloqueio == null) return;
+        textoDeBloqueio.gameObject.SetActive(false);
     }
 }
