@@ -28,6 +28,13 @@ using TMPro;
 /// DontDestroyOnLoad proprio (que brigaria com a protecao de duplicata do
 /// MenuMundoManager.Awake).
 ///
+/// PAGINACAO DE TEXTO LONGO: textoFala deve estar com Overflow = Page no
+/// Inspector (TextMeshPro - Text (UI) > Extra Settings > Overflow). Com
+/// isso, uma fala com texto maior do que cabe na caixa e dividida em
+/// "paginas" automaticamente pelo proprio TMP -- Avancar() avanca de
+/// pagina antes de avancar de fala, entao uma Fala pode ter qualquer
+/// tamanho de texto sem precisar ser quebrada em varias Falas na mao.
+///
 /// DEBUG TEMPORARIO: o Debug.Log no inicio de Mostrar() (marcado com
 /// [DialogoUIManager]) e so pra rastrear por que o dialogo nao esta
 /// disparando. Remova depois que o bug for resolvido.
@@ -72,6 +79,7 @@ public class DialogoUIManager : MonoBehaviour
     [Header("Texto")]
     [Tooltip("Nome de quem esta falando (ex: \"Apollo\"). Opcional — se ficar vazio, o campo e escondido.")]
     public TextMeshProUGUI textoFalante;
+    [Tooltip("IMPORTANTE: deixe Overflow = Page no Inspector deste componente (Extra Settings > Overflow), pra textos longos paginarem em vez de vazar da caixa.")]
     public TextMeshProUGUI textoFala;
 
     [Header("Avancar")]
@@ -234,6 +242,13 @@ public class DialogoUIManager : MonoBehaviour
 
         textoFala.text = fala.texto;
 
+        // NOVO: toda fala nova comeca na primeira "pagina" do texto (so faz
+        // diferenca quando o Overflow do TMP esta configurado como Page).
+        // ForceMeshUpdate garante que textInfo.pageCount ja esta correto no
+        // mesmo frame, sem depender do proximo recalculo automatico do TMP.
+        textoFala.pageToDisplay = 1;
+        textoFala.ForceMeshUpdate();
+
         if (botaoAvancar != null) botaoAvancar.gameObject.SetActive(true);
         if (painelDeEscolhas != null) painelDeEscolhas.gameObject.SetActive(false);
     }
@@ -241,6 +256,19 @@ public class DialogoUIManager : MonoBehaviour
     public void Avancar()
     {
         if (!_aberto || _mostrandoEscolhas) return;
+
+        // NOVO: se o texto atual tem mais "paginas" (nao coube inteiro na
+        // caixa -- Overflow = Page no TextoFala), avanca a pagina em vez de
+        // pular pra proxima Fala. So passa pra proxima Fala quando todas as
+        // paginas da atual ja foram mostradas. Isso e o que permite uma
+        // unica Fala ter um texto de qualquer tamanho, sem quebrar em
+        // varias Falas manualmente no Inspector.
+        if (textoFala != null && textoFala.textInfo != null
+            && textoFala.pageToDisplay < textoFala.textInfo.pageCount)
+        {
+            textoFala.pageToDisplay++;
+            return;
+        }
 
         _indiceDaFala++;
 

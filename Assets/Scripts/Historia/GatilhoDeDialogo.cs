@@ -3,8 +3,16 @@ using UnityEngine;
 
 /// <summary>
 /// Dispara um dialogo (ver DialogoUIManager) por proximidade + tecla, ou ao
-/// entrar num trigger. E o componente que carrega TODO o conteudo narrativo
-/// do Ato 1 — as falas ficam no Inspector, nao em codigo.
+/// entrar num trigger.
+///
+/// CONTEUDO: as falas podem vir de duas formas --
+///   1) Digitadas direto no campo "Falas" do Inspector (jeito antigo, ainda
+///      funciona, tem PRIORIDADE se preenchido);
+///   2) Por "Id Do Dialogo", buscando no CatalogoDeDialogos.cs (jeito novo,
+///      recomendado -- usado quando "Falas" estiver vazio). E o formato que
+///      escala pro roteiro inteiro do jogo: o texto fica centralizado num
+///      unico arquivo de codigo, versionado, em vez de espalhado por
+///      dezenas de componentes na cena.
 ///
 /// Condicoes de historia sao declarativas: o gatilho so dispara se TODAS as
 /// flags de "flagsNecessarias" estiverem ativas e NENHUMA de
@@ -12,7 +20,9 @@ using UnityEngine;
 /// coisas diferentes na Sessao 2 e na Sessao 7 sem script novo.
 ///
 /// Colocar no GameObject do NPC/gatilho, junto com um Collider2D marcado
-/// como "Is Trigger".
+/// como "Is Trigger" (e um Rigidbody2D nao-Static, se o collider for
+/// Composite -- Static+Static ou Static+Kinematic nao gera trigger no
+/// Unity 2D).
 ///
 /// DEBUG TEMPORARIO: os Debug.Log abaixo (marcados com [GatilhoDeDialogo])
 /// sao so pra rastrear por que o dialogo nao esta disparando. Remova depois
@@ -52,9 +62,13 @@ public class GatilhoDeDialogo : MonoBehaviour
     public string[] flagsQueImpedem;
 
     [Header("Conteudo")]
+    [Tooltip("Id do dialogo no CatalogoDeDialogos.cs (ex: \"city_s2_dara\"). So e usado se o campo \"Falas\" abaixo estiver vazio -- e assim que a maioria dos NPCs deve ser configurada.")]
+    public string idDoDialogo;
+
+    [Tooltip("Falas digitadas direto aqui. Se preenchido, tem PRIORIDADE sobre Id Do Dialogo (compatibilidade com o que ja foi montado no Inspector). Deixe vazio e use Id Do Dialogo pra dialogos novos.")]
     public List<FalaDeDialogo> falas = new List<FalaDeDialogo>();
 
-    [Tooltip("Opcional. Se preenchido, aparece como botoes no fim do dialogo (ex: escolha de faccao).")]
+    [Tooltip("Opcional. Se preenchido, aparece como botoes no fim do dialogo (ex: escolha de faccao). Nao vem do CatalogoDeDialogos -- e configurado aqui mesmo.")]
     public List<EscolhaDeDialogo> escolhas = new List<EscolhaDeDialogo>();
 
     [Header("Consequencia")]
@@ -140,13 +154,29 @@ public class GatilhoDeDialogo : MonoBehaviour
     }
 
     /// <summary>
+    /// Falas efetivamente usadas ao disparar: o campo "Falas" do Inspector
+    /// tem prioridade (compatibilidade com dialogos ja montados na mao); se
+    /// estiver vazio, busca no CatalogoDeDialogos pelo Id Do Dialogo. Pode
+    /// devolver null se nenhum dos dois estiver preenchido/existir.
+    /// </summary>
+    private List<FalaDeDialogo> ObterFalas()
+    {
+        if (falas != null && falas.Count > 0) return falas;
+        return CatalogoDeDialogos.Obter(idDoDialogo);
+    }
+
+    /// <summary>
     /// Publico porque NpcInterativo (Tipo = Dialogo) delega pra ca, em vez de
     /// duplicar deteccao de proximidade.
     /// </summary>
     public bool PodeDisparar()
     {
         if (apenasUmaVez && _jaDisparouNestaSessao) return false;
-        if (falas.Count == 0 && escolhas.Count == 0) return false;
+
+        List<FalaDeDialogo> falasResolvidas = ObterFalas();
+        bool semFalas = falasResolvidas == null || falasResolvidas.Count == 0;
+        if (semFalas && escolhas.Count == 0) return false;
+
         return CondicoesDeHistoria.Satisfeitas(flagsNecessarias, flagsQueImpedem);
     }
 
@@ -164,10 +194,18 @@ public class GatilhoDeDialogo : MonoBehaviour
             return;
         }
 
+        List<FalaDeDialogo> falasResolvidas = ObterFalas();
+
+        if (falasResolvidas == null && escolhas.Count == 0)
+        {
+            Debug.LogWarning($"GatilhoDeDialogo '{gameObject.name}': Id Do Dialogo \"{idDoDialogo}\" nao existe no CatalogoDeDialogos, e o campo Falas esta vazio. Nada pra mostrar.");
+            return;
+        }
+
         // So marca como usado se o painel REALMENTE abriu. Se ele recusar
         // (outro dialogo em andamento, painel mal configurado), o gatilho
         // continua disponivel em vez de morrer em silencio.
-        bool abriu = painel.Mostrar(falas, escolhas, AoConcluirDialogo);
+        bool abriu = painel.Mostrar(falasResolvidas, escolhas, AoConcluirDialogo);
 
         // DEBUG: confirma o retorno de Mostrar().
         Debug.Log($"[GatilhoDeDialogo] painel.Mostrar retornou: {abriu}");
