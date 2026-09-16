@@ -32,6 +32,22 @@ using DroidsCode.DroidCore;
 ///     os dois painéis ficavam abertos ao mesmo tempo. Corrigido: cada
 ///     Abrir...() agora fecha o outro painel antes de abrir o seu.
 ///
+/// ATO 1 / HISTORIA (15/09/2026):
+///   - O inimigo pode vir do CatalogoDeInimigos em vez do Inspector. Quem
+///     inicia a batalha (GatilhoDeBatalha/EncounterZone) escreve o Id em
+///     GerenciadorDeEstado.ProximoInimigoId e este script se monta a partir
+///     dele — nome, HP, ATK, DEF, XP, Gold e tabela de drops. Se o Id vier
+///     vazio ou desconhecido, NADA muda: continua valendo exatamente o que
+///     esta digitado no Inspector desta cena (compatibilidade total com a
+///     cena Battle que ja existe).
+///   - Ao VENCER, grava a flag de historia que veio em
+///     GerenciadorDeEstado.FlagDeVitoriaPendente (ex: "ato1_sessao3"), ou a
+///     flagDeVitoria digitada no Inspector, o que existir.
+///   - Update() agora ignora ESC quando ha um painel do Menu do Mundo aberto.
+///     Motivo: desde que o MenuMundoManager ganhou DontDestroyOnLoad, o menu
+///     VIAJA pra dentro da cena Battle — a suposicao antiga ("esta cena nao
+///     convive com o Menu do Mundo") deixou de valer.
+///
 /// ESTAGIO 3 (fase 2 do sistema de item, sem alinhamento extra):
 ///   - UsarItem agora trata Cura/Buff/Debuff (Equipavel/ForaDeBatalha nao
 ///     sao UsavelEmBatalha, ver CatalogoDeItens — nao aparecem na lista).
@@ -97,6 +113,13 @@ public class BattleManager : MonoBehaviour
     [Tooltip("Cada entrada e um item que PODE dropar, com sua propria chance.")]
     public List<DropDeItem> tabelaDeDrops = new List<DropDeItem>();
 
+    [Header("História (Ato 1)")]
+    [Tooltip("Id no CatalogoDeInimigos usado quando NINGUÉM definiu ProximoInimigoId (ex: você deu Play direto na cena Battle). Vazio = usa os campos de 'Status do Inimigo' acima.")]
+    public string idDoInimigoPadrao = "";
+
+    [Tooltip("Flag de história gravada ao vencer, quando nenhuma flag pendente veio do gatilho que iniciou a batalha. Normalmente deixe vazio — quem manda é o GatilhoDeBatalha.")]
+    public string flagDeVitoria = "";
+
     [Header("Configuração")]
     [Tooltip("Cena para onde voltar depois da batalha.")]
     public string nomeCenaMundo = "Game";
@@ -117,6 +140,12 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
+
+        // NOVO (Ato 1): se algum gatilho no mundo escolheu um inimigo do
+        // catalogo, ele sobrescreve os campos do Inspector ANTES de montar o
+        // InimigoFixo. Chamada sem efeito nenhum quando ProximoInimigoId
+        // esta vazio -- a cena Battle antiga continua funcionando igual.
+        AplicarInimigoDoCatalogo();
 
         inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo, recompensaXpInimigo);
         engine = new CombatEngine();
@@ -151,6 +180,15 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         if (!Input.GetKeyDown(KeyCode.Escape)) return;
+
+        // CORRECAO (15/09/2026): o comentario acima dizia "assume que esta
+        // cena nao convive com o Menu do Mundo -- confirmar se algum dia as
+        // duas rodarem sobrepostas". Esse dia chegou: MenuMundoManager ganhou
+        // DontDestroyOnLoad pra funcionar na Cidade, entao ele agora existe
+        // TAMBEM dentro da cena Battle. Sem esta guarda, um unico ESC seria
+        // consumido pelos dois scripts ao mesmo tempo (fecharia a lista de
+        // ataques E abriria o menu de pausa por cima da batalha).
+        if (GerenciadorDeEstado.Instancia.MenuAberto) return;
 
         if (painelListaDeAtaques != null && painelListaDeAtaques.gameObject.activeSelf)
         {
@@ -245,6 +283,7 @@ public class BattleManager : MonoBehaviour
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            GravarFlagDeVitoria();
             AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
@@ -501,6 +540,73 @@ public class BattleManager : MonoBehaviour
         new SalvamentoJson().Salvar();
     }
 
+    // NOVO (Ato 1): le GerenciadorDeEstado.ProximoInimigoId (escrito por
+    // GatilhoDeBatalha ou EncounterZone) e sobrescreve os campos de inimigo
+    // e de recompensa deste BattleManager. Fallback em cascata:
+    //   1. ProximoInimigoId (batalha roteirizada ou zona de encontro)
+    //   2. idDoInimigoPadrao (Inspector desta cena)
+    //   3. nada -- valem os campos "Status do Inimigo" digitados a mao
+    // Id desconhecido cai no passo 3 com um aviso, nunca quebra a cena.
+    void AplicarInimigoDoCatalogo()
+    {
+        var gerenciador = GerenciadorDeEstado.Instancia;
+
+        string id = !string.IsNullOrEmpty(gerenciador.ProximoInimigoId)
+            ? gerenciador.ProximoInimigoId
+            : idDoInimigoPadrao;
+
+        if (string.IsNullOrEmpty(id)) return;
+
+        DefinicaoDeInimigo definicao = CatalogoDeInimigos.Obter(id);
+        if (definicao == null)
+        {
+            Debug.LogWarning($"BattleManager: inimigo '{id}' nao existe no CatalogoDeInimigos. Usando os valores do Inspector.");
+            return;
+        }
+
+        nomeInimigo = definicao.Nome;
+        hpMaxInimigo = definicao.HpMax;
+        atkInimigo = definicao.Ataque;
+        defInimigo = definicao.Defesa;
+        recompensaXpInimigo = definicao.RecompensaXp;
+        goldMinimo = definicao.GoldMinimo;
+        goldMaximo = definicao.GoldMaximo;
+
+        // Converte DropDeInimigo (C# puro, dominio) em DropDeItem (classe
+        // serializavel do MonoBehaviour). Ver comentario em CatalogoDeInimigos.
+        tabelaDeDrops = new List<DropDeItem>();
+        if (definicao.Drops != null)
+        {
+            foreach (DropDeInimigo drop in definicao.Drops)
+            {
+                tabelaDeDrops.Add(new DropDeItem
+                {
+                    idItem = drop.IdItem,
+                    chance = drop.Chance,
+                    quantidadeMinima = drop.QuantidadeMinima,
+                    quantidadeMaxima = drop.QuantidadeMaxima
+                });
+            }
+        }
+    }
+
+    // NOVO (Ato 1): grava a flag de historia da vitoria. Chamado nos DOIS
+    // pontos onde a derrota do inimigo e detectada, junto de AplicarRecompensas.
+    void GravarFlagDeVitoria()
+    {
+        var gerenciador = GerenciadorDeEstado.Instancia;
+
+        string flag = !string.IsNullOrEmpty(gerenciador.FlagDeVitoriaPendente)
+            ? gerenciador.FlagDeVitoriaPendente
+            : flagDeVitoria;
+
+        if (string.IsNullOrEmpty(flag)) return;
+
+        gerenciador.DefinirFlag(flag, true);
+        // AplicarRecompensas() ja chama Salvar() logo em seguida, entao a
+        // flag entra no mesmo save -- nao precisa de um segundo Salvar aqui.
+    }
+
     void AoClicarFugir()
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
@@ -545,6 +651,7 @@ public class BattleManager : MonoBehaviour
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            GravarFlagDeVitoria();
             AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
@@ -559,6 +666,12 @@ public class BattleManager : MonoBehaviour
     IEnumerator FinalizarBatalha(bool vitoria)
     {
         batalhaEncerrada = true;
+
+        // NOVO (Ato 1): zera o inimigo/flag de transito pra que o PROXIMO
+        // encontro aleatorio nao herde o inimigo de uma batalha roteirizada
+        // (ex: voltar da luta contra o chefe e encontrar outro chefe no mato).
+        GerenciadorDeEstado.Instancia.LimparBatalhaPendente();
+
         DefinirBotoesInterativos(false);
         MostrarMensagem(vitoria ? $"Você derrotou o {nomeInimigo}!" : "Você foi derrotado...");
         yield return VoltarParaOMundo(2f);

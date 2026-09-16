@@ -240,6 +240,23 @@ Assets/Scripts/CHECKLIST_DE_DESENVOLVIMENTO.md
 
 Assets/Scripts/Camera/CameraFollow.cs — novo (14/09/2026), ver §4.6
 
+Assets/Scripts/Historia/DialogoUIManager.cs — novo (15/09/2026), ver §4.8
+Assets/Scripts/Historia/GatilhoDeDialogo.cs — novo (15/09/2026), ver §4.8 (contém também FalaDeDialogo, EscolhaDeDialogo e a classe estática CondicoesDeHistoria)
+Assets/Scripts/Historia/CondicaoDeHistoria.cs — novo (15/09/2026), ver §4.8
+Assets/Scripts/Historia/GatilhoDeBatalha.cs — novo (15/09/2026), ver §4.8
+Assets/Scripts/Historia/VerificadorDePuzzle.cs — v2 (15/09/2026), confirmado por .cs real: lê CatalogoDePuzzles por Id, mantém modo manual como fallback. Ver §8.1
+Assets/Scripts/Historia/TrancaPorHistoria.cs — novo (15/09/2026), ver §4.8
+Assets/Scripts/Historia/ApolloDica.cs — novo (15/09/2026), ver §4.8
+
+Assets/Scripts/Historia/GerenciadorDeQuests.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/QuestUIManager.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/CatalogoDeQuests.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/CatalogoDeNpcs.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/CatalogoDeDialogos.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/CatalogoDePuzzles.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/CatalogoDeLicoes.cs — novo (15/09/2026), confirmado por .cs real, ver §8.1
+Assets/Scripts/Historia/GatilhoDeQuest.cs — ⚠️ citado no LEIA_ISTO, .cs NÃO anexado nesta sessão, ver §8.1
+
 Assets/Scripts/Casa/InteragirComTerminalCasa.cs — novo (14/09/2026), ver §4.7
 Assets/Scripts/Casa/PuzzleAguaCasaChecker.cs — novo (14/09/2026), ver §4.7
 
@@ -249,6 +266,7 @@ Assets/Scripts/Combat/CombatEngine.cs
 Assets/Scripts/Combat/IParticipanteDeCombate.cs
 Assets/Scripts/Combat/ResultadoAcao.cs
 Assets/Scripts/Combat/InimigoFixo.cs
+Assets/Scripts/Combat/CatalogoDeInimigos.cs — novo (15/09/2026), ver §4.2 (contém DefinicaoDeInimigo e DropDeInimigo)
 
 Assets/Scripts/Droid/Droid.cs
 Assets/Scripts/Droid/DroidPart.cs
@@ -265,7 +283,7 @@ Assets/Scripts/Droid/TabelaDeCustos.cs
 Assets/Scripts/Droid/TabelaDeCombate.cs
 Assets/Scripts/Droid/TecnicaComposta.cs
 Assets/Scripts/Droid/EfeitosTemporariosUtil.cs
-Assets/Scripts/Droid/CatalogoDeItens.cs
+Assets/Scripts/Droid/CatalogoDeItens.cs — reescrito (15/09/2026), confirmado por .cs real: 6 categorias (+ Chave), Descricao/Raridade, VendavelNaLoja, spread de preço. Ver §8.1
 Assets/Scripts/Droid/ItemConsumivel.cs — DEPRECATED (13/09/2026): substituído por CatalogoDeItens.cs/Inventario real. Mantido no projeto sem uso ativo; candidato a remoção, não apagar sem confirmar que nada mais referencia ItensDeBatalha.Disponiveis.
 
 Assets/Scripts/Estado/GerenciadorDeEstado.cs
@@ -295,12 +313,25 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 - `TecnicasConfiguradas`: **`Dictionary<string, TecnicaComposta>`** (chave = nome da técnica)
 - `Pontos`: `PontosDeProgressao` (orçamento gasto no terminal)
 - `Progressao`: `ProgressaoDeNivel` (nível/XP ganhos em combate — separado de `Pontos` por SRP)
-- `Defesa => ObterTotal(TipoAtributo.Vit)` — hoje é só VIT total; peças ainda não contribuem para defesa
+- `Defesa => ObterTotal(TipoAtributo.Vit)` — VIT total, **já incluindo bônus de peça** (ver `ObterTotal` abaixo)
+- `HpMaxBase` (persistido) + `HpMax` **calculado** a partir de `HpMaxBase` + %VIT + bônus de peça. `RecalcularHpAposMudancaDeVit(hpMaxAntes)` mantém o HP atual coerente quando o teto sobe (chamado por `TerminalDroidApi.AplicarUpgrade`)
+- `BonusPercentualDeCura` — bônus de cura derivado de INT (`TabelaDeCombate.PercentualBonusCuraPorInt`), usado por `BattleManager.UsarItemDeCura` e `BagUIManager.UsarCuraForaDeBatalha`
+- `RolarResistencia(chance)` (estático) — rolagem de resistência a efeito, usada por `BattleManager.AplicarEfeitoDeItem` para Debuff
+- `EquiparPeca(TipoDePeca, DroidPart)` — instala a peça no slot, **substituindo** a anterior (confirmado em teste: não duplica bônus)
+- `ObterBonusDePecas(TipoAtributo)` — soma os bônus das 4 peças equipadas
 - `EfeitosAtivos`: `List<EfeitoDeAtributo>` — só o Droid do jogador tem, decrementado 1x por turno via `DecrementarEfeitosAtivos()`
 - `ExecutarAcao(nomeAcao, alvo)`: lê a técnica configurada, calcula dano (ver fórmula na seção 5) — nunca chama Lua
-- `ObterTotal(TipoAtributo)`: base (`StatsBase`) + bônus de peça (hoje sempre 0 — peças não têm bônus nomeado por atributo ainda)
+- `ObterTotal(TipoAtributo)`: base (`StatsBase`) + bônus de peça
+> ✅ **Corrigido nesta seção (15/09/2026):** a versão anterior desta linha dizia
+> que o bônus de peça era "hoje sempre 0 — peças não têm bônus nomeado por
+> atributo ainda". Isso **estava desatualizado** e contradizia a própria §4.3
+> deste documento, além do `readme.md` e do `CHECKLIST`. Confirmado com os
+> arquivos reais em mãos (`BagUIManager.cs` constrói
+> `new Braco(nome, 0, Raridade.Comum, item.AtributoBonificado, item.ValorDoBonus)`
+> e `TelaDeDroidManager.cs` lê `peca.AtributoBonificado`/`peca.ValorDoBonus`):
+> **peças dão bônus real de atributo.** Esta era a divergência nº 2 do trio.
 
-**`DroidPart`** (abstrata) + `Braco`/`Perna`/`Tronco`/`Cabeca` — só dado (`Nome`, `AtributoPrincipal`, `Raridade`), sem comportamento próprio. Isso é intencional na fase atual (Fase 1 do design); a herança de verdade com métodos sobrescritos é Fase 2 (roadmap).
+**`DroidPart`** (abstrata) + `Braco`/`Perna`/`Tronco`/`Cabeca` — só dado (`Nome`, `AtributoPrincipal`, `Raridade`, **`AtributoBonificado`** (`TipoAtributo?`, nulo = peça sem bônus) e **`ValorDoBonus`**), sem comportamento próprio. Construtor confirmado em uso: `new Braco(nome, valorPrincipal, Raridade, atributoBonificado, valorDoBonus)`. Enums auxiliares confirmados em uso: `TipoDePeca` (`Braco`/`Perna`/`Tronco`/`Cabeca`) e `Raridade` (`Comum`, ...). Isso é intencional na fase atual (Fase 1 do design); a herança de verdade com métodos sobrescritos é Fase 2 (roadmap).
 
 **`PontosDeProgressao`** — orçamento gasto no terminal. `GanharPontosPorNivel(niveis)`, `TentarGastar(quantidade)`, `DefinirPontos(quantidade)` (uso exclusivo do sistema de salvamento, para restaurar valor exato — não usar em fluxo normal).
 
@@ -324,7 +355,17 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 
 ### 4.2 `Combat` — combate
 
-**`IParticipanteDeCombate`** — contrato: `Nome`, `Hp` (get/set), `HpMax` (get), `Defesa` (get), `ObterAcoesDisponiveis()`, `ExecutarAcao(nomeAcao, alvo)`.
+**`IParticipanteDeCombate`** — contrato: `Nome`, `Hp` (get/set), `HpMax` (get), `Defesa` (get), `ObterAcoesDisponiveis()`, `ExecutarAcao(nomeAcao, alvo)`, **`EfeitosAtivos`**, **`EfeitosDeDanoAtivos`** e **`ChanceDeResistirEfeito`**.
+> ✅ **Corrigido (15/09/2026):** os três últimos membros não constavam nesta
+> linha. Confirmado com `BattleManager.cs` em mãos, que faz
+> `alvo.EfeitosAtivos.Add(...)`, `alvo.EfeitosDeDanoAtivos.Add(...)` e
+> `Droid.RolarResistencia(alvo.ChanceDeResistirEfeito)` tratando `inimigo` e
+> `droid` pela mesma interface — ou seja, `InimigoFixo` **também** carrega
+> efeitos hoje. Consequência importante: o risco descrito em §4.1 ("o dia em
+> que um inimigo puder envenenar/atordoar") deixou de ser hipotético para o
+> lado do inimigo — um Debuff de item já aplica efeito nele.
+
+**`CatalogoDeInimigos`** (novo, 15/09/2026) — catálogo estático `Dictionary<string, DefinicaoDeInimigo>`, mesmo padrão de `CatalogoDeItens` (Id string estável, `Obter(id)` devolvendo `null` em vez de lançar). Guarda `Nome`/`HpMax`/`Ataque`/`Defesa`/`RecompensaXp`/`GoldMinimo`/`GoldMaximo`/`Drops` de cada inimigo. Ids atuais: `sucata_captura`, `droid_selvagem`, `droid_do_ivo`, `esqueleto_teste`. `DropDeInimigo` é o espelho em C# puro de `BattleManager.DropDeItem` (que é serializável e depende de `UnityEngine`) — a conversão acontece em `BattleManager.AplicarInimigoDoCatalogo`. **Motivo de existir:** sem ele, cada inimigo novo exigia uma cena `Battle` duplicada e mais um lugar para esquecer de preencher `tabelaDeDrops` — pendência que o `CHECKLIST` já listava.
 
 **`ResultadoAcao`** — `Sucesso`, `DanoCausado`, `Mensagem`. Mínima de propósito — não adicionar campos (efeito visual, combo, status) sem necessidade concreta.
 
@@ -393,6 +434,15 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 **`GerenciadorDeEstado`** (Singleton lazy, `DontDestroyOnLoad`) — guarda `DroidDoJogador` (mesma instância entre cenas), posição salva para transição Game↔Battle, flags de história, um contador de menus abertos (`MenuAberto`, incrementado/decrementado por `RegistrarMenuAberto`/`RegistrarMenuFechado`) usado para congelar o movimento do player enquanto um menu/terminal está aberto, o **`Inventario`** (`Dictionary<string, int>`, Id de `CatalogoDeItens` → quantidade: `AdicionarItem`, `TentarRemoverItem`, `ObterQuantidadeDeItem`, `CarregarInventario`) e o **`Gold`** (`AdicionarGold`/`TentarGastarGold`/`CarregarGold`, persistido em save v4). Droid novo começa com kit inicial fixo (3 Poção Pequena + 1 Poção Média) e Gold = 0 — fontes reais de Gold em jogo normal: drop configurável por `BattleManager` (ver §8) e venda de item na Loja.
 
+> ✅ **Novo (15/09/2026 — Ato 1):** `GerenciadorDeEstado` ganhou dois campos
+> de **trânsito** mundo → cena `Battle`, deliberadamente **não persistidos**
+> (mesma natureza de `PosicaoSalva`/`CenaDeOrigemDaPosicao`): `ProximoInimigoId`
+> (Id no `CatalogoDeInimigos`; vazio = `BattleManager` usa o Inspector da cena,
+> comportamento antigo intacto) e `FlagDeVitoriaPendente` (flag de história
+> gravada se o jogador vencer). `LimparBatalhaPendente()` zera os dois e é
+> chamado por `BattleManager.FinalizarBatalha`, para que um encontro aleatório
+> seguinte não herde o inimigo/flag de uma batalha roteirizada.
+
 **`PlayerMovement`** — move via `Rigidbody2D`, alimenta `Animator` (MoveX/MoveY/Speed), não se move se `GerenciadorDeEstado.MenuAberto`.
 
 **`EncounterZone`** — sorteia encontro aleatório a cada "passo" dentro de uma zona de trigger; salva a posição do player antes de trocar para a cena de batalha.
@@ -413,14 +463,39 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 - **Log de batalha:** `MostrarMensagem` mantém as últimas 4 linhas (`_logDeBatalha`) em vez de sobrescrever a mensagem toda vez — mesmo padrão do log do Terminal (`TerminalUIManager.linhasDeLog`). Cada chamada separa a mensagem recebida por `\n` em várias entradas do log, porque `CombatEngine.ExecutarTurno` pode devolver mais de um evento no mesmo turno (ex: dano de veneno + resultado do ataque).
 - ✅ **Corrigido (13/09/2026)** — `painelListaDeAtaques`/`painelListaDeItens` ganharam um botão "Voltar" (reaproveita `prefabBotaoAtaque`/`prefabBotaoItem`, só chama `SetActive(false)`, nunca executa ação) e um `Update()` que fecha o painel aberto com ESC. Corrigido no mesmo commit: `AbrirListaDeAtaques`/`AbrirListaDeItens` agora fecham o outro painel antes de abrir o seu — antes disso, abrir Ataque e depois Item (sem fechar o primeiro) deixava os dois painéis ativos ao mesmo tempo.
 
+> ✅ **Novo (15/09/2026 — Ato 1):** `BattleManager` ganhou
+> `AplicarInimigoDoCatalogo()` (chamado no início de `Start()`, monta o
+> inimigo a partir de `GerenciadorDeEstado.ProximoInimigoId` → `idDoInimigoPadrao`
+> → Inspector, nessa ordem de fallback) e `GravarFlagDeVitoria()` (chamado nos
+> **dois** pontos onde a derrota do inimigo é detectada, junto de
+> `AplicarRecompensas`). `FinalizarBatalha` chama `LimparBatalhaPendente()`.
+> ⚠️ **Bug encontrado e corrigido na mesma sessão:** o `Update()` do
+> `BattleManager` dizia, em comentário, "assume que esta cena não convive com
+> o Menu do Mundo — confirmar se algum dia as duas rodarem sobrepostas". Desde
+> que `MenuMundoManager` ganhou `DontDestroyOnLoad`, **elas convivem**: o
+> Canvas do menu viaja para dentro da cena `Battle`, e um único ESC era
+> consumido pelos dois scripts (fechava a lista de ataques *e* abria o menu de
+> pausa por cima da batalha). Corrigido dos dois lados — guarda
+> `if (GerenciadorDeEstado.Instancia.MenuAberto) return;` no `BattleManager`,
+> e o campo `cenasBloqueadas` no `MenuMundoManager` (abaixo).
+
 **`MenuMundoManager`** — menu de pausa (tecla Esc): Status/Terminal/Bag/Droid/Opções/Salvar/Carregar/Voltar. Opções ainda é placeholder ("ainda não foi implementado").
+- ✅ **Novo (15/09/2026):** campo `cenasBloqueadas` (default `Battle`, `MainMenu`) — o menu ignora a tecla nessas cenas. A checagem roda **antes** do bloco de `_outroPainelAberto`, de propósito: se um painel já estiver aberto, ESC ainda consegue fechá-lo.
+- ✅ **Correção já presente no código (não documentada antes):** ESC deixou de ser ignorado enquanto Status/Terminal/Bag/Droid estão abertos — o campo `_fecharPainelAtual` guarda qual painel fechar, e `Update()` chama ele. A descrição anterior desta seção dizia que ESC era ignorado nesse período.
 - ✅ **Corrigido (13/09/2026)** — exclusividade de painéis: ao abrir Status ou Terminal, `painelMenu` é escondido (`SetActive(false)`) via `AoClicarStatus`/`AoClicarTerminal`, e reexibido pelo callback `AoFecharOutroPainel` quando o Status/Terminal fecha (ver `TelaDeStatusManager`/`TerminalUIManager` abaixo). O contador de `GerenciadorDeEstado` (`RegistrarMenuAberto`/`Fechado`) não foi tocado por essa mudança. Nova flag `_outroPainelAberto` faz `Update()` ignorar ESC enquanto Status/Terminal estiverem abertos — sem ela, ESC com o Terminal aberto reabria `painelMenu` por baixo dele e incrementava o contador de novo (bug encontrado e corrigido no mesmo commit).
 - ✅ **Corrigido (Estágio 2, 13/09/2026)** — Bag deixou de ser placeholder: `AoClicarBag` abre `BagUIManager` real, mesmo padrão de exclusividade de `AoClicarStatus`.
 - ✅ **Corrigido (sessão do Painel do Droid)** — botão "Droid" deixou de chamar `MostrarAviso("Equipamentos")`; agora `AoClicarDroid` abre `TelaDeDroidManager` (novo campo `telaDeDroid`), mesmo padrão de exclusividade dos demais painéis. `AoFechar` do novo painel ligado em `Start()` junto dos outros.
 
 **`TelaDeDroidManager`** (novo, sessão do Painel do Droid) — painel somente-leitura das 4 peças do Droid (`Braco`/`Perna`/`Tronco`/`Cabeca`), busca o Droid direto do `GerenciadorDeEstado` (mesmo padrão de `TelaDeStatusManager`). Mostra nome + `AtributoBonificado`/`ValorDoBonus` de cada peça, ou "Vazio" se o slot não tiver peça (nunca esconde o slot). Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager`/`BagUIManager`. Escopo desta leva é só visualização — equipar continua exclusivamente pela Bag (`BagUIManager.EquiparItem`); não há "desequipar".
 
-**`TransicaoDeCena`** (cena `City`) — leva o jogador entre o mapa principal e a Cidade nos dois sentidos. **Corrigido nesta sessão:** o campo de destino era `Transform`; trocado pra `Vector2` (coordenadas digitadas no Inspector), porque Unity não permite salvar referência de `Transform` entre cenas diferentes (cross-scene reference).
+**`TransicaoDeCena`** (genérico, usado em `City` e `CasaLip`) — leva o jogador entre cenas nos dois sentidos.
+> ✅ **Pergunta de §4.7/§9 respondida (15/09/2026):** `trancada` (bool),
+> `textoDeBloqueio` (`TMP_Text`) e `mensagemDeBloqueio` (string) são campos
+> **genéricos da própria classe `TransicaoDeCena`**, não algo específico da
+> porta da Casa — confirmado com o arquivo real em mãos. Qualquer porta do
+> jogo pode usá-los. `OnTriggerEnter2D` continua ativo quando trancada (só
+> mostra o aviso e retorna), e `OnTriggerExit2D` esconde o aviso. O novo
+> `TrancaPorHistoria` (§4.8) é quem controla esse campo por condição de jogo. **Corrigido nesta sessão:** o campo de destino era `Transform`; trocado pra `Vector2` (coordenadas digitadas no Inspector), porque Unity não permite salvar referência de `Transform` entre cenas diferentes (cross-scene reference).
 
 **`NpcInterativo`** (cena `City`) — enum `TipoDeNpc` (`Generico`/`Loja`) + campo `lojaUIManager`. `Interagir()` despacha por tipo: `Generico` mantém placeholder (`Debug.Log`, diálogo simples foi pulado por decisão do responsável do projeto, não descartado); `Loja` chama `RegistrarMenuAberto`/(`AoFechar` → `RegistrarMenuFechado`) e abre `LojaUIManager`, mesmo padrão de exclusividade de `TelaDeStatusManager`/`TerminalUIManager`.
 
@@ -431,7 +506,13 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 **`TerminalUIManager`** — UI do terminal: campo de código, histórico de comandos (↑/↓), log de sessão, atalho Ctrl+Enter.
 > ✅ **Novo (14/09/2026 — puzzle da casa):** ganhou `public DroidScriptRunner Runner => runner` (só leitura — exposto pra permitir que um checker de puzzle específico de cena, como `PuzzleAguaCasaChecker`, leia o estado da VM Lua depois de cada execução, sem duplicar toda a UI do terminal) e `public System.Action AoExecutarCodigo`, invocado ao final de `AoClicarExecutar()` — sempre, sucesso ou erro. O terminal geral não sabe (nem precisa saber) o que os ouvintes fazem com isso.
 > ✅ **Confirmado (14/09/2026):** puzzle da água (`CasaLip`) testado ponta a ponta pelo responsável do projeto — funciona.
-> ⚠️ **Débito técnico não removido (14/09/2026):** `DroidScriptRunner.ObterVariavelNumerica` (ver §4.3) tem um `Debug.Log` de depuração explicitamente marcado no próprio código como "remover depois de confirmar o bug do puzzle de água" — o bug já foi confirmado corrigido, mas o log de debug **não foi removido ainda** (decisão explícita: não refatorar agora). Ver §9.
+> ✅ **Débito quitado (15/09/2026):** o `Debug.Log` de depuração de
+> `DroidScriptRunner.ObterVariavelNumerica` foi **removido**, junto do
+> `using System.Linq` e do `using UnityEngine` que só existiam por causa
+> dele. Quem precisar depurar puzzle agora usa o campo `logDeDepuracao` do
+> `VerificadorDePuzzle` (§4.8), que é ligável por instância no Inspector em
+> vez de global e sempre ligado. Item 7 dos "Próximos passos imediatos" do
+> `CHECKLIST` — concluído.
 
 ### 4.7 `Casa` — cena `CasaLip` (puzzle de introdução, Sessão 1 do Enredo)
 
@@ -459,6 +540,96 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 
 ---
 
+### 4.8 `Historia` — diálogo, flags e progressão do Ato 1 (15/09/2026)
+
+> Pasta nova (`Assets/Scripts/Historia/`). Sete arquivos que, juntos, tornam
+> jogável o Ato 1 do `TCC_-_ENREDO.md` (Sessões 2 a 7). Nenhum sistema novo de
+> domínio foi criado: tudo se apoia em estruturas que já existiam e estavam
+> ociosas — `GerenciadorDeEstado` flags de história (existiam, persistiam, e
+> **nada as usava**), `TransicaoDeCena.trancada`, o evento
+> `TerminalUIManager.AoExecutarCodigo` e `DroidScriptRunner.ObterVariavelNumerica`.
+
+**`DialogoUIManager`** — painel único de diálogo. Mesmo contrato dos painéis
+existentes (`painel` raiz desativado em `Start()`, `AoFechar`,
+`RegistrarMenuAberto`/`RegistrarMenuFechado`, `ForceRebuildLayoutImmediate`
+com o container **ativo antes** de popular). `Mostrar(falas, escolhas, aoConcluir)`
+exibe as falas em sequência e, no fim, botões de escolha opcionais.
+**Diferença deliberada em relação aos outros painéis:** o acesso é por
+`DialogoUIManager.Instancia` (estático, resolvido em runtime), não por
+referência de Inspector — gatilhos ficam espalhados por várias cenas e o Unity
+não permite referência cross-scene (mesmo motivo que fez `TransicaoDeCena`
+trocar `Transform` por `Vector2`). Deve morar dentro do Canvas persistente do
+`MenuMundoManager`; não chama `DontDestroyOnLoad` próprio, para não brigar com
+a proteção de duplicata do `MenuMundoManager.Awake`.
+
+**`FalaDeDialogo`** / **`EscolhaDeDialogo`** (`[Serializable]`, no mesmo
+arquivo) — DTOs de Inspector. `EscolhaDeDialogo` carrega a consequência de
+forma declarativa (`flagAoEscolher`, `idItemConcedido`, `quantidadeDoItem`,
+`respostaAposEscolher`), e é por isso que a escolha de facção da Sessão 4 não
+precisa de script próprio.
+
+**`GatilhoDeDialogo`** — dispara um diálogo por proximidade+tecla
+(`AoInteragir`), ao encostar (`AoEntrarNoTrigger`) ou só por chamada externa
+(`ApenasPorScript`). Carrega as falas, `flagsNecessarias`/`flagsQueImpedem`,
+`flagAoTerminar`, e o callback `AoConcluirDialogoExterno` (atribuído por código,
+não pelo Inspector). É o componente que contém **todo o conteúdo narrativo** do
+Ato 1 — o texto está no Inspector, nunca em `.cs`.
+
+**`CondicoesDeHistoria`** (estática, no mesmo arquivo) — regra única
+compartilhada: "todas as `flagsNecessarias` ativas E nenhuma das
+`flagsQueImpedem`". Usada por `GatilhoDeDialogo`, `CondicaoDeHistoria`,
+`TrancaPorHistoria`, `GatilhoDeBatalha` e `EncounterZone`.
+
+**`CondicaoDeHistoria`** — liga/desliga GameObjects conforme flags, por regras.
+**Armadilha registrada:** o componente **não** pode ter como alvo o próprio
+GameObject — objeto desativado não roda `Update()`, então nunca se religaria
+quando a flag mudasse. O código detecta e recusa esse caso com um aviso, e a
+lista de alvos é externa de propósito.
+
+**`GatilhoDeBatalha`** — batalha roteirizada (não aleatória). Irmão de
+`EncounterZone` sem o sorteio: salva a posição (mesmo mecanismo de
+`SalvarPosicao` + `RestaurarPosicao`), escreve `ProximoInimigoId` e
+`FlagDeVitoriaPendente` no `GerenciadorDeEstado` e carrega a cena de batalha.
+A própria `flagDeVitoria` serve de trava contra repetição — sem isso o jogador
+voltaria da luta, encostaria no mesmo trigger e lutaria em loop.
+
+**`VerificadorDePuzzle`** — generalização do `PuzzleAguaCasaChecker`. Lê uma
+variável global Lua após cada execução (`terminal.Runner.ObterVariavelNumerica`),
+compara (`MaiorOuIgual`/`IgualA`/`Diferente`), e ao resolver: destranca porta
+(`trancada = false`, **nunca** desabilita o componente — ver §4.7), mostra fala,
+liga/desliga objetos e grava `flagAoResolver`. `flagQueJaResolve` faz o puzzle
+nascer resolvido depois de um load.
+> **Mudança estrutural em relação ao checker original:** não usa
+> `[RequireComponent(typeof(TerminalUIManager))]` e **não mora no GameObject do
+> terminal**. Com o `MenuMundoManager` persistindo entre cenas, o
+> `TerminalUIManager` persiste junto — um checker preso a ele viajaria para
+> todas as cenas seguintes continuando a escutar execuções que não têm nada a
+> ver com o puzzle dele. Aqui o checker mora na própria cena e assina/desassina
+> em `OnEnable`/`OnDisable`. O `PuzzleAguaCasaChecker` original **não foi
+> apagado** — os dois coexistem até a `CasaLip` ser migrada no Editor.
+
+**`TrancaPorHistoria`** (`[RequireComponent(typeof(TransicaoDeCena))]`) —
+controla `trancada` a partir de duas classes de exigência combináveis: flags de
+história, e **ter técnica configurada no terminal** (`exigirTecnicaConfigurada`
++ `minimoDeAcoes`, contando por `Droid.ObterAcoesDisponiveis()` para não
+depender de o Ataque Básico morar ou não em `TecnicasConfiguradas`). A segunda
+é a mais importante do projeto: é o que torna o terminal caminho crítico em vez
+de painel opcional. Reavalia em `Update()` porque o jogador pode configurar uma
+técnica sem trocar de cena. Troca `mensagemDeBloqueio` conforme o que falta.
+
+**`ApolloDica`** (estática) — traduz a mensagem crua do MoonSharp numa
+explicação conceitual na voz do Apollo. `Traduzir(mensagem)` varre uma lista
+ordenada de pares (trecho em minúsculo → fala) e sempre devolve algo, mesmo
+para erro desconhecido. `ExtrairLinha(mensagem)` tira o "(linha N)" do formato
+`chunk_0:(3,12)`. Ligada em `TerminalUIManager.AoClicarExecutar`, no ramo de
+erro, atrás do campo `mostrarDicasDoApollo` (default ligado).
+> ⚠️ **Escopo honesto:** isto **não** é o "Apollo Debugger" do `readme.md`. Não
+> destaca linha dentro do editor, não é reativo enquanto o jogador digita e não
+> analisa o código — só o texto do erro já ocorrido. É o primeiro degrau. A
+> lacuna continua registrada no `CHECKLIST` → Amadurecimento, agora reduzida.
+
+---
+
 ## 5. Fórmulas e valores atuais
 
 **Dano de combate** (vigente, testado em batalha real):
@@ -470,7 +641,29 @@ dano         = max(1, totalAtk − Defesa_do_alvo)
 ```
 Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 22`.
 
-**Defesa** = `ObterTotal(TipoAtributo.Vit)` — sem bônus de peça/equipamento ainda.
+**Defesa** = `ObterTotal(TipoAtributo.Vit)` — **com** bônus de peça (ver §4.1).
+
+**HP máximo** = `HpMaxBase` + percentual de VIT + bônus de peça, calculado em
+`Droid.HpMax` (não é campo). O save persiste `hpMaxBase`, nunca o total — ver
+`DadosDoJogo.DroidSalvo.hpMaxBase` e a nota de compatibilidade em
+`SalvamentoJson.Carregar`.
+
+**Bônus de cura por INT** = `Droid.BonusPercentualDeCura` (%), aplicado sobre
+`item.CuraHp` em `BattleManager.UsarItemDeCura` e `BagUIManager.UsarCuraForaDeBatalha`.
+Constante em `TabelaDeCombate.PercentualBonusCuraPorInt`.
+
+**Resistência a efeito** = `Droid.RolarResistencia(alvo.ChanceDeResistirEfeito)`,
+rolada apenas para Debuff (Buff no próprio Droid não rola).
+
+> ⚠️ **Não confirmado nesta sessão:** a fórmula de dano acima, o roll de
+> acerto (HIT×FLEE) e o crítico por LUK **não puderam ser verificados** — os
+> arquivos `Droid.cs`, `CombatEngine.cs`, `TabelaDeCombate.cs` e
+> `InimigoFixo.cs` não estavam entre os enviados. O `readme.md` lista
+> HIT/FLEE/crítico/INT como implementados; a §8 deste documento ainda lista
+> HIT/FLEE como "planejado". A parte de **INT/resistência está confirmada**
+> (visível em `BattleManager.cs`); HIT/FLEE e crítico **continuam em aberto**
+> até alguém colar `Droid.cs`/`CombatEngine.cs`. Esta linha existe em
+> obediência à §0 item 4: não declarar consistência sem o arquivo em mãos.
 
 **Derrota** = `Hp <= 0`. Nenhuma outra condição implementada.
 
@@ -506,10 +699,96 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 | Item | Descrição | Status |
 |---|---|---|
 | Sistema de acerto/erro (HIT/FLEE) | Atributos derivados ATK/DEF/HIT/FLEE/HpMax completos, com chance de acerto baseada em HIT do atacante vs. FLEE do alvo | Planejado, não implementado — hoje todo ataque sempre acerta |
-| Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real, avaliados por valor final de variável — sistema **genérico/reaproveitável** | Planejado, não implementado. **Não confundir** com `PuzzleAguaCasaChecker` (§4.7): esse é um checker ad-hoc específico da cena `CasaLip`, que já lê variável Lua direto via `DroidScriptRunner.ObterVariavelNumerica` e já está implementado e testado — mas não é uma instância deste sistema genérico, é uma solução pontual paralela |
+| Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real | **Reavaliado (15/09/2026): provavelmente desnecessário.** O `VerificadorDePuzzle` (§4.8) já é genérico e cobre todos os puzzles previstos do Ato 1 com configuração de Inspector, zero código por puzzle. Manter fora de escopo até aparecer um puzzle que ele comprovadamente não resolva |
+| Sistema de história (diálogo, flags, portões, batalha roteirizada) | Falas por Inspector, condição por flag persistida, portão de cena e batalha com inimigo de catálogo | **Concluído em código (15/09/2026)** — ver §4.8. Falta só o trabalho de Editor (montagem de cena), ver `GUIA_DE_MONTAGEM_ATO1.md` |
+| Apollo Debugger | Destacar a linha da falha no editor + dica conceitual reativa a erro | **Parcial (15/09/2026):** `ApolloDica` entrega a dica conceitual por erro (§4.8). Falta o destaque de linha dentro do campo de código e a reatividade em tempo real |
 | `DroidDataSO` / `ItemDataSO` / Factory | Migrar criação de Droid/itens de código direto para ScriptableObjects configuráveis no Inspector | Planejado, não implementado |
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
-| Inventário e equipamento completos | Todas as 5 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha`) implementadas, com quantidade real e persistência (ver `CatalogoDeItens`, `Inventario`, `BagUIManager`). Obtenção via kit inicial, drop configurável por `BattleManager` e Loja (compra/venda). UI ainda mínima (sem ícone/descrição longa/filtro). | **Concluído** — falta só UI mais rica (não bloqueante), ver "Amadurecimento" em `CHECKLIST_DE_DESENVOLVIMENTO.md` |
+| Inventário e equipamento completos | Todas as 6 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha`/`Chave`) implementadas, com quantidade real e persistência (ver `CatalogoDeItens` — reescrito e confirmado 15/09/2026, ver §8.1 —, `Inventario`, `BagUIManager`). Obtenção via kit inicial, drop configurável por `BattleManager` e Loja (compra/venda). Descrição longa + Raridade + spread de preço confirmados; UI ainda mínima (sem ícone/filtro por raridade). | **Concluído** — falta só UI mais rica (não bloqueante), ver "Amadurecimento" em `CHECKLIST_DE_DESENVOLVIMENTO.md` |
+| Sistema de missões (catálogo + motor + diário) | `CatalogoDeQuests` (10 quests), `GerenciadorDeQuests` (motor estático), `QuestUIManager` (diário) | **Concluído em código (15/09/2026)**, confirmado por `.cs` real — ver §8.1. Falta `GatilhoDeQuest.cs` (componente de NPC para oferecer/entregar quest — citado no `LEIA_ISTO`, `.cs` não anexado) e montagem de Editor (Prefab do diário, ligação nos NPCs) |
+| Ajuda pedagógica ativa (`droid.explicar`) | `CatalogoDeLicoes` (9 conceitos) + ponta no `TerminalDroidApi` (`Explicar`/`Ajuda`/`Resumo`) | `CatalogoDeLicoes.cs` **confirmado por `.cs` real** (15/09/2026, ver §8.1). A ponta em `TerminalDroidApi` **não confirmada** — o arquivo `TerminalDroidApi.cs` em si nunca foi anexado nesta sessão, só é referenciado por outros arquivos |
+
+---
+
+## 8.1 Pacote "Ato 1 — catálogos de conteúdo" (✅ confirmado em 15/09/2026, sessão de reconciliação)
+
+> **Atualização:** dos 10 arquivos descritos em `LEIA_ISTO_OS_10_ARQUIVOS_
+> NOVOS.md`, **9 tiveram o `.cs` real anexado e lido nesta sessão**:
+> `CatalogoDeItens.cs` (reescrito), `CatalogoDeInimigos.cs`,
+> `CatalogoDeQuests.cs`, `CatalogoDeNpcs.cs`, `CatalogoDeDialogos.cs`,
+> `CatalogoDePuzzles.cs`, `CatalogoDeLicoes.cs`, `GerenciadorDeQuests.cs`,
+> `QuestUIManager.cs`, e a versão nova de `VerificadorDePuzzle.cs`. Confirmado
+> por leitura direta do arquivo (não por inferência do `LEIA_ISTO`):
+>
+> - `CatalogoDeItens.cs`: 6 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/
+>   `ForaDeBatalha`/`Chave`), `Descricao` + `Raridade` em todo item,
+>   `VendavelNaLoja` + `PrecoDeVenda`/`PrecoDeVendaReal` (spread 50%,
+>   mínimo 1), preços com escala real (8–150), os 2 itens de recompensa de
+>   facção (`Núcleo de Sobrecarga`, `Módulo de Ressonância`, ambos
+>   `VendavelNaLoja = false`), 6 itens de quest (`Chave`, todos preço 0 e
+>   não usáveis). `ItensDaLoja` filtra por `VendavelNaLoja && Preco > 0`.
+> - `CatalogoDeQuests.cs`: 10 quests confirmadas por Id — 2 principais
+>   (`q_main_agua`, `q_main_estacao`), 4 de Guilda (`q_guilda_1..4`), 4
+>   secundárias (`q_agua_dara`, `q_cobre_tacio`, `q_perna_apollo`,
+>   `q_limpeza_borda`). Objetivos tipados (`Conversar`/`Derrotar`/`Coletar`/
+>   `ResolverPuzzle`/`AlcancarFlag`), referenciando `CatalogoDeNpcs`,
+>   `CatalogoDeInimigos` e `CatalogoDePuzzles` por Id (integração cruzada
+>   real, não só descrita).
+> - `CatalogoDeNpcs.cs`: 13 NPCs confirmados (7 do Enredo + 6 novos:
+>   Mestra da Guilda, estalajadeira, ferreiro, criança de rua, informante
+>   do viaduto, vendedora concorrente), cada um com `Papel`
+>   (`Generico`/`Loja`/`Estalagem`/`Guilda`/`Ferreiro`/`Informante`), local
+>   e descrição.
+> - `CatalogoDeDialogos.cs`: roteiro confirmado cobrindo `Casa` (Sessão 1) e
+>   `City`/`Game` das Sessões 2, 3, 4, 5, 6 e 7 — bate com "Sessões 1 a 7".
+> - `CatalogoDePuzzles.cs`: 10 puzzles confirmados por Id
+>   (`p_agua_casa`, `p_painel_energia`, `p_contador_sucata`,
+>   `p_filtro_agua`, `p_sequencia_porta`, `p_calibragem_braco`,
+>   `p_rota_patrulha`, `p_bomba_reserva`, `p_triagem_pecas`,
+>   `p_antena_guilda`) — os 2 da matriz curricular (§ correspondente no
+>   `readme.md`) mais os 8 extras.
+> - `CatalogoDeLicoes.cs`: 9 conceitos confirmados (`variavel`, `while`,
+>   `if`, `comparacao`, `contador`, `funcao`, `erro`, `atributo`,
+>   `tecnica`), com apelidos normalizados (acento/maiúscula/sinônimo caem
+>   no mesmo tópico). `Explicar(topico)` e `ListarTopicos()` confirmados.
+> - `GerenciadorDeQuests.cs`: motor estático confirmado — `Aceitar`,
+>   `AtualizarQuestsAutomaticas`, `RegistrarProgresso`, `Entregar`,
+>   `PodeEntregar`, `Ativas()`/`Concluidas()`. Progresso 100% em flags/
+>   contadores do `GerenciadorDeEstado` (nenhuma estrutura de save nova).
+> - `QuestUIManager.cs`: diário confirmado — painel único, lista
+>   ativas/concluídas, detalhe com objetivos/recompensas/curiosidade
+>   (curiosidade só visível após `EstaConcluida`). Mesmo contrato dos
+>   outros painéis (`painel`/`AoFechar`/`LayoutRebuilder` antes de popular).
+>
+> **1 dos 10 segue sem arquivo — `GatilhoDeQuest.cs`.** Não foi anexado
+> nesta sessão, e nenhum dos 9 arquivos confirmados o referencia como
+> dependência direta (o diário e o motor funcionam sem ele). Tratar como
+> **⚠️ não confirmado** — o `LEIA_ISTO` descreve um componente de NPC que
+> oferece/lembra/entrega quest ao interagir; sem o `.cs`, não é possível
+> confirmar se esse fluxo já está ligado a `NpcInterativo`.
+>
+> **Divergência de contrato — `VerificadorDePuzzle.cs` (2 versões, ambas já
+> vistas nesta reconciliação):**
+> - **v1** (lida em sessão anterior, ainda documentada no corpo da §4.8):
+>   lê `nomeDaVariavel`/`valorDeVitoria` direto do Inspector, sem `Id`.
+> - **v2** (lida nesta sessão, substitui a v1): lê `idDoPuzzle` do
+>   `CatalogoDePuzzles`, suporta múltiplas `VerificacaoDeVariavel`
+>   simultâneas, conta tentativas e mostra dica do catálogo após N erros,
+>   chama `GerenciadorDeQuests.RegistrarProgresso(ResolverPuzzle, ...)`, e
+>   **mantém o modo manual da v1 como fallback** se `idDoPuzzle` ficar
+>   vazio — não é uma reescrita destrutiva, é estritamente maior.
+>   **A v2 é a versão vigente.** A descrição em §4.8 (corpo do documento)
+>   ainda reflete a v1 e precisa ser atualizada numa próxima sessão de
+>   edição da §4 — registrado aqui para não perder o rastro.
+>
+> **🔴 Bug de integração confirmado por leitura cruzada dos dois arquivos:**
+> `VerificadorDePuzzle.cs` v2 chama `terminal.EscreverNoLog(...)` (método
+> público) quando não há `textoDeApollo` configurado. O `TerminalUIManager.cs`
+> desta mesma entrega **não tem esse método** — só existe
+> `AdicionarLinhaDeLog`, que é `private`. Isso quebra a compilação sempre
+> que um `VerificadorDePuzzle` v2 sem `textoDeApollo` tentar mostrar uma
+> dica ou fala de vitória pelo log do terminal. Ver §9 para o registro
+> formal da pendência.
 
 ---
 
@@ -519,8 +798,11 @@ Exemplo: FOR 5, técnica NivelDeDano 3, alvo com Defesa 3 → `10 + 15 − 3 = 2
 
 - `TabelaDeCustos.CustoResistenciaPorNivel` está declarada mas não é referenciada em nenhum cálculo — confirmar se ainda é necessária ou remover.
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.
-- **`DroidScriptRunner.ObterVariavelNumerica`** (14/09/2026) tem um `Debug.Log` de depuração (imprime todas as chaves globais do ambiente Lua a cada leitura) explicitamente comentado como temporário no código — o bug que motivou o debug já foi confirmado corrigido (puzzle da água testado e funcionando ponta a ponta), mas o log **não foi removido**; decisão explícita de não refatorar agora. Candidato a limpeza numa sessão futura.
-- **`TransicaoDeCena.trancada`/`textoDeBloqueio`** (campos usados pela porta da `CasaLip`, ver §4.7) ainda não têm confirmação se são genéricos (reaproveitáveis em qualquer porta do jogo) ou específicos desta instância — a descrição de `TransicaoDeCena` na §4.6 ainda não foi atualizada com esses campos por essa razão.
+- ✅ **Resolvido (15/09/2026):** o `Debug.Log` de depuração de `DroidScriptRunner.ObterVariavelNumerica` foi removido. Ver §4.3.
+- ✅ **Resolvido (15/09/2026):** `TransicaoDeCena.trancada`/`textoDeBloqueio`/`mensagemDeBloqueio` **são genéricos da classe**, confirmado com o arquivo real. §4.6 atualizada.
+- **Pacote de 10 arquivos do Ato 1 (catálogos de conteúdo) — 9/10 confirmados nesta sessão.** Ver §8.1 para o detalhamento. Falta só `GatilhoDeQuest.cs` (não anexado) e `TerminalDroidApi.cs` com os métodos `Explicar`/`Ajuda`/`Resumo` (o arquivo em si nunca foi anexado nesta sessão nem na anterior — só é referenciado por `TerminalUIManager`/`DroidScriptRunner`, nunca com seu próprio conteúdo visível). **Bug de integração encontrado:** `VerificadorDePuzzle.cs` v2 chama `terminal.EscreverNoLog(...)`, método que não existe em `TerminalUIManager.cs` (só há `AdicionarLinhaDeLog`, privado) — quebra a compilação para qualquer `VerificadorDePuzzle` sem `textoDeApollo` configurado. Corrigir expondo `AdicionarLinhaDeLog` como público (ou criando `EscreverNoLog` como alias público) antes de montar cena com puzzle sem TMP de fala dedicado.
+- **Divergência ainda aberta — HIT/FLEE e crítico (LUK).** `readme.md` diz implementado; §8 deste documento diz planejado. Resistência por INT está confirmada; o resto depende de `Droid.cs`/`CombatEngine.cs` serem colados numa próxima sessão. Ver a nota no fim da §5.
+- **`InimigoFixo` já carrega efeitos ativos** (`EfeitosAtivos`/`EfeitosDeDanoAtivos` estão na interface e `BattleManager` aplica Debuff nele). Isso torna o bug "efeitos nunca zerados entre batalhas" **menos hipotético** do que a §4.1 sugere — mas o `InimigoFixo` é recriado a cada `BattleManager.Start()`, então o vazamento real continua sendo só do lado do `Droid` do jogador, que é persistente. Não corrigido nesta sessão (fora de escopo por instrução).
 
 **Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos) — status atualizado:**
 

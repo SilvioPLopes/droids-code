@@ -1,0 +1,211 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// Dispara um dialogo (ver DialogoUIManager) por proximidade + tecla, ou ao
+/// entrar num trigger. E o componente que carrega TODO o conteudo narrativo
+/// do Ato 1 — as falas ficam no Inspector, nao em codigo.
+///
+/// Condicoes de historia sao declarativas: o gatilho so dispara se TODAS as
+/// flags de "flagsNecessarias" estiverem ativas e NENHUMA de
+/// "flagsQueImpedem" estiver. Isso e o que faz a mesma cena (City) contar
+/// coisas diferentes na Sessao 2 e na Sessao 7 sem script novo.
+///
+/// Colocar no GameObject do NPC/gatilho, junto com um Collider2D marcado
+/// como "Is Trigger".
+/// </summary>
+[RequireComponent(typeof(Collider2D))]
+public class GatilhoDeDialogo : MonoBehaviour
+{
+    public enum ModoDeDisparo
+    {
+        AoInteragir,        // player entra no raio e aperta a tecla (NPCs)
+        AoEntrarNoTrigger,  // dispara sozinho ao encostar (cutscenes de passagem)
+        ApenasPorScript     // nao reage a nada sozinho -- quem dispara e outro componente
+    }
+
+    /// <summary>
+    /// Invocado quando o dialogo termina, DEPOIS de gravar flagAoTerminar.
+    /// Atribuido por codigo (nao aparece no Inspector). E o que permite o
+    /// NpcInterativo do Tacio contar a fala dele e so entao abrir a Loja.
+    /// </summary>
+    public System.Action AoConcluirDialogoExterno;
+
+    [Header("Disparo")]
+    public ModoDeDisparo modo = ModoDeDisparo.AoInteragir;
+
+    [Tooltip("So usado quando Modo = Ao Interagir. Se este GameObject tambem tem um NpcInterativo com Tipo = Dialogo, use Modo = Apenas Por Script aqui, senao os dois reagem a mesma tecla.")]
+    public KeyCode teclaDeInteracao = KeyCode.E;
+
+    [Tooltip("Tag do player. Igual ao resto do projeto: \"Player\".")]
+    public string tagDoPlayer = "Player";
+
+    [Header("Condicoes de historia")]
+    [Tooltip("O dialogo so dispara se TODAS estas flags estiverem ativas. Vazio = sem exigencia.")]
+    public string[] flagsNecessarias;
+
+    [Tooltip("O dialogo NAO dispara se QUALQUER uma destas flags estiver ativa. Use pra aposentar um dialogo depois que a historia avancou.")]
+    public string[] flagsQueImpedem;
+
+    [Header("Conteudo")]
+    public List<FalaDeDialogo> falas = new List<FalaDeDialogo>();
+
+    [Tooltip("Opcional. Se preenchido, aparece como botoes no fim do dialogo (ex: escolha de faccao).")]
+    public List<EscolhaDeDialogo> escolhas = new List<EscolhaDeDialogo>();
+
+    [Header("Consequencia")]
+    [Tooltip("Flag gravada quando o dialogo termina (ex: \"ato1_falou_dara\"). Persiste no save.")]
+    public string flagAoTerminar;
+
+    [Tooltip("Se marcado, o dialogo nao repete depois de concluido nesta sessao. Se voce tambem preencheu flagAoTerminar, a repeticao fica bloqueada entre sessoes tambem (adicione a mesma flag em flagsQueImpedem pra isso).")]
+    public bool apenasUmaVez = true;
+
+    [Tooltip("Desativa este GameObject depois que o dialogo termina. Util pra gatilhos de passagem que nao devem existir mais.")]
+    public bool desativarAposConcluir = false;
+
+    [Header("Indicador visual (opcional)")]
+    [Tooltip("Filho (ex: balao \"!\") ligado quando o player esta perto e o dialogo esta disponivel.")]
+    public GameObject indicadorDeInteracao;
+
+    private bool _playerPerto;
+    private bool _jaDisparouNestaSessao;
+
+    private readonly ISistemaDeSalvamento _salvamento = new SalvamentoJson();
+
+    void Reset()
+    {
+        // Conveniencia de Editor: ja deixa o Collider2D como trigger, mesmo
+        // padrao de InteragirComTerminalCasa.
+        var col = GetComponent<Collider2D>();
+        if (col != null) col.isTrigger = true;
+    }
+
+    void Awake()
+    {
+        if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (modo != ModoDeDisparo.AoInteragir) return;
+
+        // Mesmo cuidado de NpcInterativo/PlayerMovement: nao reagir com um
+        // painel ja aberto por cima (inclusive o proprio dialogo).
+        if (GerenciadorDeEstado.Instancia.MenuAberto)
+        {
+            if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+            return;
+        }
+
+        bool disponivel = _playerPerto && PodeDisparar();
+        if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(disponivel);
+
+        if (disponivel && Input.GetKeyDown(teclaDeInteracao))
+        {
+            Disparar();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.CompareTag(tagDoPlayer)) return;
+
+        _playerPerto = true;
+
+        if (modo == ModoDeDisparo.AoEntrarNoTrigger && PodeDisparar() && !GerenciadorDeEstado.Instancia.MenuAberto)
+        {
+            Disparar();
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag(tagDoPlayer)) return;
+
+        _playerPerto = false;
+        if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+    }
+
+    /// <summary>
+    /// Publico porque NpcInterativo (Tipo = Dialogo) delega pra ca, em vez de
+    /// duplicar deteccao de proximidade.
+    /// </summary>
+    public bool PodeDisparar()
+    {
+        if (apenasUmaVez && _jaDisparouNestaSessao) return false;
+        if (falas.Count == 0 && escolhas.Count == 0) return false;
+        return CondicoesDeHistoria.Satisfeitas(flagsNecessarias, flagsQueImpedem);
+    }
+
+    /// <summary>Publico pra permitir disparo por script (ex: NpcInterativo).</summary>
+    public void Disparar()
+    {
+        DialogoUIManager painel = DialogoUIManager.Instancia;
+        if (painel == null)
+        {
+            Debug.LogWarning($"GatilhoDeDialogo '{gameObject.name}': nenhum DialogoUIManager encontrado na cena. Coloque o painel de dialogo dentro do Canvas persistente do MenuMundoManager.");
+            return;
+        }
+
+        // So marca como usado se o painel REALMENTE abriu. Se ele recusar
+        // (outro dialogo em andamento, painel mal configurado), o gatilho
+        // continua disponivel em vez de morrer em silencio.
+        bool abriu = painel.Mostrar(falas, escolhas, AoConcluirDialogo);
+        if (!abriu) return;
+
+        _jaDisparouNestaSessao = true;
+        if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+    }
+
+    void AoConcluirDialogo(EscolhaDeDialogo escolhaFeita)
+    {
+        if (!string.IsNullOrWhiteSpace(flagAoTerminar))
+        {
+            GerenciadorDeEstado.Instancia.DefinirFlag(flagAoTerminar, true);
+            // A escolha (se houve) ja foi persistida pelo proprio
+            // DialogoUIManager; aqui salvamos a flag de conclusao.
+            _salvamento.Salvar();
+        }
+
+        AoConcluirDialogoExterno?.Invoke();
+
+        if (desativarAposConcluir)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+}
+
+/// <summary>
+/// Avaliacao de condicao de historia, compartilhada por GatilhoDeDialogo,
+/// CondicaoDeHistoria, TrancaPorHistoria, GatilhoDeBatalha e EncounterZone.
+/// Centralizada aqui pra que a regra ("todas as necessarias E nenhuma das
+/// que impedem") exista num lugar so.
+/// </summary>
+public static class CondicoesDeHistoria
+{
+    public static bool Satisfeitas(string[] flagsNecessarias, string[] flagsQueImpedem)
+    {
+        var gerenciador = GerenciadorDeEstado.Instancia;
+
+        if (flagsNecessarias != null)
+        {
+            foreach (string flag in flagsNecessarias)
+            {
+                if (string.IsNullOrWhiteSpace(flag)) continue;
+                if (!gerenciador.ObterFlag(flag)) return false;
+            }
+        }
+
+        if (flagsQueImpedem != null)
+        {
+            foreach (string flag in flagsQueImpedem)
+            {
+                if (string.IsNullOrWhiteSpace(flag)) continue;
+                if (gerenciador.ObterFlag(flag)) return false;
+            }
+        }
+
+        return true;
+    }
+}

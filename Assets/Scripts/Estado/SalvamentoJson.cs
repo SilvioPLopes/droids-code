@@ -5,7 +5,8 @@ using DroidsCode.DroidCore;
 /// <summary>
 /// Salva/carrega em Application.persistentDataPath/save.json.
 /// Cobre: Droid (stats, HP, pontos, tecnicas), posicao no mapa, cena, flags
-/// de historia, inventario e (Estagio 3) Gold.
+/// de historia, inventario, Gold (Estagio 3) e (Historia/Quests) contadores
+/// de progresso de objetivo.
 /// </summary>
 public class SalvamentoJson : ISistemaDeSalvamento
 {
@@ -89,6 +90,15 @@ public class SalvamentoJson : ISistemaDeSalvamento
         foreach (var kv in gerenciador.Inventario)
         {
             dados.itens.Add(new ItemSalvo { id = kv.Key, quantidade = kv.Value });
+        }
+
+        // NOVO (Historia/Quests): persistir os contadores de progresso de
+        // objetivo junto -- sem isso, o progresso de uma quest em andamento
+        // (ex: "3/5 parafusos coletados" via contador) se perdia a cada
+        // save/load, mesmo com a quest continuando ativa (flag "_ativa").
+        foreach (var kv in gerenciador.TodosOsContadores)
+        {
+            dados.contadores.Add(new ContadorDeQuest { chave = kv.Key, valor = kv.Value });
         }
 
         string json = JsonUtility.ToJson(dados, prettyPrint: true);
@@ -188,6 +198,17 @@ public class SalvamentoJson : ISistemaDeSalvamento
         // v1/v2/v3 nao tem "gold" -- JsonUtility preenche com 0, carrega
         // Gold zerado (aceitavel, mesma logica do inventario vazio acima).
         gerenciador.CarregarGold(dados.gold);
+
+        // COMPATIBILIDADE (v5 — Historia/Quests): saves anteriores nao tem
+        // "contadores" -- JsonUtility preenche como lista vazia, entao o
+        // progresso numerico de quests em andamento reseta (mas nao quebra
+        // o load, e a flag "_ativa"/"_concluida" da quest continua valendo).
+        var contadores = new System.Collections.Generic.Dictionary<string, int>();
+        foreach (var contadorSalvo in dados.contadores)
+        {
+            contadores[contadorSalvo.chave] = contadorSalvo.valor;
+        }
+        gerenciador.CarregarContadores(contadores);
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
 

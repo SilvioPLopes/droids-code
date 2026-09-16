@@ -43,6 +43,17 @@ public class FlagDeHistoria
     public bool valor;
 }
 
+// NOVO (Historia/Quests): contador de progresso de objetivo de quest, DTO
+// plano no mesmo padrao de FlagDeHistoria (JsonUtility nao serializa
+// Dictionary). Ver GerenciadorDeEstado.ObterContador/DefinirContador e
+// GerenciadorDeQuests.ChaveObjetivo para a convencao de chave.
+[System.Serializable]
+public class ContadorDeQuest
+{
+    public string chave;
+    public int valor;
+}
+
 [System.Serializable]
 public class DroidSalvo
 {
@@ -69,7 +80,7 @@ public class DroidSalvo
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 4; // v4 (Estagio 3, fase 2 do sistema de item): + gold
+    public int versao = 5; // v5 (Historia/Quests): + contadores de progresso de objetivo
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;
@@ -90,4 +101,11 @@ public class DadosDoJogo
     // de batalha (ver GerenciadorDeEstado/BattleManager). Saves v1/v2/v3
     // (sem este campo) carregam 0 via JsonUtility -- nao quebra o load.
     public int gold;
+
+    // NOVO (v5, Historia/Quests): progresso numerico dos objetivos de quest
+    // (GerenciadorDeEstado._contadores). Saves anteriores a v5 (sem este
+    // campo) carregam lista vazia -- reseta progresso de quest em
+    // andamento, mas nao quebra o load (flags de "concluida" continuam
+    // valendo, ver flagsDeHistoria).
+    public List<ContadorDeQuest> contadores = new List<ContadorDeQuest>();
 }

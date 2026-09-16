@@ -5,6 +5,15 @@ using UnityEngine;
 /// "Is Trigger", cobrindo a área de areia (ou qualquer zona de encontro).
 /// A cada certa distância percorrida pelo player dentro da zona, sorteia
 /// uma chance de iniciar uma batalha.
+///
+/// ATO 1 (15/09/2026): ganhou duas coisas, ambas opcionais e sem efeito se
+/// deixadas vazias (nenhuma zona existente muda de comportamento):
+///   - idDoInimigo: qual inimigo do CatalogoDeInimigos esta zona gera. É o
+///     que faz a Cratera ter "Droid Selvagem" e a borda da cidade ter
+///     "Sucata de Captura", sem precisar de uma cena Battle por zona.
+///   - flagsNecessarias/flagsQueImpedem: a zona só sorteia encontro se a
+///     história permitir. É o que impede o jogador de farmar a Cratera
+///     antes de ter escolhido facção — sem precisar de parede física.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class EncounterZone : MonoBehaviour
@@ -19,6 +28,17 @@ public class EncounterZone : MonoBehaviour
 
     [Tooltip("Nome da cena de batalha para carregar. Deixe vazio se ainda não tiver essa cena.")]
     public string nomeCenaBatalha = "Battle";
+
+    [Header("Inimigo (Ato 1 — opcional)")]
+    [Tooltip("Id no CatalogoDeInimigos gerado por esta zona (ex: \"droid_selvagem\"). Vazio = a cena Battle usa o que estiver no Inspector dela.")]
+    public string idDoInimigo = "";
+
+    [Header("Condições de história (Ato 1 — opcional)")]
+    [Tooltip("A zona só sorteia encontro se TODAS estiverem ativas.")]
+    public string[] flagsNecessarias;
+
+    [Tooltip("A zona para de sortear encontro se QUALQUER uma estiver ativa.")]
+    public string[] flagsQueImpedem;
 
     private Vector3 ultimaPosicao;
     private float distanciaAcumulada;
@@ -64,6 +84,15 @@ public class EncounterZone : MonoBehaviour
 
     void SortearEncontro(GameObject player)
     {
+        // NOVO (Ato 1): zona desligada pela história não sorteia nada.
+        if (!CondicoesDeHistoria.Satisfeitas(flagsNecessarias, flagsQueImpedem)) return;
+
+        // Não puxar o jogador pra uma batalha com um painel aberto na frente
+        // dele (Menu do Mundo, terminal, diálogo). Sem isso, um diálogo longo
+        // enquanto o player desliza pelo trigger podia virar batalha no meio
+        // da fala.
+        if (GerenciadorDeEstado.Instancia.MenuAberto) return;
+
         float sorteio = Random.value; // valor entre 0.0 e 1.0
 
         if (sorteio <= chanceDeEncontro)
@@ -81,6 +110,13 @@ public class EncounterZone : MonoBehaviour
         // RestaurarPosicao.cs).
         string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         GerenciadorDeEstado.Instancia.SalvarPosicao(player.transform.position, cenaAtual);
+
+        // NOVO (Ato 1): diz à cena Battle qual inimigo montar. Encontro
+        // aleatório nunca grava flag de história, então FlagDeVitoriaPendente
+        // é explicitamente zerada — senão uma batalha roteirizada abandonada
+        // (o jogador fugiu) poderia "vazar" a flag dela pro próximo encontro.
+        GerenciadorDeEstado.Instancia.ProximoInimigoId = idDoInimigo;
+        GerenciadorDeEstado.Instancia.FlagDeVitoriaPendente = null;
 
         if (!string.IsNullOrEmpty(nomeCenaBatalha))
         {

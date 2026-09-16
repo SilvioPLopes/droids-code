@@ -1956,7 +1956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   painelPrincipal: {fileID: 1352817244}
   painelConfiguracoes: {fileID: 1139477917}
-  nomeCenaJogo: Game
+  nomeCenaJogo: CasaLip
 --- !u!4 &1406961999
 Transform:
   m_ObjectHideFlags: 0

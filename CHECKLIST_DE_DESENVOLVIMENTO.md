@@ -10,10 +10,103 @@
 > entre seções — não acumule histórico aqui. Se algo foi corrigido/decidido,
 > resuma em 1-2 linhas; detalhe extenso fica pro commit, não pro documento.
 >
-> ⚠️ **Nota desta entrega:** este checklist reconcilia duas frentes que
-> rodaram em paralelo sem uma saber da outra — Painel do Droid/Equipável com
-> bônus real de atributo (um lado) e Cidade/Loja/Gold (outro lado). Histórico
-> de cada frente foi condensado; nada foi descartado, só resumido.
+> ⚠️ **Nota desta entrega (15/09/2026):** entrou o **sistema de história do
+> Ato 1** (7 scripts novos + 6 patches) e o **pacote de catálogos de
+> conteúdo** (9 de 10 arquivos confirmados por `.cs` real — ver seção
+> própria abaixo). O trio foi conferido contra os `.cs` reais nas duas
+> levas. Ver `GUIA_DE_MONTAGEM_ATO1.md` para o trabalho de Editor que falta.
+
+---
+
+## ✅ Reconciliado: pacote "catálogos de conteúdo" do Ato 1 (15/09/2026)
+
+**Atualização da pendência anterior.** Dos 10 arquivos descritos em
+`LEIA_ISTO_OS_10_ARQUIVOS_NOVOS.md`, **9 tiveram o `.cs` real anexado e
+conferido nesta sessão**: `CatalogoDeItens` (reescrito), `CatalogoDeInimigos`,
+`CatalogoDeQuests`, `CatalogoDeNpcs`, `CatalogoDeDialogos`, `CatalogoDePuzzles`,
+`CatalogoDeLicoes`, `GerenciadorDeQuests`, `QuestUIManager`, e
+`VerificadorDePuzzle` v2. Ver `DOCUMENTACAO_TECNICA.md` §8.1 para o
+detalhamento completo do que foi confirmado em cada arquivo.
+
+**Ainda em aberto (2 itens, não bloqueiam mais o restante do plano):**
+
+1. **`GatilhoDeQuest.cs` não foi anexado.** É o componente de NPC que
+   ofereceria/lembraria/entregaria quest ao interagir. Sem ele, o fluxo de
+   "falar com NPC → pegar quest" provavelmente ainda depende de ligação
+   manual (ex: chamar `GerenciadorDeQuests.Aceitar`/`Entregar` a partir de
+   um `GatilhoDeDialogo` existente) até o arquivo ser colado ou escrito.
+2. **`TerminalDroidApi.cs` com `Explicar`/`Ajuda`/`Resumo` não foi anexado.**
+   `CatalogoDeLicoes.cs` está pronto e confirmado, mas a ponta que o
+   exporia no terminal (`droid.explicar("while")`) segue sem confirmação —
+   o arquivo `TerminalDroidApi.cs` em si nunca apareceu nesta sessão nem na
+   anterior, só é referenciado por `TerminalUIManager`/`DroidScriptRunner`.
+
+**🔴 Bug de integração novo, encontrado por leitura cruzada dos arquivos
+recebidos (adicionar à seção de bugs abertos abaixo):** `VerificadorDePuzzle.cs`
+v2 chama `terminal.EscreverNoLog(...)` quando não há `textoDeApollo`
+configurado no Inspector. `TerminalUIManager.cs` **não tem esse método** —
+só existe `AdicionarLinhaDeLog`, que é `private`. Qualquer puzzle montado
+sem TMP de fala dedicado vai quebrar a compilação nesse ponto. Correção
+sugerida: tornar `AdicionarLinhaDeLog` público, ou adicionar
+`public void EscreverNoLog(string linha) => AdicionarLinhaDeLog(linha);`
+em `TerminalUIManager`.
+
+**Consequência prática:** o plano de implementação futuro pode tratar os 9
+itens confirmados como "código pronto, falta Editor" (mesmo status do
+sistema de história) — não mais como pendência de verificação. Os 2 itens
+em aberto (`GatilhoDeQuest`, ponta do `TerminalDroidApi`) e o bug de
+integração entram como itens normais de roadmap/bug, ver seções abaixo.
+
+---
+
+## ✅ Sistema de história do Ato 1 (código pronto, Editor pendente)
+
+7 scripts novos em `Assets/Scripts/Historia/` + `Combat/CatalogoDeInimigos.cs`,
+todos descritos em `DOCUMENTACAO_TECNICA.md` §4.8. Nenhum sistema de domínio
+novo: tudo se apoia nas flags de história que já existiam no
+`GerenciadorDeEstado`, já persistiam no save, e **não eram usadas por nada**.
+
+- `DialogoUIManager` + `GatilhoDeDialogo` — falas e escolhas ramificadas por Inspector. Fecha o item "Diálogo simples de NPC genérico" que estava pulado.
+- `CondicaoDeHistoria` — liga/desliga objetos por flag (Rasha e Teodoro só existem depois da Sessão 3, Dara troca de fala no retorno).
+- `GatilhoDeBatalha` + `CatalogoDeInimigos` — batalha roteirizada com inimigo de catálogo. **Uma única cena `Battle`** serve todos os inimigos; some a necessidade de duplicar cena e de preencher `tabelaDeDrops` à mão em cada uma.
+- `VerificadorDePuzzle` — **v2 (confirmado 15/09/2026):** lê o puzzle pelo `Id` no `CatalogoDePuzzles`, suporta múltiplas variáveis simultâneas, conta tentativas e mostra dica do catálogo após N erros, registra progresso de quest. Mantém o modo manual da v1 como fallback se `idDoPuzzle` ficar vazio — o `PuzzleAguaCasaChecker` original **não foi apagado**; os dois coexistem até a `CasaLip` ser migrada no Editor. **⚠️ Bug de integração:** chama `terminal.EscreverNoLog(...)`, método que não existe em `TerminalUIManager` — ver "🔴 Bugs abertos" abaixo.
+- `TrancaPorHistoria` — portão de cena por flag **e por técnica configurada no terminal**. É o que torna o terminal caminho crítico: sem escrever código, o jogador não sai de Ferrovale.
+- `ApolloDica` — tradução conceitual de erro do MoonSharp na voz do Apollo, ligada no `TerminalUIManager`.
+
+**Patches:** `BattleManager` (inimigo de catálogo + flag de vitória + guarda de ESC), `NpcInterativo` (tipo `Dialogo`, e fala antes de abrir a Loja), `TerminalUIManager` (Apollo Dica), `EncounterZone` (inimigo por zona + condição de flag), `MenuMundoManager` (`cenasBloqueadas`), `GerenciadorDeEstado` (`ProximoInimigoId`/`FlagDeVitoriaPendente`/`LimparBatalhaPendente`).
+
+**⚠️ Bug encontrado e corrigido junto:** desde que o `MenuMundoManager` ganhou
+`DontDestroyOnLoad`, o Canvas do menu passou a existir **dentro da cena
+`Battle`** — onde o `BattleManager` também escuta ESC. Um único ESC era
+consumido pelos dois (fechava a lista de ataques *e* abria o menu de pausa por
+cima da batalha). O comentário no próprio `BattleManager` previa esse dia
+("confirmar se algum dia as duas rodarem sobrepostas"). Corrigido dos dois lados.
+
+**Pendente (só Editor):** montar as cenas conforme `GUIA_DE_MONTAGEM_ATO1.md`, e colar os 2 itens de facção conforme `PARA_COLAR_CatalogoDeItens.md`.
+
+---
+
+## ✅ Catálogos de conteúdo do Ato 1 — Itens/Quests/NPCs/Diálogos/Puzzles/Lições (confirmado 15/09/2026)
+
+9 dos 10 arquivos do pacote descrito em `LEIA_ISTO_OS_10_ARQUIVOS_NOVOS.md`
+tiveram o `.cs` real conferido nesta sessão (ver `DOCUMENTACAO_TECNICA.md`
+§8.1 para o detalhamento por arquivo). Resumo do que passou a existir:
+
+- **`CatalogoDeItens.cs` reescrito:** 6ª categoria `Chave` (itens de missão, nunca usáveis/vendáveis), `Descricao` + `Raridade` em todo item, `VendavelNaLoja` (filtra a aba Comprar — sem isso os 2 itens de facção e os itens de quest apareceriam à venda), preços com escala real (8–150) e spread comprador/vendedor de 50% (`PrecoDeVendaReal`).
+- **`CatalogoDeQuests.cs`:** 10 missões (2 principais com `AceitaAutomaticamente`, 4 de Guilda, 4 secundárias), objetivos tipados referenciando `CatalogoDeNpcs`/`CatalogoDeInimigos`/`CatalogoDePuzzles` por Id — integração cruzada real entre os catálogos, não só descrita em texto.
+- **`CatalogoDeNpcs.cs`:** 13 NPCs (7 do Enredo + 6 novos), papel/local/descrição.
+- **`CatalogoDeDialogos.cs`:** roteiro cobrindo Casa (Sessão 1) + City/Game das Sessões 2 a 7.
+- **`CatalogoDePuzzles.cs`:** 10 puzzles por Id, incluindo os 2 já usados na matriz curricular do `readme.md` e mais 8 opcionais.
+- **`CatalogoDeLicoes.cs`:** 9 conceitos pedagógicos (`variavel`/`while`/`if`/`comparacao`/`contador`/`funcao`/`erro`/`atributo`/`tecnica`) com normalização de apelido/acento.
+- **`GerenciadorDeQuests.cs`:** motor estático — aceitar, registrar progresso automático, checar entrega, entregar (paga XP/Gold/item, grava flags). Progresso 100% em flags/contadores já persistidos.
+- **`QuestUIManager.cs`:** diário de missões, mesmo contrato dos outros painéis do jogo.
+
+**Ainda em aberto:**
+- **`GatilhoDeQuest.cs`** — não anexado. Componente de NPC que ofereceria/entregaria quest ao interagir.
+- **Ponta do `TerminalDroidApi`** (`Explicar`/`Ajuda`/`Resumo`) — não anexado. `CatalogoDeLicoes` está pronto, mas `droid.explicar("while")` não pode ser confirmado como funcional no terminal até esse arquivo ser colado.
+- **Divergência de versão em `VerificadorDePuzzle`** já registrada acima e em `DOCUMENTACAO_TECNICA.md` §4.8/§8.1 — a v2 (por Id) é a vigente, mas o corpo da §4.8 ainda descreve a v1.
+
+**Pendente (só Editor):** ligar `QuestUIManager` ao botão "Missões" do `MenuMundoManager` (ainda não patcheado — `MenuMundoManager.cs` conferido nesta sessão não tem botão/campo de Quest), montar os NPCs de `CatalogoDeNpcs` na cena `City`, e configurar os `VerificadorDePuzzle` (v2) das cenas com o `idDoPuzzle` correspondente.
 
 ---
 
@@ -28,7 +121,7 @@
 - **Decisão de arquitetura:** porta usa campo `trancada` (bool) em `TransicaoDeCena`, marcado no Inspector, nunca desabilita o componente inteiro — ver `DOCUMENTACAO_TECNICA.md` §4.7 pro motivo (componente desabilitado não recebe trigger nem roda `Awake()` se nascer inativo).
 - **`Camera/CameraFollow.cs`** (novo): segue o Lip suavemente (`Lerp`), com limites de mapa opcionais. Ainda não confirmado em qual(is) cena(s) está de fato anexado.
 
-**Pendência de limpeza (não bloqueante, não fazer agora):** `DroidScriptRunner.ObterVariavelNumerica` tem um `Debug.Log` de depuração ainda no código, marcado como temporário — o bug que motivou já foi confirmado corrigido, mas o log não foi removido (decisão explícita de não refatorar nesta sessão).
+**✅ Pendência de limpeza resolvida (15/09/2026):** o `Debug.Log` temporário de `DroidScriptRunner.ObterVariavelNumerica` foi removido, junto dos `using` que só existiam por causa dele. Depuração de puzzle agora é o campo `logDeDepuracao` do `VerificadorDePuzzle`, ligável por instância no Inspector.
 
 ---
 
@@ -41,8 +134,9 @@
 
 ## 🔴 Bugs abertos (fazer primeiro, nesta ordem)
 
-1. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje, mas é risco pra inimigo especial ou uso repetido de Debuff.
-2. [ ] **Empilhamento sem limite de Veneno/Stun/Corrosivo/Disruptor EMP.** Aplicar o mesmo efeito várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração. **Confirmado em teste real** (Disruptor EMP 2x = 2 instâncias, não renova). **Decisão de comportamento pendente de resposta** — opções em aberto: renovar duração (sem empilhar), permitir empilhar até um cap, ou bloquear reaplicação enquanto ativo. Não implementar sem fechar isso primeiro.
+1. [ ] **`VerificadorDePuzzle` v2 chama método inexistente em `TerminalUIManager`.** `terminal.EscreverNoLog(...)` é chamado quando não há `textoDeApollo` configurado, mas `TerminalUIManager` só tem `AdicionarLinhaDeLog` (privado). Quebra a compilação para qualquer puzzle sem TMP de fala dedicado. **Confirmado por leitura cruzada dos dois arquivos nesta sessão (15/09/2026).** Correção: tornar `AdicionarLinhaDeLog` público, ou adicionar um `public void EscreverNoLog(string linha) => AdicionarLinhaDeLog(linha);` em `TerminalUIManager`.
+2. [ ] **Efeitos ativos do Droid nunca são zerados entre batalhas.** Sem efeito visível hoje, mas é risco pra inimigo especial ou uso repetido de Debuff.
+3. [ ] **Empilhamento sem limite de Veneno/Stun/Corrosivo/Disruptor EMP.** Aplicar o mesmo efeito várias vezes soma o dano por turno de todas as instâncias; Stun repetido não estende a duração. **Confirmado em teste real** (Disruptor EMP 2x = 2 instâncias, não renova). **Decisão de comportamento pendente de resposta** — opções em aberto: renovar duração (sem empilhar), permitir empilhar até um cap, ou bloquear reaplicação enquanto ativo. Não implementar sem fechar isso primeiro.
 
 ---
 
@@ -91,12 +185,18 @@ Reconciliação: esse trabalho já existia em código antes de aparecer document
 ## 🎯 Próximos passos imediatos (curto prazo, em ordem sugerida)
 
 1. Fechar a decisão de comportamento de empilhamento de efeito e corrigir os 2 bugs abertos (motor de efeitos) — bloqueante pra qualquer Debuff/técnica de status novo.
-2. Terminar o polish visual da Loja (Scroll Rect + fonte fixa) — já em andamento.
-3. Confirmar que `BattleManager.tabelaDeDrops` sobreviveu ao trabalho da Loja, e configurar nos `BattleManager`s que faltarem — sem isso o jogo normal não gera Gold fora da Loja.
-4. Balancear `Preço` por item (hoje todos valem 1 Gold) — só depois do passo 3, senão não há como testar significado de preço.
-5. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — declarada e nunca referenciada.
-6. Decidir se/quando retomar o Diálogo simples de NPC genérico (pulado por decisão do responsável, não descartado).
-7. Remover o `Debug.Log` temporário de `DroidScriptRunner.ObterVariavelNumerica` (puzzle da água já confirmado funcionando, o log não tem mais função) — baixa prioridade, não bloqueante.
+2. **Corrigir o bug de integração `EscreverNoLog`** (`VerificadorDePuzzle` v2 × `TerminalUIManager`) — bloqueante pra qualquer puzzle montado sem `textoDeApollo`, ou seja, bloqueante pros 8 puzzles opcionais do `CatalogoDePuzzles`.
+3. Terminar o polish visual da Loja (Scroll Rect + fonte fixa) — já em andamento.
+4. Confirmar que `BattleManager.tabelaDeDrops` sobreviveu ao trabalho da Loja, e configurar nos `BattleManager`s que faltarem — sem isso o jogo normal não gera Gold fora da Loja.
+5. Balancear `Preço` por item — o `CatalogoDeItens` reescrito já tem escala (8–150) e spread de venda, confirmados nesta sessão; falta só validar por playtesting real.
+6. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — declarada e nunca referenciada.
+7. ✅ **Feito (15/09/2026):** Diálogo simples de NPC genérico deixou de ser "pulado" — coberto pelo sistema de história (`GatilhoDeDialogo`/`NpcInterativo` tipo `Dialogo`), confirmado por `.cs` real.
+8. ✅ **Feito (15/09/2026):** `Debug.Log` temporário de `DroidScriptRunner.ObterVariavelNumerica` removido.
+9. **Montar as cenas do Ato 1 no Editor** — o código confirmado está pronto; ver `GUIA_DE_MONTAGEM_ATO1.md`. Esta é a maior alavanca de resultado por esforço no projeto hoje.
+10. ✅ **Feito (15/09/2026):** os 2 itens de facção (`Núcleo de Sobrecarga`, `Módulo de Ressonância`) já estão no `CatalogoDeItens.cs` reescrito, confirmado por `.cs` real — o item antigo "colar via `PARA_COLAR_CatalogoDeItens.md`" está superado.
+11. **Ligar `QuestUIManager` ao Menu do Mundo** — botão "Missões" ainda não existe em `MenuMundoManager.cs` (confirmado por `.cs` real nesta sessão). Mesmo padrão de `botaoBag`/`botaoDroid`.
+12. **Escrever ou colar `GatilhoDeQuest.cs`** e a ponta `Explicar`/`Ajuda`/`Resumo` do `TerminalDroidApi` — os 2 itens do pacote de conteúdo ainda sem `.cs` confirmado (ver `DOCUMENTACAO_TECNICA.md` §8.1).
+13. **Confirmar HIT/FLEE e crítico (LUK)** colando `Droid.cs` e `CombatEngine.cs` — é a última divergência aberta entre o `readme` e a `DOCUMENTACAO_TECNICA` §8, e trava o balanceamento dos inimigos do Ato 1.
 
 ---
 
@@ -116,7 +216,8 @@ Não são tarefas urgentes — cardápio de ideias pra depois que o essencial es
 
 ### Ensino/UX (crítico pro objetivo pedagógico do TCC)
 - [ ] Onboarding do terminal — testar com alguém que nunca viu o jogo
-- [ ] Apollo Debugger (destacar linha da falha + dica conceitual em erro de compilação/exceção): ainda **não existe em código** como depurador interativo. O que existe hoje (`PuzzleAguaCasaChecker`, cena `CasaLip`) é uma fala de **texto fixo** do Apollo só na vitória do puzzle — não reage a erro, não destaca linha, não dá dica conceitual dinâmica. Continua lacuna real entre o pitch pedagógico (readme) e o que o jogador vê — não confundir a fala fixa da Casa com o Apollo Debugger completo.
+- [x] ~~Dica conceitual em erro de compilação/exceção~~ — **feito (15/09/2026)**, ver `ApolloDica` em `DOCUMENTACAO_TECNICA.md` §4.8.
+- [ ] **Apollo Debugger — o que ainda falta:** destacar a linha da falha *dentro* do campo de código (hoje a linha só aparece como texto no log) e reagir enquanto o jogador digita, não só depois de Executar. A lacuna entre o pitch do readme e o produto encolheu, mas não fechou — continuar dizendo "parcial", nunca "implementado".
 
 ### Solidez técnica
 - [ ] Testes automatizados mínimos (dano, custo de técnica, efeito de item)
@@ -127,4 +228,10 @@ Não são tarefas urgentes — cardápio de ideias pra depois que o essencial es
 
 ## 🚫 Fora do escopo por enquanto (não deixar a IA empurrar isso)
 
-Modo Puzzle do terminal, `DroidDataSO`/Factory, herança real de peça (Cartuchos de Código sobrescrevendo `DroidBase`), sistema de "desequipar". Se um agente sugerir atacar algum desses sem você ter puxado o assunto, redirecione pra cá.
+`DroidDataSO`/Factory, herança real de peça (Cartuchos de Código sobrescrevendo `DroidBase`), sistema de "desequipar".
+
+**Modo Puzzle genérico saiu desta lista por outro motivo (15/09/2026):** não é
+"não agora", é provavelmente **desnecessário**. O `VerificadorDePuzzle` já
+resolve os puzzles previstos do Ato 1 com configuração de Inspector e zero
+código por puzzle. Só reabrir se aparecer um puzzle que ele comprovadamente não
+consiga avaliar. Se um agente sugerir atacar algum desses sem você ter puxado o assunto, redirecione pra cá.

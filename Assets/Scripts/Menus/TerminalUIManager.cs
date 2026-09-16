@@ -42,6 +42,14 @@ public class TerminalUIManager : MonoBehaviour
     [Tooltip("Quantas linhas de log manter visíveis antes de descartar as mais antigas.")]
     public int maximoDeLinhasDeLog = 40;
 
+    // NOVO (15/09/2026 — Apollo Dica): quando marcado, todo erro de execução
+    // ganha, além da mensagem crua do MoonSharp, uma explicação conceitual na
+    // voz do Apollo (ver ApolloDica.cs). Deixe LIGADO — é o pilar pedagógico
+    // do projeto. O campo existe pra poder desligar em teste de balanceamento
+    // ou gravação de vídeo, não pro uso normal.
+    [Tooltip("Mostra a explicação do Apollo junto de cada erro do terminal. Manter ligado.")]
+    public bool mostrarDicasDoApollo = true;
+
     // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
     // MenuMundoManager.Start()). Invocado dentro de Fechar().
     public System.Action AoFechar;
@@ -217,6 +225,19 @@ public class TerminalUIManager : MonoBehaviour
             }
 
             AdicionarLinhaDeLog($"ERRO: {resultado.MensagemErro}");
+
+            // NOVO (15/09/2026 — Apollo Dica): alem da mensagem crua do
+            // MoonSharp, o Apollo traduz o erro numa explicacao conceitual.
+            // Este e o primeiro degrau do "Apollo Debugger" prometido no
+            // readme -- NAO destaca linha no editor nem e reativo enquanto o
+            // jogador digita; so explica o erro que ja aconteceu. Ver
+            // ApolloDica.cs pro escopo exato e como adicionar novas dicas.
+            if (mostrarDicasDoApollo)
+            {
+                string linhaDoErro = ApolloDica.ExtrairLinha(resultado.MensagemErro);
+                string dica = ApolloDica.Traduzir(resultado.MensagemErro);
+                AdicionarLinhaDeLog(string.IsNullOrEmpty(linhaDoErro) ? dica : $"{dica} {linhaDoErro}");
+            }
         }
 
         AdicionarAoHistorico(codigo);
@@ -266,6 +287,13 @@ public class TerminalUIManager : MonoBehaviour
         if (textoPontos == null || droid == null) return;
         textoPontos.text = $"Pontos disponíveis: {droid.Pontos.PontosDisponiveis}";
     }
+
+    // NOVO: ponto de entrada publico pra scripts de FORA do terminal (ex:
+    // VerificadorDePuzzle, que usa isso como fallback quando nao ha TMP de
+    // fala do Apollo configurado no Inspector) escreverem uma linha no log
+    // sem duplicar a logica de buffer/scroll. So repassa pro metodo interno
+    // -- faltava exatamente este metodo, causava o CS1061.
+    public void EscreverNoLog(string linha) => AdicionarLinhaDeLog(linha);
 
     void AdicionarLinhaDeLog(string linha)
     {

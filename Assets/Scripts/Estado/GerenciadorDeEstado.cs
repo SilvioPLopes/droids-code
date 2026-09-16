@@ -70,6 +70,31 @@ public class GerenciadorDeEstado : MonoBehaviour
         }
     }
 
+    // --- Historia/Quests: contadores de progresso de objetivo -----------
+    // Chave livre (ver GerenciadorDeQuests.ChaveObjetivo, ex:
+    // "quest_entregarPacote_obj_0"). Mesmo padrao das flags acima: dicionario
+    // em memoria + persistido pelo SalvamentoJson (ver
+    // DadosDoJogo.contadores). Faltava esta classe inteira -- por isso o
+    // erro CS1061 em GerenciadorDeQuests (ObterContador/DefinirContador
+    // nunca existiram).
+    private readonly Dictionary<string, int> _contadores = new Dictionary<string, int>();
+
+    public int ObterContador(string chave) =>
+        _contadores.TryGetValue(chave, out int valor) ? valor : 0;
+
+    public void DefinirContador(string chave, int valor) => _contadores[chave] = valor;
+
+    public IReadOnlyDictionary<string, int> TodosOsContadores => _contadores;
+
+    public void CarregarContadores(Dictionary<string, int> contadores)
+    {
+        _contadores.Clear();
+        foreach (var kv in contadores)
+        {
+            _contadores[kv.Key] = kv.Value;
+        }
+    }
+
     // --- Estagio 2 (13/09/2026): Inventario real (substitui ItensDeBatalha,
     // lista fixa sem quantidade). Chave = DefinicaoDeItem.Id (ver
     // CatalogoDeItens.cs). Persistido via SalvamentoJson como List<ItemSalvo>
@@ -137,6 +162,36 @@ public class GerenciadorDeEstado : MonoBehaviour
     public void CarregarGold(int quantidade)
     {
         Gold = Mathf.Max(0, quantidade);
+    }
+
+    // --- Ato 1 (historia): passagem de dados mundo -> cena Battle ------
+    //
+    // Estes dois NAO sao persistidos de proposito. Sao variaveis de transito
+    // do mesmo tipo que PosicaoSalva/CenaDeOrigemDaPosicao: valem entre "o
+    // gatilho disparou" e "a batalha comecou", e nada alem disso. Salvar
+    // significaria que carregar um save feito no mundo poderia reinjetar um
+    // inimigo de uma batalha que nunca aconteceu.
+    //
+    // ProximoInimigoId: Id no CatalogoDeInimigos. Vazio = BattleManager usa
+    // o inimigo digitado no Inspector da cena (comportamento antigo, intacto).
+    //
+    // FlagDeVitoriaPendente: flag de historia gravada se o jogador VENCER
+    // esta batalha (ex: "ato1_sessao3"). Quem sabe o que a luta significa e
+    // o gatilho no mundo, nao a cena Battle, que e generica e compartilhada.
+
+    public string ProximoInimigoId { get; set; }
+
+    public string FlagDeVitoriaPendente { get; set; }
+
+    /// <summary>
+    /// Chamado pelo BattleManager ao terminar a batalha (vitoria ou derrota),
+    /// pra que um encontro aleatorio seguinte nao herde o inimigo/flag de uma
+    /// batalha roteirizada anterior.
+    /// </summary>
+    public void LimparBatalhaPendente()
+    {
+        ProximoInimigoId = null;
+        FlagDeVitoriaPendente = null;
     }
 
     void Awake()

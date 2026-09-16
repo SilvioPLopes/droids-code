@@ -29,6 +29,15 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Tecla que abre/fecha o menu")]
     public KeyCode teclaDeAbertura = KeyCode.Escape;
 
+    // NOVO (15/09/2026 — Ato 1). Desde que este Canvas ganhou
+    // DontDestroyOnLoad, ele viaja pra TODAS as cenas, inclusive a de
+    // batalha, onde o BattleManager também escuta Escape (pra fechar as
+    // listas de Ataque/Item). Um único ESC era consumido pelos dois. Aqui
+    // o menu simplesmente não abre nas cenas listadas.
+    [Header("Cenas onde o menu NÃO deve abrir")]
+    [Tooltip("Nomes exatos de cena (ex: \"Battle\", \"MainMenu\"). O Menu do Mundo ignora a tecla nessas cenas.")]
+    public string[] cenasBloqueadas = new string[] { "Battle", "MainMenu" };
+
     [Header("Botões")]
     public Button botaoStatus;
     public Button botaoTerminal;
@@ -83,7 +92,11 @@ public class MenuMundoManager : MonoBehaviour
     //    cena carregada (normalmente Game), que persiste daí em diante.
     void Awake()
     {
-        var instanciasExistentes = FindObjectsOfType<MenuMundoManager>();
+        // CORRECAO (Unity 6): FindObjectsOfType estava obsoleto (CS0618).
+        // FindObjectsByType exige escolher ordenacao -- aqui a ordem nao
+        // importa (so contamos quantas instancias existem), entao
+        // FindObjectsSortMode.None e o substituto direto e mais rapido.
+        var instanciasExistentes = FindObjectsByType<MenuMundoManager>(FindObjectsSortMode.None);
         if (instanciasExistentes.Length > 1)
         {
             // Já existe um Menu do Mundo persistente de uma cena anterior —
@@ -118,8 +131,25 @@ public class MenuMundoManager : MonoBehaviour
         if (telaDeDroid != null) telaDeDroid.AoFechar = AoFecharOutroPainel;
     }
 
+    bool MenuBloqueadoNestaCena()
+    {
+        if (cenasBloqueadas == null || cenasBloqueadas.Length == 0) return false;
+
+        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        foreach (string cena in cenasBloqueadas)
+        {
+            if (!string.IsNullOrEmpty(cena) && cena == cenaAtual) return true;
+        }
+        return false;
+    }
+
     void Update()
     {
+        // NOVO (15/09/2026): não abre o menu de pausa em cenas bloqueadas
+        // (Battle/MainMenu). Se um painel já estiver aberto, a checagem fica
+        // abaixo, pra que ESC ainda consiga FECHAR o que estiver na tela.
+        if (!_outroPainelAberto && MenuBloqueadoNestaCena()) return;
+
         // CORRIGIDO: antes, Escape era ignorado enquanto Status/Terminal/
         // Bag/Droid estivessem abertos (só dava pra fechar clicando em
         // Voltar). Agora ESC fecha o painel que estiver aberto, chamando o
