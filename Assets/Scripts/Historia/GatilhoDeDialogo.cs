@@ -13,6 +13,10 @@ using UnityEngine;
 ///
 /// Colocar no GameObject do NPC/gatilho, junto com um Collider2D marcado
 /// como "Is Trigger".
+///
+/// DEBUG TEMPORARIO: os Debug.Log abaixo (marcados com [GatilhoDeDialogo])
+/// sao so pra rastrear por que o dialogo nao esta disparando. Remova depois
+/// que o bug for resolvido.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
 public class GatilhoDeDialogo : MonoBehaviour
@@ -108,6 +112,10 @@ public class GatilhoDeDialogo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // DEBUG: confirma se a fisica esta detectando QUALQUER coisa aqui,
+        // mesmo que a tag esteja errada.
+        Debug.Log($"[GatilhoDeDialogo] OnTriggerEnter2D em '{gameObject.name}'. Objeto: {other.gameObject.name}, tag: {other.tag}");
+
         if (!other.CompareTag(tagDoPlayer)) return;
 
         _playerPerto = true;
@@ -115,6 +123,11 @@ public class GatilhoDeDialogo : MonoBehaviour
         if (modo == ModoDeDisparo.AoEntrarNoTrigger && PodeDisparar() && !GerenciadorDeEstado.Instancia.MenuAberto)
         {
             Disparar();
+        }
+        else if (modo == ModoDeDisparo.AoEntrarNoTrigger)
+        {
+            // DEBUG: mostra qual condicao bloqueou o disparo.
+            Debug.Log($"[GatilhoDeDialogo] Nao disparou. PodeDisparar={PodeDisparar()} MenuAberto={GerenciadorDeEstado.Instancia.MenuAberto}");
         }
     }
 
@@ -141,6 +154,10 @@ public class GatilhoDeDialogo : MonoBehaviour
     public void Disparar()
     {
         DialogoUIManager painel = DialogoUIManager.Instancia;
+
+        // DEBUG: confirma se a instancia estatica do painel foi achada.
+        Debug.Log($"[GatilhoDeDialogo] Disparar em '{gameObject.name}'. Painel encontrado? {painel != null}");
+
         if (painel == null)
         {
             Debug.LogWarning($"GatilhoDeDialogo '{gameObject.name}': nenhum DialogoUIManager encontrado na cena. Coloque o painel de dialogo dentro do Canvas persistente do MenuMundoManager.");
@@ -151,6 +168,10 @@ public class GatilhoDeDialogo : MonoBehaviour
         // (outro dialogo em andamento, painel mal configurado), o gatilho
         // continua disponivel em vez de morrer em silencio.
         bool abriu = painel.Mostrar(falas, escolhas, AoConcluirDialogo);
+
+        // DEBUG: confirma o retorno de Mostrar().
+        Debug.Log($"[GatilhoDeDialogo] painel.Mostrar retornou: {abriu}");
+
         if (!abriu) return;
 
         _jaDisparouNestaSessao = true;

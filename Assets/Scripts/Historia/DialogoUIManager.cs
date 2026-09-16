@@ -27,6 +27,10 @@ using TMPro;
 /// sobrevive a troca de cena junto com o resto do menu, sem precisar de um
 /// DontDestroyOnLoad proprio (que brigaria com a protecao de duplicata do
 /// MenuMundoManager.Awake).
+///
+/// DEBUG TEMPORARIO: o Debug.Log no inicio de Mostrar() (marcado com
+/// [DialogoUIManager]) e so pra rastrear por que o dialogo nao esta
+/// disparando. Remova depois que o bug for resolvido.
 /// </summary>
 public class DialogoUIManager : MonoBehaviour
 {
@@ -165,6 +169,10 @@ public class DialogoUIManager : MonoBehaviour
     /// </summary>
     public bool Mostrar(IList<FalaDeDialogo> falas, IList<EscolhaDeDialogo> escolhas, Action<EscolhaDeDialogo> aoConcluir)
     {
+        // DEBUG: confirma se este metodo esta sendo chamado, e se o painel
+        // ja estava preso como "_aberto = true" de uma tentativa anterior.
+        Debug.Log($"[DialogoUIManager] Mostrar chamado em '{gameObject.name}'. _aberto = {_aberto}, painel null? {painel == null}");
+
         if (painel == null || textoFala == null)
         {
             Debug.LogWarning("DialogoUIManager: painel/textoFala nao configurados no Inspector. Dialogo ignorado.");

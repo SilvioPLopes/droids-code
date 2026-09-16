@@ -191,7 +191,7 @@ MonoBehaviour:
   prefabBotaoAtaque: {fileID: 293911551598078924, guid: c96b74a9f79832a41b9acdb3401aee8c, type: 3}
   painelListaDeItens: {fileID: 1090460036}
   prefabBotaoItem: {fileID: 275833958107471921, guid: 36cb0281c2ffd9d428385410c352f69a, type: 3}
-  nomeInimigo: Esqueleto
+  nomeInimigo: Sucata
   hpMaxInimigo: 20
   atkInimigo: 5
   defInimigo: 1
@@ -211,6 +211,8 @@ MonoBehaviour:
     chance: 1
     quantidadeMinima: 1
     quantidadeMaxima: 1
+  idDoInimigoPadrao: 
+  flagDeVitoria: 
   nomeCenaMundo: Game
   chanceDeFugir: 0.5
 --- !u!4 &164412324
@@ -2541,7 +2543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3145328045451892686, guid: 8804f1afb3df67d47ab60a1773029b24, type: 3}
+  m_Sprite: {fileID: 4045509648623576920, guid: 7abe2af630955874cba1880a6410c93e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
