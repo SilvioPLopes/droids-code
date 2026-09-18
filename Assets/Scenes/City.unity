@@ -5673,7 +5673,7 @@ MonoBehaviour:
   flagsQueImpedem: []
   mensagemQuandoFaltaFlag: Ainda nao sei o que esta acontecendo. Preciso falar com
     as pessoas da praca primeiro.
-  exigirTecnicaConfigurada: 0
+  exigirTecnicaConfigurada: 1
   minimoDeAcoes: 2
   mensagemQuandoFaltaTecnica: Voce quer sair daqui com um braco que so sabe bater?
     Esc. Terminal. Me programa primeiro.
@@ -7237,7 +7237,7 @@ MonoBehaviour:
   escolhas: []
   flagAoTerminar: ato1_falou_fila
   apenasUmaVez: 1
-  desativarAposConcluir: 1
+  desativarAposConcluir: 0
   indicadorDeInteracao: {fileID: 0}
 --- !u!212 &1417140166
 SpriteRenderer:
@@ -7858,7 +7858,7 @@ MonoBehaviour:
   escolhas: []
   flagAoTerminar: ato1_falou_dara
   apenasUmaVez: 1
-  desativarAposConcluir: 1
+  desativarAposConcluir: 0
   indicadorDeInteracao: {fileID: 0}
 --- !u!212 &1505573702
 SpriteRenderer:
@@ -8296,7 +8296,7 @@ MonoBehaviour:
   - ato1_falou_fila
   flagsQueImpedem:
   - ato1_sessao2
-  idDoDialogo: CityS2ApolloConclusao
+  idDoDialogo: city_s2_apollo_conclusao
   falas: []
   escolhas: []
   flagAoTerminar: ato1_sessao2
@@ -8358,8 +8358,8 @@ Transform:
   m_GameObject: {fileID: 1712245913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.77, y: -6.97, z: 0}
-  m_LocalScale: {x: 3.475, y: 1, z: 1}
+  m_LocalPosition: {x: -4.64, y: 2.2, z: 0}
+  m_LocalScale: {x: 4.438096, y: 4.003865, z: 1.4596}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8702,7 +8702,7 @@ MonoBehaviour:
   escolhas: []
   flagAoTerminar: 
   apenasUmaVez: 1
-  desativarAposConcluir: 1
+  desativarAposConcluir: 0
   indicadorDeInteracao: {fileID: 0}
 --- !u!1 &1870074978
 GameObject:

@@ -118,6 +118,7 @@ public class BagUIManager : MonoBehaviour
         {
             TipoDeItem.Cura => $"(+{item.CuraHp} HP)",
             TipoDeItem.Equipavel => item.AtributoBonificado != null ? $"(+{item.ValorDoBonus} {item.AtributoBonificado})" : "",
+            TipoDeItem.ForaDeBatalha => item.ExperienciaConcedida > 0 ? $"(+{item.ExperienciaConcedida} XP)" : "",
             _ => ""
         };
         return string.IsNullOrEmpty(detalhe) ? $"{item.Nome} x{quantidade}" : $"{item.Nome} {detalhe} x{quantidade}";
@@ -254,6 +255,16 @@ public class BagUIManager : MonoBehaviour
                     gerenciador.DefinirFlag(item.ChaveDeFlag, true);
                 }
                 MostrarMensagem($"{item.Nome} usada.");
+                _salvamento.Salvar();
+                break;
+
+            case AcaoForaDeBatalha.GanhoDeExperiencia:
+                int nivelAntes = droid.Progressao.Nivel;
+                SistemaDeProgressao.GanharExperiencia(droid, item.ExperienciaConcedida);
+
+                MostrarMensagem(droid.Progressao.Nivel > nivelAntes
+                    ? $"{droid.Nome} usou {item.Nome} e ganhou {item.ExperienciaConcedida} de XP! Subiu para o nível {droid.Progressao.Nivel}!"
+                    : $"{droid.Nome} usou {item.Nome} e ganhou {item.ExperienciaConcedida} de XP!");
                 _salvamento.Salvar();
                 break;
         }

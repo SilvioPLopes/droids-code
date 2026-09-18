@@ -37,7 +37,9 @@ namespace DroidsCode.DroidCore
     {
         SinalizadorDeRetorno,
         KitDeAcampamento,
-        ChaveDeAcesso
+        ChaveDeAcesso,
+        // NOVO: item que concede XP direto (ver DefinicaoDeItem.ExperienciaConcedida).
+        GanhoDeExperiencia
     }
 
     public class DefinicaoDeItem
@@ -91,6 +93,12 @@ namespace DroidsCode.DroidCore
         public AcaoForaDeBatalha? AcaoForaDeBatalha { get; set; }
         public string ChaveDeFlag { get; set; }
 
+        // NOVO: usado quando AcaoForaDeBatalha == GanhoDeExperiencia. Vai
+        // direto pra SistemaDeProgressao.GanharExperiencia(droid, valor) --
+        // o MESMO caminho do XP de batalha, entao pode disparar level up e
+        // conceder PontosDeProgressao normalmente (nao e um XP "paralelo").
+        public int ExperienciaConcedida { get; set; }
+
         public const int PrecoPadrao = 10;
 
         /// <summary>
@@ -118,6 +126,8 @@ namespace DroidsCode.DroidCore
                     return "";
                 case TipoDeItem.Chave:
                     return "Item de missão";
+                case TipoDeItem.ForaDeBatalha:
+                    return ExperienciaConcedida > 0 ? $"+{ExperienciaConcedida} XP" : "";
                 default:
                     return "";
             }
@@ -156,6 +166,7 @@ namespace DroidsCode.DroidCore
         public const string IdSinalizadorDeRetorno = "sinalizador_de_retorno";
         public const string IdKitDeAcampamento = "kit_de_acampamento";
         public const string IdChaveDeAcesso = "chave_de_acesso";
+        public const string IdModuloDeTreinamento = "modulo_de_treinamento"; // NOVO
 
         // --- ATO 1: recompensas de faccao (Sessao 4 do Enredo) ---
         public const string IdNucleoDeSobrecarga = "nucleo_sobrecarga";
@@ -324,6 +335,14 @@ namespace DroidsCode.DroidCore
                 Descricao = "Cartão de manutenção antigo. Abre portas que não deveriam mais abrir.",
                 AcaoForaDeBatalha = DroidsCode.DroidCore.AcaoForaDeBatalha.ChaveDeAcesso,
                 ChaveDeFlag = "chaveDeAcessoUsada"
+            },
+            [IdModuloDeTreinamento] = new DefinicaoDeItem
+            {
+                Id = IdModuloDeTreinamento, Nome = "Módulo de Treinamento", Tipo = TipoDeItem.ForaDeBatalha,
+                UsavelEmBatalha = false, Preco = 120, Raridade = Raridade.Raro,
+                Descricao = "Simulador de combate remontado com sucata da Apex. Roda sozinho, sem risco -- só cansa. Concede experiência como se fosse uma batalha de verdade.",
+                AcaoForaDeBatalha = DroidsCode.DroidCore.AcaoForaDeBatalha.GanhoDeExperiencia,
+                ExperienciaConcedida = 100
             },
 
             // =============================================================

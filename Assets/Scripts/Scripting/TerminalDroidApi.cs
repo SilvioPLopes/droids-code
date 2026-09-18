@@ -32,12 +32,36 @@ namespace DroidsCode.Scripting
             }
 
             int custo = quantidade * TabelaDeCustos.CustoUpgradeAtributo;
-            if (!_droid.Pontos.TentarGastar(custo))
+
+            if (custo > _droid.Pontos.PontosDisponiveis)
             {
                 Registrar($"Falha: '{nomeAtributo}' custaria {custo} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
                 return false; // pontos insuficientes
             }
 
+            // SALVAGUARDA (17/09/2026 — softlock da primeira tecnica): enquanto
+            // o Droid ainda nao tem NENHUMA tecnica alem do Ataque Basico, nao
+            // deixa o saldo cair abaixo do custo da tecnica mais barata
+            // possivel (NivelDeDano 1, sem efeitos = TabelaDeCustos.
+            // CustoDanoPorNivel). Sem isso, um jogador com so 1 ponto (ex:
+            // concedido por historia antes da primeira batalha) podia gastar
+            // tudo em atributo e ficar sem nenhuma forma de passar por um
+            // portao com TrancaPorHistoria.exigirTecnicaConfigurada — e sem
+            // reembolso possivel, ja que so tecnica tem "desfazer"
+            // (EsquecerTecnica), nao atributo. Deixa de se aplicar sozinha
+            // assim que a primeira tecnica extra e aprendida.
+            bool aindaSemTecnicaExtra = _droid.TecnicasConfiguradas.Count <= 1;
+            if (aindaSemTecnicaExtra)
+            {
+                int saldoAposGasto = _droid.Pontos.PontosDisponiveis - custo;
+                if (saldoAposGasto < TabelaDeCustos.CustoDanoPorNivel)
+                {
+                    Registrar($"Falha: gastar {custo} ponto(s) em '{nomeAtributo}' deixaria só {saldoAposGasto} — não dá pra aprender nenhuma técnica depois (a mais barata custa {TabelaDeCustos.CustoDanoPorNivel}). Aprenda sua primeira técnica antes de investir tudo em atributo.");
+                    return false;
+                }
+            }
+
+            _droid.Pontos.TentarGastar(custo); // saldo ja validado acima — sempre bem-sucedido aqui
             AplicarUpgrade(atributo, quantidade);
             Registrar($"Sucesso: {nomeAtributo} +{quantidade} (custou {custo} pontos).");
             return true;

@@ -826,7 +826,7 @@ MonoBehaviour:
   escolhas: []
   flagAoTerminar: ato1_casa_resolvida
   apenasUmaVez: 1
-  desativarAposConcluir: 1
+  desativarAposConcluir: 0
   indicadorDeInteracao: {fileID: 0}
 --- !u!114 &578593350
 MonoBehaviour:
@@ -2272,7 +2272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2625515881553004334, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.00006
+      value: 217.00024
       objectReference: {fileID: 0}
     - target: {fileID: 3040452809028199313, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchorMax.y
