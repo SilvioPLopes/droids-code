@@ -35,6 +35,17 @@ using TMPro;
 /// pagina antes de avancar de fala, entao uma Fala pode ter qualquer
 /// tamanho de texto sem precisar ser quebrada em varias Falas na mao.
 ///
+/// RETRATO DINAMICO: imagemRetrato mostra o personagem que esta falando,
+/// resolvido pelo nome em "fala.falante". Caminho principal (pensado pra
+/// dezenas de NPCs sem cadastro manual): arquivo em
+/// Assets/Resources/Retratos/<NomeDoFalante>.png, carregado sob demanda via
+/// Resources.Load e cacheado. A lista retratosConhecidos no Inspector e so
+/// pra excecao pontual. Se nao achar em nenhum dos dois, usa retratoPadrao;
+/// se retratoPadrao tambem estiver vazio, esconde a Image (deixando so a
+/// moldura de fundo visivel). Nao precisa mexer em CatalogoDeDialogos nem em
+/// FalaDeDialogo -- funciona igual pra falas digitadas no Inspector e pras
+/// que vem do catalogo por Id.
+///
 /// DEBUG TEMPORARIO: o Debug.Log no inicio de Mostrar() (marcado com
 /// [DialogoUIManager]) e so pra rastrear por que o dialogo nao esta
 /// disparando. Remova depois que o bug for resolvido.
@@ -81,6 +92,14 @@ public class DialogoUIManager : MonoBehaviour
     public TextMeshProUGUI textoFalante;
     [Tooltip("IMPORTANTE: deixe Overflow = Page no Inspector deste componente (Extra Settings > Overflow), pra textos longos paginarem em vez de vazar da caixa.")]
     public TextMeshProUGUI textoFala;
+
+    [Header("Retrato (opcional)")]
+    [Tooltip("Image que mostra o retrato de quem esta falando, sobreposta a janela de retrato da moldura. Deixe vazio se este painel nao usa retrato.")]
+    public Image imagemRetrato;
+    [Tooltip("Retrato usado quando 'falante' nao bate com nenhum nome em Retratos Conhecidos (ex: narracao, personagem sem arte ainda). Deixe vazio pra esconder imagemRetrato nesse caso.")]
+    public Sprite retratoPadrao;
+    [Tooltip("EXCECAO opcional. A maioria dos personagens NAO precisa entrar aqui -- coloque o sprite em Assets/Resources/Retratos/<NomeDoFalante>.png que ele e achado sozinho. Use esta lista so pra casos especiais (nome do arquivo diferente do Falante, retrato provisorio, etc).")]
+    public List<RetratoPersonagem> retratosConhecidos = new List<RetratoPersonagem>();
 
     [Header("Avancar")]
     [Tooltip("Botao \"continuar\". Pode ser o proprio painel inteiro com um Button em cima.")]
@@ -240,6 +259,14 @@ public class DialogoUIManager : MonoBehaviour
             if (temFalante) textoFalante.text = fala.falante;
         }
 
+        if (imagemRetrato != null)
+        {
+            Sprite retrato = ObterRetrato(fala.falante);
+            bool temRetrato = retrato != null;
+            imagemRetrato.gameObject.SetActive(temRetrato);
+            if (temRetrato) imagemRetrato.sprite = retrato;
+        }
+
         textoFala.text = fala.texto;
 
         // NOVO: toda fala nova comeca na primeira "pagina" do texto (so faz
@@ -251,6 +278,46 @@ public class DialogoUIManager : MonoBehaviour
 
         if (botaoAvancar != null) botaoAvancar.gameObject.SetActive(true);
         if (painelDeEscolhas != null) painelDeEscolhas.gameObject.SetActive(false);
+    }
+
+    // Cache pra nao chamar Resources.Load toda vez que a mesma pessoa fala de
+    // novo (inclusive guarda os "nao achei" como null, pra nao ficar
+    // tentando carregar um arquivo que nao existe a cada fala).
+    private readonly Dictionary<string, Sprite> _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
+
+    /// <summary>
+    /// Resolve o sprite de retrato pra um nome de falante. Ordem de busca:
+    ///   1) retratosConhecidos (lista manual do Inspector) -- serve como
+    ///      EXCECAO pontual, nao e mais o caminho principal;
+    ///   2) convencao por nome de arquivo em Assets/Resources/Retratos/,
+    ///      carregado sob demanda -- e assim que a maioria dos personagens
+    ///      (NPCs incluidos) deve funcionar, sem cadastro manual nenhum;
+    ///   3) retratoPadrao, se nada acima existir.
+    ///
+    /// ATENCAO (build WebGL): Resources.Load e case-sensitive fora do Editor
+    /// Windows. O nome do arquivo tem que bater EXATAMENTE (maiusculas
+    /// inclusive) com o texto usado no campo "Falante" das falas, senao
+    /// funciona no Editor e quebra so na build WebGL.
+    /// </summary>
+    private Sprite ObterRetrato(string nomeFalante)
+    {
+        if (string.IsNullOrWhiteSpace(nomeFalante)) return retratoPadrao;
+
+        foreach (RetratoPersonagem entrada in retratosConhecidos)
+        {
+            if (string.Equals(entrada.nomeDoPersonagem, nomeFalante, StringComparison.OrdinalIgnoreCase))
+            {
+                return entrada.retrato != null ? entrada.retrato : retratoPadrao;
+            }
+        }
+
+        if (!_cacheDeRetratosPorConvencao.TryGetValue(nomeFalante, out Sprite retrato))
+        {
+            retrato = Resources.Load<Sprite>($"Retratos/{nomeFalante}");
+            _cacheDeRetratosPorConvencao[nomeFalante] = retrato;
+        }
+
+        return retrato != null ? retrato : retratoPadrao;
     }
 
     public void Avancar()
@@ -459,4 +526,18 @@ public class EscolhaDeDialogo
     [TextArea(2, 5)]
     [Tooltip("Fala mostrada logo apos a escolha. Deixe vazio pra fechar o dialogo direto.")]
     public string respostaAposEscolher;
+}
+
+/// <summary>
+/// Associa o nome de um personagem (igual ao campo Falante de FalaDeDialogo)
+/// a um sprite de retrato. Configurado na lista retratosConhecidos do
+/// DialogoUIManager, direto no Inspector -- nao precisa mexer em codigo pra
+/// adicionar o retrato de um personagem novo.
+/// </summary>
+[Serializable]
+public class RetratoPersonagem
+{
+    [Tooltip("Precisa bater exatamente com o texto do campo Falante (ex: \"Apollo\"). Nao diferencia maiusculas/minusculas.")]
+    public string nomeDoPersonagem;
+    public Sprite retrato;
 }

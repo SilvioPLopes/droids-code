@@ -35,11 +35,11 @@ detalhamento completo do que foi confirmado em cada arquivo.
    "falar com NPC → pegar quest" provavelmente ainda depende de ligação
    manual (ex: chamar `GerenciadorDeQuests.Aceitar`/`Entregar` a partir de
    um `GatilhoDeDialogo` existente) até o arquivo ser colado ou escrito.
-2. **`TerminalDroidApi.cs` com `Explicar`/`Ajuda`/`Resumo` não foi anexado.**
+2. **`TerminalDroidApi.cs` conferido (17/09/2026) — `Explicar`/`Ajuda`/`Resumo` não existem.**
    `CatalogoDeLicoes.cs` está pronto e confirmado, mas a ponta que o
-   exporia no terminal (`droid.explicar("while")`) segue sem confirmação —
-   o arquivo `TerminalDroidApi.cs` em si nunca apareceu nesta sessão nem na
-   anterior, só é referenciado por `TerminalUIManager`/`DroidScriptRunner`.
+   exporia no terminal (`droid.explicar("while")`) segue sem esses métodos
+   — o arquivo já foi lido nesta sessão, deixou de ser incógnita e virou
+   trabalho pendente de verdade (implementar os 3 métodos).
 
 **🔴 Bug de integração novo, encontrado por leitura cruzada dos arquivos
 recebidos (adicionar à seção de bugs abertos abaixo):** `VerificadorDePuzzle.cs`
@@ -103,7 +103,7 @@ tiveram o `.cs` real conferido nesta sessão (ver `DOCUMENTACAO_TECNICA.md`
 
 **Ainda em aberto:**
 - **`GatilhoDeQuest.cs`** — não anexado. Componente de NPC que ofereceria/entregaria quest ao interagir.
-- **Ponta do `TerminalDroidApi`** (`Explicar`/`Ajuda`/`Resumo`) — não anexado. `CatalogoDeLicoes` está pronto, mas `droid.explicar("while")` não pode ser confirmado como funcional no terminal até esse arquivo ser colado.
+- **Ponta do `TerminalDroidApi`** (`Explicar`/`Ajuda`/`Resumo`) — **conferido (17/09/2026): não existe.** `CatalogoDeLicoes` está pronto, mas `droid.explicar("while")` não responde nada no terminal ainda — confirmado, não é mais incógnita.
 - **Divergência de versão em `VerificadorDePuzzle`** já registrada acima e em `DOCUMENTACAO_TECNICA.md` §4.8/§8.1 — a v2 (por Id) é a vigente, mas o corpo da §4.8 ainda descreve a v1.
 
 **Pendente (só Editor):** ligar `QuestUIManager` ao botão "Missões" do `MenuMundoManager` (ainda não patcheado — `MenuMundoManager.cs` conferido nesta sessão não tem botão/campo de Quest), montar os NPCs de `CatalogoDeNpcs` na cena `City`, e configurar os `VerificadorDePuzzle` (v2) das cenas com o `idDoPuzzle` correspondente.
@@ -148,18 +148,18 @@ tiveram o `.cs` real conferido nesta sessão (ver `DOCUMENTACAO_TECNICA.md`
 
 ---
 
-## ✅ Sistema de Item completo (Cura/Buff/Debuff/Equipável/ForaDeBatalha) + Gold
+## ✅ Sistema de Item completo (Cura/Buff/Debuff/Equipável/ForaDeBatalha/Chave) + Gold
 
 Reconciliação: esse trabalho já existia em código antes de aparecer documentado — os `.md` não refletiam o estado real. Resumo do que está implementado:
 
-- `CatalogoDeItens.cs`: `TipoDeItem` com as 5 categorias, cada uma com `DefinicaoDeItem` (id, nome, tipo, efeito, usável em/fora de batalha, e agora `Preco`).
+- `CatalogoDeItens.cs`: `TipoDeItem` com **6 categorias** (a 6ª, `Chave`, entrou no Estágio 3/15-09), cada uma com `DefinicaoDeItem` (id, nome, tipo, efeito, usável em/fora de batalha, `Descricao`, `Raridade`, `VendavelNaLoja` e `Preco`/`PrecoDeVendaReal`).
 - Buff/Debuff reaproveitam o motor de efeito de técnica (`EfeitoDeAtributo`/`EfeitoDeDanoPorTurno`) — por isso herdam os 2 bugs abertos acima.
 - Equipável dá bônus real via `DroidPart.AtributoBonificado`/`ValorDoBonus`, somado em `Droid.ObterBonusDePecas`. Equipar consome o item, sem desequipar.
-- Fora de Batalha: Sinalizador de Retorno (recarrega save), Kit de Acampamento (cura total + salva), Chave de Acesso (flag genérica).
+- Fora de Batalha: Sinalizador de Retorno (recarrega save), Kit de Acampamento (cura total + salva), Chave de Acesso (flag genérica), **Módulo de Treinamento** (novo, 17/09/2026 — concede 100 XP via `SistemaDeProgressao`, mesmo caminho do XP de batalha).
 - Inventário real e persistido (`GerenciadorDeEstado`, save v4), Bag funcional fora de batalha.
 - `Gold`: `GerenciadorDeEstado.Gold` + `AdicionarGold`/`TentarGastarGold`, persistido. Fontes: kit inicial, drop configurável por `BattleManager` (`goldMinimo`/`goldMaximo`/`tabelaDeDrops`, preenchido manualmente por cena de batalha), e venda na Loja.
 
-**Pendência aberta:** confirmar que `BattleManager.tabelaDeDrops` sobreviveu às mudanças recentes da Loja (foram mexidos em sessões diferentes, sem visibilidade cruzada) — sem isso, "Gold: 0" pode nunca sair do zero em jogo normal fora da Loja.
+**Pendência aberta:** ✅ parcialmente confirmado (17/09/2026, via `BattleManager.cs`) — `AplicarRecompensas` usa `CatalogoDeItens.Obter(drop.idItem)`, a mesma fonte da Loja, não uma tabela separada que pudesse ter ficado pra trás. O que ainda falta confirmar é só de conteúdo: se os `idItem` digitados em `CatalogoDeInimigos.Drops` (arquivo ainda não anexado) batem com Ids que existem no catálogo atual.
 
 ---
 
@@ -168,7 +168,7 @@ Reconciliação: esse trabalho já existia em código antes de aparecer document
 - **Cena `City`** + `TransicaoDeCena` (mundo ↔ Cidade) — **corrigido nesta sessão:** campo de destino trocado de `Transform` pra `Vector2` (coordenadas), porque Unity não permite referência cross-scene de `Transform`.
 - **`NpcInterativo.cs`**: enum `TipoDeNpc` (`Generico`/`Loja`) + campo `lojaUIManager`. `Generico` mantém placeholder (`Debug.Log`); `Loja` abre o painel e registra/libera "menu aberto" do mesmo jeito que Status/Terminal/Bag/Droid já fazem.
 - **`LojaUIManager.cs`** (novo): painel com abas Comprar/Vender, mesmo contrato estrutural do `BagUIManager` (`AoFechar`, `LayoutRebuilder.ForceRebuildLayoutImmediate` antes de popular a lista). Comprar gasta Gold e soma item; Vender remove item e credita Gold.
-- **`CatalogoDeItens.Preco`** (novo campo) + **`ItensDaLoja`** (expõe o catálogo inteiro como vendável) — todo item vale 1 Gold (`PrecoPadrao`), decisão deliberada, não balanceado.
+- **`CatalogoDeItens.Preco`/`PrecoDeVendaReal`** + **`ItensDaLoja`** (filtra por `VendavelNaLoja && Preco > 0`) — preços já têm escala real (8–150) e spread comprador/vendedor de 50%, confirmado no `CatalogoDeItens` reescrito (15/09/2026); a linha antiga aqui ("todo item vale 1 Gold") ficou pra trás e foi corrigida — ainda placeholder de rascunho, não balanceado por playtesting.
 - **Bugs de Editor já resolvidos ao vivo nesta sessão:** `CatalogoDeItens.cs` duplicado fora da pasta certa (corrigido); `lojaUIManager` do NPC não estava linkado (corrigido); `BotaoItemTemplate` aparecendo sozinho na tela — precisa ficar desativado, é só molde (corrigido); itens da lista sobrepostos — faltava Vertical Layout Group + Content Size Fitter (corrigido, lista já aparece certinha nos prints).
 - **Em andamento:** adicionar `Scroll Rect` numa `ScrollView` nova na Loja, e fixar tamanho de fonte no template (hoje varia por item).
 
@@ -187,7 +187,7 @@ Reconciliação: esse trabalho já existia em código antes de aparecer document
 1. Fechar a decisão de comportamento de empilhamento de efeito e corrigir os 2 bugs abertos (motor de efeitos) — bloqueante pra qualquer Debuff/técnica de status novo.
 2. **Corrigir o bug de integração `EscreverNoLog`** (`VerificadorDePuzzle` v2 × `TerminalUIManager`) — bloqueante pra qualquer puzzle montado sem `textoDeApollo`, ou seja, bloqueante pros 8 puzzles opcionais do `CatalogoDePuzzles`.
 3. Terminar o polish visual da Loja (Scroll Rect + fonte fixa) — já em andamento.
-4. Confirmar que `BattleManager.tabelaDeDrops` sobreviveu ao trabalho da Loja, e configurar nos `BattleManager`s que faltarem — sem isso o jogo normal não gera Gold fora da Loja.
+4. ✅ **Confirmado no nível de código (17/09/2026):** `BattleManager.tabelaDeDrops`/`AplicarRecompensas` usam `CatalogoDeItens.Obter`, a mesma fonte da Loja — sobreviveu à reescrita. Falta só confirmar/preencher os `idItem` reais em `CatalogoDeInimigos.Drops` (arquivo ainda não anexado) e configurar `goldMinimo`/`goldMaximo` nos `BattleManager`s que faltarem.
 5. Balancear `Preço` por item — o `CatalogoDeItens` reescrito já tem escala (8–150) e spread de venda, confirmados nesta sessão; falta só validar por playtesting real.
 6. Decidir e remover (ou usar) `TabelaDeCustos.CustoResistenciaPorNivel` — declarada e nunca referenciada.
 7. ✅ **Feito (15/09/2026):** Diálogo simples de NPC genérico deixou de ser "pulado" — coberto pelo sistema de história (`GatilhoDeDialogo`/`NpcInterativo` tipo `Dialogo`), confirmado por `.cs` real.
@@ -196,7 +196,9 @@ Reconciliação: esse trabalho já existia em código antes de aparecer document
 10. ✅ **Feito (15/09/2026):** os 2 itens de facção (`Núcleo de Sobrecarga`, `Módulo de Ressonância`) já estão no `CatalogoDeItens.cs` reescrito, confirmado por `.cs` real — o item antigo "colar via `PARA_COLAR_CatalogoDeItens.md`" está superado.
 11. **Ligar `QuestUIManager` ao Menu do Mundo** — botão "Missões" ainda não existe em `MenuMundoManager.cs` (confirmado por `.cs` real nesta sessão). Mesmo padrão de `botaoBag`/`botaoDroid`.
 12. **Escrever ou colar `GatilhoDeQuest.cs`** e a ponta `Explicar`/`Ajuda`/`Resumo` do `TerminalDroidApi` — os 2 itens do pacote de conteúdo ainda sem `.cs` confirmado (ver `DOCUMENTACAO_TECNICA.md` §8.1).
-13. **Confirmar HIT/FLEE e crítico (LUK)** colando `Droid.cs` e `CombatEngine.cs` — é a última divergência aberta entre o `readme` e a `DOCUMENTACAO_TECNICA` §8, e trava o balanceamento dos inimigos do Ato 1.
+13. ✅ **Feito (17/09/2026):** HIT/FLEE e crítico (LUK) confirmados implementados — `Droid.cs` foi colado e mostra o mecanismo real (Estágio 1, 12/09/2026). Só as constantes exatas de `TabelaDeCombate.cs` seguem sem confirmação (não bloqueia mais balanceamento qualitativo, só o fino ajuste numérico).
+14. **Remover/esconder `droid.testeAdicionarPontos()`** antes de qualquer build final/demo — comando de teste real no terminal Lua, dá pontos de progressão de graça, já sinalizado no próprio código (`TerminalDroidApi.cs`, confirmado 17/09/2026).
+15. **Item novo pra testar:** `Módulo de Treinamento` (`CatalogoDeItens.IdModuloDeTreinamento`), dá 100 XP pela Bag — código pronto (`CatalogoDeItens.cs`/`BagUIManager.cs`, 17/09/2026), falta só testar em jogo e balancear preço/raridade (hoje placeholder: 120 Gold, Raro).
 
 ---
 

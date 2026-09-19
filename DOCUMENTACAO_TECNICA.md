@@ -283,7 +283,7 @@ Assets/Scripts/Droid/TabelaDeCustos.cs
 Assets/Scripts/Droid/TabelaDeCombate.cs
 Assets/Scripts/Droid/TecnicaComposta.cs
 Assets/Scripts/Droid/EfeitosTemporariosUtil.cs
-Assets/Scripts/Droid/CatalogoDeItens.cs — reescrito (15/09/2026), confirmado por .cs real: 6 categorias (+ Chave), Descricao/Raridade, VendavelNaLoja, spread de preço. Ver §8.1
+Assets/Scripts/Droid/CatalogoDeItens.cs — reescrito (15/09/2026), confirmado por .cs real: 6 categorias (+ Chave), Descricao/Raridade, VendavelNaLoja, spread de preço. Estendido (17/09/2026): novo item Fora de Batalha que concede XP (`ExperienciaConcedida`, ação `GanhoDeExperiencia`). Ver §8.1 e §4.1
 Assets/Scripts/Droid/ItemConsumivel.cs — DEPRECATED (13/09/2026): substituído por CatalogoDeItens.cs/Inventario real. Mantido no projeto sem uso ativo; candidato a remoção, não apagar sem confirmar que nada mais referencia ItensDeBatalha.Disponiveis.
 
 Assets/Scripts/Estado/GerenciadorDeEstado.cs
@@ -314,6 +314,7 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 - `Pontos`: `PontosDeProgressao` (orçamento gasto no terminal)
 - `Progressao`: `ProgressaoDeNivel` (nível/XP ganhos em combate — separado de `Pontos` por SRP)
 - `Defesa => ObterTotal(TipoAtributo.Vit)` — VIT total, **já incluindo bônus de peça** (ver `ObterTotal` abaixo)
+- `Hit => ObterTotal(TipoAtributo.Dex)`, `Flee => ObterTotal(TipoAtributo.Agi)`, `ChanceCritica => ObterTotal(TipoAtributo.Luk) * TabelaDeCombate.PercentualCriticoPorLuk` — **confirmado implementado (17/09/2026)**, ver nota abaixo e §5/§8
 - `HpMaxBase` (persistido) + `HpMax` **calculado** a partir de `HpMaxBase` + %VIT + bônus de peça. `RecalcularHpAposMudancaDeVit(hpMaxAntes)` mantém o HP atual coerente quando o teto sobe (chamado por `TerminalDroidApi.AplicarUpgrade`)
 - `BonusPercentualDeCura` — bônus de cura derivado de INT (`TabelaDeCombate.PercentualBonusCuraPorInt`), usado por `BattleManager.UsarItemDeCura` e `BagUIManager.UsarCuraForaDeBatalha`
 - `RolarResistencia(chance)` (estático) — rolagem de resistência a efeito, usada por `BattleManager.AplicarEfeitoDeItem` para Debuff
@@ -322,6 +323,18 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 - `EfeitosAtivos`: `List<EfeitoDeAtributo>` — só o Droid do jogador tem, decrementado 1x por turno via `DecrementarEfeitosAtivos()`
 - `ExecutarAcao(nomeAcao, alvo)`: lê a técnica configurada, calcula dano (ver fórmula na seção 5) — nunca chama Lua
 - `ObterTotal(TipoAtributo)`: base (`StatsBase`) + bônus de peça
+> ✅ **Divergência fechada (17/09/2026) — HIT/FLEE e crítico por LUK:**
+> `Droid.cs` finalmente foi anexado. O roll de acerto e o crítico **estão
+> implementados**, dentro do próprio `Droid.ExecutarAcao` (não em
+> `CombatEngine`, que continua não anexado): `RolarAcerto(Hit, alvo.Flee)`
+> decide se a ação erra antes de calcular dano, e `RolarCritico(ChanceCritica)`
+> aplica `TabelaDeCombate.MultiplicadorDano_Critico` se acertar. Datado no
+> próprio código como "Estágio 1, 12/09/2026" — mais antigo que as notas
+> que o marcavam como "planejado" (ver §5/§8/§9, todas atualizadas). O que
+> **ainda não está confirmado** são os valores exatos das constantes
+> (`TabelaDeCombate.ChanceDeAcertoBase/Minima/Maxima`,
+> `PercentualCriticoPorLuk`, `MultiplicadorDano_Critico`) — `TabelaDeCombate.cs`
+> continua não anexado. O mecanismo está confirmado; os números, não.
 > ✅ **Corrigido nesta seção (15/09/2026):** a versão anterior desta linha dizia
 > que o bônus de peça era "hoje sempre 0 — peças não têm bônus nomeado por
 > atributo ainda". Isso **estava desatualizado** e contradizia a própria §4.3
@@ -345,8 +358,8 @@ Assets/Scripts/_Teste/InimigoTeste.cs
 
 **`TabelaDeCombate`** (placeholder) — `DanoPorNivelDeTecnica = 5`. Separada de `TabelaDeCustos` de propósito: uma é custo em pontos, outra é output de dano.
 
-**`CatalogoDeItens`** (Estágio 2 em 13/09/2026, expandido nas sessões seguintes — substitui `ItemConsumivel.cs`/`ItensDeBatalha`) — catálogo estático (`Dictionary<string, DefinicaoDeItem>`) dos itens que existem no jogo. `DefinicaoDeItem`: `Id` (string estável — **nunca renomear**), `Nome`, `Tipo` (`TipoDeItem`: `Cura`, `Buff`, `Debuff`, `Equipavel`, `ForaDeBatalha` — as 5 categorias já implementadas), `CuraHp`, `UsavelEmBatalha`/`UsavelForaDeBatalha`, e **`Preco`** (novo, sessão da Loja — todo item vale `PrecoPadrao` = 1 Gold, decisão deliberada não balanceada). **`ItensDaLoja`** (nova propriedade, sessão da Loja) expõe `Todos.Values` inteiro como itens vendáveis, sem filtro por tipo. Buff/Debuff reaproveitam `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` (mesmo motor de técnica); Equipável carrega `TipoDePeca` + o bônus de atributo da peça (ver `Droid.EquiparPeca`/`ObterBonusDePecas`, §4.3). O **catálogo** (o que existe) fica aqui; a **quantidade que o jogador possui** fica em `GerenciadorDeEstado.Inventario` (ver §4.5).
-> ⚠️ `ItemConsumivel.cs`/`ItensDeBatalha` (lista fixa sem quantidade) ainda existem no projeto mas estão **deprecated**, sem nenhum código ativo os referenciando desde 13/09/2026 — ver §3.
+**`CatalogoDeItens`** (Estágio 2 em 13/09/2026, **reescrito no Estágio 3, 15/09/2026, e estendido em 17/09/2026** — substitui `ItemConsumivel.cs`/`ItensDeBatalha`) — catálogo estático (`Dictionary<string, DefinicaoDeItem>`) dos itens que existem no jogo. `DefinicaoDeItem`: `Id` (string estável — **nunca renomear**), `Nome`, `Tipo` (`TipoDeItem`: `Cura`, `Buff`, `Debuff`, `Equipavel`, `ForaDeBatalha`, `Chave` — **as 6 categorias já implementadas**, `Chave` desde o Estágio 3), `CuraHp`, `UsavelEmBatalha`/`UsavelForaDeBatalha`, `Descricao` + `Raridade` (todo item), `VendavelNaLoja` (filtra a aba Comprar — sem isso, os 2 itens de recompensa de facção e os itens de missão apareceriam à venda) e `Preco`/`PrecoDeVendaReal` (escala real 8–150, spread comprador/vendedor de 50%, mínimo 1 — **não é mais** o "todo item vale 1 Gold" da versão Estágio 2). **`ItensDaLoja`** filtra por `VendavelNaLoja && Preco > 0` (não expõe mais `Todos.Values` inteiro sem filtro). Buff/Debuff reaproveitam `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` (mesmo motor de técnica); Equipável carrega `TipoDePeca` + o bônus de atributo da peça (ver `Droid.EquiparPeca`/`ObterBonusDePecas`, §4.3); ForaDeBatalha carrega `AcaoForaDeBatalha` (`SinalizadorDeRetorno`/`KitDeAcampamento`/`ChaveDeAcesso`/**`GanhoDeExperiencia`**, novo em 17/09/2026) e, para essa última, `ExperienciaConcedida` (int) — creditado via `SistemaDeProgressao.GanharExperiencia`, o **mesmo caminho** do XP de batalha (pode disparar level up). O **catálogo** (o que existe) fica aqui; a **quantidade que o jogador possui** fica em `GerenciadorDeEstado.Inventario` (ver §4.5).
+> ⚠️ `ItemConsumivel.cs`/`ItensDeBatalha` (lista fixa sem quantidade) ainda existem no projeto mas estão **deprecated**, sem nenhum código ativo os referenciando desde 13/09/2026 — ver §3. **Confirmado de novo, agora pela ponta de consumo (17/09/2026):** `BattleManager.AbrirListaDeItens`/`UsarItem` leem exclusivamente `GerenciadorDeEstado.Inventario` via `CatalogoDeItens.Obter` — nenhuma referência a `ItensDeBatalha.Disponiveis` em lugar nenhum do fluxo de batalha. Seguro remover o arquivo quando quiserem.
 
 **`TecnicaComposta`** — `Nome`, `NivelDeDano`, `EfeitosDeAtributo` (`List<EfeitoDeAtributo>`), `EfeitosDeDanoPorTurno` (`List<EfeitoDeDanoPorTurno>`), `CustoTotal()`. `EfeitoDeAtributo` liga-se a um `TipoAtributo` + valor + duração (`-1` = permanente, convenção não usada ainda). `EfeitoDeDanoPorTurno` é dano contínuo (ex: Envenenamento), modelado como tipo próprio por não caber no formato de "alterar atributo".
 > ✅ **Implementado (12/09/2026)** — os efeitos de `TecnicaComposta` (Stun, Envenenamento) agora são aplicados de verdade: `Droid.ExecutarAcao` chama `AplicarEfeitosDaTecnica(tecnica, alvo)` (método privado estático), que copia cada `EfeitoDeAtributo`/`EfeitoDeDanoPorTurno` da técnica para `alvo.EfeitosAtivos`/`alvo.EfeitosDeDanoAtivos` (cópia, não referência — cada uso da técnica gera instâncias novas, com sua própria `DuracaoEmTurnos`). Quem realmente processa os efeitos durante o turno é o `CombatEngine` (ver 4.2).
@@ -533,7 +546,7 @@ Ao carregar, recarrega a cena salva (`SceneManager.LoadScene`) — depende de `R
 **`TelaDeStatusManager`** — painel de status, busca o Droid direto do `GerenciadorDeEstado` (reutilizável entre batalha e mundo).
 - ✅ **Corrigido (13/09/2026)** — mesmo padrão do Terminal: ganhou `AoFechar` (`System.Action`, opcional), invocado ao final de `Fechar()`. Como o uso dentro da Batalha não atribui esse callback, fica `null` ali e não é chamado (`?.Invoke()`) — nenhuma mudança de comportamento na Batalha.
 
-**`BagUIManager`** (novo, Estágio 2, 13/09/2026) — painel da Bag, acessível pelo `MenuMundoManager` (substitui o placeholder "Bag ainda não foi implementado"). Cura fora de batalha, sem gastar turno (não existe turno fora de combate), filtra itens do `Inventario` por `UsavelForaDeBatalha`, decrementa estoque e salva na hora — mesmo padrão de `UsarItem` do `BattleManager`. Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager` (usado por `MenuMundoManager` pra reexibir seu próprio painel).
+**`BagUIManager`** (novo, Estágio 2, 13/09/2026 — **Estágio 3, 15/09/2026, estendido 17/09/2026**) — painel da Bag, acessível pelo `MenuMundoManager` (substitui o placeholder "Bag ainda não foi implementado"). `UsarItemForaDeBatalha` despacha por `TipoDeItem`: `Cura` (comportamento antigo, com bônus de INT — ver §5), `Equipavel` (`EquiparItem`: monta a `DroidPart` do slot certo a partir dos dados do catálogo e chama `Droid.EquiparPeca`, **consumindo** o item — sem desequipar), e `ForaDeBatalha` (`UsarAcaoForaDeBatalha`, despacha por `AcaoForaDeBatalha`: `SinalizadorDeRetorno` recarrega o save via `SalvamentoJson.Carregar()` e **não consome** o item — o load já restaura o inventário; `KitDeAcampamento` cura tudo; `ChaveDeAcesso` grava a flag do item; **`GanhoDeExperiencia`** (novo, 17/09/2026) chama `SistemaDeProgressao.GanharExperiencia(droid, item.ExperienciaConcedida)` — mesmo caminho do XP de batalha, mensagem avisa se subiu de nível). Filtra itens do `Inventario` por `UsavelForaDeBatalha`, decrementa estoque e salva na hora — mesmo padrão de `UsarItem` do `BattleManager`. Segue o mesmo contrato de painel + callback `AoFechar` de `TelaDeStatusManager`/`TerminalUIManager` (usado por `MenuMundoManager` pra reexibir seu próprio painel).
 > ⚠️ **Bug corrigido (13/09/2026):** `Mostrar()` ativa o painel (`SetActive(true)`) **antes** de popular a lista de botões e força `LayoutRebuilder.ForceRebuildLayoutImmediate` — a ordem antiga (popular primeiro, ativar depois) deixava o painel "ligado" mas com `ContentSizeFitter` travado em 0x0, porque o Unity só recalcula layout em objetos ativos.
 
 **`MainMenuManager`** — navegação do menu principal (Novo Jogo/Configurações/Sair). Sem mudanças estruturais previstas.
@@ -655,15 +668,24 @@ Constante em `TabelaDeCombate.PercentualBonusCuraPorInt`.
 **Resistência a efeito** = `Droid.RolarResistencia(alvo.ChanceDeResistirEfeito)`,
 rolada apenas para Debuff (Buff no próprio Droid não rola).
 
-> ⚠️ **Não confirmado nesta sessão:** a fórmula de dano acima, o roll de
-> acerto (HIT×FLEE) e o crítico por LUK **não puderam ser verificados** — os
-> arquivos `Droid.cs`, `CombatEngine.cs`, `TabelaDeCombate.cs` e
-> `InimigoFixo.cs` não estavam entre os enviados. O `readme.md` lista
-> HIT/FLEE/crítico/INT como implementados; a §8 deste documento ainda lista
-> HIT/FLEE como "planejado". A parte de **INT/resistência está confirmada**
-> (visível em `BattleManager.cs`); HIT/FLEE e crítico **continuam em aberto**
-> até alguém colar `Droid.cs`/`CombatEngine.cs`. Esta linha existe em
-> obediência à §0 item 4: não declarar consistência sem o arquivo em mãos.
+**Roll de acerto (HIT×FLEE)** — `Droid.RolarAcerto(hitAtacante, fleeAlvo)`, chamado no início de `Droid.ExecutarAcao` (erra sem calcular dano nenhum):
+```
+chance = TabelaDeCombate.ChanceDeAcertoBase + (HIT_atacante − FLEE_alvo)
+chance = Clamp(chance, ChanceDeAcertoMinima, ChanceDeAcertoMaxima)
+acerta = Random(0, 100) < chance
+```
+**Crítico (LUK)** — `Droid.RolarCritico(ChanceCritica)`, `ChanceCritica = LUK_total × TabelaDeCombate.PercentualCriticoPorLuk`; se rolar, `dano = Round(dano × TabelaDeCombate.MultiplicadorDano_Critico)`.
+
+> ✅ **Confirmado implementado (17/09/2026):** `Droid.cs` foi anexado — o
+> mecanismo acima existe de verdade, dentro de `Droid.ExecutarAcao`
+> (Estágio 1, datado 12/09/2026 no próprio arquivo). `readme.md` estava
+> certo; a linha do `§8` que dizia "planejado" estava desatualizada e já
+> foi corrigida. **O que continua em aberto:** os valores exatos de
+> `TabelaDeCombate.ChanceDeAcertoBase/Minima/Maxima`,
+> `PercentualCriticoPorLuk` e `MultiplicadorDano_Critico` — `TabelaDeCombate.cs`
+> não foi anexado nesta sessão. `CombatEngine.cs` também não foi anexado,
+> mas isso não bloqueia mais esta confirmação: o roll de acerto/crítico
+> mora inteiro em `Droid.ExecutarAcao`, não em `CombatEngine`.
 
 **Derrota** = `Hp <= 0`. Nenhuma outra condição implementada.
 
@@ -698,7 +720,7 @@ rolada apenas para Debuff (Buff no próprio Droid não rola).
 
 | Item | Descrição | Status |
 |---|---|---|
-| Sistema de acerto/erro (HIT/FLEE) | Atributos derivados ATK/DEF/HIT/FLEE/HpMax completos, com chance de acerto baseada em HIT do atacante vs. FLEE do alvo | Planejado, não implementado — hoje todo ataque sempre acerta |
+| Sistema de acerto/erro (HIT/FLEE) | Atributos derivados ATK/DEF/HIT/FLEE/HpMax completos, com chance de acerto baseada em HIT do atacante vs. FLEE do alvo | **✅ Confirmado implementado (17/09/2026)** — `Droid.cs` anexado, ver §4.1/§5. Só as constantes exatas de `TabelaDeCombate.cs` seguem não confirmadas |
 | Modo Puzzle do terminal | Exercícios de lógica isolados (`DefinicaoDePuzzle`/`ResultadoDePuzzle`), nunca tocando o Droid real | **Reavaliado (15/09/2026): provavelmente desnecessário.** O `VerificadorDePuzzle` (§4.8) já é genérico e cobre todos os puzzles previstos do Ato 1 com configuração de Inspector, zero código por puzzle. Manter fora de escopo até aparecer um puzzle que ele comprovadamente não resolva |
 | Sistema de história (diálogo, flags, portões, batalha roteirizada) | Falas por Inspector, condição por flag persistida, portão de cena e batalha com inimigo de catálogo | **Concluído em código (15/09/2026)** — ver §4.8. Falta só o trabalho de Editor (montagem de cena), ver `GUIA_DE_MONTAGEM_ATO1.md` |
 | Apollo Debugger | Destacar a linha da falha no editor + dica conceitual reativa a erro | **Parcial (15/09/2026):** `ApolloDica` entrega a dica conceitual por erro (§4.8). Falta o destaque de linha dentro do campo de código e a reatividade em tempo real |
@@ -706,7 +728,7 @@ rolada apenas para Debuff (Buff no próprio Droid não rola).
 | Fase 2 de peças (`DroidPart`) | Herança real via Cartuchos de Código sobrescrevendo `DroidBase` | Planejado (design), não implementado |
 | Inventário e equipamento completos | Todas as 6 categorias (`Cura`/`Buff`/`Debuff`/`Equipavel`/`ForaDeBatalha`/`Chave`) implementadas, com quantidade real e persistência (ver `CatalogoDeItens` — reescrito e confirmado 15/09/2026, ver §8.1 —, `Inventario`, `BagUIManager`). Obtenção via kit inicial, drop configurável por `BattleManager` e Loja (compra/venda). Descrição longa + Raridade + spread de preço confirmados; UI ainda mínima (sem ícone/filtro por raridade). | **Concluído** — falta só UI mais rica (não bloqueante), ver "Amadurecimento" em `CHECKLIST_DE_DESENVOLVIMENTO.md` |
 | Sistema de missões (catálogo + motor + diário) | `CatalogoDeQuests` (10 quests), `GerenciadorDeQuests` (motor estático), `QuestUIManager` (diário) | **Concluído em código (15/09/2026)**, confirmado por `.cs` real — ver §8.1. Falta `GatilhoDeQuest.cs` (componente de NPC para oferecer/entregar quest — citado no `LEIA_ISTO`, `.cs` não anexado) e montagem de Editor (Prefab do diário, ligação nos NPCs) |
-| Ajuda pedagógica ativa (`droid.explicar`) | `CatalogoDeLicoes` (9 conceitos) + ponta no `TerminalDroidApi` (`Explicar`/`Ajuda`/`Resumo`) | `CatalogoDeLicoes.cs` **confirmado por `.cs` real** (15/09/2026, ver §8.1). A ponta em `TerminalDroidApi` **não confirmada** — o arquivo `TerminalDroidApi.cs` em si nunca foi anexado nesta sessão, só é referenciado por outros arquivos |
+| Ajuda pedagógica ativa (`droid.explicar`) | `CatalogoDeLicoes` (9 conceitos) + ponta no `TerminalDroidApi` (`Explicar`/`Ajuda`/`Resumo`) | `CatalogoDeLicoes.cs` **confirmado por `.cs` real** (15/09/2026, ver §8.1). `TerminalDroidApi.cs` **conferido nesta sessão (17/09/2026)** — os métodos `Explicar`/`Ajuda`/`Resumo` **não existem** no arquivo real (métodos reais: `SubirAtributo`, `AprenderTecnica`+variantes, `MelhorarTecnica`, `EsquecerTecnica`, `ObterAtributo`, `ListarTecnicas`, `ObterPontosDisponiveis`, `TesteAdicionarPontos`). Deixou de ser "arquivo não anexado" e virou trabalho pendente confirmado |
 
 ---
 
@@ -800,8 +822,10 @@ rolada apenas para Debuff (Buff no próprio Droid não rola).
 - MoonSharp não tem proteção contra loop infinito (`while true do end` travaria o jogo) — sem solução ainda, fora de escopo imediato.
 - ✅ **Resolvido (15/09/2026):** o `Debug.Log` de depuração de `DroidScriptRunner.ObterVariavelNumerica` foi removido. Ver §4.3.
 - ✅ **Resolvido (15/09/2026):** `TransicaoDeCena.trancada`/`textoDeBloqueio`/`mensagemDeBloqueio` **são genéricos da classe**, confirmado com o arquivo real. §4.6 atualizada.
-- **Pacote de 10 arquivos do Ato 1 (catálogos de conteúdo) — 9/10 confirmados nesta sessão.** Ver §8.1 para o detalhamento. Falta só `GatilhoDeQuest.cs` (não anexado) e `TerminalDroidApi.cs` com os métodos `Explicar`/`Ajuda`/`Resumo` (o arquivo em si nunca foi anexado nesta sessão nem na anterior — só é referenciado por `TerminalUIManager`/`DroidScriptRunner`, nunca com seu próprio conteúdo visível). **Bug de integração encontrado:** `VerificadorDePuzzle.cs` v2 chama `terminal.EscreverNoLog(...)`, método que não existe em `TerminalUIManager.cs` (só há `AdicionarLinhaDeLog`, privado) — quebra a compilação para qualquer `VerificadorDePuzzle` sem `textoDeApollo` configurado. Corrigir expondo `AdicionarLinhaDeLog` como público (ou criando `EscreverNoLog` como alias público) antes de montar cena com puzzle sem TMP de fala dedicado.
-- **Divergência ainda aberta — HIT/FLEE e crítico (LUK).** `readme.md` diz implementado; §8 deste documento diz planejado. Resistência por INT está confirmada; o resto depende de `Droid.cs`/`CombatEngine.cs` serem colados numa próxima sessão. Ver a nota no fim da §5.
+- **Pacote de 10 arquivos do Ato 1 (catálogos de conteúdo) — 9/10 confirmados nesta sessão.** Ver §8.1 para o detalhamento. Falta só `GatilhoDeQuest.cs` (não anexado). **`TerminalDroidApi.cs` foi conferido em 17/09/2026** — os métodos `Explicar`/`Ajuda`/`Resumo` não existem nele; deixou de ser incógnita e virou lacuna confirmada (ver §4.3/§8). **Bug de integração encontrado:** `VerificadorDePuzzle.cs` v2 chama `terminal.EscreverNoLog(...)`, método que não existe em `TerminalUIManager.cs` (só há `AdicionarLinhaDeLog`, privado) — quebra a compilação para qualquer `VerificadorDePuzzle` sem `textoDeApollo` configurado. Corrigir expondo `AdicionarLinhaDeLog` como público (ou criando `EscreverNoLog` como alias público) antes de montar cena com puzzle sem TMP de fala dedicado.
+- ✅ **Resolvido (17/09/2026):** a divergência HIT/FLEE e crítico (LUK) — ver nota completa em §4.1 e §5. `Droid.cs` confirma implementação real; só as constantes de `TabelaDeCombate.cs` seguem pendentes.
+- ⚠️ **Novo (17/09/2026), não sinalizado antes:** `TerminalDroidApi.TesteAdicionarPontos(quantidade)` é real e está exposto no terminal Lua (já documentado em §4.3) — dá pontos de progressão de graça, ignorando a economia do jogo. O próprio código já pede pra remover/esconder antes de build final/demo; ainda não removido nem protegido. Adicionar ao roadmap de "antes do lançamento".
+- ✅ **Parcialmente confirmado (17/09/2026), via `BattleManager.cs`:** a pendência "drop de batalha sobreviveu às mudanças da Loja?" (ver `CHECKLIST`) está resolvida **no nível de código** — `BattleManager.AplicarRecompensas` chama `CatalogoDeItens.Obter(drop.idItem)`, a mesma fonte de verdade que a Loja usa, não uma tabela separada/antiga. **O que ainda não dá pra confirmar** é se os `idItem` configurados em `CatalogoDeInimigos.Drops` (arquivo não anexado) apontam pra Ids que de fato existem no catálogo atual — isso é dado de conteúdo, não risco de integração de código.
 - **`InimigoFixo` já carrega efeitos ativos** (`EfeitosAtivos`/`EfeitosDeDanoAtivos` estão na interface e `BattleManager` aplica Debuff nele). Isso torna o bug "efeitos nunca zerados entre batalhas" **menos hipotético** do que a §4.1 sugere — mas o `InimigoFixo` é recriado a cada `BattleManager.Start()`, então o vazamento real continua sendo só do lado do `Droid` do jogador, que é persistente. Não corrigido nesta sessão (fora de escopo por instrução).
 
 **Levantados em 12/09/2026 (varredura de bugs pós motor de efeitos) — status atualizado:**
