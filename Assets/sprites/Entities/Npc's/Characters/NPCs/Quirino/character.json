@@ -1,0 +1,72 @@
+{
+ "personagem": "Quirino",
+ "body_type": "male",
+ "skin": "bronze",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_male",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "hair_buzzcut",
+   "colors": {
+    "hair": "black"
+   }
+  },
+  {
+   "id": "beards_handlebar",
+   "colors": {
+    "hair": "black"
+   }
+  },
+  {
+   "id": "torso_clothes_shortsleeve",
+   "colors": {
+    "cloth": "gray"
+   }
+  },
+  {
+   "id": "torso_aprons_apron",
+   "variant": "leather"
+  },
+  {
+   "id": "legs_pants",
+   "colors": {
+    "cloth": "charcoal"
+   }
+  },
+  {
+   "id": "feet_boots_basic",
+   "colors": {
+    "cloth": "black"
+   }
+  },
+  {
+   "id": "arms_gloves",
+   "colors": {
+    "metal": "iron"
+   }
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_bronze&head=Human_Male_bronze&eyes=Eye_Color_brown&expression=Neutral_bronze&hair=Buzzcut_black&mustache=Handlebar_Mustache_black&clothes=Shortsleeve_gray&apron=Apron_leather&legs=Pants_charcoal&shoes=Basic_Boots_black&gloves=Gloves_iron",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}

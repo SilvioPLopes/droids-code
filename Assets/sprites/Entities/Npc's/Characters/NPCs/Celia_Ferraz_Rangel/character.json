@@ -1,0 +1,63 @@
+{
+ "personagem": "Célia Ferraz Rangel (referência de foto)",
+ "body_type": "female",
+ "skin": "light",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_female",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "hair_ponytail",
+   "colors": {
+    "hair": "dark_brown"
+   }
+  },
+  {
+   "id": "torso_clothes_longsleeve",
+   "colors": {
+    "cloth": "gray"
+   }
+  },
+  {
+   "id": "torso_aprons_overalls",
+   "variant": "slate"
+  },
+  {
+   "id": "feet_boots_basic",
+   "colors": {
+    "cloth": "charcoal"
+   }
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt",
+  "climb",
+  "idle",
+  "jump",
+  "sit",
+  "emote",
+  "run",
+  "combat_idle",
+  "backslash",
+  "halfslash"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=female&body=Body_Color_light&head=Human_Female_light&eyes=Eye_Color_brown&expression=Neutral_light&hair=Ponytail_dark_brown&clothes=Longsleeve_gray&overalls=Overalls_slate&shoes=Basic_Boots_charcoal",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}

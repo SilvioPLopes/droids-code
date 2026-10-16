@@ -1,0 +1,70 @@
+{
+ "personagem": "Senhor Tácio",
+ "body_type": "male",
+ "skin": "brown",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_male",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "hair_balding",
+   "colors": {
+    "hair": "gray"
+   }
+  },
+  {
+   "id": "beards_mustache",
+   "colors": {
+    "hair": "gray"
+   }
+  },
+  {
+   "id": "torso_clothes_shortsleeve",
+   "colors": {
+    "cloth": "tan"
+   }
+  },
+  {
+   "id": "torso_aprons_apron",
+   "variant": "leather"
+  },
+  {
+   "id": "legs_pants",
+   "colors": {
+    "cloth": "brown"
+   }
+  },
+  {
+   "id": "feet_boots_basic",
+   "colors": {
+    "cloth": "walnut"
+   }
+  },
+  {
+   "id": "neck_necklace_chain",
+   "variant": "iron"
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_brown&head=Human_Male_brown&eyes=Eye_Color_brown&expression=Neutral_brown&hair=Balding_gray&mustache=Mustache_gray&clothes=Shortsleeve_tan&apron=Apron_leather&legs=Pants_brown&shoes=Basic_Boots_walnut&necklace=Chain_Necklace_iron",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}

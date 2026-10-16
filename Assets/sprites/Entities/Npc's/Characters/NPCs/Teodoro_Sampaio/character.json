@@ -1,0 +1,66 @@
+{
+ "personagem": "Teodoro Sampaio",
+ "body_type": "male",
+ "skin": "taupe",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_male",
+   "colors": {
+    "eyes": "gray"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "gray"
+   }
+  },
+  {
+   "id": "hair_parted",
+   "colors": {
+    "hair": "gray"
+   }
+  },
+  {
+   "id": "beards_trimmed",
+   "colors": {
+    "hair": "gray"
+   }
+  },
+  {
+   "id": "torso_clothes_longsleeve2_vneck",
+   "colors": {
+    "cloth": "white"
+   }
+  },
+  {
+   "id": "torso_jacket_trench",
+   "variant": "gray"
+  },
+  {
+   "id": "legs_pants2",
+   "colors": {
+    "cloth": "gray"
+   }
+  },
+  {
+   "id": "feet_boots_basic",
+   "colors": {
+    "cloth": "tan"
+   }
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_taupe&head=Human_Male_taupe&eyes=Eye_Color_gray&expression=Neutral_taupe&hair=Parted_gray&beard=Trimmed_Beard_gray&clothes=Longsleeve_2_VNeck_white&jacket=Trench_coat_gray&legs=Long_Pants_gray&shoes=Basic_Boots_tan",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}

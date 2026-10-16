@@ -1,0 +1,58 @@
+{
+ "personagem": "Nilce",
+ "body_type": "female",
+ "skin": "light",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_female",
+   "colors": {
+    "eyes": "green"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "green"
+   }
+  },
+  {
+   "id": "hair_bangs_bun",
+   "colors": {
+    "hair": "gray"
+   }
+  },
+  {
+   "id": "torso_clothes_blouse",
+   "variant": "tan"
+  },
+  {
+   "id": "legs_skirts_plain",
+   "colors": {
+    "cloth": "brown"
+   }
+  },
+  {
+   "id": "torso_aprons_apron_half",
+   "variant": "gray"
+  },
+  {
+   "id": "feet_shoes_basic",
+   "colors": {
+    "cloth": "brown"
+   }
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=female&body=Body_Color_light&head=Human_Female_light&eyes=Eye_Color_green&expression=Neutral_light&hair=Bangs_bun_gray&clothes=Blouse_tan&legs=Plain_skirt_brown&apron=Apron_half_gray&shoes=Basic_Shoes_brown",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}

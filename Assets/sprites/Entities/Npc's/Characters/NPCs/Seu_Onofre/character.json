@@ -1,0 +1,70 @@
+{
+ "personagem": "Seu Onofre",
+ "body_type": "male",
+ "skin": "brown",
+ "itens": [
+  {
+   "id": "body"
+  },
+  {
+   "id": "heads_human_male_elderly",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "face_neutral",
+   "colors": {
+    "eyes": "brown"
+   }
+  },
+  {
+   "id": "head_wrinkles"
+  },
+  {
+   "id": "hair_balding",
+   "colors": {
+    "hair": "white"
+   }
+  },
+  {
+   "id": "beards_winter",
+   "colors": {
+    "hair": "white"
+   }
+  },
+  {
+   "id": "torso_clothes_longsleeve",
+   "colors": {
+    "cloth": "tan"
+   }
+  },
+  {
+   "id": "torso_clothes_vest",
+   "variant": "brown"
+  },
+  {
+   "id": "legs_pants",
+   "colors": {
+    "cloth": "brown"
+   }
+  },
+  {
+   "id": "feet_boots_basic",
+   "colors": {
+    "cloth": "walnut"
+   }
+  }
+ ],
+ "animacoes_cobertas": [
+  "spellcast",
+  "thrust",
+  "walk",
+  "slash",
+  "shoot",
+  "hurt",
+  "idle"
+ ],
+ "url_gerador_nao_testada": "https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_brown&head=Human_Male_Elderly_brown&eyes=Eye_Color_brown&expression=Neutral_brown&wrinkles=Wrinkles_brown&hair=Balding_white&beard=Winter_Beard_white&clothes=Longsleeve_tan&vest=Vest_brown&legs=Pants_brown&shoes=Basic_Boots_walnut",
+ "repositorio_lpc_commit": "9bf06be193b053db256b2536824af426de046aa2"
+}
