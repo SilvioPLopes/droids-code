@@ -14,6 +14,44 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
     public bool ExisteSave() => File.Exists(CaminhoDoArquivo);
 
+    /// <summary>
+    /// Migra somente o DTO em memória. A flag v5 era compartilhada pela
+    /// introdução e pela casa resolvida; o save não permite distingui-las.
+    /// Preservamos o progresso legado e marcamos a introdução como vista.
+    /// </summary>
+    public static void MigrarDados(DadosDoJogo dados)
+    {
+        if (dados == null) throw new System.ArgumentNullException(nameof(dados));
+        if (dados.versao >= 6) return;
+
+        bool casaLegadaMarcada = false;
+        if (dados.flagsDeHistoria != null)
+        {
+            foreach (var flag in dados.flagsDeHistoria)
+            {
+                if (flag != null && flag.chave == "ato1_casa_resolvida" && flag.valor)
+                    casaLegadaMarcada = true;
+            }
+
+            if (casaLegadaMarcada)
+            {
+                bool encontrouIntroducao = false;
+                foreach (var flag in dados.flagsDeHistoria)
+                {
+                    if (flag == null || flag.chave != "ato1_falou_apollo_casa") continue;
+                    flag.valor = true;
+                    encontrouIntroducao = true;
+                }
+                if (!encontrouIntroducao)
+                    dados.flagsDeHistoria.Add(new FlagDeHistoria
+                    {
+                        chave = "ato1_falou_apollo_casa", valor = true
+                    });
+            }
+        }
+        dados.versao = 6;
+    }
+
     public void Salvar()
     {
         GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
@@ -117,6 +155,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
         string json = File.ReadAllText(CaminhoDoArquivo);
         DadosDoJogo dados = JsonUtility.FromJson<DadosDoJogo>(json);
+        MigrarDados(dados);
 
         GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
         Droid droid = gerenciador.DroidDoJogador;

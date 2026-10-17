@@ -1,8 +1,8 @@
 # Montagem do Ato 1 no Unity
 
-**Revisão:** 16/10/2026. Este guia usa os scripts existentes e descreve a montagem pretendida. Não indica que o Ato 1 inteiro já esteja configurado ou testado. Comece pelo [contexto](../contexto-projeto.md) e pelas dependências no [plano](../plano-desenvolvimento.md).
+**Revisão:** 17/10/2026. A montagem da CasaLip está implementada, com validação parcial na [revisão de execução](../revisoes/casalip-validacao-2026-10-17.md). As demais seções descrevem a montagem pretendida; o Ato 1 inteiro não está configurado ou testado. Comece pelo [contexto](../contexto-projeto.md) e pelas dependências no [plano](../plano-desenvolvimento.md).
 
-Os nomes em código abaixo são os campos serializados; o Inspector pode exibi-los com espaços. Alterações de Editor descritas aqui serão executadas em uma tarefa própria, fora da refatoração documental.
+Os nomes em código abaixo são os campos serializados; o Inspector pode exibi-los com espaços. Conferir a montagem existente antes de criar componentes ou duplicar objetos.
 
 ## 1. Preparar a sessão
 
@@ -31,15 +31,13 @@ O Canvas do MenuMundoManager persiste. Uma instância nova em uma cena pode ser 
 | `imagemRetrato` | Image de ImagemRetrato, se usado |
 
 4. Configurar TextoFala com Overflow = Page. Em PainelDeEscolhas, usar Vertical Layout Group e Content Size Fitter, Vertical Fit = Preferred Size.
-5. Conferir a inicialização: DialogoUIManager.Start desativa o painel e liga o botão. Manter o componente responsável pela inicialização ativo na carga da cena; deixá-lo inicialmente inativo no mesmo objeto pode adiar Start até a primeira abertura e interferir nela. Separar controlador e painel visual requer uma revisão própria, não uma mudança implícita neste guia.
+5. `DialogoUIManager` inicializa antes de `Mostrar` e em `Start`, uma única vez. O primeiro `Start` não deve ocultar um diálogo já aberto; a busca da instância inclui UI inativa. O harness cobre essa ordem de chamadas. Conferir também a primeira abertura efetiva durante o percurso.
 6. Retratos são procurados em `Assets/Resources/Retratos/<Falante>`; o nome e a capitalização precisam corresponder às falas para o build. A lista `retratosConhecidos` é uma exceção manual.
 7. Validar diálogo curto e longo: primeira fala, páginas, escolhas, fechamento e desbloqueio do Player. Consultar VAL-05.
 
 ## 3. CasaLip e conclusão persistente
 
-**Pré-requisito: INT-001 e HIS-001.** A montagem atual usa o checker antigo dentro do terminal persistente. Uma troca de componentes sozinha não resolve automaticamente a referência do terminal local nem sua busca quando inativo.
-
-Após corrigir e validar o mecanismo de associação:
+**Montagem implementada; validação parcial (`INT-001/HIS-001`).** Introdução/conclusão separadas, atribuição direta 100 pela origem mundo e duas revisitas passaram por API. Reinício/load, sucesso integrado pelo menu/laço finito/diálogo ocupado e input real seguem pendentes. A captura 1280 foi inspecionada como legível; 1920/narração/fala longa ainda faltam. Usar os campos abaixo para conferir a cena existente.
 
 1. Manter `Actors` ativo, posição/rotação zero e escala um. Preservar Player, seus componentes, tag Player, layer, transform e prefab. Revisar separadamente a escala Z zero existente.
 2. Manter PortaDeSaidaCasa com Collider2D de trigger e TransicaoDeCena ativo. Campo `trancada` marcado no estado inicial não resolvido; destino City e coordenadas de chegada conferidas no mapa.
@@ -51,14 +49,17 @@ Após corrigir e validar o mecanismo de associação:
 | `portaParaDestrancar` | TransicaoDeCena da PortaDeSaidaCasa |
 | `flagAoResolver` | `ato1_casa_resolvida` |
 | `flagQueJaResolve` | `ato1_casa_resolvida` |
-| `terminal` | Associação com a instância persistente válida; seguir a correção de INT-001 |
-| `textoDeApollo` | TMP válido, ou usar o log após TER-002 |
+| `terminal` | Resolvido por `LocalizadorDeTerminal.Encontrar`, inclusive inativo/persistente |
+| `mostrarFalaAoResolver` | `false`: sucesso apresentado pelo controlador via diálogo |
+| `textoDeApollo` | Sem TMP de vitória direto na casa |
 
-4. Remover PuzzleAguaCasaChecker da instância da casa durante a migração e conferir instâncias de prefab/overrides. Garantir que só um checker controla a conclusão.
-5. Associar InteragirComTerminalCasa ao terminal válido pelo mecanismo corrigido. BoxCollider2D deve ter Is Trigger marcado.
-6. Apollo pode usar `idDoDialogo: casa_intro_apollo`, com `falas` vazio para consumir o catálogo. O diálogo introdutório deve ter uma flag de conversa distinta da conclusão do puzzle, definida em HIS-001.
-7. Apresentar ao jogador o código inicial do catálogo; criar um verificador por Id não preenche automaticamente o campo do terminal. O método TextoDoEnunciado também precisa de um consumidor para aparecer na UI.
-8. Executar VAL-02/03/04 antes de prosseguir. Essa migração é necessária para o percurso pretendido; seu comportamento de revisita precisa ser validado.
+4. No mesmo objeto, `ControladorPuzzleAguaCasa.verificador` aponta para o verificador local. A cena não deve ter `PuzzleAguaCasaChecker` anexado, inclusive no Canvas; o antigo `TextoApollo` de vitória fica desativado. O script legado continua no repositório para compatibilidade.
+5. `InteragirComTerminalCasa` recupera o terminal válido ao habilitar ou perder a referência, e bloqueia E enquanto houver UI aberta e no primeiro frame após sua liberação. BoxCollider2D deve ter Is Trigger marcado.
+6. Apollo usa `idDoDialogo: casa_intro_apollo`, `falas` vazio, `apenasUmaVez` ligado e `ato1_falou_apollo_casa` tanto em `flagAoTerminar` quanto em `flagsQueImpedem`. A introdução não grava a conclusão do puzzle em saves novos.
+7. O controlador chama `DefinirContextoPuzzle("p_agua_casa")`: ajuda apresenta enunciado e a primeira abertura com campo vazio usa `CodigoInicial`. Reaplicar não apaga rascunho nem troca Runner. Ao sair, `LimparContextoPuzzle` do mesmo Id restaura ajuda geral preservando o rascunho global.
+8. Na primeira resolução, o verificador grava flag/progresso/save e emite `AoResolverPelaPrimeiraVez`; o controlador fecha a origem do menu e o terminal, depois mostra `casa_porta_apollo`. Se outra conversa estiver aberta, aguarda sem substituir seu callback. Na restauração pela flag, não há novo save/progresso/evento/fala.
+9. DadosDoJogo usa v6. `SalvamentoJson.MigrarDados` opera em memória antes da restauração das flags: versões anteriores com conclusão verdadeira preservam essa conclusão e recebem introdução verdadeira. Isso também libera legados ambíguos de quem só conversou; os dados antigos não permitem distinguir esse caso. Versões v6+ e demais dados são preservados.
+10. Retomar as pendências de VAL-02/03/04: laço finito/menu/diálogo ocupado integrados, reinício/load e input real. C05 já tem duas revisitas aprovadas por API com save inalterado; não apresentá-lo como pendente nem usá-lo para substituir C06. Preservar o save antes de testes que gravam progresso; o original desta sessão foi restaurado via MCP com SHA-256 igual ao backup.
 
 ## 4. City: conversas e portão
 
@@ -77,7 +78,7 @@ Existem Dara, homem da fila, Tácio e comentário do Apollo. Conferir os compone
 
 4. No comentário, usar AoEntrarNoTrigger, `apenasUmaVez` e `desativarAposConcluir` marcados.
 5. Em SaidaCidade, conferir TransicaoDeCena para Game e TrancaPorHistoria com `flagsNecessarias: ato1_sessao2`, `exigirTecnicaConfigurada: true`, `minimoDeAcoes: 2` e `podeTrancarDeNovo: false`.
-6. Conferir a fonte de pontos anterior a esse portão. O Droid inicial possui zero pontos, e o checker antigo da casa não concede pontos. A rota normal precisa permitir aprender a técnica mínima; `testeAdicionarPontos` é ferramenta de teste, não a solução de progressão. Registrar HIS-003 antes de aprovar o onboarding.
+6. Conferir a fonte de pontos anterior a esse portão. O Droid inicial possui zero pontos; a correção de persistência da casa não acrescentou uma fonte de pontos para técnicas. A rota normal precisa permitir aprender a técnica mínima; `testeAdicionarPontos` é ferramenta de teste, não a solução de progressão. Registrar HIS-003 antes de aprovar o onboarding.
 7. Manter ControleDeHistoria ativo e configurar suas regras somente quando houver alvos e condições definidos. Ele está vazio na cena atual; não pode desativar a si mesmo ou um ancestral que o impeça de reavaliar.
 
 ## 5. Game: encontro roteirizado, facção e energia

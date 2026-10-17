@@ -6,3 +6,6 @@ url = "http://localhost:21465/p/e931aa7b"
 
 [mcp_servers.ai-game-developer.tools.rql-mutate]
 approval_mode = "approve"
+
+[mcp_servers.ai-game-developer.tools.script-execute]
+approval_mode = "approve"

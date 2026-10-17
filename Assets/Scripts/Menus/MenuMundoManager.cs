@@ -66,6 +66,8 @@ public class MenuMundoManager : MonoBehaviour
     public TextMeshProUGUI textoAviso;
 
     private ISistemaDeSalvamento _salvamento = new SalvamentoJson();
+    private bool _inicializado;
+    private bool _aberto;
 
     // NOVO (13/09/2026): true enquanto Status ou Terminal estiverem abertos
     // por cima do Menu do Mundo. Update() ignora Escape nesse período, pra
@@ -112,6 +114,14 @@ public class MenuMundoManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+    }
+
+    void Inicializar()
+    {
+        if (_inicializado) return;
+        _inicializado = true;
+
         if (painelMenu != null) painelMenu.SetActive(false);
 
         if (botaoStatus != null) botaoStatus.onClick.AddListener(AoClicarStatus);
@@ -125,10 +135,19 @@ public class MenuMundoManager : MonoBehaviour
 
         // NOVO (13/09/2026): liga os callbacks de fechamento do Status e do
         // Terminal — é assim que o Menu do Mundo sabe quando reaparecer.
-        if (telaDeStatus != null) telaDeStatus.AoFechar = AoFecharOutroPainel;
-        if (terminal != null) terminal.AoFechar = AoFecharOutroPainel;
-        if (bag != null) bag.AoFechar = AoFecharOutroPainel;
-        if (telaDeDroid != null) telaDeDroid.AoFechar = AoFecharOutroPainel;
+        if (telaDeStatus != null) telaDeStatus.AoFechar += AoFecharOutroPainel;
+        if (terminal != null) terminal.AoFechar += AoFecharOutroPainel;
+        if (bag != null) bag.AoFechar += AoFecharOutroPainel;
+        if (telaDeDroid != null) telaDeDroid.AoFechar += AoFecharOutroPainel;
+    }
+
+    void OnDestroy()
+    {
+        if (!_inicializado) return;
+        if (telaDeStatus != null) telaDeStatus.AoFechar -= AoFecharOutroPainel;
+        if (terminal != null) terminal.AoFechar -= AoFecharOutroPainel;
+        if (bag != null) bag.AoFechar -= AoFecharOutroPainel;
+        if (telaDeDroid != null) telaDeDroid.AoFechar -= AoFecharOutroPainel;
     }
 
     bool MenuBloqueadoNestaCena()
@@ -145,62 +164,65 @@ public class MenuMundoManager : MonoBehaviour
 
     void Update()
     {
-        // NOVO (15/09/2026): não abre o menu de pausa em cenas bloqueadas
-        // (Battle/MainMenu). Se um painel já estiver aberto, a checagem fica
-        // abaixo, pra que ESC ainda consiga FECHAR o que estiver na tela.
-        if (!_outroPainelAberto && MenuBloqueadoNestaCena()) return;
+        if (!Input.GetKeyDown(teclaDeAbertura)) return;
 
-        // CORRIGIDO: antes, Escape era ignorado enquanto Status/Terminal/
-        // Bag/Droid estivessem abertos (só dava pra fechar clicando em
-        // Voltar). Agora ESC fecha o painel que estiver aberto, chamando o
-        // mesmo Fechar() que o botão Voltar de cada um já chama.
         if (_outroPainelAberto)
         {
-            if (Input.GetKeyDown(teclaDeAbertura))
-            {
-                _fecharPainelAtual?.Invoke();
-            }
+            _fecharPainelAtual?.Invoke();
             return;
         }
 
-        if (Input.GetKeyDown(teclaDeAbertura))
+        // Um terminal aberto por E pertence ao mundo, nao ao menu.
+        if (terminal != null && terminal.EstaAberto)
         {
-            Alternar();
+            terminal.Fechar();
+            return;
         }
+
+        if (!_aberto && (MenuBloqueadoNestaCena() || GerenciadorDeEstado.Instancia.MenuAberto)) return;
+        Alternar();
     }
 
     void Alternar()
     {
+        Inicializar();
         if (painelMenu == null) return;
 
-        bool vaiAbrir = !painelMenu.activeSelf;
-        painelMenu.SetActive(vaiAbrir);
+        if (_aberto)
+        {
+            Fechar();
+            return;
+        }
 
-        if (vaiAbrir)
-        {
-            GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
-            if (textoAviso != null) textoAviso.text = "";
-        }
-        else
-        {
-            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
-        }
+        _aberto = true;
+        painelMenu.SetActive(true);
+        GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
+        if (textoAviso != null) textoAviso.text = "";
     }
 
     void Fechar()
     {
-        if (painelMenu != null && painelMenu.activeSelf)
-        {
-            painelMenu.SetActive(false);
-            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
-        }
+        if (painelMenu != null) painelMenu.SetActive(false);
+        if (!_aberto) return;
+
+        _aberto = false;
+        GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+    }
+
+    public void FecharParaDialogo()
+    {
+        Inicializar();
+        _outroPainelAberto = false;
+        _fecharPainelAtual = null;
+        Fechar();
     }
 
     // NOVO (13/09/2026): substitui a lambda antiga do botaoStatus — agora
     // esconde o painel do Menu do Mundo antes de mostrar o Status.
     void AoClicarStatus()
     {
-        if (telaDeStatus == null) return;
+        Inicializar();
+        if (!_aberto || _outroPainelAberto || telaDeStatus == null) return;
 
         _outroPainelAberto = true;
         _fecharPainelAtual = telaDeStatus.Fechar;
@@ -212,6 +234,9 @@ public class MenuMundoManager : MonoBehaviour
     // real (BagUIManager), mesmo padrão de exclusividade de AoClicarStatus.
     void AoClicarBag()
     {
+        Inicializar();
+        if (!_aberto || _outroPainelAberto) return;
+
         if (bag != null)
         {
             _outroPainelAberto = true;
@@ -231,6 +256,9 @@ public class MenuMundoManager : MonoBehaviour
     // exclusividade de AoClicarStatus/AoClicarBag.
     void AoClicarDroid()
     {
+        Inicializar();
+        if (!_aberto || _outroPainelAberto) return;
+
         if (telaDeDroid != null)
         {
             _outroPainelAberto = true;
@@ -246,6 +274,9 @@ public class MenuMundoManager : MonoBehaviour
 
     void AoClicarTerminal()
     {
+        Inicializar();
+        if (!_aberto || _outroPainelAberto) return;
+
         if (terminal != null)
         {
             // NOVO (13/09/2026): esconde o Menu do Mundo antes de abrir o Terminal.
@@ -264,9 +295,11 @@ public class MenuMundoManager : MonoBehaviour
     // Terminal — reexibe o Menu do Mundo e libera o Update() de novo.
     void AoFecharOutroPainel()
     {
+        if (!_outroPainelAberto) return;
+
         _outroPainelAberto = false;
         _fecharPainelAtual = null;
-        if (painelMenu != null) painelMenu.SetActive(true);
+        if (_aberto && painelMenu != null) painelMenu.SetActive(true);
     }
 
     void AoClicarSalvar()
@@ -283,8 +316,8 @@ public class MenuMundoManager : MonoBehaviour
             return;
         }
 
+        FecharParaDialogo();
         _salvamento.Carregar();
-        if (textoAviso != null) textoAviso.text = "Jogo carregado.";
     }
 
     void MostrarAviso(string nomeDaTela)

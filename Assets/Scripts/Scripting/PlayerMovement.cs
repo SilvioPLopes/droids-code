@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Velocidade de deslocamento do player, em unidades por segundo.")]
     public float velocidade = 5f;
 
+    [Tooltip("Desative quando o controlador possui artes distintas para esquerda e direita.")]
+    public bool usarEspelhamentoHorizontal = true;
+
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -76,7 +79,11 @@ public class PlayerMovement : MonoBehaviour
 
         // Vira a sprite horizontalmente quando olhar para a esquerda
         // (assumindo que a animação "Side" original olha para a direita)
-        if (ultimaDirecao.x < -0.01f)
+        if (!usarEspelhamentoHorizontal)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (ultimaDirecao.x < -0.01f)
         {
             spriteRenderer.flipX = true;
         }

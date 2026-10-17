@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -57,6 +58,11 @@ public class VerificadorDePuzzle : MonoBehaviour
     [Tooltip("Usado só no modo manual. Com Id Do Puzzle preenchido, a fala vem do catálogo.")]
     public string falaAoResolverManual = "Viu? Não foi tão difícil quanto você fingiu que ia ser.";
 
+    public bool mostrarFalaAoResolver = true;
+
+    public bool Resolvido => _resolvido;
+    public event Action AoResolverPelaPrimeiraVez;
+
     public GameObject[] objetosParaAtivar;
     public GameObject[] objetosParaDesativar;
 
@@ -77,6 +83,7 @@ public class VerificadorDePuzzle : MonoBehaviour
 
     private bool _resolvido;
     private bool _inscrito;
+    private TerminalUIManager _terminalInscrito;
     private int _tentativas;
     private DefinicaoDePuzzle _definicao;
     private readonly ISistemaDeSalvamento _salvamento = new SalvamentoJson();
@@ -102,35 +109,53 @@ public class VerificadorDePuzzle : MonoBehaviour
 
     void OnEnable() { Inscrever(); }
 
+    void Update()
+    {
+        if (terminal == null || !_inscrito || !ReferenceEquals(terminal, _terminalInscrito))
+            Inscrever();
+    }
+
     void OnDisable()
     {
         // Obrigatorio: o terminal pode ser persistente (DontDestroyOnLoad).
         // Sem desinscrever, o Action dele guardaria referencia pra um
         // MonoBehaviour ja destruido e estouraria na proxima execucao de
         // codigo, numa cena totalmente diferente.
-        if (_inscrito && terminal != null)
-        {
-            terminal.AoExecutarCodigo -= VerificarVitoria;
-            _inscrito = false;
-        }
+        Desinscrever();
     }
 
     void Inscrever()
     {
-        if (_inscrito) return;
-        // CORRECAO (Unity 6): FindObjectOfType estava obsoleto (CS0618).
-        // FindAnyObjectByType e o substituto direto quando so importa achar
-        // UM (nao precisa de ordenacao).
-        if (terminal == null) terminal = FindAnyObjectByType<TerminalUIManager>();
+        var encontrado = LocalizadorDeTerminal.Encontrar();
+        AssociarTerminal(encontrado != null ? encontrado : terminal);
+    }
 
-        if (terminal == null)
+    public void AssociarTerminal(TerminalUIManager novoTerminal)
+    {
+        if (_inscrito && novoTerminal != null && ReferenceEquals(_terminalInscrito, novoTerminal))
         {
-            Debug.LogWarning($"VerificadorDePuzzle em '{gameObject.name}': nenhum TerminalUIManager encontrado. O puzzle nunca será avaliado.");
+            terminal = novoTerminal;
             return;
         }
 
-        terminal.AoExecutarCodigo += VerificarVitoria;
+        Desinscrever();
+        terminal = novoTerminal;
+        if (!isActiveAndEnabled || novoTerminal == null) return;
+
+        _terminalInscrito = novoTerminal;
+        _terminalInscrito.AoExecutarCodigo += VerificarVitoria;
         _inscrito = true;
+    }
+
+    private void Desinscrever()
+    {
+        // Mesmo um Unity Object destruído ainda pode guardar o delegate no
+        // objeto gerenciado. Não deixar a comparação especial com null
+        // impedir a limpeza da inscrição e de seu estado.
+        if (!ReferenceEquals(_terminalInscrito, null))
+            _terminalInscrito.AoExecutarCodigo -= VerificarVitoria;
+        _terminalInscrito = null;
+        _inscrito = false;
     }
 
     /// <summary>
@@ -177,7 +202,7 @@ public class VerificadorDePuzzle : MonoBehaviour
 
         if (todasSatisfeitas)
         {
-            AplicarEfeitosDeVitoria(persistir: true, mostrarFala: true);
+            AplicarEfeitosDeVitoria(persistir: true, mostrarFala: mostrarFalaAoResolver);
             return;
         }
 
@@ -251,6 +276,7 @@ public class VerificadorDePuzzle : MonoBehaviour
             }
 
             _salvamento.Salvar();
+            AoResolverPelaPrimeiraVez?.Invoke();
         }
     }
 

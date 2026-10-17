@@ -5697,7 +5697,11 @@ PrefabInstance:
     - target: {fileID: 1160356261127867848, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 043334754a95d0a4fa82456ec1aa1539, type: 2}
+      objectReference: {fileID: 9100000, guid: b41d4dbbce30e7f459929eeb6bd56b9d, type: 2}
+    - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
+      propertyPath: m_Sprite
+      value:
+      objectReference: {fileID: 4408406346810168619, guid: d479faba12f44544382e9ac3f1c53a2e, type: 3}
     - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_SortingOrder
       value: 2
@@ -5842,6 +5846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   velocidade: 5
+  usarEspelhamentoHorizontal: 0
 --- !u!50 &978994984
 Rigidbody2D:
   serializedVersion: 5
@@ -7058,6 +7063,13 @@ MonoBehaviour:
   painel: {fileID: 1377115377}
   textoFalante: {fileID: 1296774548}
   textoFala: {fileID: 460502983}
+  imagemRetrato: {fileID: 0}
+  retratoPadrao: {fileID: 0}
+  retratosConhecidos:
+  - nomeDoPersonagem: Apollo
+    retrato: {fileID: 5704420531145803721, guid: 8a9bf3268318d1c4aa1cd3410962815c, type: 3}
+  - nomeDoPersonagem: Lip
+    retrato: {fileID: -4298345892085953899, guid: fbe2fdfa7dd6683429be2999dd721dff, type: 3}
   botaoAvancar: {fileID: 1549222947}
   teclaAvancar: 101
   teclaAvancarAlternativa: 32

@@ -60,6 +60,7 @@ public class TerminalUIManager : MonoBehaviour
     // UI de novo (foi isso que o TerminalCasaManager fazia errado). Só
     // leitura -- ninguém de fora deveria trocar o runner do terminal.
     public DroidScriptRunner Runner => runner;
+    public bool EstaAberto => aberto;
 
     // Invocado ao final de AoClicarExecutar(), sempre (sucesso ou erro).
     // O terminal geral não sabe nem precisa saber o que os ouvintes fazem
@@ -69,6 +70,10 @@ public class TerminalUIManager : MonoBehaviour
     private DroidScriptRunner runner;
     private TerminalDroidApi api;
     private Droid droid;
+    private bool inicializado;
+    private bool aberto;
+    private string idDoContextoPuzzle;
+    private readonly HashSet<string> contextosApresentados = new HashSet<string>();
 
     private readonly List<string> historicoDeComandos = new List<string>();
     // indiceHistorico == historicoDeComandos.Count representa a posicao
@@ -99,18 +104,26 @@ public class TerminalUIManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+    }
+
+    void Inicializar()
+    {
+        if (inicializado) return;
+        inicializado = true;
+
         if (painelTerminal != null) painelTerminal.SetActive(false);
 
         if (botaoExecutar != null) botaoExecutar.onClick.AddListener(AoClicarExecutar);
         if (botaoFechar != null) botaoFechar.onClick.AddListener(Fechar);
         if (botaoLimpar != null) botaoLimpar.onClick.AddListener(AoClicarLimpar);
 
-        if (textoAjuda != null) textoAjuda.text = TextoAjudaPadrao;
+        AtualizarAjuda();
     }
 
     void Update()
     {
-        if (painelTerminal == null || !painelTerminal.activeSelf) return;
+        if (!aberto) return;
         if (campoDeCodigo == null || !campoDeCodigo.isFocused) return;
 
         bool ctrlSegurado = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
@@ -149,14 +162,26 @@ public class TerminalUIManager : MonoBehaviour
 
     public void Abrir()
     {
+        Inicializar();
+        if (aberto || painelTerminal == null) return;
+
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
 
         api = new TerminalDroidApi(droid);
         runner = new DroidScriptRunner(api);
 
-        if (campoDeCodigo != null && string.IsNullOrEmpty(campoDeCodigo.text) && historicoDeComandos.Count == 0)
+        string contexto = idDoContextoPuzzle ?? "";
+        if (!contextosApresentados.Contains(contexto) && campoDeCodigo != null)
         {
-            campoDeCodigo.text = codigoDeExemplo;
+            if (string.IsNullOrEmpty(campoDeCodigo.text))
+            {
+                DefinicaoDePuzzle puzzle = CatalogoDePuzzles.Obter(idDoContextoPuzzle);
+                if (puzzle != null || historicoDeComandos.Count == 0)
+                {
+                    campoDeCodigo.text = puzzle != null ? puzzle.CodigoInicial : codigoDeExemplo;
+                }
+            }
+            contextosApresentados.Add(contexto);
         }
 
         // Sincroniza o baseline com o que de fato esta no campo ao abrir
@@ -166,10 +191,10 @@ public class TerminalUIManager : MonoBehaviour
         textoEsperadoPeloHistorico = campoDeCodigo != null ? campoDeCodigo.text : "";
 
         AtualizarPontos();
-        AdicionarLinhaDeLog("=== Terminal aberto. Digite um comando e clique Executar. ===");
+        aberto = true;
+        painelTerminal.SetActive(true);
         GerenciadorDeEstado.Instancia.RegistrarMenuAberto();
-
-        if (painelTerminal != null) painelTerminal.SetActive(true);
+        AdicionarLinhaDeLog("=== Terminal aberto. Digite um comando e clique Executar. ===");
 
         if (campoDeCodigo != null)
         {
@@ -180,15 +205,39 @@ public class TerminalUIManager : MonoBehaviour
 
     public void Fechar()
     {
-        if (painelTerminal != null && painelTerminal.activeSelf)
-        {
-            painelTerminal.SetActive(false);
-            GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        if (!aberto) return;
 
-            // NOVO (13/09/2026): avisa quem estiver ouvindo (ex: MenuMundoManager)
-            // que o Terminal foi fechado.
-            AoFechar?.Invoke();
-        }
+        aberto = false;
+        if (painelTerminal != null) painelTerminal.SetActive(false);
+        GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        AoFechar?.Invoke();
+    }
+
+    public void DefinirContextoPuzzle(string idDoPuzzle)
+    {
+        if (CatalogoDePuzzles.Obter(idDoPuzzle) == null || idDoContextoPuzzle == idDoPuzzle) return;
+
+        idDoContextoPuzzle = idDoPuzzle;
+        Inicializar();
+        AtualizarAjuda();
+    }
+
+    public void LimparContextoPuzzle(string idDoPuzzle)
+    {
+        if (idDoContextoPuzzle != idDoPuzzle) return;
+
+        idDoContextoPuzzle = null;
+        AtualizarAjuda();
+    }
+
+    void AtualizarAjuda()
+    {
+        if (textoAjuda == null) return;
+
+        DefinicaoDePuzzle puzzle = CatalogoDePuzzles.Obter(idDoContextoPuzzle);
+        textoAjuda.text = puzzle != null
+            ? $"{puzzle.Titulo}\n{puzzle.Enunciado}"
+            : TextoAjudaPadrao;
     }
 
     void AoClicarExecutar()
@@ -324,7 +373,7 @@ public class TerminalUIManager : MonoBehaviour
         // a mensagem nova. Corrigido rodando a rolagem numa coroutine que
         // espera o fim do frame antes de mover o scroll (ver
         // RolarParaFimNoProximoFrame abaixo).
-        if (scrollRectSaida != null)
+        if (scrollRectSaida != null && isActiveAndEnabled)
         {
             StartCoroutine(RolarParaFimNoProximoFrame());
         }

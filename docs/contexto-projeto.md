@@ -1,10 +1,14 @@
 # Contexto do projeto
 
-**Revisão:** 16/10/2026, America/Sao_Paulo.  
-**Base Git:** `ae69544acb627b0361033af2746e5aa4b8e34936`, com alterações locais anteriores em CasaLip e configurações.  
+**Revisão:** 17/10/2026, America/Sao_Paulo.
+
+**Base Git:** `027952041d40e7957875a66641727684586455c1`, com alterações locais de documentação, runtime, cenas e assets da CasaLip.
+
 **Branch da consolidação:** `docs/consolidar-contexto`.
 
 Este é o documento principal do estado atual. Ele reúne informações de produto, arquitetura e integração. O [plano](plano-desenvolvimento.md) é responsável pelas tarefas; os [guias](guias/montagem-ato-1.md) descrevem procedimentos; o [histórico](historico/README.md) preserva versões anteriores.
+
+**Retomada incremental:** o responsável definiu uma demo desenvolvida por partes, começando pela CasaLip. O [índice de trabalho](indice-trabalho.md) permite localizar assuntos sem reler todos os documentos; a [revisão da casa](revisoes/casalip.md) registra a inspeção atual, base Git e validações ainda pendentes.
 
 ## Como interpretar as evidências
 
@@ -12,28 +16,28 @@ Este é o documento principal do estado atual. Ele reúne informações de produ
 |---|---|
 | Código lido | O comportamento está implementado no arquivo indicado; a execução ainda pode depender da montagem. |
 | Cena/prefab lido | Valores e referências estão serializados; instâncias, overrides e inicialização podem alterar o estado efetivo. |
-| Observação MCP | O estado foi observado na sessão em execução de 15–16/10/2026; não representa todas as partidas ou builds. |
+| Observação MCP/API | O estado foi observado na sessão/data registrada; a matriz de 17/10 distingue chamadas por API de input real e não representa todas as partidas/builds. |
 | Relato histórico do responsável | Houve uma validação anterior, com o escopo e a data preservados no registro. |
 | Planejado ou não verificado | Não há evidência suficiente para declarar funcionamento atual. |
 
-Esta refatoração não executou novos percursos de gameplay, testes automatizados ou builds. A hipótese de travamento do Player continua não reproduzida, conforme retorno do responsável. Os problemas da porta e do terminal têm evidências próprias e não comprovam a causa desse travamento.
+As correções da CasaLip estão implementadas, com validação parcial na [revisão de 17/10](revisoes/casalip-validacao-2026-10-17.md). Por API passaram introdução sem conclusão, rejeição de ausente/texto/90, sucesso por 100 na origem mundo com quatro falas e sem repetição, e duas revisitas com referências/porta corretas e save inalterado. Seis fixtures do harness passaram novamente. Captura 1280 legível e oito direções por API foram conferidas. Permanecem reinício/load, sucesso integrado por menu/laço/diálogo ocupado, 1920/narração/fala longa e input real; o usuário interrompeu Computer Use com Escape. Builds exigem validação própria. Travamento permanente do Player continua não reproduzido.
 
 ## 1. Visão e escopo
 
 Droids Code é um RPG educativo, com exploração top-down em 8 direções, batalhas por turnos e programação em Lua fora de combate. Lip e Apollo atravessam o Ato 1 em Ferrovale; o terminal relaciona lógica de programação a puzzles, atributos e técnicas.
 
-A visão narrativa registrada no README anterior apresenta escassez de água, Artemis como sistema de alocação de recursos e Apex como sua infraestrutura de atuação. Flor de Ferro, Lótus Branca e a rota Desgarrado oferecem escolhas de abordagem. A sinopse completa e as notas de revisão estão preservadas no histórico; a conferência de cânone permanece separada da análise de funcionamento.
+A direção narrativa vigente está no [Enredo v2](enredo/TCC_-_ENREDO_v2.md) e no [adendo](enredo/TCC_-_ENREDO_v2_ADENDO.md), lidos integralmente nesta retomada; o adendo prevalece nas divergências. O tema central é quem escreve quem, com erro como informação no Ato 1. Artemis executa uma especificação alterada; as rotas Flor de Ferro, Lótus Branca e Desgarrado produzem consequências políticas. Apollo é um entre 431 núcleos; sua individualidade nasce da convivência com Lip. A montagem deve preservar a ambiguidade das pistas antes da revelação posterior.
 
 A proposta pedagógica introduz variáveis e laços na CasaLip, configuração de técnicas antes de sair da cidade e uso de condicionais em puzzles posteriores. A verificação atual lê valores finais de variáveis Lua: atingir `nivel_agua >= 100` não comprova, por si só, que o jogador usou um laço. A avaliação do aprendizado precisa considerar essa limitação.
 
 | Momento pretendido | Conceito | Evidência mecânica disponível |
 |---|---|---|
-| Água na CasaLip | Variável e while | Valor final de nivel_agua; integração de conclusão precisa de correção. |
+| Água na CasaLip | Variável e while | Valor final de nivel_agua; conclusão persistente/controlador local implementados, validação integrada em andamento. |
 | Portão de City | Método, argumentos e custo | Quantidade de ações configuradas; orçamento inicial precisa ser validado. |
 | Combate | Sequência e planejamento | Uso das técnicas preparadas fora da luta. |
 | Energia na Cratera | Condicional e laço | Valores finais de energia e porta_aberta; montagem posterior ainda parcial. |
 
-O conteúdo narrativo tem catálogos próprios. Os documentos externos de enredo/GDD citados nas entregas antigas não foram localizados no levantamento de arquivos Markdown desta revisão. As descrições dos catálogos não substituem uma validação de cânone com esses documentos.
+O conteúdo narrativo tem catálogos próprios. Os dois documentos de enredo agora estão disponíveis em `docs/enredo`; a indisponibilidade registrada na consolidação anterior deixou de se aplicar a eles. A implementação precisa ser conferida com essas fontes: conteúdo no catálogo não comprova montagem, e o guia ainda contém etapas herdadas, como entregar módulos de facção na Sessão 4 em vez da Sessão 5. Os Atos 2 e 3 orientam a campanha; o ponto final da demo ainda não foi definido.
 
 ## 2. Ambiente e execução
 
@@ -47,19 +51,20 @@ O conteúdo narrativo tem catálogos próprios. Os documentos externos de enredo
 | MCP | `com.ivanmurzak.unity.mcp` consta no manifest. Erros históricos de conexão devem ser separados de erros de gameplay. |
 | Plataformas pretendidas | Windows e WebGL. Build e compatibilidade não foram validados nesta consolidação. |
 | Backend/API | Há valores serializados por destino em [ProjectSettings.asset](../ProjectSettings/ProjectSettings.asset). A antiga afirmação genérica de Mono não foi mantida como confirmação para todos os destinos. |
-| Testes | Nenhum teste foi retornado pela consulta MCP anterior; não há `.asmdef` em `Assets` no levantamento atual. |
+| Testes | Harness manual Editor em `Assets/Editor/ValidacaoCasaLip.cs`, sem NUnit/asmdef nem execução automática; resultados recentes em `green-harness-final.txt` e percurso por API em `fluxo-validacao.txt`, ambos em `Logs/CorrecaoCasaLip`. |
 
 O código é C#. A documentação antiga adotava C# 9 como limite de sintaxe; a versão efetiva do compilador não foi medida. Abrir a cena pelo Editor permite inspecionar montagem, mas a validação completa deve partir também de `MainMenu`.
 
 ## 3. Estrutura real dos scripts
 
-São **59 arquivos `.cs`** em `Assets/Scripts`, excluindo exemplos de TextMeshPro. A árvore abaixo descreve a estrutura existente, sem aplicar as reorganizações propostas na análise.
+São **61 arquivos `.cs`** em `Assets/Scripts`, excluindo exemplos de TextMeshPro e o harness em `Assets/Editor`. A árvore abaixo descreve a estrutura existente, sem aplicar as reorganizações propostas na análise.
 
 ```text
 Assets/Scripts/
 ├── Camera/ (1)
 │   └── CameraFollow.cs
-├── Casa/ (2)
+├── Casa/ (3)
+│   ├── ControladorPuzzleAguaCasa.cs
 │   ├── InteragirComTerminalCasa.cs
 │   └── PuzzleAguaCasaChecker.cs
 ├── Catalogos/ (8)
@@ -109,10 +114,11 @@ Assets/Scripts/
 │   ├── TelaDeDroidManager.cs
 │   ├── TelaDeStatusManager.cs
 │   └── TerminalUIManager.cs
-├── Scripting/ (14)
+├── Scripting/ (15)
 │   ├── DroidScriptRunner.cs
 │   ├── EfeitosTemporariosUtil.cs
 │   ├── ItemConsumivel.cs
+│   ├── LocalizadorDeTerminal.cs
 │   ├── PlayerMovement.cs
 │   ├── PontosDeProgressao.cs
 │   ├── ProgressaoDeNivel.cs
@@ -128,7 +134,7 @@ Assets/Scripts/
     └── VerificadorDePuzzle.cs
 ```
 
-`PlayerAnimatorController.controller` também está em `Assets/Scripts`. A pasta `_Teste` está vazia de `.cs`. Há 33 arquivos sem namespace; os demais usam principalmente `DroidsCode.DroidCore`, `DroidsCode.Combat`, `DroidsCode.Scripting` e `DroidsCode.Casa`. Nome de pasta e namespace não precisam coincidir, mas a padronização é uma tarefa futura.
+`PlayerAnimatorController.controller` também está em `Assets/Scripts`; as animações novas da CasaLip ficam em `Assets/Animations`. A pasta `_Teste` está vazia de `.cs`. Os scripts usam tanto tipos globais quanto os namespaces `DroidsCode.DroidCore`, `DroidsCode.Combat`, `DroidsCode.Scripting` e `DroidsCode.Casa`. Nome de pasta e namespace não precisam coincidir; a padronização é uma tarefa futura.
 
 `GatilhoDeQuest.cs`, `ControladorDeRoteiro.cs` e `_Teste/InimigoTeste.cs` não foram encontrados. `ItemConsumivel.cs` permanece como legado; a busca encontrou referências aos tipos antigos apenas no próprio arquivo e em comentários, enquanto BattleManager consome o catálogo e inventário atuais.
 
@@ -145,7 +151,7 @@ O retorno de Battle está atualmente fixado em `Game` pelo campo `nomeCenaMundo`
 | Cena | Montagem lida | Limites da validação |
 |---|---|---|
 | [MainMenu](../Assets/Scenes/MainMenu.unity) | `nomeCenaJogo: CasaLip`; o default no script é Game. | Novo Jogo apenas carrega a cena; reset explícito de uma sessão existente precisa de revisão. |
-| [CasaLip](../Assets/Scenes/CasaLip.unity) | Terminal, checker antigo, porta para City, Apollo e UI. `Actors/Player` foi salvo mantendo transform, componentes, tag e vínculo de prefab. | Problema de retorno observado por MCP; movimento permanentemente travado não reproduzido. |
+| [CasaLip](../Assets/Scenes/CasaLip.unity) | Terminal, verificador/controlador locais, porta para City, Apollo e UI ajustada. Player mantém componentes/tag/colisores com arte/animações associadas. | Correções implementadas; matriz final em andamento. Travamento permanente não reproduzido. |
 | [City](../Assets/Scenes/City.unity) | Dara, homem da fila, Tácio, comentário do Apollo, Loja, entrada da casa e portão para Game. Portão exige `ato1_sessao2` e técnica extra. | `ControleDeHistoria.regras` está vazio. Montagem de outras fases/NPCs não está concluída. |
 | [Game](../Assets/Scenes/Game.unity) | Zona aleatória com `idDoInimigo` vazio, entrada de City e objeto `falaqualquer` usando `casa_intro_apollo`. | Sequência roteirizada das sessões posteriores não está montada integralmente. |
 | [Battle](../Assets/Scenes/Battle.unity) | BattleManager, UI, listas, barras e valores de inimigo/recompensas no Inspector. | Restrições do catálogo e política de autosave precisam de integração; fundo tem registro de contorno histórico. |
@@ -167,23 +173,25 @@ HIT/FLEE, crítico por LUK e resistência por INT estão implementados. O domín
 
 ### Terminal e puzzles
 
-[DroidScriptRunner](../Assets/Scripts/Scripting/DroidScriptRunner.cs) cria a VM MoonSharp com `Preset_SoftSandbox` e expõe somente [TerminalDroidApi](../Assets/Scripts/Scripting/TerminalDroidApi.cs). Cada abertura do terminal cria uma nova VM; variáveis Lua não são o estado persistente do puzzle. A execução é síncrona e não possui limite contra laços infinitos.
+[DroidScriptRunner](../Assets/Scripts/Scripting/DroidScriptRunner.cs) cria a VM MoonSharp com `Preset_SoftSandbox` e expõe somente [TerminalDroidApi](../Assets/Scripts/Scripting/TerminalDroidApi.cs). Uma nova sessão após fechar/reabrir o terminal cria nova VM; chamar `Abrir` enquanto ele já está aberto preserva a VM/rascunho e não incrementa novamente o contador. Variáveis Lua não substituem o estado persistente do puzzle. A execução é síncrona e não possui limite contra laços infinitos (`TER-001`).
 
 Comandos de jogador presentes: `subirAtributo`, `aprenderTecnica`, variantes com Veneno/Stun, `melhorarTecnica`, `esquecerTecnica`, `obterAtributo`, `listarTecnicas`, `obterPontosDisponiveis` e `testeAdicionarPontos`. O último é um comando de teste exposto, sem o custo normal. `Explicar`, `Ajuda` e `Resumo` não existem na API, embora CatalogoDeLicoes já tenha conteúdo.
 
-[TerminalUIManager](../Assets/Scripts/Menus/TerminalUIManager.cs) controla campo, log, histórico, pontos e evento `AoExecutarCodigo`. `public EscreverNoLog` já existe: o antigo erro de método ausente está superado no código atual. O erro de coroutine ao abrir painel inativo permanece [registrado](problemas/terminal-log-painel-inativo.md).
+[TerminalUIManager](../Assets/Scripts/Menus/TerminalUIManager.cs) controla campo, log, histórico, pontos e evento `AoExecutarCodigo`. `EscreverNoLog` existe; abertura ativa o painel antes do log e a rolagem não inicia coroutine em componente inativo. O [relato de coroutine](problemas/terminal-log-painel-inativo.md) guarda o diagnóstico anterior; a confirmação final de mensagem/rolagem por ambas as origens permanece na matriz. `DefinirContextoPuzzle` apresenta enunciado/código inicial quando cabível; limpar o contexto correspondente restaura ajuda geral mantendo rascunho global.
 
-[VerificadorDePuzzle](../Assets/Scripts/Verificadores/VerificadorDePuzzle.cs), versão vigente v2, lê um Id do catálogo, suporta múltiplas condições, dicas após tentativas e progresso de quest. Mantém configuração manual como fallback. `flagAoResolver` grava a conclusão; `flagQueJaResolve` reaplica vitória em Start. A busca automática atual por terminal não inclui explicitamente objetos inativos e não tenta novamente, exigindo cuidado na integração.
+[VerificadorDePuzzle](../Assets/Scripts/Verificadores/VerificadorDePuzzle.cs) lê um Id do catálogo, suporta múltiplas condições, dicas após tentativas e progresso de quest, mantendo fallback manual. `AssociarTerminal` remove a inscrição anterior e assina a nova uma vez; `LocalizadorDeTerminal.Encontrar` inclui inativos e prefere UI persistente válida. A referência perdida pode ser recuperada. `flagAoResolver` grava conclusão; `flagQueJaResolve` restaura efeitos sem save/progresso/evento. `AoResolverPelaPrimeiraVez` é emitido após persistir resolução nova; `mostrarFalaAoResolver` controla a fala direta.
 
-CasaLip ainda usa [PuzzleAguaCasaChecker](../Assets/Scripts/Casa/PuzzleAguaCasaChecker.cs), preso ao TerminalUIManager por RequireComponent. O checker não grava conclusão em GerenciadorDeEstado e não reassocia uma porta nova. O [relato de retorno](problemas/casalip-retorno-porta-trancada.md) descreve a observação efetiva.
+CasaLip usa um verificador local `p_agua_casa` em `ControlePuzzleAgua` e [ControladorPuzzleAguaCasa](../Assets/Scripts/Casa/ControladorPuzzleAguaCasa.cs). O controlador aplica o contexto, fecha terminal/origem do menu e apresenta `casa_porta_apollo` na primeira resolução; aguarda uma conversa ocupada sem substituir seu callback. O checker legado foi removido da cena, mas seu script permanece no repositório. O [relato de retorno](problemas/casalip-retorno-porta-trancada.md) preserva a causa anterior.
 
 ### UI e interação
 
 [MenuMundoManager](../Assets/Scripts/Menus/MenuMundoManager.cs) persiste o Canvas raiz, remove duplicatas e abre Status/Terminal/Bag/Droid. Opções é placeholder. Battle e MainMenu estão bloqueadas para abertura do Menu do Mundo. O botão de missões ainda não existe.
 
-Os painéis usam callbacks `AoFechar`, mas o registro de menus não é uniforme: Terminal e Diálogo registram a própria abertura; a Loja usa NpcInterativo; Status/Bag/Droid dependem do menu que os abriu. `AoFecharOutroPainel` reativa o menu mesmo quando o terminal foi aberto diretamente pelo mundo. Isso exige testes de cada origem de abertura.
+Os painéis usam callbacks `AoFechar`, mas o registro de menus não é uniforme: Terminal e Diálogo registram a própria abertura; a Loja usa NpcInterativo; Status/Bag/Droid dependem do menu que os abriu. O menu agora distingue propriedade lógica de visibilidade e só retorna de um filho que abriu; fechar terminal originado no mundo não revela o menu. `FecharParaDialogo` limpa essa origem antes do fechamento do terminal. Os demais painéis e caminhos de load exigem seus próprios testes.
 
-[PlayerMovement](../Assets/Scripts/Scripting/PlayerMovement.cs) move por velocidade do Rigidbody2D, atualiza Animator e bloqueia input quando `MenuAberto`. Não consulta seu parent. A abertura repetida do terminal é um risco de código; não foi comprovada como causa do travamento relatado.
+A [coleta visual de 16/10](problemas/casalip-apresentacao-dialogo.md) confirmou âncoras invertidas, texto reduzido e assets anteriores. Em 17/10, a montagem refez o layout escalável, habilitou nome, encaixou retrato e associou a arte disponível de Lip/Apollo; Apollo usa idle LPC provisório, com etiqueta no mundo. A captura final 1280 foi considerada legível pelo agente principal; quatro direções/quatro diagonais e flip LPC/legado passaram por API. Faltam 1920/narração/fala longa e input real/física para encerrar `UI-003/VIS-001`. `casa_porta_apollo` passou pelo mundo/API; `HIS-002` permanece parcial.
+
+[PlayerMovement](../Assets/Scripts/Scripting/PlayerMovement.cs) move por velocidade do Rigidbody2D, atualiza Animator e bloqueia input quando `MenuAberto`. A opção `usarEspelhamentoHorizontal` permite desativar flip quando o controlador tem artes próprias por direção. A abertura repetida defeituosa foi reproduzida e corrigida, sem comprovar que fosse a causa do travamento permanente relatado.
 
 ## 6. Estado persistente e objetos de cena
 
@@ -198,7 +206,7 @@ Os painéis usam callbacks `AoFechar`, mas o registro de menus não é uniforme:
 Fluxos atuais:
 
 1. **Transição:** TransicaoDeCena grava posição de chegada e nome de destino → carrega cena → RestaurarPosicao usa coordenadas de mundo se o destino corresponde → limpa posição pendente.
-2. **Puzzle genérico:** execução Lua → evento → verificação → efeitos de vitória → flag/progresso → save. A versão antiga da casa só altera sua porta e um booleano local.
+2. **Puzzle:** execução Lua → evento → verificação → efeitos de vitória → flag/progresso → save → evento de primeira resolução. A CasaLip usa esse fluxo; restauração pela flag reaplica efeitos sem repetir persistência/evento.
 3. **Diálogo:** interação/trigger → condições → falas do Inspector ou catálogo → painel → escolha/flag → save. Falas do Inspector têm prioridade; escolhas ainda são configuradas no gatilho.
 4. **Batalha:** encontro/gatilho grava inimigo e posição de origem → Battle monta inimigo → turnos → XP/Gold/itens e flag → retorno. Fuga e destino de retorno ainda têm diferenças em relação ao fluxo de finalização.
 
@@ -206,7 +214,11 @@ Na observação MCP de 15–16/10, o checker persistente estava resolvido e sem 
 
 ## 7. Salvamento
 
-[SalvamentoJson](../Assets/Scripts/Estado/SalvamentoJson.cs) grava `Application.persistentDataPath/save.json` com JsonUtility. [DadosDoJogo](../Assets/Scripts/Estado/DadosDoJogo.cs) usa versão **5** e listas planas para dados que em runtime são dicionários.
+[SalvamentoJson](../Assets/Scripts/Estado/SalvamentoJson.cs) grava `Application.persistentDataPath/save.json` com JsonUtility. [DadosDoJogo](../Assets/Scripts/Estado/DadosDoJogo.cs) usa versão **6** e listas planas para dados que em runtime são dicionários.
+
+`MigrarDados` roda em memória antes de restaurar flags: versões anteriores a 6 com `ato1_casa_resolvida=true` preservam a conclusão e recebem `ato1_falou_apollo_casa=true`. A flag antiga era ambígua; conservar progresso também conserva a conclusão de legados que só conversaram. v6+ não sofre essa conversão e os demais dados ficam intactos. A fixture em memória passou; isso não substitui reinício/load do save real.
+
+Ao encerrar a validação parcial de 17/10, o agente principal restaurou o save original via MCP e confirmou SHA-256 igual ao backup `Logs/CorrecaoCasaLip/save-original.json`: `F9018A19EFE54652D201B02BF161E7C808D3B4DC1F2FCFAF025B29F74322ABC7`.
 
 Inclui atributos, HP/HP base, pontos, nível/XP, técnicas com efeitos configurados, flags, contadores de missão, inventário, Gold, cena e posição. Carregar modifica o Droid existente, restaura estado, agenda posição, zera o contador de menus e carrega a cena salva.
 
@@ -216,7 +228,7 @@ Lacunas verificáveis no código:
 - Autosave em Battle grava a cena Battle e posição zero se não há objeto com tag Player, sem serializar todo o combate ou o retorno.
 - Comprar/vender na Loja altera memória, sem chamar Salvar nesses métodos.
 - Zerar o contador durante load não sincroniza automaticamente todas as flags internas dos painéis persistentes.
-- O campo de versão existe, mas não há uma estratégia completa de migração de esquemas.
+- Há migração específica da CasaLip para v6; os demais problemas de esquema/persistência não foram resolvidos por essa conversão.
 
 ## 8. Conteúdo, NPCs e progressão narrativa
 
@@ -235,7 +247,7 @@ Lacunas verificáveis no código:
 
 [GerenciadorDeQuests](../Assets/Scripts/Historia/GerenciadorDeQuests.cs) oferece aceitar, atualizar automáticas, registrar progresso e entregar. Conversa e vitória são mencionadas nos comentários, mas GatilhoDeDialogo e BattleManager não chamam RegistrarProgresso. VerificadorDePuzzle chama para resolução. A atualização automática aparece na abertura do diário e após entrega; o controlador de roteiro citado nos comentários não existe.
 
-Flags-chave de montagem: `ato1_casa_resolvida`, `ato1_falou_dara`, `ato1_falou_fila`, `ato1_sessao2`, `ato1_apollo_explicou`, `ato1_sessao3`, `ato1_faccao_escolhida`, as três flags de facção, `ato1_puzzle_energia`, `ato1_ivo_confessou`, `ato1_sessao6` e `ato1_concluido`. São case-sensitive. Na CasaLip atual, o diálogo introdutório do Apollo grava `ato1_casa_resolvida`; isso mistura conversa e conclusão de puzzle e precisa ser corrigido na integração.
+Flags-chave de montagem: `ato1_falou_apollo_casa`, `ato1_casa_resolvida`, `ato1_falou_dara`, `ato1_falou_fila`, `ato1_sessao2`, `ato1_apollo_explicou`, `ato1_sessao3`, `ato1_faccao_escolhida`, as três flags de facção, `ato1_puzzle_energia`, `ato1_ivo_confessou`, `ato1_sessao6` e `ato1_concluido`. São case-sensitive. Na CasaLip, a introdução grava e é impedida por `ato1_falou_apollo_casa`; o verificador grava `ato1_casa_resolvida`. Saves legados seguem a política v6 descrita acima.
 
 ## 9. Fórmulas e decisões vigentes
 

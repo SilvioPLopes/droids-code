@@ -25,6 +25,12 @@ namespace DroidsCode.Casa
         [SerializeField] private string tagDoPlayer = "Player";
 
         private bool _playerPorPerto;
+        private bool _bloqueadoNoFrameAnterior;
+
+        void OnEnable()
+        {
+            terminal = LocalizadorDeTerminal.Encontrar();
+        }
 
         // Garante que o Collider2D adicionado por [RequireComponent] já
         // nasce como trigger, sem precisar lembrar de marcar no Inspector.
@@ -36,10 +42,24 @@ namespace DroidsCode.Casa
 
         void Update()
         {
-            if (_playerPorPerto && terminal != null && Input.GetKeyDown(teclaDeInteracao))
+            if (terminal == null) terminal = LocalizadorDeTerminal.Encontrar();
+            bool bloqueadoAgora = GerenciadorDeEstado.Instancia.MenuAberto ||
+                (terminal != null && terminal.EstaAberto);
+            // A tecla E que termina uma conversa pode chegar aqui depois
+            // que o diálogo já liberou seu contador neste mesmo frame.
+            bool podeAbrir = !bloqueadoAgora && !_bloqueadoNoFrameAnterior;
+            _bloqueadoNoFrameAnterior = bloqueadoAgora;
+            if (_playerPorPerto && terminal != null && Input.GetKeyDown(teclaDeInteracao) &&
+                podeAbrir)
             {
                 terminal.Abrir();
             }
+        }
+
+        void OnDisable()
+        {
+            _playerPorPerto = false;
+            _bloqueadoNoFrameAnterior = false;
         }
 
         void OnTriggerEnter2D(Collider2D outro)

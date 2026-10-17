@@ -80,7 +80,7 @@ public class DroidSalvo
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 5; // v5 (Historia/Quests): + contadores de progresso de objetivo
+    public int versao = 6; // v6: introdução da casa separada da conclusão do puzzle
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;

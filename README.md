@@ -16,6 +16,9 @@ Projeto de TCC do curso de Sistemas para Internet da FATEC Baixada Santista ? Ru
 
 | Documento | Quando ler |
 |---|---|
+| [Índice de trabalho](docs/indice-trabalho.md) | Retomada por assunto, caminhos e chaves de pesquisa; foco atual da demo. |
+| [Revisão da CasaLip](docs/revisoes/casalip.md) | Montagem atual, flags, mecanismo da porta e validações pendentes da primeira cena. |
+| [Enredo v2](docs/enredo/TCC_-_ENREDO_v2.md) e [adendo](docs/enredo/TCC_-_ENREDO_v2_ADENDO.md) | Direção narrativa; o adendo prevalece nas divergências. |
 | [Contexto do projeto](docs/contexto-projeto.md) | Refer?ncia principal do estado atual, arquitetura, cenas, sistemas e decis?es. |
 | [Plano de desenvolvimento](docs/plano-desenvolvimento.md) | Prioridades, depend?ncias e crit?rios de conclus?o. |
 | [Montagem do Ato 1](docs/guias/montagem-ato-1.md) | Configura??o no Editor, com pr?-requisitos e limita??es atuais. |

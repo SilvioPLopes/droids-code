@@ -74,7 +74,7 @@ public class DialogoUIManager : MonoBehaviour
                 // CORRECAO (Unity 6): FindObjectOfType estava obsoleto
                 // (CS0618) -- FindAnyObjectByType e o substituto direto
                 // quando so importa achar UM (nao precisa de ordenacao).
-                _instancia = FindAnyObjectByType<DialogoUIManager>();
+                _instancia = FindAnyObjectByType<DialogoUIManager>(FindObjectsInactive.Include);
             }
             return _instancia;
         }
@@ -128,6 +128,8 @@ public class DialogoUIManager : MonoBehaviour
     private int _indiceDaFala;
     private bool _mostrandoEscolhas;
     private bool _aberto;
+    private bool _inicializado;
+    public bool EstaAberto => _aberto;
 
     // Sem isso, a MESMA tecla E que abriu o dialogo (em NpcInterativo ou
     // GatilhoDeDialogo) seria lida de novo por este Update no mesmo frame,
@@ -150,6 +152,14 @@ public class DialogoUIManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+    }
+
+    void Inicializar()
+    {
+        if (_inicializado) return;
+        _inicializado = true;
+
         if (botaoAvancar != null) botaoAvancar.onClick.AddListener(Avancar);
         if (painel != null) painel.SetActive(false);
         if (painelDeEscolhas != null) painelDeEscolhas.gameObject.SetActive(false);
@@ -196,6 +206,8 @@ public class DialogoUIManager : MonoBehaviour
     /// </summary>
     public bool Mostrar(IList<FalaDeDialogo> falas, IList<EscolhaDeDialogo> escolhas, Action<EscolhaDeDialogo> aoConcluir)
     {
+        Inicializar();
+
         // DEBUG: confirma se este metodo esta sendo chamado, e se o painel
         // ja estava preso como "_aberto = true" de uma tentativa anterior.
         Debug.Log($"[DialogoUIManager] Mostrar chamado em '{gameObject.name}'. _aberto = {_aberto}, painel null? {painel == null}");

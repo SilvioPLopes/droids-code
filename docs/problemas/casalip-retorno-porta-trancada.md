@@ -1,10 +1,29 @@
 # CasaLip: porta e terminal após retornar da City
 
 **ID:** INT-001.  
-**Status:** confirmado por observação MCP; correção pendente.  
+**Status em 17/10/2026:** correção implementada; duas revisitas por API passaram; reinício/load pendente.
+
 **Evidência:** sessão de investigação de 15–16/10/2026.  
 **Cena:** [CasaLip.unity](../../Assets/Scenes/CasaLip.unity).  
 **Prioridade e dependências:** [plano](../plano-desenvolvimento.md).
+
+## Correção implementada em 17/10/2026
+
+O objeto local ativo `ControlePuzzleAgua` usa `VerificadorDePuzzle` e `ControladorPuzzleAguaCasa`; a cena deixou de anexar `PuzzleAguaCasaChecker` ao terminal persistente. A primeira resolução grava `ato1_casa_resolvida`, progresso e save antes do evento de sucesso. Em outra entrada, a flag reaplica os efeitos na porta nova sem repetir save, progresso, evento ou fala. A introdução usa `ato1_falou_apollo_casa`.
+
+`LocalizadorDeTerminal.Encontrar` inclui inativos e prefere a UI persistente válida. Interação e verificador recuperam a referência; a associação remove a inscrição anterior mesmo quando o objeto Unity foi destruído. A porta continua local, com `TransicaoDeCena` habilitado e bloqueio pelo campo `trancada`.
+
+Save v6 migra dados anteriores preservando conclusão legada verdadeira e marcando introdução; essa política conserva progresso, mas também conserva a conclusão ambígua de um legado que só representava conversa. Não existe evidência adicional no save v5 para separar os percursos.
+
+`Logs/CorrecaoCasaLip/fluxo-validacao.txt` registra duas revisitas CasaLip → City → CasaLip por API em 17/10. Em ambas, o harness confirmou porta aberta, terminal/referências vivos e um verificador local; introdução/sucesso não repetiram e o hash do save permaneceu igual. C05 está demonstrado nesse escopo. O mesmo percurso registrou introdução sem conclusão, resolução por 100 e reexecução sem novo save/evento/diálogo. A migração em memória passou novamente em `green-harness-final.txt`.
+
+O critério de reiniciar Play e carregar (`C06`) permanece pendente; não foi substituído pelas revisitas. O save original foi restaurado via MCP com SHA-256 igual ao backup. Resultados e limites completos estão na [validação de 17/10](../revisoes/casalip-validacao-2026-10-17.md); INT-001 não está encerrado em todos os critérios.
+
+## Registro histórico — investigação de 15–16/10/2026
+
+O restante deste relato descreve o problema anterior e a solução proposta naquela coleta; não afirma que o checker legado continue montado na cena atual.
+
+**Confirmação adicional:** [coleta de capturas e observação MCP em Play](casalip-apresentacao-dialogo.md), 16/10/2026; `_puzzleResolvido = true`, porta anterior sem referência viva, interação com terminal destruído e porta nova trancada. O responsável executou o percurso e o agente inspecionou o resultado.
 
 ## Comportamento esperado
 
