@@ -1841,7 +1841,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
   m_AspectMode: 1
   m_AspectRatio: 3.1967213
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.035, g: 0.035, b: 0.04, a: 1}
@@ -2201,7 +2201,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: b41d4dbbce30e7f459929eeb6bd56b9d, type: 2}
     - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 4408406346810168619, guid: d479faba12f44544382e9ac3f1c53a2e, type: 3}
     - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_SortingOrder
@@ -3062,7 +3062,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bed6c0d5da83db43ae4b4b88123318b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DroidsCode.Casa.ControladorPuzzleAguaCasa
   verificador: {fileID: 2081620029}
 --- !u!114 &2081620029
@@ -3075,7 +3075,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b307817840bc054fa02eaf64edfd377, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VerificadorDePuzzle
   idDoPuzzle: p_agua_casa
   terminal: {fileID: 0}

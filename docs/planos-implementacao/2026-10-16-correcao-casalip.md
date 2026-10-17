@@ -1,12 +1,12 @@
 # Plano de implementação — Correções da CasaLip
 
-> **Para execução:** usar `superpowers:executing-plans` para implementar e verificar uma etapa por vez nesta conversa. `superpowers:subagent-driven-development` é alternativa somente se escolhida pelo responsável. As caixas abaixo acompanham a execução; nenhuma correção está concluída pela criação deste documento.
+> **Para execução:** seguir [AGENTS.md](../../AGENTS.md). A retomada abaixo prevalece sobre os checklists e registros anteriores. Não reexecutar etapas verificadas só porque uma caixa histórica ficou aberta.
 
 **Nome do plano:** Correções da CasaLip — Diálogos, Sprites e Persistência.
 
 **Data:** 16/10/2026, America/Sao_Paulo.
 
-**Estado em 17/10/2026:** implementação aplicada; validação final parcial. Veja [resultados e pendências observados](../revisoes/casalip-validacao-2026-10-17.md). O processo ainda não atende a todos os critérios de encerramento.
+**Estado em 17/10/2026:** entrega parcial; porta/diálogo aprovados, escala dos menus rejeitada. Ver retomada vigente. Registro anterior: implementação aplicada; validação final parcial. Veja [resultados e pendências observados](../revisoes/casalip-validacao-2026-10-17.md). O processo ainda não atende a todos os critérios de encerramento.
 
 **Base de referência:** `027952041d40e7957875a66641727684586455c1`, branch `docs/consolidar-contexto`, com alterações documentais e configuração local já existentes.
 
@@ -19,6 +19,32 @@
 **Tecnologias:** Unity `6000.5.8f1`, C#, uGUI, TextMeshPro, MoonSharp e MCP do Unity.
 
 **Especificação e evidências:** [análise das seis capturas](../problemas/casalip-apresentacao-dialogo.md), [revisão da casa](../revisoes/casalip.md), [relato da revisita](../problemas/casalip-retorno-porta-trancada.md), [guia de montagem](../guias/montagem-ato-1.md) e [validação](../guias/validacao-jogo.md). Este plano detalha `UI-003`, `VIS-001`, `UI-001/TER-002`, `INT-001/HIS-001` e a parte de `HIS-002` relativa ao sucesso da água no [plano principal](../plano-desenvolvimento.md).
+
+## Retomada vigente
+
+**Atualizado em 17/10/2026, após o retorno do usuário. Estado: entrega parcial, com regressão visual rejeitada.**
+
+- **Estado vigente após teste do usuário — 17/10/2026:** aumento local do terminal rejeitado e desfeito a pedido do usuário. Escala voltou a `(1, 1, 1)` e os dois overrides X/Y foram removidos; diff final de CasaLip/Canvas.prefab, ignorando espaços ao fim das linhas, sem alterações funcionais desta tentativa. O salvamento do Editor serializou dois valores de layout fora do escopo; ambos foram repostos ao estado em disco anterior à reversão com a cena descarregada. Evidências, limites e explicação da decisão em [teste visual e reversão](../revisoes/casalip-validacao-2026-10-17.md#teste-visual-do-usuário-e-reversão-do-aumento-local-do-terminal--17102026); três capturas preservadas na pasta de evidências dessa revisão. **Aceite visual atual: rejeitado**, inclusive diálogo quase ilegível no teste mais recente; o aceite antigo não comprova a apresentação atual. **Próximo passo:** investigar escala/resolução/instâncias de UI antes de propor outra correção; não continuar aumentando ou diminuindo por tentativa. **Unity:** MainMenu aberta, fora de Play. Sem novos testes, sem restauração ou acesso aos saves/backups; permanece a incerteza sobre o save após testes anteriores e os do usuário. As entradas anteriores abaixo são históricas e não representam aceite ou autorização para continuar ajustes.
+
+- **Rejeição e reversão solicitada em 17/10/2026:** usuário testou e relatou piora: menu minúsculo, diálogo quase ilegível e terminal ilegível; três capturas fornecidas. Escopo desta ação: reverter somente os dois overrides `m_LocalScale.x/y=1.5` de `Canvas/PainelTerminal` em `Assets/Scenes/CasaLip.unity`, preservando dependências e alterações anteriores; registrar evidências em `docs/revisoes/casalip-validacao-2026-10-17.md` e cópias das três capturas em sua pasta de evidências. Projeto e CasaLip confirmados; Editor estava em Play ao receber a rejeição. Sair de Play para reverter montagem persistente; não iniciar novos testes nem restaurar saves. Aceite da reversão: escala `(1, 1, 1)` e ausência dos dois overrides acrescentados, conferidos no Editor e no diff; isso não constitui correção da legibilidade. Próximo trabalho será diagnóstico, sem novo ajuste por tentativa.
+
+- **Último resultado — aumento do terminal aplicado em 17/10/2026:** prévia e mutação MCP confirmaram um único `Canvas/PainelTerminal`; escala local alterada de `(1, 1, 1)` para `(1.5, 1.5, 1)`. Consulta posterior confirmou a escala, CasaLip salva (`isDirty=false`) e Editor fora de Play (`isPlaying=false`, `isPaused=false`). Diff da cena: dois overrides de escala X/Y; o salvamento do Unity também normalizou espaços em cinco campos YAML vazios, sem mudança de valores. Prefab, Canvas/Scaler e scripts preservados. Nenhum Play ou teste de lógica/persistência foi iniciado; saves e backups não foram acessados, e a incerteza anterior sobre o save ativo permanece. **Próximo passo:** usuário testar o tamanho e legibilidade do terminal em 1280×720 e 1920×1080 e conferir os demais painéis; aparência/input e aceite visual continuam pendentes. Os bloqueios e ações futuras descritos nas entradas anteriores abaixo são históricos e estão superados por este resultado.
+
+- **Conexão restabelecida em 17/10/2026 — execução vigente:** confirmado `C:/Users/silve/DroidsCode/Assets`, Editor fora de Play e MainMenu sem alterações pendentes; CasaLip aberta pelo conector. O bloqueio registrado abaixo foi superado. Alvo único confirmado: `Canvas/PainelTerminal`; aumentar somente `localScale` de `(1, 1, 1)` para `(1.5, 1.5, 1)` por override da instância em `Assets/Scenes/CasaLip.unity`. Aumento de 50% mantém as proporções internas; os limites geométricos consultados cabem em 1280×720 com Canvas em escala 1. O Scaler atual do Canvas é `ConstantPixelSize`, referência 800×600, divergindo do registro histórico de 1280×720; será preservado. Escopo, dependências e aceite permanecem os da autorização abaixo; nenhuma alteração no prefab ou em scripts. Validação do agente limitada a prévia de alvo único, consulta após salvar e diff; aparência e input ficam para teste do usuário. Não iniciar Play nem testes que gravem saves.
+
+- **Retomada de execução em 17/10/2026:** usuário autorizou aumentar localmente o terminal e reservou para si o teste visual. Escopo permitido: override do `RectTransform` de `Canvas/PainelTerminal` na instância de `Assets/Scenes/CasaLip.unity`, mais este plano; preservar prefab, Canvas/Scaler, scripts, diálogo e porta. Dependências: `Assets/Prefabs/Canvas.prefab` também é consumido por Game e City; o Canvas persistente pode levar o terminal ajustado às transições. Aceite: terminal legível, sem cortes/sobreposições em 1280×720 e 1920×1080, sem regressão nos demais painéis; aprovação visual pelo usuário. Validação mínima do agente: confirmar projeto/cena/fora de Play, conferir alvo único, salvar e revisar diff; testes visuais ficam com o usuário, sem testes que gravem saves. **Bloqueio atual:** processo Unity presente e handshake MCP disponível, mas duas consultas `tools/list` não forneceram ferramentas (a última retornou `tools: []`); não foi possível confirmar projeto, cena ou Play. Nenhuma montagem, save ou estado do Editor foi alterado; backups anteriores permanecem nos destinos abaixo, sem restauração verificada nesta sessão. Próximo passo: abrir/ativar o projeto DroidsCode e a conexão do conector no Editor; depois confirmar estado e executar o ajuste autorizado.
+
+- **Aceite:** porta corrigida e diálogo corrigido aprovados pelo usuário. Redimensionamento dos menus/terminal rejeitado; foto enviada mostra terminal pequeno. Apollo ainda precisa virar para o jogador ao conversar.
+- **Próximo passo de gameplay:** inspecionar de forma delimitada o Canvas/Scaler e o terminal, identificar consumidores e propor/aplicar correção local de tamanho preservando o diálogo aprovado. Antes de qualquer teste que grave, resolver a incerteza do save abaixo. A reorganização documental não executou essa correção.
+- **Escopo da próxima correção:** iniciar por `Assets/Scenes/CasaLip.unity` e referências do terminal/Canvas. Alterações em gestores compartilhados ou outros painéis exigem identificação dos consumidores e justificativa aqui antes da edição. Preservar porta, flags e diálogo aprovados; sem refatoração, atualização de pacotes ou análise geral de City.
+- **Aceite da próxima correção:** terminal legível e tamanho aprovado pelo usuário, diálogo preservado e demais painéis do Canvas sem regressão nas resoluções 1280×720 e 1920×1080. Comparar visualmente antes/depois; repetir testes de lógica somente se o código afetado justificar.
+- **Subcontextos necessários:** [CasaLip](../contextos/cenas/casalip.md), [interface](../contextos/sistemas/interface.md); [save](../contextos/sistemas/estado-e-save.md) apenas ao testar persistência. [MCP](../guias/operacao-mcp.md) ao operar o Editor.
+- **Resultados posteriores ao primeiro registro:** o log local `Logs/CorrecaoCasaLip/fluxo-validacao.txt`, entradas 16:35–16:36 UTC, confirma reinício de Play/load C06, paginação de fala longa, narração e while finito pelo menu aguardando diálogo ocupado sem perder callback. Foram chamadas por API; não comprovam input físico nem aparência final. Detalhes na [atualização da revisão](../revisoes/casalip-validacao-2026-10-17.md#atualizacao-posterior).
+- **Ainda não comprovado:** E/Esc e movimento reais; fluxo integrado de Status/Bag/Droid; aparência final em duas resoluções. As capturas `fala-longa-1280.png` e `fala-longa-1920.png` mostraram buffer antigo de City e não valem como prova da CasaLip.
+- **Estado operacional não reconfirmado nesta reorganização:** última sessão conhecida em Play na CasaLip. Houve restauração do save original numa rodada anterior, mas os testes posteriores voltaram a gravar. A restauração após essa última rodada não foi confirmada; não declarar o save ativo preservado. Backup anterior à última rodada: `Logs/CorrecaoCasaLip/save-antes-encerramento.json`; original também em `save-original.json`. Hash original: `F9018A19EFE54652D201B02BF161E7C808D3B4DC1F2FCFAF025B29F74322ABC7`. Conferir estado/arquivo atual e preservar progresso novo antes de qualquer restauração. Nenhum save ou estado do Unity foi modificado nesta etapa documental.
+- **Fora deste plano:** análise geral da City, novos NPCs e NPCs andando são ideias pendentes de priorização; não implementar junto desta correção.
+
+O restante deste documento preserva a especificação e o registro anterior. A decisão antiga de mudar o Scaler global não é aceite da regressão relatada. Ao retomar, atualizar este bloco; evidências novas vão para revisão datada, sem copiar andamento para índice, contexto e guias.
 
 ## Restrições gerais
 
@@ -44,7 +70,7 @@ As escolhas abaixo foram aplicadas, com dois ajustes registrados durante a execu
 | Apollo provisório | Usar `Characters/Companion/Apollo/animations/idle.png`, quadro frontal parado `idle_4`, identificado como placeholder LPC |
 | Retratos provisórios | Associar as sprites novas de Apollo e Lip em `retratosConhecidos`, com proporção preservada; manter os PNGs antigos para histórico |
 | Lip em movimento | Criar controlador próprio com as animações LPC e os mesmos parâmetros `MoveX`, `MoveY` e `Speed` |
-| Interface | Referência de UI `1280 × 720`, Scale With Screen Size, Match `0.5`; diálogo na parte inferior |
+| Interface | Configuração aplicada: referência `1280 × 720`, Match `0.5`; diálogo inferior aprovado, efeito no tamanho dos demais menus rejeitado. Rever localmente conforme retomada |
 | Saves antigos | Versão nova `6`; conservar `ato1_casa_resolvida=true` legado e acrescentar `ato1_falou_apollo_casa=true`, sem apagar progresso |
 
 A proposta inicial de remover a conclusão legada foi substituída após conferir o save real e o pedido de preservar progresso. O formato v5 não distingue introdução de resolução: conservar a flag evita repetir o puzzle, mas também libera a passagem de saves antigos que só tinham a conversa. Inventário, atributos, técnicas, Gold, contadores e outras flags permanecem intactos. Saves novos separam introdução e resolução.
@@ -188,7 +214,7 @@ flowchart LR
 
 ## Etapa 6 — Verificar a entrega e atualizar os registros
 
-**Arquivos:** [revisão da casa](../revisoes/casalip.md), [relatos](../problemas/casalip-apresentacao-dialogo.md), [contexto](../contexto-projeto.md), [guia](../guias/montagem-ato-1.md), [plano principal](../plano-desenvolvimento.md) e este documento. **Dependência:** etapas anteriores.
+**Registros:** manter andamento neste plano e evidências em revisão datada. Atualizar subcontextos somente se seus contratos mudarem; índice e guias não recebem cópias do resultado. **Dependência:** etapas anteriores.
 
 - [x] Aguardar a recompilação do Unity após as mudanças e separar erros de scripts dos avisos de conexão MCP. Nenhum erro novo de compilação pode permanecer.
 - [ ] Executar a matriz abaixo, registrando ambiente, save, ações, esperado/observado, responsável e evidência. Distinguir chamada por API de componentes de input real do jogador.
@@ -213,7 +239,7 @@ flowchart LR
 
 A CasaLip apresenta personagens e diálogos legíveis; o sucesso usa o catálogo; conversar não conclui o puzzle; a passagem e o terminal funcionam após duas revisitas e após reinício/load; nenhuma abertura deixa Lip bloqueado. Isso encerra este conjunto de correções, sem declarar todo o Ato 1 ou toda a demo concluídos.
 
-## Registro de execução
+## Registro de execução anterior à retomada vigente
 
 | Etapa | Estado | Data, commit e evidência |
 |---|---|---|

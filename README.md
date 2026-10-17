@@ -17,7 +17,7 @@ Projeto de TCC do curso de Sistemas para Internet da FATEC Baixada Santista ? Ru
 | Documento | Quando ler |
 |---|---|
 | [Índice de trabalho](docs/indice-trabalho.md) | Retomada por assunto, caminhos e chaves de pesquisa; foco atual da demo. |
-| [Revisão da CasaLip](docs/revisoes/casalip.md) | Montagem atual, flags, mecanismo da porta e validações pendentes da primeira cena. |
+| [Plano da CasaLip](docs/planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente) | Estado, aceite do usuário, pendências e próximo passo. |
 | [Enredo v2](docs/enredo/TCC_-_ENREDO_v2.md) e [adendo](docs/enredo/TCC_-_ENREDO_v2_ADENDO.md) | Direção narrativa; o adendo prevalece nas divergências. |
 | [Contexto do projeto](docs/contexto-projeto.md) | Refer?ncia principal do estado atual, arquitetura, cenas, sistemas e decis?es. |
 | [Plano de desenvolvimento](docs/plano-desenvolvimento.md) | Prioridades, depend?ncias e crit?rios de conclus?o. |
@@ -25,7 +25,7 @@ Projeto de TCC do curso de Sistemas para Internet da FATEC Baixada Santista ? Ru
 | [Valida??o do jogo](docs/guias/validacao-jogo.md) | Percursos de teste e registro de evid?ncias. |
 | [Hist?rico e migra??o](docs/historico/README.md) | Entregas anteriores, investiga??es e documentos originais preservados. |
 
-A ordem de leitura para retomar o desenvolvimento ? **README ? contexto ? tarefa no plano ? guia ou relato relacionado**. Descri??es completas de sistemas ficam no contexto; prioridades ficam no plano.
+Para retomar: [diretrizes do agente](AGENTS.md) → [índice de trabalho](docs/indice-trabalho.md) → plano da tarefa → subcontextos necessários. O plano concentra o andamento; revisões preservam evidências datadas.
 
 ## Situa??o da revis?o
 

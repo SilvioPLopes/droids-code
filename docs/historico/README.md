@@ -48,3 +48,7 @@ Os registros citam `PARA_COLAR_CatalogoDeItens.md`, `LEIA_ISTO_OS_10_ARQUIVOS_NO
 ## Limites desta migração
 
 A refatoração documental não corrigiu gameplay nem alterou scripts, cenas, prefabs ou configuração. As alterações locais anteriores em CasaLip e configurações foram preservadas na nova branch. A validação documental confere caminhos, links, inventário e integridade dos arquivos protegidos; os testes de jogo permanecem registrados no [roteiro](../guias/validacao-jogo.md).
+
+## Referencia anterior a hierarquia de 17/10
+
+[Contexto amplo preservado](2026-10-17-contexto-antes-hierarquia.md): inventario de scripts, formulas e evidencias datadas. Para trabalho atual, seguir o [indice](../indice-trabalho.md) e o plano indicado nele.

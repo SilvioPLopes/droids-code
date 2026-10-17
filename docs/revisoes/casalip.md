@@ -1,5 +1,7 @@
 # Revisão da CasaLip
 
+> Revisão datada. Para estado e aceite vigentes, usar a [retomada do plano](../planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente); não executar pendências antigas sem conferir esse bloco.
+
 ## Estado em 17/10/2026
 
 **Implementado; validação parcial registrada.** Base `027952041d40e7957875a66641727684586455c1`, branch `docs/consolidar-contexto`, com alterações locais de runtime, cenas e assets. Resultados e pendências estão na [validação de 17/10](casalip-validacao-2026-10-17.md); a coleta de 16/10 abaixo permanece como diagnóstico histórico.
