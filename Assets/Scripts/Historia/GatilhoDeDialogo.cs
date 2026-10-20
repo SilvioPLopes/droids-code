@@ -118,10 +118,19 @@ public class GatilhoDeDialogo : MonoBehaviour
         bool disponivel = _playerPerto && PodeDisparar();
         if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(disponivel);
 
-        if (disponivel && Input.GetKeyDown(teclaDeInteracao))
+        if (_playerPerto && Input.GetKeyDown(teclaDeInteracao))
         {
-            Disparar();
+            TentarInteragir();
         }
+    }
+
+    /// <summary>Olhar para quem interage não exige uma fala nova disponível.</summary>
+    public void TentarInteragir()
+    {
+        if (GerenciadorDeEstado.Instancia.MenuAberto) return;
+
+        OrientarParaJogador();
+        if (PodeDisparar()) Disparar();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -212,8 +221,22 @@ public class GatilhoDeDialogo : MonoBehaviour
 
         if (!abriu) return;
 
+        OrientarParaJogador();
+
         _jaDisparouNestaSessao = true;
         if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+    }
+
+    void OrientarParaJogador()
+    {
+        // Opt-in: NPCs sem este componente mantêm o comportamento anterior.
+        var orientacao = GetComponent<OrientacaoNpc>();
+        if (orientacao != null && orientacao.isActiveAndEnabled)
+        {
+            var jogador = GameObject.FindGameObjectWithTag(tagDoPlayer);
+            if (jogador != null) orientacao.OlharPara(jogador.transform);
+        }
+
     }
 
     void AoConcluirDialogo(EscolhaDeDialogo escolhaFeita)

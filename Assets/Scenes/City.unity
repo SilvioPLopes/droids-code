@@ -5700,7 +5700,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: b41d4dbbce30e7f459929eeb6bd56b9d, type: 2}
     - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_Sprite
-      value:
+      value: 
       objectReference: {fileID: 4408406346810168619, guid: d479faba12f44544382e9ac3f1c53a2e, type: 3}
     - target: {fileID: 3626916397498700004, guid: 91c9d97fd1ef8474285abe1d62fb417d, type: 3}
       propertyPath: m_SortingOrder
@@ -7250,7 +7250,7 @@ MonoBehaviour:
   flagAoTerminar: ato1_falou_fila
   apenasUmaVez: 1
   desativarAposConcluir: 0
-  indicadorDeInteracao: {fileID: 0}
+  indicadorDeInteracao: {fileID: 619121019}
 --- !u!212 &1417140166
 SpriteRenderer:
   serializedVersion: 3
@@ -7318,7 +7318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417140164}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2017ac22f4140034086e0b2ff2ad240e, type: 3}
   m_Name: 
@@ -7327,7 +7327,7 @@ MonoBehaviour:
   tipo: 0
   lojaUIManager: {fileID: 0}
   gatilhoDeDialogo: {fileID: 0}
-  indicadorDeInteracao: {fileID: 619121019}
+  indicadorDeInteracao: {fileID: 0}
   teclaDeInteracao: 101
 --- !u!61 &1417140168
 BoxCollider2D:
@@ -7871,7 +7871,7 @@ MonoBehaviour:
   flagAoTerminar: ato1_falou_dara
   apenasUmaVez: 1
   desativarAposConcluir: 0
-  indicadorDeInteracao: {fileID: 0}
+  indicadorDeInteracao: {fileID: 865996352}
 --- !u!212 &1505573702
 SpriteRenderer:
   serializedVersion: 3
@@ -7939,7 +7939,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505573700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2017ac22f4140034086e0b2ff2ad240e, type: 3}
   m_Name: 
@@ -7948,7 +7948,7 @@ MonoBehaviour:
   tipo: 0
   lojaUIManager: {fileID: 0}
   gatilhoDeDialogo: {fileID: 0}
-  indicadorDeInteracao: {fileID: 865996352}
+  indicadorDeInteracao: {fileID: 0}
   teclaDeInteracao: 101
 --- !u!61 &1505573704
 BoxCollider2D:
@@ -8439,7 +8439,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

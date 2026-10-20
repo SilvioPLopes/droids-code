@@ -1,0 +1,122 @@
+# Plano — Auditoria das cenas e objetos
+
+**Estado e data:** implementação editada e gravada em 17/10/2026; validação final pendente. Por instrução posterior do usuário, não executar novos testes. A retomada final abaixo prevalece sobre os registros históricos de auditoria/proposta.
+**Objetivo:** auditar as cinco cenas e aplicar o recorte de correções autorizado, registrando implementação, evidências e validação pendente.
+**Arquivos e objetos que podem mudar:** os alvos delimitados na execução autorizada abaixo, seu harness manual e os documentos vinculados. A etapa inicial era somente de auditoria; o usuário autorizou posteriormente a implementação.
+**Preservar:** alterações preexistentes, CasaLip/Canvas/Scaler, aparência de UI/Apollo e saves pessoais. Não iniciar Play, trocar a cena suja ou executar novos testes após a instrução mais recente.
+**Dependências:** Canvas/painéis, Player, transições, estado persistente e combate; consumidores serão identificados pela montagem atual.
+**Fontes:** índice, contexto do projeto e retomada da CasaLip; interface/estado apenas conforme a investigação exigir. Procedimento MCP consultado para leitura do Editor.
+**Aceite:** inventário compreensível e lista priorizada com objeto/cena, evidência, impacto e limites; não confundir organização ruim com bug comprovado.
+**Validação mínima:** leitura dos YAML/referências e código consumidor; consulta somente de leitura da cena aberta. Sem teste de comportamento ou aprovação visual presumidos.
+**Estado anterior e reversão:** backup de fontes/montagem no caminho da retomada final; reverter somente o diff desta tarefa se solicitado, preservando alterações anteriores e posteriores. Nenhuma reversão aplicada.
+
+## Execução e retomada
+
+### Retomada final — implementação aplicada, testes interrompidos a pedido
+
+- Usuário confirmou TesteBloco1 aposentado e autorizou implementar a proposta; em seguida pediu concluir sem novos testes. Essa instrução prevalece sobre o roteiro de validação anteriormente planejado.
+- **Editado e gravado:** checkpoint de entrada no mundo por zona/gatilho; gravação final de vitória/fuga na cena/posição de origem; contexto próprio de retorno; bloqueio de ações e listas ao encerrar; prêmio/flag aplicados uma única vez; save legado de Battle recusado antes de alterar sessão ou fechar o menu. Gravação usa arquivo temporário e substituição do destino, preservando checkpoint se a substituição falhar.
+- **Montagem editada e gravada:** MainMenu/Voltar ligado a FecharConfiguracoes; componente órfão TesteBloco1 removido em Game, mantendo seu GameObject; gatilho/indicador de falaqualquer desativados; Dara/fila com indicadores nos gatilhos e NpcInterativo genérico desabilitado; referência de BotaoItemTemplate corrigida no prefab base da Bag. Tácio, Canvas/Scaler e CasaLip não foram editados nesta implementação.
+- **Últimos ajustes de código:** validação da cena do save consulta a lista do build, pois a consulta anterior constatou CanStreamedLevelBeLoaded=false fora de Play apesar das cinco cenas habilitadas; fixture manual inicializa explicitamente sua lista de log. Não foram executados testes ou nova compilação dirigida após esses ajustes, conforme pedido do usuário.
+- **Evidência já existente antes da interrupção:** harness novo compilou e executou; rodada intermediária teve três casos OK (recusa de Battle, recusa de legado, falha de entrada) e seis falhas, envolvendo validação de cena fora de Play e log nulo da fixture de preview. Esses resultados não aprovam a implementação final. Detalhes na atualização da revisão; nenhuma validação por input real ou aprovação visual nesta tarefa.
+- **Pendências:** usuário realizar testes básicos no Editor quando desejar; validação final de SAVE-002/fuga e builds Windows/WebGL permanece aberta. SAVE-001/equipamentos, derrota após retorno, restrições de chefe e efeitos não foram ampliados. A06/UI e A08/Apollo continuam aguardando diagnóstico real conforme a retomada da CasaLip.
+- **Unity:** último estado consultado nesta tarefa foi DroidsCode/CasaLip fora de Play, dirty=True. Houve importação de scripts/assets sem salvar/trocar a cena. Estado final do Editor não foi reconsultado após a instrução de parar testes; nenhuma nova operação MCP foi feita nessa conclusão.
+- **Backups:** fontes/montagem anteriores em `Logs/CorrecaoAuditoria/antes-implementacao.zip`, com manifesto SHA-256; não remover. Nenhum save pessoal foi lido, alterado ou restaurado; o harness utilizou diretórios temporários próprios com limpeza em finally. Nenhum Play iniciado pelo agente.
+- **Próximo passo:** usuário preservar as alterações não salvas da CasaLip antes de trocar de cena e seguir o roteiro básico registrado na revisão. Aguardar resultado, sem iniciar novos testes por conta do agente.
+
+As seções abaixo preservam as decisões e o histórico anteriores à entrega; não são autorização para repetir testes ou alterar aparência.
+
+### Execução autorizada — 17/10/2026
+
+- Pedido: implementar as correções propostas, registrar alterações e depois guiar testes básicos no Unity. Política de checkpoint recomendada aceita no pedido de implementação. TesteBloco1 confirmado inútil pelo usuário.
+- Escopo de produto: `BattleManager.cs`, `EncounterZone.cs`, `GatilhoDeBatalha.cs`, `GerenciadorDeEstado.cs`, `SalvamentoJson.cs`; `MenuMundoManager.cs` somente para informar recusa de save legado de Battle sem fechar o menu; `MainMenu.unity` (evento Voltar), `Game.unity` (componente órfão e gatilho/indicador de teste), `City.unity` (Dara e homem da fila) e `PainelBag.prefab` (referência de botão). Novo harness `Assets/Editor/ValidacaoCombate.cs/.meta`. Documentação: este plano, revisão existente, contratos de combate/estado, índice/contexto e status das prioridades afetadas.
+- Preservar: CasaLip.unity, scripts/hierarquia/arte do Apollo, Canvas/Scaler/layout, Tácio, demais narrativa/flags, equipamento, efeitos e balanceamento. A06/A08 permanecem diagnóstico pendente; nenhum ajuste visual autorizado por suposição.
+- Dependências compartilhadas: save/estado consumidos por portas, puzzle, diálogo, menu, Bag/Loja e combate; manter save manual fora de Battle e migração v5/v6. A origem de combate terá campos próprios para não disputar a posição de transição das portas.
+- Valores anteriores: descritos por achado na proposta e guardados em `Logs/CorrecaoAuditoria/antes-implementacao.zip` (arquivos existentes do recorte + manifesto SHA-256). Backup é de fontes/montagem, não de save pessoal. Reversão: reaplicar somente diferenças desta tarefa contra esse backup após conferir edições posteriores; nunca reset geral.
+- Aceite: A01–A05/A07/A09 conforme proposta; sem repetição de prêmio/comando após encerramento, falha de checkpoint impede entrada, save legado Battle recusado sem alterar sessão/arquivo. Montagem conferida por alvo/diff; aparência e input real ficam para o usuário.
+- Testes: harness manual de Editor, fixtures descartáveis e saves em pasta temporária própria; nenhum acesso ao save pessoal, nenhum Play ou mudança da cena aberta. Testes por API não equivalem ao roteiro manual posterior. Reversão de fixtures em finally e conferência de limpeza.
+- Decisão operacional: executar no checkout já ligado ao Unity, branch `docs/consolidar-contexto`, preservando alterações locais e usando backup delimitado; não criar outra cópia do projeto nem reabrir Editor. Registro permanece neste plano, sem ledger paralelo.
+- Estado confirmado antes de editar: DroidsCode/CasaLip, Play=False, Compiling=False, Dirty=True. Nenhuma operação para salvar/descartar essa cena.
+
+- Estado inicial confirmado pelo MCP: DroidsCode, CasaLip, Play=False, Compiling=False, dirty=True, 14 raízes.
+- Git já contém edições em CasaLip, catálogo de diálogos, GatilhoDeDialogo, NpcInterativo, contexto/plano da CasaLip e arquivos novos OrientacaoNpc.cs/.meta; preservar.
+- Resultado: cinco cenas inventariadas; achados A01–A09, evidências e limites na [revisão](../revisoes/auditoria-cenas-2026-10-17.md). Prioridades: contrato do autosave em Battle, ações após fuga, Voltar sem evento, script perdido e gatilho de introdução no mapa externo. UI, orientação e indicadores precisam de validação específica.
+- Validação executada: referências locais em dez YAML, 104 GUIDs via AssetDatabase, montagem da CasaLip e dependências de UI consultadas sem instanciar cenas. PrefabBag tem referência inválida no asset base, mas override válido no Canvas; não declarar Bag da CasaLip quebrada.
+- Próximo passo: delimitar uma correção por achado, começando pelo contrato de retomada de Battle; para aparência/orientação, observar input e apresentação real antes de editar. A auditoria não autoriza experimentos de ajuste visual.
+- Documentos editados e gravados: este plano, revisão e um link no índice. Assets e scripts não foram editados pelo agente. Sem teste por input, save ou nova aprovação visual.
+- Estado final confirmado pelo MCP: DroidsCode/CasaLip, Play=False, Compiling=False, dirty=True, 14 raízes. Nenhuma troca de cena, Refresh ou salvamento solicitado. Links dos dois documentos e espaços finais conferidos; diff documental sem erros. Nenhum arquivo temporário do analisador permaneceu.
+- Ferramentas: Python disponível sem PyYAML; usada leitura delimitada de YAML. Uma indexação ampla de metadados foi interrompida por custo de I/O e substituída por consulta dos GUIDs efetivamente referenciados no AssetDatabase. Não ficou processo de análise em execução; nenhuma dependência foi instalada.
+
+## Proposta de solução após leitura documental
+
+**Pedido atendido:** ler as diretrizes e documentos principais para propor soluções aos achados, sem executar correções nesta etapa. Não foi localizado `agente.md` em `docs`; README e índice apontam para [AGENTS.md](../../AGENTS.md), usado como fonte de instruções.
+
+**Escopo desta etapa documental:** editar somente este plano para acrescentar decisões propostas, arquivos candidatos, aceite e reversão. Os arquivos de produto abaixo são candidatos à implementação futura, não alterações já autorizadas/aplicadas por este documento. Preservar a revisão como evidência da auditoria.
+
+**Fontes utilizadas:** [README](../../README.md), [índice](../indice-trabalho.md), [arquitetura](../contexto-projeto.md), [prioridades](../plano-desenvolvimento.md), [contrato da CasaLip](../contextos/cenas/casalip.md), [interface](../contextos/sistemas/interface.md), [estado/save](../contextos/sistemas/estado-e-save.md), [retomada vigente da CasaLip](2026-10-16-correcao-casalip.md#retomada-vigente), montagem de [City/Game](../guias/montagem-ato-1.md) e [validação](../guias/validacao-jogo.md). O adendo narrativo foi consultado nos trechos pertinentes; não se propõe reescrever a narrativa.
+
+### Decisões que a documentação permite tomar
+
+- A01 corresponde a SAVE-002; a política de retomada ainda não estava definida. A solução abaixo é recomendação, não decisão anterior do usuário.
+- A04 é um recorte local de COM-002: encerrar comandos após fuga e limpar o contexto. Regras de chefes, efeitos e balanceamento permanecem fora desse recorte.
+- A05 tem finalidade futura documentada: `falaqualquer` usa conteúdo de teste a ser aposentado quando `game_s3_apollo_golpes` e a sequência do primeiro combate estiverem prontos. Não basta trocar o Id e declarar HIS-002 concluído.
+- A09 tem solução de montagem descrita no guia: uma origem de interação por NPC; Tácio deve manter o fluxo Loja + gatilho ApenasPorScript.
+- Os resumos antigos de UI no plano geral/guia não substituem a rejeição e as restrições da retomada da CasaLip. Nenhum layout atual é considerado aprovado por esta proposta.
+
+### 1. A01 / SAVE-002 — checkpoint de exploração
+
+**Comportamento recomendado:** guardar um checkpoint do mundo antes de entrar na batalha. Durante a luta, alterações de HP/itens ficam na sessão; interromper e carregar volta ao checkpoint anterior. Vitória ou fuga consolidam os dados resultantes com a cena/posição de exploração. Não salvar `Battle` como cena de retomada sem implementar um formato completo de combate.
+
+**Alternativas consideradas:** serializar todo o combate exige inimigo, turnos, efeitos, aleatoriedade e contexto narrativo; é trabalho maior. Salvar apenas atributos/itens atuais usando a posição anterior evita a cena errada, mas pode perder consumíveis sem preservar o combate correspondente. Por isso, recomenda-se checkpoint de entrada mais consolidação no encerramento.
+
+**Arquivos candidatos e responsabilidades:**
+
+- `Assets/Scripts/Combat/EncounterZone.cs` e `Assets/Scripts/Historia/GatilhoDeBatalha.cs`: validar destino/origem e criar checkpoint antes de carregar Battle, com bloqueio contra disparo duplicado. Não iniciar a transição se a gravação necessária falhar.
+- `Assets/Scripts/Combat/BattleManager.cs`: retirar gravações intermediárias por item/recompensa; concluir resultado uma única vez e solicitar uma gravação final de vitória/fuga para a origem capturada. Capturar origem antes de limpar contexto ou descarregar objetos. Nenhuma recompensa/flag adicional na fuga.
+- `Assets/Scripts/Estado/SalvamentoJson.cs`: permitir gravar cena/posição de exploração explicitamente, mantendo o save normal fora de combate. Impedir gravação acidental de Battle por chamadas residuais. Evitar que falha na gravação repita a concessão de recompensas.
+- `Assets/Scripts/Estado/GerenciadorDeEstado.cs`: separar, se necessário, o contexto de retorno do combate da posição de uso único consumida por RestaurarPosicao; não mudar o contrato das portas.
+- `Assets/Editor/ValidacaoCombate.cs` e `.meta`: candidato a harness manual de regressão, sem execução ao importar, seguindo o padrão do harness existente. Preferir DTOs em memória e arquivos temporários próprios para serialização.
+- `docs/contextos/sistemas/combate.md`: criar somente ao implementar, para documentar o contrato de entrada, encerramento e retorno exigido pela arquitetura; atualizar links e o contrato de estado no mesmo recorte.
+
+**Dependências e limites:** portas, carregamento manual e o puzzle também usam estado/save; seus fluxos devem conservar o comportamento. SAVE-001 (peças equipadas) continua uma lacuna separada: não prometer restauração integral de equipamento com o DTO atual. A proposta não inventa cura, penalidade ou tela de derrota: derrota preserva o checkpoint anterior e não grava um checkpoint pós-combate; a política de continuar a sessão após perder deve ser decidida no seu próprio recorte. Battle aberta diretamente, sem origem válida, não deve sobrescrever o save normal nem inventar posição zero para retomada.
+
+**Legados:** um save antigo com `cena=Battle` não contém informação suficiente para reconstruir o mundo/combate. Detectá-lo antes de aplicar os dados, informar a incompatibilidade e preservar o arquivo para recuperação; não migrar silenciosamente para Game/(0,0). A migração v5→v6 da CasaLip permanece intacta. Não há necessidade demonstrada de mudar a versão do DTO apenas para usar checkpoints já representáveis pelo formato atual.
+
+**Aceite e validação:** VAL-08/09 com entrada por zona e gatilho; consumir item e interromper restaura o checkpoint de entrada; vencer e reiniciar conserva exatamente uma recompensa/flag; fugir conserva consumo/HP final sem prêmio; nenhum save novo aponta para Battle; partida direta sem origem não altera o save. Simular falha de gravação sem avançar/duplicar conclusão. Validar primeiro sem save pessoal; integração real exige backup, hash e restauração condicional verificada. Equipamentos não ficam implicitamente aprovados nesse teste.
+
+**Reversão:** guardar diff restrito dos arquivos antes da edição; reverter somente esse recorte, sem reset global. Restaurar save de teste apenas após conferir que não contém progresso posterior do usuário.
+
+### 2. A02, A03, A04, A07 e A09 — correções delimitadas
+
+| Achado | Solução proposta e alvo permitido | Aceite mínimo / reversão |
+|---|---|---|
+| A02 — Voltar | Em `Assets/Scenes/MainMenu.unity`, somente Button de `Canvas/PainelConfiguracoes/Voltar`: associar um evento a `GerenciadorMenu.MainMenuManager.FecharConfiguracoes`. Método já existe; não criar script. | Conferir uma única associação; testar abrir/voltar repetidamente por input. Antes: lista de eventos vazia. Reverter retirando somente a associação nova. |
+| A03 — TesteBloco1 perdido | Em `Assets/Scenes/Game.unity`, remover somente o componente órfão `475653968` e sua entrada na lista de componentes, após confirmar que era um teste aposentado. Preservar GameObject/Transform e demais componentes; não criar script vazio para mascarar a falta. | GUID inválido deixa de ser referenciado; nenhuma funcionalidade pretendida do teste é perdida. Antes: referência `494d1517f11112544a58ae995bad129c`. Se a finalidade não puder ser confirmada, manter pendente; reversão recoloca apenas os dois registros preservados. |
+| A04 — ações após fuga | Em `BattleManager.cs`, no sucesso da fuga, marcar encerramento e bloquear turno/botões antes da espera; fechar listas abertas, limpar contexto pendente e impedir comandos já associados a botões de listas de executar durante a saída. Falha da fuga mantém turno do inimigo. Usar uma única saída agendada. | Durante 1,5 s após sucesso, Atacar/Item/Fugir e botões de listas não alteram estado nem agendam outra saída; falha entrega exatamente um turno ao inimigo. Teste de comportamento necessário. Reverter somente guardas/fluxo novo, preservando mudanças de save se forem entregas distintas. |
+| A07 — prefab Bag isolado | Em `Assets/Prefabs/PainelBag.prefab`, somente `BagUIManager.prefabBotaoItem`: apontar ao Button de `BotaoItemTemplate.prefab` já usado pelo override válido do Canvas. Preservar esse override e layout. | Referência válida no asset base e no Canvas; lista da Bag pode criar item em fixture isolada. Antes: GUID inexistente `22ffa17152be789408e0f022bd9ca831`. Reversão restaura somente esse campo. |
+| A09 — indicadores de City | Em `Assets/Scenes/City.unity`, somente Dara e homem da fila: manter GatilhoDeDialogo/AoInteragir, transferir o indicador já existente para ele e desabilitar NpcInterativo genérico. Preservar colliders, transform, flags, diálogos e o fluxo próprio de Tácio. | Indicador ativo apenas com proximidade e fala disponível; E abre uma fala; depois da conclusão/flags impeditivas não anuncia interação indisponível. Antes: indicador no NpcInterativo genérico habilitado, campo do gatilho vazio. Reversão restaura esses campos/estados. |
+
+Não automatizar testes de montagem triviais que apenas repetem os valores editados. Conferência do alvo/diff e input real bastam para o botão; fuga e persistência exigem testes de comportamento. Antes de editar cenas pelo MCP, confirmar projeto/cena/Play/alvos e resolver a preservação da CasaLip suja sem salvá-la ou descartá-la implicitamente.
+
+### 3. A05 — retirar o diálogo de teste sem antecipar a próxima etapa narrativa
+
+**Recomendação imediata, se aprovada:** desabilitar somente GatilhoDeDialogo de `Game/falaqualquer` e seu indicador atual, mantendo o objeto, collider, coordenadas e conteúdo para a montagem futura. O guia identifica o conteúdo como teste; isto impede que a introdução da casa interrompa a exploração, mas não implementa a conversa seguinte.
+
+**Solução definitiva:** executar o recorte HIS-002 descrito no guia: `game_s3_apollo_golpes` seguido do encontro `sucata_captura`, após revisar condições narrativas/ordem e garantir que o caminho normal alcance Game. Não criar flags, conceder pontos ou adicionar batalha como efeito secundário desta limpeza. HIS-003 já registra a necessidade de uma fonte de pontos antes do portão de City; permanece dependência do percurso, não mais um item aplicado nesta tarefa.
+
+**Alvo:** `Assets/Scenes/Game.unity`, componente e indicador de `falaqualquer`. **Aceite provisório:** atravessar a área não mostra `casa_intro_apollo`; casa mantém sua introdução. **Reversão:** restaurar os estados habilitado/ativo anteriores registrados antes da edição.
+
+### 4. A06 e A08 — diagnóstico necessário antes de solução visual
+
+**A06, UI:** identificar qual instância do Canvas sobrevive em MainMenu→CasaLip→City→Game e nas aberturas diretas. Registrar resolução renderizada, zoom da Game View, Scaler efetivo e os painéis afetados nas mesmas condições. Comparar 1280×720 e 1920×1080 com referência visual aceita pelo usuário. Depois propor uma configuração canônica do Canvas/painéis compartilhados, eliminando apenas overrides divergentes comprovadamente indesejados. Consumidores: menu, terminal, Status, Bag, Droid e diálogos em CasaLip/City/Game; Battle tem UI própria e recebe também a UI persistente. Não fixar antecipadamente ScaleWithScreenSize, resolução de referência ou fatores locais como se já fossem uma correção comprovada. Sem código/montagem visual permitido até haver causa sustentada e escopo específico.
+
+**A08, Apollo:** seguir a captura já solicitada na retomada da CasaLip; não repetir a pergunta nem iniciar Play por conta própria. Observar E, proximidade, bloqueios de menu, sprite antes/depois e direção relativa. Se o evento não chegar, investigar o caminho de input/proximidade. Se a sprite mudar, mas apontar visualmente errado por causa dos pivôs, propor referências explícitas de origem/alvo de orientação, com fallback ao comportamento atual para NPCs não configurados. Não deslocar collider, sprite ou Player para compensar o pivô por suposição. Alvos candidatos somente após diagnóstico: `OrientacaoNpc.cs` e referências do Apollo em CasaLip. Aceite: interação pelos quatro lados orienta corretamente sem alterar movimento, colisão ou regras de fala.
+
+## Retomada após esta proposta
+
+- Entrega desta rodada: solução proposta registrada, com política de checkpoint explicitamente recomendada e ainda não implementada. Leitura documental esclareceu A05/A09 e preservou as restrições da CasaLip.
+- Ordem recomendada por risco: definir/implementar SAVE-002; tratar fuga; corrigir Voltar e Bag; confirmar aposentadoria do script/teste em Game e ajustar indicadores de City. UI/Apollo continuam com o diagnóstico específico descrito acima. Correções pequenas podem ser entregues isoladamente, sem esperar uma reforma geral.
+- Nenhuma mudança de produto, pacote, namespace, estrutura de pastas ou save foi aplicada nesta rodada. Nenhum teste de comportamento foi executado.
+- Unity não foi consultado novamente nesta rodada documental; último estado conhecido é CasaLip fora de Play, dirty=True. Reconfirmar antes de qualquer operação. Backups: nenhum criado ou acessado; preservam-se as pendências do plano da CasaLip.
+- Próximo passo concreto: revisar a escolha de checkpoint (interromper a luta volta ao estado anterior) e executar um recorte fechado, com arquivos/valores anteriores registrados e critérios acima. Não tratar a proposta como aceite visual ou autorização para experimentar ajustes.
+- Saves/backups: nenhum acesso ou teste que grave progresso; não há backup criado por esta tarefa.

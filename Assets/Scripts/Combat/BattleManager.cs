@@ -131,6 +131,16 @@ public class BattleManager : MonoBehaviour
     private CombatEngine engine;
     private bool turnoDoJogador = true;
     private bool batalhaEncerrada = false;
+    private SalvamentoJson _salvamento = new SalvamentoJson();
+    private string _cenaRetorno;
+    private Vector3 _posicaoRetorno;
+
+    void CapturarRetorno()
+    {
+        var estado = GerenciadorDeEstado.Instancia;
+        _cenaRetorno = estado.TemRetornoDeBatalha ? estado.CenaDeRetornoDaBatalha : null;
+        _posicaoRetorno = estado.PosicaoDeRetornoDaBatalha;
+    }
 
     // Log de batalha: mesmo padrao do Terminal (TerminalUIManager.linhasDeLog)
     // -- mantem as ultimas N linhas em vez de sobrescrever a mensagem toda vez.
@@ -140,6 +150,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
+        CapturarRetorno();
 
         // NOVO (Ato 1): se algum gatilho no mundo escolheu um inimigo do
         // catalogo, ele sobrescreve os campos do Inspector ANTES de montar o
@@ -263,6 +274,7 @@ public class BattleManager : MonoBehaviour
 
     void ExecutarAtaqueDoJogador(string nomeAcao)
     {
+        if (!turnoDoJogador || batalhaEncerrada) return;
         ResultadoAcao resultado = engine.ExecutarTurno(droid, inimigo, nomeAcao);
         AtualizarBarras();
         MostrarMensagem(resultado.Mensagem);
@@ -281,10 +293,6 @@ public class BattleManager : MonoBehaviour
         }
         else if (engine.VerificarDerrota(inimigo))
         {
-            SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
-            MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
-            GravarFlagDeVitoria();
-            AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
         else
@@ -395,10 +403,8 @@ public class BattleManager : MonoBehaviour
 
     // REFATORACAO (Estagio 2 — 13/09/2026): recebe DefinicaoDeItem (catalogo)
     // em vez de ItemConsumivel. Decrementa o estoque real via
-    // GerenciadorDeEstado.TentarRemoverItem e SALVA na hora (SalvamentoJson)
-    // -- decisao: persistir o consumo imediatamente evita perder o item "de
-    // graca" se o jogo fechar no meio da batalha (o jogador ja recebeu o
-    // efeito, entao o consumo tem que ficar gravado).
+    // GerenciadorDeEstado.TentarRemoverItem. O consumo fica na sessão até
+    // vitória/fuga; interromper a luta retoma o checkpoint anterior inteiro.
     // REFATORACAO (Estagio 3 — fase 2 do sistema de item): generalizado pra
     // tambem tratar Buff (aplica no proprio Droid) e Debuff (aplica no
     // inimigo, rolando resistencia). Equipavel/ForaDeBatalha nao chegam
@@ -406,6 +412,7 @@ public class BattleManager : MonoBehaviour
     // devolve o item em vez de sumir com ele, por seguranca.
     void UsarItem(DefinicaoDeItem item)
     {
+        if (!turnoDoJogador || batalhaEncerrada) return;
         var gerenciador = GerenciadorDeEstado.Instancia;
 
         if (!gerenciador.TentarRemoverItem(item.Id, 1))
@@ -442,7 +449,6 @@ public class BattleManager : MonoBehaviour
         }
 
         AtualizarBarras();
-        new SalvamentoJson().Salvar();
         StartCoroutine(TurnoDoInimigo());
     }
 
@@ -537,7 +543,6 @@ public class BattleManager : MonoBehaviour
             MostrarMensagem($"Você obteve {definicao.Nome} x{quantidade}!");
         }
 
-        new SalvamentoJson().Salvar();
     }
 
     // NOVO (Ato 1): le GerenciadorDeEstado.ProximoInimigoId (escrito por
@@ -603,8 +608,7 @@ public class BattleManager : MonoBehaviour
         if (string.IsNullOrEmpty(flag)) return;
 
         gerenciador.DefinirFlag(flag, true);
-        // AplicarRecompensas() ja chama Salvar() logo em seguida, entao a
-        // flag entra no mesmo save -- nao precisa de um segundo Salvar aqui.
+        // FinalizarBatalha consolida flag e recompensas no mesmo checkpoint.
     }
 
     void AoClicarFugir()
@@ -613,8 +617,7 @@ public class BattleManager : MonoBehaviour
 
         if (Random.value <= chanceDeFugir)
         {
-            MostrarMensagem("Você fugiu com segurança!");
-            StartCoroutine(VoltarParaOMundo(1.5f));
+            StartCoroutine(FinalizarBatalha(false, true));
         }
         else
         {
@@ -629,9 +632,11 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator TurnoDoInimigo()
     {
+        if (batalhaEncerrada) yield break;
         turnoDoJogador = false;
         DefinirBotoesInterativos(false);
         yield return new WaitForSeconds(1f);
+        if (batalhaEncerrada) yield break;
 
         string acaoInimigo = new List<string>(inimigo.ObterAcoesDisponiveis())[0];
         ResultadoAcao resultado = engine.ExecutarTurno(inimigo, droid, acaoInimigo);
@@ -649,10 +654,6 @@ public class BattleManager : MonoBehaviour
         }
         else if (engine.VerificarDerrota(inimigo))
         {
-            SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
-            MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
-            GravarFlagDeVitoria();
-            AplicarRecompensas();
             StartCoroutine(FinalizarBatalha(true));
         }
         else
@@ -663,24 +664,49 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator FinalizarBatalha(bool vitoria)
+    IEnumerator FinalizarBatalha(bool vitoria, bool fuga = false)
     {
+        if (batalhaEncerrada) yield break;
         batalhaEncerrada = true;
-
-        // NOVO (Ato 1): zera o inimigo/flag de transito pra que o PROXIMO
-        // encontro aleatorio nao herde o inimigo de uma batalha roteirizada
-        // (ex: voltar da luta contra o chefe e encontrar outro chefe no mato).
-        GerenciadorDeEstado.Instancia.LimparBatalhaPendente();
-
+        turnoDoJogador = false;
         DefinirBotoesInterativos(false);
-        MostrarMensagem(vitoria ? $"Você derrotou o {nomeInimigo}!" : "Você foi derrotado...");
-        yield return VoltarParaOMundo(2f);
+        if (painelListaDeAtaques != null) painelListaDeAtaques.gameObject.SetActive(false);
+        if (painelListaDeItens != null) painelListaDeItens.gameObject.SetActive(false);
+
+        if (vitoria)
+        {
+            SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
+            MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
+            GravarFlagDeVitoria();
+            AplicarRecompensas();
+        }
+        MostrarMensagem(fuga ? "Você fugiu com segurança!" : vitoria ? $"Você derrotou o {nomeInimigo}!" : "Você foi derrotado...");
+        float espera = fuga ? 1.5f : 2f;
+        if ((vitoria || fuga) && !string.IsNullOrEmpty(_cenaRetorno))
+        {
+            try { _salvamento.SalvarCheckpoint(GerenciadorDeEstado.Instancia, _cenaRetorno, _posicaoRetorno); }
+            catch (System.Exception e) when (e is System.IO.IOException || e is System.UnauthorizedAccessException
+                || e is System.InvalidOperationException || e is System.NotSupportedException)
+            {
+                // Resultado fica em memória; não repetir recompensas nem sobrescrever checkpoint anterior.
+                MostrarMensagem("Não foi possível salvar. Ao voltar ao mundo, tente Salvar pelo menu.");
+                Debug.LogWarning("Falha ao consolidar batalha: " + e.Message);
+                espera = 4f;
+            }
+        }
+        GerenciadorDeEstado.Instancia.LimparBatalhaPendente();
+        yield return VoltarParaOMundo(espera);
     }
 
     IEnumerator VoltarParaOMundo(float espera)
     {
         yield return new WaitForSeconds(espera);
-        if (!string.IsNullOrEmpty(nomeCenaMundo))
+        if (!string.IsNullOrEmpty(_cenaRetorno))
+        {
+            GerenciadorDeEstado.Instancia.SalvarPosicao(_posicaoRetorno, _cenaRetorno);
+            SceneManager.LoadScene(_cenaRetorno);
+        }
+        else if (!string.IsNullOrEmpty(nomeCenaMundo))
             SceneManager.LoadScene(nomeCenaMundo);
     }
 

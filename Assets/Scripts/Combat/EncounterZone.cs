@@ -43,6 +43,7 @@ public class EncounterZone : MonoBehaviour
     private Vector3 ultimaPosicao;
     private float distanciaAcumulada;
     private bool rastreandoPosicao;
+    private bool batalhaDisparada;
 
     // OnTriggerStay2D dispara a cada frame físico enquanto o Player estiver
     // dentro da zona — diferente de OnTriggerEnter2D, funciona mesmo se o
@@ -103,24 +104,20 @@ public class EncounterZone : MonoBehaviour
 
     void IniciarBatalha(GameObject player)
     {
-        Debug.Log("Encontro aleatório disparado! Iniciando batalha...");
-
-        // Salva onde o player estava antes de entrar na batalha, pra ele
-        // voltar pro lugar certo depois (ver GerenciadorDeEstado.cs e
-        // RestaurarPosicao.cs).
-        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        GerenciadorDeEstado.Instancia.SalvarPosicao(player.transform.position, cenaAtual);
-
-        // NOVO (Ato 1): diz à cena Battle qual inimigo montar. Encontro
-        // aleatório nunca grava flag de história, então FlagDeVitoriaPendente
-        // é explicitamente zerada — senão uma batalha roteirizada abandonada
-        // (o jogador fugiu) poderia "vazar" a flag dela pro próximo encontro.
-        GerenciadorDeEstado.Instancia.ProximoInimigoId = idDoInimigo;
-        GerenciadorDeEstado.Instancia.FlagDeVitoriaPendente = null;
-
-        if (!string.IsNullOrEmpty(nomeCenaBatalha))
+        if (batalhaDisparada || player == null) return;
+        if (string.IsNullOrWhiteSpace(nomeCenaBatalha) || !Application.CanStreamedLevelBeLoaded(nomeCenaBatalha))
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nomeCenaBatalha);
+            Debug.LogWarning("EncounterZone: cena de batalha indisponível.");
+            return;
         }
+        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (!GerenciadorDeEstado.Instancia.TentarPrepararBatalha(cenaAtual, player.transform.position,
+            idDoInimigo, null, new SalvamentoJson(), out string erro))
+        {
+            Debug.LogWarning(erro);
+            return;
+        }
+        batalhaDisparada = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(nomeCenaBatalha);
     }
 }

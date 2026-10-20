@@ -20,6 +20,7 @@ Droids Code é um RPG educativo em 2D com exploração em oito direções, comba
 | CasaLip: atores, puzzle e integração | [CasaLip](contextos/cenas/casalip.md), ao alterar a casa |
 | Canvas, painéis e origem de abertura | [Interface](contextos/sistemas/interface.md), ao tocar UI compartilhada |
 | Flags, duração de objetos e migração | [Estado e save](contextos/sistemas/estado-e-save.md), ao tocar persistência |
+| Checkpoint, encerramento e retorno de batalha | [Combate](contextos/sistemas/combate.md), ao alterar entrada/saída ou save durante luta |
 | Uso e segurança do conector | [Operação MCP](guias/operacao-mcp.md), ao operar/diagnosticar MCP |
 | Inventário amplo de scripts, combate, fórmulas e lacunas | [Referência de 17/10](historico/2026-10-17-contexto-antes-hierarquia.md), somente se a tarefa exigir; confirmar código atual |
 

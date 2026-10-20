@@ -120,26 +120,24 @@ public class GatilhoDeBatalha : MonoBehaviour
     public void Disparar()
     {
         if (_disparada) return;
-        _disparada = true;
+        if (string.IsNullOrWhiteSpace(nomeCenaBatalha) || !Application.CanStreamedLevelBeLoaded(nomeCenaBatalha))
+        {
+            Debug.LogWarning($"GatilhoDeBatalha '{gameObject.name}': cena de batalha indisponível.");
+            return;
+        }
 
         GameObject player = GameObject.FindGameObjectWithTag(tagDoPlayer);
         var gerenciador = GerenciadorDeEstado.Instancia;
 
-        // Mesma logica de EncounterZone.IniciarBatalha: guarda ONDE voltar.
         string cenaAtual = SceneManager.GetActiveScene().name;
         Vector3 posicao = player != null ? player.transform.position : transform.position;
-        gerenciador.SalvarPosicao(posicao, cenaAtual);
-
-        gerenciador.ProximoInimigoId = idDoInimigo;
-        gerenciador.FlagDeVitoriaPendente = flagDeVitoria;
-
-        if (string.IsNullOrEmpty(nomeCenaBatalha))
+        if (!gerenciador.TentarPrepararBatalha(cenaAtual, posicao, idDoInimigo, flagDeVitoria,
+            new SalvamentoJson(), out string erro))
         {
-            Debug.LogWarning($"GatilhoDeBatalha '{gameObject.name}': nomeCenaBatalha vazio no Inspector.");
-            _disparada = false;
+            Debug.LogWarning(erro);
             return;
         }
-
+        _disparada = true;
         SceneManager.LoadScene(nomeCenaBatalha);
     }
 }

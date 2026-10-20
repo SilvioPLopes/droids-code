@@ -112,6 +112,11 @@ public class NpcInterativo : MonoBehaviour
 
     void Interagir()
     {
+        // A pose responde à interação, mesmo se a fala única já foi vista.
+        var orientacao = GetComponent<OrientacaoNpc>();
+        if (orientacao != null && orientacao.isActiveAndEnabled)
+            orientacao.OlharPara(playerAtual != null ? playerAtual.transform : null);
+
         switch (tipo)
         {
             case TipoDeNpc.Loja:

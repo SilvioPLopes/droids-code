@@ -10,10 +10,12 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 
 | Necessidade | Fonte | Chaves de busca |
 |---|---|---|
+| Auditoria das cinco cenas e objetos | [Plano da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md) | `montagem`, `referências`, `integração` |
 | Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) | `Ambiente e relações`, `Subcontextos` |
 | Contrato da casa | [CasaLip](contextos/cenas/casalip.md) | `ControlePuzzleAgua`, `p_agua_casa` |
 | UI compartilhada | [Interface](contextos/sistemas/interface.md) | `Canvas`, `Runner`, `origem` |
 | Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |
+| Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |
 | Operar o conector | [MCP](guias/operacao-mcp.md) | `timeout`, `dry-run`, `Segurança` |
 | Prioridades | [Plano de desenvolvimento](plano-desenvolvimento.md) | `INT-001`, `UI-003`, `TER-001` |
 | Iniciar uma tarefa | [Modelo](planos-implementacao/_modelo-tarefa.md) | `escopo`, `aceite`, `retomada` |

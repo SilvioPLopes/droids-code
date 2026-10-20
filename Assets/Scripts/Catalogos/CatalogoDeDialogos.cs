@@ -43,6 +43,7 @@ public static class CatalogoDeDialogos
 {
     // --- CasaLip (Sessao 1) ---
     public const string CasaIntroApollo = "casa_intro_apollo";
+    public const string CasaApolloConversa = "casa_apollo_conversa";
     public const string CasaPuzzleDica = "casa_puzzle_dica";
     public const string CasaPortaApollo = "casa_porta_apollo";
     public const string CasaFiltro = "casa_filtro";                 // NOVO
@@ -140,6 +141,9 @@ public static class CatalogoDeDialogos
                 L("Enquanto for menor que cem... soma dez."),
                 A("Agora de novo, em Lua. while, condição, do. O que abriu fecha com end."),
                 A("Esc, Terminal. Ou aperta E aqui no painel.")
+            ),
+            [CasaApolloConversa] = Falas(
+                A("Por que não vamos lá fora?")
             ),
             [CasaPuzzleDica] = Falas(
                 A("Começa a variável em zero. Depois usa while pra somar de dez em dez até chegar em cem."),

@@ -183,6 +183,32 @@ public class GerenciadorDeEstado : MonoBehaviour
 
     public string FlagDeVitoriaPendente { get; set; }
 
+    public string CenaDeRetornoDaBatalha { get; private set; }
+    public Vector3 PosicaoDeRetornoDaBatalha { get; private set; }
+    public bool TemRetornoDeBatalha => !string.IsNullOrEmpty(CenaDeRetornoDaBatalha);
+
+    /// <summary>O contexto só muda depois de preservar o checkpoint de entrada em disco.</summary>
+    public bool TentarPrepararBatalha(string cena, Vector3 posicao, string inimigoId, string flagVitoria,
+        SalvamentoJson salvamento, out string erro)
+    {
+        erro = null;
+        if (TemRetornoDeBatalha) { erro = "Uma entrada de batalha já está pendente."; return false; }
+        try
+        {
+            salvamento.SalvarCheckpoint(this, cena, posicao);
+        }
+        catch (System.Exception e) when (e is System.IO.IOException || e is System.UnauthorizedAccessException || e is System.InvalidOperationException || e is System.NotSupportedException)
+        {
+            erro = "Não foi possível salvar o checkpoint. A batalha não foi iniciada. " + e.Message;
+            return false;
+        }
+        CenaDeRetornoDaBatalha = cena;
+        PosicaoDeRetornoDaBatalha = posicao;
+        ProximoInimigoId = inimigoId;
+        FlagDeVitoriaPendente = flagVitoria;
+        return true;
+    }
+
     /// <summary>
     /// Chamado pelo BattleManager ao terminar a batalha (vitoria ou derrota),
     /// pra que um encontro aleatorio seguinte nao herde o inimigo/flag de uma
@@ -192,6 +218,8 @@ public class GerenciadorDeEstado : MonoBehaviour
     {
         ProximoInimigoId = null;
         FlagDeVitoriaPendente = null;
+        CenaDeRetornoDaBatalha = null;
+        PosicaoDeRetornoDaBatalha = Vector3.zero;
     }
 
     void Awake()

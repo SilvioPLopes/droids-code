@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 using DroidsCode.DroidCore;
@@ -10,7 +11,15 @@ using DroidsCode.DroidCore;
 /// </summary>
 public class SalvamentoJson : ISistemaDeSalvamento
 {
-    private static string CaminhoDoArquivo => Path.Combine(Application.persistentDataPath, "save.json");
+    private readonly string CaminhoDoArquivo;
+
+    public SalvamentoJson() : this(Path.Combine(Application.persistentDataPath, "save.json")) { }
+
+    public SalvamentoJson(string caminhoDoArquivo)
+    {
+        if (string.IsNullOrWhiteSpace(caminhoDoArquivo)) throw new ArgumentException("Informe o arquivo de save.");
+        CaminhoDoArquivo = caminhoDoArquivo;
+    }
 
     public bool ExisteSave() => File.Exists(CaminhoDoArquivo);
 
@@ -54,15 +63,37 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
     public void Salvar()
     {
-        GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
-        Droid droid = gerenciador.DroidDoJogador;
-
-        // Posicao REAL e atual do Player agora — nao gerenciador.PosicaoSalva,
-        // que e so uma variavel de transito Game->Battle->Game (fica vazia
-        // quando o jogador so esta andando livre e clica em Salvar).
+        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        ValidarDestino(cenaAtual, Vector3.zero);
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         Vector3 posicaoAtual = playerObj != null ? playerObj.transform.position : Vector3.zero;
-        string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        SalvarCheckpoint(GerenciadorDeEstado.Instancia, cenaAtual, posicaoAtual);
+    }
+
+    /// <summary>Grava estado atual com destino explícito de exploração, inclusive ao encerrar Battle.</summary>
+    public void SalvarCheckpoint(GerenciadorDeEstado gerenciador, string cena, Vector3 posicao)
+    {
+        DadosDoJogo dados = CriarDados(gerenciador, cena, posicao);
+        string temporario = CaminhoDoArquivo + ".tmp";
+        try
+        {
+            File.WriteAllText(temporario, JsonUtility.ToJson(dados, prettyPrint: true));
+            if (File.Exists(CaminhoDoArquivo)) File.Replace(temporario, CaminhoDoArquivo, null);
+            else File.Move(temporario, CaminhoDoArquivo);
+        }
+        finally
+        {
+            if (File.Exists(temporario)) File.Delete(temporario);
+        }
+        Debug.Log("Checkpoint salvo: " + cena);
+    }
+
+    public static DadosDoJogo CriarDados(GerenciadorDeEstado gerenciador, string cenaAtual, Vector3 posicaoAtual)
+    {
+        ValidarDestino(cenaAtual, posicaoAtual);
+        if (gerenciador == null || gerenciador.DroidDoJogador == null)
+            throw new InvalidOperationException("Estado do jogador indisponível para salvar.");
+        Droid droid = gerenciador.DroidDoJogador;
 
         var dados = new DadosDoJogo
         {
@@ -139,10 +170,44 @@ public class SalvamentoJson : ISistemaDeSalvamento
             dados.contadores.Add(new ContadorDeQuest { chave = kv.Key, valor = kv.Value });
         }
 
-        string json = JsonUtility.ToJson(dados, prettyPrint: true);
-        File.WriteAllText(CaminhoDoArquivo, json);
+        return dados;
+    }
 
-        Debug.Log($"Jogo salvo em: {CaminhoDoArquivo}");
+    static void ValidarDestino(string cena, Vector3 posicao)
+    {
+        if (cena == "Battle")
+            throw new InvalidOperationException("Este save de batalha não possui um checkpoint de exploração. O arquivo foi preservado; use um backup de exploração para recuperar o progresso.");
+        if (string.IsNullOrWhiteSpace(cena) || float.IsNaN(posicao.x) || float.IsInfinity(posicao.x)
+            || float.IsNaN(posicao.y) || float.IsInfinity(posicao.y) || float.IsNaN(posicao.z) || float.IsInfinity(posicao.z))
+            throw new InvalidOperationException("O save não contém uma cena e posição válidas.");
+    }
+
+    /// <summary>Lê/valida sem alterar singleton, cena ou arquivo; permite mostrar erro antes de fechar o menu.</summary>
+    public DadosDoJogo LerDados()
+    {
+        var dados = JsonUtility.FromJson<DadosDoJogo>(File.ReadAllText(CaminhoDoArquivo));
+        ValidarDados(dados);
+        return dados;
+    }
+
+    static void ValidarDados(DadosDoJogo dados)
+    {
+        if (dados == null || dados.droid == null) throw new InvalidOperationException("Save incompleto: dados do jogador ausentes.");
+        ValidarDestino(dados.cena, new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ));
+        // CanStreamedLevelBeLoaded retorna false fora de Play no Editor.
+        // A lista do build permite validar o arquivo sem uma partida ativa.
+        bool cenaDisponivel = false;
+        for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string caminho = UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i);
+            if (Path.GetFileNameWithoutExtension(caminho) == dados.cena)
+            {
+                cenaDisponivel = true;
+                break;
+            }
+        }
+        if (!cenaDisponivel)
+            throw new InvalidOperationException("A cena do save não está disponível: " + dados.cena);
     }
 
     public void Carregar()
@@ -153,8 +218,12 @@ public class SalvamentoJson : ISistemaDeSalvamento
             return;
         }
 
-        string json = File.ReadAllText(CaminhoDoArquivo);
-        DadosDoJogo dados = JsonUtility.FromJson<DadosDoJogo>(json);
+        CarregarDados(LerDados());
+    }
+
+    public void CarregarDados(DadosDoJogo dados)
+    {
+        ValidarDados(dados);
         MigrarDados(dados);
 
         GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
@@ -250,6 +319,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
         gerenciador.CarregarContadores(contadores);
 
         gerenciador.SalvarPosicao(new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ), dados.cena);
+        gerenciador.LimparBatalhaPendente();
 
         // Correcao do bug "personagem trava apos salvar/carregar": o
         // LoadScene abaixo destroi o MenuMundoManager da cena antiga sem

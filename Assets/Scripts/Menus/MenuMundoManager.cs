@@ -65,7 +65,7 @@ public class MenuMundoManager : MonoBehaviour
     [Header("Texto de aviso pros botões ainda não implementados / feedback de save")]
     public TextMeshProUGUI textoAviso;
 
-    private ISistemaDeSalvamento _salvamento = new SalvamentoJson();
+    private SalvamentoJson _salvamento = new SalvamentoJson();
     private bool _inicializado;
     private bool _aberto;
 
@@ -316,8 +316,17 @@ public class MenuMundoManager : MonoBehaviour
             return;
         }
 
+        DadosDoJogo dados;
+        try { dados = _salvamento.LerDados(); }
+        catch (System.Exception e) when (e is System.IO.IOException || e is System.UnauthorizedAccessException
+            || e is System.InvalidOperationException || e is System.ArgumentException)
+        {
+            if (textoAviso != null) textoAviso.text = e.Message;
+            Debug.LogWarning("Não foi possível carregar: " + e.Message);
+            return;
+        }
         FecharParaDialogo();
-        _salvamento.Carregar();
+        _salvamento.CarregarDados(dados);
     }
 
     void MostrarAviso(string nomeDaTela)
