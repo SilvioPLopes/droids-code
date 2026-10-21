@@ -231,9 +231,12 @@ public class GatilhoDeDialogo : MonoBehaviour
     {
         // Opt-in: NPCs sem este componente mantêm o comportamento anterior.
         var orientacao = GetComponent<OrientacaoNpc>();
+        Debug.Log($"[Orientar] OrientacaoNpc achado? {orientacao != null}, ativo? {(orientacao != null && orientacao.isActiveAndEnabled)}");
+
         if (orientacao != null && orientacao.isActiveAndEnabled)
         {
             var jogador = GameObject.FindGameObjectWithTag(tagDoPlayer);
+            Debug.Log($"[Orientar] Jogador achado? {jogador != null}" + (jogador != null ? $" nome: {jogador.name}" : ""));
             if (jogador != null) orientacao.OlharPara(jogador.transform);
         }
 

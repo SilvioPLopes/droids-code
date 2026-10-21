@@ -1,10 +1,5 @@
 using UnityEngine;
 
-/// <summary>
-/// Troca a pose de um NPC parado para olhar para o interlocutor.
-/// Anexar junto ao GatilhoDeDialogo; configurar quatro sprites direcionais.
-/// Um Animator que controle a mesma sprite precisa de integração própria.
-/// </summary>
 [DisallowMultipleComponent]
 public class OrientacaoNpc : MonoBehaviour
 {
@@ -21,12 +16,14 @@ public class OrientacaoNpc : MonoBehaviour
 
     public bool OlharPara(Transform interlocutor)
     {
-        if (interlocutor == null) return false;
+        if (interlocutor == null) { Debug.Log("[OrientacaoNpc] interlocutor nulo"); return false; }
         if (renderizador == null) renderizador = GetComponent<SpriteRenderer>();
-        if (renderizador == null) return false;
+        if (renderizador == null) { Debug.Log("[OrientacaoNpc] sem renderizador"); return false; }
 
-        Vector2 direcao = interlocutor.position - transform.position;
-        if (direcao.sqrMagnitude < 0.0001f) return false;
+        Vector2 direcao = CentroVisual(interlocutor) - renderizador.bounds.center;
+        Debug.Log($"[OrientacaoNpc] interlocutor='{interlocutor.name}' pos={interlocutor.position} npc={transform.position} direcao={direcao}");
+
+        if (direcao.sqrMagnitude < 0.0001f) { Debug.Log("[OrientacaoNpc] direcao zero"); return false; }
 
         Sprite pose;
         if (Mathf.Abs(direcao.x) > Mathf.Abs(direcao.y))
@@ -34,12 +31,24 @@ public class OrientacaoNpc : MonoBehaviour
         else
             pose = direcao.y > 0f ? cima : baixo;
 
-        // Configuração incompleta não apaga a sprite nem altera a pose atual.
+        Debug.Log($"[OrientacaoNpc] pose escolhida: {(pose == null ? "NULA" : pose.name)}");
+
         if (pose == null) return false;
 
         renderizador.sprite = pose;
         renderizador.flipX = false;
         renderizador.flipY = false;
+
+        Debug.Log($"[OrientacaoNpc] sprite agora: {renderizador.sprite.name}");
         return true;
+
+        static Vector3 CentroVisual(Transform t)
+            {
+                var sr = t.GetComponentInChildren<SpriteRenderer>();
+                if (sr != null) return sr.bounds.center;
+                var col = t.GetComponentInChildren<Collider2D>();
+                if (col != null) return col.bounds.center;
+                return t.position;
+            }
     }
 }
