@@ -1,0 +1,34 @@
+{
+  "body_color": "brown",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_male",
+      "eye_color": "brown"
+    },
+    {
+      "id": "torso_clothes_tshirt",
+      "color": "gray"
+    },
+    {
+      "id": "legs_pants",
+      "color": "brown"
+    },
+    {
+      "id": "feet_boots_basic",
+      "color": "black"
+    },
+    {
+      "id": "torso_aprons_suspenders",
+      "color": "yellow"
+    },
+    {
+      "id": "hat_headband_thick",
+      "color": "yellow"
+    }
+  ],
+  "body_type": "male",
+  "id": "operario_01"
+}

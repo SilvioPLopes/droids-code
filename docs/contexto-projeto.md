@@ -18,6 +18,7 @@ Droids Code é um RPG educativo em 2D com exploração em oito direções, comba
 | Assunto | Fonte e quando consultar |
 |---|---|
 | CasaLip: atores, puzzle e integração | [CasaLip](contextos/cenas/casalip.md), ao alterar a casa |
+| City: escala, nomes, miniaturas e montagem dos NPCs | [City](contextos/cenas/city.md), ao alterar a cidade; usar o [modelo de cena](contextos/cenas/_modelo-cena.md) para novos contratos |
 | Canvas, painéis e origem de abertura | [Interface](contextos/sistemas/interface.md), ao tocar UI compartilhada |
 | Flags, duração de objetos e migração | [Estado e save](contextos/sistemas/estado-e-save.md), ao tocar persistência |
 | Checkpoint, encerramento e retorno de batalha | [Combate](contextos/sistemas/combate.md), ao alterar entrada/saída ou save durante luta |

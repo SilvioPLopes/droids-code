@@ -1,0 +1,30 @@
+{
+  "body_color": "amber",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_female",
+      "eye_color": "brown"
+    },
+    {
+      "id": "hair_bob",
+      "color": "chestnut"
+    },
+    {
+      "id": "torso_clothes_longsleeve2_cardigan",
+      "color": "orange"
+    },
+    {
+      "id": "legs_skirt_straight",
+      "color": "navy"
+    },
+    {
+      "id": "feet_shoes_basic",
+      "color": "brown"
+    }
+  ],
+  "body_type": "female",
+  "id": "moradora_01"
+}

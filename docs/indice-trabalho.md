@@ -13,6 +13,8 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Auditoria das cinco cenas e objetos | [Plano da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md) | `montagem`, `referências`, `integração` |
 | Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) | `Ambiente e relações`, `Subcontextos` |
 | Contrato da casa | [CasaLip](contextos/cenas/casalip.md) | `ControlePuzzleAgua`, `p_agua_casa` |
+| Configuração específica da cidade | [City](contextos/cenas/city.md) | `1.33`, `NomeNPC`, `miniatura`, `AreaDialogo` |
+| Documentar configuração de outra cena | [Modelo de contexto de cena](contextos/cenas/_modelo-cena.md) | `atores`, `interface`, `integração` |
 | UI compartilhada | [Interface](contextos/sistemas/interface.md) | `Canvas`, `Runner`, `origem` |
 | Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |
 | Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |
@@ -26,4 +28,4 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Assets de personagens | [Catálogo visual](../Assets/sprites/Entities/Npc's/Characters/Documentation/character-catalog.md) | `idle`, `walk`, `placeholder` |
 | Histórico e inventários antigos | [Índice histórico](historico/README.md), [contexto anterior](historico/2026-10-17-contexto-antes-hierarquia.md) | Consulta sob demanda; não usar como estado atual |
 
-Andamento fica no plano da tarefa. Evidências detalhadas ficam em revisões; este índice mantém caminhos, sem copiar resultados. City receberá contexto próprio quando sua análise for iniciada; ideias de NPCs andando ainda não são implementação autorizada.
+Andamento fica no plano da tarefa. Evidências detalhadas ficam em revisões; este índice mantém caminhos, sem copiar resultados. A City tem contrato próprio; ideias de NPCs andando ainda não são implementação autorizada.

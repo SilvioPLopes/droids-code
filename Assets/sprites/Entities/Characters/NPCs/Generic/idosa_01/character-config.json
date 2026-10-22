@@ -1,0 +1,30 @@
+{
+  "body_color": "light",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_female_elderly",
+      "eye_color": "gray"
+    },
+    {
+      "id": "hair_bangs_bun",
+      "color": "gray"
+    },
+    {
+      "id": "torso_clothes_blouse_longsleeve",
+      "color": "lavender"
+    },
+    {
+      "id": "legs_skirt_straight",
+      "color": "purple"
+    },
+    {
+      "id": "feet_shoes_basic",
+      "color": "brown"
+    }
+  ],
+  "body_type": "female",
+  "id": "idosa_01"
+}

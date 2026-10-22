@@ -65,6 +65,8 @@ O Canvas do MenuMundoManager persiste. Uma instância nova em uma cena pode ser 
 
 Existem Dara, homem da fila, Tácio e comentário do Apollo. Conferir os componentes existentes antes de adicionar duplicatas.
 
+Padrão de apresentação para todos os NPCs: reutilizar a montagem de diálogo da CasaLip, com o sprite frontal do próprio personagem dentro da janela de retrato, nome e fala ao lado. O retrato deve preservar proporção. Para funcionar também com o painel persistente vindo de outra cena, cadastrar um sprite único em `Assets/Resources/Retratos/<Falante>.png`, com o nome exatamente igual ao falante no catálogo (ex.: `Dara`, `Homem da fila`, `Senhor Tácio`). `DialogoUIManager` já resolve essa convenção; não é necessário modificar seu código nem o Canvas dos menus a cada NPC. A lista manual de retratos tem prioridade para exceções existentes, como Apollo e Lip.
+
 1. Para cada NPC, conferir sprite, Collider2D de trigger, tag esperada do Player e posição de interação.
 2. Escolher uma única origem de entrada: GatilhoDeDialogo em AoInteragir sozinho, ou NpcInterativo tipo Dialogo chamando um gatilho em ApenasPorScript. Para Tácio, usar NpcInterativo tipo Loja e gatilho ApenasPorScript, mantendo lojaUIManager associado à Loja.
 3. Configurar os gatilhos:

@@ -1,0 +1,26 @@
+{
+  "body_color": "light",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_child",
+      "eye_color": "green"
+    },
+    {
+      "id": "hair_wavy_child",
+      "color": "ginger"
+    },
+    {
+      "id": "torso_clothes_child_shirt",
+      "color": "red"
+    },
+    {
+      "id": "legs_childpants",
+      "color": "darkblue"
+    }
+  ],
+  "body_type": "child",
+  "id": "crianca_01"
+}

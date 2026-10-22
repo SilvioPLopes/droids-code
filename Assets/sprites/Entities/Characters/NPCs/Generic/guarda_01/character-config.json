@@ -1,0 +1,42 @@
+{
+  "body_color": "bronze",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_male",
+      "eye_color": "brown"
+    },
+    {
+      "id": "hair_high_and_tight",
+      "color": "black"
+    },
+    {
+      "id": "legs_pants",
+      "color": "black"
+    },
+    {
+      "id": "feet_boots_basic",
+      "color": "black"
+    },
+    {
+      "id": "torso_clothes_longsleeve_formal",
+      "color": "white"
+    },
+    {
+      "id": "torso_jacket_collared",
+      "color": "charcoal"
+    },
+    {
+      "id": "torso_clothes_vest",
+      "color": "maroon"
+    },
+    {
+      "id": "facial_glasses_shades",
+      "color": "black"
+    }
+  ],
+  "body_type": "male",
+  "id": "guarda_01"
+}

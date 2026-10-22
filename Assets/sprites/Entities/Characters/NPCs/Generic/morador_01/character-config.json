@@ -1,0 +1,30 @@
+{
+  "body_color": "olive",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_male",
+      "eye_color": "brown"
+    },
+    {
+      "id": "hair_messy2",
+      "color": "dark_brown"
+    },
+    {
+      "id": "torso_clothes_tshirt",
+      "color": "blue"
+    },
+    {
+      "id": "legs_pants",
+      "color": "charcoal"
+    },
+    {
+      "id": "feet_shoes_basic",
+      "color": "black"
+    }
+  ],
+  "body_type": "male",
+  "id": "morador_01"
+}

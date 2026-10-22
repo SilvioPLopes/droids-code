@@ -1,0 +1,38 @@
+{
+  "body_color": "amber",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_male",
+      "eye_color": "brown"
+    },
+    {
+      "id": "hair_messy3",
+      "color": "dark_brown"
+    },
+    {
+      "id": "torso_clothes_longsleeve",
+      "color": "gray"
+    },
+    {
+      "id": "legs_pants",
+      "color": "brown"
+    },
+    {
+      "id": "feet_boots_basic",
+      "color": "brown"
+    },
+    {
+      "id": "torso_aprons_overalls",
+      "color": "orange"
+    },
+    {
+      "id": "hat_bandana",
+      "color": "red"
+    }
+  ],
+  "body_type": "male",
+  "id": "mecanico_01"
+}

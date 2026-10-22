@@ -1,0 +1,34 @@
+{
+  "body_color": "light",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_male_plump",
+      "eye_color": "brown"
+    },
+    {
+      "id": "hair_curly_short",
+      "color": "redhead"
+    },
+    {
+      "id": "torso_clothes_tshirt",
+      "color": "white"
+    },
+    {
+      "id": "torso_clothes_vest",
+      "color": "forest"
+    },
+    {
+      "id": "legs_pants",
+      "color": "tan"
+    },
+    {
+      "id": "feet_shoes_basic",
+      "color": "brown"
+    }
+  ],
+  "body_type": "male",
+  "id": "vendedor_01"
+}

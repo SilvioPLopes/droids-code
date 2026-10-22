@@ -295,7 +295,7 @@ public class DialogoUIManager : MonoBehaviour
     // Cache pra nao chamar Resources.Load toda vez que a mesma pessoa fala de
     // novo (inclusive guarda os "nao achei" como null, pra nao ficar
     // tentando carregar um arquivo que nao existe a cada fala).
-    private readonly Dictionary<string, Sprite> _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
+    private Dictionary<string, Sprite> _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
 
     /// <summary>
     /// Resolve o sprite de retrato pra um nome de falante. Ordem de busca:
@@ -322,6 +322,11 @@ public class DialogoUIManager : MonoBehaviour
                 return entrada.retrato != null ? entrada.retrato : retratoPadrao;
             }
         }
+
+        // Copias/recargas de componentes podem deixar esse estado nao serializado nulo.
+        // A ausencia do cache nao pode interromper a atualizacao do retrato e da fala.
+        if (_cacheDeRetratosPorConvencao == null)
+            _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
 
         if (!_cacheDeRetratosPorConvencao.TryGetValue(nomeFalante, out Sprite retrato))
         {

@@ -1,0 +1,38 @@
+{
+  "body_color": "light",
+  "items": [
+    {
+      "id": "body"
+    },
+    {
+      "id": "heads_human_female",
+      "eye_color": "blue"
+    },
+    {
+      "id": "hair_pixie",
+      "color": "raven"
+    },
+    {
+      "id": "torso_clothes_blouse_longsleeve",
+      "color": "white"
+    },
+    {
+      "id": "torso_aprons_apron_full",
+      "color": "white"
+    },
+    {
+      "id": "legs_pants",
+      "color": "slate"
+    },
+    {
+      "id": "feet_shoes_basic",
+      "color": "white"
+    },
+    {
+      "id": "facial_glasses_nerd",
+      "color": "sky"
+    }
+  ],
+  "body_type": "female",
+  "id": "cientista_01"
+}

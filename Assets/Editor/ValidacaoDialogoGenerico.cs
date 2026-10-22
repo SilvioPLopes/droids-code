@@ -30,6 +30,22 @@ public static class ValidacaoDialogoGenerico
                 Exigir(falas != null && falas.Count > 0 && !string.IsNullOrWhiteSpace(falas[0].texto), "Fala ausente: " + id);
             }
         });
+        Rodar(resultados, "cache nulo nao interrompe retrato nome e fala", f =>
+        {
+            f.Painel.imagemRetrato = f.Objeto("Miniatura").AddComponent<UnityEngine.UI.Image>();
+            f.Painel.textoFalante = f.Objeto("Nome").AddComponent<TextMeshProUGUI>();
+            foreach (var nome in new[] { "Dara", "Homem da fila", "Senhor Tácio" })
+            {
+                Definir(f.Painel, "_cacheDeRetratosPorConvencao", null);
+                f.Painel.textoFala.text = "Fala";
+                Exigir(f.Painel.Mostrar(new[] { new FalaDeDialogo { falante = nome, texto = "Conversa de teste" } }), "Painel nao abriu.");
+                Exigir(f.Painel.imagemRetrato.gameObject.activeSelf && f.Painel.imagemRetrato.sprite == Resources.Load<Sprite>("Retratos/" + nome)
+                    && f.Painel.imagemRetrato.sprite != null, "Miniatura ausente: " + nome);
+                Exigir(f.Painel.textoFalante.text == nome && f.Painel.textoFala.text == "Conversa de teste", "Nome/fala ficaram incompletos: " + nome);
+                f.Painel.Fechar();
+                Exigir(!f.Estado.MenuAberto, "Menu ficou preso.");
+            }
+        });
         Rodar(resultados, "flag bloqueada permite fala generica repetivel sem progresso", f =>
         {
             f.Gatilho.flagAoTerminar = "fixture_nao_gravar";
