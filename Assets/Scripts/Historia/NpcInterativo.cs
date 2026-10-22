@@ -155,6 +155,13 @@ public class NpcInterativo : MonoBehaviour
             return;
         }
 
+        if (gatilhoDeDialogo != null && gatilhoDeDialogo.PodeDispararGenerico())
+        {
+            // Sem fala da historia: conversa breve antes da vitrine, sem flag/save.
+            gatilhoDeDialogo.DispararGenerico(MostrarPainelDaLoja);
+            return;
+        }
+
         MostrarPainelDaLoja();
     }
 
@@ -187,10 +194,8 @@ public class NpcInterativo : MonoBehaviour
 
         if (!gatilhoDeDialogo.PodeDisparar())
         {
-            // Sem falas disponíveis para o estado atual da história (ex: as
-            // condições de flag não batem, ou o diálogo já foi visto).
-            // Silêncio é o comportamento certo: o indicador de interação do
-            // próprio GatilhoDeDialogo já não deveria estar aceso.
+            // Fallback e opt-in no gatilho; vazio preserva os NPCs anteriores.
+            gatilhoDeDialogo.DispararGenerico();
             return;
         }
 

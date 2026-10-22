@@ -5632,7 +5632,7 @@ MonoBehaviour:
   nomeCenaDestino: Game
   pontoDeChegada: {x: -18, y: 6}
   trancada: 1
-  textoDeBloqueio: {fileID: 1895253430}
+  textoDeBloqueio: {fileID: 0}
   mensagemDeBloqueio: Preciso terminar o terminal antes de sair.
 --- !u!61 &976682047
 BoxCollider2D:
@@ -7258,6 +7258,7 @@ GameObject:
   - component: {fileID: 1417140167}
   - component: {fileID: 1417140166}
   - component: {fileID: 1417140165}
+  - component: {fileID: 1417140170}
   m_Layer: 0
   m_Name: homem da fila
   m_TagString: Untagged
@@ -7285,6 +7286,7 @@ MonoBehaviour:
   flagsQueImpedem:
   - ato1_sessao2
   idDoDialogo: city_s2_homem_fila
+  idDoDialogoGenerico: city_generico_homem_fila
   falas: []
   escolhas: []
   flagAoTerminar: ato1_falou_fila
@@ -7340,7 +7342,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6552843917330368855, guid: f74c35faf403dac4ba002e966b623c3a, type: 3}
+  m_Sprite: {fileID: 2765817681980467700, guid: d1dc29314e7f3cb4681b649c6f900456, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7407,7 +7409,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.31}
+    oldSize: {x: 0.32, y: 0.54}
     newSize: {x: 0.18, y: 0.31}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7431,6 +7433,23 @@ Transform:
   - {fileID: 874345339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1417140170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417140164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20e34a8230b4f8b83bd74f0b8ca62a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrientacaoNpc
+  renderizador: {fileID: 1417140166}
+  cima: {fileID: 1589731118729664104, guid: d1dc29314e7f3cb4681b649c6f900456, type: 3}
+  esquerda: {fileID: 3842762866851252949, guid: d1dc29314e7f3cb4681b649c6f900456, type: 3}
+  baixo: {fileID: 2765817681980467700, guid: d1dc29314e7f3cb4681b649c6f900456, type: 3}
+  direita: {fileID: 4347369804937911105, guid: d1dc29314e7f3cb4681b649c6f900456, type: 3}
 --- !u!1 &1466113573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7879,6 +7898,7 @@ GameObject:
   - component: {fileID: 1505573703}
   - component: {fileID: 1505573702}
   - component: {fileID: 1505573701}
+  - component: {fileID: 1505573706}
   m_Layer: 0
   m_Name: Dara
   m_TagString: Untagged
@@ -7906,6 +7926,7 @@ MonoBehaviour:
   flagsQueImpedem:
   - ato1_sessao2
   idDoDialogo: city_s2_dara
+  idDoDialogoGenerico: city_generico_dara
   falas: []
   escolhas: []
   flagAoTerminar: ato1_falou_dara
@@ -8052,6 +8073,23 @@ Transform:
   - {fileID: 799958426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1505573706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505573700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20e34a8230b4f8b83bd74f0b8ca62a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrientacaoNpc
+  renderizador: {fileID: 1505573702}
+  cima: {fileID: 8793639957104055765, guid: 7caba37c3915e3a47b75d48cd5993050, type: 3}
+  esquerda: {fileID: 8603369663158992956, guid: 7caba37c3915e3a47b75d48cd5993050, type: 3}
+  baixo: {fileID: 5704420531145803721, guid: 7caba37c3915e3a47b75d48cd5993050, type: 3}
+  direita: {fileID: 4729606205655721961, guid: 7caba37c3915e3a47b75d48cd5993050, type: 3}
 --- !u!1 &1549222945
 GameObject:
   m_ObjectHideFlags: 0
@@ -8349,6 +8387,7 @@ MonoBehaviour:
   flagsQueImpedem:
   - ato1_sessao2
   idDoDialogo: city_s2_apollo_conclusao
+  idDoDialogoGenerico: 
   falas: []
   escolhas: []
   flagAoTerminar: ato1_sessao2
@@ -8585,6 +8624,7 @@ GameObject:
   - component: {fileID: 1740625962}
   - component: {fileID: 1740625965}
   - component: {fileID: 1740625966}
+  - component: {fileID: 1740625967}
   m_Layer: 0
   m_Name: "T\xE1cio"
   m_TagString: Untagged
@@ -8750,12 +8790,30 @@ MonoBehaviour:
   flagsNecessarias: []
   flagsQueImpedem: []
   idDoDialogo: city_s2_tacio
+  idDoDialogoGenerico: city_generico_tacio
   falas: []
   escolhas: []
   flagAoTerminar: 
   apenasUmaVez: 1
   desativarAposConcluir: 0
   indicadorDeInteracao: {fileID: 0}
+--- !u!114 &1740625967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740625961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20e34a8230b4f8b83bd74f0b8ca62a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrientacaoNpc
+  renderizador: {fileID: 1740625965}
+  cima: {fileID: 8793639957104055765, guid: 52c9f02f9dd09ac409721d2c4e518c7a, type: 3}
+  esquerda: {fileID: 8603369663158992956, guid: 52c9f02f9dd09ac409721d2c4e518c7a, type: 3}
+  baixo: {fileID: 5704420531145803721, guid: 52c9f02f9dd09ac409721d2c4e518c7a, type: 3}
+  direita: {fileID: 4729606205655721961, guid: 52c9f02f9dd09ac409721d2c4e518c7a, type: 3}
 --- !u!1 &1870074978
 GameObject:
   m_ObjectHideFlags: 0
@@ -8861,7 +8919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1895253430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -65,6 +65,9 @@ public class GatilhoDeDialogo : MonoBehaviour
     [Tooltip("Id do dialogo no CatalogoDeDialogos.cs (ex: \"city_s2_dara\"). So e usado se o campo \"Falas\" abaixo estiver vazio -- e assim que a maioria dos NPCs deve ser configurada.")]
     public string idDoDialogo;
 
+    [Tooltip("Fala repetivel do catalogo quando a principal nao esta disponivel. Vazio preserva o comportamento anterior. Nao grava flags nem executa consequencias da principal.")]
+    public string idDoDialogoGenerico;
+
     [Tooltip("Falas digitadas direto aqui. Se preenchido, tem PRIORIDADE sobre Id Do Dialogo (compatibilidade com o que ja foi montado no Inspector). Deixe vazio e use Id Do Dialogo pra dialogos novos.")]
     public List<FalaDeDialogo> falas = new List<FalaDeDialogo>();
 
@@ -87,6 +90,7 @@ public class GatilhoDeDialogo : MonoBehaviour
 
     private bool _playerPerto;
     private bool _jaDisparouNestaSessao;
+    private int _frameConclusaoDialogo = -1;
 
     private readonly ISistemaDeSalvamento _salvamento = new SalvamentoJson();
 
@@ -115,7 +119,7 @@ public class GatilhoDeDialogo : MonoBehaviour
             return;
         }
 
-        bool disponivel = _playerPerto && PodeDisparar();
+        bool disponivel = _playerPerto && (PodeDisparar() || PodeDispararGenerico());
         if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(disponivel);
 
         if (_playerPerto && Input.GetKeyDown(teclaDeInteracao))
@@ -128,9 +132,11 @@ public class GatilhoDeDialogo : MonoBehaviour
     public void TentarInteragir()
     {
         if (GerenciadorDeEstado.Instancia.MenuAberto) return;
+        if (_frameConclusaoDialogo == Time.frameCount) return;
 
         OrientarParaJogador();
         if (PodeDisparar()) Disparar();
+        else DispararGenerico();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -189,6 +195,35 @@ public class GatilhoDeDialogo : MonoBehaviour
         return CondicoesDeHistoria.Satisfeitas(flagsNecessarias, flagsQueImpedem);
     }
 
+    /// <summary>A principal tem prioridade. Fallback e apenas para interacoes, nunca cutscenes.</summary>
+    public bool PodeDispararGenerico()
+    {
+        if (modo == ModoDeDisparo.AoEntrarNoTrigger || string.IsNullOrWhiteSpace(idDoDialogoGenerico)) return false;
+        if (PodeDisparar()) return false;
+        var genericas = CatalogoDeDialogos.Obter(idDoDialogoGenerico);
+        return genericas != null && genericas.Count > 0;
+    }
+
+    /// <summary>Abre somente a fala alternativa. Nao consome a principal nem usa seu callback de progresso.</summary>
+    public bool DispararGenerico(System.Action aoConcluir = null)
+    {
+        // Update do painel pode fechar antes do Update do NPC: nao reutilizar a mesma tecla.
+        if (_frameConclusaoDialogo == Time.frameCount) return false;
+        if (!PodeDispararGenerico()) return false;
+        var painel = DialogoUIManager.Instancia;
+        if (painel == null) return false;
+        bool abriu = painel.Mostrar(CatalogoDeDialogos.Obter(idDoDialogoGenerico), () =>
+        {
+            _frameConclusaoDialogo = Time.frameCount;
+            aoConcluir?.Invoke();
+        });
+        if (!abriu) return false;
+
+        OrientarParaJogador();
+        if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
+        return true;
+    }
+
     /// <summary>Publico pra permitir disparo por script (ex: NpcInterativo).</summary>
     public void Disparar()
     {
@@ -244,6 +279,10 @@ public class GatilhoDeDialogo : MonoBehaviour
 
     void AoConcluirDialogo(EscolhaDeDialogo escolhaFeita)
     {
+        // Com fallback configurado, fechar a principal tambem exige uma nova tecla.
+        if (!string.IsNullOrWhiteSpace(idDoDialogoGenerico))
+            _frameConclusaoDialogo = Time.frameCount;
+
         if (!string.IsNullOrWhiteSpace(flagAoTerminar))
         {
             GerenciadorDeEstado.Instancia.DefinirFlag(flagAoTerminar, true);

@@ -56,6 +56,9 @@ public static class CatalogoDeDialogos
     public const string CityS2Dara = "city_s2_dara";
     public const string CityS2Tacio = "city_s2_tacio";
     public const string CityS2HomemDaFila = "city_s2_homem_fila";
+    public const string CityGenericoDara = "city_generico_dara";
+    public const string CityGenericoHomemDaFila = "city_generico_homem_fila";
+    public const string CityGenericoTacio = "city_generico_tacio";
     public const string CityS2ApolloConclusao = "city_s2_apollo_conclusao";
     public const string CityS2Pipo = "city_s2_pipo";
     public const string CityS2Onofre = "city_s2_onofre";
@@ -203,6 +206,16 @@ public static class CatalogoDeDialogos
             // A informação chega em três versões incompatíveis. A verdade é
             // o que sobra depois de falar com os três.
             // =============================================================
+            // Conversas repetiveis, sem consequencias de historia.
+            [CityGenericoDara] = Falas(
+                F("Dara", "Se precisar de mim, vou estar por aqui.")
+            ),
+            [CityGenericoHomemDaFila] = Falas(
+                F("Homem da fila", "Estou esperando minha vez. Tomara que não demore.")
+            ),
+            [CityGenericoTacio] = Falas(
+                F("Senhor Tácio", "Dê uma olhada. Talvez eu tenha o que você precisa.")
+            ),
             [CityS2Dara] = Falas(
                 N("Ela segura o balde vazio com as duas mãos, como se o peso ainda importasse."),
                 F("Dara", "Cortaram a cota. Metade do que era ontem."),
