@@ -16,6 +16,7 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Configuração específica da cidade | [City](contextos/cenas/city.md) | `1.33`, `NomeNPC`, `miniatura`, `AreaDialogo` |
 | Documentar configuração de outra cena | [Modelo de contexto de cena](contextos/cenas/_modelo-cena.md) | `atores`, `interface`, `integração` |
 | UI compartilhada | [Interface](contextos/sistemas/interface.md) | `Canvas`, `Runner`, `origem` |
+| Mensagens na caixa de diálogo e falha de carregar | [Diagnóstico vigente](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md), [diretriz de interface](contextos/sistemas/interface.md#diretriz-de-mensagens-ao-jogador--definida-em-22102026) | `Salvar`, `Carregar`, `primeira tentativa`, `bloqueio` |
 | Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |
 | Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |
 | Operar o conector | [MCP](guias/operacao-mcp.md) | `timeout`, `dry-run`, `Segurança` |
