@@ -1,6 +1,72 @@
 # Plano — orientação dos três NPCs da City
 
-**Estado e data:** em 22/10/2026, nomes dos três NPCs da City colocados sob seus sprites em WorldSpace e escala local X/Y aplicada em 1.33 (Z preservado em 2). City salva fora de Play; contexto específico e modelo documental criados. Avaliação visual/input do usuário pendente. Nenhum commit/push novo nesta rodada.
+**Estado e data:** primeira rodada documental “City viva” registrada em 22/10/2026. CV-01 a CV-06 possuem rascunho para discussão; design e montagem futura ainda não aprovados. Montagem anterior preservada; aceite visual dos nomes/escala não presumido.
+
+## Retomada vigente — City viva
+
+**Objetivo:** planejar população de história e genérica, lugares, rotinas, sidequests, segredos/easter eggs e cobertura de diálogos; preservar decisões mesmo se a conversa perder contexto.
+
+**Escopo autorizado nesta fase:** analisar documentos/catálogos como fontes; editar este plano e docs/contextos/cenas/city.md progressivamente. Não editar Unity/cenas/sprites/scripts/catálogos de código/saves. Revisão do catálogo de falas deve produzir lacunas, propostas e lista de futuras alterações, sem tratar texto proposto como já implementado.
+
+**Organização:** contexto City concentra proposta de montagem e reflexões de design com status explícito; este plano concentra etapas, ponto de inserção, decisões, lacunas, último resultado e próximo passo. Não duplicar biografias/narrativa existentes: vincular fontes e resumir implicações para a montagem.
+
+**Critério de aceite da análise:** distinguir elenco disponível/atores montados; distribuir NPCs por função/lugar, descrever rotina viável e limites técnicos; conectar sidequests a conteúdo existente antes de inventar novos sistemas; propor segredos opcionais sem travar história; mapear diálogos principais/genéricos/reativos e registrar IDs existentes/propostos; deixar um ponto de inserção executável em lotes pequenos, preservando padrão visual da City.
+
+**Validação mínima:** conferir fontes primárias locais (adendo prevalece sobre enredo; catálogos não comprovam integração); verificar links, IDs e conflitos do rascunho. Nenhum teste Unity ou operação MCP necessária nesta análise.
+
+**Preservação/reversão documental:** contrato técnico City e registros de montagem anteriores mantidos. Esta rodada acrescenta o bloco “City viva” no contexto e atualiza a retomada deste plano. Para retirar a proposta, remover somente esses acréscimos e restaurar os campos de retomada correspondentes; não restaurar arquivos inteiros sobre edições posteriores. Sem backup de assets/saves necessário nesta fase, pois não foram tocados.
+
+### Etapas e registro incremental
+
+- [x] CV-01 — inventariar elenco, locais, quests e falas existentes, com limites de implementação.
+- [x] CV-02 — propor zonas, população inicial e função de cada NPC no espaço.
+- [x] CV-03 — descrever rotinas e dependências reais (período narrativo, relógio, movimento, disponibilidade).
+- [x] CV-04 — conectar sidequests, segredos/easter eggs e reações sem comprometer progressão.
+- [x] CV-05 — revisar cobertura/ordem de falas e escrever primeiras propostas de genéricas no documento.
+- [x] CV-06 — consolidar ponto de inserção por lotes, decisões abertas e próximo passo.
+
+As marcações significam análise registrada, não implementação nem aceite do conteúdo proposto. Reflexões/textos estão em [City — análise em construção](../contextos/cenas/city.md#city-viva--análise-em-construção-22102026).
+
+### CV-06 — ponto de inserção de mais NPCs
+
+**Entrada para a próxima rodada:** usar a tabela de núcleos CV-02 e a cobertura CV-05 do contexto City. Primeiro traduzir lugares narrativos em pontos no fundo atual; não criar interiores, mover os três NPCs aprovados ou redimensionar o mapa para caber a proposta. A associação espacial exige referência visual com resolução/zoom registrados, passagens/portas e alcance de interação conferidos. Usuário ainda não aprovou coordenadas ou elenco novo.
+
+**Lotes candidatos, sujeitos à revisão do usuário:**
+
+| Lote | Inserção proposta | Dependência / saída verificável |
+|---|---|---|
+| L0 — mapa de ocupação | Nenhum ator; marcar lugares candidatos numa referência do mapa | Resolver portão leste/norte e locais sem representação; aprovar zonas antes de coordenadas |
+| L1 — cotidiano | Moradora do poço + carregador + triadora | Arte/direções/retrato/fala simples; três interações independentes, sem quest nova. Estabelecer variedade visual e avaliar densidade |
+| L2a — mercado/oficina | Sula + Onofre + Quirino | Usar apresentações existentes + genéricas revisadas; conferir retratos. Ligar somente diálogos, sem anunciar serviços ainda ausentes |
+| L2b — beco/guilda/estalagem | Pipo + Bruna + Nilce | Locais alcançáveis e texto sem spoilers; conflito do quarto permanece impedimento para revelar seu segredo, não para fala cotidiana |
+| L2c — cuidado/cerca | Benta + Zeca | Confirmar arte/nome/fala e localização do posto/portão; nenhuma cura automática ou regra nova de saída |
+| L3 — primeira sidequest completa | Uma cadeia curta, candidata `q_agua_dara` | Revisar integração de oferta/entrega/itens/recompensa/save e reação posterior antes de expandir para outras quests |
+| L4 — memória e retorno | Uma pista opcional + um easter egg; depois reações à água/Nadir | Cânone/estado corretos. Nadir só no evento próprio; não implementar relógio para simular chegada |
+
+**Ficha obrigatória de cada inserção (preencher no próprio lote, antes de editar):**
+
+`ID do NPC / nome exibido / falante exato / função → ID de local e posição proposta → estado de presença → atividade e orientação → sprite/poses/retrato → fala principal/genérica e condições → ligação de quest/serviço (ou nenhuma) → objetos/componentes permitidos → valores anteriores/backup/reversão → validação mínima e resultado.`
+
+**Limites da futura montagem:** objeto individual do NPC na City, seus ramos exclusivos de nome/retrato quando necessário e gatilho de interação; X/Y 1.33, Z definido pelo contrato/asset sem copiar escala às cegas; nome sob os pés; quatro direções; miniatura frontal; uma origem para E. Preservar protagonista, posições dos três atuais, fundo, colliders/portas não envolvidos, Canvas/Scaler globais, menus, loja Tácio e demais cenas. Scripts compartilhados só entram em escopo posterior com consumidores identificados. Nenhuma permissão de implementação está implícita nesta ficha.
+
+**Aceite de um lote:** personagens reconhecíveis e distintos do protagonista; nomes abaixo de cada ator sem sobreposição; moldura/miniaturas/falas legíveis; caminhos e portas livres; conversa correta por estado e sem disparo duplicado; retorno de conversa não abre menus inesperados. Registrar separadamente editado/salvo, propriedades, comportamento por input e aprovação visual. Backup antes de mutar; testes que gravem saves exigem backup/restauração. Não usar somente compilação como aceite de layout.
+
+### Decisões abertas e retomada
+
+- Proposta do agente: atividade em posto fixo primeiro; variação por momento narrativo depois; relógio/deslocamento só em tarefa própria. Precisa de escolha do usuário antes de implementar rotina.
+- Validar ordem dos lotes: começar por três figurantes demonstra cotidiano; começar por moradores nomeados aproveita mais texto existente. Sequência acima é proposta, não preferência atribuída ao usuário.
+- Resolver cânone/condições pontuais antes da respectiva fatia: Geiger Tácio, quarto Nilce, terceira entrega do cobre, leste/norte do portão. Não corrigir catálogos durante análise por suposição.
+- Estabelecer o que cada prédio/rua do fundo representa. Ainda não há coordenadas nem capacidade de abrigar todos os locais demonstrada.
+- Retratos/poses dos novos moradores e configuração dos assets genéricos não foram testados. Existência de pasta não é sprite pronto para uso.
+- Ordem ampliada de assuntos e integração completa de quest/serviço ainda são propostas, não mecanismos confirmados pelo catálogo.
+
+**Último resultado:** primeira rodada CV-01 a CV-06 preservada: fontes e divergências, núcleos de ocupação, rotinas graduais, conexões de nove núcleos de sidequest, pistas/easter eggs e 14 entradas de revisão/rascunho de genéricas. Nenhum catálogo de código ou objeto Unity editado nesta fase.
+
+**Verificação documental realizada:** links locais dos dois documentos sem destino ausente; 14 IDs de local e 11 IDs completos de quest citados no contexto encontrados nas fontes; referências completas `city_s2_*`/`city_s7_*` citadas em código encontradas no catálogo. IDs novos de genéricas continuam explicitamente propostos. `git diff --check` delimitado aos dois documentos sem erro de whitespace; Git somente avisou conversão futura LF→CRLF. Não houve teste de comportamento, input ou aprovação visual, pois esta rodada é documental.
+
+**Próximo passo:** discutir a composição e usar L0 para associar núcleos ao mapa atual; escolher primeiro lote e modelo de rotina. Em seguida delimitar arquivos/objetos da implementação no plano antes de editar. Não reinvestigar contratos visuais já registrados sem evidência nova.
+
+**Estado Unity/backups:** não consultado nesta fase documental. Último conhecido City salva, limpa, fora de Play; confirmar novamente antes de futura montagem. Backups anteriores continuam em output/npcs-city/. Nenhum save tocado ou limpeza pendente nesta análise.
 
 ## Escopo vigente — nomes e escala da City
 
