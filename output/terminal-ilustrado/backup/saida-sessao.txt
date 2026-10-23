@@ -1,0 +1,21 @@
+=== Terminal aberto. Digite um comando e clique Executar. ===
+> nivel_agua = 100 / -- seu código aqui / 
+(código executado, nenhuma ação de droid chamada)
+=== Terminal aberto. Digite um comando e clique Executar. ===
+=== Terminal aberto. Digite um comando e clique Executar. ===
+=== Terminal aberto. Digite um comando e clique Executar. ===
+> droid.melhorarTecnica("Soco de Sobrecarga", 2)
+Falha: a técnica 'Soco de Sobrecarga' não existe. Use droid.aprenderTecnica("Soco de Sobrecarga", nivelDeDano) primeiro.
+=== Terminal aberto. Digite um comando e clique Executar. ===
+> droid.melhorarTecnica("Soco de Sobrecarga", 2)
+Falha: a técnica 'Soco de Sobrecarga' não existe. Use droid.aprenderTecnica("Soco de Sobrecarga", nivelDeDano) primeiro.
+> droid.aprenderTecnica("soco") / 
+ERRO: chunk_1:(1,21-29): cannot convert a void to a clr type System.Int32
+APOLLO: Voce passou um tipo de valor onde eu esperava outro. Numero sem aspas, texto com aspas. (linha 1)
+=== Terminal aberto. Digite um comando e clique Executar. ===
+> droid.testeAdicionarPontos(500)
+[TESTE] +500 pontos (total agora: 500).
+=== Terminal aberto. Digite um comando e clique Executar. ===
+> droid.aprenderTecnicaComStun("Choque", 1, 1)
+Sucesso: técnica 'Choque' aprendida (custou 4 pontos).
+=== Terminal aberto. Digite um comando e clique Executar. ===

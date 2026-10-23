@@ -11,6 +11,15 @@ Antes de mudar Canvas, Scaler ou gestores persistentes, pesquise os consumidores
 
 Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' Assets/Scenes Assets/Prefabs Assets/Scripts/Menus`.
 
+## Terminal ilustrado
+
+- `Assets/Prefabs/Canvas.prefab`, ramo `PainelTerminal`, usa `Assets/UI/TerminalIlustrado/terminal-fundo.png`. Cópia da referência do usuário com números/erro de exemplo removidos; não recolocar texto fictício na arte de fundo.
+- [ApresentacaoTerminalIlustrado](../../../Assets/Scripts/Menus/ApresentacaoTerminalIlustrado.cs) ajusta somente o painel quadrado virtual de 1254×1254 à tela, preservando proporção e compensando a escala herdada. Não aumentar o Canvas/Scaler global para redimensionar esse terminal.
+- Campo real de código sobre área esquerda; objetivo/ajuda rolável no papel; saída real rolável à direita; pontos do Droid ao lado de Apollo. Componentes e referências de TerminalUIManager reutilizados; fundos/legendas duplicadas dos controles Unity ficam transparentes/ocultos. Botões Limpar/Executar/Fechar ocupam os botões desenhados.
+- Numeração acompanha código; luzes mostram estado de execução/erro; checkbox de depuração ativa linhas técnicas adicionais no log, sem alterar Lua/pontos/progresso. Não confundir essa opção com a habilitação das dicas de Apollo.
+- Contrato atende CasaLip/City/Game e o Canvas persistente. Overrides antigos de apresentação do terminal nessas cenas foram retirados de forma delimitada; não repor escalas locais 2/4 sobre o painel ajustado pelo componente.
+- Montagem única: [MontagemTerminalIlustrado](../../../Assets/Editor/MontagemTerminalIlustrado.cs), que recusa executar de novo se o componente já existe. Verificação isolada: [ValidacaoTerminalIlustrado](../../../Assets/Editor/ValidacaoTerminalIlustrado.cs). Estado/aceite, evidências e backups no [plano do terminal](../../planos-implementacao/2026-10-22-terminal-ilustrado.md). Não executar montagem novamente para testar.
+
 ## Diretriz de mensagens ao jogador — definida em 22/10/2026
 
 **Determinação do usuário:** mensagens de sucesso, confirmação de salvamento/carregamento, falhas de operação, dicas e explicações de bloqueio (casa, portão da cidade e outras passagens) devem usar a **caixa de diálogo existente**, com a apresentação aprovada. Não criar texto avulso, toast, nova janela ou reativar a etiqueta “desativado”. Isso vale desde a primeira tentativa; ausência de retorno não é funcionamento aceitável.

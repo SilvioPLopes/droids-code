@@ -50,6 +50,11 @@ public class TerminalUIManager : MonoBehaviour
     [Tooltip("Mostra a explicação do Apollo junto de cada erro do terminal. Manter ligado.")]
     public bool mostrarDicasDoApollo = true;
 
+    public enum EstadoDoTerminal { Pronto, Executando, Erro }
+    public EstadoDoTerminal EstadoVisual { get; private set; }
+    [Tooltip("Inclui início e resultado técnico da execução no log, sem alterar o código Lua.")]
+    public bool depuracaoAtiva;
+
     // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
     // MenuMundoManager.Start()). Invocado dentro de Fechar().
     public System.Action AoFechar;
@@ -250,7 +255,12 @@ public class TerminalUIManager : MonoBehaviour
         AdicionarLinhaDeLog($"> {codigo.Replace("\n", " / ")}");
 
         api.LimparLog();
+        EstadoVisual = EstadoDoTerminal.Executando;
+        if (depuracaoAtiva) AdicionarLinhaDeLog("[Depuração] Iniciando execução.");
         ResultadoExecucao resultado = runner.ExecutarCodigo(codigo);
+        EstadoVisual = resultado.Sucesso ? EstadoDoTerminal.Pronto : EstadoDoTerminal.Erro;
+        if (depuracaoAtiva)
+            AdicionarLinhaDeLog(resultado.Sucesso ? "[Depuração] Execução concluída." : "[Depuração] Execução interrompida por erro.");
 
         if (resultado.Sucesso)
         {
