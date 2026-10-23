@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: d6c4b82380a7af2419d9268c820da8c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3615244961532080303
+    second: tecnologia_0
+  - first:
+      213: -2935979781374835079
+    second: tecnologia_1
+  - first:
+      213: -4644652566302428844
+    second: tecnologia_2
+  - first:
+      213: 2015922155281020805
+    second: tecnologia_3
+  - first:
+      213: 4713642946896287875
+    second: tecnologia_4
+  - first:
+      213: 7050051196346035528
+    second: tecnologia_5
+  - first:
+      213: 5187575005927201592
+    second: tecnologia_6
+  - first:
+      213: 1917433369373338325
+    second: tecnologia_7
+  - first:
+      213: -4751301138979756184
+    second: tecnologia_8
+  - first:
+      213: 8248513298236280566
+    second: tecnologia_9
+  - first:
+      213: 5277172378086217062
+    second: tecnologia_10
+  - first:
+      213: 4334785306452384016
+    second: tecnologia_11
+  - first:
+      213: 1925310717201943449
+    second: tecnologia_12
+  - first:
+      213: -8524005578641878050
+    second: tecnologia_13
+  - first:
+      213: 2833315866697477268
+    second: tecnologia_14
+  - first:
+      213: -4636905493833091841
+    second: tecnologia_15
+  - first:
+      213: -470642799376545252
+    second: tecnologia_16
+  - first:
+      213: -6391956244506107477
+    second: tecnologia_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tecnologia_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 803
+        width: 447
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0f32c532eeb2230800000000000000
+      internalID: 3615244961532080303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_1
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 419
+        width: 431
+        height: 389
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9768c6fb1fd4147d0800000000000000
+      internalID: -2935979781374835079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_2
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 819
+        width: 279
+        height: 390
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 451ff607911ea8fb0800000000000000
+      internalID: -4644652566302428844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_3
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 843
+        width: 459
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5877d58f48ef9fb10800000000000000
+      internalID: 2015922155281020805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_4
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 445
+        width: 381
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38857c749493a6140800000000000000
+      internalID: 4713642946896287875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 419
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84de586d530d6d160800000000000000
+      internalID: 7050051196346035528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_6
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 465
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83b5cf1abf7fdf740800000000000000
+      internalID: 5187575005927201592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_7
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 15
+        width: 289
+        height: 421
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da6afd8d771c9a10800000000000000
+      internalID: 1917433369373338325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_8
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 425
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 867e33e99ccff0eb0800000000000000
+      internalID: -4751301138979756184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 345
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fe857a642b987270800000000000000
+      internalID: 8248513298236280566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_10
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 0
+        width: 391
+        height: 414
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 665155671584c3940800000000000000
+      internalID: 5277172378086217062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_11
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 397
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0195da00540482c30800000000000000
+      internalID: 4334785306452384016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 278
+        width: 15
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99b031585e318ba10800000000000000
+      internalID: 1925310717201943449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_13
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 306
+        width: 29
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed35a9d9616a4b980800000000000000
+      internalID: -8524005578641878050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 49
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c2bfae4c5f15720800000000000000
+      internalID: 2833315866697477268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 81
+        width: 45
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff4750f450766afb0800000000000000
+      internalID: -4636905493833091841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 69
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1ac0171ed0f779f0800000000000000
+      internalID: -470642799376545252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tecnologia_17
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 33
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1af5269a53b47a0800000000000000
+      internalID: -6391956244506107477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tecnologia_0: 3615244961532080303
+      tecnologia_1: -2935979781374835079
+      tecnologia_10: 5277172378086217062
+      tecnologia_11: 4334785306452384016
+      tecnologia_12: 1925310717201943449
+      tecnologia_13: -8524005578641878050
+      tecnologia_14: 2833315866697477268
+      tecnologia_15: -4636905493833091841
+      tecnologia_16: -470642799376545252
+      tecnologia_17: -6391956244506107477
+      tecnologia_2: -4644652566302428844
+      tecnologia_3: 2015922155281020805
+      tecnologia_4: 4713642946896287875
+      tecnologia_5: 7050051196346035528
+      tecnologia_6: 5187575005927201592
+      tecnologia_7: 1917433369373338325
+      tecnologia_8: -4751301138979756184
+      tecnologia_9: 8248513298236280566
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

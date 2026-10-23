@@ -46,7 +46,6 @@ public class LojaUIManager : MonoBehaviour
     public Button botaoAcao;
     DefinicaoDeItem selecionado;
     bool inicializado;
-    List<FalaDeDialogo> avisoPendente;
     public DefinicaoDeItem ItemSelecionado => selecionado;
     public bool Vendendo => _abaAtual == Aba.Vender;
 
@@ -64,6 +63,7 @@ public class LojaUIManager : MonoBehaviour
     {
         if (inicializado) return;
         inicializado = true;
+        if (apresentacao != null) textoMensagem = apresentacao.PrepararMensagem();
         if (botaoVoltar != null) botaoVoltar.onClick.AddListener(Fechar);
         if (botaoAbaComprar != null) botaoAbaComprar.onClick.AddListener(() => MudarAba(Aba.Comprar));
         if (botaoAbaVender != null) botaoAbaVender.onClick.AddListener(() => MudarAba(Aba.Vender));
@@ -78,6 +78,7 @@ public class LojaUIManager : MonoBehaviour
     {
         Inicializar();
         selecionado = null;
+        if (textoMensagem != null) textoMensagem.text = "Selecione um produto para consultar.";
         if (painel != null) painel.SetActive(true);
         _abaAtual = Aba.Comprar;
         AtualizarListaComRebuild();
@@ -85,14 +86,12 @@ public class LojaUIManager : MonoBehaviour
 
     public void Fechar()
     {
-        avisoPendente = null;
         if (painel != null) painel.SetActive(false);
         AoFechar?.Invoke();
     }
 
     void MudarAba(Aba aba)
     {
-        if (avisoPendente != null) return;
         selecionado = null;
         _abaAtual = aba;
         AtualizarListaComRebuild();
@@ -230,7 +229,7 @@ public class LojaUIManager : MonoBehaviour
         AtualizarLista();
         if (selecionado != null && Vendendo && GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(selecionado.Id) <= 0)
             selecionado = null;
-        if (botaoAcao != null) botaoAcao.interactable = selecionado != null && avisoPendente == null;
+        if (botaoAcao != null) botaoAcao.interactable = selecionado != null;
         if (apresentacao != null) apresentacao.MostrarSelecao(selecionado, Vendendo);
         if (painelListaDeItens != null)
             LayoutRebuilder.ForceRebuildLayoutImmediate(painelListaDeItens.GetComponent<RectTransform>());
@@ -243,7 +242,6 @@ public class LojaUIManager : MonoBehaviour
 
     void Selecionar(DefinicaoDeItem item)
     {
-        if (avisoPendente != null) return;
         selecionado = item;
         if (botaoAcao != null) botaoAcao.interactable = true;
         if (apresentacao != null) apresentacao.MostrarSelecao(item, Vendendo);
@@ -251,31 +249,13 @@ public class LojaUIManager : MonoBehaviour
 
     public void ConfirmarSelecao()
     {
-        if (selecionado == null || avisoPendente != null) return;
+        if (selecionado == null) return;
         if (Vendendo) Vender(selecionado); else Comprar(selecionado);
     }
 
     void MostrarMensagem(string motivo, DefinicaoDeItem item)
     {
-        avisoPendente = CatalogoDeDialogos.AvisoDaLoja(motivo, item.Nome, item.Preco);
-        if (botaoAcao != null) botaoAcao.interactable = false;
-        TentarMostrarAviso();
-    }
-
-    void Update() { if (avisoPendente != null) TentarMostrarAviso(); }
-
-    void TentarMostrarAviso()
-    {
-        var dialogo = DialogoUIManager.Instancia;
-        if (dialogo == null || dialogo.EstaAberto) return;
-        // Manter a loja aberta se Mostrar recusar; nunca perder o aviso nem o callback existente.
-        bool aceito = dialogo.Mostrar(avisoPendente, () => {
-            if (painel == null) return;
-            painel.SetActive(true);
-            AtualizarListaComRebuild();
-        });
-        if (!aceito) return;
-        avisoPendente = null;
-        if (painel != null) painel.SetActive(false);
+        var aviso = CatalogoDeDialogos.AvisoDaLoja(motivo, item.Nome, item.Preco);
+        if (textoMensagem != null) textoMensagem.text = aviso[0].texto;
     }
 }

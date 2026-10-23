@@ -117,11 +117,10 @@ public static class MontagemLojaIlustrada
         a.descricao.overflowMode=TextOverflowModes.Overflow;
         a.preco=Texto(painel,"PrecoSelecionado","",fonte,1040,710,400,55,46);
         a.estoque=Texto(painel,"EstoqueSelecionado","",fonte,1040,775,400,45,34);
-        Texto(painel,"AjudaSelecao","Selecione um produto para consultar.",fonte,85,915,750,55,34);
+        loja.textoMensagem=Texto(painel,"AjudaSelecao","Selecione um produto para consultar.",fonte,85,905,730,76,32);
         loja.botaoAcao=Botao(painel,"ConfirmarOperacao","COMPRAR 1",fonte,1025,910,420,65);
         a.rotuloAcao=loja.botaoAcao.GetComponentInChildren<TextMeshProUGUI>();loja.botaoAcao.interactable=false;
         loja.botaoVoltar=Botao(painel,"FecharLoja","VOLTAR",fonte,835,910,170,65);
-        loja.textoMensagem=null;
         a.MostrarSelecao(null,false);a.AtualizarEscala();loja.painel.SetActive(false);
         EditorSceneManager.MarkSceneDirty(cena);EditorSceneManager.SaveScene(cena);AssetDatabase.SaveAssets();
         return "Uma loja montada e City salva; Canvas/Scaler e demais ramos preservados.";

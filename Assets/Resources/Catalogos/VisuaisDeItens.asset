@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1245aaaccfb27c94baa44fc16ac1bfd5, type: 3}
+  m_Name: VisuaisDeItens
+  m_EditorClassIdentifier: Assembly-CSharp::DroidsCode.DroidCore.CatalogoVisualDeItens
+  itens:
+  - id: pocao_pequena
+    nomeParaConsulta: "Po\xE7\xE3o Pequena"
+    sprite: {fileID: 21300000, guid: e542d2e41fc2cfc41afb1579cf910abc, type: 2}
+    origem: "Folha Consumo, linha 1, coluna 1, recorte (x:45.00, y:826.00, width:359.00,
+      height:359.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: pocao_media
+    nomeParaConsulta: "Po\xE7\xE3o M\xE9dia"
+    sprite: {fileID: 21300000, guid: e092ada3ed9acbb4cafb24b15bff621f, type: 2}
+    origem: "Folha Consumo, linha 1, coluna 2, recorte (x:444.00, y:820.00, width:359.00,
+      height:359.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: pocao_grande
+    nomeParaConsulta: "Po\xE7\xE3o Grande"
+    sprite: {fileID: 21300000, guid: e51c85bcaee6cda4f88f72ac1af45063, type: 2}
+    origem: "Folha Consumo, linha 1, coluna 3, recorte (x:866.00, y:847.00, width:359.00,
+      height:359.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: reparo_completo
+    nomeParaConsulta: Reparo Completo
+    sprite: {fileID: 21300000, guid: aa71253401473484aa7eabf2a7bb2332, type: 2}
+    origem: "Folha Consumo, linha 2, coluna 1, recorte (x:32.00, y:446.00, width:372.00,
+      height:349.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: escudo_de_emergencia
+    nomeParaConsulta: "Escudo de Emerg\xEAncia"
+    sprite: {fileID: 21300000, guid: 8ec0d12370ba9dd4ca15bc10bd9ea50e, type: 2}
+    origem: "Folha Consumo, linha 2, coluna 2, recorte (x:461.00, y:469.00, width:334.00,
+      height:309.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: oleo_de_precisao
+    nomeParaConsulta: "\xD3leo de Precis\xE3o"
+    sprite: {fileID: 21300000, guid: 7e2e8a0f0a1f39f4cbf06e2e8e22d932, type: 2}
+    origem: "Folha Consumo, linha 2, coluna 3, recorte (x:827.00, y:467.00, width:416.00,
+      height:309.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: sobrecarga_temp
+    nomeParaConsulta: Injetor de Sobrecarga
+    sprite: {fileID: 21300000, guid: 637817d966fe9814fa6c3cb4fd720dd3, type: 2}
+    origem: "Folha Consumo, linha 3, coluna 1, recorte (x:45.00, y:65.00, width:369.00,
+      height:340.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: granada_de_acido
+    nomeParaConsulta: "Granada de \xC1cido"
+    sprite: {fileID: 21300000, guid: 8f2c53e70ea58c84fac80a22d1443e04, type: 2}
+    origem: "Folha Consumo, linha 3, coluna 2, recorte (x:488.00, y:58.00, width:289.00,
+      height:352.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: corrosivo
+    nomeParaConsulta: Corrosivo
+    sprite: {fileID: 21300000, guid: cb912e998d232e846a9b9ac2821f6d08, type: 2}
+    origem: "Folha Consumo, linha 3, coluna 3, recorte (x:908.00, y:59.00, width:271.00,
+      height:365.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: disruptor_emp
+    nomeParaConsulta: Disruptor EMP
+    sprite: {fileID: 21300000, guid: eaea0936a7613ea408c9122d652581f4, type: 2}
+    origem: "Folha Tecnologia, linha 1, coluna 1, recorte (x:26.00, y:881.00, width:409.00,
+      height:294.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: nucleo_de_energia
+    nomeParaConsulta: "N\xFAcleo de Energia"
+    sprite: {fileID: 21300000, guid: 7a147d29254394c44b53ee195ef03f14, type: 2}
+    origem: "Folha Tecnologia, linha 1, coluna 2, recorte (x:523.00, y:857.00, width:209.00,
+      height:357.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: servo_motor
+    nomeParaConsulta: Servo-Motor
+    sprite: {fileID: 21300000, guid: afb6c2ad95388af41b748cfc6d72d341, type: 2}
+    origem: "Folha Tecnologia, linha 1, coluna 3, recorte (x:818.00, y:872.00, width:408.00,
+      height:306.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: sensor_optico
+    nomeParaConsulta: "Sensor \xD3ptico"
+    sprite: {fileID: 21300000, guid: 25687becaf31fd54da7accb2ddba0ebe, type: 2}
+    origem: "Folha Tecnologia, linha 2, coluna 1, recorte (x:62.00, y:455.00, width:351.00,
+      height:340.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: placa_de_blindagem
+    nomeParaConsulta: Placa de Blindagem
+    sprite: {fileID: 21300000, guid: 87c52cba9df9a124694488b02e6063ab, type: 2}
+    origem: "Folha Tecnologia, linha 2, coluna 2, recorte (x:430.00, y:440.00, width:395.00,
+      height:363.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: giroscopio
+    nomeParaConsulta: "Girosc\xF3pio"
+    sprite: {fileID: 21300000, guid: d051deae60144cd4a9cb28c6eba431de, type: 2}
+    origem: "Folha Tecnologia, linha 2, coluna 3, recorte (x:856.00, y:444.00, width:355.00,
+      height:362.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: sinalizador_de_retorno
+    nomeParaConsulta: Sinalizador de Retorno
+    sprite: {fileID: 21300000, guid: baedffd56876622429bcfc43b80fc9ea, type: 2}
+    origem: "Folha Tecnologia, linha 3, coluna 1, recorte (x:138.00, y:27.00, width:184.00,
+      height:410.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: kit_de_acampamento
+    nomeParaConsulta: Kit de Acampamento
+    sprite: {fileID: 21300000, guid: 15191a47bd938354e943700e607a3653, type: 2}
+    origem: "Folha Tecnologia, linha 3, coluna 2, recorte (x:433.00, y:36.00, width:384.00,
+      height:377.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: modulo_de_treinamento
+    nomeParaConsulta: "M\xF3dulo de Treinamento"
+    sprite: {fileID: 21300000, guid: dd9ec1830c0d9c94584d169edb9471ae, type: 2}
+    origem: "Folha Tecnologia, linha 3, coluna 3, recorte (x:866.00, y:64.00, width:369.00,
+      height:316.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: chave_de_acesso
+    nomeParaConsulta: Chave de Acesso
+    sprite: {fileID: 21300000, guid: ecbcc220118402840826cc0094b1c7b8, type: 2}
+    origem: "Folha Especiais, linha 1, coluna 1, recorte (x:17.00, y:889.00, width:391.00,
+      height:241.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: nucleo_sobrecarga
+    nomeParaConsulta: "N\xFAcleo de Sobrecarga"
+    sprite: {fileID: 21300000, guid: 7374eae10ce637c44aef05eefb4bf423, type: 2}
+    origem: "Folha Especiais, linha 1, coluna 2, recorte (x:458.00, y:856.00, width:345.00,
+      height:356.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: modulo_ressonancia
+    nomeParaConsulta: "M\xF3dulo de Resson\xE2ncia"
+    sprite: {fileID: 21300000, guid: 6677093c19a41324ab76598750e1d810, type: 2}
+    origem: "Folha Especiais, linha 1, coluna 3, recorte (x:862.00, y:861.00, width:383.00,
+      height:351.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: fio_de_cobre
+    nomeParaConsulta: Fio de Cobre
+    sprite: {fileID: 21300000, guid: b597ef1807d447c4ebc2f5a65bc91587, type: 2}
+    origem: "Folha Especiais, linha 2, coluna 1, recorte (x:66.00, y:465.00, width:329.00,
+      height:321.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: filtro_de_agua
+    nomeParaConsulta: "Filtro de \xC1gua"
+    sprite: {fileID: 21300000, guid: f400ee17d568bc54b81cf482da17c5a9, type: 2}
+    origem: "Folha Especiais, linha 2, coluna 2, recorte (x:440.00, y:488.00, width:380.00,
+      height:289.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: sucata_limpa
+    nomeParaConsulta: Sucata Limpa
+    sprite: {fileID: 21300000, guid: 02ed76ae86333de439c1ab72aaf3fd91, type: 2}
+    origem: "Folha Especiais, linha 2, coluna 3, recorte (x:856.00, y:470.00, width:369.00,
+      height:313.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: emblema_da_guilda
+    nomeParaConsulta: Emblema da Guilda
+    sprite: {fileID: 21300000, guid: 583c0801e55a88d44bfd26ade6658a76, type: 2}
+    origem: "Folha Especiais, linha 3, coluna 1, recorte (x:42.00, y:37.00, width:333.00,
+      height:382.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: bilhete_do_ivo
+    nomeParaConsulta: Bilhete do Ivo
+    sprite: {fileID: 21300000, guid: 324370af3443bbc46a34b200ba7c8288, type: 2}
+    origem: "Folha Especiais, linha 3, coluna 2, recorte (x:429.00, y:68.00, width:386.00,
+      height:297.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."
+  - id: peca_perna_apollo
+    nomeParaConsulta: Servo da Perna do Apollo
+    sprite: {fileID: 21300000, guid: 004e3aa85b643e34993012fde6e0f745, type: 2}
+    origem: "Folha Especiais, linha 3, coluna 3, recorte (x:830.00, y:40.00, width:414.00,
+      height:395.00); gera\xE7\xE3o baseada nas refer\xEAncias 3/17 de Atualizados/novos."

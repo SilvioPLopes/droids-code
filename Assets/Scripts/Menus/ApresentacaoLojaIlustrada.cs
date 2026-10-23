@@ -10,7 +10,7 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
     public RectTransform fundoFoco;
     public TextMeshProUGUI nomeItem, descricao, preco, estoque, rotuloAcao, vazio;
     public Image iconeItem;
-    public Sprite[] icones;
+    [HideInInspector] public Sprite[] icones; // Legado serializado; não define mais a aparência por categoria.
     public LojaUIManager loja;
     bool ajustando;
     static readonly Color Claro = new Color(.94f,.87f,.68f);
@@ -50,11 +50,7 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
 
     Sprite Icone(DefinicaoDeItem item)
     {
-        if (icones == null || icones.Length<6) return null;
-        int i=item.Tipo==TipoDeItem.Cura?0:item.Tipo==TipoDeItem.Buff?1:
-            item.Tipo==TipoDeItem.Debuff?2:item.Tipo==TipoDeItem.Equipavel?4:5;
-        if (item.Id==CatalogoDeItens.IdNucleoDeEnergia) i=3;
-        return icones[i];
+        return CatalogoVisualDeItens.Obter(item.Id);
     }
 
     public void PrepararProduto(Button botao, DefinicaoDeItem item, int valor, int quantidade, bool vendendo)
@@ -69,6 +65,20 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
     }
 
     public void MostrarVazio(string texto) { if(vazio!=null) vazio.text=texto; }
+
+    /// <summary>Reutiliza o rodapé existente; confirmação local não abre conversa.</summary>
+    public TextMeshProUGUI PrepararMensagem()
+    {
+        var alvo = transform.Find("AjudaSelecao");
+        if (alvo == null) return null;
+        var texto = alvo.GetComponent<TextMeshProUGUI>();
+        if (texto == null) return null;
+        texto.fontSize=32;texto.enableAutoSizing=false;
+        texto.textWrappingMode=TextWrappingModes.Normal;
+        texto.rectTransform.anchoredPosition=new Vector2(85,-905);
+        texto.rectTransform.sizeDelta=new Vector2(730,76);
+        return texto;
+    }
 
     public void MostrarSelecao(DefinicaoDeItem item, bool vendendo)
     {

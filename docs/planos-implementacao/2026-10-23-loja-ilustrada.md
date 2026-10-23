@@ -1,5 +1,25 @@
 # Loja ilustrada — City
 
+## Retomada vigente — retorno de transações dentro da loja (23/10/2026)
+
+**Pedido novo e prioridade:** usuário rejeitou a confirmação abrindo a conversa; compra/venda e falhas de transação devem informar no próprio menu, mantendo a loja aberta. Exceção explícita à diretriz anterior de diálogo, que permanece para mensagens fora da loja. Captura mostra “Vendeu Poção Pequena por 8 Gold.” no diálogo; não é falha econômica.
+
+**Causa sustentada:** `LojaUIManager.MostrarMensagem` chama `DialogoUIManager.Mostrar` e desativa `painel` quando aceito. Campo `textoMensagem` da loja atual está nulo. Há um texto local `AjudaSelecao` no rodapé, reutilizável sem nova janela nem alteração da arte.
+
+**Escopo desta correção:** LojaUIManager.cs, ApresentacaoLojaIlustrada.cs, helpers MontagemLojaIlustrada.cs/ValidacaoLojaIlustrada.cs e documentos deste plano/contrato. Reutilizar AjudaSelecao como retorno local, ajustar somente seu espaço de texto ao inicializar o painel. Não editar City, Canvas/Scaler, diálogo compartilhado, catálogo, arte, economia ou saves. Consumidor conhecido: única loja da City; NpcInterativo conserva abertura/fechamento e contador.
+
+**Aceite:** comprar/vender e tentar sem Gold mostram texto legível no rodapé; loja permanece ativa, não abre diálogo, não exige avançar conversa e permite repetir a operação. Preservar saldo, quantidade, abas e callback. Mensagem longa em até duas linhas sem sobrepor Voltar/Comprar.
+
+**Backup/reversão:** copiar quatro scripts anteriores em `output/loja-ilustrada/feedback-local/backup/`; rollback apenas dos hunks desta correção. Estado confirmado antes de editar: DroidsCode/City limpa, fora de Play, compilação parada. Sem edição persistente de cena nem teste que grave saves.
+
+**Validação mínima:** adaptar fixture isolada para exigir feedback local e ausência de abertura de diálogo; confirmar falha antes de mudar controlador; testar compra/venda repetida e Gold insuficiente, renderizar feedback longo em 844×475 e 1280×720. Separar API/render de input real e aceite visual. Registros abaixo são históricos e não definem o aceite vigente de mensagens.
+
+**Resultado desta correção:** removidos fila de avisos, chamadas a DialogoUIManager e ocultação/reabertura do menu para transações. Inicialização associa `textoMensagem` ao `AjudaSelecao` existente via `PrepararMensagem`, ajustando somente esse texto para x85/y905, 730×76, fonte32 e quebra de linha. Conteúdo mantém origem no catálogo; ação permanece disponível após aviso, conforme seleção/estoque. Helper de montagem atualizado para refletir o contrato, sem reexecutá-lo.
+
+**Evidência:** teste novo falhou antes da correção com “Compra precisa confirmar dentro da loja, sem abrir diálogo.” Após alteração, `ValidacaoLojaIlustrada.Executar` retornou OK em 844×475 e 1280×720 para seleção, compra/venda repetida, insuficiente, retorno local sem abrir conversa, vazio, conversa/callback existente preservados, rolagem, clique, enquadramento e contador. Testes por API, não input físico. Render pequeno inspecionado: confirmação no rodapé sem corte/sobreposição; prévias atualizadas em `output/loja-ilustrada/preview-*.png`. Aceite visual do usuário ainda pendente.
+
+**Estado final e preservação:** City limpa, fora de Play, compilação parada e sem falha; zero objetos temporários. Hashes de City e DialogoUIManager iguais aos anteriores desta rodada, armazenados em `output/loja-ilustrada/feedback-local/preservados.json`; nenhuma cena salva e nenhum save gravado. Backup dos quatro scripts em `feedback-local/backup/`. Diff sem erros de whitespace. Sem commit/push. Próximo passo: avaliar a transação no menu durante o jogo, sem remontar nem alterar outros painéis.
+
 ## Escopo e aceite
 
 Usuário escolheu executar a ideia da loja e forneceu capturas: lista e botões pequenos, nenhum fundo ilustrado, aviso de Gold sobrepondo os demais textos. Autorização anterior permite adaptar/fundir artes. Proposta: composição horizontal de metal/latão baseada nas imagens 8/9, produtos com ícones e rolagem à esquerda, detalhes à direita, saldo e abas no topo, ação explícita de uma unidade e voltar. Selecionar um produto não deve comprar/vender. Avisos na caixa de diálogo existente.

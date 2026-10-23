@@ -35,33 +35,43 @@ public static class ValidacaoLojaIlustrada
             var origemDialogo=Resources.FindObjectsOfTypeAll<DialogoUIManager>().Single(x=>x.gameObject.scene.name=="City");
             var dialogo=UnityEngine.Object.Instantiate(origemDialogo.gameObject,canvasGo.transform,false).GetComponent<DialogoUIManager>();singletonDialogo.SetValue(null,dialogo);
             foreach(var tr in canvasGo.GetComponentsInChildren<Transform>(true))tr.gameObject.layer=30;
-            void FecharAviso(){for(int i=0;i<30&&dialogo.EstaAberto;i++)dialogo.Avancar();Exigir(!dialogo.EstaAberto&&l.painel.activeSelf,"Aviso não retornou à loja.");}
+            void MensagemLocal(string trecho){Exigir(l.painel.activeSelf&&!dialogo.EstaAberto&&l.textoMensagem!=null&&l.textoMensagem.text.Contains(trecho),"Retorno não ficou dentro da loja: "+trecho);}
             int fechamentos=0;estado.RegistrarMenuAberto();l.AoFechar=()=>{fechamentos++;estado.RegistrarMenuFechado();};
             l.Mostrar();
             var botoes=l.painelListaDeItens.GetComponentsInChildren<Button>();
             Exigir(botoes.Length==CatalogoDeItens.ItensDaLoja.Count(),"Produtos não correspondem ao catálogo.");
+            OrganizacaoVisualDeItens.Validar();
+            foreach(var produto in CatalogoDeItens.ItensDaLoja)
+            {
+                var botao=botoes.Single(x=>x.name=="Produto_"+produto.Id);
+                Exigir(botao.transform.Find("Icone").GetComponent<Image>().sprite==CatalogoVisualDeItens.Obter(produto.Id),"Ícone incorreto na lista: "+produto.Id);
+            }
             botoes.Last().onClick.Invoke();var item=l.ItemSelecionado;
+            Exigir(l.apresentacao.iconeItem.sprite==CatalogoVisualDeItens.Obter(item.Id),"Detalhe e lista usam sprites diferentes.");
             Exigir(item!=null&&estado.Gold==1000&&estado.Inventario.Count==0,"Selecionar executou operação.");
             l.botaoAcao.onClick.Invoke();
             Exigir(estado.Gold==1000-item.Preco&&estado.ObterQuantidadeDeItem(item.Id)==1,"Compra não atualizou saldo/estoque uma vez.");
-            Exigir(dialogo.EstaAberto&&!l.painel.activeSelf&&dialogo.textoFala.text.Contains("Comprou"),"Sucesso não apareceu no diálogo.");
-            Exigir(fechamentos==0,"Aviso fechou o contrato externo da loja.");FecharAviso();
+            Exigir(l.painel.activeSelf&&!dialogo.EstaAberto&&l.textoMensagem!=null&&l.textoMensagem.text.Contains("Comprou"),"Compra precisa confirmar dentro da loja, sem abrir diálogo.");
+            Exigir(fechamentos==0&&l.botaoAcao.interactable,"Confirmação bloqueou/fechou a loja.");
+            l.botaoAcao.onClick.Invoke();MensagemLocal("Comprou");
+            Exigir(estado.ObterQuantidadeDeItem(item.Id)==2&&estado.Gold==1000-2*item.Preco,"Compra repetida não preservou quantidade/saldo.");
             estado.CarregarGold(0);l.botaoAcao.onClick.Invoke();
-            Exigir(estado.ObterQuantidadeDeItem(item.Id)==1&&estado.Gold==0&&dialogo.textoFala.text.Contains("insuficiente"),"Saldo insuficiente alterou estoque ou não informou.");FecharAviso();
+            Exigir(estado.ObterQuantidadeDeItem(item.Id)==2&&estado.Gold==0,"Saldo insuficiente alterou estoque.");MensagemLocal("insuficiente");
+            l.botaoAcao.onClick.Invoke();MensagemLocal("insuficiente");
             l.botaoAbaVender.onClick.Invoke();l.painelListaDeItens.GetComponentsInChildren<Button>().Single().onClick.Invoke();
-            Exigir(estado.ObterQuantidadeDeItem(item.Id)==1,"Selecionar venda removeu item.");l.botaoAcao.onClick.Invoke();
-            Exigir(estado.ObterQuantidadeDeItem(item.Id)==0&&estado.Gold==item.Preco&&dialogo.textoFala.text.Contains("Vendeu"),"Venda mudou a regra econômica ou não informou.");FecharAviso();
+            Exigir(estado.ObterQuantidadeDeItem(item.Id)==2,"Selecionar venda removeu item.");l.botaoAcao.onClick.Invoke();MensagemLocal("Vendeu");
+            Exigir(estado.ObterQuantidadeDeItem(item.Id)==1&&estado.Gold==item.Preco,"Venda mudou a regra econômica.");
+            l.botaoAcao.onClick.Invoke();MensagemLocal("Vendeu");
+            Exigir(estado.ObterQuantidadeDeItem(item.Id)==0&&estado.Gold==2*item.Preco,"Venda repetida não atualizou quantidade/saldo.");
             Exigir(!l.botaoAcao.interactable&&l.apresentacao.vazio.gameObject.activeSelf,"Venda do último item não mostrou estado vazio.");
-            // Um diálogo ocupado não pode perder seu callback nem o aviso da loja.
+            // A loja não deve tocar na conversa nem em seu callback.
             estado.CarregarGold(0);l.botaoAbaComprar.onClick.Invoke();l.painelListaDeItens.GetComponentsInChildren<Button>().Last().onClick.Invoke();
             bool callbackOriginal=false;dialogo.Mostrar(new[]{new FalaDeDialogo{texto="Conversa existente",falante=""}},()=>callbackOriginal=true);
             l.botaoAcao.onClick.Invoke();Exigir(dialogo.textoFala.text=="Conversa existente","Loja sobrescreveu diálogo ocupado.");
-            dialogo.Fechar(); // Fecha sem executar callback; reabrir para conferir preservação por conclusão.
-            dialogo.Mostrar(new[]{new FalaDeDialogo{texto="Conversa existente",falante=""}},()=>callbackOriginal=true);dialogo.Avancar();
+            Exigir(l.painel.activeSelf&&l.textoMensagem.text.Contains("insuficiente"),"Loja dependeu do diálogo ocupado para informar.");dialogo.Avancar();
             Exigir(callbackOriginal,"Callback do diálogo existente se perdeu.");
-            typeof(LojaUIManager).GetMethod("Update",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(l,null);
-            Exigir(dialogo.EstaAberto&&dialogo.textoFala.text.Contains("insuficiente"),"Aviso pendente não foi entregue.");FecharAviso();
             estado.CarregarGold(350);l.botaoAbaComprar.onClick.Invoke();l.painelListaDeItens.GetComponentsInChildren<Button>().Last().onClick.Invoke();
+            l.botaoAcao.onClick.Invoke();MensagemLocal("Comprou");
             var a=l.apresentacao;Canvas.ForceUpdateCanvases();a.AtualizarEscala();Canvas.ForceUpdateCanvases();
             foreach(var t in canvasGo.GetComponentsInChildren<TextMeshProUGUI>())t.ForceMeshUpdate();Canvas.ForceUpdateCanvases();
             var lista=l.painelListaDeItens.GetComponentInParent<ScrollRect>();lista.Rebuild(CanvasUpdate.PostLayout);
@@ -76,6 +86,9 @@ public static class ValidacaoLojaIlustrada
             {r.GetWorldCorners(cantos);foreach(var canto in cantos){var p=cam.WorldToScreenPoint(canto);Exigir(p.x>=-1&&p.y>=-1&&p.x<=largura+1&&p.y<=altura+1,"Controle fora da tela: "+r.name);}}
             if(altura<=500)Exigir(a.descricao.fontSize*Mathf.Abs(a.descricao.transform.lossyScale.y)>=15,"Descrição pequena na janela de referência.");
             Exigir(-a.estoque.rectTransform.anchoredPosition.y+a.estoque.rectTransform.rect.height<=825,"Estoque invade moldura inferior dos detalhes.");
+            Exigir(!l.textoMensagem.isTextTruncated&&l.textoMensagem.textInfo.lineCount<=2,"Confirmação local cortada.");
+            var mensagemRect=l.textoMensagem.rectTransform;
+            Exigir(mensagemRect.anchoredPosition.x+mensagemRect.rect.width<((RectTransform)l.botaoVoltar.transform).anchoredPosition.x,"Mensagem sobrepõe Voltar.");
             cam.Render();
             var eventosGo=new GameObject("EventosTesteLoja",typeof(EventSystem));UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(eventosGo,cena);
             foreach(var b in new[]{l.botaoAcao,l.botaoAbaComprar,l.botaoAbaVender,l.botaoVoltar,l.painelListaDeItens.GetComponentsInChildren<Button>().First()})
@@ -88,7 +101,7 @@ public static class ValidacaoLojaIlustrada
             try {RenderTexture.active=rt;imagem=new Texture2D(largura,altura,TextureFormat.RGB24,false);imagem.ReadPixels(new Rect(0,0,largura,altura),0,0);imagem.Apply();Directory.CreateDirectory("output/loja-ilustrada");File.WriteAllBytes($"output/loja-ilustrada/preview-{largura}x{altura}.png",imagem.EncodeToPNG());}
             finally {RenderTexture.active=rtAnterior;if(imagem!=null)UnityEngine.Object.DestroyImmediate(imagem);}
             l.botaoVoltar.onClick.Invoke();Exigir(fechamentos==1&&!l.painel.activeSelf&&!estado.MenuAberto,"Fechamento deixou contador/callback residual.");
-            return $"OK {largura}x{altura}: seleção, compra, insuficiente, venda, vazio, diálogo ocupado/retorno, rolagem, clique, enquadramento, callback/contador. Estado isolado; sem saves.";
+            return $"OK {largura}x{altura}: seleção, compra/venda repetida, insuficiente, feedback local sem diálogo, vazio, conversa preservada, rolagem, clique, enquadramento, callback/contador. Estado isolado; sem saves.";
         }
         finally {if(rt!=null){camCleanup(rt);};EditorSceneManager.ClosePreviewScene(cena);singleton.SetValue(null,anterior);singletonDialogo.SetValue(null,dialogoAnterior);}
     }

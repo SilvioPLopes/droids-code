@@ -1,0 +1,1742 @@
+fileFormatVersion: 2
+guid: 920b394843046bc42a1bfa3cdaac09b6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2756046426905318532
+    second: especiais_0
+  - first:
+      213: -8550167119711660342
+    second: especiais_1
+  - first:
+      213: -558005955907673396
+    second: especiais_2
+  - first:
+      213: 5821685009261719096
+    second: especiais_3
+  - first:
+      213: 7728377388239528901
+    second: especiais_4
+  - first:
+      213: 2175576776540203941
+    second: especiais_5
+  - first:
+      213: -6100180279450613905
+    second: especiais_6
+  - first:
+      213: 5800925920028555973
+    second: especiais_7
+  - first:
+      213: -5449929036809292598
+    second: especiais_8
+  - first:
+      213: 1787879147172628805
+    second: especiais_9
+  - first:
+      213: -25090211242174782
+    second: especiais_10
+  - first:
+      213: -1557685169583903665
+    second: especiais_11
+  - first:
+      213: -9083413958851330691
+    second: especiais_12
+  - first:
+      213: -3931317891892380808
+    second: especiais_13
+  - first:
+      213: 6571921160048012811
+    second: especiais_14
+  - first:
+      213: 8885632722367708897
+    second: especiais_15
+  - first:
+      213: -7262558272379338415
+    second: especiais_16
+  - first:
+      213: -7700226446180732540
+    second: especiais_17
+  - first:
+      213: -7089595603323609854
+    second: especiais_18
+  - first:
+      213: 6901186131235431508
+    second: especiais_19
+  - first:
+      213: 6267940131046252628
+    second: especiais_20
+  - first:
+      213: 6704050850323458619
+    second: especiais_21
+  - first:
+      213: -3948056468722335864
+    second: especiais_22
+  - first:
+      213: -9059863142513738490
+    second: especiais_23
+  - first:
+      213: 1757928146956522528
+    second: especiais_24
+  - first:
+      213: 1037872604705990152
+    second: especiais_25
+  - first:
+      213: 2839916255149900518
+    second: especiais_26
+  - first:
+      213: 5253579989895031179
+    second: especiais_27
+  - first:
+      213: 6359302597473624276
+    second: especiais_28
+  - first:
+      213: -3092485868984251820
+    second: especiais_29
+  - first:
+      213: 979015745595352878
+    second: especiais_30
+  - first:
+      213: -70198318089598281
+    second: especiais_31
+  - first:
+      213: 8505165352200925303
+    second: especiais_32
+  - first:
+      213: 802717314328786892
+    second: especiais_33
+  - first:
+      213: -5681636671877617899
+    second: especiais_34
+  - first:
+      213: -2081125000119502447
+    second: especiais_35
+  - first:
+      213: -7128290256724555808
+    second: especiais_36
+  - first:
+      213: -4940131757065546658
+    second: especiais_37
+  - first:
+      213: 2636064149744522810
+    second: especiais_38
+  - first:
+      213: -4489558075322591869
+    second: especiais_39
+  - first:
+      213: -129858051231377272
+    second: especiais_40
+  - first:
+      213: -3670112328122302275
+    second: especiais_41
+  - first:
+      213: 8632060970609270029
+    second: especiais_42
+  - first:
+      213: 2432884480737821038
+    second: especiais_43
+  - first:
+      213: 8779221509038766717
+    second: especiais_44
+  - first:
+      213: 4949802282251955431
+    second: especiais_45
+  - first:
+      213: 8028350098948681375
+    second: especiais_46
+  - first:
+      213: -1246351277025251106
+    second: especiais_47
+  - first:
+      213: 4623370375030774652
+    second: especiais_48
+  - first:
+      213: 5070334095188286928
+    second: especiais_49
+  - first:
+      213: -3593413927522884356
+    second: especiais_50
+  - first:
+      213: -6931250193916709512
+    second: especiais_51
+  - first:
+      213: 258179465776251975
+    second: especiais_52
+  - first:
+      213: 1246663778710050756
+    second: especiais_53
+  - first:
+      213: -2344293484990632886
+    second: especiais_54
+  - first:
+      213: -3005329860821883158
+    second: especiais_55
+  - first:
+      213: 273378403096755052
+    second: especiais_56
+  - first:
+      213: 5645662650517335884
+    second: especiais_57
+  - first:
+      213: -4380760096045014117
+    second: especiais_58
+  - first:
+      213: -1854580867099348530
+    second: especiais_59
+  - first:
+      213: -9057649896410329055
+    second: especiais_60
+  - first:
+      213: -928981085708667004
+    second: especiais_61
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: especiais_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1159
+        width: 98
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4841d248f917f3620800000000000000
+      internalID: 2756046426905318532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 1195
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac69c5b2e44b75980800000000000000
+      internalID: -8550167119711660342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1195
+        width: 85
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2229f1a809148f0800000000000000
+      internalID: -558005955907673396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_3
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1162
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83ee24bdba7cac050800000000000000
+      internalID: 5821685009261719096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_4
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1177
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3ad24b946b04b60800000000000000
+      internalID: 7728377388239528901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_5
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 1162
+        width: 88
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aba4433d83313e10800000000000000
+      internalID: 2175576776540203941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1160
+        width: 43
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f67c0812b5ec75ba0800000000000000
+      internalID: -6100180279450613905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_7
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 765
+        width: 439
+        height: 443
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca78afb367018050800000000000000
+      internalID: 5800925920028555973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_8
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 801
+        width: 376
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac435ed7a66fd54b0800000000000000
+      internalID: -5449929036809292598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_9
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 1220
+        width: 56
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5498d8c9c92dfc810800000000000000
+      internalID: 1787879147172628805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1157
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c61297f59cd6aff0800000000000000
+      internalID: -25090211242174782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_11
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1153
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4cae0b579df16ae0800000000000000
+      internalID: -1557685169583903665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_12
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1166
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d77d2612b31f180800000000000000
+      internalID: -9083413958851330691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 785
+        width: 435
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bfd92d4372179c0800000000000000
+      internalID: -3931317891892380808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_14
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 1148
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0ee88cb977243b50800000000000000
+      internalID: 6571921160048012811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_15
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1134
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ee705502eb105b70800000000000000
+      internalID: 8885632722367708897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_16
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1130
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 151414edab5363b90800000000000000
+      internalID: -7262558272379338415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_17
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 1130
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 481345148dc432590800000000000000
+      internalID: -7700226446180732540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_18
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 955
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20d99be6c52bc9d90800000000000000
+      internalID: -7089595603323609854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_19
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 874
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 454e329e830f5cf50800000000000000
+      internalID: 6901186131235431508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_20
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 842
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4506d6817523cf650800000000000000
+      internalID: 6267940131046252628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_21
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 795
+        width: 70
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3a6fa19ab2990d50800000000000000
+      internalID: 6704050850323458619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_22
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 813
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88f3f943f8fa539c0800000000000000
+      internalID: -3948056468722335864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_23
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 821
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60d70dc1976e44280800000000000000
+      internalID: -9059863142513738490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_24
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 807
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0241104f55a656810800000000000000
+      internalID: 1757928146956522528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_25
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 827
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8062c9592a3476e00800000000000000
+      internalID: 1037872604705990152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_26
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 801
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e2411c99c8696720800000000000000
+      internalID: 2839916255149900518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_27
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 797
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b892bc88a2778e840800000000000000
+      internalID: 5253579989895031179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_28
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 802
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d062a5f408c04850800000000000000
+      internalID: 6359302597473624276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_29
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 809
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45a4742ac784515d0800000000000000
+      internalID: -3092485868984251820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_30
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 803
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e27a9b132a9269d00800000000000000
+      internalID: 979015745595352878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_31
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 793
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ba807a600b960ff0800000000000000
+      internalID: -70198318089598281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_32
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 784
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77075e553da680670800000000000000
+      internalID: 8505165352200925303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_33
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 785
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc77f97f423d32b00800000000000000
+      internalID: 802717314328786892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 415
+        height: 422
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 517e6edac85c621b0800000000000000
+      internalID: -5681636671877617899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_35
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 415
+        width: 383
+        height: 371
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19931b2b6db5e13e0800000000000000
+      internalID: -2081125000119502447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_36
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 409
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e70e0067c9331d90800000000000000
+      internalID: -7128290256724555808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_37
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 367
+        width: 423
+        height: 410
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e545b744750217bb0800000000000000
+      internalID: -4940131757065546658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_38
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 383
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a361aa2b06e259420800000000000000
+      internalID: 2636064149744522810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_39
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 369
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38519e997b2e1b1c0800000000000000
+      internalID: -4489558075322591869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_40
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 391
+        width: 32
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88811295ac6a23ef0800000000000000
+      internalID: -129858051231377272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_41
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 417
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db00d7c5844211dc0800000000000000
+      internalID: -3670112328122302275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_42
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 395
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0ddda8d7bd3bc770800000000000000
+      internalID: 8632060970609270029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_43
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 379
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6140f59b8753c120800000000000000
+      internalID: 2432884480737821038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_44
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 393
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a79bab27f06d970800000000000000
+      internalID: 8779221509038766717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_45
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 331
+        width: 36
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ecab0653fa31b440800000000000000
+      internalID: 4949802282251955431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_46
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 353
+        width: 11
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9eee4401ed6a6f60800000000000000
+      internalID: 8028350098948681375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_47
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 0
+        width: 431
+        height: 437
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed03e83fd1214bee0800000000000000
+      internalID: -1246351277025251106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_48
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 385
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7b16c44cd2892040800000000000000
+      internalID: 4623370375030774652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_49
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 449
+        width: 387
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dddf3ceef17d5640800000000000000
+      internalID: 5070334095188286928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_50
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 452
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4ae075211a12ec0800000000000000
+      internalID: -3593413927522884356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_51
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 353
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 875bc360ca04fcf90800000000000000
+      internalID: -6931250193916709512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_52
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 312
+        width: 37
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 744c4e13bdc359300800000000000000
+      internalID: 258179465776251975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_53
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 334
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c7db540a1a0d4110800000000000000
+      internalID: 1246663778710050756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_54
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 297
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4ceed9fe75677fd0800000000000000
+      internalID: -2344293484990632886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_55
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 254
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae666dc1a6cea46d0800000000000000
+      internalID: -3005329860821883158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_56
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 49
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b78dd853c3bc300800000000000000
+      internalID: 273378403096755052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_57
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 53
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4fa6c5c44c695e40800000000000000
+      internalID: 5645662650517335884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_58
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 49
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b93e70527e96433c0800000000000000
+      internalID: -4380760096045014117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_59
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 37
+        width: 34
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec1be4107843346e0800000000000000
+      internalID: -1854580867099348530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_60
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 0
+        width: 103
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120db90a863cc4280800000000000000
+      internalID: -9057649896410329055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: especiais_61
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 0
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 487374fdf989b13f0800000000000000
+      internalID: -928981085708667004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      especiais_0: 2756046426905318532
+      especiais_1: -8550167119711660342
+      especiais_10: -25090211242174782
+      especiais_11: -1557685169583903665
+      especiais_12: -9083413958851330691
+      especiais_13: -3931317891892380808
+      especiais_14: 6571921160048012811
+      especiais_15: 8885632722367708897
+      especiais_16: -7262558272379338415
+      especiais_17: -7700226446180732540
+      especiais_18: -7089595603323609854
+      especiais_19: 6901186131235431508
+      especiais_2: -558005955907673396
+      especiais_20: 6267940131046252628
+      especiais_21: 6704050850323458619
+      especiais_22: -3948056468722335864
+      especiais_23: -9059863142513738490
+      especiais_24: 1757928146956522528
+      especiais_25: 1037872604705990152
+      especiais_26: 2839916255149900518
+      especiais_27: 5253579989895031179
+      especiais_28: 6359302597473624276
+      especiais_29: -3092485868984251820
+      especiais_3: 5821685009261719096
+      especiais_30: 979015745595352878
+      especiais_31: -70198318089598281
+      especiais_32: 8505165352200925303
+      especiais_33: 802717314328786892
+      especiais_34: -5681636671877617899
+      especiais_35: -2081125000119502447
+      especiais_36: -7128290256724555808
+      especiais_37: -4940131757065546658
+      especiais_38: 2636064149744522810
+      especiais_39: -4489558075322591869
+      especiais_4: 7728377388239528901
+      especiais_40: -129858051231377272
+      especiais_41: -3670112328122302275
+      especiais_42: 8632060970609270029
+      especiais_43: 2432884480737821038
+      especiais_44: 8779221509038766717
+      especiais_45: 4949802282251955431
+      especiais_46: 8028350098948681375
+      especiais_47: -1246351277025251106
+      especiais_48: 4623370375030774652
+      especiais_49: 5070334095188286928
+      especiais_5: 2175576776540203941
+      especiais_50: -3593413927522884356
+      especiais_51: -6931250193916709512
+      especiais_52: 258179465776251975
+      especiais_53: 1246663778710050756
+      especiais_54: -2344293484990632886
+      especiais_55: -3005329860821883158
+      especiais_56: 273378403096755052
+      especiais_57: 5645662650517335884
+      especiais_58: -4380760096045014117
+      especiais_59: -1854580867099348530
+      especiais_6: -6100180279450613905
+      especiais_60: -9057649896410329055
+      especiais_61: -928981085708667004
+      especiais_7: 5800925920028555973
+      especiais_8: -5449929036809292598
+      especiais_9: 1787879147172628805
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

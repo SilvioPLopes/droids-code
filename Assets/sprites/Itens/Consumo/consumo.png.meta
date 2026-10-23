@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: ab1191e2767944d4ab8b7eb9e89121fe
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4795544983678645679
+    second: consumo_0
+  - first:
+      213: -7421097709791260449
+    second: consumo_1
+  - first:
+      213: -6677198351027585205
+    second: consumo_2
+  - first:
+      213: 5866935385914903257
+    second: consumo_3
+  - first:
+      213: -8745037931734129487
+    second: consumo_4
+  - first:
+      213: -5677316132980303616
+    second: consumo_5
+  - first:
+      213: 9200504091413954149
+    second: consumo_6
+  - first:
+      213: -4329774124679820416
+    second: consumo_7
+  - first:
+      213: -1009609519252405546
+    second: consumo_8
+  - first:
+      213: -6301483773275378112
+    second: consumo_9
+  - first:
+      213: 3552518397274577748
+    second: consumo_10
+  - first:
+      213: -3729675964536780110
+    second: consumo_11
+  - first:
+      213: 5448271835175981997
+    second: consumo_12
+  - first:
+      213: 7901598943399234454
+    second: consumo_13
+  - first:
+      213: 1508112779809846737
+    second: consumo_14
+  - first:
+      213: 8993264049152705842
+    second: consumo_15
+  - first:
+      213: -3604772865568643689
+    second: consumo_16
+  - first:
+      213: 8827434342937897055
+    second: consumo_17
+  - first:
+      213: -6629532449334656478
+    second: consumo_18
+  - first:
+      213: -1589912161005361666
+    second: consumo_19
+  - first:
+      213: -2522899145607478543
+    second: consumo_20
+  - first:
+      213: -7301852762993352730
+    second: consumo_21
+  - first:
+      213: 2459425074679875803
+    second: consumo_22
+  - first:
+      213: -6608474561050361960
+    second: consumo_23
+  - first:
+      213: 1396609852605536125
+    second: consumo_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: consumo_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1124
+        width: 118
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15a8d67ce3dc27db0800000000000000
+      internalID: -4795544983678645679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_1
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 1044
+        width: 122
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd05d6c93f6f20990800000000000000
+      internalID: -7421097709791260449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_2
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 1173
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f3d202a73d553a0800000000000000
+      internalID: -6677198351027585205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_3
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 1173
+        width: 108
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da80ad26aa8b6150800000000000000
+      internalID: 5866935385914903257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_4
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 1171
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4aba3955263a680800000000000000
+      internalID: -8745037931734129487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_5
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 1164
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0095d188e0f1631b0800000000000000
+      internalID: -5677316132980303616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_6
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 775
+        width: 441
+        height: 461
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56eb14b89b1ceaf70800000000000000
+      internalID: 9200504091413954149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_7
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 871
+        width: 101
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08b08ccaf5d89e3c0800000000000000
+      internalID: -4329774124679820416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_8
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 803
+        width: 231
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d28b1bcd752df1f0800000000000000
+      internalID: -1009609519252405546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_9
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 1140
+        width: 38
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04e680815e1ac88a0800000000000000
+      internalID: -6301483773275378112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_10
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 1100
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45b579709a41d4130800000000000000
+      internalID: 3552518397274577748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_11
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 1114
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ba097e88778d3cc0800000000000000
+      internalID: -3729675964536780110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_12
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 1050
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da31e6f2e562c9b40800000000000000
+      internalID: 5448271835175981997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_13
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 948
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69bc9e2ef5e18ad60800000000000000
+      internalID: 7901598943399234454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 433
+        width: 386
+        height: 415
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d5fac93594ede410800000000000000
+      internalID: 1508112779809846737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_15
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 427
+        width: 345
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 235c90d110e7ecc70800000000000000
+      internalID: 8993264049152705842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_16
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 419
+        width: 427
+        height: 357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79560db7d2649fdc0800000000000000
+      internalID: -3604772865568643689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 445
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f58a5e0e3c8518a70800000000000000
+      internalID: 8827434342937897055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_18
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 15
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2228b72bc5b2ff3a0800000000000000
+      internalID: -6629532449334656478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_19
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 51
+        width: 347
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5a333305f7fe9e0800000000000000
+      internalID: -1589912161005361666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_20
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 43
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f20eed089cdcfcd0800000000000000
+      internalID: -2522899145607478543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_21
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 9
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ef9393599b9aaa90800000000000000
+      internalID: -7301852762993352730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_22
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 46
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd88bf72312a12220800000000000000
+      internalID: 2459425074679875803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_23
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 15
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f3361666bf944a0800000000000000
+      internalID: -6608474561050361960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: consumo_24
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 61
+        width: 372
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d771d5ae241c16310800000000000000
+      internalID: 1396609852605536125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      consumo_0: -4795544983678645679
+      consumo_1: -7421097709791260449
+      consumo_10: 3552518397274577748
+      consumo_11: -3729675964536780110
+      consumo_12: 5448271835175981997
+      consumo_13: 7901598943399234454
+      consumo_14: 1508112779809846737
+      consumo_15: 8993264049152705842
+      consumo_16: -3604772865568643689
+      consumo_17: 8827434342937897055
+      consumo_18: -6629532449334656478
+      consumo_19: -1589912161005361666
+      consumo_2: -6677198351027585205
+      consumo_20: -2522899145607478543
+      consumo_21: -7301852762993352730
+      consumo_22: 2459425074679875803
+      consumo_23: -6608474561050361960
+      consumo_24: 1396609852605536125
+      consumo_3: 5866935385914903257
+      consumo_4: -8745037931734129487
+      consumo_5: -5677316132980303616
+      consumo_6: 9200504091413954149
+      consumo_7: -4329774124679820416
+      consumo_8: -1009609519252405546
+      consumo_9: -6301483773275378112
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
