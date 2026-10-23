@@ -56,6 +56,8 @@ A recomendação inicial foi começar pela loja, porque o conjunto 8 + 9 + 3/17 
 
 ## Retomada
 
+**Atualização posterior:** o usuário escolheu começar pela loja e enviou capturas da interface atual. Implementação e validação passam a ser acompanhadas no [plano da loja ilustrada](2026-10-23-loja-ilustrada.md). A avaliação acima permanece como referência inicial; a escolha da loja já foi feita.
+
 **Resultado:** avaliação e sugestões preservadas neste documento; liberdade de adaptação registrada. Somente documentação editada nesta rodada.
 
 **Limites da evidência:** inspeção visual das imagens enviadas e abertura local de 10/12; comparação de hash dos dois pares duplicados. Não foram testados recortes, transparência, importação Unity, interação ou legibilidade dentro do jogo. As recomendações não comprovam integração pronta.

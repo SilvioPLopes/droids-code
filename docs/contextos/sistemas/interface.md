@@ -24,6 +24,14 @@ O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.m
 - Montagem única: [MontagemTerminalIlustrado](../../../Assets/Editor/MontagemTerminalIlustrado.cs), que recusa executar de novo se o componente já existe. Verificação isolada: [ValidacaoTerminalIlustrado](../../../Assets/Editor/ValidacaoTerminalIlustrado.cs). Estado/aceite, evidências e backups no [plano do terminal](../../planos-implementacao/2026-10-22-terminal-ilustrado.md). Não executar montagem novamente para testar.
 - Migração para foco horizontal: [RefocoTerminalIlustrado](../../../Assets/Editor/RefocoTerminalIlustrado.cs), aplicação única já realizada, com guarda contra repetição. Não executá-la outra vez para obter prévia.
 
+## Loja ilustrada da City
+
+- Loja local em `Assets/Scenes/City.unity`, ramo `Canvas/Loja`; não pertence ao prefab Canvas compartilhado. Apresentação em `ApresentacaoLojaIlustrada`, referência virtual 1536×1024 e encaixe proporcional local, com fundo de foco exclusivo. Canvas/Scaler e os outros painéis não foram redimensionados.
+- `LojaUIManager` seleciona produtos antes da operação; `botaoAcao` confirma uma unidade. Produtos e descrição têm rolagem; saldo, preço e quantidade na mochila são dados reais. Assets próprios em `Assets/UI/LojaIlustrada`; seis ícones representam categorias, com destaque para núcleo de energia. Originais em sprites/Atualizados/novos preservados.
+- Avisos de compra, venda e saldo insuficiente vêm de `CatalogoDeDialogos.AvisoDaLoja` e usam `DialogoUIManager.Mostrar`. Loja aguarda se outro diálogo estiver aberto; oculta seu painel somente quando o aviso é aceito e retorna ao terminar, sem chamar o callback externo de fechamento. NpcInterativo continua responsável pelo contador de abertura da loja.
+- Economia anterior preservada, inclusive uso de `item.Preco` na venda; a diferença antiga em relação a `PrecoDeVendaReal` não foi corrigida nesta alteração visual. A montagem não cria produtos nem modifica inventário/preços do catálogo.
+- `MontagemLojaIlustrada.Aplicar` é migração única, já aplicada; não repetir para testar. `ValidacaoLojaIlustrada.Executar` produz fixtures/renders isolados sem salvar progresso. Aceite, testes, backups e limitações no [plano da loja](../../planos-implementacao/2026-10-23-loja-ilustrada.md).
+
 ## Diretriz de mensagens ao jogador — definida em 22/10/2026
 
 **Determinação do usuário:** mensagens de sucesso, confirmação de salvamento/carregamento, falhas de operação, dicas e explicações de bloqueio (casa, portão da cidade e outras passagens) devem usar a **caixa de diálogo existente**, com a apresentação aprovada. Não criar texto avulso, toast, nova janela ou reativar a etiqueta “desativado”. Isso vale desde a primeira tentativa; ausência de retorno não é funcionamento aceitável.

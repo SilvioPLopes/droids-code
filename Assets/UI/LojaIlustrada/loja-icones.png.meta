@@ -1,0 +1,1222 @@
+fileFormatVersion: 2
+guid: 5f6fe9577b19e12429230e43ea061f3c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8492721530768417529
+    second: loja-icones_0
+  - first:
+      213: 7242581571749956836
+    second: loja-icones_1
+  - first:
+      213: 5055341597122679261
+    second: loja-icones_2
+  - first:
+      213: 4235594656657014969
+    second: loja-icones_3
+  - first:
+      213: 6336285717501705379
+    second: loja-icones_4
+  - first:
+      213: 5384313757440404743
+    second: loja-icones_5
+  - first:
+      213: -8613046235178620108
+    second: loja-icones_6
+  - first:
+      213: 8284781354349920084
+    second: loja-icones_7
+  - first:
+      213: 4485802536846629289
+    second: loja-icones_8
+  - first:
+      213: -1768804488534275141
+    second: loja-icones_9
+  - first:
+      213: 2827102984987971017
+    second: loja-icones_10
+  - first:
+      213: 6244985360485793610
+    second: loja-icones_11
+  - first:
+      213: -3810087370836637070
+    second: loja-icones_12
+  - first:
+      213: -4845707801051093733
+    second: loja-icones_13
+  - first:
+      213: 906154239642557676
+    second: loja-icones_14
+  - first:
+      213: -1801795704473668639
+    second: loja-icones_15
+  - first:
+      213: -6847751285549624534
+    second: loja-icones_16
+  - first:
+      213: -5895370762947021351
+    second: loja-icones_17
+  - first:
+      213: -3674805310034651242
+    second: loja-icones_18
+  - first:
+      213: -5932238858321534720
+    second: loja-icones_19
+  - first:
+      213: 6285151334147117771
+    second: loja-icones_20
+  - first:
+      213: 3982572866022064530
+    second: loja-icones_21
+  - first:
+      213: 6025405844531365537
+    second: loja-icones_22
+  - first:
+      213: -8158005400157435524
+    second: loja-icones_23
+  - first:
+      213: 1051757462679232054
+    second: loja-icones_24
+  - first:
+      213: 4735523069711914775
+    second: loja-icones_25
+  - first:
+      213: -3487675987082408995
+    second: loja-icones_26
+  - first:
+      213: 4448268519580733653
+    second: loja-icones_27
+  - first:
+      213: 555828166307575125
+    second: loja-icones_28
+  - first:
+      213: -445480262432464150
+    second: loja-icones_29
+  - first:
+      213: -1705272672804944202
+    second: loja-icones_30
+  - first:
+      213: 5458806536275121872
+    second: loja-icones_31
+  - first:
+      213: -5362353499928128701
+    second: loja-icones_32
+  - first:
+      213: 1583700170478039069
+    second: loja-icones_33
+  - first:
+      213: 5313386366857258654
+    second: loja-icones_34
+  - first:
+      213: -5269033242051449205
+    second: loja-icones_35
+  - first:
+      213: 1132828687869631399
+    second: loja-icones_36
+  - first:
+      213: 3893128252741371424
+    second: loja-icones_37
+  - first:
+      213: -5812029590831155446
+    second: loja-icones_38
+  - first:
+      213: 2770864470504781749
+    second: loja-icones_39
+  - first:
+      213: 2234706833386399532
+    second: loja-icones_40
+  - first:
+      213: -925847369675390595
+    second: loja-icones_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: loja-icones_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 983
+        width: 67
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d9c3e93cac32a80800000000000000
+      internalID: -8492721530768417529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 999
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec42f01191d28460800000000000000
+      internalID: 7242581571749956836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 997
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1d0c2f56e282640800000000000000
+      internalID: 5055341597122679261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_3
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 951
+        width: 143
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b0859a26ead7ca30800000000000000
+      internalID: 4235594656657014969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_4
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 443
+        width: 513
+        height: 567
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acf11bf9420fe750800000000000000
+      internalID: 6336285717501705379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_5
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 735
+        width: 97
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70deb77c5dce8ba40800000000000000
+      internalID: 5384313757440404743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_6
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 503
+        width: 378
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43ba92e3510587880800000000000000
+      internalID: -8613046235178620108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 545
+        height: 993
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45f7ec34fb479f270800000000000000
+      internalID: 8284781354349920084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_8
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 969
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a91a45f3a5c04e30800000000000000
+      internalID: 4485802536846629289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_9
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 967
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb4ccf60b1f377e0800000000000000
+      internalID: -1768804488534275141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_10
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 955
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd87abaf23eb3720800000000000000
+      internalID: 2827102984987971017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 791
+        width: 5
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f35471915aaa650800000000000000
+      internalID: 6244985360485793610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_12
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 771
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27a841219b9df1bc0800000000000000
+      internalID: -3810087370836637070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_13
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 615
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b15a209bd6690ccb0800000000000000
+      internalID: -4845707801051093733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_14
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 601
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cecdb9dda7e439c00800000000000000
+      internalID: 906154239642557676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_15
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 575
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3b5056a5cbef6e0800000000000000
+      internalID: -1801795704473668639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_16
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 545
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23179a9c76e7f0a0800000000000000
+      internalID: -6847751285549624534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_17
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 559
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d5b15fa68f6f2ea0800000000000000
+      internalID: -5895370762947021351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_18
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 521
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6975aac5a08700dc0800000000000000
+      internalID: -3674805310034651242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_19
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 49
+        width: 267
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 001e9fe40347cada0800000000000000
+      internalID: -5932238858321534720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_20
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 471
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2596796d7593750800000000000000
+      internalID: 6285151334147117771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_21
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 0
+        width: 479
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 291ca5bcbe0f44730800000000000000
+      internalID: 3982572866022064530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 347
+        width: 7
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a6cade01ba8e9350800000000000000
+      internalID: 6025405844531365537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_23
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 389
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c79c5efbf41f8ce80800000000000000
+      internalID: -8158005400157435524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_24
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 0
+        width: 565
+        height: 433
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e9cd007d7989e00800000000000000
+      internalID: 1051757462679232054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 233
+        width: 45
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71798db5425f7b140800000000000000
+      internalID: 4735523069711914775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_26
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 181
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb0b421b29499fc0800000000000000
+      internalID: -3487675987082408995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 151
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0992f86ac6bbd30800000000000000
+      internalID: 4448268519580733653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 67
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5557be8b5c2b6b700800000000000000
+      internalID: 555828166307575125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_29
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 97
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae2e343cf0651d9f0800000000000000
+      internalID: -445480262432464150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_30
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 95
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b6c74cf987a558e0800000000000000
+      internalID: -1705272672804944202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_31
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 98
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d6524c6f9391cb40800000000000000
+      internalID: 5458806536275121872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_32
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 63
+        width: 25
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34316bc17e71595b0800000000000000
+      internalID: -5362353499928128701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_33
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 101
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d10b11c0aee6af510800000000000000
+      internalID: 1583700170478039069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_34
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 65
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e962ee6cfb0fcb940800000000000000
+      internalID: 5313386366857258654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_35
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 69
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8e6cc1de22a0e6b0800000000000000
+      internalID: -5269033242051449205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_36
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 71
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ab57db80bd98bf00800000000000000
+      internalID: 1132828687869631399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_37
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 33
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 026cfa9e48b270630800000000000000
+      internalID: 3893128252741371424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_38
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 33
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07337e61e5875fa0800000000000000
+      internalID: -5812029590831155446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_39
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 31
+        width: 23
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b730352e86147620800000000000000
+      internalID: 2770864470504781749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_40
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 22
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2762256606430f10800000000000000
+      internalID: 2234706833386399532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loja-icones_41
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 8
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71c44ef8bab623f0800000000000000
+      internalID: -925847369675390595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      loja-icones_0: -8492721530768417529
+      loja-icones_1: 7242581571749956836
+      loja-icones_10: 2827102984987971017
+      loja-icones_11: 6244985360485793610
+      loja-icones_12: -3810087370836637070
+      loja-icones_13: -4845707801051093733
+      loja-icones_14: 906154239642557676
+      loja-icones_15: -1801795704473668639
+      loja-icones_16: -6847751285549624534
+      loja-icones_17: -5895370762947021351
+      loja-icones_18: -3674805310034651242
+      loja-icones_19: -5932238858321534720
+      loja-icones_2: 5055341597122679261
+      loja-icones_20: 6285151334147117771
+      loja-icones_21: 3982572866022064530
+      loja-icones_22: 6025405844531365537
+      loja-icones_23: -8158005400157435524
+      loja-icones_24: 1051757462679232054
+      loja-icones_25: 4735523069711914775
+      loja-icones_26: -3487675987082408995
+      loja-icones_27: 4448268519580733653
+      loja-icones_28: 555828166307575125
+      loja-icones_29: -445480262432464150
+      loja-icones_3: 4235594656657014969
+      loja-icones_30: -1705272672804944202
+      loja-icones_31: 5458806536275121872
+      loja-icones_32: -5362353499928128701
+      loja-icones_33: 1583700170478039069
+      loja-icones_34: 5313386366857258654
+      loja-icones_35: -5269033242051449205
+      loja-icones_36: 1132828687869631399
+      loja-icones_37: 3893128252741371424
+      loja-icones_38: -5812029590831155446
+      loja-icones_39: 2770864470504781749
+      loja-icones_4: 6336285717501705379
+      loja-icones_40: 2234706833386399532
+      loja-icones_41: -925847369675390595
+      loja-icones_5: 5384313757440404743
+      loja-icones_6: -8613046235178620108
+      loja-icones_7: 8284781354349920084
+      loja-icones_8: 4485802536846629289
+      loja-icones_9: -1768804488534275141
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

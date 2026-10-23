@@ -19,6 +19,7 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Terminal sobre a arte do usuário | [Plano do terminal](planos-implementacao/2026-10-22-terminal-ilustrado.md), [contrato](contextos/sistemas/interface.md#terminal-ilustrado) | `ApresentacaoTerminalIlustrado`, `1536`, `PainelTerminal` |
 | Repetir o método visual em outras interfaces | [Interfaces sobre imagens](guias/interfaces-sobre-imagens.md) | `legibilidade`, `arte`, `controles`, `ficha reutilizável` |
 | Artes disponíveis para loja, status e Droid | [Análise de aproveitamento](planos-implementacao/2026-10-23-aproveitamento-artes-menus.md) | `novos`, `ícones`, `molduras`, `combinações` |
+| Loja ilustrada na City | [Plano e retomada](planos-implementacao/2026-10-23-loja-ilustrada.md) | `LojaUIManager`, `seleção`, `Gold`, `compra`, `venda` |
 | Mensagens na caixa de diálogo e falha de carregar | [Diagnóstico vigente](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md), [diretriz de interface](contextos/sistemas/interface.md#diretriz-de-mensagens-ao-jogador--definida-em-22102026) | `Salvar`, `Carregar`, `primeira tentativa`, `bloqueio` |
 | Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |
 | Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |

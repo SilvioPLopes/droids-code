@@ -1,0 +1,25 @@
+{
+  "instante": "2026-10-23T04:08:07.5067604-03:00",
+  "gold": "Gold: 0",
+  "mensagem": "Gold insuficiente para comprar Disruptor EMP.",
+  "itens": [
+    "Poção Pequena — 8 Gold",
+    "Poção Média — 22 Gold",
+    "Poção Grande — 55 Gold",
+    "Reparo Completo — 150 Gold",
+    "Escudo de Emergência — 30 Gold",
+    "Óleo de Precisão — 18 Gold",
+    "Injetor de Sobrecarga — 35 Gold",
+    "Granada de Ácido — 25 Gold",
+    "Disruptor EMP — 40 Gold",
+    "Corrosivo — 28 Gold",
+    "Núcleo de Energia — 60 Gold",
+    "Servo-Motor — 60 Gold",
+    "Sensor Óptico — 70 Gold",
+    "Placa de Blindagem — 65 Gold",
+    "Giroscópio — 75 Gold",
+    "Sinalizador de Retorno — 45 Gold",
+    "Kit de Acampamento — 50 Gold",
+    "Módulo de Treinamento — 120 Gold"
+  ]
+}

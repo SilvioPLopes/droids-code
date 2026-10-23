@@ -41,6 +41,20 @@ using System.Collections.Generic;
 /// </summary>
 public static class CatalogoDeDialogos
 {
+    /// <summary>Avisos de transação; valores vêm da loja, apresentação usa o diálogo existente.</summary>
+    public static List<FalaDeDialogo> AvisoDaLoja(string motivo, string item, int preco)
+    {
+        string texto;
+        switch (motivo)
+        {
+            case "sem_gold": texto = $"Gold insuficiente para comprar {item}. Preço: {preco} Gold."; break;
+            case "compra": texto = $"Comprou {item} por {preco} Gold."; break;
+            case "venda": texto = $"Vendeu {item} por {preco} Gold."; break;
+            default: texto = $"Você não tem mais {item} para vender."; break;
+        }
+        return Falas(N(texto));
+    }
+
     // --- CasaLip (Sessao 1) ---
     public const string CasaIntroApollo = "casa_intro_apollo";
     public const string CasaApolloConversa = "casa_apollo_conversa";

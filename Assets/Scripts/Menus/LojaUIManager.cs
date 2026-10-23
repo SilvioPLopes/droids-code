@@ -41,6 +41,15 @@ public class LojaUIManager : MonoBehaviour
     public TextMeshProUGUI textoMensagem;
     public TextMeshProUGUI textoGold;
 
+    [Header("Apresentação ilustrada (local à loja)")]
+    public ApresentacaoLojaIlustrada apresentacao;
+    public Button botaoAcao;
+    DefinicaoDeItem selecionado;
+    bool inicializado;
+    List<FalaDeDialogo> avisoPendente;
+    public DefinicaoDeItem ItemSelecionado => selecionado;
+    public bool Vendendo => _abaAtual == Aba.Vender;
+
     public System.Action AoFechar;
 
     private enum Aba { Comprar, Vender }
@@ -48,9 +57,17 @@ public class LojaUIManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+    }
+
+    void Inicializar()
+    {
+        if (inicializado) return;
+        inicializado = true;
         if (botaoVoltar != null) botaoVoltar.onClick.AddListener(Fechar);
         if (botaoAbaComprar != null) botaoAbaComprar.onClick.AddListener(() => MudarAba(Aba.Comprar));
         if (botaoAbaVender != null) botaoAbaVender.onClick.AddListener(() => MudarAba(Aba.Vender));
+        if (botaoAcao != null) botaoAcao.onClick.AddListener(ConfirmarSelecao);
         if (painel != null) painel.SetActive(false);
     }
 
@@ -59,6 +76,8 @@ public class LojaUIManager : MonoBehaviour
     // porque o Unity só recalcula layout em objetos ativos.
     public void Mostrar()
     {
+        Inicializar();
+        selecionado = null;
         if (painel != null) painel.SetActive(true);
         _abaAtual = Aba.Comprar;
         AtualizarListaComRebuild();
@@ -66,14 +85,19 @@ public class LojaUIManager : MonoBehaviour
 
     public void Fechar()
     {
+        avisoPendente = null;
         if (painel != null) painel.SetActive(false);
         AoFechar?.Invoke();
     }
 
     void MudarAba(Aba aba)
     {
+        if (avisoPendente != null) return;
+        selecionado = null;
         _abaAtual = aba;
         AtualizarListaComRebuild();
+        var scroll = painelListaDeItens.GetComponentInParent<ScrollRect>();
+        if (scroll != null) scroll.verticalNormalizedPosition = 1;
     }
 
     void AtualizarLista()
@@ -84,8 +108,12 @@ public class LojaUIManager : MonoBehaviour
             return;
         }
 
-        foreach (Transform filho in painelListaDeItens)
-            Destroy(filho.gameObject);
+        for (int i = painelListaDeItens.childCount - 1; i >= 0; i--)
+        {
+            var filho = painelListaDeItens.GetChild(i).gameObject;
+            filho.SetActive(false);
+            if (Application.isPlaying) Destroy(filho); else DestroyImmediate(filho);
+        }
 
         var gerenciador = GerenciadorDeEstado.Instancia;
 
@@ -112,7 +140,7 @@ public class LojaUIManager : MonoBehaviour
 
         if (itens.Count == 0)
         {
-            MostrarMensagem("A loja está sem itens no momento.");
+            if (apresentacao != null) apresentacao.MostrarVazio("A loja está sem itens no momento.");
             return;
         }
 
@@ -125,7 +153,9 @@ public class LojaUIManager : MonoBehaviour
             if (texto != null) texto.text = $"{item.Nome} — {item.Preco} Gold";
 
             DefinicaoDeItem itemCapturado = item;
-            botao.onClick.AddListener(() => Comprar(itemCapturado));
+            botao.onClick.RemoveAllListeners();
+            botao.onClick.AddListener(() => Selecionar(itemCapturado));
+            if (apresentacao != null) apresentacao.PrepararProduto(botao, item, item.Preco, gerenciador.ObterQuantidadeDeItem(item.Id), false);
         }
     }
 
@@ -144,7 +174,7 @@ public class LojaUIManager : MonoBehaviour
 
         if (itensComEstoque.Count == 0)
         {
-            MostrarMensagem("Você não tem itens para vender.");
+            if (apresentacao != null) apresentacao.MostrarVazio("Você não tem itens para vender.");
             return;
         }
 
@@ -159,7 +189,9 @@ public class LojaUIManager : MonoBehaviour
             if (texto != null) texto.text = $"{item.Nome} x{quantidade} — {item.Preco} Gold cada";
 
             DefinicaoDeItem itemCapturado = item;
-            botao.onClick.AddListener(() => Vender(itemCapturado));
+            botao.onClick.RemoveAllListeners();
+            botao.onClick.AddListener(() => Selecionar(itemCapturado));
+            if (apresentacao != null) apresentacao.PrepararProduto(botao, item, item.Preco, quantidade, true);
         }
     }
 
@@ -169,12 +201,12 @@ public class LojaUIManager : MonoBehaviour
 
         if (!gerenciador.TentarGastarGold(item.Preco))
         {
-            MostrarMensagem($"Gold insuficiente para comprar {item.Nome}.");
+            MostrarMensagem("sem_gold", item);
             return;
         }
 
         gerenciador.AdicionarItem(item.Id, 1);
-        MostrarMensagem($"Comprou {item.Nome} por {item.Preco} Gold.");
+        MostrarMensagem("compra", item);
         AtualizarListaComRebuild();
     }
 
@@ -184,18 +216,22 @@ public class LojaUIManager : MonoBehaviour
 
         if (!gerenciador.TentarRemoverItem(item.Id, 1))
         {
-            MostrarMensagem($"Você não tem mais {item.Nome} para vender.");
+            MostrarMensagem("sem_item", item);
             return;
         }
 
         gerenciador.AdicionarGold(item.Preco);
-        MostrarMensagem($"Vendeu {item.Nome} por {item.Preco} Gold.");
+        MostrarMensagem("venda", item);
         AtualizarListaComRebuild();
     }
 
     void AtualizarListaComRebuild()
     {
         AtualizarLista();
+        if (selecionado != null && Vendendo && GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(selecionado.Id) <= 0)
+            selecionado = null;
+        if (botaoAcao != null) botaoAcao.interactable = selecionado != null && avisoPendente == null;
+        if (apresentacao != null) apresentacao.MostrarSelecao(selecionado, Vendendo);
         if (painelListaDeItens != null)
             LayoutRebuilder.ForceRebuildLayoutImmediate(painelListaDeItens.GetComponent<RectTransform>());
         if (painel != null)
@@ -205,9 +241,41 @@ public class LojaUIManager : MonoBehaviour
         }
     }
 
-    void MostrarMensagem(string mensagem)
+    void Selecionar(DefinicaoDeItem item)
     {
-        if (textoMensagem != null) textoMensagem.text = mensagem;
-        Debug.Log($"[Loja] {mensagem}");
+        if (avisoPendente != null) return;
+        selecionado = item;
+        if (botaoAcao != null) botaoAcao.interactable = true;
+        if (apresentacao != null) apresentacao.MostrarSelecao(item, Vendendo);
+    }
+
+    public void ConfirmarSelecao()
+    {
+        if (selecionado == null || avisoPendente != null) return;
+        if (Vendendo) Vender(selecionado); else Comprar(selecionado);
+    }
+
+    void MostrarMensagem(string motivo, DefinicaoDeItem item)
+    {
+        avisoPendente = CatalogoDeDialogos.AvisoDaLoja(motivo, item.Nome, item.Preco);
+        if (botaoAcao != null) botaoAcao.interactable = false;
+        TentarMostrarAviso();
+    }
+
+    void Update() { if (avisoPendente != null) TentarMostrarAviso(); }
+
+    void TentarMostrarAviso()
+    {
+        var dialogo = DialogoUIManager.Instancia;
+        if (dialogo == null || dialogo.EstaAberto) return;
+        // Manter a loja aberta se Mostrar recusar; nunca perder o aviso nem o callback existente.
+        bool aceito = dialogo.Mostrar(avisoPendente, () => {
+            if (painel == null) return;
+            painel.SetActive(true);
+            AtualizarListaComRebuild();
+        });
+        if (!aceito) return;
+        avisoPendente = null;
+        if (painel != null) painel.SetActive(false);
     }
 }
