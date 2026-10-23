@@ -1,5 +1,19 @@
 # Terminal ilustrado — montagem sobre a arte
 
+## Documentação do método — 23/10/2026
+
+**Pedido:** documentar como o terminal foi transformado na versão polida e extrair uma lógica reutilizável para outras imagens/interfaces.
+
+**Escopo desta rodada:** criar docs/guias/interfaces-sobre-imagens.md; acrescentar links no índice e no contrato de interface; atualizar somente este registro. Nenhum script, imagem, prefab, cena, estado Unity ou save será alterado.
+
+**Aceite:** explicar critérios e decisões que levaram ao resultado, incluindo por que o recorte não bastou; separar arte de conteúdo/interação; fornecer procedimento, ficha, prompt e validação reutilizáveis, distinguindo parâmetros do terminal de regras gerais. Evidências datadas continuam neste plano, sem copiar toda a cronologia para o guia.
+
+**Preservação/validação:** alterações documentais aditivas; reversão somente dos acréscimos próprios. Conferir caminhos locais, consistência dos exemplos com o contrato e diff dos documentos. Sem testes Unity para esta tarefa documental.
+
+**Resultado:** [guia reutilizável](../guias/interfaces-sobre-imagens.md) criado e ligado pelo índice/contrato. Explica escolhas e limites do caso, separação arte/apresentação/comportamento, levantamento da janela real, decisão entre recorte e nova composição, prompt, mapeamento de coordenadas, ajuste proporcional, testes e ficha para o próximo painel. Evidências completas continuam neste plano. Código e estado Unity não acessados/modificados nesta rodada; usuário se refere à versão atual como polida, sem inferir aceite de fluxos não testados por ele.
+
+**Verificação documental:** links do novo guia, do contrato e deste plano conferidos; diff sem erros de whitespace. O índice mantém um link antigo ausente para o catálogo de personagens, fora deste escopo. Próximo passo: usar a ficha do guia na próxima interface; nenhum novo teste Unity necessário nesta rodada.
+
 ## Retomada vigente — reprovação de legibilidade e foco (23/10/2026)
 
 **Relato:** usuário rejeitou o resultado, texto ilegível; a segunda captura é a referência de foco no monitor, sem cenário/base ocupando área. Autorizou alterar a imagem se necessário. Não continuar o recorte por fatores tentativos; a entrega anterior não tem aceite visual.

@@ -13,6 +13,8 @@ Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' A
 
 ## Terminal ilustrado
 
+O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.md) documenta as decisões do terminal e o procedimento reutilizável para outras interfaces, com ficha de escopo, arte, controles e validação. Os parâmetros abaixo pertencem ao terminal, não são valores a copiar automaticamente.
+
 - `Assets/Prefabs/Canvas.prefab`, ramo `PainelTerminal`, usa **`Assets/UI/TerminalIlustrado/terminal-foco-horizontal.png`**, perfil 1536×1024. Arte sem letras, só monitor, sem base/pés; títulos/legendas são TMP reais. A imagem anterior `terminal-fundo.png` foi preservada; o recorte quadrado não teve aceite e foi substituído por esta composição após o relato de ilegibilidade.
 - [ApresentacaoTerminalIlustrado](../../../Assets/Scripts/Menus/ApresentacaoTerminalIlustrado.cs) usa `referencia` para ajustar o painel preservando proporção e compensando escala herdada. Perfil vigente: 1536×1024, cortes zero, margem 0.98. `FundoFoco`, filho exclusivo do terminal, cobre o Canvas com fundo opaco enquanto aberto; fecha junto com o painel. Não mudar Canvas/Scaler global nem depender do zoom da Game View.
 - Fontes nominais virtuais: código/números 40, saída 34, objetivo/pontos 32; objetivo longo possui scrollbar visível, saída rolável preservada. A legibilidade deve ser inspecionada também em janela pequena (referência 844×475), não apenas em captura 1920×1080. Os cortes antigos 0.05/0.05 continuam disponíveis para perfil antigo, não são o ajuste vigente.
