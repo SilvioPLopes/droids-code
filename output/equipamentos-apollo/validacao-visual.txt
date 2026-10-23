@@ -1,0 +1,2 @@
+OK 844x475: prefab real, quatro ícones por ID, seis atributos, estoque inspecionável sem mutação, paginação de 13 técnicas, enquadramento, raycast/retorno/reabertura. Preview ScreenSpaceCamera sem Scaler, fit local .98; não representa input real/aprovação visual.
+OK 1280x720: prefab real, quatro ícones por ID, seis atributos, estoque inspecionável sem mutação, paginação de 13 técnicas, enquadramento, raycast/retorno/reabertura. Preview ScreenSpaceCamera sem Scaler, fit local .98; não representa input real/aprovação visual.

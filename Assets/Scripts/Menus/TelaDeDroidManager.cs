@@ -9,10 +9,7 @@ using DroidsCode.DroidCore;
 /// do GerenciadorDeEstado toda vez que é aberto, mesmo padrão de
 /// TelaDeStatusManager (permite reusar o script sem duplicar nada).
 ///
-/// Decisões fechadas para esta leva (ver PLANO_PAINEL_DROID.md, seção 3):
-/// - Só visualização (Opção A). Equipar continua acontecendo pela Bag
-///   (BagUIManager.EquiparItem) — este painel nunca escreve em Droid.
-/// - Sem "desequipar" nesta leva.
+/// Equipar/desequipar ocorre pelo terminal; este painel somente inspeciona.
 /// - Slot vazio sempre aparece, com o texto "Vazio" (nunca esconde o slot).
 ///
 /// Segue o mesmo contrato de painel + callback AoFechar já usado por
@@ -28,6 +25,10 @@ public class TelaDeDroidManager : MonoBehaviour
     public TextMeshProUGUI textoTronco;
     public TextMeshProUGUI textoCabeca;
     public Button botaoVoltar;
+    public Sprite arteDroid;
+    public Sprite corpoApollo;
+    private ApresentacaoDroidIlustrado apresentacao;
+    private bool inicializado, aberto;
 
     // Mesmo padrão de TelaDeStatusManager/TerminalUIManager: callback
     // opcional, atribuído externamente pelo MenuMundoManager em Start().
@@ -35,20 +36,31 @@ public class TelaDeDroidManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+        if (!aberto && painel != null) painel.SetActive(false);
+    }
+
+    void Inicializar()
+    {
+        if (inicializado) return;
+        inicializado = true;
         if (botaoVoltar != null)
         {
             botaoVoltar.onClick.AddListener(Fechar);
         }
 
-        if (painel != null)
-        {
-            painel.SetActive(false);
-        }
     }
 
     public void Mostrar()
     {
+        Inicializar(); aberto = true;
         Droid droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
+        if (arteDroid != null)
+        {
+            painel.SetActive(true);
+            if (apresentacao == null) apresentacao = ApresentacaoDroidIlustrado.Criar(this);
+            apresentacao.Atualizar(); return;
+        }
 
         textoBraco.text = DescreverPeca(droid.Braco, "Braço");
         textoPerna.text = DescreverPeca(droid.Perna, "Perna");
@@ -78,6 +90,7 @@ public class TelaDeDroidManager : MonoBehaviour
 
     public void Fechar()
     {
+        aberto = false;
         painel.SetActive(false);
 
         // Mesmo padrão de TelaDeStatusManager: avisa quem estiver ouvindo

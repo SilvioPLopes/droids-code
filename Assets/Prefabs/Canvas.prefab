@@ -8619,6 +8619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503cad84f8618424ab15a0ae32f71750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TelaDeDroidManager
+  arteDroid: {fileID: -937040239369960630, guid: 0fab7605a9a04644f8dc676814801be8, type: 3}
+  corpoApollo: {fileID: -4298345892085953899, guid: 7205513fb758ab74cba2ab8df91913ea, type: 3}
   painel: {fileID: 881697503032009659}
   textoBraco: {fileID: 4751441099872453413}
   textoPerna: {fileID: 6394328925974172120}

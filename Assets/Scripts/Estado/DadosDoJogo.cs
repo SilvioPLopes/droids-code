@@ -77,12 +77,26 @@ public class DroidSalvo
     public int nivel;
     public int experiencia;
     public List<TecnicaSalva> tecnicas = new List<TecnicaSalva>();
+    public List<PecaSalva> pecas = new List<PecaSalva>();
+}
+
+[System.Serializable]
+public class PecaSalva
+{
+    public int slot;
+    public string idItem;
+    public string nome;
+    public int raridade;
+    public int atributoPrincipal;
+    public bool temBonus;
+    public int atributoBonificado;
+    public int valorDoBonus;
 }
 
 [System.Serializable]
 public class DadosDoJogo
 {
-    public int versao = 6; // v6: introdução da casa separada da conclusão do puzzle
+    public int versao = 7; // v7: identidade e payload das peças equipadas
     public DroidSalvo droid;
     public float posicaoX;
     public float posicaoY;

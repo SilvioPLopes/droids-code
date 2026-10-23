@@ -214,39 +214,10 @@ public class BagUIManager : MonoBehaviour
         AtualizarListaComRebuild();
     }
 
-    // NOVO (Estagio 3): equipar CONSOME o item -- cria a peca a partir dos
-    // dados do catalogo (nome/slot/bonus) e instala via Droid.EquiparPeca,
-    // substituindo a peca anterior daquele slot se houver (sem
-    // desequipar/devolver nesta fase, ver comentario em Droid.EquiparPeca).
+    // Equipamentos são instalados/removidos exclusivamente pelo terminal.
     void EquiparItem(DefinicaoDeItem item, GerenciadorDeEstado gerenciador, Droid droid)
     {
-        if (item.SlotDePeca == null)
-        {
-            Debug.LogWarning($"BagUIManager: item Equipavel '{item.Id}' sem SlotDePeca definido no catalogo.");
-            return;
-        }
-
-        if (!gerenciador.TentarRemoverItem(item.Id, 1))
-        {
-            MostrarMensagem($"Você não tem mais {item.Nome}.");
-            return;
-        }
-
-        DroidPart novaPeca = item.SlotDePeca switch
-        {
-            TipoDePeca.Braco => new Braco(item.Nome, 0, Raridade.Comum, item.AtributoBonificado, item.ValorDoBonus),
-            TipoDePeca.Perna => new Perna(item.Nome, 0, Raridade.Comum, item.AtributoBonificado, item.ValorDoBonus),
-            TipoDePeca.Tronco => new Tronco(item.Nome, 0, Raridade.Comum, item.AtributoBonificado, item.ValorDoBonus),
-            TipoDePeca.Cabeca => new Cabeca(item.Nome, 0, Raridade.Comum, item.AtributoBonificado, item.ValorDoBonus),
-            _ => null
-        };
-
-        if (novaPeca == null) return;
-
-        droid.EquiparPeca(item.SlotDePeca.Value, novaPeca);
-        MostrarMensagem($"{item.Nome} equipado!");
-        _salvamento.Salvar();
-        AtualizarListaComRebuild();
+        MostrarMensagem($"Equipe pelo terminal: droid.equipar(\"{item.Id}\")");
     }
 
     // NOVO (Estagio 3): itens de uso unico fora de batalha que nao sao cura

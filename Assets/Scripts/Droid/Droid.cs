@@ -57,12 +57,14 @@ namespace DroidsCode.DroidCore
         public Tronco Tronco { get; set; }
         public Cabeca Cabeca { get; set; }
 
-        // Estagio 3 (fase 2 do sistema de item) - Equipavel: instala uma
-        // nova peca no slot correspondente, substituindo a que estiver la
-        // (se houver). Decisao tomada sem alinhamento extra: equipar
-        // CONSOME o item (ver BagUIManager.EquiparItem) e nao ha
-        // "desequipar" nesta fase -- so troca direta. Virar um sistema de
-        // slot com desequipar/devolver item fica pra depois, se for pedido.
+        public DroidPart ObterPeca(TipoDePeca slot) => slot switch
+        {
+            TipoDePeca.Braco => Braco, TipoDePeca.Perna => Perna,
+            TipoDePeca.Tronco => Tronco, TipoDePeca.Cabeca => Cabeca,
+            _ => throw new System.ArgumentOutOfRangeException(nameof(slot))
+        };
+
+        // Atribuição de domínio; estoque/devolução são responsabilidade do ServicoDeEquipamento.
         public void EquiparPeca(TipoDePeca slot, DroidPart novaPeca)
         {
             switch (slot)

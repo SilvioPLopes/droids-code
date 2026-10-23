@@ -5,9 +5,11 @@ namespace DroidsCode.Scripting
     public class DroidScriptRunner
     {
         private readonly Script _vm;
+        private readonly TerminalDroidApi _api;
 
         public DroidScriptRunner(TerminalDroidApi api)
         {
+            _api = api;
             // Sandbox: remove io, os (exceto tempo), load, require, dofile.
             // O Lua digitado pelo jogador não deveria ter acesso a sistema de
             // arquivos/SO — sem isso, new Script() carrega todos os módulos
@@ -22,20 +24,29 @@ namespace DroidsCode.Scripting
 
         public ResultadoExecucao ExecutarCodigo(string codigoLua)
         {
+            _api.IniciarExecucaoEquipamentos();
             // TODO: sem protecao contra loop infinito ainda (ex: "while true do end"
             // travaria o jogo). Pendência conhecida, fora do escopo desta correção.
             try
             {
                 _vm.DoString(codigoLua);
+                _api.ConcluirExecucaoEquipamentos(true);
                 return new ResultadoExecucao { Sucesso = true, MensagemErro = null };
             }
             catch (ScriptRuntimeException ex)
             {
+                _api.ConcluirExecucaoEquipamentos(false);
                 return new ResultadoExecucao { Sucesso = false, MensagemErro = ex.DecoratedMessage };
             }
             catch (SyntaxErrorException ex)
             {
+                _api.ConcluirExecucaoEquipamentos(false);
                 return new ResultadoExecucao { Sucesso = false, MensagemErro = ex.DecoratedMessage };
+            }
+            catch
+            {
+                _api.ConcluirExecucaoEquipamentos(false);
+                throw;
             }
         }
 

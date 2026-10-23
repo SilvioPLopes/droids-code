@@ -172,7 +172,7 @@ public class TerminalUIManager : MonoBehaviour
 
         droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
 
-        api = new TerminalDroidApi(droid);
+        api = new TerminalDroidApi(droid, GerenciadorDeEstado.Instancia);
         runner = new DroidScriptRunner(api);
 
         string contexto = idDoContextoPuzzle ?? "";

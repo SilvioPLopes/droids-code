@@ -22,6 +22,7 @@ namespace DroidsCode.DroidCore
     public abstract class DroidPart
     {
         public string Nome { get; set; }
+        public string IdItem { get; set; }
         public int AtributoPrincipal { get; set; }
         public Raridade Raridade { get; set; }
 
@@ -37,9 +38,10 @@ namespace DroidsCode.DroidCore
         public int ValorDoBonus { get; set; }
 
         protected DroidPart(string nome, int atributoPrincipal, Raridade raridade,
-            TipoAtributo? atributoBonificado = null, int valorDoBonus = 0)
+            TipoAtributo? atributoBonificado = null, int valorDoBonus = 0, string idItem = null)
         {
             Nome = nome;
+            IdItem = idItem;
             AtributoPrincipal = atributoPrincipal;
             Raridade = raridade;
             AtributoBonificado = atributoBonificado;

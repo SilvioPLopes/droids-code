@@ -71,3 +71,8 @@ O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.m
 - Preservar moldura, escala local, nomes/retratos e Canvas/Scaler dos demais painéis. Confirmar mensagem visível por input real desde a primeira tentativa e nas tentativas posteriores pertinentes; chamada por API/compilação não comprova isso.
 
 **Estado:** diretriz registrada, implementação ainda divergente. O [diagnóstico de avisos/carregamento](../../planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md) concentra causas, evidências, lacunas e próxima etapa; não interpretar esta seção como correção aplicada.
+
+
+## Droid ilustrado e equipamentos — 23/10/2026
+
+TelaDeDroidManager monta ApresentacaoDroidIlustrado sobre Assets/UI/DroidIlustrado/droid-conceito-v2.png. Quatro slots mostram ícones por ID instalado, seis atributos em coluna fixa, grades de estoque/técnicas paginadas e inspeção rolável com comandos/comparação. Bag orienta para o terminal; instalar/remover é exclusivo dos comandos droid.equipar/desequipar. CorpoBase e quatro camadas ficam separados: camadas sem arte vestível permanecem desativadas. Canvas/Scaler compartilhados preservados; encaixe local1536×1024/.98. [Guia/IDs/artes](../../guias/equipamentos-apollo.md), [evidências e pendências](../../planos-implementacao/2026-10-23-droid-ilustrado.md).

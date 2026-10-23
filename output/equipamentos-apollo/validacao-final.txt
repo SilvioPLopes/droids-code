@@ -1,0 +1,3 @@
+OK: 27 IDs/ícones únicos, 6 equipamentos; troca/devolução/idempotência/raridade/estoque/HP; Lua real equipar/desequipar/listar e rollback em erro; grava/lê/restaura quatro slots em instância nova, inventário/HP/energia; legado e rejeição de ID/slot/duplicata/versão futura. Sem cena/save pessoal.
+OK: construtor em thread secundário, referência nula recuperada, grava/regrava/lê fixture, energia/HP/posição preservados, ausente/JSON inválido/falha de IO com retorno local, confirmação no menu sem abrir conversa, menu/contador e callback preservados. Sem CarregarDados/troca de cena/save pessoal.
+CasaLip: OK

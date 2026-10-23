@@ -34,13 +34,19 @@ public class SalvamentoJson : ISistemaDeSalvamento
     public static void MigrarDados(DadosDoJogo dados)
     {
         if (dados == null) throw new System.ArgumentNullException(nameof(dados));
+        if (dados.versao > 7) throw new InvalidOperationException("Save de versão mais recente. Arquivo preservado.");
         // Campo máximo ausente identifica legado; zero atual com máximo válido é saldo real.
         if (dados.droid != null && dados.droid.energiaMaxima <= 0)
         {
             dados.droid.energiaMaxima = TabelaDeEnergia.MaximaInicial;
             dados.droid.energiaAtual = TabelaDeEnergia.MaximaInicial;
         }
-        if (dados.versao >= 6) return;
+        if (dados.versao >= 6)
+        {
+            if (dados.droid != null && dados.droid.pecas == null) dados.droid.pecas = new System.Collections.Generic.List<PecaSalva>();
+            dados.versao = 7;
+            return;
+        }
 
         bool casaLegadaMarcada = false;
         if (dados.flagsDeHistoria != null)
@@ -67,7 +73,8 @@ public class SalvamentoJson : ISistemaDeSalvamento
                     });
             }
         }
-        dados.versao = 6;
+        if (dados.droid != null && dados.droid.pecas == null) dados.droid.pecas = new System.Collections.Generic.List<PecaSalva>();
+        dados.versao = 7;
     }
 
     public void Salvar()
@@ -130,6 +137,20 @@ public class SalvamentoJson : ISistemaDeSalvamento
             // Estagio 3 (fase 2 do sistema de item): persiste Gold junto.
             gold = gerenciador.Gold
         };
+
+        foreach (TipoDePeca slot in Enum.GetValues(typeof(TipoDePeca)))
+        {
+            var peca = droid.ObterPeca(slot);
+            if (peca == null) continue;
+            dados.droid.pecas.Add(new PecaSalva
+            {
+                slot = (int)slot, idItem = peca.IdItem, nome = peca.Nome,
+                raridade = (int)peca.Raridade, atributoPrincipal = peca.AtributoPrincipal,
+                temBonus = peca.AtributoBonificado.HasValue,
+                atributoBonificado = (int)(peca.AtributoBonificado ?? TipoAtributo.For), valorDoBonus = peca.ValorDoBonus
+            });
+        }
+        ReconstruirPecas(dados.droid.pecas);
 
         // CORRECAO (12/09/2026): gravar tambem os efeitos da tecnica (antes
         // so nome/nivelDeDano eram salvos -- Veneno/Stun sumiam ao carregar).
@@ -204,6 +225,8 @@ public class SalvamentoJson : ISistemaDeSalvamento
     static void ValidarDados(DadosDoJogo dados)
     {
         if (dados == null || dados.droid == null) throw new InvalidOperationException("Save incompleto: dados do jogador ausentes.");
+        if (dados.versao > 7) throw new InvalidOperationException("Save de versão mais recente. Arquivo preservado.");
+        ReconstruirPecas(dados.droid.pecas);
         ValidarDestino(dados.cena, new Vector3(dados.posicaoX, dados.posicaoY, dados.posicaoZ));
         // CanStreamedLevelBeLoaded retorna false fora de Play no Editor.
         // A lista do build permite validar o arquivo sem uma partida ativa.
@@ -234,10 +257,17 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
     public void CarregarDados(DadosDoJogo dados)
     {
+        AplicarDadosSemTrocarCena(dados, GerenciadorDeEstado.Instancia);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(dados.cena);
+    }
+
+    /// <summary>Restaura estado sem IO/troca de cena, compartilhado pela carga e fixtures.</summary>
+    public static void AplicarDadosSemTrocarCena(DadosDoJogo dados, GerenciadorDeEstado gerenciador)
+    {
         ValidarDados(dados);
         MigrarDados(dados);
-
-        GerenciadorDeEstado gerenciador = GerenciadorDeEstado.Instancia;
+        var pecas = ReconstruirPecas(dados.droid.pecas);
+        if (gerenciador == null || gerenciador.DroidDoJogador == null) throw new InvalidOperationException("Sessão do jogador indisponível.");
         Droid droid = gerenciador.DroidDoJogador;
 
         droid.Nome = dados.droid.nome;
@@ -259,6 +289,8 @@ public class SalvamentoJson : ISistemaDeSalvamento
         droid.StatsBase.Int = dados.droid.statsInt;
         droid.StatsBase.Dex = dados.droid.statsDex;
         droid.StatsBase.Luk = dados.droid.statsLuk;
+        foreach (TipoDePeca slot in Enum.GetValues(typeof(TipoDePeca)))
+            droid.EquiparPeca(slot, pecas.TryGetValue(slot, out var peca) ? peca : null);
         // Hp precisa ser restaurado DEPOIS de StatsBase.Vit e HpMaxBase,
         // porque droid.HpMax agora depende de VIT (calculado) -- restaurar
         // antes poderia truncar Hp contra um HpMax desatualizado.
@@ -344,8 +376,30 @@ public class SalvamentoJson : ISistemaDeSalvamento
         // existe no Player) pegar TemPosicaoSalva e teleportar sozinho,
         // reaproveitando o mecanismo do Game<->Battle em vez de duplicar
         // logica de teleporte aqui.
-        UnityEngine.SceneManagement.SceneManager.LoadScene(dados.cena);
-
         Debug.Log("Jogo carregado.");
+    }
+
+    static System.Collections.Generic.Dictionary<TipoDePeca, DroidPart> ReconstruirPecas(System.Collections.Generic.List<PecaSalva> lista)
+    {
+        var resultado = new System.Collections.Generic.Dictionary<TipoDePeca, DroidPart>();
+        if (lista == null) return resultado;
+        if (lista.Count > 4) throw new InvalidOperationException("Save contém mais de quatro peças. Arquivo preservado.");
+        foreach (var p in lista)
+        {
+            if (p == null || !Enum.IsDefined(typeof(TipoDePeca), p.slot) || !Enum.IsDefined(typeof(Raridade), p.raridade)
+                || (p.temBonus && !Enum.IsDefined(typeof(TipoAtributo), p.atributoBonificado)))
+                throw new InvalidOperationException("Peça do save contém slot ou atributo inválido. Arquivo preservado.");
+            var slot = (TipoDePeca)p.slot;
+            if (resultado.ContainsKey(slot)) throw new InvalidOperationException("Save contém peças duplicadas no mesmo slot. Arquivo preservado.");
+            if (!string.IsNullOrEmpty(p.idItem))
+            {
+                var item = CatalogoDeItens.Obter(p.idItem);
+                if (item == null || item.Tipo != TipoDeItem.Equipavel || item.SlotDePeca != slot)
+                    throw new InvalidOperationException("Peça desconhecida ou incompatível no save: " + p.idItem + ". Arquivo preservado.");
+            }
+            resultado.Add(slot, ServicoDeEquipamento.CriarPeca(slot, p.idItem, p.nome, (Raridade)p.raridade,
+                p.temBonus ? (TipoAtributo?)p.atributoBonificado : null, p.valorDoBonus, p.atributoPrincipal));
+        }
+        return resultado;
     }
 }

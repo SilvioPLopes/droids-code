@@ -6,6 +6,12 @@ Usuário rejeitou a confirmação de Salvar na caixa de conversa: retorno de Sal
 
 Escopo antes de editar: somente MenuMundoManager, fixture ValidacaoSalvarCarregar e documentação vinculada. Reutilizar textoAviso do menu ilustrado, cuja área já existe; não alterar arte/prefab/Canvas ou o serviço corrigido. Remover fila e chamada do diálogo; salvar/erros mantêm menu aberto. Carregar pode trocar a cena pela operação real, mas reapresenta o mesmo menu com confirmação local, recompondo seu contador após CarregarDados zerá-lo. Backup anterior em `output/correcao-save/backup-feedback-local/`; reversão somente dos trechos próprios. Aceite: mensagem local, nenhum diálogo aberto/substituído, menu permanece ativo no salvar/erros, contador consistente; IO em fixture e hash pessoal preservado. Nova aprovação visual ainda necessária; captura do usuário comprova rejeição do fluxo anterior.
 
+Aplicado e salvo: removida a fila do Update e qualquer chamada do diálogo para esse retorno. Resultado atribuído diretamente a textoAviso, mantendo conteúdo do catálogo. Carregamento fecha/reabre o mesmo menu em torno da restauração real para recompor o contador; confirmação não inicia conversa. Compilação sem erros, dois avisos de API obsoleta preexistentes.
+
+Validação nativa executada na City fora de Play, em cena de prévia: gravar/regravar/ler fixture, ausente/JSON inválido/falha de IO retornam no menu; salvar mantém painel e contador, não abre conversa e não altera conversa/callback já existente. Resultado `output/correcao-save/validacao-feedback-local.txt`. CarregarDados/troca real de cena não executados nesta fixture; conferir esse fluxo por input real separadamente. Nenhuma alteração de montagem/arte.
+
+Hash do backup original da correção anterior já diferia do arquivo atual antes desta fixture; esse backup não representa o progresso mais recente. Capturada nova cópia/hash do save atual em backup-feedback-local/ e conferida preservação ao final. Não restaurar o backup antigo sobre progresso novo. Unity permaneceu City fora de Play; importados somente scripts, nenhuma cena salva, nenhum save pessoal gravado ou restaurado. Próximo passo: usuário conferir a mensagem no menu; sem aprovação visual presumida, commit ou push.
+
 ## Correção autorizada —23/10/2026
 
 ### Resultado aplicado e retomada

@@ -67,7 +67,7 @@ public static class ValidacaoCasaLip
         var antigo = Fixture(5);
         antigo.flagsDeHistoria.Add(new FlagDeHistoria { chave = Conclusao, valor = true });
         migrar.Invoke(null, new object[] { antigo });
-        Exigir(antigo.versao == 6, "Migracao v5 nao atualizou versao para 6.");
+        Exigir(antigo.versao == 7, "Migracao v5 nao atualizou versao para 7.");
         Exigir(Flag(antigo, Introducao), "Conversa antiga deve migrar para introducao.");
         Exigir(Flag(antigo, Conclusao), "Conclusao legada verdadeira deve ser preservada para nao apagar progresso do jogador.");
         ValidarProgressoPreservado(antigo);
@@ -77,14 +77,19 @@ public static class ValidacaoCasaLip
 
         var semFlag = Fixture(5);
         migrar.Invoke(null, new object[] { semFlag });
-        Exigir(semFlag.versao == 6 && !Flag(semFlag, Introducao) && !Flag(semFlag, Conclusao), "v5 sem flag inventou progresso de historia.");
+        Exigir(semFlag.versao == 7 && !Flag(semFlag, Introducao) && !Flag(semFlag, Conclusao), "v5 sem flag inventou progresso de historia.");
         ValidarProgressoPreservado(semFlag);
 
         var moderno = Fixture(6);
+        moderno.droid.energiaAtual = 25;
+        moderno.droid.energiaMaxima = 100;
         moderno.flagsDeHistoria.Add(new FlagDeHistoria { chave = Conclusao, valor = true });
+        // A migração v7 só adiciona equipamentos/versão; conserva todos os dados v6.
+        moderno.versao = 7;
         string antes = JsonUtility.ToJson(moderno);
+        moderno.versao = 6;
         migrar.Invoke(null, new object[] { moderno });
-        Exigir(JsonUtility.ToJson(moderno) == antes, "Save v6 resolvido deve ser preservado integralmente.");
+        Exigir(JsonUtility.ToJson(moderno) == antes, "Migração v6→v7 alterou dados anteriores.");
         return "OK";
     }
 

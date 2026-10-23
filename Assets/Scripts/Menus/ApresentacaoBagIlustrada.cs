@@ -166,8 +166,14 @@ public sealed class ApresentacaoBagIlustrada : MonoBehaviour
         rolagemDescricao.verticalNormalizedPosition = 1;
         previa.sprite = atual == null ? null : CatalogoVisualDeItens.Obter(atual.Id);
         previa.enabled = previa.sprite != null;
-        acao.interactable = atual != null;
-        rotuloAcao.text = atual != null && atual.Tipo == TipoDeItem.Equipavel ? "EQUIPAR" : "USAR";
+        bool equipamento = atual != null && atual.Tipo == TipoDeItem.Equipavel;
+        acao.interactable = atual != null && !equipamento;
+        rotuloAcao.text = equipamento ? "NO TERMINAL" : "USAR";
+        if (equipamento)
+        {
+            descricao.text += $"\n\nEquipe pelo terminal:\ndroid.equipar(\"{atual.Id}\")";
+            descricao.rectTransform.sizeDelta = new Vector2(380, Mathf.Max(277, descricao.GetPreferredValues(descricao.text, 380, Mathf.Infinity).y));
+        }
         anterior.interactable = pagina > 0; proxima.interactable = (pagina + 1) * PorPagina < itens.Count;
         paginaTexto.text = $"{pagina + 1}/{Mathf.Max(1, (itens.Count + PorPagina - 1) / PorPagina)}";
     }
