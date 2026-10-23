@@ -95,6 +95,8 @@ public static class ValidacaoTerminalIlustrado
             foreach(var texto in painel.GetComponentsInChildren<TMPro.TextMeshProUGUI>()) texto.ForceMeshUpdate();
             Canvas.ForceUpdateCanvases();
             scroll.Rebuild(CanvasUpdate.PostLayout);
+            var objetivoRolavel=t.textoAjuda.GetComponentInParent<ScrollRect>();
+            objetivoRolavel.Rebuild(CanvasUpdate.PostLayout);
             scroll.verticalNormalizedPosition = 1;
             var posicaoTopo = scroll.content.anchoredPosition;
             scroll.verticalNormalizedPosition = 0;
@@ -103,8 +105,19 @@ public static class ValidacaoTerminalIlustrado
             Exigir(scroll.verticalScrollbar.size>0 && scroll.verticalScrollbar.size<1, "Indicador de rolagem não representa conteúdo longo.");
             var cantos = new Vector3[4]; ((RectTransform)painel.transform).GetWorldCorners(cantos);
             var minimo = cam.WorldToScreenPoint(cantos[0]); var maximo = cam.WorldToScreenPoint(cantos[2]);
-            Exigir(minimo.x >= -1 && minimo.y >= -1 && maximo.x <= largura+1 && maximo.y <= altura+1, "Arte cortada na resolução alvo.");
-            Exigir(Mathf.Abs((maximo.x-minimo.x)-(maximo.y-minimo.y)) < 1, "Arte deformada.");
+            var areaTerminal = (RectTransform)painel.transform;
+            var janelaMin = cam.WorldToScreenPoint(areaTerminal.TransformPoint(new Vector3(areaTerminal.rect.xMin,areaTerminal.rect.yMin+a.referencia.y*a.corteInferior,0f)));
+            var janelaMax = cam.WorldToScreenPoint(areaTerminal.TransformPoint(new Vector3(areaTerminal.rect.xMax,areaTerminal.rect.yMax-a.referencia.y*a.corteSuperior,0f)));
+            Exigir(janelaMin.x >= -1 && janelaMin.y >= -1 && janelaMax.x <= largura+1 && janelaMax.y <= altura+1, "Janela útil do terminal cortada.");
+            foreach(var controle in new RectTransform[]{t.campoDeCodigo.GetComponent<RectTransform>(),t.textoAjuda.GetComponentInParent<ScrollRect>().GetComponent<RectTransform>(),t.scrollRectSaida.GetComponent<RectTransform>(),t.botaoLimpar.GetComponent<RectTransform>(),t.botaoExecutar.GetComponent<RectTransform>(),t.botaoFechar.GetComponent<RectTransform>(),a.depuracao.GetComponent<RectTransform>()}) {
+                controle.GetWorldCorners(cantos);
+                foreach(var c in cantos) {var pixel=cam.WorldToScreenPoint(c);Exigir(pixel.x>=-1&&pixel.y>=-1&&pixel.x<=largura+1&&pixel.y<=altura+1,"Controle fora da tela: "+controle.name);}
+            }
+            Exigir(Mathf.Abs((maximo.x-minimo.x)/(maximo.y-minimo.y)-a.referencia.x/a.referencia.y) < 0.01f, "Arte deformada.");
+            if(altura<=500) {
+                Exigir(t.campoDeCodigo.textComponent.fontSize*Mathf.Abs(t.campoDeCodigo.transform.lossyScale.y)>=16f,"Texto de código pequeno na janela de referência.");
+                Exigir(t.textoSaida.fontSize*Mathf.Abs(t.textoSaida.transform.lossyScale.y)>=14f && t.textoAjuda.fontSize*Mathf.Abs(t.textoAjuda.transform.lossyScale.y)>=14f,"Texto lateral pequeno na janela de referência.");
+            }
             Exigir(scroll.content.rect.height > scroll.viewport.rect.height, "Saída longa não criou conteúdo rolável.");
             var eventGo = new GameObject("EventosPreviewTerminal",typeof(EventSystem));
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(eventGo,cena);

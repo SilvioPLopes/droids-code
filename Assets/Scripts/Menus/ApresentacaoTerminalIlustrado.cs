@@ -14,7 +14,11 @@ public sealed class ApresentacaoTerminalIlustrado : MonoBehaviour
     public Image luzExecutando;
     public Image luzErro;
     public float margemDaTela = 0.98f;
-    const float Tamanho = 1254f;
+    [Header("Recorte de exibição (não modifica a imagem)")]
+    [Range(0f, 0.2f)] public float corteSuperior = 0.05f;
+    [Range(0f, 0.2f)] public float corteInferior = 0.05f;
+    public Vector2 referencia = new Vector2(1254f, 1254f);
+    public RectTransform fundoFoco;
     bool ajustando;
     string ultimoCodigo;
 
@@ -48,17 +52,30 @@ public sealed class ApresentacaoTerminalIlustrado : MonoBehaviour
         if (raiz == null || raiz.rect.width <= 0 || raiz.rect.height <= 0) return;
         Vector3 herdada = pai.lossyScale;
         if (Mathf.Abs(herdada.x) < 0.00001f || Mathf.Abs(herdada.y) < 0.00001f) return;
-        float lado = Mathf.Min(raiz.rect.width * Mathf.Abs(raiz.lossyScale.x),
-            raiz.rect.height * Mathf.Abs(raiz.lossyScale.y)) * margemDaTela;
-        var escala = new Vector3(lado / Tamanho / Mathf.Abs(herdada.x),
-            lado / Tamanho / Mathf.Abs(herdada.y), 1f);
+        float topo = Mathf.Clamp(corteSuperior, 0f, 0.2f);
+        float baseDaArte = Mathf.Clamp(corteInferior, 0f, 0.2f);
+        if (referencia.x <= 0f || referencia.y <= 0f) return;
+        float alturaUtil = referencia.y * (1f - topo - baseDaArte);
+        float fator = Mathf.Min(raiz.rect.width * Mathf.Abs(raiz.lossyScale.x) / referencia.x,
+            raiz.rect.height * Mathf.Abs(raiz.lossyScale.y) / alturaUtil) * margemDaTela;
+        var escala = new Vector3(fator / Mathf.Abs(herdada.x), fator / Mathf.Abs(herdada.y), 1f);
         ajustando = true;
         try
         {
             area.anchorMin = area.anchorMax = area.pivot = Vector2.one * 0.5f;
-            area.sizeDelta = Vector2.one * Tamanho;
-            area.position = raiz.TransformPoint(raiz.rect.center);
+            area.sizeDelta = referencia;
             if (area.localScale != escala) area.localScale = escala;
+            float centroUtil = (baseDaArte - topo) * referencia.y * 0.5f;
+            area.position = raiz.TransformPoint(raiz.rect.center) - area.TransformVector(new Vector3(0f, centroUtil, 0f));
+            if (fundoFoco != null)
+            {
+                fundoFoco.anchorMin = fundoFoco.anchorMax = fundoFoco.pivot = Vector2.one * 0.5f;
+                fundoFoco.localScale = Vector3.one;
+                fundoFoco.sizeDelta = new Vector2(
+                    raiz.rect.width * Mathf.Abs(raiz.lossyScale.x) / Mathf.Abs(area.lossyScale.x),
+                    raiz.rect.height * Mathf.Abs(raiz.lossyScale.y) / Mathf.Abs(area.lossyScale.y));
+                fundoFoco.position = raiz.TransformPoint(raiz.rect.center);
+            }
         }
         finally { ajustando = false; }
     }

@@ -1,5 +1,53 @@
 # Terminal ilustrado — montagem sobre a arte
 
+## Retomada vigente — reprovação de legibilidade e foco (23/10/2026)
+
+**Relato:** usuário rejeitou o resultado, texto ilegível; a segunda captura é a referência de foco no monitor, sem cenário/base ocupando área. Autorizou alterar a imagem se necessário. Não continuar o recorte por fatores tentativos; a entrega anterior não tem aceite visual.
+
+**Diagnóstico comprovado:** CasaLip em Play, terminal aberto, render 3840×2160. Código fonte virtual 24 × escala efetiva 1.875598 = 45.01 px renderizados; saída/objetivo fonte 20 = 37.51 px. Captura do usuário mostra Game View a 0.22×, logo tamanhos exibidos aproximados 9.9 e 8.25 px. A área útil estreita e tipografia definida para a arte quadrada não atende a leitura na janela mostrada. Zoom é condição de comparação, não algo a alterar para declarar correção.
+
+**Direção revisada apresentada ao usuário:** manter estilo verde/metal e foco da segunda imagem, produzir outra arte horizontal só do monitor, borda curta, sem base/pés, áreas de código/objetivo/saída maiores. Textos e botões terão legendas reais escaláveis, sem palavras/números de demonstração impressos. Fundo opaco exclusivo do terminal elimina competição do cenário. Preservar a arte atual em arquivo separado.
+
+**Escopo:** novo asset irmão em Assets/UI/TerminalIlustrado; ApresentacaoTerminalIlustrado.cs e helper Editor de remontagem delimitada; prefab Canvas somente ramo terminal; teste de layout/legibilidade em 1920×1080, 1280×720 e 844×475 (aproximação da Game View da captura); documentação deste plano/contrato. Não alterar Canvas/Scaler global, cenas/mundo/NPCs, backend Lua, save/flags ou diálogo. Inspecionar e preservar trabalho recente de recorte antes da mudança.
+
+**Aceite visível:** foco no monitor como segunda imagem; sem base/cenário visíveis ao abrir; texto do código de aproximadamente 16 px ou mais em 844×475 e corpo lateral pelo menos 14 px; campos e botões sem cortes/sobreposição; objetivo/log longos roláveis; controles continuam alinhados e funcionais. Comparar também na resolução pequena, não apenas em render grande. Nova imagem em separado, atual intacta.
+
+**Backup/reversão:** guardar prefab/scripts/renders atuais e código/saída da sessão em output/terminal-ilustrado/foco-2026-10-23/ antes de aplicar. Autorização anterior para encerrar Play/aplicar terminal já recebida; guardar sessão antes de encerrá-la, sem nova confirmação. Reverter só hunks desta rodada se solicitado, não presumir recuperação visual.
+
+**Resultado aplicado, aceite do usuário pendente:** nova arte `Assets/UI/TerminalIlustrado/terminal-foco-horizontal.png`, 1536×1024; fontes reais código/números 40, saída 34, objetivo/pontos 32; títulos e botões agora TMP, sem palavras impressas no bitmap. Fundo exclusivo opaco ocupa tela enquanto terminal aberto; moldura sem base/pés, cenário oculto. Referência/cortes do perfil atual 1536×1024, 0/0, margem 0.98. Script compensa escala herdada sem mudar Canvas/Scaler.
+
+**Evidência antes/depois:** teste novo em 844×475 falhou no perfil anterior com “Texto de código pequeno na janela de referência”, antes de aplicar a migração. Após mudança, passou com mínimo nominal código >=16 px e corpo lateral >=14 px; valores aproximados atuais 18.18/15.46/14.55. Render pequeno inspecionado: textos e controles identificáveis, sem cenário competindo. Objetivo longo continua rolável (não cabe inteiro em uma página), agora com indicador visível; depuração possui caixa desenhada na UI.
+
+**Verificação:** bateria isolada Unity passou em 844×475, 1280×720 e 1920×1080: abertura menu/contexto, digitação por evento, Lua finito, sucesso/erro, limpar, depuração, rolagem e regiões de clique, retorno/fechamento. Renders em output/terminal-ilustrado/preview-*.png. São testes por API e renders de fixture, não input físico/aprovação do usuário.
+
+**Preservação:** backup atualizado em foco-2026-10-23/backup, inclusive código/saída da sessão. Play encerrado com autorização anterior para aplicação do terminal; sem partida de teste ou gravação de save. Novo helper RefocoTerminalIlustrado aplica uma migração com guarda; não foi repetida após timeout. Helpers e runtime compilados sem erro. Nas cenas CasaLip/City/Game foi confirmado um terminal com novo perfil/arte/fontes/fundo, fechando as preview scenes sem salvar. Nenhuma cena foi editada nesta rodada.
+
+**Diff:** comparação do prefab com backup desta rodada: zero registros alterados ou novos fora do terminal, nenhum registro removido. Serialização automática do MenuMundoManager foi reposta ao registro anterior. Hash da arte antiga permanece CF678021B5474D1A1147E83B21BC9BC13AFAA199A328343CB57CE380C08A3699. Backend TerminalUIManager/Lua, diálogos e demais painéis não editados nesta rodada. Tratar testes anteriores como históricos, sem ignorar nova rejeição.
+
+**Geração:** ferramenta image_gen integrada, referência visual da segunda captura, saída original em `.codex/generated_images/01a1650a-b48a-74a2-8177-73e5a4b06a86/exec-3da58258-e80a-4fc4-aa70-7cebaee0d241.png`; cópia final dentro de Assets. Prompt: monitor horizontal 1536×1024 verde/latão, moldura justa sem base/cenário, painéis vazios maiores e robô pequeno, sem letras/números/scrollbars impressos; controles/tipografia reais sobrepostos. Imagem anterior intacta.
+
+**Estado final consultado:** DroidsCode/MainMenu, fora de Play, limpa, compilação parada e sem falha; nenhum EstadoIsoladoTerminal remanescente. Diff de scripts/documentação sem erros de whitespace. Não houve commit/push nesta rodada.
+
+**Próximo passo:** apresentar prévia pequena e usuário avaliar no jogo. Se reprovar, preservar evidência e reavaliar composição/legibilidade antes de novo ajuste; não aumentar fatores automaticamente. Registros abaixo são históricos e não comprovam aceite desta versão.
+
+## Retomada vigente — recorte de exibição em 23/10/2026
+
+**Pedido novo:** ampliar o terminal e aceitar cerca de 5% de corte no topo/base, sem alterar o arquivo original. É ajuste autorizado do enquadramento anterior, não tentativa de corrigir outra regressão.
+
+**Causa/valores observados:** script encaixa o quadrado completo de 1254 com margem 0.98; margens escuras da arte consomem área útil. MainMenu fora de Play e limpa. Proposta: enquadrar a altura útil de 90% (1128.6), preservando escala uniforme, limite horizontal e coordenadas dos controles. Com margem 0.98, borda física da tela corta aproximadamente 4.08% de cada lado vertical do quadrado; janela útil configurada é 5% por lado. Ganho relativo em telas largas: 1/0.9 = 11.11%.
+
+**Arquivos permitidos:** ApresentacaoTerminalIlustrado.cs (campos de corte e cálculo de escala/centro); ValidacaoTerminalIlustrado.cs (aceite da janela visível e controles no lugar do quadrado completo); contrato de interface e este plano. Sem alterar prefab/cenas/Canvas/Scaler, funcionamento Lua, imagem/metas ou saves. Consumidores continuam CasaLip/City/Game.
+
+**Aceite:** arte proporcional, maior, excesso vertical cortado só nas margens; campo/objetivo/saída/botões/depuração inteiros e alinhados. Comparação visual 1920×1080 e 1280×720; propriedades de controles dentro da tela; hash da imagem igual ao inicial CF678021B5474D1A1147E83B21BC9BC13AFAA199A328343CB57CE380C08A3699. Zoom da Game View desconhecido, não alterado; previews com resolução controlada.
+
+**Backup/reversão:** scripts e renders anteriores copiados para output/terminal-ilustrado/recorte-2026-10-23/. Reversão do enquadramento: cortes superior/inferior em zero recuperam o cálculo anterior; ou restaurar apenas os hunks próprios dos scripts. Não restaurar arquivos inteiros sobre mudanças posteriores.
+
+**Resultado:** cálculo aplicado; cortes configuráveis em 0.05/0.05, escala uniforme e centro útil ajustado também para cortes assimétricos. Teste atualizado verifica janela útil, proporção e limites dos controles; não exige mais que margens decorativas fiquem inteiras. Compilação Unity sem falha; bateria isolada passou em 1920×1080 e 1280×720. Prévia das duas resoluções inspecionada: maior, margens cortadas, controles e moldura útil preservados. Arquivo PNG com hash idêntico ao inicial; nenhum prefab/cena foi editado por esta rodada. Interface documentada.
+
+**Estado/limites:** durante recarga o Editor apareceu brevemente em Play; consultas posteriores o encontraram novamente em MainMenu fora de Play. Não foi enviado comando para entrar/sair de Play nem executada partida pelo agente. Testes isolados só rodaram após confirmação de fora de Play. Duas falhas transitórias de conector durante recarga superadas por consulta de estado, sem repetir mutação de montagem. Backups nesta pasta incluem scripts/renders antes do recorte; nenhum save modificado. Input físico e aprovação visual do usuário permanecem pendentes.
+
+**Próximo passo:** usuário avaliar o novo enquadramento. Ajustes futuros usam os dois campos de corte locais; não refazer arte ou mudar Canvas global. Registros abaixo descrevem a entrega anterior.
+
 **Estado atual:** montagem aplicada e salva fora de Play; verificação por API e renders concluída em 1920×1080 e 1280×720. Usuário autorizou encerrar Play/aplicar; retomada encontrou DroidsCode/MainMenu já fora de Play e limpa. Arte e controles implementados no prefab compartilhado; contratos globais preservados. Input físico/aprovação visual do usuário ainda não recebidos. Histórico abaixo não representa bloqueio vigente.
 
 ## Retomada vigente

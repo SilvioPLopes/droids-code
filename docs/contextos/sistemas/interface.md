@@ -13,12 +13,14 @@ Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' A
 
 ## Terminal ilustrado
 
-- `Assets/Prefabs/Canvas.prefab`, ramo `PainelTerminal`, usa `Assets/UI/TerminalIlustrado/terminal-fundo.png`. Cópia da referência do usuário com números/erro de exemplo removidos; não recolocar texto fictício na arte de fundo.
-- [ApresentacaoTerminalIlustrado](../../../Assets/Scripts/Menus/ApresentacaoTerminalIlustrado.cs) ajusta somente o painel quadrado virtual de 1254×1254 à tela, preservando proporção e compensando a escala herdada. Não aumentar o Canvas/Scaler global para redimensionar esse terminal.
+- `Assets/Prefabs/Canvas.prefab`, ramo `PainelTerminal`, usa **`Assets/UI/TerminalIlustrado/terminal-foco-horizontal.png`**, perfil 1536×1024. Arte sem letras, só monitor, sem base/pés; títulos/legendas são TMP reais. A imagem anterior `terminal-fundo.png` foi preservada; o recorte quadrado não teve aceite e foi substituído por esta composição após o relato de ilegibilidade.
+- [ApresentacaoTerminalIlustrado](../../../Assets/Scripts/Menus/ApresentacaoTerminalIlustrado.cs) usa `referencia` para ajustar o painel preservando proporção e compensando escala herdada. Perfil vigente: 1536×1024, cortes zero, margem 0.98. `FundoFoco`, filho exclusivo do terminal, cobre o Canvas com fundo opaco enquanto aberto; fecha junto com o painel. Não mudar Canvas/Scaler global nem depender do zoom da Game View.
+- Fontes nominais virtuais: código/números 40, saída 34, objetivo/pontos 32; objetivo longo possui scrollbar visível, saída rolável preservada. A legibilidade deve ser inspecionada também em janela pequena (referência 844×475), não apenas em captura 1920×1080. Os cortes antigos 0.05/0.05 continuam disponíveis para perfil antigo, não são o ajuste vigente.
 - Campo real de código sobre área esquerda; objetivo/ajuda rolável no papel; saída real rolável à direita; pontos do Droid ao lado de Apollo. Componentes e referências de TerminalUIManager reutilizados; fundos/legendas duplicadas dos controles Unity ficam transparentes/ocultos. Botões Limpar/Executar/Fechar ocupam os botões desenhados.
 - Numeração acompanha código; luzes mostram estado de execução/erro; checkbox de depuração ativa linhas técnicas adicionais no log, sem alterar Lua/pontos/progresso. Não confundir essa opção com a habilitação das dicas de Apollo.
 - Contrato atende CasaLip/City/Game e o Canvas persistente. Overrides antigos de apresentação do terminal nessas cenas foram retirados de forma delimitada; não repor escalas locais 2/4 sobre o painel ajustado pelo componente.
 - Montagem única: [MontagemTerminalIlustrado](../../../Assets/Editor/MontagemTerminalIlustrado.cs), que recusa executar de novo se o componente já existe. Verificação isolada: [ValidacaoTerminalIlustrado](../../../Assets/Editor/ValidacaoTerminalIlustrado.cs). Estado/aceite, evidências e backups no [plano do terminal](../../planos-implementacao/2026-10-22-terminal-ilustrado.md). Não executar montagem novamente para testar.
+- Migração para foco horizontal: [RefocoTerminalIlustrado](../../../Assets/Editor/RefocoTerminalIlustrado.cs), aplicação única já realizada, com guarda contra repetição. Não executá-la outra vez para obter prévia.
 
 ## Diretriz de mensagens ao jogador — definida em 22/10/2026
 

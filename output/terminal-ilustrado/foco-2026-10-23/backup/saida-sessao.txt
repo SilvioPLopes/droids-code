@@ -1,0 +1,1 @@
+=== Terminal aberto. Digite um comando e clique Executar. ===
