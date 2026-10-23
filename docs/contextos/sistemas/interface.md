@@ -11,6 +11,14 @@ Antes de mudar Canvas, Scaler ou gestores persistentes, pesquise os consumidores
 
 Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' Assets/Scenes Assets/Prefabs Assets/Scripts/Menus`.
 
+## Menu do mundo ilustrado
+
+- Ramo `PainelMenuMundo` de `Assets/Prefabs/Canvas.prefab`, compartilhado por City/CasaLip/Game. Apresentação em `ApresentacaoMenuMundoIlustrado`, perfil1254×1254 e margem0.95, compensando escala herdada localmente. Não alterar Canvas/Scaler nem os painéis irmãos para redimensionar o menu.
+- Oito **botões originais** reaproveitados, em duas colunas: Carregar/Salvar, Terminal/Status, Bag/Droid, Opções/Voltar. Mesmos GUIDs/fileIDs, referências e ações de MenuMundoManager; opções incompletas não foram removidas nem implementadas. `MenuMundoManager.cs` permaneceu intacto.
+- Arte separada `Assets/UI/MenuMundoIlustrado/menu-fundo.png`, baseada na12, com ícones estáticos, tubulação, engrenagens e oito molduras. Rótulos TMP reais, fonte52; título66; campo `textoAviso` existente no rodapé, fonte42. Área de clique transparente recebe hover/seleção e mantém `cullTransparentMesh=false` para preservar raycast mesmo com alpha zero.
+- Apresentação reaplica posições/estilo ao abrir, incluindo instâncias com overrides antigos, e ajusta escala ao Canvas disponível. Fundo escuro pertence somente a este painel e acompanha sua ativação. Fluxos de abertura, retorno, contador e avisos existentes preservados; esta tarefa visual não migrou Salvar/Carregar para outra apresentação.
+- Montagem inicial `MontagemMenuMundoIlustrado.Aplicar()` já aplicada e com guarda; não repetir para prévia. Testes isolados em `ValidacaoMenuMundoIlustrado.Executar(largura,altura)`; não acionam Salvar/Carregar. [Evidências, backups e aceite pendente](../../planos-implementacao/2026-10-23-menu-mundo-ilustrado.md).
+
 ## Terminal ilustrado
 
 O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.md) documenta as decisões do terminal e o procedimento reutilizável para outras interfaces, com ficha de escopo, arte, controles e validação. Os parâmetros abaixo pertencem ao terminal, não são valores a copiar automaticamente.

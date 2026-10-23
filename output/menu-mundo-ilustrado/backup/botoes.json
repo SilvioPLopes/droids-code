@@ -1,0 +1,42 @@
+[
+  {
+    "name": "BotaoCarregar",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-3791513842875981925-0",
+    "rotulo": "Carregar"
+  },
+  {
+    "name": "BotaoSalvar",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-771566232088501257-0",
+    "rotulo": "Salvar"
+  },
+  {
+    "name": "BotaoTerminal",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-5392674617059622234-0",
+    "rotulo": "Terminal"
+  },
+  {
+    "name": "BotaoStatus",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-4673274979895528831-0",
+    "rotulo": "Status\n"
+  },
+  {
+    "name": "BotaoBag",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-4331125221695920174-0",
+    "rotulo": "Bag"
+  },
+  {
+    "name": "BotaoDroid",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-6759146394399254640-0",
+    "rotulo": "Droid"
+  },
+  {
+    "name": "BotaoOpcoes",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-8005165748602480005-0",
+    "rotulo": "Opcoes"
+  },
+  {
+    "name": "BotaoVoltar",
+    "id": "GlobalObjectId_V1-1-69e38ec182414fb4f8b024d51a9fb2a5-7425377453198731991-0",
+    "rotulo": "Voltar"
+  }
+]
