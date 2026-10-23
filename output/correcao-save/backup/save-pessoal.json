@@ -1,0 +1,42 @@
+{
+    "versao": 6,
+    "droid": {
+        "nome": "Heroi",
+        "hp": 30,
+        "hpMaxBase": 30,
+        "statsFor": 5,
+        "statsAgi": 0,
+        "statsVit": 3,
+        "statsInt": 0,
+        "statsDex": 0,
+        "statsLuk": 0,
+        "pontosDisponiveis": 0,
+        "nivel": 1,
+        "experiencia": 0,
+        "tecnicas": [
+            {
+                "nome": "Ataque Basico",
+                "nivelDeDano": 1,
+                "efeitosDeAtributo": [],
+                "efeitosDeDanoPorTurno": []
+            }
+        ]
+    },
+    "posicaoX": -0.5740777850151062,
+    "posicaoY": -0.5641294121742249,
+    "posicaoZ": 0.0,
+    "cena": "Game",
+    "flagsDeHistoria": [],
+    "itens": [
+        {
+            "id": "pocao_pequena",
+            "quantidade": 3
+        },
+        {
+            "id": "pocao_media",
+            "quantidade": 1
+        }
+    ],
+    "gold": 0,
+    "contadores": []
+}

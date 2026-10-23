@@ -1,5 +1,64 @@
 # Diagnóstico — carregamento e avisos no diálogo
 
+## Correção de apresentação solicitada —23/10/2026
+
+Usuário rejeitou a confirmação de Salvar na caixa de conversa: retorno de Salvar/Carregar deve aparecer no próprio menu, sem conversa ou mudança de painel pela confirmação. Esta instrução específica substitui a diretriz geral de mensagens no diálogo para esse fluxo, como já ocorre na loja.
+
+Escopo antes de editar: somente MenuMundoManager, fixture ValidacaoSalvarCarregar e documentação vinculada. Reutilizar textoAviso do menu ilustrado, cuja área já existe; não alterar arte/prefab/Canvas ou o serviço corrigido. Remover fila e chamada do diálogo; salvar/erros mantêm menu aberto. Carregar pode trocar a cena pela operação real, mas reapresenta o mesmo menu com confirmação local, recompondo seu contador após CarregarDados zerá-lo. Backup anterior em `output/correcao-save/backup-feedback-local/`; reversão somente dos trechos próprios. Aceite: mensagem local, nenhum diálogo aberto/substituído, menu permanece ativo no salvar/erros, contador consistente; IO em fixture e hash pessoal preservado. Nova aprovação visual ainda necessária; captura do usuário comprova rejeição do fluxo anterior.
+
+## Correção autorizada —23/10/2026
+
+### Resultado aplicado e retomada
+
+Corrigido o construtor padrão: deixou de chamar Application.persistentDataPath; serviço resolve caminho ao executar operações, preservando injeção de caminho explícito. Corrige a causa compartilhada sem editar os outros MonoBehaviours. Menu recupera `_salvamento` nulo, inclui ExisteSave/ler/carregar no tratamento de falhas e não anuncia sucesso antes da operação. Resultados vêm de CatalogoDeDialogos.AvisoDePersistencia e aguardam o diálogo existente estar livre; não substituem conversa/callback. Após apresentação aceita, menu fecha coordenando contador. Escape continua disponível enquanto um aviso aguarda dependência ausente; a operação não se repete por clique duplo com resultado pendente.
+
+Antes/depois: teste .NET contra DLL real falhava no construtor por depender de UnityEngine.Application; depois passou construindo em Task/thread secundário e usando caminho explícito. Compilação runtime/Editor passou sem erros (dois avisos preexistentes de APIs obsoletas do Menu). Fixture `ValidacaoSalvarCarregar.Executar()` executada no Unity com IO somente em diretório exclusivo de output: criar/regravar/ler dados, HP/energia/posição, limpeza.tmp, menu com referência nula, ausência/JSON inválido/falha de escrita, confirmação no diálogo e conversa/callback preservados. Resultado em `output/correcao-save/validacao-unity.txt`.
+
+Uma primeira execução da fixture usou DLL Editor anterior à correção de reflexão de Avancar (método público), interrompendo o teste. Verificada defasagem entre fonte e DLL; importação atualizou a fixture e execução passou. Não houve nova mutação do produto baseada nesse erro de teste. Recompilação derrubou o conector uma vez; consulta de estado posterior confirmou retorno antes de nova execução. Arquivos da fixture foram removidos no finally, inclusive na execução interrompida.
+
+Save pessoal copiado para `output/correcao-save/backup/save-pessoal.json`, hash em arquivo.sha256. Hash final comparado e idêntico; nenhuma restauração necessária ou realizada. Código anterior dos três arquivos em backup/. Não houve teste usando Salvar/Carregar no arquivo pessoal nem CarregarDados/troca de cena. Portanto gravação/leitura e feedback foram testados isoladamente; clique real e retomada completa continuam validação distinta.
+
+Conferência final somente leitura pelo serviço real no Editor: `new SalvamentoJson().LerDados()` passou para o save pessoal v6/destinoGame, sem restaurar estado ou carregar cena. Compilação final passou; diff dos arquivos da correção sem erro de whitespace. `git diff --check` geral também aponta espaços em metas do Droid alterados fora desta tarefa; preservados, sem limpeza incidental.
+
+Estado Unity confirmado pelo conector: projeto DroidsCode, City, fora de Play antes de importar; não foi preciso encerrar jogo. Nenhuma cena/prefab/Canvas salvo ou alterado. Próximo passo: conferir Salvar/Carregar por input real no jogo; persistência de peças permanece tarefa separada EST-01 do plano Droid. Não ampliar esta entrega para migração de equipamentos. Sem commit/push nesta rodada; preservar mudanças alheias nos metas do DroidIlustrado.
+
+Usuário autorizou corrigir Salvar/Carregar e avaliar se peças cabem na mesma sessão. Decisão: **separar persistência das peças**. Há sobreposição em SalvamentoJson, mas EST-01 altera DTO/migração e construtores de quatro peças/Bag/Droid; INV-01 acrescenta transação de equipamento. Não é necessário para recuperar os botões e ampliaria o risco desta correção. Plano do Droid permanece como próxima tarefa, sem mudanças de equipamento agora.
+
+**Escopo antes de editar:** `Assets/Scripts/Estado/SalvamentoJson.cs` (resolução tardia do caminho padrão), `Assets/Scripts/Menus/MenuMundoManager.cs` (recuperação do serviço/erros/feedback), `CatalogoDeDialogos.cs` (textos de resultado), fixture nova `Assets/Editor/ValidacaoSalvarCarregar.cs`/meta e este plano/contrato de save. Consumidores compartilhados do construtor: Menu, Bag, diálogo, gatilhos, verificador de puzzle, combate e quests; evitar edições nesses consumidores usando correção no serviço. Preservar construtor com caminho explícito e política dos checkpoints. Sem editar cenas, prefabs, Canvas/Scaler, peças ou save pessoal.
+
+**Backup/reversão:** copiar fontes anteriores para `output/correcao-save/backup/`. Somente diffs próprios em eventual reversão, conferindo mudanças posteriores. Registrar hash e copiar save pessoal antes de qualquer fixture que grave; testes usam diretório exclusivo temporário, nunca caminho padrão. Confirmar hash pessoal ao final; não restaurar por cima de progresso novo.
+
+**Aceite mínimo:** construção padrão segura fora do ciclo de inicialização Unity, referências nulas do menu recuperadas, IO explícito em fixture grava/regrava/lê sem mudar cena, arquivo ausente/inválido/falha comunicados sem falso sucesso, feedback pelo diálogo existente e sem sobrescrever conversa/callback. Serviço não consulta Application.persistentDataPath durante construção. Input real e retomada de cena serão reportados separadamente.
+
+Conector Unity indisponível. Fixture Editor pode importar e executar uma vez mediante marcador: confirmar projeto exato e estado/cena antes de qualquer ação; usuário autorizou sair de Play se necessário. Se sair, guardar rascunho/saída do terminal em output antes, sem gravar save pessoal. Não salvar cena nem repetir mutação após timeout. Não alegar que fixtures equivalem a clique real ou persistência completa de equipamentos.
+
+## Retomada vigente — novo relato em23/10/2026
+
+Usuário confirmou que Salvar e Carregar não funcionam e pediu investigar novamente, autorizando encerrar Play se necessário. Escopo antes de editar: leitura de handlers, construtor do serviço, logs atuais, metadados/JSON do save e configuração de cenas; registrar somente neste plano. Nenhum código, prefab, cena, save ou modo Play alterado nesta rodada. Reversão documental seletiva por diff; nenhum backup/restauração de progresso necessário para consulta somente leitura. Preservar os planos do menu Droid; esta investigação não implementa EST-01/INV-01.
+
+### Evidências novas e causa sustentada
+
+- `MenuMundoManager.cs:68` continua declarando `_salvamento = new SalvamentoJson()` como inicializador de campo de MonoBehaviour. `SalvamentoJson.cs:16` consulta `Application.persistentDataPath` imediatamente no construtor padrão.
+- Log local `Logs/Editor.log:6964–6971` contém UnityException explícita: `get_persistentDataPath is not allowed to be called from a MonoBehaviour constructor (or instance field initializer)`. Stack: Application.get_persistentDataPath → SalvamentoJson..ctor linha16 → MenuMundoManager..ctor linha68. Última escrita do arquivo de log observada em23/10/2026 às16:21:51; isso data o arquivo, não o instante individual de cada exceção. Não alegar que esse stack corresponde ao último clique do usuário.
+- Esse stack demonstra a origem da falha de inicialização antes não fechada no diagnóstico de22/10. Naquela inspeção viva, o serviço do menu já havia sido observado nulo; essa observação é histórica e não substitui leitura da instância atual. A cadeia fonte/log é compatível com a perda de inicialização que impede os handlers.
+- `AoClicarSalvar` chama `_salvamento.Salvar()` diretamente. `AoClicarCarregar` chama `_salvamento.ExisteSave()` antes do try. Nenhum deles garante serviço válido; salvar não trata a exceção e o catch de carregar só cobre a leitura posterior, não a primeira chamada. Assim, inicialização interrompida pode impedir ambas as ações antes de qualquer gravação/carga ou feedback.
+- Mesmo log contém `NullReferenceException` nos handlers reais: AoClicarSalvar linha307 (log2931–2932) e AoClicarCarregar linha313 (log2952–2953 e6352–6353). Essas são precisamente as primeiras chamadas ao serviço. Portanto não é apenas hipótese de falha futura: há registro de interrupção efetiva dos dois cliques por referência nula, além da falha de construção. Game também consta habilitada no EditorBuildSettings; ausência desse destino não explica essas exceções anteriores à leitura.
+- A mesma consulta indevida aparece no log para BagUIManager, DialogoUIManager e GatilhoDeDialogo, todos com serviço criado em inicializador de campo. Isso identifica consumidores compartilhados da mesma causa; não autoriza refatorá-los nesta análise.
+- Save pessoal encontrado em `Application.persistentDataPath` esperado pelo projeto DefaultCompany/DroidsCode: JSON legível, versão6, destinoGame, Droid presente, uma técnica; último horário de alteração21/10/2026 às15:53:27,911bytes. Somente leitura de metadados/parse; não imprimir progresso completo, não executar LerDados/CarregarDados/Salvar ou restaurar sessão. JSON sintaticamente legível não comprova que toda validação/retomada em jogo passou.
+- A energia foi acrescentada ao payload e sua migração, mas o stack está na construção do serviço, antes de ler ou gravar esses campos. Não há evidência de a energia ou a nova arte de menu serem a causa imediata. Não foi feita auditoria histórica para atribuir quando o erro começou.
+
+### Distinção necessária e correção recomendada
+
+Falta de persistência das peças (SAVE-001/EST-01) faz equipamentos não serem reconstruídos ao carregar; ela é independente da exceção de inicialização que impede Salvar/Carregar. Corrigir só o DTO das peças não recupera os handlers.
+
+Correção sustentada: retirar a consulta a API Unity dos inicializadores/construtores executados na serialização. Opções delimitadas: resolver o caminho sob demanda quando o serviço é usado no thread principal, preservando construtor com caminho explícito dos testes; ou criar/recuperar serviços no ciclo apropriado do MonoBehaviour. Na implementação considerar os consumidores compartilhados e proteção de instâncias já existentes, não apenas trocar uma referência no Inspector. Tratar falhas e apresentar resultado real no diálogo conforme diretriz vigente; hoje o fonte ainda escreve sucesso/ausência/erro em textoAviso do menu.
+
+### Limites e próximo passo
+
+Diagnóstico de fonte/log concluído para a falha de inicialização. Não houve novo teste por clique, reprodução isolada ou consulta à instância viva atual: conector Unity não está disponível entre as ferramentas desta sessão. Não foi necessário encerrar Play para obter essa evidência, nem houve tentativa de controle do Editor. A autorização para parar o teste foi preservada, mas não utilizada.
+
+Próxima etapa: correção local com escopo/backup próprio; teste isolado de construção/importação, serviço previamente nulo e handlers; IO somente em arquivo de fixture, sem alterar save pessoal; depois input real Salvar/Carregar, feedback no diálogo e retomada de cena/estado. Nesta rodada foi editado somente este plano; produto e progresso permanecem intactos. Não declarar o problema corrigido.
+
 ## Retomada vigente — 22/10/2026
 
 **Pedido:** investigar botão Carregar sem efeito, Salvar sem confirmação, ausência de fala de Apollo após puzzle e ausência de orientação na saída bloqueada da City. Usuário determinou que mensagens ao jogador devem usar a caixa de diálogo existente.

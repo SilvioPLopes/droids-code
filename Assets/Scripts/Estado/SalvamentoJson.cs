@@ -11,14 +11,17 @@ using DroidsCode.DroidCore;
 /// </summary>
 public class SalvamentoJson : ISistemaDeSalvamento
 {
-    private readonly string CaminhoDoArquivo;
+    private readonly string caminhoExplicito;
+    // MonoBehaviours constroem este serviço durante desserialização/reload.
+    // Consultar a API Unity somente ao executar uma operação no thread principal.
+    private string CaminhoDoArquivo => caminhoExplicito ?? Path.Combine(Application.persistentDataPath, "save.json");
 
-    public SalvamentoJson() : this(Path.Combine(Application.persistentDataPath, "save.json")) { }
+    public SalvamentoJson() { }
 
     public SalvamentoJson(string caminhoDoArquivo)
     {
         if (string.IsNullOrWhiteSpace(caminhoDoArquivo)) throw new ArgumentException("Informe o arquivo de save.");
-        CaminhoDoArquivo = caminhoDoArquivo;
+        caminhoExplicito = caminhoDoArquivo;
     }
 
     public bool ExisteSave() => File.Exists(CaminhoDoArquivo);

@@ -41,6 +41,18 @@ using System.Collections.Generic;
 /// </summary>
 public static class CatalogoDeDialogos
 {
+    public static List<FalaDeDialogo> AvisoDePersistencia(string resultado)
+    {
+        string texto = resultado switch
+        {
+            "salvo" => "Jogo salvo.",
+            "carregado" => "Jogo carregado.",
+            "ausente" => "Nenhum jogo salvo foi encontrado.",
+            "erro_salvar" => "Não foi possível salvar o jogo. Tente novamente.",
+            _ => "Não foi possível carregar o jogo. O arquivo pode estar inválido ou inacessível."
+        };
+        return Falas(N(texto));
+    }
     /// <summary>Avisos de transação; valores vêm da loja, apresentação usa o diálogo existente.</summary>
     public static List<FalaDeDialogo> AvisoDaLoja(string motivo, string item, int preco)
     {

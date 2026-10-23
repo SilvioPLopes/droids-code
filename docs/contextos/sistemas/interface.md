@@ -57,6 +57,8 @@ O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.m
 
 ## Diretriz de mensagens ao jogador — definida em 22/10/2026
 
+**Exceção específica posterior — Salvar/Carregar,23/10/2026:** usuário determinou retorno no próprio menu, usando textoAviso. Confirmação/erro não abre conversa nem troca painel. Salvar e falhas mantêm o menu; carregamento bem-sucedido reapresenta o mesmo menu após restaurar a sessão. Esta regra substitui a diretriz geral abaixo nesse fluxo, assim como a exceção da loja.
+
 **Determinação do usuário:** mensagens de sucesso, confirmação de salvamento/carregamento, falhas de operação, dicas e explicações de bloqueio (casa, portão da cidade e outras passagens) devem usar a **caixa de diálogo existente**, com a apresentação aprovada. Não criar texto avulso, toast, nova janela ou reativar a etiqueta “desativado”. Isso vale desde a primeira tentativa; ausência de retorno não é funcionamento aceitável.
 
 **Exceção posterior — loja, 23/10/2026:** retorno de compra/venda e erros da transação devem ficar dentro do menu da loja, sem abrir a caixa de conversa. Essa instrução específica substitui a diretriz geral somente para esse fluxo; não migrar outras mensagens por inferência.

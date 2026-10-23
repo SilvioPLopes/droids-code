@@ -66,6 +66,7 @@ public class MenuMundoManager : MonoBehaviour
     public TextMeshProUGUI textoAviso;
 
     private SalvamentoJson _salvamento = new SalvamentoJson();
+    private SalvamentoJson Salvamento => _salvamento ?? (_salvamento = new SalvamentoJson());
     private bool _inicializado;
     private bool _aberto;
 
@@ -304,29 +305,51 @@ public class MenuMundoManager : MonoBehaviour
 
     void AoClicarSalvar()
     {
-        _salvamento.Salvar();
-        if (textoAviso != null) textoAviso.text = "Jogo salvo.";
+        try
+        {
+            Salvamento.Salvar();
+            MostrarResultadoPersistencia("salvo");
+        }
+        catch (System.Exception e) when (FalhaDePersistencia(e))
+        {
+            Debug.LogWarning("Não foi possível salvar: " + e.Message);
+            MostrarResultadoPersistencia("erro_salvar");
+        }
     }
 
     void AoClicarCarregar()
     {
-        if (!_salvamento.ExisteSave())
+        try
         {
-            if (textoAviso != null) textoAviso.text = "Nenhum save encontrado.";
-            return;
+            var servico = Salvamento;
+            if (!servico.ExisteSave())
+            {
+                MostrarResultadoPersistencia("ausente");
+                return;
+            }
+            var dados = servico.LerDados();
+            Fechar();
+            servico.CarregarDados(dados);
+            // CarregarDados zera o contador; reabrir o mesmo menu recompõe seu bloqueio.
+            Alternar();
+            MostrarResultadoPersistencia("carregado");
         }
-
-        DadosDoJogo dados;
-        try { dados = _salvamento.LerDados(); }
-        catch (System.Exception e) when (e is System.IO.IOException || e is System.UnauthorizedAccessException
-            || e is System.InvalidOperationException || e is System.ArgumentException)
+        catch (System.Exception e) when (FalhaDePersistencia(e))
         {
-            if (textoAviso != null) textoAviso.text = e.Message;
             Debug.LogWarning("Não foi possível carregar: " + e.Message);
-            return;
+            if (!_aberto) Alternar();
+            MostrarResultadoPersistencia("erro_carregar");
         }
-        FecharParaDialogo();
-        _salvamento.CarregarDados(dados);
+    }
+
+    static bool FalhaDePersistencia(System.Exception e) => e is System.IO.IOException
+        || e is System.UnauthorizedAccessException || e is System.InvalidOperationException
+        || e is System.ArgumentException || e is System.Security.SecurityException || e is UnityException;
+
+    void MostrarResultadoPersistencia(string resultado)
+    {
+        // Catálogo fornece o conteúdo; confirmação pertence ao menu, sem conversa.
+        if (textoAviso != null) textoAviso.text = CatalogoDeDialogos.AvisoDePersistencia(resultado)[0].texto;
     }
 
     void MostrarAviso(string nomeDaTela)

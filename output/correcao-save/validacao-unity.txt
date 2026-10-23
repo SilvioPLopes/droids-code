@@ -1,0 +1,1 @@
+OK: construtor em thread secundário, referência nula recuperada, grava/regrava/lê fixture, energia/HP/posição preservados, ausente/JSON inválido/falha de IO com retorno correto, confirmação no diálogo e conversa/callback preservados. Sem CarregarDados/troca de cena/save pessoal.
