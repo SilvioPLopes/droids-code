@@ -1,5 +1,7 @@
 # Status ilustrado — análise e proposta
 
+**Atualização documental23/10:** resultado já existente em `output/status-ilustrado/validacao.txt` confirma OK844×475/1280×720 após os ajustes: colunas/rodapé, pegas contidas, energia real, enquadramento, raycast/retorno/reabertura. Não repetir a fixture só pela documentação. Esse resultado supera a indicação anterior de render aguardando; input real/aprovação visual do usuário continuam pendentes. Nenhuma alteração de produto nesta revisão.
+
 ## Ajustes de leitura e alinhamento — etapa vigente
 
 Captura do usuário: números em posições horizontais diferentes, siglas redundantes, Gold/pontos excedendo rodapé e custo de técnica quebrando “energia” sozinho. Causa comprovada: atributo e número concatenados com espaços; Gold e pontos no mesmo TMP de duas linhas dentro de um campo baixo; técnica/custo concatenados no mesmo tamanho. Arte aprovada permanece intacta.

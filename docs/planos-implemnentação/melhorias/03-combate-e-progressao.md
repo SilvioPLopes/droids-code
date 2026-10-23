@@ -198,6 +198,8 @@ PRO-02 entra após TER-02 + COM-03 + EST-01/EST-02; COM-07 fica depois da demo e
 
 ## COM-04 — Limitar repetição de técnicas durante a luta
 
+**Atualização23/10:** foi implementada energia do Apollo por escolha posterior do usuário: máximo inicial100, técnicas mais fortes custam mais, básico gratuito recupera10. [Regra/testes e limites](../../contextos/sistemas/combate.md). Cooldown R1 abaixo permanece proposta não implementada; “sem sistema paralelo de energia” era premissa anterior. Antes de executar COM-04, decidir explicitamente se recarga complementa/substitui a energia e verificar impacto no básico, UI, stun, save e inimigos; não eliminar energia nem somar custos por inferência.
+
 **Prioridade:** P2. **Dependências:** COM-02/COM-03. Recarga escolhida pelo usuário; intervalos e famílias propostos em R1.
 
 **Existentes candidatos:** `Assets/Scripts/Combat/BattleManager.cs`, `Assets/Scripts/Combat/CombatEngine.cs`, `Assets/Scripts/Combat/ResultadoAcao.cs` e `Assets/Scripts/Scripting/TecnicaComposta.cs`; ampliar `Assets/Editor/ValidacaoRegrasCombate.cs`, proposto em COM-01.
@@ -226,6 +228,8 @@ PRO-02 entra após TER-02 + COM-03 + EST-01/EST-02; COM-07 fica depois da demo e
 **Reversão:** remover somente a limitação e apresentação adicionadas, mantendo pipeline COM-02 e técnicas compradas. Sem alterações permanentes no save.
 
 ## COM-05 — Dar padrões legíveis aos inimigos
+
+**Retomada23/10:** direção de estudar dinâmicas dos inimigos reafirmada; código atual InimigoFixo disponibiliza uma única ação. Planejar piloto de um inimigo com intenção anunciada e ciclo curto testável, preservando turnos/recompensas. Separar da reforma visual de Battle (UI-004) e da melhoria de imagem de Game/vale (VIS-002); nenhum padrão novo implementado nesta revisão. COM-003 do plano principal aponta para este item, não é uma segunda especificação concorrente.
 
 **Prioridade:** P2 para os padrões da demo; padrões adicionais ficam em P3. **Dependências:** COM-01/COM-02 e mecanismo escolhido em COM-04 quando o padrão o utilizar.
 

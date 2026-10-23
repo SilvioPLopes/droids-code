@@ -4,13 +4,14 @@ Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → somente 
 
 ## Retomada
 
-A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay da CasaLip continua no [plano de correção — retomada vigente](planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente). Esse bloco concentra aceite do usuário, resultados posteriores, pendências, próximo passo e cuidado com o save. Consultar antes de executar qualquer correção.
+A reorganização documental foi aplicada em17/10; revisão leve de retomada em23/10. Para menus/equipamentos, seguir o plano específico abaixo; para prefabs e próximos trabalhos de Game/vale e Battle, seguir a [atualização da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) e o [plano de desenvolvimento](plano-desenvolvimento.md). Gameplay da CasaLip continua no [plano da casa](planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente). Ler somente o recorte necessário; entregas novas não encerram automaticamente as pendências históricas.
 
 ## Navegação por necessidade
 
 | Necessidade | Fonte | Chaves de busca |
 |---|---|---|
 | Auditoria das cinco cenas e objetos | [Plano da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md) | `montagem`, `referências`, `integração` |
+| Prefabs disponíveis; próximos trabalhos do vale e Battle | [Atualização de reutilização](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) | `PREFAB-001`, `Game`, `MetaValle`, `UI-004`, `COM-003` |
 | Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) | `Ambiente e relações`, `Subcontextos` |
 | Contrato da casa | [CasaLip](contextos/cenas/casalip.md) | `ControlePuzzleAgua`, `p_agua_casa` |
 | Configuração específica da cidade | [City](contextos/cenas/city.md) | `1.33`, `NomeNPC`, `miniatura`, `AreaDialogo` |
@@ -31,12 +32,13 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |
 | Operar o conector | [MCP](guias/operacao-mcp.md) | `timeout`, `dry-run`, `Segurança` |
 | Prioridades | [Plano de desenvolvimento](plano-desenvolvimento.md) | `INT-001`, `UI-003`, `TER-001` |
+| Backlog detalhado de melhorias | [Plano de melhorias e atualizações](planos-implemnentação/melhorias/README.md) | `EST-01`, `INV-01`, `COM-04`, `COM-05`, `energia`, `recarga` |
 | Iniciar uma tarefa | [Modelo](planos-implementacao/_modelo-tarefa.md) | `escopo`, `aceite`, `retomada` |
 | Configuração e percursos | [Montagem](guias/montagem-ato-1.md), [validação](guias/validacao-jogo.md) | Pesquisar apenas cena/sistema envolvido; há etapas herdadas |
 | Evidências da correção | [Revisão de 17/10](revisoes/casalip-validacao-2026-10-17.md) | `C01` a `C10`, `Atualização` |
 | Diagnóstico anterior | [Revisão da casa](revisoes/casalip.md), [porta](problemas/casalip-retorno-porta-trancada.md), [apresentação](problemas/casalip-apresentacao-dialogo.md) | Consultar para reprodução ou decisão anterior |
 | Narrativa | [Enredo](enredo/TCC_-_ENREDO_v2.md), [adendo](enredo/TCC_-_ENREDO_v2_ADENDO.md) | O adendo prevalece |
-| Assets de personagens | [Catálogo visual](../Assets/sprites/Entities/Npc's/Characters/Documentation/character-catalog.md) | `idle`, `walk`, `placeholder` |
+| Assets de personagens | [Catálogo visual](../Assets/sprites/Entities/Characters/Documentation/character-catalog.md) | `idle`, `walk`, `placeholder` |
 | Histórico e inventários antigos | [Índice histórico](historico/README.md), [contexto anterior](historico/2026-10-17-contexto-antes-hierarquia.md) | Consulta sob demanda; não usar como estado atual |
 
 Andamento fica no plano da tarefa. Evidências detalhadas ficam em revisões; este índice mantém caminhos, sem copiar resultados. A City tem contrato próprio; ideias de NPCs andando ainda não são implementação autorizada.

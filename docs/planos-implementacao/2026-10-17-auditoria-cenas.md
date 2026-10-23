@@ -1,6 +1,44 @@
 # Plano — Auditoria das cenas e objetos
 
-**Estado e data:** implementação editada e gravada em 17/10/2026; validação final pendente. Por instrução posterior do usuário, não executar novos testes. A retomada final abaixo prevalece sobre os registros históricos de auditoria/proposta.
+## Atualização documental e reutilização — 23/10/2026
+
+**Pedido/escopo desta rodada, antes de editar:** revisão leve para a próxima janela de contexto, somente documentação. Conferir referências serializadas de menus/portas e registrar o acabamento futuro de Game/vale e Battle. Permitidos: este plano (inventário e retomada), índice/contexto do projeto (navegação), plano de desenvolvimento (estados/prioridades), contratos de interface/combate (divergências atuais), planos Bag/Status (resultados já existentes) e README/02/03 da pasta de melhorias (atualizações sobre equipamentos/energia e próximos recortes). Não criar outro sistema de relatórios; não editar assets, scripts, cenas ou prefabs, não iniciar Play/testes/builds, não tocar saves e não operar MCP nesta rodada.
+
+**Fonte/limite:** leitura delimitada dos YAML de Assets/Scenes e Assets/Prefabs, lista de prefabs próprios, TransicaoDeCena, BattleManager/InimigoFixo e evidências já produzidas nos planos/output de menus. Existência de prefab não prova montagem por input ou aprovação visual. Game e Battle já receberam correções funcionais anteriores: o pedido atual identifica acabamento visual ainda por fazer, não cenas nunca alteradas.
+
+**Aceite/validação mínima:** mapa curto do que instanciar, lacunas identificadas sem extrair prefabs agora, prioridades com aceite futuro e links válidos para retomada. Reversão documental: retirar somente o diff desta rodada preservando registros anteriores e posteriores. Estado anterior consultável no Git; sem necessidade de backup de produto/save por ser edição documental.
+
+### Inventário de reutilização conferido no disco
+
+| Elemento | Fonte para reutilizar hoje | Lacuna/próximo recorte |
+|---|---|---|
+| Menu do mundo, Terminal e Droid | Ramos de `Assets/Prefabs/Canvas.prefab`, usado em CasaLip/City/Game | São reutilizáveis como conjunto; não existem prefabs independentes desses três painéis. Instanciar o Canvas completo pelo fluxo existente, sem criar outro gestor persistente. |
+| Status | `Assets/Prefabs/PainelStatus.prefab`, aninhado no Canvas e instanciado em Battle | Arte/controlador ficam no prefab base; preservar referências e overrides dos dois consumidores. |
+| Bag | `Assets/Prefabs/PainelBag.prefab`, aninhado no Canvas | A apresentação ilustrada está configurada no Canvas, não garantida pelo prefab base isolado. Antes de extrair/reutilizar isoladamente, consolidar os campos necessários no base e validar o consumidor atual. |
+| Loja | Controlador `City/Loja` e sua montagem local | Não há prefab próprio de loja. Candidata a extração futura com referências locais do NPC tratadas como parâmetros, sem clonar NPC/contador de menus. |
+| Diálogo | Montagem local `PainelDialogo` nas três cenas de exploração | Não há prefab próprio de diálogo. Auditar diferenças antes de escolher uma base e preservar miniaturas/paginação/callback. |
+| MainMenu/Opções | Montagem local de `MainMenu.unity`; Opções do mundo pertence ao Canvas | Não há prefab independente do menu inicial. Não tratar os dois fluxos de Opções como equivalentes sem conferir as ações. |
+| Listas de ataque/item | `BotaoAtaquePrefab.prefab` e `BotaoItemTemplate.prefab`, referenciados em Battle | Botões reutilizáveis existem; painel completo de batalha continua local à cena. |
+| Portas/transições | Script `TransicaoDeCena` compartilhado; quatro objetos locais: CasaLip/PortaDeSaidaCasa, City/SaidaCidade, City/Entrada_CasaLip e Game/EntradaCidade | **Não há prefab de porta/transição** entre os prefabs próprios. Extrair base de trigger/collider, com destino/posição e trava configurados por instância; bloqueio por história é variante/composição, não script desligado. |
+| Vale/encontro | Cena `Game.unity`, `ZonaBatalha` com `EncounterZone` local; existe `Assets/Tilemaps/MetaValle.prefab` | GUID de MetaValle não é referenciado pelas cenas atuais; não assumir que editar esse prefab melhora o vale em uso. Diagnosticar a arte efetivamente referenciada em Game. Não há prefab próprio de zona de encontro. |
+
+Esta é conferência estática de referências/estrutura, não teste de montagem nem auditoria de todos os GUIDs. Prefabs de exemplos TMP não entram como componentes próprios do jogo. Nenhum prefab novo foi criado nesta rodada.
+
+### Próximos recortes acordados para planejamento
+
+1. Confirmar no jogo os menus já entregues, principalmente equipamento pelo terminal → Droid → Salvar/Carregar; resultados por API/render estão nos planos específicos. Não repetir migrações de montagem para gerar prévia.
+2. Reutilização: primeiro porta/transição e loja; depois diálogo/Bag isolada, apenas se houver necessidade de montagem. Registrar campos herdados versus locais; comparar instâncias antes/depois. Extrair automaticamente todos os menus criaria risco no Canvas persistente sem ganho demonstrado.
+3. **Game/vale — melhoria de imagem:** por direção do usuário, manter mapa, colisões, spawn/probabilidade de encontros, portas e progressão. Antes de editar, identificar tiles/sprites/importação/câmera em uso e capturar referência na mesma resolução/zoom. Melhorar nitidez/coerência visual; não interpretar isso como redesenho do mapa ou balanceamento. Aceite: comparação visual sem perda de enquadramento e sem mudança funcional. `MetaValle.prefab` é candidato a avaliar, não alvo confirmado.
+4. **Battle — refazer menus:** inventariar HUD, Atacar/Item/Fugir/Status, listas, Voltar, log e encerramento antes da nova arte. Manter custos de energia e callbacks, inventário e retorno/checkpoint; não perder opção existente. Montar componentes reutilizáveis depois da composição aprovada. Aceite futuro: controles legíveis nas resoluções do projeto, listas acessíveis, feedback de energia/vida/turno, fechamento correto e ausência de ações após encerrar.
+5. **Inimigos — melhoria separada:** `InimigoFixo` oferece uma ação única; COM-05 do plano de melhorias já propõe padrões legíveis. Começar, se autorizado, com intenção anunciada e ciclo curto de ataque/defesa/ação especial em um inimigo do catálogo, testável e sem Lua em combate. Não alterar IA/balanceamento junto com o layout; recarga, stun, chefe/fuga e derrota têm contratos próprios ainda pendentes.
+
+**Encerramento desta rodada:** somente documentos editados; consistência/links conferidos ao final. Nada implementado em vale/batalha/prefabs, nenhum novo teste de jogo ou operação Unity. Último estado observado na entrega anterior: City limpa, fora de Play e sem falha de compilação; não reconsultado nesta rodada. Save pessoal/backups não acessados nem alterados. Retomada pelo índice → plano de desenvolvimento → esta atualização ou plano específico do menu, conforme a tarefa; não reler o histórico inteiro. A seção de17/10 abaixo conserva as restrições/evidências daquela entrega, não o estado atual dos equipamentos ou da UI.
+
+Validação documental da atualização23/10:11documentos existentes revisados;161links locais e âncoras novas conferidos, sem destinos ausentes após corrigir o caminho antigo do catálogo de personagens no índice. `git diff --check -- docs` sem erros de whitespace; avisos de conversão LF/CRLF não são falhas de conteúdo. Nenhum arquivo de produto modificado nesta rodada.
+
+## Histórico da entrega de 17/10/2026
+
+**Estado e data:** implementação editada e gravada em 17/10/2026; validação final pendente. Por instrução posterior do usuário, não executar novos testes. A retomada final abaixo prevalece sobre os registros históricos de auditoria/proposta dessa entrega; atualizações posteriores por sistema ficam no topo e nos planos vinculados.
 **Objetivo:** auditar as cinco cenas e aplicar o recorte de correções autorizado, registrando implementação, evidências e validação pendente.
 **Arquivos e objetos que podem mudar:** os alvos delimitados na execução autorizada abaixo, seu harness manual e os documentos vinculados. A etapa inicial era somente de auditoria; o usuário autorizou posteriormente a implementação.
 **Preservar:** alterações preexistentes, CasaLip/Canvas/Scaler, aparência de UI/Apollo e saves pessoais. Não iniciar Play, trocar a cena suja ou executar novos testes após a instrução mais recente.

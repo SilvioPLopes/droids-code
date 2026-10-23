@@ -6,19 +6,21 @@
 **Arquitetura:** manter o estado central existente; separar serialização/restauração de transições de cena e regras de inventário da apresentação da Bag/Loja.
 **Tecnologias:** C#, JsonUtility, armazenamento atual e harness Editor existente; sem atualização de pacotes.
 **Especificação:** [plano principal](README.md) e [contrato de estado/save](../../contextos/sistemas/estado-e-save.md).
-**Estado:** proposto, implementação e validação pendentes.
+**Estado atualizado23/10:** EST-01 e recorte funcional de INV-01 implementados/testados por fixtures na [entrega do Droid](../../planos-implementacao/2026-10-23-droid-ilustrado.md). Salvar/Carregar e mensagens locais também corrigidos; EST-02 integral, ECO-01 e INV-02 continuam propostas. Os checkboxes abaixo preservam o planejamento original, não uma lista de trabalho toda por executar; usar a atualização e fonte vinculada antes de repetir implementação.
 
 ## Regras globais deste eixo
 
-- O formato vigente é v6. Cada capacidade persistente entra numa migração sequencial própria, usando a próxima versão disponível no momento da execução; não reservar versões concorrentes para equipamentos, programas e missões.
+- O formato vigente é v7, com equipamentos. Cada nova capacidade usa a próxima versão disponível; não reservar versões concorrentes para programas e missões.
 - A migração v6 da casa e a recusa de save legado em `Battle` devem ser preservadas. Informação ausente não pode ser reconstruída por suposição.
 - Checkpoint de entrada de combate permanece na exploração; vitória/fuga consolidam na origem. Nunca chamar `Salvar()` com cena `Battle` para corrigir outra integração.
 - Atualização de direção: derrota retorna ao último checkpoint **da Casa**, escolhido pelo usuário. O autosave corrente de exploração e o snapshot de retorno da Casa são dados distintos; a tabela B1/R1 e a proposta de descanso/rollback estão no plano 03. Nenhuma mudança de narrativa nesta rodada.
 - Falha de leitura/validação não pode aplicar metade do save, fechar o menu ou trocar a cena.
-- Nomes, classes novas e contratos deste documento são propostos; não existem ainda.
+- Contratos abaixo são propostas salvo os recortes atualizados. Já existem DroidPart.IdItem, PecaSalva, DroidSalvo.pecas, ServicoDeEquipamento e ValidacaoEquipamentosApollo; não criar classes paralelas só para seguir os nomes inicialmente sugeridos.
 - Fazer cópia profunda do estado necessário, sem copiar a hierarquia Unity ou clonar objetos de cena.
 
 ## EST-01 — Identidade de peças e evolução do save
+
+**Entregue em23/10 com validação isolada:** payload/slots/raridade/bônus, migração legada, recusa de inválidos/futuro e restauração antes do HP. Harness real é `Assets/Editor/ValidacaoEquipamentosApollo.cs`, não o ValidacaoPersistencia sugerido abaixo. Percurso por input/reinício do jogo continua pendente. [Guia vigente](../../guias/equipamentos-apollo.md).
 
 **Prioridade:** P1 / SAVE-001. **Dependências:** nenhuma. **Decisão D-EST-01:** salvar ID estável e atributos da peça equipada; slots vazios permanecem vazios. Identidade não é o nome exibido.
 
@@ -92,6 +94,8 @@
 **Coordenar:** COM-06 usa o wrapper de retorno da Casa, que reaproveita `PrepararRestauracao`/`AplicarEstado`; não implementar restauração alternativa só para a luta. O checkpoint de entrada da batalha permanece como proteção de retomada da aplicação, sem tomar o lugar do snapshot da Casa na derrota. PRO-02 registra o checkpoint junto da redistribuição confirmada.
 
 ## INV-01 — Equipar, trocar e inspecionar com segurança
+
+**Atualização23/10:** serviço e comandos `droid.equipar`, `droid.desequipar`, `droid.listarPecas` implementados. Decisão posterior do usuário: instalar pelo terminal, sem botão de equipamento na Bag/Droid. Inventário devolvido, mesmoID sem consumo, ícone por ID e comparação na ficha; testes no plano do Droid. Propostas de botão/consumo sem devolução abaixo não são direção vigente. Camadas de roupa/armadura no corpo ainda são trabalho futuro, separado de ícones.
 
 **Prioridade:** P1. **Dependências:** EST-01; gravação consistente de EST-02.
 

@@ -1,5 +1,7 @@
 # Bag ilustrada — análise e integração
 
+**Atualização documental23/10:** relatório existente `output/bag-ilustrada/validacao.txt` registra OK844×475/1280×720:14itens acessíveis, seleção sem consumo, retorno/reabertura e vazio. Não houve novo teste nesta revisão. Input real/aceite visual permanecem distintos. Alteração posterior de equipamentos: ação da Bag orienta para terminal, instalação/devolução pelo serviço; [entrega e testes posteriores](2026-10-23-droid-ilustrado.md). Isso substitui descrições antigas de Equipar por botão abaixo. Arte vinculada no Canvas; reutilização isolada do prefab base requer conferir os campos, conforme [inventário](2026-10-17-auditoria-cenas.md#inventário-de-reutilização-conferido-no-disco).
+
 ## Integração autorizada em 23/10/2026
 
 Usuário aprovou a arte e pediu inserção imediata. Escopo: `BagUIManager.cs`, novo `ApresentacaoBagIlustrada.cs` e meta, referência da arte somente no componente Bag do `Canvas.prefab`, importação da arte aprovada e documentação vinculada. Dependências compartilhadas: Canvas atende City/CasaLip/Game; catálogo visual por ID e operações de itens/saves existentes serão reutilizados sem alterações. Nenhuma cena, Canvas/Scaler global, loja, terminal ou menu principal será redimensionado.

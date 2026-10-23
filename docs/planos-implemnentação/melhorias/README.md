@@ -1,5 +1,20 @@
 # Plano de implementação — Melhorias do Droids Code
 
+## Atualização de estado — 23/10/2026
+
+Esta atualização documental, solicitada após as entregas de menus, prevalece sobre o estado inicial “implementação não iniciada” abaixo. Preservar as propostas antigas como roteiro, sem tratá-las como descrição do código atual. Navegação/ordem de trabalho no [plano de desenvolvimento](../../plano-desenvolvimento.md); evidências ficam nos planos específicos, sem reproduzir toda a análise aqui.
+
+| Entrega | Estado e fonte atual | Restante |
+|---|---|---|
+| EST-01 / SAVE-001 | Identidade/payload de quatro peças no save v7 implementados; fixtures de IO/restauração passaram. [Entrega do Droid](../../planos-implementacao/2026-10-23-droid-ilustrado.md) | Percurso real encerrar/reabrir pelo jogo; não recuperar peça que save antigo nunca gravou. |
+| INV-01 | Serviço valida estoque, troca/devolve, desequipa e limita HP sem cura; terminal é a origem, Bag/Droid inspecionam. [Comandos/IDs](../../guias/equipamentos-apollo.md) | Input real/aceite visual; não refazer a instalação como botão de Bag. |
+| EST-02 | Correção local Salvar/Carregar e feedback no menu entregue; restauração de equipamentos testada | Novo jogo, snapshot da Casa, restauração integral/transação de todos os sistemas continuam propostas. Não marcar o eixo inteiro concluído. |
+| TER-02 | Rollback somente de equipamentos/inventário em erro Lua implementado | Transação global de atributos/técnicas/pontos ainda não implementada. |
+| UI / artes / inventário | Mundo, terminal, loja, Bag, Status e Droid ilustrados;27IDs/ícones exclusivos | Input/aceite visual por painel; camada vestível precisa de arte/gabarito compatível. |
+| COM-04 | Energia100, custo crescente e básico gratuito que recupera10 implementados por decisão posterior; [contrato](../../contextos/sistemas/combate.md) | R1 de cooldown não implementada. Reconciliar com energia antes de somar dois limitadores; proposta antiga “sem sistema paralelo de energia” não descreve mais o jogo. |
+
+**Próximos recortes para a nova janela:** conferir reutilização (PREFAB-001), melhorar somente imagem de Game/vale (VIS-002), refazer menus Battle (UI-004) e estudar padrões de inimigos (COM-003/COM-05) em etapas separadas. [Inventário de prefabs, limites e aceite](../../planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026). Não criar outro plano concorrente nem renumerar os37itens históricos; os IDs do plano principal mapeiam os recortes novos. Nenhuma implementação/teste/save nesta revisão documental.
+
 **Estado:** planejamento entregue para revisão; conferência documental concluída em 21/10/2026. Implementação não iniciada. A análise dos scripts foi realizada em 20/10/2026.
 
 **Objetivo:** transformar o parecer sobre os 62 scripts de `Assets/Scripts` em entregas pequenas, verificáveis e priorizadas, preservando a identidade de RPG educativo.

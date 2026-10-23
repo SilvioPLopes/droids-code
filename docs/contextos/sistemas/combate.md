@@ -21,4 +21,8 @@ Contrato implementado em `BattleManager`, `EncounterZone`, `GatilhoDeBatalha`, `
 - Battle aberta diretamente, sem contexto válido, não grava checkpoint de encerramento; usa o destino de fallback do Inspector para sair.
 - Save legado cuja cena é Battle é recusado antes de aplicar dados; arquivo preservado. Não é possível reconstruir origem/turno ausentes. O menu mostra o erro e permanece aberto.
 
-Equipamentos ainda não são serializados por SAVE-001. Restrições de chefes/únicos, limpeza de efeitos e política completa de derrota continuam pendências próprias. Implementação gravada não equivale a comportamento validado: testes finais foram suspensos a pedido do usuário; builds Windows/WebGL não foram executados.
+SAVE-001 foi implementado em23/10: save v7 inclui equipamentos, com testes isolados de restauração; [entrega e limites](../../planos-implementacao/2026-10-23-droid-ilustrado.md). Isso não valida o percurso real de batalha/checkpoint. Restrições de chefes/únicos, limpeza de efeitos e política completa de derrota continuam pendências próprias. Testes finais do recorte de17/10 foram suspensos a pedido; builds Windows/WebGL não executados.
+
+## Próxima apresentação de Battle e inimigos
+
+Direção registrada em23/10, ainda sem implementação: refazer menus de Battle mantendo ações/listas/Status/log/energia/retorno e considerar padrões de inimigos em entrega separada. `InimigoFixo` disponibiliza hoje uma única ação; evoluir isso exige regra explícita e playtest, não apenas arte nova. UI-004/COM-003 no [plano de desenvolvimento](../../plano-desenvolvimento.md) e COM-05 no [plano de melhorias](../../planos-implemnentação/melhorias/03-combate-e-progressao.md) concentram a sequência. Prefabs disponíveis e limites na [auditoria atualizada](../../planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026).

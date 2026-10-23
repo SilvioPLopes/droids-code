@@ -5,7 +5,7 @@
 - [DialogoUIManager](../../../Assets/Scripts/Historia/DialogoUIManager.cs) localiza UI inativa e mantém a primeira fala aberta. `FecharParaDialogo` coordena o fechamento do menu/terminal.
 - [LocalizadorDeTerminal](../../../Assets/Scripts/Scripting/LocalizadorDeTerminal.cs) inclui inativos e prefere a UI persistente válida. Referências a objetos locais podem morrer nas transições.
 - Terminal e diálogo registram a própria abertura; Status/Bag/Droid dependem do menu; Loja depende de NpcInterativo. Alterações no contador exigem considerar essa diferença.
-- O Canvas compartilhado teve referência alterada para 1280×720, Match 0.5. O usuário rejeitou o tamanho resultante dos menus/terminal. Isso não é uma configuração visual aprovada. A correção e seu aceite estão no [plano da CasaLip](../../planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente).
+- Registro histórico da CasaLip: houve tentativa1280×720/Match0.5 rejeitada pelo usuário. Não copiar esse valor como configuração vigente. Última consulta da City na entrega de equipamentos23/10: ScreenSpaceOverlay/ConstantPixelSize; menus ilustrados fazem encaixe local. Confirmar consumidor atual antes de editar; [histórico da casa](../../planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente).
 
 Antes de mudar Canvas, Scaler ou gestores persistentes, pesquise os consumidores em cenas/prefabs. Compare o painel afetado nas resoluções do aceite; confirme que os outros consumidores não regrediram. Teste por API não comprova teclas físicas nem aparência final.
 
@@ -30,9 +30,11 @@ Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' A
 ## Bag ilustrada
 
 - `Canvas.prefab` referencia `Assets/UI/BagIlustrada/bag-conceito.png` no componente `BagUIManager`. Ao abrir, `ApresentacaoBagIlustrada` monta controles nativos sobre a arte aprovada, oculta os filhos antigos somente na instância e ajusta sua própria área ao Canvas. Perfil 1536×1024, margem .98; Canvas/Scaler e cenas não são alterados.
-- Grade 4×3 com paginação, quantidades e sprites por ID via `CatalogoVisualDeItens`. Doze é o número de posições visíveis, sem reduzir capacidade ou acesso a itens elegíveis. Selecionar mostra nome/ícone/descrição rolável; somente Usar/Equipar chama as operações existentes. Filtro fora de batalha, consumo, equipamento e saves permanecem no controlador.
+- Grade 4×3 com paginação, quantidades e sprites por ID via `CatalogoVisualDeItens`. Doze é o número de posições visíveis, sem reduzir capacidade ou acesso a itens elegíveis. Selecionar mostra nome/ícone/descrição rolável; Usar mantém operações existentes. Equipamentos agora mostram orientação “NO TERMINAL”, sem instalar pela Bag; [contrato e comandos](../../guias/equipamentos-apollo.md).
 - Retorno usa `BagUIManager.Fechar`/`AoFechar`, preservando o fluxo do menu do mundo. Campo de mensagem local existente é remapeado ao rodapé da Bag; esta montagem não migra mensagens de outros sistemas. Sem arte configurada, a lista legada continua disponível.
-- Montagem dinâmica, criada uma vez por instância; não aparece como hierarquia persistente de novos botões fora de Play. Teste isolado pelo menu `DroidsCode/Validação/Bag ilustrada (sem saves)`, somente fora de Play. Compilação validada; comportamento/render no Editor e aprovação visual da integração ainda pendentes. [Escopo, backup e retomada](../../planos-implementacao/2026-10-23-bag-ilustrada.md).
+- Montagem dinâmica, criada uma vez por instância; não aparece como hierarquia persistente de novos botões fora de Play. Fixture/render844×475 e1280×720 já passaram; input real/aprovação visual da integração não são comprovados por isso. [Escopo, backup e retomada](../../planos-implementacao/2026-10-23-bag-ilustrada.md).
+
+Para montar em novas cenas, consultar o [inventário de prefabs](../../planos-implementacao/2026-10-17-auditoria-cenas.md#inventário-de-reutilização-conferido-no-disco). O conjunto Canvas é reutilizável, mas loja/diálogo/portas/painel Battle ainda são locais. Não inferir que PainelBag isolado herda a arte configurada no Canvas.
 
 ## Terminal ilustrado
 
