@@ -19,6 +19,21 @@ Pesquisa inicial: `rg -n 'CanvasScaler|m_ReferenceResolution|MenuMundoManager' A
 - Apresentação reaplica posições/estilo ao abrir, incluindo instâncias com overrides antigos, e ajusta escala ao Canvas disponível. Fundo escuro pertence somente a este painel e acompanha sua ativação. Fluxos de abertura, retorno, contador e avisos existentes preservados; esta tarefa visual não migrou Salvar/Carregar para outra apresentação.
 - Montagem inicial `MontagemMenuMundoIlustrado.Aplicar()` já aplicada e com guarda; não repetir para prévia. Testes isolados em `ValidacaoMenuMundoIlustrado.Executar(largura,altura)`; não acionam Salvar/Carregar. [Evidências, backups e aceite pendente](../../planos-implementacao/2026-10-23-menu-mundo-ilustrado.md).
 
+## Status ilustrado do Apollo
+
+- `Assets/Prefabs/PainelStatus.prefab` referencia `Assets/UI/StatusIlustrado/status-conceito-v2.png` e o retrato do Apollo. `TelaDeStatusManager` monta `ApresentacaoStatusIlustrado` na primeira abertura; escala/fundo pertencem apenas ao painel, perfil1536×1024, margem.98. Consumidores: Canvas compartilhado e Battle; Fechar/AoFechar preservados, sem mudanças em Canvas/Scaler ou cenas.
+- Tubo superior verde recebe a fração real HP/HP máximo; segundo tubo recebe energia atual/máxima de Apollo, cor ciano provisória configurável. Ambos acompanham o saldo enquanto abertos, com números e contorno escuro. Energia foi definida pelo usuário como recurso de técnicas de combate, com custo crescente por força/efeitos; não é XP, pontos de progressão ou variável do puzzle. Regras em [combate](combate.md).
+- Retrato identifica Apollo; nome padrão legado `Heroi` é apresentado como `Apollo` somente nessa ficha, sem renomear o objeto ou saves. Nomes personalizados são preservados. Seis atributos totais em papel, explicações consultáveis, técnicas roláveis, nível, XP, Gold, pontos de evolução e retorno mantidos. Nenhum botão de upgrade ou consumo novo.
+- Apresentação dos atributos: nomes completos sem siglas e números em TMP separado, numa coluna fixa alinhada à direita. Rodapé: XP e Pontos lado a lado no quadro esquerdo, Gold sozinho no central. Técnicas têm linha secundária de custo/recuperação; título da ajuda identifica o atributo. Pegas das scrollbars usam offsets zero para respeitar o tamanho proporcional da trilha.
+- Fixture isolada em `DroidsCode/Validação/Status ilustrado (sem saves)`; relatório e capturas em `output/status-ilustrado/` quando executada fora de Play. Aprovação da arte v2 e compilação não representam aprovação visual da montagem. [Escopo, energia, backups e retomada](../../planos-implementacao/2026-10-23-status-ilustrado.md).
+
+## Bag ilustrada
+
+- `Canvas.prefab` referencia `Assets/UI/BagIlustrada/bag-conceito.png` no componente `BagUIManager`. Ao abrir, `ApresentacaoBagIlustrada` monta controles nativos sobre a arte aprovada, oculta os filhos antigos somente na instância e ajusta sua própria área ao Canvas. Perfil 1536×1024, margem .98; Canvas/Scaler e cenas não são alterados.
+- Grade 4×3 com paginação, quantidades e sprites por ID via `CatalogoVisualDeItens`. Doze é o número de posições visíveis, sem reduzir capacidade ou acesso a itens elegíveis. Selecionar mostra nome/ícone/descrição rolável; somente Usar/Equipar chama as operações existentes. Filtro fora de batalha, consumo, equipamento e saves permanecem no controlador.
+- Retorno usa `BagUIManager.Fechar`/`AoFechar`, preservando o fluxo do menu do mundo. Campo de mensagem local existente é remapeado ao rodapé da Bag; esta montagem não migra mensagens de outros sistemas. Sem arte configurada, a lista legada continua disponível.
+- Montagem dinâmica, criada uma vez por instância; não aparece como hierarquia persistente de novos botões fora de Play. Teste isolado pelo menu `DroidsCode/Validação/Bag ilustrada (sem saves)`, somente fora de Play. Compilação validada; comportamento/render no Editor e aprovação visual da integração ainda pendentes. [Escopo, backup e retomada](../../planos-implementacao/2026-10-23-bag-ilustrada.md).
+
 ## Terminal ilustrado
 
 O [método para interfaces sobre imagens](../../guias/interfaces-sobre-imagens.md) documenta as decisões do terminal e o procedimento reutilizável para outras interfaces, com ficha de escopo, arte, controles e validação. Os parâmetros abaixo pertencem ao terminal, não são valores a copiar automaticamente.

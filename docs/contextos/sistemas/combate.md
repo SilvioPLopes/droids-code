@@ -1,5 +1,16 @@
 # Contexto do combate e checkpoint
 
+## Energia do Apollo
+
+Definida pelo usuário em23/10/2026: técnicas de combate gastam energia; técnicas mais fortes custam mais. `Droid` mantém saldo atual/máximo, inicialmente100/100. `TabelaDeEnergia` é balanceamento inicial separado de `TabelaDeCustos` (pontos de programação).
+
+- Custo não básico:10×máximo(1, nível de dano), mais5 por turno e por faixa de5 pontos de cada efeito de atributo (mínimo uma faixa), mais dano×turnos de efeitos de dano contínuo; máximo100 por técnica. Durações negativas não diminuem custo. Valores iniciais para playtest, não fórmulas de dano novas.
+- Ataque Básico custa zero e recupera10 até o máximo, acertando ou errando. Nenhuma recarga automática por abrir Status, trocar cena ou terminar batalha. Não adicionar novos consumíveis nesta alteração.
+- `Droid.ExecutarAcao` verifica saldo e cobra antes do acerto; erro também paga. Saldo insuficiente não aplica dano/efeitos nem modifica energia. `CombatEngine` impede ação de morto/atordoado antes da chamada, portanto esses casos não gastam nem recarregam. Uma chamada recusada segue o fluxo de turno existente; UI desabilita técnicas sem saldo e mantém o básico disponível.
+- Lista de ataques e ficha Status mostram custos/recuperação. Energia não altera pontos do terminal, HP, valores de atributos nem comportamento dos inimigos. Checkpoints existentes persistem o saldo conforme [estado e save](estado-e-save.md).
+
+Implementação, testes e limites na [etapa de energia do Status](../../planos-implementacao/2026-10-23-status-ilustrado.md#energia-de-combate--etapa-vigente). Entrada real por controles/aceite visual continuam distintos dos testes isolados.
+
 Contrato implementado em `BattleManager`, `EncounterZone`, `GatilhoDeBatalha`, `GerenciadorDeEstado` e `SalvamentoJson`. Estado de entrega e limites na [retomada da auditoria](../../planos-implementacao/2026-10-17-auditoria-cenas.md).
 
 - Entradas por zona e gatilho validam o destino e gravam checkpoint do estado anterior à luta na cena/posição de exploração. Se a gravação falhar, a batalha não inicia. O contexto só é atualizado após gravar.

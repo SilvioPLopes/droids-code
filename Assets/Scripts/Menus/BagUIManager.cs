@@ -24,6 +24,10 @@ public class BagUIManager : MonoBehaviour
 
     [Header("Feedback")]
     public TextMeshProUGUI textoMensagem;
+    [Header("Arte da Bag (opcional; preserva a lista legada quando ausente)")]
+    public Sprite arteBag;
+    private ApresentacaoBagIlustrada apresentacao;
+    private bool inicializado, aberto;
 
     public System.Action AoFechar;
 
@@ -31,8 +35,15 @@ public class BagUIManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+        if (!aberto && painel != null) painel.SetActive(false);
+    }
+
+    void Inicializar()
+    {
+        if (inicializado) return;
+        inicializado = true;
         if (botaoVoltar != null) botaoVoltar.onClick.AddListener(Fechar);
-        if (painel != null) painel.SetActive(false);
     }
 
     // CORRECAO (13/09/2026 — Bag nao aparecia ao clicar): a ordem antiga era
@@ -46,7 +57,15 @@ public class BagUIManager : MonoBehaviour
     // rebuild de layout no frame seguinte.
     public void Mostrar()
     {
+        Inicializar();
+        aberto = true;
         if (painel != null) painel.SetActive(true);
+        if (arteBag != null && apresentacao == null)
+        {
+            apresentacao = ApresentacaoBagIlustrada.Criar(this, arteBag);
+            textoMensagem = apresentacao.Mensagem;
+        }
+        if (apresentacao != null) textoMensagem.text = "Selecione um item para ver os detalhes.";
         AtualizarLista();
 
         if (painelListaDeItens != null)
@@ -62,12 +81,18 @@ public class BagUIManager : MonoBehaviour
 
     public void Fechar()
     {
+        aberto = false;
         if (painel != null) painel.SetActive(false);
         AoFechar?.Invoke();
     }
 
     void AtualizarLista()
     {
+        if (apresentacao != null)
+        {
+            apresentacao.Atualizar();
+            return;
+        }
         if (painelListaDeItens == null || prefabBotaoItem == null)
         {
             Debug.LogWarning("BagUIManager: painelListaDeItens/prefabBotaoItem não configurados no Inspector.");
@@ -154,6 +179,15 @@ public class BagUIManager : MonoBehaviour
                 MostrarMensagem($"{item.Nome} não pode ser usado fora de batalha.");
                 return;
         }
+    }
+
+    // O apresentador seleciona sem consumir; somente a ação explícita chega aqui.
+    public void ConfirmarItemDaBag(string id)
+    {
+        var item = CatalogoDeItens.Obter(id);
+        if (item == null || !item.UsavelForaDeBatalha ||
+            GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(id) <= 0) return;
+        UsarItemForaDeBatalha(item);
     }
 
     void UsarCuraForaDeBatalha(DefinicaoDeItem item, GerenciadorDeEstado gerenciador, Droid droid)

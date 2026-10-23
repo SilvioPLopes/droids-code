@@ -1,0 +1,1 @@
+OK: inicial100, custo por força/efeitos, cobrança única inclusive erro, saldo insuficiente sem dano/efeitos, básico+10/teto, stun/morte/inválida sem gasto, legado cheio e zero preservado no JSON. Sem saves/cenas reais.

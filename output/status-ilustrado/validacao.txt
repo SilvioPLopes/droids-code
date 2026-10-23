@@ -1,0 +1,2 @@
+OK 844×475: HP0/50/100%, energia real100/25%, seis atributos em colunas, rodapé em linha, técnicas roláveis e pegas contidas, enquadramento com escala herdada4, raycast/retorno/reabertura. Depth antes/depois do primeiro render: -1/44. Sem saves. Preview isolada; sem input real.
+OK 1280×720: HP0/50/100%, energia real100/25%, seis atributos em colunas, rodapé em linha, técnicas roláveis e pegas contidas, enquadramento com escala herdada4, raycast/retorno/reabertura. Depth antes/depois do primeiro render: -1/44. Sem saves. Preview isolada; sem input real.

@@ -1,0 +1,1 @@
+﻿<Project><ItemGroup><Compile Include="C:\Users\silve\DroidsCode\Assets\Scripts\Menus\ApresentacaoBagIlustrada.cs" Condition="'$(MSBuildProjectName)' == 'Assembly-CSharp'" /><Compile Include="C:\Users\silve\DroidsCode\Assets\Editor\ValidacaoBagIlustrada.cs" Condition="'$(MSBuildProjectName)' == 'Assembly-CSharp-Editor'" /></ItemGroup></Project>

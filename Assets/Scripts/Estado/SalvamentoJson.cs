@@ -31,6 +31,12 @@ public class SalvamentoJson : ISistemaDeSalvamento
     public static void MigrarDados(DadosDoJogo dados)
     {
         if (dados == null) throw new System.ArgumentNullException(nameof(dados));
+        // Campo máximo ausente identifica legado; zero atual com máximo válido é saldo real.
+        if (dados.droid != null && dados.droid.energiaMaxima <= 0)
+        {
+            dados.droid.energiaMaxima = TabelaDeEnergia.MaximaInicial;
+            dados.droid.energiaAtual = TabelaDeEnergia.MaximaInicial;
+        }
         if (dados.versao >= 6) return;
 
         bool casaLegadaMarcada = false;
@@ -102,6 +108,8 @@ public class SalvamentoJson : ISistemaDeSalvamento
                 nome = droid.Nome,
                 hp = droid.Hp,
                 hpMaxBase = droid.HpMaxBase,
+                energiaAtual = droid.EnergiaAtual,
+                energiaMaxima = droid.EnergiaMaxima,
                 statsFor = droid.StatsBase.For,
                 statsAgi = droid.StatsBase.Agi,
                 statsVit = droid.StatsBase.Vit,
@@ -230,6 +238,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
         Droid droid = gerenciador.DroidDoJogador;
 
         droid.Nome = dados.droid.nome;
+        droid.RestaurarEnergia(dados.droid.energiaAtual, dados.droid.energiaMaxima);
 
         // COMPATIBILIDADE (Estagio 1 — 12/09/2026): saves v1 nao tinham
         // hpMaxBase (so hpMax, campo que nem existe mais em DroidSalvo).

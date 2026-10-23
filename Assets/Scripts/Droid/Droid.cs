@@ -7,6 +7,22 @@ namespace DroidsCode.DroidCore
     {
         public string Nome { get; set; }
         public int Hp { get; set; }
+        public int EnergiaAtual { get; private set; } = TabelaDeEnergia.MaximaInicial;
+        public int EnergiaMaxima { get; private set; } = TabelaDeEnergia.MaximaInicial;
+
+        public int ObterCustoDeEnergia(string nomeAcao)
+        {
+            if (nomeAcao == NomeAtaqueBasico) return 0;
+            return TecnicasConfiguradas.TryGetValue(nomeAcao, out var tecnica)
+                ? TabelaDeEnergia.CalcularCusto(tecnica) : 0;
+        }
+
+        /// <summary>Restaura saldo exato do save, inclusive zero; nunca depende de abrir UI.</summary>
+        public void RestaurarEnergia(int atual, int maxima)
+        {
+            EnergiaMaxima = System.Math.Max(1, maxima);
+            EnergiaAtual = System.Math.Clamp(atual, 0, EnergiaMaxima);
+        }
 
         // REFATORACAO (Estagio 1 — 12/09/2026): HpMax deixou de ser um campo
         // solto e virou CALCULADO a partir de HpMaxBase + VIT (ver
@@ -147,6 +163,19 @@ namespace DroidsCode.DroidCore
                     Mensagem = $"Tecnica '{nomeAcao}' nao esta configurada neste Droid."
                 };
             }
+
+            int custoEnergia = ObterCustoDeEnergia(nomeAcao);
+            if (EnergiaAtual < custoEnergia)
+            {
+                return new ResultadoAcao
+                {
+                    Sucesso = false, DanoCausado = 0,
+                    Mensagem = $"Energia insuficiente para '{nomeAcao}': precisa de {custoEnergia}, disponível {EnergiaAtual}. Use o Ataque Básico para recuperar energia."
+                };
+            }
+            EnergiaAtual -= custoEnergia;
+            if (nomeAcao == NomeAtaqueBasico)
+                EnergiaAtual = (int)System.Math.Min(EnergiaMaxima, (long)EnergiaAtual + TabelaDeEnergia.RecuperacaoAtaqueBasico);
 
             // --- Estagio 1: roll de acerto (HIT vs FLEE) ---
             // CORRECAO_DE_ESCOPO (12/09/2026): reintroduz o sistema HIT/FLEE

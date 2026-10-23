@@ -255,7 +255,15 @@ public class BattleManager : MonoBehaviour
             botao.gameObject.SetActive(true);
 
             var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
-            if (texto != null) texto.text = nomeAcao;
+            int custo = droid.ObterCustoDeEnergia(nomeAcao);
+            botao.interactable = custo <= droid.EnergiaAtual;
+            if (texto != null)
+            {
+                texto.text = nomeAcao == Droid.NomeAtaqueBasico
+                    ? $"{nomeAcao} · +{TabelaDeEnergia.RecuperacaoAtaqueBasico} energia"
+                    : $"{nomeAcao} · {custo} energia (saldo {droid.EnergiaAtual})";
+                // A defesa no domínio também protege chamadas fora desta lista.
+            }
 
             string nomeCapturado = nomeAcao; // evita captura errada da variavel de loop
             botao.onClick.AddListener(() =>

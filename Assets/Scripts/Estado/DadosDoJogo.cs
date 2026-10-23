@@ -65,6 +65,8 @@ public class DroidSalvo
     // faria o bonus de VIT se acumular a cada save/load. Saves antigos (sem
     // este campo) carregam hpMaxBase=0 -- ver nota em SalvamentoJson.Carregar.
     public int hpMaxBase;
+    public int energiaAtual;
+    public int energiaMaxima; // zero identifica save anterior ao recurso
     public int statsFor;
     public int statsAgi;
     public int statsVit;

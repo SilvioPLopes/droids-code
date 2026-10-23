@@ -28,6 +28,13 @@ public class TelaDeStatusManager : MonoBehaviour
     public TextMeshProUGUI textoExp;
     public TextMeshProUGUI textoGold;
     public Button botaoVoltar;
+    [Header("Status ilustrado")]
+    public Sprite arteStatus;
+    public Sprite retratoApollo;
+    [Tooltip("Cor do tubo de energia. Ciano provisório; pode ser alterado sem mudar as regras.")]
+    public Color corEnergia = new Color(.25f, .72f, 1f);
+    private ApresentacaoStatusIlustrado apresentacao;
+    private bool inicializado, aberto;
 
     // NOVO (13/09/2026): callback opcional, atribuído externamente (ver
     // MenuMundoManager.Start()). Invocado ao final de Fechar().
@@ -35,20 +42,33 @@ public class TelaDeStatusManager : MonoBehaviour
 
     void Start()
     {
+        Inicializar();
+        if (!aberto && painel != null) painel.SetActive(false);
+    }
+
+    void Inicializar()
+    {
+        if (inicializado) return;
+        inicializado = true;
         if (botaoVoltar != null)
         {
             botaoVoltar.onClick.AddListener(Fechar);
         }
 
-        if (painel != null)
-        {
-            painel.SetActive(false);
-        }
     }
 
     public void Mostrar()
     {
+        Inicializar();
+        aberto = true;
         Droid droid = GerenciadorDeEstado.Instancia.DroidDoJogador;
+        if (arteStatus != null)
+        {
+            painel.SetActive(true);
+            if (apresentacao == null) apresentacao = ApresentacaoStatusIlustrado.Criar(this);
+            apresentacao.Atualizar(droid);
+            return;
+        }
 
         textoNome.text = droid.Nome;
         textoHp.text = $"HP: {droid.Hp}/{droid.HpMax}";
@@ -92,6 +112,7 @@ public class TelaDeStatusManager : MonoBehaviour
 
     public void Fechar()
     {
+        aberto = false;
         painel.SetActive(false);
 
         // NOVO (13/09/2026): avisa quem estiver ouvindo (ex: MenuMundoManager)

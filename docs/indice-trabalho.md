@@ -21,6 +21,8 @@ A reorganização documental foi aplicada em 17/10/2026. O trabalho de gameplay 
 | Artes disponíveis para loja, status e Droid | [Análise de aproveitamento](planos-implementacao/2026-10-23-aproveitamento-artes-menus.md) | `novos`, `ícones`, `molduras`, `combinações` |
 | Loja ilustrada na City | [Plano e retomada](planos-implementacao/2026-10-23-loja-ilustrada.md) | `LojaUIManager`, `seleção`, `Gold`, `compra`, `venda` |
 | Menu do mundo ilustrado com oito opções | [Plano e validação](planos-implementacao/2026-10-23-menu-mundo-ilustrado.md) | `PainelMenuMundo`, `duas colunas`, `Carregar`, `Opções` |
+| Bag ilustrada: montagem e referências | [Plano e estado da integração](planos-implementacao/2026-10-23-bag-ilustrada.md) | `grade`, `paginação`, `ApresentacaoBagIlustrada`, `bag-conceito` |
+| Status: atributos e proposta visual | [Análise do Status](planos-implementacao/2026-10-23-status-ilustrado.md) | `Droid`, `seis atributos`, `10.jfif`, `técnicas`, `pontos` |
 | Localizar ou trocar a sprite de um item | [Guia de ícones](guias/icones-de-itens.md), [plano](planos-implementacao/2026-10-23-sprites-unicas-itens.md) | `ID`, `CatalogoVisualDeItens`, `VisuaisDeItens`, `Recortes` |
 | Mensagens na caixa de diálogo e falha de carregar | [Diagnóstico vigente](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md), [diretriz de interface](contextos/sistemas/interface.md#diretriz-de-mensagens-ao-jogador--definida-em-22102026) | `Salvar`, `Carregar`, `primeira tentativa`, `bloqueio` |
 | Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |

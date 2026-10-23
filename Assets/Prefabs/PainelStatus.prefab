@@ -1176,6 +1176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d19086efb7969441a09655b9ccd38b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TelaDeStatusManager
+  arteStatus: {fileID: -2417272694070911122, guid: 62bc16436d074db7b57cec8751407cf1, type: 3}
+  retratoApollo: {fileID: -4298345892085953899, guid: 7205513fb758ab74cba2ab8df91913ea, type: 3}
+  corEnergia: {r: 0.25, g: 0.72, b: 1, a: 1}
   painel: {fileID: 8299016362766407470}
   textoNome: {fileID: 4530883861803710384}
   textoHp: {fileID: 2859033817115059533}
