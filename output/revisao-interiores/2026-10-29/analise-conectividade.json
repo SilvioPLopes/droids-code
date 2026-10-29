@@ -1,0 +1,1066 @@
+{
+  "method": "geometria estática dos prefabs; grade10px; pés raio60px; sem corpos de NPCs/Play",
+  "limits": "não comprova percurso físico, alinhamento com arte ou input; Casa03 sem Edge exige inspeção própria",
+  "results": [
+    {
+      "room": "E06_Terreo",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3151,
+          "portals": [
+            "escada_E06_Superior",
+            "saida_Porta_Casa01"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 153,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa01",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E06_Superior",
+            "saida_Porta_Casa01"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E06_Superior/escada_E06_Terreo",
+          "footPixel": [
+            1250.0,
+            495.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E06_Superior",
+            "saida_Porta_Casa01"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E06_Anexo/voltar_casa",
+          "footPixel": [
+            1000.0,
+            835.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E06_Superior",
+            "saida_Porta_Casa01"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E06_Superior",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2293,
+          "portals": [
+            "escada_E06_Terreo"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 113,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E06_Terreo/escada_E06_Superior",
+          "footPixel": [
+            1100.0,
+            485.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E06_Terreo"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E06_Anexo",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3460,
+          "portals": [
+            "voltar_casa"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 45,
+          "portals": []
+        }
+      ],
+      "arrivals": []
+    },
+    {
+      "room": "E05_Principal",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 252,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 3342,
+          "portals": [
+            "saida_Porta_Casa02",
+            "saida_Porta_Casa02_Esquerda"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa02",
+          "footPixel": [
+            1125.0,
+            735.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "saida_Porta_Casa02",
+            "saida_Porta_Casa02_Esquerda"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "City/Porta_Casa02_Esquerda",
+          "footPixel": [
+            350.0,
+            760.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "saida_Porta_Casa02",
+            "saida_Porta_Casa02_Esquerda"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E10_Casa03",
+      "status": "sem contorno Edge; revisar manualmente"
+    },
+    {
+      "room": "E10_Casa04",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2763,
+          "portals": [
+            "saida_Porta_Casa04"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 59,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa04",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Casa04"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E11_Casa05",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2836,
+          "portals": [
+            "saida_Porta_Casa05"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa05",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Casa05"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E11_Casa06",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2683,
+          "portals": [
+            "saida_Porta_Casa06"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa06",
+          "footPixel": [
+            825.0,
+            760.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Casa06"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E09_Terreo",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 105,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 222,
+          "portals": [
+            "saida_Porta_CasaMaior"
+          ]
+        },
+        {
+          "id": 2,
+          "gridPoints": 232,
+          "portals": [
+            "escada_E09_Superior"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaMaior",
+          "footPixel": [
+            725.0,
+            760.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "saida_Porta_CasaMaior"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E09_Superior/escada_E09_Terreo",
+          "footPixel": [
+            1200.0,
+            385.0
+          ],
+          "component": 2,
+          "portalsReachable": [
+            "escada_E09_Superior"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E09_Superior",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 48,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 920,
+          "portals": [
+            "escada_E09_Terreo"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E09_Terreo/escada_E09_Superior",
+          "footPixel": [
+            780.0,
+            445.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E09_Terreo"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E08_Principal",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3003,
+          "portals": [
+            "escada_E08_Superior",
+            "saida_Porta_PredioPlaca_A",
+            "saida_Porta_PredioPlaca_B"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 10,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_PredioPlaca_A",
+          "footPixel": [
+            500.0,
+            760.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E08_Superior",
+            "saida_Porta_PredioPlaca_A",
+            "saida_Porta_PredioPlaca_B"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "City/Porta_PredioPlaca_B",
+          "footPixel": [
+            940.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E08_Superior",
+            "saida_Porta_PredioPlaca_A",
+            "saida_Porta_PredioPlaca_B"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E08_Superior/escada_E08_Principal",
+          "footPixel": [
+            1250.0,
+            495.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E08_Superior",
+            "saida_Porta_PredioPlaca_A",
+            "saida_Porta_PredioPlaca_B"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E08_Superior",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2429,
+          "portals": [
+            "escada_E08_Principal"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E08_Principal/escada_E08_Superior",
+          "footPixel": [
+            1250.0,
+            495.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E08_Principal"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E16_Civico",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3722,
+          "portals": [
+            "saida_Porta_Prefeitura"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Prefeitura",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Prefeitura"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E00_Hall",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 6,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 5141,
+          "portals": [
+            "escada_E00_Patamar",
+            "saida_Porta_Casa07"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa07",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E00_Patamar",
+            "saida_Porta_Casa07"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E00_Patamar/escada_E00_Hall",
+          "footPixel": [
+            1250.0,
+            500.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E00_Patamar",
+            "saida_Porta_Casa07"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E00_Patamar",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 5417,
+          "portals": [
+            "escada_E00_Hall",
+            "apartamento"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E00_Hall/escada_E00_Patamar",
+          "footPixel": [
+            1135.0,
+            535.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E00_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E00_Apartamento01/retorno_patamar",
+          "footPixel": [
+            350.0,
+            485.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E00_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E00_Apartamento01",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2601,
+          "portals": [
+            "retorno_patamar"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E00_Patamar/apartamento",
+          "footPixel": [
+            724.0,
+            760.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "retorno_patamar"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E01_Hall",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 24,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 4980,
+          "portals": [
+            "escada_E01_Patamar",
+            "saida_Porta_Casa08"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa08",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E01_Patamar",
+            "saida_Porta_Casa08"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E01_Patamar/escada_E01_Hall",
+          "footPixel": [
+            1250.0,
+            500.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E01_Patamar",
+            "saida_Porta_Casa08"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E01_Apartamento01",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2697,
+          "portals": [
+            "retorno_patamar"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 48,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E01_Patamar/apartamento",
+          "footPixel": [
+            724.0,
+            760.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "retorno_patamar"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E01_Patamar",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 5417,
+          "portals": [
+            "escada_E01_Hall",
+            "apartamento"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E01_Hall/escada_E01_Patamar",
+          "footPixel": [
+            1135.0,
+            535.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E01_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E01_Apartamento01/retorno_patamar",
+          "footPixel": [
+            350.0,
+            485.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E01_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E02_Principal",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 1231,
+          "portals": [
+            "saida_Porta_Casa09"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 756,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa09",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Casa09"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E02_Garagem",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3210,
+          "portals": [
+            "saida_Porta_Garagem"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 21,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Garagem",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Garagem"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E03_Terreo",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 522,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 540,
+          "portals": [
+            "escada_E03_Superior"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Mansao_Provisoria",
+          "footPixel": [
+            425.0,
+            435.0
+          ],
+          "component": 0,
+          "portalsReachable": [],
+          "status": "RISCO: chegada sem portal na componente"
+        },
+        {
+          "source": "E03_Superior/escada_E03_Terreo",
+          "footPixel": [
+            1250.0,
+            435.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E03_Superior"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E03_Superior",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 866,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 1236,
+          "portals": [
+            "escada_E03_Terreo"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E03_Terreo/escada_E03_Superior",
+          "footPixel": [
+            1250.0,
+            460.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "escada_E03_Terreo"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E04_UnidadeA",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 2697,
+          "portals": [
+            "saida_Porta_GeminadoAzul_A"
+          ]
+        },
+        {
+          "id": 1,
+          "gridPoints": 48,
+          "portals": []
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_GeminadoAzul_A",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_GeminadoAzul_A"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E04_UnidadeB",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 752,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 2241,
+          "portals": [
+            "saida_Porta_GeminadoAzul_B"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_GeminadoAzul_B",
+          "footPixel": [
+            750.0,
+            710.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "saida_Porta_GeminadoAzul_B"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E13_Hall",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 4459,
+          "portals": [
+            "escada_E13_Patamar",
+            "saida_Porta_Casa10"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa10",
+          "footPixel": [
+            724.0,
+            750.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E13_Patamar",
+            "saida_Porta_Casa10"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E13_Patamar/escada_E13_Hall",
+          "footPixel": [
+            1250.0,
+            500.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E13_Patamar",
+            "saida_Porta_Casa10"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E13_Apartamento01",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 752,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 2241,
+          "portals": [
+            "retorno_patamar"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E13_Patamar/apartamento",
+          "footPixel": [
+            775.0,
+            760.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "retorno_patamar"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E13_Patamar",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 5417,
+          "portals": [
+            "escada_E13_Hall",
+            "apartamento"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "E13_Hall/escada_E13_Patamar",
+          "footPixel": [
+            1135.0,
+            535.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E13_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        },
+        {
+          "source": "E13_Apartamento01/retorno_patamar",
+          "footPixel": [
+            350.0,
+            485.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "escada_E13_Hall",
+            "apartamento"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E14_UnidadeA",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 1587,
+          "portals": [
+            "saida_Porta_CasaPorao_Esquerda"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaPorao_Esquerda",
+          "footPixel": [
+            725.0,
+            785.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_CasaPorao_Esquerda"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E14_Porao",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 3386,
+          "portals": [
+            "saida_Porta_Porao"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_Porao",
+          "footPixel": [
+            724.0,
+            650.0
+          ],
+          "component": 0,
+          "portalsReachable": [
+            "saida_Porta_Porao"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    },
+    {
+      "room": "E14_UnidadeB",
+      "components": [
+        {
+          "id": 0,
+          "gridPoints": 83,
+          "portals": []
+        },
+        {
+          "id": 1,
+          "gridPoints": 2726,
+          "portals": [
+            "saida_Porta_CasaPorao_Direita"
+          ]
+        }
+      ],
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaPorao_Direita",
+          "footPixel": [
+            725.0,
+            785.0
+          ],
+          "component": 1,
+          "portalsReachable": [
+            "saida_Porta_CasaPorao_Direita"
+          ],
+          "status": "livre com portal"
+        }
+      ]
+    }
+  ]
+}

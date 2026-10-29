@@ -1,0 +1,3510 @@
+[
+  {
+    "id": "E06_Terreo",
+    "prefab": "Assets/Prefabs/Interiores/E06_Terreo.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.295,
+        "y": -0.01,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.35,
+        "boxH": 2.45,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.045,
+        "y": -0.01,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.45,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.43,
+        "y": 0.94,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.3,
+        "boxH": 1.15,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E06_Superior",
+        "x": 2.63,
+        "y": 0.965,
+        "target": "Interior_E06_Superior",
+        "targetX": 1.88,
+        "targetY": -0.33,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Casa01",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -10.6832466,
+        "targetY": -8.78946,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E06_Superior",
+    "prefab": "Assets/Prefabs/Interiores/E06_Superior.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.67,
+        "y": 0.74,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.8,
+        "boxH": 1.75,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.445,
+        "y": 1.24,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.85,
+        "boxH": 1.05,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.695,
+        "y": -0.385,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.35,
+        "boxH": 1.2,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.68,
+        "y": -0.285,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.8,
+        "boxH": 2.1,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E06_Terreo",
+        "x": 2.63,
+        "y": 0.965,
+        "target": "Interior_E06_Terreo",
+        "targetX": 2.63,
+        "targetY": -0.38,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E06_Anexo",
+    "prefab": "Assets/Prefabs/Interiores/E06_Anexo.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.27,
+        "y": 1.3025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 5.2,
+        "boxH": 0.925,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.595,
+        "y": -0.285,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.95,
+        "boxH": 1.8,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.755,
+        "y": -0.485,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.75,
+        "boxH": 2.1,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "voltar_casa",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "Interior_E06_Terreo",
+        "targetX": 1.38,
+        "targetY": -2.08,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E05_Principal",
+    "prefab": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.1,
+        "y": 1.225,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.56,
+        "boxH": 1.03,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.44,
+        "y": 0.335,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.76,
+        "boxH": 1.11,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.1025,
+        "y": 0.15,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.135,
+        "boxH": 1.02,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.5925,
+        "y": -0.375,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.805,
+        "boxH": 1.3,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_5",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.4925,
+        "y": 1.865,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.225,
+        "boxH": 1.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_6",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.6175,
+        "y": 1.65,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.975,
+        "boxH": 0.82,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Casa02",
+        "x": 1.73,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -4.21609449,
+        "targetY": -9.3643,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Casa02_Esquerda",
+        "x": -1.72,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -6.11609459,
+        "targetY": -9.3643,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E10_Casa03",
+    "prefab": "Assets/Prefabs/Interiores/Casa03Interior.prefab",
+    "colliders": [
+      {
+        "name": "Parede_Norte",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.005,
+        "y": 2.0675,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 6.55,
+        "boxH": 0.845,
+        "points": null
+      },
+      {
+        "name": "Parede_Oeste",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -3.245,
+        "y": -0.31,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.29,
+        "boxH": 3.95,
+        "points": null
+      },
+      {
+        "name": "Parede_Leste",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 3.235,
+        "y": -0.31,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.31,
+        "boxH": 3.95,
+        "points": null
+      },
+      {
+        "name": "Parede_Sul_Esquerda",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.94,
+        "y": -2.03,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.66,
+        "boxH": 0.51,
+        "points": null
+      },
+      {
+        "name": "Parede_Sul_Direita",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.935,
+        "y": -2.03,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.69,
+        "boxH": 0.51,
+        "points": null
+      },
+      {
+        "name": "Limite_Apos_Saida",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.01,
+        "y": -2.325,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 0.12,
+        "points": null
+      },
+      {
+        "name": "Armario_Oeste",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.72,
+        "y": 0.275,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.7,
+        "boxH": 2.28,
+        "points": null
+      },
+      {
+        "name": "Sofa",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.3075,
+        "y": 0.7875,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.025,
+        "boxH": 1.105,
+        "points": null
+      },
+      {
+        "name": "Mesa_Centro",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.3,
+        "y": -0.2275,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.51,
+        "boxH": 0.705,
+        "points": null
+      },
+      {
+        "name": "Mesa_Jantar",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.35,
+        "y": 0.145,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.96,
+        "boxH": 1.01,
+        "points": null
+      },
+      {
+        "name": "Cadeira_Norte",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.38,
+        "y": 0.805,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.55,
+        "boxH": 0.36,
+        "points": null
+      },
+      {
+        "name": "Cadeira_Sul",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.38,
+        "y": -0.645,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.55,
+        "boxH": 0.6,
+        "points": null
+      },
+      {
+        "name": "Vaso_Nordeste",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.77,
+        "y": 1.6175,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.62,
+        "boxH": 0.715,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "Saida",
+        "x": -0.01,
+        "y": -2.03,
+        "target": "City",
+        "targetX": 2.56479287,
+        "targetY": -9.363213,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E10_Casa04",
+    "prefab": "Assets/Prefabs/Interiores/E10_Casa04.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.18,
+        "y": -0.185,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.1,
+        "boxH": 2.2,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.8925,
+        "y": 0.04,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.275,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.82,
+        "y": 0.965,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.4,
+        "boxH": 0.9,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.13,
+        "y": 1.4275,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.0,
+        "boxH": 0.675,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Casa04",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 4.51828432,
+        "targetY": -9.366645,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E11_Casa05",
+    "prefab": "Assets/Prefabs/Interiores/E11_Casa05.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.2575,
+        "y": -0.035,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.175,
+        "boxH": 2.3,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.9825,
+        "y": -0.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.425,
+        "boxH": 1.25,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.895,
+        "y": 1.415,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 3.85,
+        "boxH": 0.8,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.08,
+        "y": 1.065,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.3,
+        "boxH": 0.9,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Casa05",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 12.7419319,
+        "targetY": -9.2531,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E11_Casa06",
+    "prefab": "Assets/Prefabs/Interiores/E11_Casa06.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.07,
+        "y": -0.585,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.5,
+        "boxH": 1.3,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.995,
+        "y": 0.415,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.25,
+        "boxH": 1.0,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.555,
+        "y": 1.09,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.45,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.18,
+        "y": 1.2525,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 0.825,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Casa06",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 14.4418612,
+        "targetY": -9.154571,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E09_Terreo",
+    "prefab": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 0.465
+          },
+          {
+            "x": 0.505,
+            "y": 0.465
+          },
+          {
+            "x": 0.505,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": 0.315,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.45,
+        "boxH": 1.6,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.445,
+        "y": -1.3225,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.65,
+        "boxH": 0.875,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.655,
+        "y": 1.365,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.75,
+        "boxH": 0.8,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E09_Superior",
+        "x": 2.63,
+        "y": 1.165,
+        "target": "Interior_E09_Superior",
+        "targetX": 0.28,
+        "targetY": -0.13,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_CasaMaior",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 11.170805,
+        "targetY": -3.15004134,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E09_Superior",
+    "prefab": "Assets/Prefabs/Interiores/E09_Superior.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -0.285
+          },
+          {
+            "x": 0.505,
+            "y": -0.285
+          },
+          {
+            "x": 0.505,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.545,
+        "y": 0.44,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.35,
+        "boxH": 1.95,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": -1.36,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.15,
+        "boxH": 0.75,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.18,
+        "y": 0.815,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.1,
+        "boxH": 1.2,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E09_Terreo",
+        "x": 0.28,
+        "y": 1.215,
+        "target": "Interior_E09_Terreo",
+        "targetX": 2.38,
+        "targetY": 0.170000017,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E08_Principal",
+    "prefab": "Assets/Prefabs/Interiores/E08_Principal.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.285,
+        "y": 1.515,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.61,
+        "boxH": 0.95,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.3275,
+        "y": 0.0975,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.725,
+        "boxH": 1.685,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.98,
+        "y": 0.0375,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.1,
+        "boxH": 0.925,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.285,
+        "y": 1.8025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.36,
+        "boxH": 1.065,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_5",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.44,
+        "y": 1.495,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.43,
+        "boxH": 0.67,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E08_Superior",
+        "x": 2.63,
+        "y": 0.965,
+        "target": "Interior_E08_Superior",
+        "targetX": 2.63,
+        "targetY": -0.38,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_PredioPlaca_A",
+        "x": -1.07,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 5.66625643,
+        "targetY": -3.13429475,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_PredioPlaca_B",
+        "x": 1.08,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 6.96430874,
+        "targetY": -3.13914037,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E08_Superior",
+    "prefab": "Assets/Prefabs/Interiores/E08_Superior.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.845,
+        "y": 1.265,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.85,
+        "boxH": 1.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.23,
+        "y": 1.3025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 0.925,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.27,
+        "y": -0.41,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 3.5,
+        "boxH": 1.25,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E08_Principal",
+        "x": 2.63,
+        "y": 0.965,
+        "target": "Interior_E08_Principal",
+        "targetX": 2.63,
+        "targetY": -0.38,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E16_Civico",
+    "prefab": "Assets/Prefabs/Interiores/E16_Civico.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": 3.05,
+            "y": -0.06
+          },
+          {
+            "x": 2.99139524,
+            "y": -0.45018065
+          },
+          {
+            "x": 2.81783271,
+            "y": -0.8253668
+          },
+          {
+            "x": 2.53598213,
+            "y": -1.17114043
+          },
+          {
+            "x": 2.15667534,
+            "y": -1.4742136
+          },
+          {
+            "x": 1.69448912,
+            "y": -1.72293913
+          },
+          {
+            "x": 1.16718447,
+            "y": -1.90775907
+          },
+          {
+            "x": 0.5950253,
+            "y": -2.02157044
+          },
+          {
+            "x": 0.0,
+            "y": -2.06
+          },
+          {
+            "x": -0.5950253,
+            "y": -2.02157044
+          },
+          {
+            "x": -1.16718447,
+            "y": -1.90775907
+          },
+          {
+            "x": -1.69448912,
+            "y": -1.72293913
+          },
+          {
+            "x": -2.15667582,
+            "y": -1.4742136
+          },
+          {
+            "x": -2.53598237,
+            "y": -1.17114043
+          },
+          {
+            "x": -2.81783247,
+            "y": -0.8253668
+          },
+          {
+            "x": -2.991395,
+            "y": -0.45018065
+          },
+          {
+            "x": -3.05,
+            "y": -0.06
+          },
+          {
+            "x": -2.991395,
+            "y": 0.330180675
+          },
+          {
+            "x": -2.81783247,
+            "y": 0.70536685
+          },
+          {
+            "x": -2.53598237,
+            "y": 1.05114043
+          },
+          {
+            "x": -2.15667582,
+            "y": 1.3542136
+          },
+          {
+            "x": -1.69448912,
+            "y": 1.60293925
+          },
+          {
+            "x": -1.16718447,
+            "y": 1.78775907
+          },
+          {
+            "x": -0.5950253,
+            "y": 1.90157056
+          },
+          {
+            "x": 0.0,
+            "y": 1.94
+          },
+          {
+            "x": 0.5950253,
+            "y": 1.90157056
+          },
+          {
+            "x": 1.16718447,
+            "y": 1.78775907
+          },
+          {
+            "x": 1.69448912,
+            "y": 1.60293925
+          },
+          {
+            "x": 2.15667534,
+            "y": 1.3542136
+          },
+          {
+            "x": 2.53598213,
+            "y": 1.05114043
+          },
+          {
+            "x": 2.81783271,
+            "y": 0.70536685
+          },
+          {
+            "x": 2.99139524,
+            "y": 0.330180675
+          },
+          {
+            "x": 3.05,
+            "y": -0.06
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.02,
+        "y": -0.16,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.4,
+        "boxH": 1.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.03,
+        "y": 1.4025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.0,
+        "boxH": 0.675,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Prefeitura",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -0.867883563,
+        "targetY": -3.48266625,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E00_Hall",
+    "prefab": "Assets/Prefabs/Interiores/E00_Hall.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.57,
+        "y": 1.265,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.9,
+        "boxH": 0.8,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.545,
+        "y": -0.135,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.95,
+        "boxH": 1.7,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E00_Patamar",
+        "x": 2.63,
+        "y": 0.94,
+        "target": "Interior_E00_Patamar",
+        "targetX": 2.055,
+        "targetY": -0.58,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Casa07",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -6.47336149,
+        "targetY": -3.119619,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E00_Patamar",
+    "prefab": "Assets/Prefabs/Interiores/E00_Patamar.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.62,
+        "y": -1.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.9,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.48,
+        "y": 1.5025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.45,
+        "boxH": 1.575,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E00_Hall",
+        "x": 2.055,
+        "y": 0.765,
+        "target": "Interior_E00_Hall",
+        "targetX": 2.63,
+        "targetY": -0.405,
+        "enabled": true
+      },
+      {
+        "name": "apartamento",
+        "x": -1.87,
+        "y": 1.015,
+        "target": "Interior_E00_Apartamento01",
+        "targetX": 0.0,
+        "targetY": -1.705,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E00_Apartamento01",
+    "prefab": "Assets/Prefabs/Interiores/E00_Apartamento01.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.755,
+        "y": 1.09,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.25,
+        "boxH": 1.05,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.645,
+        "y": -0.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.85,
+        "boxH": 1.25,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.305,
+        "y": -1.21,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.15,
+        "boxH": 1.05,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.695,
+        "y": 0.115,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.75,
+        "boxH": 1.8,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "retorno_patamar",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "Interior_E00_Patamar",
+        "targetX": -1.87,
+        "targetY": -0.33,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E01_Hall",
+    "prefab": "Assets/Prefabs/Interiores/E01_Hall.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.145,
+        "y": 1.29,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.65,
+        "boxH": 0.85,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.57,
+        "y": -0.21,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.0,
+        "boxH": 1.25,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E01_Patamar",
+        "x": 2.63,
+        "y": 0.94,
+        "target": "Interior_E01_Patamar",
+        "targetX": 2.055,
+        "targetY": -0.58,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Casa08",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -11.0676937,
+        "targetY": -3.11938739,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E01_Apartamento01",
+    "prefab": "Assets/Prefabs/Interiores/E01_Apartamento01.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.155,
+        "y": -0.135,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.15,
+        "boxH": 2.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.88,
+        "y": 0.015,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.3,
+        "boxH": 1.2,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.82,
+        "y": 1.0525,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.5,
+        "boxH": 1.125,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.38,
+        "y": 1.4025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.0,
+        "boxH": 0.775,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "retorno_patamar",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "Interior_E01_Patamar",
+        "targetX": -1.87,
+        "targetY": -0.33,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E01_Patamar",
+    "prefab": "Assets/Prefabs/Interiores/E01_Patamar.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.62,
+        "y": -1.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.9,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.48,
+        "y": 1.5025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.45,
+        "boxH": 1.575,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E01_Hall",
+        "x": 2.055,
+        "y": 0.765,
+        "target": "Interior_E01_Hall",
+        "targetX": 2.63,
+        "targetY": -0.405,
+        "enabled": true
+      },
+      {
+        "name": "apartamento",
+        "x": -1.87,
+        "y": 1.015,
+        "target": "Interior_E01_Apartamento01",
+        "targetX": 0.0,
+        "targetY": -1.705,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E02_Principal",
+    "prefab": "Assets/Prefabs/Interiores/E02_Principal.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.07,
+        "y": 0.49,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.9,
+        "boxH": 1.85,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.255,
+        "y": 1.24,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.25,
+        "boxH": 0.95,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.68,
+        "y": -0.9725,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.9,
+        "boxH": 1.175,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Casa09",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -14.0627422,
+        "targetY": -3.04661751,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E02_Garagem",
+    "prefab": "Assets/Prefabs/Interiores/E02_Garagem.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.195,
+        "y": 1.315,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 4.85,
+        "boxH": 1.0,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.47,
+        "y": -0.285,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 2.0,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.755,
+        "y": -0.335,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.75,
+        "boxH": 2.4,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Garagem",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -15.5669594,
+        "targetY": -3.046633,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E03_Terreo",
+    "prefab": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.02,
+        "y": 0.865,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.2,
+        "boxH": 1.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": -0.66,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.65,
+        "boxH": 1.55,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 1.48,
+        "y": -0.6475,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.4,
+        "boxH": 1.525,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E03_Superior",
+        "x": 2.63,
+        "y": 1.14,
+        "target": "Interior_E03_Superior",
+        "targetX": 2.63,
+        "targetY": -0.205000013,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Mansao_Provisoria",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -14.0299911,
+        "targetY": 3.1099112,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E03_Superior",
+    "prefab": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.07,
+        "y": 1.365,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.6,
+        "boxH": 0.8,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.08,
+        "y": 0.14,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.9,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.47,
+        "y": -1.235,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 4.1,
+        "boxH": 1.0,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E03_Terreo",
+        "x": 2.63,
+        "y": 1.14,
+        "target": "Interior_E03_Terreo",
+        "targetX": 2.63,
+        "targetY": -0.07999998,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E04_UnidadeA",
+    "prefab": "Assets/Prefabs/Interiores/E04_UnidadeA.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.155,
+        "y": -0.135,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.15,
+        "boxH": 2.1,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.88,
+        "y": 0.015,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.3,
+        "boxH": 1.2,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.82,
+        "y": 1.0525,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.5,
+        "boxH": 1.125,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.38,
+        "y": 1.4025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.0,
+        "boxH": 0.775,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_GeminadoAzul_A",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -6.594374,
+        "targetY": 2.99441123,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E04_UnidadeB",
+    "prefab": "Assets/Prefabs/Interiores/E04_UnidadeB.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.13,
+        "y": 0.94,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.2,
+        "boxH": 1.25,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.23,
+        "y": 1.2775,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 0.925,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": -1.335,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.35,
+        "boxH": 0.7,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.42,
+        "y": -0.31,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.5,
+        "boxH": 0.95,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_GeminadoAzul_B",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": -4.39387,
+        "targetY": 3.00717425,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E13_Hall",
+    "prefab": "Assets/Prefabs/Interiores/E13_Hall.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.845,
+        "y": -0.01,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.45,
+        "boxH": 1.35,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.17,
+        "y": 1.24,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.8,
+        "boxH": 0.95,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E13_Patamar",
+        "x": 2.63,
+        "y": 0.94,
+        "target": "Interior_E13_Patamar",
+        "targetX": 2.055,
+        "targetY": -0.58,
+        "enabled": true
+      },
+      {
+        "name": "saida_Porta_Casa10",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 4.29137468,
+        "targetY": 3.15631366,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E13_Apartamento01",
+    "prefab": "Assets/Prefabs/Interiores/E13_Apartamento01.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.13,
+        "y": 0.94,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.2,
+        "boxH": 1.25,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.23,
+        "y": 1.2775,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 0.925,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": -1.335,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.35,
+        "boxH": 0.7,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.42,
+        "y": -0.31,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.5,
+        "boxH": 0.95,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "retorno_patamar",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "Interior_E13_Patamar",
+        "targetX": -1.87,
+        "targetY": -0.33,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E13_Patamar",
+    "prefab": "Assets/Prefabs/Interiores/E13_Patamar.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.62,
+        "y": -1.11,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.9,
+        "boxH": 1.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.48,
+        "y": 1.5025,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.45,
+        "boxH": 1.575,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "escada_E13_Hall",
+        "x": 2.055,
+        "y": 0.765,
+        "target": "Interior_E13_Hall",
+        "targetX": 2.63,
+        "targetY": -0.405,
+        "enabled": true
+      },
+      {
+        "name": "apartamento",
+        "x": -1.87,
+        "y": 1.015,
+        "target": "Interior_E13_Apartamento01",
+        "targetX": 0.255,
+        "targetY": -1.705,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E14_UnidadeA",
+    "prefab": "Assets/Prefabs/Interiores/E14_UnidadeA.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.32,
+        "y": 0.29,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 3.1,
+        "boxH": 2.15,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.67,
+        "y": 0.19,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.9,
+        "boxH": 2.55,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.38,
+        "y": 0.59,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.2,
+        "boxH": 1.15,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_CasaPorao_Esquerda",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 8.790816,
+        "targetY": 3.21781516,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E14_Porao",
+    "prefab": "Assets/Prefabs/Interiores/E14_Porao.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -2.52,
+        "y": 0.44,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.1,
+        "boxH": 2.55,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -0.12,
+        "y": 1.44,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 4.7,
+        "boxH": 0.85,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.605,
+        "y": -0.035,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.85,
+        "boxH": 3.0,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_4",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.055,
+        "y": 0.54,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.05,
+        "boxH": 0.85,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_Porao",
+        "x": 0.0,
+        "y": -1.26,
+        "target": "City",
+        "targetX": 9.983611,
+        "targetY": 3.200485,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": "E14_UnidadeB",
+    "prefab": "Assets/Prefabs/Interiores/E14_UnidadeB.prefab",
+    "colliders": [
+      {
+        "name": "LimitesDoPiso",
+        "type": "EdgeCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.0,
+        "y": 0.0,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 0.0,
+        "boxH": 0.0,
+        "points": [
+          {
+            "x": -3.145,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": 1.565
+          },
+          {
+            "x": 3.13,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": -1.885
+          },
+          {
+            "x": -3.145,
+            "y": 1.565
+          }
+        ]
+      },
+      {
+        "name": "Obstaculo_1",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": -1.345,
+        "y": 0.015,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 2.55,
+        "boxH": 1.8,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_2",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 0.355,
+        "y": 1.215,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.75,
+        "boxH": 1.0,
+        "points": null
+      },
+      {
+        "name": "Obstaculo_3",
+        "type": "BoxCollider2D",
+        "enabled": true,
+        "active": true,
+        "x": 2.23,
+        "y": 1.19,
+        "offsetX": 0.0,
+        "offsetY": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "boxW": 1.3,
+        "boxH": 0.95,
+        "points": null
+      }
+    ],
+    "portals": [
+      {
+        "name": "saida_Porta_CasaPorao_Direita",
+        "x": 0.0,
+        "y": -1.76,
+        "target": "City",
+        "targetX": 10.9776068,
+        "targetY": 3.1860826,
+        "enabled": true
+      }
+    ]
+  }
+]

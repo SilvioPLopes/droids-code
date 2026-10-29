@@ -1,0 +1,134 @@
+[
+  {
+    "door": "Porta_Prefeitura",
+    "target": "Interior_E16_Civico",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa01",
+    "target": "Interior_E06_Terreo",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa02",
+    "target": "Interior_E05_Principal",
+    "x": 2.005,
+    "y": -1.57999992
+  },
+  {
+    "door": "Porta_Casa03_Provisoria",
+    "target": "Interior_E10_Casa03",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa04",
+    "target": "Interior_E10_Casa04",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa05",
+    "target": "Interior_E11_Casa05",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa06",
+    "target": "Interior_E11_Casa06",
+    "x": 0.505,
+    "y": -1.705
+  },
+  {
+    "door": "Porta_Casa07",
+    "target": "Interior_E00_Hall",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa08",
+    "target": "Interior_E01_Hall",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa09",
+    "target": "Interior_E02_Principal",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Casa10",
+    "target": "Interior_E13_Hall",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_CasaMaior",
+    "target": "Interior_E09_Terreo",
+    "x": 0.005,
+    "y": -1.705
+  },
+  {
+    "door": "Porta_Garagem",
+    "target": "Interior_E02_Garagem",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_Mansao_Provisoria",
+    "target": "Interior_E03_Terreo",
+    "x": -1.495,
+    "y": -0.07999998
+  },
+  {
+    "door": "Porta_PredioPlaca_A",
+    "target": "Interior_E08_Principal",
+    "x": -1.12,
+    "y": -1.705
+  },
+  {
+    "door": "Porta_PredioPlaca_B",
+    "target": "Interior_E08_Principal",
+    "x": 1.08,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_GeminadoAzul_A",
+    "target": "Interior_E04_UnidadeA",
+    "x": 0.0,
+    "y": -1.655
+  },
+  {
+    "door": "Porta_GeminadoAzul_B",
+    "target": "Interior_E04_UnidadeB",
+    "x": 0.13,
+    "y": -1.45499992
+  },
+  {
+    "door": "Porta_CasaPorao_Esquerda",
+    "target": "Interior_E14_UnidadeA",
+    "x": 0.005,
+    "y": -1.83
+  },
+  {
+    "door": "Porta_Porao",
+    "target": "Interior_E14_Porao",
+    "x": 0.0,
+    "y": -1.155
+  },
+  {
+    "door": "Porta_CasaPorao_Direita",
+    "target": "Interior_E14_UnidadeB",
+    "x": 0.005,
+    "y": -1.83
+  },
+  {
+    "door": "Porta_Casa02_Esquerda",
+    "target": "Interior_E05_Principal",
+    "x": -1.87,
+    "y": -1.705
+  }
+]

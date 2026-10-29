@@ -4,6 +4,8 @@ Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → somente 
 
 ## Retomada
 
+Regressões relatadas no teste dos interiores: [revisão de diálogos, colisões e escadas](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md). Checkpoint `49857b4` em branch própria antes do diagnóstico; soft lock da mansão sustentado por análise geométrica, correções ainda pendentes.
+
 Montagem atual dos interiores/NPCs: [lote de 29/10](planos-implementacao/2026-10-29-montagem-cidade-interiores-npcs.md). Estrutura salva e conferida; input, circulação e alinhamento aguardam teste manual. Imagem nova do corredor ficou excluída da montagem.
 
 Portas coletadas, interiores e mapas em alta resolução: seguir o [plano de portas, interiores e mapas](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md), coordenado pelo [plano de desenvolvimento](plano-desenvolvimento.md). A coleta de coordenadas permanece na auditoria; artes novas e melhoria de City/vale/Battle têm etapas e aceite visual próprios.
