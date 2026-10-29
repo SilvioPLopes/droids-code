@@ -1,0 +1,34 @@
+[
+  {
+    "id": "Benta",
+    "folder": "Assets/sprites/Entities/Characters/NPCs/Benta",
+    "width": 576,
+    "height": 256,
+    "spriteSHA256": "30e754af58bfdfb6bcb6ec2938fa28314b87f4df3026212df09e2fb8c8c33638"
+  },
+  {
+    "id": "Zeca",
+    "folder": "Assets/sprites/Entities/Characters/NPCs/Zeca",
+    "width": 576,
+    "height": 256,
+    "spriteSHA256": "4a4ecf72b025cf554a289743d92d7c4c0c5cf7f852ee7ab34b815569aa071f4d"
+  },
+  {
+    "id": "Crianca_Sula_A",
+    "folder": "Assets/sprites/Entities/Characters/NPCs/Crianca_Sula_A",
+    "width": 576,
+    "height": 256,
+    "spriteSHA256": "fa894f702c23a39e70787116996577b27092d20f2df3911adf3c0ac3a4a7cbc1",
+    "previousSpriteSHA256": "c9f413711c4a6a5adb80d13fb144d59f266dc2a78cd990a55f0182db88968992",
+    "changedPixels": 2585
+  },
+  {
+    "id": "Crianca_Sula_B",
+    "folder": "Assets/sprites/Entities/Characters/NPCs/Crianca_Sula_B",
+    "width": 576,
+    "height": 256,
+    "spriteSHA256": "ef437c4e4032c8838aa4382f6393b233dad6e66da6ef00e6a9e24d87ddb13c69",
+    "previousSpriteSHA256": "c9f413711c4a6a5adb80d13fb144d59f266dc2a78cd990a55f0182db88968992",
+    "changedPixels": 2585
+  }
+]

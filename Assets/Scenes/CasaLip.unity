@@ -715,6 +715,7 @@ GameObject:
   - component: {fileID: 578593349}
   - component: {fileID: 578593351}
   - component: {fileID: 578593352}
+  - component: {fileID: 578593353}
   m_Layer: 0
   m_Name: Apollo
   m_TagString: Untagged
@@ -856,13 +857,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155a73079b51d344d977ad10314158e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GatilhoDeDialogo
-  modo: 0
+  modo: 2
   teclaDeInteracao: 101
   tagDoPlayer: Player
   flagsNecessarias: []
   flagsQueImpedem:
   - ato1_falou_apollo_casa
   idDoDialogo: casa_intro_apollo
+  idDoDialogoGenerico: 
   falas: []
   escolhas: []
   flagAoTerminar: ato1_falou_apollo_casa
@@ -916,13 +918,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155a73079b51d344d977ad10314158e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GatilhoDeDialogo
-  modo: 0
+  modo: 2
   teclaDeInteracao: 101
   tagDoPlayer: Player
   flagsNecessarias:
   - ato1_falou_apollo_casa
   flagsQueImpedem: []
   idDoDialogo: casa_apollo_conversa
+  idDoDialogoGenerico: 
   falas: []
   escolhas: []
   flagAoTerminar: 
@@ -3338,6 +3341,29 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 20}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &578593353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578593345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fefbb48880e786c42b399c4d603977d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoradorInterativo
+  idNpc: apollo
+  nome: Apollo
+  saudacao: 
+  historia:
+  - {fileID: 578593349}
+  - {fileID: 578593352}
+  negociar: 0
+  flagParaMissoes: ato1_casa_resolvida
+  destinoDeVisita: 
+  chegadaDaVisita: {x: 0, y: 0}
+  tecla: 101
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

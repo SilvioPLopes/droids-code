@@ -1,0 +1,9 @@
+{
+  "source": "Assets/sprites/Entities/Characters/NPCs/Nilce/animations/walk.png",
+  "frame": 0,
+  "frameSize": [
+    64,
+    64
+  ],
+  "method": "crop_existing_LPC_walk_no_original_overwrite"
+}

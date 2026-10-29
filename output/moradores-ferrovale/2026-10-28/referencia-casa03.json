@@ -1,0 +1,31 @@
+{
+  "capturedUtc": "2026-10-29T02:53:51.2489856Z",
+  "project": "C:/Users/silve/DroidsCode/Assets",
+  "scene": "City",
+  "path": "Assets/Scenes/City.unity",
+  "isDirty": false,
+  "play": true,
+  "playerX": 2.56479287,
+  "playerY": -8.663213,
+  "playerZ": 0,
+  "doors": [
+    {
+      "name": "Porta_Casa03_Provisoria",
+      "x": 2.55934167,
+      "y": -8.62464,
+      "nomeCenaDestino": "Interior_E10_Casa03",
+      "arrivalX": 0,
+      "arrivalY": -1.92
+    }
+  ],
+  "maps": [
+    {
+      "name": "metavalle_0",
+      "asset": "Assets/sprites/Mapas/metavalle-original-upscale-8k.png",
+      "textureW": 7680,
+      "textureH": 4320
+    }
+  ],
+  "status": "reference_only_no_door_mutation",
+  "userIntent": "Remarcar depois da análise de moradores; posição do Player é referência visual, não centro de collider validado."
+}

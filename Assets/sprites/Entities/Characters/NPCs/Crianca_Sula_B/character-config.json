@@ -1,0 +1,28 @@
+{
+  "id": "Crianca_Sula_B",
+  "method": "derived_LPC_composite",
+  "baseRecipe": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\crianca_01\\character-config.json",
+  "baseWalk": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\crianca_01\\spritesheet_walk.png",
+  "recolor": {
+    "method": "red-shirt HSV only, frame rows43..54, hue<.035 or >.96 and saturation>.65",
+    "targetHue": 0.32,
+    "changedPixels": 2585
+  },
+  "additionalLayer": null,
+  "animationsProduced": [
+    "walk"
+  ],
+  "directions": [
+    "up",
+    "left",
+    "down",
+    "right"
+  ],
+  "frameSize": [
+    64,
+    64
+  ],
+  "approximations": [
+    "Variante visual proposta; nome, parentesco individual e genero narrativo nao definidos."
+  ]
+}

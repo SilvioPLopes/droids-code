@@ -1,0 +1,690 @@
+{
+  "date": "2026-10-28",
+  "status": "art_generation_complete_review_pending",
+  "buildings": 15,
+  "mappedBuildingEntries": 22,
+  "newArtworkTargets": 24,
+  "revisionFiles": 3,
+  "distinctReusedAssets": 6,
+  "reuseSlots": 8,
+  "interiorSlots": 32,
+  "newArtwork": [
+    {
+      "key": "e16",
+      "facade": "E16",
+      "label": "Prefeitura — domo metálico",
+      "plannedFile": "e16-prefeitura-domo.png",
+      "file": "e16-prefeitura-domo.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "010AB0B7238DD5DCBFB8608BA3A2E1B5D79E5F25195A720D5E2D8FA2A69C9C22",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-2b0a1b8b-bfa5-4aac-b2fa-156d579b3ac1.png",
+      "promptFile": "e16-prefeitura-domo-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e06t",
+      "facade": "E06",
+      "label": "Casa 1 — térreo",
+      "plannedFile": "e06-casa01-terreo.png",
+      "file": "e06-casa01-terreo.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "7A5146F072D5708FF9B57DFFAE52DA846CF5E4AE0D48896B45C07FB70A13365C",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-4f7393b9-b46e-4449-b8ce-70640f0af5f8.png",
+      "promptFile": "e06-casa01-terreo-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e06s",
+      "facade": "E06",
+      "label": "Casa 1 — andar superior",
+      "plannedFile": "e06-casa01-superior.png",
+      "file": "e06-casa01-superior-v2.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "BE3EC576DEC363B76695C8567C71D11741192EA047EE5BC5727A171D122B8E84",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-4898762b-3411-46a4-9d55-fa6a38f64a23.png",
+      "promptFile": "e06-casa01-superior-v2-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": "e06-casa01-superior.png"
+    },
+    {
+      "key": "e06g",
+      "facade": "E06",
+      "label": "Casa 1 — anexo de garagem",
+      "plannedFile": "e06-casa01-anexo.png",
+      "file": "e06-casa01-anexo.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "D2F11841053DB507255ABDECB235D36AC1621693E8AF35D1E305109391E18AB2",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-df5273ad-1fd9-4153-bb3d-0d64e01de27e.png",
+      "promptFile": "e06-casa01-anexo-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e05",
+      "facade": "E05",
+      "label": "Casa 2 — dois acessos",
+      "plannedFile": "e05-casa02.png",
+      "file": "e05-casa02.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "EA106B8258EF0B2AE8E0B0DF3897FBC1E54A3C72CB4CC255D81CCACA2AD38D1C",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-ef03e0e8-bb07-4f96-9b3d-9f1e581dde8b.png",
+      "promptFile": "e05-casa02-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e10a",
+      "facade": "E10",
+      "label": "Casa 3 — unidade de metal",
+      "plannedFile": "e10-casa03.png",
+      "file": "e10-casa03.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "A536F18403B5D1096C1B1C740447AF067AF66D111930854121E8397EB21A713A",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-82690519-fbca-4bc7-a18e-3d81b2e84a4a.png",
+      "promptFile": "e10-casa03-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e10b",
+      "facade": "E10",
+      "label": "Casa 4 — unidade cerâmica",
+      "plannedFile": "e10-casa04.png",
+      "file": "e10-casa04.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "4506816F39889DEB5BEDD57443B1526F3D3D800035573E4D90DB055D3930A36E",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-120639c4-673d-4aa0-a16a-1cb770d60289.png",
+      "promptFile": "e10-casa04-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e11a",
+      "facade": "E11",
+      "label": "Casa 5 — concreto e reparos",
+      "plannedFile": "e11-casa05.png",
+      "file": "e11-casa05.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "866380B7B32BE648468C50940F2EAF92EF1924A080E9E967048EDEBD48179A5F",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-0a72c4fe-88fe-4cf3-a637-38930069516d.png",
+      "promptFile": "e11-casa05-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e11b",
+      "facade": "E11",
+      "label": "Casa 6 — cerâmica terrosa",
+      "plannedFile": "e11-casa06.png",
+      "file": "e11-casa06.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "737DA7D2FD6DAA7AC82864441F174F7E4B751B22F30CDF5C1228C36876981DD9",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-4131e446-4aac-4ad9-9d05-4560d731bc90.png",
+      "promptFile": "e11-casa06-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e12",
+      "facade": "E12",
+      "label": "CasaLip — proposta visual compatível",
+      "plannedFile": "e12-casalip-proposta.png",
+      "file": "e12-casalip-proposta.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "8D61918A9CD881DC82E23085BFC27DF4151C74A392E13C9358838CFA3C691D99",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-db890734-be6b-4077-b062-ecb4beb1cf85.png",
+      "promptFile": "e12-casalip-proposta-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e09t",
+      "facade": "E09",
+      "label": "Casa maior — planta em L",
+      "plannedFile": "e09-casa-maior-terreo.png",
+      "file": "e09-casa-maior-terreo.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "DF811D0C955DC4315A5B2C446663F57E4CFE74C3419F55F22D42B1140911CE15",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-dc6c62d1-147d-40ce-a28e-d32171bc93a4.png",
+      "promptFile": "e09-casa-maior-terreo-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e09s",
+      "facade": "E09",
+      "label": "Casa maior — superior e terraço",
+      "plannedFile": "e09-superior-terraco.png",
+      "file": "e09-superior-terraco-v2.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "1E065BC0C04E0FD6E57BAA7F8EE380FA894ADBB26C16E2783800E0D44D147342",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-6c565651-fd16-44da-88f8-2d3e94b59f2e.png",
+      "promptFile": "e09-superior-terraco-v2-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": "e09-superior-terraco.png"
+    },
+    {
+      "key": "e08",
+      "facade": "E08",
+      "label": "Casa com placa — interior compartilhado",
+      "plannedFile": "e08-casa-duas-entradas.png",
+      "file": "e08-casa-duas-entradas.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "9BC08740BB42B5F273D542548A20FF7230BA6BD824F33C5F043D3D896AD34E51",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-d7712e1d-08e4-4160-9b02-a4568cf075e2.png",
+      "promptFile": "e08-casa-duas-entradas-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e00",
+      "facade": "E00",
+      "label": "Casa 7 — hall da torre alaranjada",
+      "plannedFile": "e00-casa07-hall.png",
+      "file": "e00-casa07-hall.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "F4400D97C8E5F16E934BA6889CB10B740C5C208255CEB26A065EA4D72709D138",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-312d08c2-1f76-4743-b087-7748e23677e7.png",
+      "promptFile": "e00-casa07-hall-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e01h",
+      "facade": "E01",
+      "label": "Casa 8 — hall da torre azul",
+      "plannedFile": "e01-casa08-hall.png",
+      "file": "e01-casa08-hall.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "6DD6A73950DB44263C427DC7DE489CFECD0F881B4AB7A1F8888735428186701A",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-20646f98-07b2-409d-b2dc-fb36bafaa185.png",
+      "promptFile": "e01-casa08-hall-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e01a",
+      "facade": "E01",
+      "label": "Torre azul — apartamento de metal",
+      "plannedFile": "e01-apartamento-metal.png",
+      "file": "e01-apartamento-metal.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "23F943F05ED9B60AE1B266C69A13E7B51D2A6F91CA0CD8ECF4EFE0822F418D91",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-4c250077-4a62-4382-a1a2-7cef22a53d46.png",
+      "promptFile": "e01-apartamento-metal-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e02h",
+      "facade": "E02",
+      "label": "Casa 9 — sala própria",
+      "plannedFile": "e02-casa09.png",
+      "file": "e02-casa09.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "708B5E73BE7033162B3329BB65E05CAE13F2C1529170635CA0A4269EFC3C8E2B",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-a0b64531-0d31-49a0-b534-65c8e2650f6e.png",
+      "promptFile": "e02-casa09-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e02g",
+      "facade": "E02",
+      "label": "Casa 9 — garagem de metal",
+      "plannedFile": "e02-garagem.png",
+      "file": "e02-garagem.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "EF1AD27C85A25B710997BCB9FE7AD66768C67C304A522B4410FC44BD7461F0F9",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-68dac740-dd80-450a-ac8b-8139d452b135.png",
+      "promptFile": "e02-garagem-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e03t",
+      "facade": "E03",
+      "label": "Casa-chave — hall da mansão",
+      "plannedFile": "e03-mansao-terreo.png",
+      "file": "e03-mansao-terreo.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "FAE72AF961BBBDBFB37F365C1E863A56DF40A9AF4275EB759AD964FED6F740CF",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-a911bd19-dc74-425c-87ee-3a8cadef5986.png",
+      "promptFile": "e03-mansao-terreo-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e03s",
+      "facade": "E03",
+      "label": "Casa-chave — piso superior próprio",
+      "plannedFile": "e03-mansao-superior.png",
+      "file": "e03-mansao-superior-v2.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "DF14F5D9997A3FC37843292DFBE91574E0D779193CB3FC72522BCC469A1ADFD0",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-a9f98594-cdf0-48d0-9d2d-c9ddc03516f4.png",
+      "promptFile": "e03-mansao-superior-v2-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": "e03-mansao-superior.png"
+    },
+    {
+      "key": "e13h",
+      "facade": "E13",
+      "label": "Casa 10 — hall de dois volumes",
+      "plannedFile": "e13-casa10-hall.png",
+      "file": "e13-casa10-hall.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "6D96815E2B24B819A907E3B3DC02F3F73F8BC0588611F1EEBBAB334354613E20",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-05daf480-c023-4dc0-9ad6-802444cd7c63.png",
+      "promptFile": "e13-casa10-hall-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e13a",
+      "facade": "E13",
+      "label": "Casa 10 — apartamento cerâmico",
+      "plannedFile": "e13-apartamento-ceramica.png",
+      "file": "e13-apartamento-ceramica.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "383DAEC7BBD741E2B59EEE1D66C253C34B945A3F9C1348A6E3AE25333CF77AE3",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-f2f2b9de-d114-4698-9d35-b250afc816aa.png",
+      "promptFile": "e13-apartamento-ceramica-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e14l",
+      "facade": "E14",
+      "label": "Casa com porão — unidade esquerda",
+      "plannedFile": "e14-unidade-esquerda.png",
+      "file": "e14-unidade-esquerda.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "7A2DEF2E201AB9D53B5489DD68B84BC514AEEBA04311408F1492CB503E3A4469",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-1249d351-178d-478d-8fc6-e8a93924fe89.png",
+      "promptFile": "e14-unidade-esquerda-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    },
+    {
+      "key": "e14p",
+      "facade": "E14",
+      "label": "Casa com porão — depósito inferior",
+      "plannedFile": "e14-porao.png",
+      "file": "e14-porao.png",
+      "width": 1448,
+      "height": 1086,
+      "sha256": "DB8EF1FDF78DAE293FE7CE15081D0F24FB159D81FBDC582E380F54A914279E5B",
+      "source": "C:\\Users\\silve\\.codex\\generated_images\\01a18378-722b-78c0-bc4f-3d7df7dd1f04\\exec-e7e1f346-42e9-4755-8cbd-27d3397e34e5.png",
+      "promptFile": "e14-porao-prompt.md",
+      "status": "generated_not_user_approved",
+      "revisedFrom": null
+    }
+  ],
+  "buildingsInventory": [
+    {
+      "id": "E06",
+      "name": "Casa 1 e anexo",
+      "entries": 1,
+      "quadrant": "X− / Y−",
+      "rect": [
+        367,
+        742,
+        149,
+        146
+      ],
+      "note": "Acesso do anexo ainda candidato; não confundir referência do Player com centro final da porta.",
+      "keys": [
+        "e06t",
+        "e06s",
+        "e06g"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E05",
+      "name": "Casa 2",
+      "entries": 1,
+      "quadrant": "X− / Y−",
+      "rect": [
+        647,
+        772,
+        166,
+        122
+      ],
+      "note": "A arte mostra dois acessos; o da esquerda ainda não foi coletado no mundo.",
+      "keys": [
+        "e05"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E10",
+      "name": "Casas 3 e 4",
+      "entries": 2,
+      "quadrant": "X+ / Y−",
+      "rect": [
+        1060,
+        744,
+        166,
+        149
+      ],
+      "note": "Duas moradias independentes; identidade da Casa 3 veio da sequência da coleta.",
+      "keys": [
+        "e10a",
+        "e10b"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E12",
+      "name": "CasaLip — torre existente",
+      "entries": 1,
+      "quadrant": "X+ / Y−",
+      "rect": [
+        1356,
+        730,
+        86,
+        163
+      ],
+      "note": "Entrada original existente. A nova arte é proposta; cenário funcional atual preservado.",
+      "keys": [
+        "e12"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E11",
+      "name": "Casas 5 e 6",
+      "entries": 2,
+      "quadrant": "X+ / Y−",
+      "rect": [
+        1528,
+        745,
+        175,
+        144
+      ],
+      "note": "Duas moradias independentes, pisos e acabamento distintos.",
+      "keys": [
+        "e11a",
+        "e11b"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E09",
+      "name": "Casa maior em L",
+      "entries": 1,
+      "quadrant": "X+ / Y−",
+      "rect": [
+        1463,
+        448,
+        243,
+        155
+      ],
+      "note": "Terraço é proposta arquitetônica; acesso elevado externo e alinhamento de escadas ainda precisam de conferência.",
+      "keys": [
+        "e09t",
+        "e09s"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E08",
+      "name": "Casa com placa / duas entradas",
+      "entries": 2,
+      "quadrant": "X+ / Y−",
+      "rect": [
+        1196,
+        446,
+        142,
+        155
+      ],
+      "note": "Proposta: interior compartilhado com duas entradas, escada e matriz superior. Escolha ainda sujeita ao aceite.",
+      "keys": [
+        "e08"
+      ],
+      "reuse": [
+        [
+          "Piso superior — matriz reaproveitada",
+          "matriz-casa-grande-superior-v1.png"
+        ]
+      ]
+    },
+    {
+      "id": "E16",
+      "name": "Prefeitura — domo",
+      "entries": 1,
+      "quadrant": "Centro, entrada X− / Y−",
+      "rect": [
+        835,
+        406,
+        201,
+        212
+      ],
+      "note": "Arte exclusiva: salão amplo circular e metálico, sem madeira ou piso quadriculado.",
+      "keys": [
+        "e16"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E00",
+      "name": "Casa 7 — torre alaranjada",
+      "entries": 1,
+      "quadrant": "X− / Y−",
+      "rect": [
+        629,
+        438,
+        85,
+        163
+      ],
+      "note": "Hall próprio; quantidade de apartamentos não é comprovada pelo desenho da fachada.",
+      "keys": [
+        "e00"
+      ],
+      "reuse": [
+        [
+          "Patamar — matriz compartilhada",
+          "matriz-predio-corredor-v1.png"
+        ],
+        [
+          "Apartamento — layout B aprovado",
+          "apartamento-b-estar-norte-v2.png"
+        ]
+      ]
+    },
+    {
+      "id": "E01",
+      "name": "Casa 8 — torre azul",
+      "entries": 1,
+      "quadrant": "X− / Y−",
+      "rect": [
+        412,
+        438,
+        86,
+        163
+      ],
+      "note": "Hall próprio e apartamento metálico; patamar aprovado como referência de ligação futura.",
+      "keys": [
+        "e01h",
+        "e01a"
+      ],
+      "reuse": [
+        [
+          "Patamar — matriz compartilhada",
+          "matriz-predio-corredor-v1.png"
+        ]
+      ]
+    },
+    {
+      "id": "E02",
+      "name": "Casa 9 e garagem",
+      "entries": 2,
+      "quadrant": "X− / Y−",
+      "rect": [
+        221,
+        476,
+        123,
+        120
+      ],
+      "note": "Proposta explícita: interiores com acessos externos independentes, sem porta interna de ligação.",
+      "keys": [
+        "e02h",
+        "e02g"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E03",
+      "name": "Possível mansão / casa-chave",
+      "entries": 1,
+      "quadrant": "X− / Y+",
+      "rect": [
+        227,
+        174,
+        182,
+        134
+      ],
+      "note": "Dois pavimentos de arte próprios; função narrativa e proprietário ainda indefinidos.",
+      "keys": [
+        "e03t",
+        "e03s"
+      ],
+      "reuse": []
+    },
+    {
+      "id": "E04",
+      "name": "Geminado de telhado azul",
+      "entries": 2,
+      "quadrant": "X− / Y+",
+      "rect": [
+        634,
+        179,
+        182,
+        135
+      ],
+      "note": "Proposta: duas unidades independentes com layouts C/D aprovados; função especial ainda aberta.",
+      "keys": [],
+      "reuse": [
+        [
+          "Unidade esquerda — C aprovado",
+          "apartamento-c-estar-leste-v2.png"
+        ],
+        [
+          "Unidade direita — D aprovado",
+          "apartamento-d-mesa-norte-v2.png"
+        ]
+      ]
+    },
+    {
+      "id": "E13",
+      "name": "Casa 10 — volumes azul e ocre",
+      "entries": 1,
+      "quadrant": "X+ / Y+",
+      "rect": [
+        1061,
+        169,
+        158,
+        137
+      ],
+      "note": "Só um acesso coletado. A faixa frontal esquerda não foi comprovada como porta.",
+      "keys": [
+        "e13h",
+        "e13a"
+      ],
+      "reuse": [
+        [
+          "Patamar — matriz compartilhada",
+          "matriz-predio-corredor-v1.png"
+        ]
+      ]
+    },
+    {
+      "id": "E14",
+      "name": "Casa com porão",
+      "entries": 3,
+      "quadrant": "X+ / Y+",
+      "rect": [
+        1340,
+        176,
+        191,
+        129
+      ],
+      "note": "Proposta: duas unidades acima e porão com acesso externo próprio. Relação funcional a avaliar.",
+      "keys": [
+        "e14l",
+        "e14p"
+      ],
+      "reuse": [
+        [
+          "Unidade direita — matriz cerâmica aprovada",
+          "interior-sala-piso-cuidado-v3.png"
+        ]
+      ]
+    }
+  ],
+  "archivedVersions": [
+    {
+      "originalFile": "e03-mansao-superior.png",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e03-mansao-superior.png",
+      "sha256": "AA011C7BE84CDED4B3143BE0B3805BEB71C59CE006839E30F9E87C503E00F59C",
+      "status": "quarantined_not_deleted"
+    },
+    {
+      "originalFile": "e03-mansao-superior-prompt.md",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e03-mansao-superior-prompt.md",
+      "sha256": "4158B059C7DE4AE12CEB4C863C1B51CB4C76B6A9C1BBEDB07B0185DDE6073D83",
+      "status": "quarantined_not_deleted"
+    },
+    {
+      "originalFile": "e06-casa01-superior.png",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e06-casa01-superior.png",
+      "sha256": "F99F03BAF4F76D9E4E8264C6368411B944676AD2FB944D8DFD10962054019822",
+      "status": "quarantined_not_deleted"
+    },
+    {
+      "originalFile": "e06-casa01-superior-prompt.md",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e06-casa01-superior-prompt.md",
+      "sha256": "A809B921244E29542C438C53ABF1A8752249423332B3EA19EEA2F548F00D0082",
+      "status": "quarantined_not_deleted"
+    },
+    {
+      "originalFile": "e09-superior-terraco.png",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e09-superior-terraco.png",
+      "sha256": "4EF034B74693F31D12C1E8D0EDA955E01DE5627C4B6F0F60CCC5BCE7F3B118CF",
+      "status": "quarantined_not_deleted"
+    },
+    {
+      "originalFile": "e09-superior-terraco-prompt.md",
+      "archiveFile": "output/quarentena/2026-10-29/interiores-v1-substituidos/e09-superior-terraco-prompt.md",
+      "sha256": "E917B9BF973741749BE2B07AB1534F162471616FEEE4E8E3AE2B2642B02DCE50",
+      "status": "quarantined_not_deleted"
+    }
+  ]
+}

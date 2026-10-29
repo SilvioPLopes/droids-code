@@ -1,0 +1,2692 @@
+{
+  "rooms": [
+    {
+      "id": "E06_Terreo",
+      "scene": "Assets/Scenes/Interiores/Interior_E06_Terreo.unity",
+      "sceneName": "Interior_E06_Terreo",
+      "prefab": "Assets/Prefabs/Interiores/E06_Terreo.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e06-casa01-terreo.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e06-casa01-terreo.png",
+      "boxes": [
+        [
+          130,
+          300,
+          400,
+          790
+        ],
+        [
+          370,
+          430,
+          660,
+          660
+        ],
+        [
+          680,
+          240,
+          940,
+          470
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_mecanico_01",
+          "x": 1000,
+          "y": 730
+        }
+      ],
+      "portals": [
+        {
+          "key": "escada_E06_Superior",
+          "px": 1250,
+          "py": 350,
+          "targetRoom": "E06_Superior",
+          "targetFootPixel": [
+            1250,
+            495
+          ]
+        },
+        {
+          "key": "saida_Porta_Casa01",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -10.6832466,
+          "targetY": -8.78946
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E06_Superior",
+      "scene": "Assets/Scenes/Interiores/Interior_E06_Superior.unity",
+      "sceneName": "Interior_E06_Superior",
+      "prefab": "Assets/Prefabs/Interiores/E06_Superior.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e06-casa01-superior-v2.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e06-casa01-superior-v2.png",
+      "boxes": [
+        [
+          110,
+          220,
+          270,
+          570
+        ],
+        [
+          450,
+          190,
+          820,
+          400
+        ],
+        [
+          350,
+          500,
+          820,
+          740
+        ],
+        [
+          1180,
+          390,
+          1340,
+          810
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E06_Terreo",
+          "px": 1250,
+          "py": 350,
+          "targetRoom": "E06_Terreo",
+          "targetFootPixel": [
+            1250,
+            495
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E06_Anexo",
+      "scene": "Assets/Scenes/Interiores/Interior_E06_Anexo.unity",
+      "sceneName": "Interior_E06_Anexo",
+      "prefab": "Assets/Prefabs/Interiores/E06_Anexo.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e06-casa01-anexo.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e06-casa01-anexo.png",
+      "boxes": [
+        [
+          150,
+          190,
+          1190,
+          375
+        ],
+        [
+          110,
+          420,
+          300,
+          780
+        ],
+        [
+          1200,
+          430,
+          1350,
+          850
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_mecanico_01",
+          "x": 850,
+          "y": 650
+        }
+      ],
+      "portals": [
+        {
+          "key": "voltar_casa",
+          "px": 724,
+          "py": 895,
+          "targetRoom": "E06_Terreo",
+          "targetFootPixel": [
+            1000,
+            800
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E05_Principal",
+      "scene": "Assets/Scenes/Interiores/Interior_E05_Principal.unity",
+      "sceneName": "Interior_E05_Principal",
+      "prefab": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e05-casa02.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e05-casa02.png",
+      "boxes": [
+        [
+          548,
+          195,
+          860,
+          401
+        ],
+        [
+          360,
+          365,
+          512,
+          587
+        ],
+        [
+          590,
+          411,
+          817,
+          615
+        ],
+        [
+          125,
+          488,
+          286,
+          748
+        ],
+        [
+          900,
+          60,
+          1145,
+          280
+        ],
+        [
+          1150,
+          131,
+          1345,
+          295
+        ]
+      ],
+      "actors": [
+        {
+          "id": "vendedora_pecas",
+          "x": 1030,
+          "y": 650
+        },
+        {
+          "id": "crianca_rua",
+          "x": 800,
+          "y": 740
+        },
+        {
+          "id": "fv_crianca_sula_02",
+          "x": 1040,
+          "y": 800
+        },
+        {
+          "id": "fv_crianca_sula_03",
+          "x": 450,
+          "y": 800
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa02",
+          "px": 1070,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -4.21609449,
+          "targetY": -9.3643000000000018
+        },
+        {
+          "key": "saida_Porta_Casa02_Esquerda",
+          "px": 380,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -6.11609449,
+          "targetY": -9.3643000000000018
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E10_Casa03",
+      "scene": "Assets/Scenes/Interiores/Interior_E10_Casa03.unity",
+      "sceneName": "Interior_E10_Casa03",
+      "prefab": "Assets/Prefabs/Interiores/Casa03Interior.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/Casa03.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e10-casa03.png",
+      "boxes": [],
+      "actors": [
+        {
+          "id": "fv_operario_01",
+          "x": 945,
+          "y": 790
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa03_Provisoria",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 2.56479287,
+          "targetY": -9.3632130000000018
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E10_Casa04",
+      "scene": "Assets/Scenes/Interiores/Interior_E10_Casa04.unity",
+      "sceneName": "Interior_E10_Casa04",
+      "prefab": "Assets/Prefabs/Interiores/E10_Casa04.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e10-casa04.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e10-casa04.png",
+      "boxes": [
+        [
+          1050,
+          360,
+          1270,
+          800
+        ],
+        [
+          775,
+          420,
+          1030,
+          650
+        ],
+        [
+          220,
+          260,
+          500,
+          440
+        ],
+        [
+          550,
+          190,
+          950,
+          325
+        ]
+      ],
+      "actors": [
+        {
+          "id": "homem_fila",
+          "x": 480,
+          "y": 700
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa04",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 4.51828432,
+          "targetY": -9.3666450000000019
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E11_Casa05",
+      "scene": "Assets/Scenes/Interiores/Interior_E11_Casa05.unity",
+      "sceneName": "Interior_E11_Casa05",
+      "prefab": "Assets/Prefabs/Interiores/E11_Casa05.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e11-casa05.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e11-casa05.png",
+      "boxes": [
+        [
+          155,
+          320,
+          390,
+          780
+        ],
+        [
+          385,
+          440,
+          670,
+          690
+        ],
+        [
+          160,
+          180,
+          930,
+          340
+        ],
+        [
+          1010,
+          240,
+          1270,
+          420
+        ]
+      ],
+      "actors": [
+        {
+          "id": "tacio",
+          "x": 1000,
+          "y": 700
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa05",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 12.7419319,
+          "targetY": -9.2531
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E11_Casa06",
+      "scene": "Assets/Scenes/Interiores/Interior_E11_Casa06.unity",
+      "sceneName": "Interior_E11_Casa06",
+      "prefab": "Assets/Prefabs/Interiores/E11_Casa06.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e11-casa06.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e11-casa06.png",
+      "boxes": [
+        [
+          260,
+          530,
+          760,
+          790
+        ],
+        [
+          400,
+          360,
+          650,
+          560
+        ],
+        [
+          690,
+          210,
+          980,
+          440
+        ],
+        [
+          1040,
+          210,
+          1280,
+          375
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_idoso_01",
+          "x": 1000,
+          "y": 680
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa06",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 14.4418612,
+          "targetY": -9.1545709999999989
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E09_Terreo",
+      "scene": "Assets/Scenes/Interiores/Interior_E09_Terreo.unity",
+      "sceneName": "Interior_E09_Terreo",
+      "prefab": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e09-casa-maior-terreo.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e09-casa-maior-terreo.png",
+      "boxes": [
+        [
+          210,
+          320,
+          700,
+          640
+        ],
+        [
+          270,
+          720,
+          600,
+          895
+        ],
+        [
+          680,
+          190,
+          1030,
+          350
+        ]
+      ],
+      "actors": [
+        {
+          "id": "mestra_guilda",
+          "x": 720,
+          "y": 650
+        },
+        {
+          "id": "fv_operario_01",
+          "x": 450,
+          "y": 690
+        }
+      ],
+      "portals": [
+        {
+          "key": "escada_E09_Superior",
+          "px": 1250,
+          "py": 310,
+          "targetRoom": "E09_Superior",
+          "targetFootPixel": [
+            780,
+            445
+          ]
+        },
+        {
+          "key": "saida_Porta_CasaMaior",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 11.170805,
+          "targetY": -3.15004129
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          450
+        ],
+        [
+          825,
+          450
+        ],
+        [
+          825,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E09_Superior",
+      "scene": "Assets/Scenes/Interiores/Interior_E09_Superior.unity",
+      "sceneName": "Interior_E09_Superior",
+      "prefab": "Assets/Prefabs/Interiores/E09_Superior.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e09-superior-terraco-v2.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e09-superior-terraco-v2.png",
+      "boxes": [
+        [
+          180,
+          260,
+          650,
+          650
+        ],
+        [
+          240,
+          740,
+          670,
+          890
+        ],
+        [
+          1050,
+          260,
+          1270,
+          500
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E09_Terreo",
+          "px": 780,
+          "py": 300,
+          "targetRoom": "E09_Terreo",
+          "targetFootPixel": [
+            1250,
+            455
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          600
+        ],
+        [
+          825,
+          600
+        ],
+        [
+          825,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E08_Principal",
+      "scene": "Assets/Scenes/Interiores/Interior_E08_Principal.unity",
+      "sceneName": "Interior_E08_Principal",
+      "prefab": "Assets/Prefabs/Interiores/E08_Principal.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e08-casa-duas-entradas.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e08-casa-duas-entradas.png",
+      "boxes": [
+        [
+          620,
+          145,
+          942,
+          335
+        ],
+        [
+          286,
+          355,
+          631,
+          692
+        ],
+        [
+          810,
+          443,
+          1030,
+          628
+        ],
+        [
+          131,
+          76,
+          403,
+          289
+        ],
+        [
+          969,
+          177,
+          1055,
+          311
+        ]
+      ],
+      "actors": [
+        {
+          "id": "estalajadeira",
+          "x": 1120,
+          "y": 740
+        }
+      ],
+      "portals": [
+        {
+          "key": "escada_E08_Superior",
+          "px": 1250,
+          "py": 350,
+          "targetRoom": "E08_Superior",
+          "targetFootPixel": [
+            1250,
+            495
+          ]
+        },
+        {
+          "key": "saida_Porta_PredioPlaca_A",
+          "px": 510,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 5.66625643,
+          "targetY": -3.1342947
+        },
+        {
+          "key": "saida_Porta_PredioPlaca_B",
+          "px": 940,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 6.96430874,
+          "targetY": -3.13914032
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E08_Superior",
+      "scene": "Assets/Scenes/Interiores/Interior_E08_Superior.unity",
+      "sceneName": "Interior_E08_Superior",
+      "prefab": "Assets/Prefabs/Interiores/E08_Superior.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/matriz-casa-grande-superior-v1.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/matriz-casa-grande-superior-v1.png",
+      "boxes": [
+        [
+          370,
+          180,
+          740,
+          400
+        ],
+        [
+          850,
+          190,
+          1090,
+          375
+        ],
+        [
+          320,
+          500,
+          1020,
+          750
+        ]
+      ],
+      "actors": [
+        {
+          "id": "zeca_cerca",
+          "x": 1100,
+          "y": 750
+        }
+      ],
+      "portals": [
+        {
+          "key": "escada_E08_Principal",
+          "px": 1250,
+          "py": 350,
+          "targetRoom": "E08_Principal",
+          "targetFootPixel": [
+            1250,
+            495
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E16_Civico",
+      "scene": "Assets/Scenes/Interiores/Interior_E16_Civico.unity",
+      "sceneName": "Interior_E16_Civico",
+      "prefab": "Assets/Prefabs/Interiores/E16_Civico.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e16-prefeitura-domo.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e16-prefeitura-domo.png",
+      "boxes": [
+        [
+          580,
+          465,
+          860,
+          685
+        ],
+        [
+          530,
+          195,
+          930,
+          330
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "saida_Porta_Prefeitura",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -0.867883563,
+          "targetY": -3.4826662099999997
+        }
+      ],
+      "outline": [
+        [
+          1334.0,
+          555.0
+        ],
+        [
+          1322.2790210459707,
+          633.0361288064513
+        ],
+        [
+          1287.5665148318849,
+          708.07337294603587
+        ],
+        [
+          1231.1964635045526,
+          777.22809320784086
+        ],
+        [
+          1155.3351365237941,
+          837.842712474619
+        ],
+        [
+          1062.8978421419574,
+          887.58784492101813
+        ],
+        [
+          957.4368937427048,
+          924.55181300451477
+        ],
+        [
+          843.00509642983832,
+          947.3141121612922
+        ],
+        [
+          724.0,
+          955.0
+        ],
+        [
+          604.9949035701618,
+          947.3141121612922
+        ],
+        [
+          490.56310625729526,
+          924.55181300451477
+        ],
+        [
+          385.1021578580428,
+          887.58784492101813
+        ],
+        [
+          292.66486347620605,
+          837.842712474619
+        ],
+        [
+          216.80353649544736,
+          777.22809320784086
+        ],
+        [
+          160.43348516811511,
+          708.073372946036
+        ],
+        [
+          125.72097895402942,
+          633.03612880645142
+        ],
+        [
+          114.0,
+          555.0
+        ],
+        [
+          125.72097895402942,
+          476.96387119354864
+        ],
+        [
+          160.433485168115,
+          401.92662705396413
+        ],
+        [
+          216.80353649544725,
+          332.77190679215926
+        ],
+        [
+          292.66486347620594,
+          272.15728752538104
+        ],
+        [
+          385.10215785804269,
+          222.41215507898193
+        ],
+        [
+          490.56310625729486,
+          185.4481869954854
+        ],
+        [
+          604.99490357016157,
+          162.68588783870786
+        ],
+        [
+          723.99999999999989,
+          155.0
+        ],
+        [
+          843.0050964298382,
+          162.6858878387078
+        ],
+        [
+          957.43689374270491,
+          185.44818699548534
+        ],
+        [
+          1062.8978421419572,
+          222.41215507898181
+        ],
+        [
+          1155.3351365237938,
+          272.15728752538092
+        ],
+        [
+          1231.1964635045526,
+          332.77190679215914
+        ],
+        [
+          1287.5665148318849,
+          401.92662705396384
+        ],
+        [
+          1322.2790210459705,
+          476.96387119354853
+        ]
+      ]
+    },
+    {
+      "id": "E00_Hall",
+      "scene": "Assets/Scenes/Interiores/Interior_E00_Hall.unity",
+      "sceneName": "Interior_E00_Hall",
+      "prefab": "Assets/Prefabs/Interiores/E00_Hall.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e00-casa07-hall.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e00-casa07-hall.png",
+      "boxes": [
+        [
+          220,
+          210,
+          600,
+          370
+        ],
+        [
+          120,
+          400,
+          310,
+          740
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E00_Patamar",
+          "px": 1250,
+          "py": 355,
+          "targetRoom": "E00_Patamar",
+          "targetFootPixel": [
+            1135,
+            535
+          ]
+        },
+        {
+          "key": "saida_Porta_Casa07",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -6.47336149,
+          "targetY": -3.119619
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E00_Patamar",
+      "scene": "Assets/Scenes/Interiores/Interior_E00_Patamar.unity",
+      "sceneName": "Interior_E00_Patamar",
+      "prefab": "Assets/Prefabs/Interiores/E00_Patamar.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "boxes": [
+        [
+          110,
+          650,
+          290,
+          880
+        ],
+        [
+          675,
+          85,
+          965,
+          400
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E00_Hall",
+          "px": 1135,
+          "py": 390,
+          "targetRoom": "E00_Hall",
+          "targetFootPixel": [
+            1250,
+            500
+          ]
+        },
+        {
+          "key": "apartamento",
+          "px": 350,
+          "py": 340,
+          "targetRoom": "E00_Apartamento01",
+          "targetFootPixel": [
+            724,
+            760
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E00_Apartamento01",
+      "scene": "Assets/Scenes/Interiores/Interior_E00_Apartamento01.unity",
+      "sceneName": "Interior_E00_Apartamento01",
+      "prefab": "Assets/Prefabs/Interiores/E00_Apartamento01.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/apartamento-b-estar-norte-v2.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/apartamento-b-estar-norte-v2.png",
+      "boxes": [
+        [
+          650,
+          220,
+          1100,
+          430
+        ],
+        [
+          410,
+          440,
+          780,
+          690
+        ],
+        [
+          1070,
+          680,
+          1300,
+          890
+        ],
+        [
+          110,
+          340,
+          260,
+          700
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_vendedor_01",
+          "x": 1050,
+          "y": 520
+        }
+      ],
+      "portals": [
+        {
+          "key": "retorno_patamar",
+          "px": 724,
+          "py": 895,
+          "targetRoom": "E00_Patamar",
+          "targetFootPixel": [
+            350,
+            485
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E01_Hall",
+      "scene": "Assets/Scenes/Interiores/Interior_E01_Hall.unity",
+      "sceneName": "Interior_E01_Hall",
+      "prefab": "Assets/Prefabs/Interiores/E01_Hall.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e01-casa08-hall.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e01-casa08-hall.png",
+      "boxes": [
+        [
+          230,
+          200,
+          760,
+          370
+        ],
+        [
+          110,
+          460,
+          310,
+          710
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E01_Patamar",
+          "px": 1250,
+          "py": 355,
+          "targetRoom": "E01_Patamar",
+          "targetFootPixel": [
+            1135,
+            535
+          ]
+        },
+        {
+          "key": "saida_Porta_Casa08",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -11.0676937,
+          "targetY": -3.1193873400000003
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E01_Apartamento01",
+      "scene": "Assets/Scenes/Interiores/Interior_E01_Apartamento01.unity",
+      "sceneName": "Interior_E01_Apartamento01",
+      "prefab": "Assets/Prefabs/Interiores/E01_Apartamento01.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e01-apartamento-metal.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e01-apartamento-metal.png",
+      "boxes": [
+        [
+          1040,
+          360,
+          1270,
+          780
+        ],
+        [
+          770,
+          420,
+          1030,
+          660
+        ],
+        [
+          210,
+          220,
+          510,
+          445
+        ],
+        [
+          600,
+          185,
+          1000,
+          340
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_hacker_01",
+          "x": 450,
+          "y": 680
+        }
+      ],
+      "portals": [
+        {
+          "key": "retorno_patamar",
+          "px": 724,
+          "py": 895,
+          "targetRoom": "E01_Patamar",
+          "targetFootPixel": [
+            350,
+            485
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E01_Patamar",
+      "scene": "Assets/Scenes/Interiores/Interior_E01_Patamar.unity",
+      "sceneName": "Interior_E01_Patamar",
+      "prefab": "Assets/Prefabs/Interiores/E01_Patamar.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "boxes": [
+        [
+          110,
+          650,
+          290,
+          880
+        ],
+        [
+          675,
+          85,
+          965,
+          400
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E01_Hall",
+          "px": 1135,
+          "py": 390,
+          "targetRoom": "E01_Hall",
+          "targetFootPixel": [
+            1250,
+            500
+          ]
+        },
+        {
+          "key": "apartamento",
+          "px": 350,
+          "py": 340,
+          "targetRoom": "E01_Apartamento01",
+          "targetFootPixel": [
+            724,
+            760
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E02_Principal",
+      "scene": "Assets/Scenes/Interiores/Interior_E02_Principal.unity",
+      "sceneName": "Interior_E02_Principal",
+      "prefab": "Assets/Prefabs/Interiores/E02_Principal.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e02-casa09.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e02-casa09.png",
+      "boxes": [
+        [
+          220,
+          260,
+          800,
+          630
+        ],
+        [
+          1050,
+          200,
+          1300,
+          390
+        ],
+        [
+          870,
+          620,
+          1250,
+          855
+        ]
+      ],
+      "actors": [
+        {
+          "id": "ferreiro",
+          "x": 850,
+          "y": 450
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Casa09",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -14.0627422,
+          "targetY": -3.04661746
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E02_Garagem",
+      "scene": "Assets/Scenes/Interiores/Interior_E02_Garagem.unity",
+      "sceneName": "Interior_E02_Garagem",
+      "prefab": "Assets/Prefabs/Interiores/E02_Garagem.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e02-garagem.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e02-garagem.png",
+      "boxes": [
+        [
+          200,
+          180,
+          1170,
+          380
+        ],
+        [
+          110,
+          400,
+          350,
+          800
+        ],
+        [
+          1200,
+          370,
+          1350,
+          850
+        ]
+      ],
+      "actors": [
+        {
+          "id": "ferreiro",
+          "x": 930,
+          "y": 650
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_Garagem",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -15.5669594,
+          "targetY": -3.046633
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E03_Terreo",
+      "scene": "Assets/Scenes/Interiores/Interior_E03_Terreo.unity",
+      "sceneName": "Interior_E03_Terreo",
+      "prefab": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e03-mansao-terreo.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e03-mansao-terreo.png",
+      "boxes": [
+        [
+          500,
+          260,
+          940,
+          480
+        ],
+        [
+          190,
+          520,
+          720,
+          830
+        ],
+        [
+          780,
+          520,
+          1260,
+          825
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E03_Superior",
+          "px": 1250,
+          "py": 315,
+          "targetRoom": "E03_Superior",
+          "targetFootPixel": [
+            1250,
+            460
+          ]
+        },
+        {
+          "key": "saida_Porta_Mansao_Provisoria",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -14.0299911,
+          "targetY": 3.1099112499999997
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E03_Superior",
+      "scene": "Assets/Scenes/Interiores/Interior_E03_Superior.unity",
+      "sceneName": "Interior_E03_Superior",
+      "prefab": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e03-mansao-superior-v2.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e03-mansao-superior-v2.png",
+      "boxes": [
+        [
+          450,
+          190,
+          970,
+          350
+        ],
+        [
+          450,
+          400,
+          1030,
+          630
+        ],
+        [
+          220,
+          690,
+          1040,
+          890
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E03_Terreo",
+          "px": 1250,
+          "py": 315,
+          "targetRoom": "E03_Terreo",
+          "targetFootPixel": [
+            1250,
+            460
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E04_UnidadeA",
+      "scene": "Assets/Scenes/Interiores/Interior_E04_UnidadeA.unity",
+      "sceneName": "Interior_E04_UnidadeA",
+      "prefab": "Assets/Prefabs/Interiores/E04_UnidadeA.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/apartamento-c-estar-leste-v2.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/apartamento-c-estar-leste-v2.png",
+      "boxes": [
+        [
+          1040,
+          360,
+          1270,
+          780
+        ],
+        [
+          770,
+          420,
+          1030,
+          660
+        ],
+        [
+          210,
+          220,
+          510,
+          445
+        ],
+        [
+          600,
+          185,
+          1000,
+          340
+        ]
+      ],
+      "actors": [
+        {
+          "id": "dara",
+          "x": 510,
+          "y": 700
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_GeminadoAzul_A",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -6.594374,
+          "targetY": 2.9944112799999996
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E04_UnidadeB",
+      "scene": "Assets/Scenes/Interiores/Interior_E04_UnidadeB.unity",
+      "sceneName": "Interior_E04_UnidadeB",
+      "prefab": "Assets/Prefabs/Interiores/E04_UnidadeB.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/apartamento-d-mesa-norte-v2.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/apartamento-d-mesa-norte-v2.png",
+      "boxes": [
+        [
+          530,
+          230,
+          970,
+          480
+        ],
+        [
+          1050,
+          195,
+          1290,
+          380
+        ],
+        [
+          220,
+          740,
+          690,
+          880
+        ],
+        [
+          290,
+          510,
+          590,
+          700
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_vizinha_dara_01",
+          "x": 1030,
+          "y": 680
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_GeminadoAzul_B",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": -4.39387,
+          "targetY": 3.0071743
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E13_Hall",
+      "scene": "Assets/Scenes/Interiores/Interior_E13_Hall.unity",
+      "sceneName": "Interior_E13_Hall",
+      "prefab": "Assets/Prefabs/Interiores/E13_Hall.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e13-casa10-hall.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e13-casa10-hall.png",
+      "boxes": [
+        [
+          110,
+          410,
+          600,
+          680
+        ],
+        [
+          110,
+          200,
+          470,
+          390
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E13_Patamar",
+          "px": 1250,
+          "py": 355,
+          "targetRoom": "E13_Patamar",
+          "targetFootPixel": [
+            1135,
+            535
+          ]
+        },
+        {
+          "key": "saida_Porta_Casa10",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 4.29137468,
+          "targetY": 3.1563137099999992
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E13_Apartamento01",
+      "scene": "Assets/Scenes/Interiores/Interior_E13_Apartamento01.unity",
+      "sceneName": "Interior_E13_Apartamento01",
+      "prefab": "Assets/Prefabs/Interiores/E13_Apartamento01.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e13-apartamento-ceramica.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e13-apartamento-ceramica.png",
+      "boxes": [
+        [
+          530,
+          230,
+          970,
+          480
+        ],
+        [
+          1050,
+          195,
+          1290,
+          380
+        ],
+        [
+          220,
+          740,
+          690,
+          880
+        ],
+        [
+          290,
+          510,
+          590,
+          700
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_cientista_01",
+          "x": 1030,
+          "y": 690
+        }
+      ],
+      "portals": [
+        {
+          "key": "retorno_patamar",
+          "px": 724,
+          "py": 895,
+          "targetRoom": "E13_Patamar",
+          "targetFootPixel": [
+            350,
+            485
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E13_Patamar",
+      "scene": "Assets/Scenes/Interiores/Interior_E13_Patamar.unity",
+      "sceneName": "Interior_E13_Patamar",
+      "prefab": "Assets/Prefabs/Interiores/E13_Patamar.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "boxes": [
+        [
+          110,
+          650,
+          290,
+          880
+        ],
+        [
+          675,
+          85,
+          965,
+          400
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "escada_E13_Hall",
+          "px": 1135,
+          "py": 390,
+          "targetRoom": "E13_Hall",
+          "targetFootPixel": [
+            1250,
+            500
+          ]
+        },
+        {
+          "key": "apartamento",
+          "px": 350,
+          "py": 340,
+          "targetRoom": "E13_Apartamento01",
+          "targetFootPixel": [
+            724,
+            760
+          ]
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E14_UnidadeA",
+      "scene": "Assets/Scenes/Interiores/Interior_E14_UnidadeA.unity",
+      "sceneName": "Interior_E14_UnidadeA",
+      "prefab": "Assets/Prefabs/Interiores/E14_UnidadeA.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e14-unidade-esquerda.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e14-unidade-esquerda.png",
+      "boxes": [
+        [
+          350,
+          270,
+          970,
+          700
+        ],
+        [
+          100,
+          250,
+          280,
+          760
+        ],
+        [
+          1080,
+          310,
+          1320,
+          540
+        ]
+      ],
+      "actors": [
+        {
+          "id": "benta",
+          "x": 1080,
+          "y": 730
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_CasaPorao_Esquerda",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 8.790816,
+          "targetY": 3.2178152099999995
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E14_Porao",
+      "scene": "Assets/Scenes/Interiores/Interior_E14_Porao.unity",
+      "sceneName": "Interior_E14_Porao",
+      "prefab": "Assets/Prefabs/Interiores/E14_Porao.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/e14-porao.png",
+      "sourceArt": "output/interiores-ferrovale/2026-10-28/e14-porao.png",
+      "boxes": [
+        [
+          110,
+          200,
+          330,
+          710
+        ],
+        [
+          230,
+          170,
+          1170,
+          340
+        ],
+        [
+          1160,
+          250,
+          1330,
+          850
+        ],
+        [
+          1030,
+          350,
+          1240,
+          520
+        ]
+      ],
+      "actors": [],
+      "portals": [
+        {
+          "key": "saida_Porta_Porao",
+          "px": 724,
+          "py": 795,
+          "targetScene": "City",
+          "targetX": 9.983611,
+          "targetY": 3.2004849999999996
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    },
+    {
+      "id": "E14_UnidadeB",
+      "scene": "Assets/Scenes/Interiores/Interior_E14_UnidadeB.unity",
+      "sceneName": "Interior_E14_UnidadeB",
+      "prefab": "Assets/Prefabs/Interiores/E14_UnidadeB.prefab",
+      "art": "Assets/sprites/Mapas/Interiores/interior-sala-piso-cuidado-v3.png",
+      "sourceArt": "output/artes-mapas/2026-10-28/interior-sala-piso-cuidado-v3.png",
+      "boxes": [
+        [
+          200,
+          360,
+          710,
+          720
+        ],
+        [
+          620,
+          200,
+          970,
+          400
+        ],
+        [
+          1040,
+          210,
+          1300,
+          400
+        ]
+      ],
+      "actors": [
+        {
+          "id": "fv_guarda_01",
+          "x": 1080,
+          "y": 700
+        }
+      ],
+      "portals": [
+        {
+          "key": "saida_Porta_CasaPorao_Direita",
+          "px": 724,
+          "py": 895,
+          "targetScene": "City",
+          "targetX": 10.9776068,
+          "targetY": 3.1860826499999995
+        }
+      ],
+      "outline": [
+        [
+          95,
+          230
+        ],
+        [
+          1350,
+          230
+        ],
+        [
+          1350,
+          920
+        ],
+        [
+          95,
+          920
+        ]
+      ]
+    }
+  ],
+  "actors": [
+    {
+      "id": "dara",
+      "name": "Dara",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/dara",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/dara.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "tacio",
+      "name": "Senhor Tácio",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/tacio",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/tacio.prefab",
+      "shop": true,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "homem_fila",
+      "name": "Homem da fila",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/homem_fila",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/homem_fila.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "mestra_guilda",
+      "name": "Mestra Bruna",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/mestra_guilda",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/mestra_guilda.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "estalajadeira",
+      "name": "Nilce",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/estalajadeira",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/estalajadeira.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "ferreiro",
+      "name": "Quirino",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/ferreiro",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/ferreiro.prefab",
+      "shop": true,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "vendedora_pecas",
+      "name": "Sula",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/vendedora_pecas",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/vendedora_pecas.prefab",
+      "shop": true,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "crianca_rua",
+      "name": "Pipo",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/crianca_rua",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/crianca_rua.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "velho_viaduto",
+      "name": "Seu Onofre",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/velho_viaduto",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/velho_viaduto.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "nadir",
+      "name": "Nadir Quintela",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/nadir",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/nadir.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "benta",
+      "name": "Benta",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/benta",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/benta.prefab",
+      "shop": true,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "zeca_cerca",
+      "name": "Zeca",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/zeca_cerca",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/zeca_cerca.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_crianca_sula_02",
+      "name": "Crianca",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_crianca_sula_02",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_crianca_sula_02.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_crianca_sula_03",
+      "name": "Crianca",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_crianca_sula_03",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_crianca_sula_03.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_mecanico_01",
+      "name": "Mecanico",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_mecanico_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_mecanico_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_operario_01",
+      "name": "Operario",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_operario_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_operario_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_idoso_01",
+      "name": "Idoso",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_idoso_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_idoso_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_vizinha_dara_01",
+      "name": "Vizinha dara",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_vizinha_dara_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_vizinha_dara_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_vendedor_01",
+      "name": "Vendedor",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_vendedor_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_vendedor_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_hacker_01",
+      "name": "Hacker",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_hacker_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_hacker_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_cientista_01",
+      "name": "Cientista",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_cientista_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_cientista_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    },
+    {
+      "id": "fv_guarda_01",
+      "name": "Guarda",
+      "poses": "Assets/sprites/Entities/Characters/RuntimeFerrovale/fv_guarda_01",
+      "prefab": "Assets/Prefabs/NPCs/Ferrovale/fv_guarda_01.prefab",
+      "shop": false,
+      "greeting": "A cidade continua de pe. Cada um cuida de um pedaco."
+    }
+  ],
+  "cityDoors": [
+    {
+      "key": "Porta_Casa01",
+      "x": -10.6832466,
+      "y": -7.4694600000000007,
+      "targetRoom": "E06_Terreo",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -10.6832466,
+      "previousY": -8.08946,
+      "returnX": -10.6832466,
+      "returnY": -8.78946
+    },
+    {
+      "key": "Porta_Casa02",
+      "x": -4.21609449,
+      "y": -8.0443000000000016,
+      "targetRoom": "E05_Principal",
+      "targetFootPixel": [
+        1070,
+        750
+      ],
+      "previousX": -4.21609449,
+      "previousY": -8.6643,
+      "returnX": -4.21609449,
+      "returnY": -9.3643000000000018
+    },
+    {
+      "key": "Porta_Casa03_Provisoria",
+      "x": 2.56479287,
+      "y": -8.0432130000000015,
+      "targetRoom": "E10_Casa03",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 2.55934167,
+      "previousY": -8.62464,
+      "returnX": 2.56479287,
+      "returnY": -9.3632130000000018
+    },
+    {
+      "key": "Porta_Casa04",
+      "x": 4.51828432,
+      "y": -8.0466450000000016,
+      "targetRoom": "E10_Casa04",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 4.51828432,
+      "previousY": -8.666645,
+      "returnX": 4.51828432,
+      "returnY": -9.3666450000000019
+    },
+    {
+      "key": "Porta_Casa05",
+      "x": 12.7419319,
+      "y": -7.9331000000000005,
+      "targetRoom": "E11_Casa05",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 12.7419319,
+      "previousY": -8.5531,
+      "returnX": 12.7419319,
+      "returnY": -9.2531
+    },
+    {
+      "key": "Porta_Casa06",
+      "x": 14.4418612,
+      "y": -7.8345709999999995,
+      "targetRoom": "E11_Casa06",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 14.4418612,
+      "previousY": -8.454571,
+      "returnX": 14.4418612,
+      "returnY": -9.1545709999999989
+    },
+    {
+      "key": "Porta_CasaMaior",
+      "x": 11.170805,
+      "y": -1.83004129,
+      "targetRoom": "E09_Terreo",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 11.170805,
+      "previousY": -2.45004129,
+      "returnX": 11.170805,
+      "returnY": -3.15004129
+    },
+    {
+      "key": "Porta_PredioPlaca_A",
+      "x": 5.66625643,
+      "y": -1.8142947,
+      "targetRoom": "E08_Principal",
+      "targetFootPixel": [
+        510,
+        750
+      ],
+      "previousX": 5.66625643,
+      "previousY": -2.4342947,
+      "returnX": 5.66625643,
+      "returnY": -3.1342947
+    },
+    {
+      "key": "Porta_PredioPlaca_B",
+      "x": 6.96430874,
+      "y": -1.8191403199999998,
+      "targetRoom": "E08_Principal",
+      "targetFootPixel": [
+        940,
+        750
+      ],
+      "previousX": 6.96430874,
+      "previousY": -2.43914032,
+      "returnX": 6.96430874,
+      "returnY": -3.13914032
+    },
+    {
+      "key": "Porta_Prefeitura",
+      "x": -0.867883563,
+      "y": -2.16266621,
+      "targetRoom": "E16_Civico",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -0.867883563,
+      "previousY": -2.78266621,
+      "returnX": -0.867883563,
+      "returnY": -3.4826662099999997
+    },
+    {
+      "key": "Porta_Casa07",
+      "x": -6.47336149,
+      "y": -1.7996189999999999,
+      "targetRoom": "E00_Hall",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -6.47336149,
+      "previousY": -2.419619,
+      "returnX": -6.47336149,
+      "returnY": -3.119619
+    },
+    {
+      "key": "Porta_Casa08",
+      "x": -11.0676937,
+      "y": -1.79938734,
+      "targetRoom": "E01_Hall",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -11.0676937,
+      "previousY": -2.41938734,
+      "returnX": -11.0676937,
+      "returnY": -3.1193873400000003
+    },
+    {
+      "key": "Porta_Casa09",
+      "x": -14.0627422,
+      "y": -1.72661746,
+      "targetRoom": "E02_Principal",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -14.0627422,
+      "previousY": -2.34661746,
+      "returnX": -14.0627422,
+      "returnY": -3.04661746
+    },
+    {
+      "key": "Porta_Garagem",
+      "x": -15.5669594,
+      "y": -1.726633,
+      "targetRoom": "E02_Garagem",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -15.5669594,
+      "previousY": -2.346633,
+      "returnX": -15.5669594,
+      "returnY": -3.046633
+    },
+    {
+      "key": "Porta_Mansao_Provisoria",
+      "x": -14.0299911,
+      "y": 4.42991125,
+      "targetRoom": "E03_Terreo",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -14.0299911,
+      "previousY": 3.80991125,
+      "returnX": -14.0299911,
+      "returnY": 3.1099112499999997
+    },
+    {
+      "key": "Porta_GeminadoAzul_A",
+      "x": -6.594374,
+      "y": 4.31441128,
+      "targetRoom": "E04_UnidadeA",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -6.594374,
+      "previousY": 3.69441128,
+      "returnX": -6.594374,
+      "returnY": 2.9944112799999996
+    },
+    {
+      "key": "Porta_GeminadoAzul_B",
+      "x": -4.39387,
+      "y": 4.3271743,
+      "targetRoom": "E04_UnidadeB",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": -4.39387,
+      "previousY": 3.7071743,
+      "returnX": -4.39387,
+      "returnY": 3.0071743
+    },
+    {
+      "key": "Porta_Casa10",
+      "x": 4.29137468,
+      "y": 4.4763137099999994,
+      "targetRoom": "E13_Hall",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 4.29137468,
+      "previousY": 3.85631371,
+      "returnX": 4.29137468,
+      "returnY": 3.1563137099999992
+    },
+    {
+      "key": "Porta_CasaPorao_Esquerda",
+      "x": 8.790816,
+      "y": 4.53781521,
+      "targetRoom": "E14_UnidadeA",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 8.790816,
+      "previousY": 3.91781521,
+      "returnX": 8.790816,
+      "returnY": 3.2178152099999995
+    },
+    {
+      "key": "Porta_Porao",
+      "x": 9.983611,
+      "y": 4.520485,
+      "targetRoom": "E14_Porao",
+      "targetFootPixel": [
+        724,
+        650
+      ],
+      "previousX": 9.983611,
+      "previousY": 3.900485,
+      "returnX": 9.983611,
+      "returnY": 3.2004849999999996
+    },
+    {
+      "key": "Porta_CasaPorao_Direita",
+      "x": 10.9776068,
+      "y": 4.50608265,
+      "targetRoom": "E14_UnidadeB",
+      "targetFootPixel": [
+        724,
+        750
+      ],
+      "previousX": 10.9776068,
+      "previousY": 3.88608265,
+      "returnX": 10.9776068,
+      "returnY": 3.1860826499999995
+    },
+    {
+      "key": "Porta_Casa02_Esquerda",
+      "x": -6.11609449,
+      "y": -8.0443000000000016,
+      "targetRoom": "E05_Principal",
+      "targetFootPixel": [
+        380,
+        750
+      ],
+      "previousX": null,
+      "previousY": null,
+      "returnX": -6.11609449,
+      "returnY": -9.3643000000000018
+    }
+  ],
+  "approvedArtworkOnly": true,
+  "heldCandidate": "output/montagem-ferrovale/2026-10-29/estalagem-corredor-seis-portas.png",
+  "playerFootOffset": 0.62,
+  "actorScale": 1.4
+}

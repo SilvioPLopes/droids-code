@@ -1,0 +1,42 @@
+{
+    "status":  "quarantined_not_deleted",
+    "items":  [
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e03-mansao-superior.png",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e03-mansao-superior.png",
+                      "sha256":  "AA011C7BE84CDED4B3143BE0B3805BEB71C59CE006839E30F9E87C503E00F59C",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  },
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e03-mansao-superior-prompt.md",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e03-mansao-superior-prompt.md",
+                      "sha256":  "4158B059C7DE4AE12CEB4C863C1B51CB4C76B6A9C1BBEDB07B0185DDE6073D83",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  },
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e06-casa01-superior.png",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e06-casa01-superior.png",
+                      "sha256":  "F99F03BAF4F76D9E4E8264C6368411B944676AD2FB944D8DFD10962054019822",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  },
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e06-casa01-superior-prompt.md",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e06-casa01-superior-prompt.md",
+                      "sha256":  "A809B921244E29542C438C53ABF1A8752249423332B3EA19EEA2F548F00D0082",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  },
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e09-superior-terraco.png",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e09-superior-terraco.png",
+                      "sha256":  "4EF034B74693F31D12C1E8D0EDA955E01DE5627C4B6F0F60CCC5BCE7F3B118CF",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  },
+                  {
+                      "original":  "C:\\Users\\silve\\DroidsCode\\output\\interiores-ferrovale\\2026-10-28\\e09-superior-terraco-prompt.md",
+                      "quarantine":  "C:\\Users\\silve\\DroidsCode\\output\\quarentena\\2026-10-29\\interiores-v1-substituidos\\e09-superior-terraco-prompt.md",
+                      "sha256":  "E917B9BF973741749BE2B07AB1534F162471616FEEE4E8E3AE2B2642B02DCE50",
+                      "reason":  "Versao v1 substituida por v2, fora da selecao ativa; preservada sem exclusao"
+                  }
+              ],
+    "deletion":  "Nenhuma exclusao realizada; arquivos podem ser restaurados aos caminhos originais"
+}

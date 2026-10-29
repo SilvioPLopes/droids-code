@@ -1,0 +1,27 @@
+{
+  "id": "Zeca",
+  "method": "derived_LPC_composite",
+  "baseRecipe": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\guarda_01\\character-config.json",
+  "baseWalk": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\guarda_01\\spritesheet_walk.png",
+  "recolor": {
+    "from": null,
+    "to": null
+  },
+  "additionalLayer": "spritesheets/hat/cloth/hood/adult/walk.png",
+  "animationsProduced": [
+    "walk"
+  ],
+  "directions": [
+    "up",
+    "left",
+    "down",
+    "right"
+  ],
+  "frameSize": [
+    64,
+    64
+  ],
+  "approximations": [
+    "Zeca: binoculo e cano nao representados; capuz sobre modelo guarda existente."
+  ]
+}

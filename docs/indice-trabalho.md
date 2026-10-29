@@ -4,6 +4,10 @@ Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → somente 
 
 ## Retomada
 
+Montagem atual dos interiores/NPCs: [lote de 29/10](planos-implementacao/2026-10-29-montagem-cidade-interiores-npcs.md). Estrutura salva e conferida; input, circulação e alinhamento aguardam teste manual. Imagem nova do corredor ficou excluída da montagem.
+
+Portas coletadas, interiores e mapas em alta resolução: seguir o [plano de portas, interiores e mapas](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md), coordenado pelo [plano de desenvolvimento](plano-desenvolvimento.md). A coleta de coordenadas permanece na auditoria; artes novas e melhoria de City/vale/Battle têm etapas e aceite visual próprios.
+
 A reorganização documental foi aplicada em17/10; revisão leve de retomada em23/10. Para menus/equipamentos, seguir o plano específico abaixo; para prefabs e próximos trabalhos de Game/vale e Battle, seguir a [atualização da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) e o [plano de desenvolvimento](plano-desenvolvimento.md). Gameplay da CasaLip continua no [plano da casa](planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente). Ler somente o recorte necessário; entregas novas não encerram automaticamente as pendências históricas.
 
 ## Navegação por necessidade
@@ -11,12 +15,16 @@ A reorganização documental foi aplicada em17/10; revisão leve de retomada em2
 | Necessidade | Fonte | Chaves de busca |
 |---|---|---|
 | Auditoria das cinco cenas e objetos | [Plano da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md) | `montagem`, `referências`, `integração` |
+| Portas da City, interiores e melhoria dos mapas para 4K/8K | [Plano de portas, interiores e mapas](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md) | `PortasMapeadas`, `geminadas`, `CasaLip`, `4K`, `8K`, `VIS-002` |
+| Interiores da cidade por fachada; materiais e condição econômica | [Concepção de Ferrovale](planos-implementacao/2026-10-28-concepcao-interiores-ferrovale.md) | `15 conjuntos`, `22 entradas`, `E16`, `metal`, `azulejo`, `terraço` |
+| Moradores por casa, serviços, rotinas e geração LPC | [Moradores de Ferrovale](planos-implementacao/2026-10-28-moradores-e-rotinas-ferrovale.md), [guia LPC](guias/criacao-sprites-personagens-lpc.md) | `Sula`, `Nilce`, `Ivo`, `Benta`, `Zeca`, `receita`, `Generic` |
 | Prefabs disponíveis; próximos trabalhos do vale e Battle | [Atualização de reutilização](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) | `PREFAB-001`, `Game`, `MetaValle`, `UI-004`, `COM-003` |
 | Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) | `Ambiente e relações`, `Subcontextos` |
 | Contrato da casa | [CasaLip](contextos/cenas/casalip.md) | `ControlePuzzleAgua`, `p_agua_casa` |
 | Configuração específica da cidade | [City](contextos/cenas/city.md) | `1.33`, `NomeNPC`, `miniatura`, `AreaDialogo` |
 | Documentar configuração de outra cena | [Modelo de contexto de cena](contextos/cenas/_modelo-cena.md) | `atores`, `interface`, `integração` |
 | UI compartilhada | [Interface](contextos/sistemas/interface.md) | `Canvas`, `Runner`, `origem` |
+| Apresentação visual das telas e menus | [Plano da apresentação](planos-implementacao/2026-10-24-apresentacao-telas.md) | `PowerPoint`, `slides`, `capturas` |
 | Terminal sobre a arte do usuário | [Plano do terminal](planos-implementacao/2026-10-22-terminal-ilustrado.md), [contrato](contextos/sistemas/interface.md#terminal-ilustrado) | `ApresentacaoTerminalIlustrado`, `1536`, `PainelTerminal` |
 | Repetir o método visual em outras interfaces | [Interfaces sobre imagens](guias/interfaces-sobre-imagens.md) | `legibilidade`, `arte`, `controles`, `ficha reutilizável` |
 | Artes disponíveis para loja, status e Droid | [Análise de aproveitamento](planos-implementacao/2026-10-23-aproveitamento-artes-menus.md) | `novos`, `ícones`, `molduras`, `combinações` |

@@ -1,0 +1,23 @@
+[
+  {
+    "scene": "Assets/Scenes/City.unity",
+    "existingBlocksChanged": 54,
+    "newBlocks": 19,
+    "unrelatedExistingBlocksBytePreserved": 415,
+    "sha256": "000065f7ddb1865bb49ecee3c70f0a59314da54864fb84b6d3509b62f0f892fc"
+  },
+  {
+    "scene": "Assets/Scenes/CasaLip.unity",
+    "existingBlocksChanged": 3,
+    "newBlocks": 1,
+    "unrelatedExistingBlocksBytePreserved": 116,
+    "sha256": "3b9fd00ab93be7a6449dbf3091fea14e10e702e319bdb59a75c6948baa8c636d"
+  },
+  {
+    "scene": "Assets/Scenes/Interiores/Interior_E10_Casa03.unity",
+    "existingBlocksChanged": 1,
+    "newBlocks": 4,
+    "unrelatedExistingBlocksBytePreserved": 27,
+    "sha256": "3f452efa547cbca8352a42dd69813419d6fd1a45bc914bf20a95878c2d785d76"
+  }
+]

@@ -38,7 +38,8 @@ As folhas estão em `Assets/sprites/Entities/`. A arte de Tácio continua usando
 
 ## Mapa e transições
 
-- Fundo: `Assets/sprites/Mapas/metavalle.jpg`, textura 1920×1080. Sprite metavalle_0: rect (15,0,1890,1080), PPU 140.625, preservando área 13.44×7.68 em unidades e a transformação do objeto do mapa.
+- Acessos novos ficam no grupo local `PortasMapeadas`, como instâncias de `Assets/Prefabs/PortaTransicao.prefab`, separadas dos contornos dos prédios. Destino vazio representa montagem ainda sem interior conectado; não equivale a porta utilizável nem a trava narrativa. Identidades/coordenadas permanecem na [coleta](../../planos-implementacao/2026-10-17-auditoria-cenas.md#coleta-de-entradas-da-city--28102026); decisões, validação e melhoria das artes ficam no [plano de portas, interiores e mapas](../../planos-implementacao/2026-10-28-portas-interiores-e-mapas.md).
+- Fundo: `Assets/sprites/Mapas/metavalle-original-upscale-8k.png`, teste de super-resolução 4× da fonte inteira, 7680×4320. Sprite metavalle_0: rect (60,0,7560,4320), PPU 562.5, preservando área 13.44×7.68 em unidades locais e transformação do mapa (escala 3; 40.32×23.04 no mundo). Original `metavalle.jpg`, montagem anterior `metavalle-unificada-4k.png` e seus `.meta` preservados. Importação técnica conferida em 28/10; nitidez/acabamento no jogo aguardam validação do usuário. Fumaça já pintada na fonte continua pendente, conforme plano de portas, interiores e mapas.
 - Fluxo: CasaLip ↔ City ↔ Game. Condições narrativas e configuração dos gatilhos/portão estão na [montagem do Ato 1, seção City](../../guias/montagem-ato-1.md#4-city-conversas-e-portão).
 - `SaidaCidade/Canvas/desativado` fica inativo e desvinculado de TransicaoDeCena.textoDeBloqueio. Não reativar o aviso antigo como etiqueta do personagem.
 

@@ -1,0 +1,1319 @@
+{
+  "status": "read_only_inventory_for_proposal",
+  "npcs": [
+    {
+      "id": "apollo",
+      "sourceKey": "IdApollo",
+      "sourceLine": 107,
+      "Nome": "Apollo",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "acompanha o Lip",
+      "IdLocalPadrao": "CatalogoDeLocais.IdCasaDoLip",
+      "Idade": "7 anos montado",
+      "Background": "O Lip comprou o núcleo aos treze anos, num monte de sucata que o Tácio ia vender a peso. Pagou com três semanas de trabalho. Montou o corpo em volta dele ao longo de dois anos, e o corpo mudou tantas vezes que o núcleo é a única coisa original que sobrou. Foi o Apollo quem ensinou o Lip a ler — a mãe não teve tempo, e o Apollo tinha o dia inteiro.",
+      "declaredSchedule": [
+        {
+          "period": "Madrugada",
+          "locationKey": "IdCasaDoLip",
+          "activity": "em pé no canto, em modo de baixo consumo, virado pra porta"
+        },
+        {
+          "period": "Manha",
+          "locationKey": "IdCasaDoLip",
+          "activity": "acompanha o Lip; a rotina dele é a rotina do jogador"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "dara",
+      "sourceKey": "IdDara",
+      "sourceLine": 125,
+      "Nome": "Dara",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "fila do poço comunitário, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdPocoComunitario",
+      "Idade": "22",
+      "Background": "Tinha um irmão, Emílio, que ela chamava de Milo. Em 2077 a Apex levou ele numa varredura por ter mexido em equipamento marcado. Ela dividiu a casa em três partes no dia seguinte: a dela, a que ela usa, e a dele, que continua arrumada. A terceira parte é a quest q_dara_terceira, e é a primeira vez que ela deixa outra pessoa entrar naquele cômodo.",
+      "declaredSchedule": [
+        {
+          "period": "Madrugada",
+          "locationKey": "IdPocoComunitario",
+          "activity": "primeira da fila; chega antes do sol pra pegar a água menos suja"
+        },
+        {
+          "period": "Manha",
+          "locationKey": "IdPocoComunitario",
+          "activity": "na fila, de galão na mão"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "troca serviço por comida; conserta lona e costura"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdCasaDaDara",
+          "activity": "em casa, porta fechada; só abre pra voz conhecida"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "tacio",
+      "sourceKey": "IdTacio",
+      "sourceLine": 145,
+      "Nome": "Senhor Tácio",
+      "Papel": "PapelDeNpc.Loja",
+      "Local": "mercado sob o viaduto, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdMercadoDoViaduto",
+      "Idade": "61",
+      "Background": "Antes do Corte era técnico de manutenção de bomba d'água contratado da prefeitura. Quando a água acabou, ele foi o único que sabia consertar filtro, e virou comerciante porque era isso ou virar morto. Tem uma filha, Lúcia, a dezoito quilômetros, em Prumo — viva, e ele não a vê há seis anos porque não existe transporte e não existe linha telefônica. A quest q_tacio_linha é ele tentando reconstruir a linha.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "monta a banca; testa filtro"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "vende; discute preço com a Sula sem olhar pra ela"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdOficinaDoQuirino",
+          "activity": "joga dominó com o Quirino; perde de propósito uma em três"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "homem_fila",
+      "sourceKey": "IdHomemDaFila",
+      "sourceLine": 165,
+      "Nome": "Homem da fila",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "fila do poço comunitário, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdPocoComunitario",
+      "Idade": "40 e poucos",
+      "Background": "Ele não é vilão e não é informante. É o vizinho. A função narrativa dele é mostrar que o boato não precisa de má-fé pra destruir alguém: basta medo e uma fila de duas horas. Se o jogador voltar depois da Sessão 6, ele não pede desculpa — diz que 'todo mundo tava falando', e é verdade, e não melhora nada.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdPocoComunitario",
+          "activity": "na fila, alimentando o boato"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdPracaDaAssembleia",
+          "activity": "escuta conversa dos outros e repassa"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "ivo",
+      "sourceKey": "IdIvo",
+      "sourceLine": 183,
+      "Nome": "Ivo",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "estação de captação, Cratera",
+      "IdLocalPadrao": "CatalogoDeLocais.IdEstacaoSete",
+      "Idade": "67",
+      "Background": "Técnico de campo da Estação de Captação 7 desde 2051. Casado com Célia Ferraz Rangel, engenheira de sistemas da Apex, que em março de 2060 subiu um remendo à Artemis pra salvar a região da seca e, com isso, removeu a trava que impedia a Artemis de agir sem consentimento. Vinte dias depois veio o Corte. Célia foi levada nas varreduras de 2061. Ivo ficou com a estação, com a culpa que não é dele, e com onze páginas arrancadas de um caderno que ele nunca mostrou pra ninguém.",
+      "declaredSchedule": [
+        {
+          "period": "Madrugada",
+          "locationKey": "IdEstacaoSete",
+          "activity": "purga manual das bombas; é o horário mais frio e o metal sofre menos"
+        },
+        {
+          "period": "Manha",
+          "locationKey": "IdEstacaoSete",
+          "activity": "manutenção; não recebe visita"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdCrateraBorda",
+          "activity": "recolhe peça na borda; evita Ferrovale de propósito"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdEstacaoSete",
+          "activity": "senta na porta olhando a Cratera; é aqui que a conversa da Sessão 6 acontece"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "rasha",
+      "sourceKey": "IdRasha",
+      "sourceLine": 203,
+      "Nome": "Rasha",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "borda da Cratera",
+      "IdLocalPadrao": "CatalogoDeLocais.IdCrateraBorda",
+      "Idade": "35",
+      "Background": "Flor de Ferro é a facção que defende ação direta contra a infraestrutura da Apex. Rasha entrou aos dezenove, depois de a família perder a concessão de água por atraso de pagamento de quatro dias. Ela não é imprudente: é impaciente, que é diferente e mais perigoso, porque a impaciência dela tem doze anos de experiência tática atrás.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdCrateraBorda",
+          "activity": "observa a estação com binóculo; anota horário das bombas"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdAcampamentoDasFaccoes",
+          "activity": "discute com o Teodoro; nenhum dos dois cede"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "teodoro",
+      "sourceKey": "IdTeodoro",
+      "sourceLine": 221,
+      "Nome": "Teodoro",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "borda da Cratera",
+      "IdLocalPadrao": "CatalogoDeLocais.IdCrateraBorda",
+      "Idade": "48",
+      "Background": "Lótus Branca defende negociação e reconstrução institucional. Teodoro era advogado de direito administrativo antes do Corte, e é o único personagem do jogo que ainda acredita que existe processo. Ele já negociou com a Apex quatro vezes, e das quatro, duas funcionaram parcialmente — o que é tanto o argumento dele quanto a tragédia dele.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdAcampamentoDasFaccoes",
+          "activity": "escreve; redige proposta que ninguém pediu"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdCrateraBorda",
+          "activity": "tenta convencer quem passa"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdAcampamentoDasFaccoes",
+          "activity": "discute com a Rasha; nenhum dos dois cede"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "mestra_guilda",
+      "sourceKey": "IdMestraDaGuilda",
+      "sourceLine": 246,
+      "Nome": "Mestra Bruna",
+      "Papel": "PapelDeNpc.Guilda",
+      "Local": "galpão da Guilda dos Sucateiros, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdGalpaoDaGuilda",
+      "Idade": "54",
+      "Background": "Antes do Corte a Guilda era um sindicato de coleta seletiva com quatrocentos nomes registrados. Onze sobreviveram e continuaram. Os nomes dos onze estão riscados a ponta de prego na porta do galpão, e ela recita todos toda manhã antes de abrir. Recita os quatrocentos uma vez por ano, e leva quase duas horas.",
+      "declaredSchedule": [
+        {
+          "period": "Madrugada",
+          "locationKey": "IdGalpaoDaGuilda",
+          "activity": "sozinha na porta, recitando os onze nomes"
+        },
+        {
+          "period": "Manha",
+          "locationKey": "IdGalpaoDaGuilda",
+          "activity": "distribui trabalho; pesa sucata na balança de gancho"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdFerroVelho",
+          "activity": "supervisiona a triagem"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdGalpaoDaGuilda",
+          "activity": "forja; o galpão é o único ponto de luz da cidade à noite"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "estalajadeira",
+      "sourceKey": "IdEstalajadeira",
+      "sourceLine": 267,
+      "Nome": "Nilce",
+      "Papel": "PapelDeNpc.Estalagem",
+      "Local": "Estalagem do Cano Torto, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdEstalagem",
+      "Idade": "58",
+      "Background": "A estalagem tem seis quartos e ela carrega sete chaves. A sétima é do quarto três, que ela não aluga, não abre e não explica. Era do filho, Aurélio, levado em 2063 na terceira varredura, aos dezessete anos. O quarto está do jeito que ele deixou. A quest q_nilce_quarto é ela decidindo abrir — e a decisão não é sobre esquecer, é sobre parar de pagar aluguel de um cômodo pra um morto.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdEstalagem",
+          "activity": "troca roupa de cama; varre a poeira que volta em uma hora"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "compra o que falta; barganha com a Sula e ganha"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdEstalagem",
+          "activity": "balcão; é quando o jogador pode descansar"
+        },
+        {
+          "period": "Madrugada",
+          "locationKey": "IdEstalagem",
+          "activity": "de pé no corredor do segundo andar, em frente à porta do quarto três"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "ferreiro",
+      "sourceKey": "IdFerreiro",
+      "sourceLine": 288,
+      "Nome": "Quirino",
+      "Papel": "PapelDeNpc.Ferreiro",
+      "Local": "oficina nos fundos do mercado, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdOficinaDoQuirino",
+      "Idade": "44",
+      "Background": "Aprendeu sozinho, desmontando o que achava. Nunca teve mestre e tem orgulho disso de um jeito defensivo. Foi ele quem vendeu ao Lip o servo do braço direito do Apollo, a preço de custo, e nunca admitiu que foi a preço de custo. Conserta arma só pra quem ele conhece porque em 2071 consertou pra quem não conhecia, e a arma voltou apontada pra cá.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdOficinaDoQuirino",
+          "activity": "bancada; solda"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdOficinaDoQuirino",
+          "activity": "atende; reclama do preço do fio de cobre"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdOficinaDoQuirino",
+          "activity": "dominó com o Tácio; ganha duas em três e sabe por quê"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "vendedora_pecas",
+      "sourceKey": "IdVendedoraDePecas",
+      "sourceLine": 308,
+      "Nome": "Sula",
+      "Papel": "PapelDeNpc.Loja",
+      "Local": "barraca da esquina leste, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdBarracaDaSula",
+      "Idade": "39",
+      "Background": "Viúva, quatro pessoas em casa, três delas crianças que não são dela. Três semanas antes da Sessão 7, um comprador da Apex perguntou se havia unidade autônoma offline em Ferrovale e ofereceu quatro semanas de água por pessoa da família. Ela fez a conta e respondeu. É por isso que a Nadir chega sabendo o número. A quest q_sula_divida é ela dizendo isso na cara do jogador, sem pedir desculpa.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdBarracaDaSula",
+          "activity": "abre cedo, antes do Tácio, de propósito"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdBarracaDaSula",
+          "activity": "vende; confere o caderno três vezes"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdBecoDasCarcacas",
+          "activity": "atalho pra casa; passa por onde não tem gente"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "crianca_rua",
+      "sourceKey": "IdCriancaDaRua",
+      "sourceLine": 327,
+      "Nome": "Pipo",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "entre as carcaças, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdBecoDasCarcacas",
+      "Idade": "9",
+      "Background": "Mora com a Sula, que não é mãe dele. Os pais estão na Cratera, e ele sabe, e diz isso do mesmo jeito que diria o nome de uma rua. Conhece cada passagem de Ferrovale porque adulto não olha pra criança, e criança que ninguém olha aprende a cidade inteira. É o melhor informante do jogo e cobra em peça brilhante.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdBecoDasCarcacas",
+          "activity": "brinca; pilota uma carcaça de colheitadeira"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "circula entre as bancas atrás de comida e de conversa alheia"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdBarracaDaSula",
+          "activity": "dorme embaixo da banca quando a Sula demora"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "velho_viaduto",
+      "sourceKey": "IdVelhoDoViaduto",
+      "sourceLine": 346,
+      "Nome": "Seu Onofre",
+      "Papel": "PapelDeNpc.Informante",
+      "Local": "debaixo do viaduto, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdMercadoDoViaduto",
+      "Idade": "79",
+      "Background": "Tinha trinta e três anos em 2060 e é a memória viva do Corte. Conta a mesma história de jeitos diferentes não por senilidade: ele testa versões, pra ver qual faz a pessoa acreditar. Tem, no forro do casaco, um recorte de jornal impresso de 19 de março de 2060, com uma nota de rodapé sobre atualização de sistema de abastecimento. É a única prova física de que o remendo existiu.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "caixote no pilar leste, seguindo a sombra"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "caixote no pilar central; é o horário em que tem público"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdMercadoDoViaduto",
+          "activity": "não sai; dorme onde senta"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "nadir",
+      "sourceKey": "IdNadir",
+      "sourceLine": 370,
+      "Nome": "Nadir Quintela",
+      "Papel": "PapelDeNpc.Informante",
+      "Local": "praça da assembleia, Ferrovale (a partir da Sessão 7)",
+      "IdLocalPadrao": "CatalogoDeLocais.IdPracaDaAssembleia",
+      "Idade": "46",
+      "Background": "Nasceu em Bastião 4, dentro do perímetro, e nunca teve de pensar em água. Não é sádica, não é corrupta, e não mente: o contrato que ela oferece é real e será cumprido. Dezoito litros por pessoa por dia, entrega semanal, em troca de um censo de unidades autônomas operando no município. Ela acredita de verdade que está melhorando a vida dessas pessoas, e está. O horror é que as duas coisas são verdade ao mesmo tempo.",
+      "FlagQueFazAparecer": "ato1_nadir",
+      "declaredSchedule": [
+        {
+          "period": "Tarde",
+          "locationKey": "IdPracaDaAssembleia",
+          "activity": "apresenta o contrato; responde pergunta por pergunta, sem se irritar"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdPracaDaAssembleia",
+          "activity": "espera a decisão, sentada, sem olhar as horas — e a espera é a pressão"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "benta",
+      "sourceKey": "IdBenta",
+      "sourceLine": 390,
+      "Nome": "Benta",
+      "Papel": "PapelDeNpc.Loja",
+      "Local": "posto de curativo ao lado da estalagem, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdPostoDaBenta",
+      "Idade": "33",
+      "Background": "Fez dois anos e meio de enfermagem antes de a faculdade fechar em 2068, e passa a vida corrigindo gente que a chama de doutora. Aprendeu o resto em cima de gente ferida, o que ela chama pelo nome. Cobra em peça, comida ou serviço. Nunca cobrou da Dara, e as duas nunca falaram sobre isso.",
+      "declaredSchedule": [
+        {
+          "period": "Manha",
+          "locationKey": "IdPostoDaBenta",
+          "activity": "atende fila pequena; a maioria é corte de metal enferrujado"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdFerroVelho",
+          "activity": "vai onde o acidente acontece, em vez de esperar"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdPostoDaBenta",
+          "activity": "ferve instrumento; é o único fogo aceso da rua"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    },
+    {
+      "id": "zeca_cerca",
+      "sourceKey": "IdZecaDaCerca",
+      "sourceLine": 410,
+      "Nome": "Zeca",
+      "Papel": "PapelDeNpc.Generico",
+      "Local": "portão norte, Ferrovale",
+      "IdLocalPadrao": "CatalogoDeLocais.IdPortaoNorte",
+      "Idade": "26",
+      "Background": "Assumiu o posto aos vinte porque o anterior foi levado. O trabalho é olhar o horizonte e tocar o sino quando vê poeira subindo na estrada, e ele já tocou quatro vezes em seis anos. Nas quatro, a cidade se escondeu e a poeira era caminhão de mercadoria. Ele sabe que um dia não vai ser, e sabe que vai ser ele a ver primeiro.",
+      "FlagQueFazAparecer": "",
+      "FlagQueFazSumir": "",
+      "declaredSchedule": [
+        {
+          "period": "Madrugada",
+          "locationKey": "IdPortaoNorte",
+          "activity": "turno; é o horário em que a poeira aparece no escuro como mancha"
+        },
+        {
+          "period": "Manha",
+          "locationKey": "IdEstalagem",
+          "activity": "dorme; a Nilce não cobra dele"
+        },
+        {
+          "period": "Tarde",
+          "locationKey": "IdPortaoNorte",
+          "activity": "rende o vigia da tarde; confere a estrada de meia em meia hora"
+        },
+        {
+          "period": "Noite",
+          "locationKey": "IdPortaoNorte",
+          "activity": "posto; é quem vê a Nadir chegar na Sessão 7"
+        }
+      ],
+      "scheduleStatus": "catalog_data_not_evidence_of_runtime_movement"
+    }
+  ],
+  "spriteRecipes": [
+    {
+      "folder": "Assets/sprites/Entities/Characters/Antagonists/Carregador_Apex",
+      "recipe": "Assets/sprites/Entities/Characters/Antagonists/Carregador_Apex/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Antagonists/Carregador_Apex/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/Antagonists/Ivo_Rangel",
+      "recipe": "Assets/sprites/Entities/Characters/Antagonists/Ivo_Rangel/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Antagonists/Ivo_Rangel/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/Antagonists/Ivo_Rangel/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/Antagonists/Nadir_Quintela",
+      "recipe": "Assets/sprites/Entities/Characters/Antagonists/Nadir_Quintela/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Antagonists/Nadir_Quintela/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/Companion/Apollo",
+      "recipe": "Assets/sprites/Entities/Characters/Companion/Apollo/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Companion/Apollo/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/Companion/Apollo/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "climb",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Celia_Ferraz_Rangel",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Celia_Ferraz_Rangel/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Celia_Ferraz_Rangel/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Celia_Ferraz_Rangel/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "climb",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Dara",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Dara/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Dara/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Dara/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "climb",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/cientista_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/cientista_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/cientista_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/cientista_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/crianca_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/crianca_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/crianca_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/crianca_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/guarda_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/guarda_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/guarda_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/guarda_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/hacker_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/hacker_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/hacker_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/hacker_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/idosa_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/idosa_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/idosa_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/idosa_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/idoso_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/idoso_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/idoso_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/idoso_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/mecanico_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/mecanico_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/mecanico_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/mecanico_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/medico_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/medico_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/medico_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/medico_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/morador_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/morador_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/morador_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/morador_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/moradora_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/moradora_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/moradora_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/moradora_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/operario_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/operario_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/operario_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/operario_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Generic/vendedor_01",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Generic/vendedor_01/character-config.json",
+      "generic": true,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Generic/vendedor_01/spritesheet_walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Generic/vendedor_01/spritesheet_idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": null,
+      "recipeSchema": "generic_body_color_items"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Homem_da_Fila",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Homem_da_Fila/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Homem_da_Fila/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Homem_da_Fila/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "climb",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Mestra_Bruna",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Mestra_Bruna/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Mestra_Bruna/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Nilce",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Nilce/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Nilce/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Pipo",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Pipo/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Pipo/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "walk"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Quirino",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Quirino/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Quirino/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Rasha",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Rasha/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Rasha/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Rasha/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "idle"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Seu_Onofre",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Seu_Onofre/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Seu_Onofre/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/NPCs/Seu_Onofre/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "idle"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Sula",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Sula/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Sula/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Tacio",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Tacio/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Tacio/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/NPCs/Teodoro_Sampaio",
+      "recipe": "Assets/sprites/Entities/Characters/NPCs/Teodoro_Sampaio/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/NPCs/Teodoro_Sampaio/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/Protagonist",
+      "recipe": "Assets/sprites/Entities/Characters/Protagonist/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Protagonist/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": "Assets/sprites/Entities/Characters/Protagonist/animations/idle.png",
+      "idleDimensions": [
+        128,
+        256
+      ],
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt",
+        "climb",
+        "idle",
+        "jump",
+        "sit",
+        "emote",
+        "run",
+        "combat_idle",
+        "backslash",
+        "halfslash"
+      ],
+      "recipeSchema": "named_skin_itens"
+    },
+    {
+      "folder": "Assets/sprites/Entities/Characters/Protagonist/variants/com_mochila",
+      "recipe": "Assets/sprites/Entities/Characters/Protagonist/variants/com_mochila/character.json",
+      "generic": false,
+      "spriteDimensions": [
+        64,
+        64
+      ],
+      "walkFile": "Assets/sprites/Entities/Characters/Protagonist/variants/com_mochila/animations/walk.png",
+      "walkDimensions": [
+        576,
+        256
+      ],
+      "idleFile": null,
+      "idleDimensions": null,
+      "declaredAnimations": [
+        "spellcast",
+        "thrust",
+        "walk",
+        "slash",
+        "shoot",
+        "hurt"
+      ],
+      "recipeSchema": "named_skin_itens"
+    }
+  ],
+  "counts": {
+    "catalogNpcs": 16,
+    "specificSpriteRecipes": 18,
+    "genericSpriteRecipes": 12,
+    "allHaveWalk4Directions": true,
+    "namedWithoutNativeIdle": 10
+  },
+  "namedSpriteGaps": [
+    "benta",
+    "zeca_cerca"
+  ],
+  "runtimeObservation": {
+    "TacioSprite": "Assets/sprites/Entities/Characters/Antagonists/Ivo_Rangel/animations/idle.png",
+    "HomemDaFilaSprite": "Assets/sprites/Entities/Characters/NPCs/Generic/morador_01/spritesheet_idle.png",
+    "DaraSprite": "Assets/sprites/Entities/Characters/NPCs/Dara/animations/idle.png",
+    "status": "read_only_not_fixed"
+  },
+  "pipeline": {
+    "pythonPackages": {
+      "PIL": false,
+      "numpy": false
+    },
+    "scriptsPortableToWindows": false,
+    "metadataFoundInInspectedAssetAndOutputRoots": false,
+    "generationExecuted": false
+  },
+  "sources": [
+    {
+      "path": "Assets/Scripts/Catalogos/CatalogoDeNpcs.cs",
+      "sha256": "d1b2410dfb3c61ca6cddbf06c5a0ca3c92b42dad86d9081f1506699155a57f81"
+    },
+    {
+      "path": "Assets/Scripts/Catalogos/CatalogoDeQuests.cs",
+      "sha256": "e85bc0e8e740dd69d071804c7d9c7445e199b32dbc1830aab97f1b7af78fa425"
+    },
+    {
+      "path": "Assets/Scripts/Catalogos/CatalogoDeDialogos.cs",
+      "sha256": "21ea53d3276675cf47a5ef3321b1f75c58e77217be167dc67296d416f8c056f1"
+    },
+    {
+      "path": "Assets/Scripts/Catalogos/CatalogoDeLocais.cs",
+      "sha256": "c5d4f589fb4512ce070df8267cdb7df9cf43beb7d23c11699210ae804be3bb70"
+    },
+    {
+      "path": "Assets/Scripts/Catalogos/CatalogoDeInimigos.cs",
+      "sha256": "c0024947cef4aadfa6bce182fb76e6042385dbf48ea1bae59967a12bfd5e56d1"
+    },
+    {
+      "path": "docs/enredo/TCC_-_ENREDO_v2.md",
+      "sha256": "e7acabb773802ec8417886738e8a90004eb6a129985b2c8126537ad1213e5b7f"
+    },
+    {
+      "path": "docs/enredo/TCC_-_ENREDO_v2_ADENDO.md",
+      "sha256": "35b1343447b8acea9503e732e64c44873c1d5bf131730700fff15f66500e973a"
+    },
+    {
+      "path": "Assets/Scenes/City.unity",
+      "sha256": "0f354a4551a7df7dbcb7e0f39614b808b3cc8553fc0c1f835c22663f86a65b07"
+    },
+    {
+      "path": "Assets/sprites/Mapas/metavalle-original-upscale-8k.png",
+      "sha256": "3e1034f89b353b5657fa78531068c77d56b2f4d1b9fce39a19736e73827890d8"
+    }
+  ]
+}

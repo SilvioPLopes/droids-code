@@ -1,0 +1,1155 @@
+{
+  "version": 1,
+  "status": "city_assembly_saved_manual_test_pending",
+  "architectureRecommendation": "Distinct lightweight scene per independently visitable room, reusable base prefab and scene template; one active environment at a time. Scene names are proposals, not created assets.",
+  "coordinateSource": "docs/planos-implementacao/2026-10-17-auditoria-cenas.md",
+  "rooms": [
+    {
+      "id": "E06_Terreo",
+      "building": "E06",
+      "art": "output/interiores-ferrovale/2026-10-28/e06-casa01-terreo.png",
+      "sceneNameProposal": "Interior_E06_Terreo",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E06_Superior",
+          "fromDoor": "escada_E06_Terreo",
+          "x": 2.63,
+          "y": -0.38
+        },
+        {
+          "fromRoom": "E06_Anexo",
+          "fromDoor": "voltar_casa",
+          "x": 1.38,
+          "y": -2.08
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E06_Terreo.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E06_Terreo.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e06-casa01-terreo.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E06_Superior",
+      "building": "E06",
+      "art": "output/interiores-ferrovale/2026-10-28/e06-casa01-superior-v2.png",
+      "sceneNameProposal": "Interior_E06_Superior",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E06_Terreo",
+          "fromDoor": "escada_E06_Superior",
+          "x": 1.88,
+          "y": -0.33
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E06_Superior.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E06_Superior.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e06-casa01-superior-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E06_Anexo",
+      "building": "E06",
+      "art": "output/interiores-ferrovale/2026-10-28/e06-casa01-anexo.png",
+      "sceneNameProposal": "Interior_E06_Anexo",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E06_Anexo.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E06_Anexo.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e06-casa01-anexo.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E05_Principal",
+      "building": "E05",
+      "art": "output/interiores-ferrovale/2026-10-28/e05-casa02.png",
+      "sceneNameProposal": "Interior_E05_Principal",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E05_Principal.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e05-casa02.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E10_Casa03",
+      "building": "E10",
+      "art": "output/interiores-ferrovale/2026-10-28/e10-casa03.png",
+      "sceneNameProposal": "Interior_E10_Casa03",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E10_Casa03.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/Casa03Interior.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/Casa03.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E10_Casa04",
+      "building": "E10",
+      "art": "output/interiores-ferrovale/2026-10-28/e10-casa04.png",
+      "sceneNameProposal": "Interior_E10_Casa04",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E10_Casa04.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E10_Casa04.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e10-casa04.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E12_CasaLip",
+      "building": "E12",
+      "art": "output/interiores-ferrovale/2026-10-28/e12-casalip-proposta.png",
+      "sceneNameProposal": "CasaLip",
+      "sceneStatus": "existing_casalip_preserved_apollo_quest_input_added",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": null,
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E11_Casa05",
+      "building": "E11",
+      "art": "output/interiores-ferrovale/2026-10-28/e11-casa05.png",
+      "sceneNameProposal": "Interior_E11_Casa05",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E11_Casa05.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E11_Casa05.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e11-casa05.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E11_Casa06",
+      "building": "E11",
+      "art": "output/interiores-ferrovale/2026-10-28/e11-casa06.png",
+      "sceneNameProposal": "Interior_E11_Casa06",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E11_Casa06.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E11_Casa06.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e11-casa06.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E09_Terreo",
+      "building": "E09",
+      "art": "output/interiores-ferrovale/2026-10-28/e09-casa-maior-terreo.png",
+      "sceneNameProposal": "Interior_E09_Terreo",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E09_Superior",
+          "fromDoor": "escada_E09_Terreo",
+          "x": 2.38,
+          "y": 0.170000017
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E09_Terreo.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e09-casa-maior-terreo.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E09_Superior",
+      "building": "E09",
+      "art": "output/interiores-ferrovale/2026-10-28/e09-superior-terraco-v2.png",
+      "sceneNameProposal": "Interior_E09_Superior",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E09_Terreo",
+          "fromDoor": "escada_E09_Superior",
+          "x": 0.28,
+          "y": -0.13
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E09_Superior.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E09_Superior.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e09-superior-terraco-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E08_Principal",
+      "building": "E08",
+      "art": "output/interiores-ferrovale/2026-10-28/e08-casa-duas-entradas.png",
+      "sceneNameProposal": "Interior_E08_Principal",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E08_Superior",
+          "fromDoor": "escada_E08_Principal",
+          "x": 2.63,
+          "y": -0.38
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E08_Principal.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E08_Principal.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e08-casa-duas-entradas.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E08_Superior",
+      "building": "E08",
+      "art": "output/artes-mapas/2026-10-28/matriz-casa-grande-superior-v1.png",
+      "sceneNameProposal": "Interior_E08_Superior",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E08_Principal",
+          "fromDoor": "escada_E08_Superior",
+          "x": 2.63,
+          "y": -0.38
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E08_Superior.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E08_Superior.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/matriz-casa-grande-superior-v1.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E16_Civico",
+      "building": "E16",
+      "art": "output/interiores-ferrovale/2026-10-28/e16-prefeitura-domo.png",
+      "sceneNameProposal": "Interior_E16_Civico",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E16_Civico.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E16_Civico.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e16-prefeitura-domo.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E00_Hall",
+      "building": "E00",
+      "art": "output/interiores-ferrovale/2026-10-28/e00-casa07-hall.png",
+      "sceneNameProposal": "Interior_E00_Hall",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E00_Patamar",
+          "fromDoor": "escada_E00_Hall",
+          "x": 2.63,
+          "y": -0.405
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E00_Hall.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E00_Hall.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e00-casa07-hall.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E00_Patamar",
+      "building": "E00",
+      "art": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "sceneNameProposal": "Interior_E00_Patamar",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E00_Hall",
+          "fromDoor": "escada_E00_Patamar",
+          "x": 2.055,
+          "y": -0.58
+        },
+        {
+          "fromRoom": "E00_Apartamento01",
+          "fromDoor": "retorno_patamar",
+          "x": -1.87,
+          "y": -0.33
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E00_Patamar.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E00_Patamar.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E00_Apartamento01",
+      "building": "E00",
+      "art": "output/artes-mapas/2026-10-28/apartamento-b-estar-norte-v2.png",
+      "sceneNameProposal": "Interior_E00_Apartamento01",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E00_Patamar",
+          "fromDoor": "apartamento",
+          "x": 0.0,
+          "y": -1.705
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E00_Apartamento01.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E00_Apartamento01.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/apartamento-b-estar-norte-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E01_Hall",
+      "building": "E01",
+      "art": "output/interiores-ferrovale/2026-10-28/e01-casa08-hall.png",
+      "sceneNameProposal": "Interior_E01_Hall",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E01_Patamar",
+          "fromDoor": "escada_E01_Hall",
+          "x": 2.63,
+          "y": -0.405
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E01_Hall.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E01_Hall.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e01-casa08-hall.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E01_Apartamento01",
+      "building": "E01",
+      "art": "output/interiores-ferrovale/2026-10-28/e01-apartamento-metal.png",
+      "sceneNameProposal": "Interior_E01_Apartamento01",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E01_Patamar",
+          "fromDoor": "apartamento",
+          "x": 0.0,
+          "y": -1.705
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E01_Apartamento01.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E01_Apartamento01.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e01-apartamento-metal.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E01_Patamar",
+      "building": "E01",
+      "art": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "sceneNameProposal": "Interior_E01_Patamar",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E01_Hall",
+          "fromDoor": "escada_E01_Patamar",
+          "x": 2.055,
+          "y": -0.58
+        },
+        {
+          "fromRoom": "E01_Apartamento01",
+          "fromDoor": "retorno_patamar",
+          "x": -1.87,
+          "y": -0.33
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E01_Patamar.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E01_Patamar.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E02_Principal",
+      "building": "E02",
+      "art": "output/interiores-ferrovale/2026-10-28/e02-casa09.png",
+      "sceneNameProposal": "Interior_E02_Principal",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E02_Principal.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E02_Principal.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e02-casa09.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E02_Garagem",
+      "building": "E02",
+      "art": "output/interiores-ferrovale/2026-10-28/e02-garagem.png",
+      "sceneNameProposal": "Interior_E02_Garagem",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E02_Garagem.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E02_Garagem.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e02-garagem.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E03_Terreo",
+      "building": "E03",
+      "art": "output/interiores-ferrovale/2026-10-28/e03-mansao-terreo.png",
+      "sceneNameProposal": "Interior_E03_Terreo",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E03_Superior",
+          "fromDoor": "escada_E03_Terreo",
+          "x": 2.63,
+          "y": -0.07999998
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E03_Terreo.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e03-mansao-terreo.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E03_Superior",
+      "building": "E03",
+      "art": "output/interiores-ferrovale/2026-10-28/e03-mansao-superior-v2.png",
+      "sceneNameProposal": "Interior_E03_Superior",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E03_Terreo",
+          "fromDoor": "escada_E03_Superior",
+          "x": 2.63,
+          "y": -0.205000013
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E03_Superior.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e03-mansao-superior-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E04_UnidadeA",
+      "building": "E04",
+      "art": "output/artes-mapas/2026-10-28/apartamento-c-estar-leste-v2.png",
+      "sceneNameProposal": "Interior_E04_UnidadeA",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E04_UnidadeA.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E04_UnidadeA.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/apartamento-c-estar-leste-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E04_UnidadeB",
+      "building": "E04",
+      "art": "output/artes-mapas/2026-10-28/apartamento-d-mesa-norte-v2.png",
+      "sceneNameProposal": "Interior_E04_UnidadeB",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E04_UnidadeB.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E04_UnidadeB.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/apartamento-d-mesa-norte-v2.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E13_Hall",
+      "building": "E13",
+      "art": "output/interiores-ferrovale/2026-10-28/e13-casa10-hall.png",
+      "sceneNameProposal": "Interior_E13_Hall",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E13_Patamar",
+          "fromDoor": "escada_E13_Hall",
+          "x": 2.63,
+          "y": -0.405
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E13_Hall.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E13_Hall.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e13-casa10-hall.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E13_Apartamento01",
+      "building": "E13",
+      "art": "output/interiores-ferrovale/2026-10-28/e13-apartamento-ceramica.png",
+      "sceneNameProposal": "Interior_E13_Apartamento01",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E13_Patamar",
+          "fromDoor": "apartamento",
+          "x": 0.255,
+          "y": -1.705
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E13_Apartamento01.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E13_Apartamento01.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e13-apartamento-ceramica.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E13_Patamar",
+      "building": "E13",
+      "art": "output/artes-mapas/2026-10-28/matriz-predio-corredor-v1.png",
+      "sceneNameProposal": "Interior_E13_Patamar",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [
+        {
+          "fromRoom": "E13_Hall",
+          "fromDoor": "escada_E13_Patamar",
+          "x": 2.055,
+          "y": -0.58
+        },
+        {
+          "fromRoom": "E13_Apartamento01",
+          "fromDoor": "retorno_patamar",
+          "x": -1.87,
+          "y": -0.33
+        }
+      ],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E13_Patamar.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E13_Patamar.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E14_UnidadeA",
+      "building": "E14",
+      "art": "output/interiores-ferrovale/2026-10-28/e14-unidade-esquerda.png",
+      "sceneNameProposal": "Interior_E14_UnidadeA",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E14_UnidadeA.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E14_UnidadeA.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e14-unidade-esquerda.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E14_Porao",
+      "building": "E14",
+      "art": "output/interiores-ferrovale/2026-10-28/e14-porao.png",
+      "sceneNameProposal": "Interior_E14_Porao",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "generated_not_user_approved",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E14_Porao.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E14_Porao.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/e14-porao.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    },
+    {
+      "id": "E14_UnidadeB",
+      "building": "E14",
+      "art": "output/artes-mapas/2026-10-28/interior-sala-piso-cuidado-v3.png",
+      "sceneNameProposal": "Interior_E14_UnidadeB",
+      "sceneStatus": "saved_structural_check_passed_manual_test_pending",
+      "artStatus": "previously_approved_matrix_reuse_not_tested_in_game",
+      "arrivalPositions": [],
+      "sceneAsset": "Assets/Scenes/Interiores/Interior_E14_UnidadeB.unity",
+      "prefabAsset": "Assets/Prefabs/Interiores/E14_UnidadeB.prefab",
+      "importedArt": "Assets/sprites/Mapas/Interiores/interior-sala-piso-cuidado-v3.png",
+      "visualPending": "User evaluates movement, scale, portal alignment and furniture collision.",
+      "installedArtStatus": "existing_user_approved_base_used_no_new_background_generation"
+    }
+  ],
+  "cityDoors": [
+    {
+      "cityDoor": "Porta_Casa01",
+      "room": "E06_Terreo",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -10.6832466,
+        "y": -8.78946
+      },
+      "returnDoorIdentity": "Porta_Casa01",
+      "cityTriggerPosition": {
+        "x": -10.6832466,
+        "y": -7.46946
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa02",
+      "room": "E05_Principal",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -4.21609449,
+        "y": -9.3643
+      },
+      "returnDoorIdentity": "Porta_Casa02",
+      "cityTriggerPosition": {
+        "x": -4.21609449,
+        "y": -8.0443
+      },
+      "roomEntryPosition": {
+        "x": 2.005,
+        "y": -1.57999992
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa03_Provisoria",
+      "room": "E10_Casa03",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": "EntradaPrincipal",
+      "cityReturnPosition": {
+        "x": 2.56479287,
+        "y": -9.363213
+      },
+      "returnDoorIdentity": "Porta_Casa03_Provisoria",
+      "cityTriggerPosition": {
+        "x": 2.56479287,
+        "y": -8.043213
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa04",
+      "room": "E10_Casa04",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 4.51828432,
+        "y": -9.366645
+      },
+      "returnDoorIdentity": "Porta_Casa04",
+      "cityTriggerPosition": {
+        "x": 4.51828432,
+        "y": -8.046645
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Entrada_CasaLip",
+      "room": "E12_CasaLip",
+      "connectionStatus": "existing",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": null,
+      "returnDoorIdentity": "Entrada_CasaLip"
+    },
+    {
+      "cityDoor": "Porta_Casa05",
+      "room": "E11_Casa05",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 12.7419319,
+        "y": -9.2531
+      },
+      "returnDoorIdentity": "Porta_Casa05",
+      "cityTriggerPosition": {
+        "x": 12.7419319,
+        "y": -7.9331
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa06",
+      "room": "E11_Casa06",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 14.4418612,
+        "y": -9.154571
+      },
+      "returnDoorIdentity": "Porta_Casa06",
+      "cityTriggerPosition": {
+        "x": 14.4418612,
+        "y": -7.834571
+      },
+      "roomEntryPosition": {
+        "x": 0.505,
+        "y": -1.705
+      }
+    },
+    {
+      "cityDoor": "Porta_CasaMaior",
+      "room": "E09_Terreo",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 11.170805,
+        "y": -3.15004134
+      },
+      "returnDoorIdentity": "Porta_CasaMaior",
+      "cityTriggerPosition": {
+        "x": 11.170805,
+        "y": -1.83004129
+      },
+      "roomEntryPosition": {
+        "x": 0.005,
+        "y": -1.705
+      }
+    },
+    {
+      "cityDoor": "Porta_PredioPlaca_A",
+      "room": "E08_Principal",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 5.66625643,
+        "y": -3.13429475
+      },
+      "returnDoorIdentity": "Porta_PredioPlaca_A",
+      "cityTriggerPosition": {
+        "x": 5.66625643,
+        "y": -1.8142947
+      },
+      "roomEntryPosition": {
+        "x": -1.12,
+        "y": -1.705
+      }
+    },
+    {
+      "cityDoor": "Porta_PredioPlaca_B",
+      "room": "E08_Principal",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 6.96430874,
+        "y": -3.13914037
+      },
+      "returnDoorIdentity": "Porta_PredioPlaca_B",
+      "cityTriggerPosition": {
+        "x": 6.96430874,
+        "y": -1.81914032
+      },
+      "roomEntryPosition": {
+        "x": 1.08,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Prefeitura",
+      "room": "E16_Civico",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -0.867883563,
+        "y": -3.48266625
+      },
+      "returnDoorIdentity": "Porta_Prefeitura",
+      "cityTriggerPosition": {
+        "x": -0.867883563,
+        "y": -2.16266632
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa07",
+      "room": "E00_Hall",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -6.47336149,
+        "y": -3.119619
+      },
+      "returnDoorIdentity": "Porta_Casa07",
+      "cityTriggerPosition": {
+        "x": -6.47336149,
+        "y": -1.799619
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa08",
+      "room": "E01_Hall",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -11.0676937,
+        "y": -3.11938739
+      },
+      "returnDoorIdentity": "Porta_Casa08",
+      "cityTriggerPosition": {
+        "x": -11.0676937,
+        "y": -1.79938734
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa09",
+      "room": "E02_Principal",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -14.0627422,
+        "y": -3.04661751
+      },
+      "returnDoorIdentity": "Porta_Casa09",
+      "cityTriggerPosition": {
+        "x": -14.0627422,
+        "y": -1.72661746
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Garagem",
+      "room": "E02_Garagem",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -15.5669594,
+        "y": -3.046633
+      },
+      "returnDoorIdentity": "Porta_Garagem",
+      "cityTriggerPosition": {
+        "x": -15.5669594,
+        "y": -1.726633
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_Mansao_Provisoria",
+      "room": "E03_Terreo",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -14.0299911,
+        "y": 3.1099112
+      },
+      "returnDoorIdentity": "Porta_Mansao_Provisoria",
+      "cityTriggerPosition": {
+        "x": -14.0299911,
+        "y": 4.429911
+      },
+      "roomEntryPosition": {
+        "x": -1.495,
+        "y": -0.07999998
+      }
+    },
+    {
+      "cityDoor": "Porta_GeminadoAzul_A",
+      "room": "E04_UnidadeA",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -6.594374,
+        "y": 2.99441123
+      },
+      "returnDoorIdentity": "Porta_GeminadoAzul_A",
+      "cityTriggerPosition": {
+        "x": -6.594374,
+        "y": 4.314411
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_GeminadoAzul_B",
+      "room": "E04_UnidadeB",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": -4.39387,
+        "y": 3.00717425
+      },
+      "returnDoorIdentity": "Porta_GeminadoAzul_B",
+      "cityTriggerPosition": {
+        "x": -4.39387,
+        "y": 4.327174
+      },
+      "roomEntryPosition": {
+        "x": 0.13,
+        "y": -1.45499992
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa10",
+      "room": "E13_Hall",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 4.29137468,
+        "y": 3.15631366
+      },
+      "returnDoorIdentity": "Porta_Casa10",
+      "cityTriggerPosition": {
+        "x": 4.29137468,
+        "y": 4.47631359
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.655
+      }
+    },
+    {
+      "cityDoor": "Porta_CasaPorao_Esquerda",
+      "room": "E14_UnidadeA",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 8.790816,
+        "y": 3.21781516
+      },
+      "returnDoorIdentity": "Porta_CasaPorao_Esquerda",
+      "cityTriggerPosition": {
+        "x": 8.790816,
+        "y": 4.537815
+      },
+      "roomEntryPosition": {
+        "x": 0.005,
+        "y": -1.83
+      }
+    },
+    {
+      "cityDoor": "Porta_Porao",
+      "room": "E14_Porao",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 9.983611,
+        "y": 3.200485
+      },
+      "returnDoorIdentity": "Porta_Porao",
+      "cityTriggerPosition": {
+        "x": 9.983611,
+        "y": 4.520485
+      },
+      "roomEntryPosition": {
+        "x": 0.0,
+        "y": -1.155
+      }
+    },
+    {
+      "cityDoor": "Porta_CasaPorao_Direita",
+      "room": "E14_UnidadeB",
+      "connectionStatus": "saved_structural_check_passed_manual_test_pending",
+      "roomEntryAnchor": null,
+      "cityReturnPosition": {
+        "x": 10.9776068,
+        "y": 3.1860826
+      },
+      "returnDoorIdentity": "Porta_CasaPorao_Direita",
+      "cityTriggerPosition": {
+        "x": 10.9776068,
+        "y": 4.50608253
+      },
+      "roomEntryPosition": {
+        "x": 0.005,
+        "y": -1.83
+      }
+    },
+    {
+      "cityDoor": "Porta_Casa02_Esquerda",
+      "room": "E05_Principal",
+      "connectionStatus": "new_second_casa02_entry_saved_manual_alignment_pending",
+      "cityTriggerPosition": {
+        "x": -6.11609459,
+        "y": -8.0443
+      },
+      "roomEntryPosition": {
+        "x": -1.87,
+        "y": -1.705
+      },
+      "cityReturnPosition": {
+        "x": -6.11609459,
+        "y": -9.3643
+      }
+    }
+  ],
+  "internalConnections": [
+    {
+      "a": "E06_Terreo",
+      "b": "E06_Superior",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E09_Terreo",
+      "b": "E09_Superior",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E03_Terreo",
+      "b": "E03_Superior",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E08_Principal",
+      "b": "E08_Superior",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E00_Hall",
+      "b": "E00_Patamar",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E00_Patamar",
+      "b": "E00_Apartamento01",
+      "kind": "apartment_door",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E01_Hall",
+      "b": "E01_Patamar",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E01_Patamar",
+      "b": "E01_Apartamento01",
+      "kind": "apartment_door",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E13_Hall",
+      "b": "E13_Patamar",
+      "kind": "stairs",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    },
+    {
+      "a": "E13_Patamar",
+      "b": "E13_Apartamento01",
+      "kind": "apartment_door",
+      "bidirectional": true,
+      "status": "saved_structural_check_passed_manual_test_pending",
+      "anchorA": null,
+      "anchorB": null
+    }
+  ],
+  "pending": [
+    {
+      "building": "E06",
+      "issue": "Exact Casa01 facade access versus annex still requires confirmation. Annex has its own room identity but no confirmed external door or internal connection."
+    },
+    {
+      "building": "E05",
+      "issue": "Left exterior access visible but not surveyed; right surveyed door assigned to principal room. Two exterior accesses may lead to the same dwelling."
+    },
+    {
+      "building": "E09",
+      "issue": "Align stair locations between floor images before mounting; raised exterior access unconfirmed."
+    },
+    {
+      "building": "E08",
+      "issue": "Shared dwelling with two exterior entrances remains architectural proposal; keep distinct entry/return anchors."
+    },
+    {
+      "building": "E04",
+      "issue": "Independent units proposed, narrative function undefined."
+    },
+    {
+      "building": "E14",
+      "issue": "Two units plus basement with independent exterior accesses proposed; no invented internal connections."
+    },
+    {
+      "building": "E00/E01/E13",
+      "issue": "Shared landing artwork does not define more floors. Do not activate drawn extra stairs without a destination."
+    },
+    {
+      "building": "E12",
+      "issue": "New image is a proposal only; preserve existing CasaLip puzzle, collision, camera, transition and active artwork until a dedicated integration."
+    }
+  ],
+  "assemblyEvidence": "output/montagem-ferrovale/2026-10-29/",
+  "additionalConnection": {
+    "a": "E06_Terreo",
+    "b": "E06_Anexo",
+    "kind": "mechanic_invitation_and_return_door",
+    "reason": "No unconfirmed street doorway fabricated."
+  },
+  "heldUnapprovedImage": "output/montagem-ferrovale/2026-10-29/estalagem-corredor-seis-portas.png"
+}

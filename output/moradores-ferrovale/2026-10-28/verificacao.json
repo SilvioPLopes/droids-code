@@ -1,0 +1,15 @@
+{
+  "status": "passed_documentary_checks_only",
+  "buildings": 15,
+  "catalogNPCs": 16,
+  "specificRecipes": 18,
+  "genericRecipes": 12,
+  "houseRoomIdsValidated": true,
+  "actorIdsValidated": true,
+  "localLinksValid": true,
+  "independentCoherenceReview": "no_blockers",
+  "unityMutations": 0,
+  "spritesGenerated": 0,
+  "doorRemappingPerformed": false,
+  "userApprovalOfAssignments": "pending"
+}

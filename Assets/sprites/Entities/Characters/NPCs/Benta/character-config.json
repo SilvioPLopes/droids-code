@@ -1,0 +1,27 @@
+{
+  "id": "Benta",
+  "method": "derived_LPC_composite",
+  "baseRecipe": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\medico_01\\character-config.json",
+  "baseWalk": "Assets\\sprites\\Entities\\Characters\\NPCs\\Generic\\medico_01\\spritesheet_walk.png",
+  "recolor": {
+    "from": "white",
+    "to": "tan"
+  },
+  "additionalLayer": "spritesheets/torso/aprons/apron_full/female/walk/white.png",
+  "animationsProduced": [
+    "walk"
+  ],
+  "directions": [
+    "up",
+    "left",
+    "down",
+    "right"
+  ],
+  "frameSize": [
+    64,
+    64
+  ],
+  "approximations": [
+    "Benta: presilhas e caixa cirurgica nao representadas; avental sobre modelo medico existente."
+  ]
+}

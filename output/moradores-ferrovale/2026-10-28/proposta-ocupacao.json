@@ -1,0 +1,388 @@
+{
+  "status": "design_proposal_not_approved_or_instantiated",
+  "buildingCount": 15,
+  "coordinateReference": "referencia-casa03.json",
+  "inventory": "inventario-elenco.json",
+  "assignmentRule": "All facade-to-character assignments are proposals except existing Lip/Apollo at CasaLip. Catalog family, workplace and guest relations retain their own source status; no scene edits.",
+  "buildings": [
+    {
+      "id": "E06",
+      "label": "Casa 1 e anexo",
+      "units": [
+        {
+          "room": "E06_Terreo",
+          "residents": [
+            "fv_mecanico_01"
+          ]
+        }
+      ],
+      "use": "Moradia de um mecânico genérico; anexo reservado ao seu trabalho doméstico, sem abrir nova loja.",
+      "why": "Torre compacta e anexo de metal combinam com manutenção; distribui um figurante sem inventar parentesco.",
+      "needs": "Acesso do anexo ainda não confirmado; não criar rotina através dele antes da remarcação."
+    },
+    {
+      "id": "E05",
+      "label": "Casa 2",
+      "units": [
+        {
+          "room": "E05_Principal",
+          "residents": [
+            "vendedora_pecas",
+            "crianca_rua",
+            "fv_crianca_sula_02",
+            "fv_crianca_sula_03"
+          ]
+        }
+      ],
+      "use": "Casa de Sula, Pipo e duas crianças ainda sem nome.",
+      "why": "Catálogo afirma quatro pessoas na casa de Sula e Pipo morando com ela. Duas entradas podem servir a uma só moradia.",
+      "needs": "Vínculo familiar vem do catálogo, não de falas já implantadas. As duas crianças precisam de variantes próprias se forem mostradas. Uma entrada externa segue sem coleta."
+    },
+    {
+      "id": "E10",
+      "label": "Casas 3 e 4",
+      "units": [
+        {
+          "room": "E10_Casa03",
+          "residents": [
+            "fv_operario_01"
+          ]
+        },
+        {
+          "room": "E10_Casa04",
+          "residents": [
+            "homem_fila"
+          ]
+        }
+      ],
+      "use": "Casa 3: operário genérico. Casa 4: Homem da Fila.",
+      "why": "Mantém duas moradias independentes. O piloto da Casa 3 serve a um morador sem quest; Homem da Fila continua encontrado no poço.",
+      "needs": "A rotina não deve removê-lo da fila antes das conversas necessárias."
+    },
+    {
+      "id": "E12",
+      "label": "Casa do protagonista",
+      "units": [
+        {
+          "room": "E12_CasaLip",
+          "residents": [
+            "lip",
+            "apollo"
+          ]
+        }
+      ],
+      "use": "Lip e Apollo, vínculo já montado.",
+      "why": "CasaLip tem ligação existente na City e contrato de história próprio.",
+      "needs": "Preservar cena/puzzle; não mudar a localização para satisfazer a expressão antiga 'terceira à direita'."
+    },
+    {
+      "id": "E11",
+      "label": "Casas 5 e 6",
+      "units": [
+        {
+          "room": "E11_Casa05",
+          "residents": [
+            "tacio"
+          ]
+        },
+        {
+          "room": "E11_Casa06",
+          "residents": [
+            "fv_idoso_01"
+          ]
+        }
+      ],
+      "use": "Casa 5: Tácio. Casa 6: idoso genérico.",
+      "why": "Duas moradias independentes; Tácio trabalha no mercado e visita a oficina à noite. Não confundir idoso genérico com Onofre.",
+      "needs": "Não representar a filha de Tácio morando aqui; fontes divergem sobre o destino dela."
+    },
+    {
+      "id": "E09",
+      "label": "Casa maior em L",
+      "units": [
+        {
+          "room": "E09_Terreo",
+          "residents": [],
+          "workers": [
+            "mestra_guilda",
+            "fv_operario_01"
+          ]
+        },
+        {
+          "room": "E09_Superior",
+          "residents": [],
+          "workers": [
+            "mestra_guilda"
+          ]
+        }
+      ],
+      "use": "Galpão da Guilda; Bruna como responsável. Operário da Casa 3 pode trabalhar aqui.",
+      "why": "Maior área para triagem, quadro de tarefas e oficina; cria percurso de trabalho com destino real.",
+      "needs": "Salas de estar geradas são bases visuais: adaptar para a Guilda antes da montagem funcional; não tratar sofá como balança ou forja. A moradia de Bruna não é definida pela fonte; alojamento anexo é só possibilidade."
+    },
+    {
+      "id": "E08",
+      "label": "Prédio com placa e duas entradas",
+      "units": [
+        {
+          "room": "E08_Principal",
+          "residents": [
+            "estalajadeira"
+          ],
+          "workers": [
+            "estalajadeira"
+          ]
+        },
+        {
+          "room": "E08_Superior",
+          "residents": [],
+          "temporaryGuests": [
+            "zeca_cerca"
+          ]
+        }
+      ],
+      "use": "Estalagem do Cano Torto; Nilce atende/mora no prédio. Zeca dorme aqui de manhã, em quarto diferente do 3.",
+      "why": "Placa, dois volumes e proposta de piso superior favorecem recepção e quartos. Fonte já liga Zeca à estalagem.",
+      "needs": "Definir corredor/seis portas e reserva do quarto 3; não atribuí-lo a Aurélio ou ao Zeca por suposição. Posto de Benta fica no exterior adjacente, sob toldo, sem consumir uma das portas como consultório."
+    },
+    {
+      "id": "E16",
+      "label": "Domo / prefeitura",
+      "units": [
+        {
+          "room": "E16_Civico",
+          "residents": []
+        }
+      ],
+      "use": "Equipamento comunitário: reuniões pequenas, registros e uso coletivo. Sem morador fixo ou prefeito inventado.",
+      "why": "Usuário identifica o domo como prefeitura; enredo diz que Ferrovale não tem prefeito. Conservar prédio cívico sem criar governante.",
+      "needs": "Assembleia da Sessão 7 permanece em espaço aberto; Nadir é visitante condicionada à história, não moradora do domo."
+    },
+    {
+      "id": "E00",
+      "label": "Casa 7 / torre alaranjada",
+      "units": [
+        {
+          "room": "E00_Apartamento01",
+          "residents": [
+            "fv_vendedor_01"
+          ]
+        }
+      ],
+      "use": "Apartamento do vendedor genérico; hall/patamar comuns.",
+      "why": "Reserva residência urbana ao figurante sem duplicar a identidade de Tácio ou Sula.",
+      "needs": "Seu ponto comercial externo ainda não está definido; não criar loja funcional ou estoque por causa da sprite."
+    },
+    {
+      "id": "E01",
+      "label": "Casa 8 / torre azul",
+      "units": [
+        {
+          "room": "E01_Apartamento01",
+          "residents": [
+            "fv_hacker_01"
+          ]
+        }
+      ],
+      "use": "Apartamento de uma pessoa técnica genérica, usando o modelo hacker_01.",
+      "why": "Metal e apartamento compacto combinam com bancada/eletrônica; profissão visual não cria quest automaticamente.",
+      "needs": "Sem fala ou função de hacking implantada; nome e personalidade permanecem abertos."
+    },
+    {
+      "id": "E02",
+      "label": "Casa 9 e garagem",
+      "units": [
+        {
+          "room": "E02_Principal",
+          "residents": [
+            "ferreiro"
+          ]
+        },
+        {
+          "room": "E02_Garagem",
+          "residents": [],
+          "workers": [
+            "ferreiro"
+          ]
+        }
+      ],
+      "use": "Moradia de Quirino e oficina na garagem, cada acesso externo preservado.",
+      "why": "Garagem e ferramentas favorecem oficina; catálogo coloca Quirino nos fundos do mercado.",
+      "needs": "Posicionar setor do mercado de modo coerente com a oficina; não afirmar que viaduto/mercado já estão desenhados ou montados neste lote. Sem inventar porta interna entre casa e garagem."
+    },
+    {
+      "id": "E03",
+      "label": "Casa grande / possível mansão",
+      "units": [
+        {
+          "room": "E03_Terreo",
+          "residents": [],
+          "absentOwners": [
+            "ivo"
+          ]
+        },
+        {
+          "room": "E03_Superior",
+          "residents": [],
+          "absentOwners": [
+            "ivo"
+          ]
+        }
+      ],
+      "use": "Proposta: antiga casa de Ivo e Célia, hoje vazia; Ivo continua na Estação 7.",
+      "why": "Diálogos da Sessão 2 exigem casa vazia com foto, registros e bilhete. Isso dá função à casa-chave sem inventar novo personagem rico.",
+      "needs": "A fachada é escolha de design, não prova de que Ivo era rico. Adaptar um espaço aos cadernos/foto/bilhete; Célia aparece como memória/foto, nunca NPC residente vivo."
+    },
+    {
+      "id": "E04",
+      "label": "Geminado azul",
+      "units": [
+        {
+          "room": "E04_UnidadeA",
+          "residents": [
+            "dara"
+          ]
+        },
+        {
+          "room": "E04_UnidadeB",
+          "residents": [
+            "fv_vizinha_dara_01"
+          ]
+        }
+      ],
+      "use": "Dara numa unidade; a vizinha beneficiada pela divisão da água na outra.",
+      "why": "Vizinhança física sustenta a terceira parte da cota; duas entradas justificam duas moradias.",
+      "needs": "A vizinha pode usar idosa_01 como proposta visual. Não assumir que 'terceira parte' exige terceiro apartamento; diálogos da quest falam da água."
+    },
+    {
+      "id": "E13",
+      "label": "Casa 10 / torre azul e ocre",
+      "units": [
+        {
+          "room": "E13_Apartamento01",
+          "residents": [
+            "fv_cientista_01"
+          ]
+        }
+      ],
+      "use": "Apartamento de morador técnico genérico, usando cientista_01.",
+      "why": "Preenche uma torre sem deslocar personagem que pertence à Cratera ou Prumo.",
+      "needs": "Jaleco não o torna Benta nem cria laboratório/quest. Hall e patamar são áreas comuns."
+    },
+    {
+      "id": "E14",
+      "label": "Duas unidades e porão",
+      "units": [
+        {
+          "room": "E14_UnidadeA",
+          "residents": [
+            "benta"
+          ]
+        },
+        {
+          "room": "E14_UnidadeB",
+          "residents": [
+            "fv_guarda_01"
+          ]
+        },
+        {
+          "room": "E14_Porao",
+          "residents": [],
+          "sharedUse": "Depósito comunitário/manutenção, ainda sem quest."
+        }
+      ],
+      "use": "Moradias propostas de Benta e vigia genérico; porão compartilhado sem morador.",
+      "why": "Permite ocupações distintas preservando as três entradas; Benta trabalha junto à estalagem, não neste porão.",
+      "needs": "Benta ainda precisa de sprite própria. Vigia genérico não substitui a identidade de Zeca. Nenhuma ligação interna com o porão presumida."
+    }
+  ],
+  "nonResidentOrSpecial": [
+    {
+      "id": "velho_viaduto",
+      "use": "Onofre permanece sob o viaduto; catálogo o descreve dormindo onde senta. Não lhe atribuir casa por obrigação."
+    },
+    {
+      "id": "ivo",
+      "use": "Trabalha/vive atualmente na Estação 7; E03 seria sua antiga casa vazia, não ponto de spawn em Ferrovale."
+    },
+    {
+      "id": "rasha",
+      "use": "Cratera e acampamento das facções; sem residência em Ferrovale."
+    },
+    {
+      "id": "teodoro",
+      "use": "Cratera e acampamento das facções; sem residência em Ferrovale."
+    },
+    {
+      "id": "nadir",
+      "use": "Visitante na praça após ato1_nadir; não proprietária de mansão ou prefeitura."
+    },
+    {
+      "id": "celia_reference",
+      "use": "Somente foto/memória; não actor vivo."
+    },
+    {
+      "id": "carregador_reference",
+      "use": "Acompanhante da Apex; não morador permanente."
+    }
+  ],
+  "genericResidents": [
+    {
+      "id": "fv_mecanico_01",
+      "recipe": "mecanico_01"
+    },
+    {
+      "id": "fv_operario_01",
+      "recipe": "operario_01"
+    },
+    {
+      "id": "fv_idoso_01",
+      "recipe": "idoso_01"
+    },
+    {
+      "id": "fv_vizinha_dara_01",
+      "recipe": "idosa_01"
+    },
+    {
+      "id": "fv_vendedor_01",
+      "recipe": "vendedor_01"
+    },
+    {
+      "id": "fv_hacker_01",
+      "recipe": "hacker_01"
+    },
+    {
+      "id": "fv_cientista_01",
+      "recipe": "cientista_01"
+    },
+    {
+      "id": "fv_guarda_01",
+      "recipe": "guarda_01"
+    }
+  ],
+  "unproducedCharacters": [
+    {
+      "id": "benta",
+      "status": "named_sprite_missing"
+    },
+    {
+      "id": "zeca_cerca",
+      "status": "named_sprite_missing"
+    },
+    {
+      "id": "fv_crianca_sula_02",
+      "status": "visual_variant_missing_unconfirmed_individual_design"
+    },
+    {
+      "id": "fv_crianca_sula_03",
+      "status": "visual_variant_missing_unconfirmed_individual_design"
+    }
+  ],
+  "unusedGenericRecipes": [
+    "morador_01",
+    "moradora_01",
+    "medico_01",
+    "crianca_01"
+  ],
+  "generationExecuted": false
+}
