@@ -1,0 +1,227 @@
+{
+  "scene": "Interior_E11_Casa05",
+  "path": "Assets/Scenes/Interiores/Interior_E11_Casa05.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e11-casa05.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.0,
+      "y": -1.655
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.0,
+          "y": -1.035
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E11_Casa05/Portas/saida_Porta_Casa05",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "City",
+      "arrival": {
+        "x": 12.7419319,
+        "y": -9.2531
+      },
+      "position": {
+        "x": 0.0,
+        "y": -1.76
+      },
+      "pixel": {
+        "x": 724.0,
+        "y": 895.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -1.76
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E11_Casa05/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E11_Casa05/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -2.2575,
+        "y": -0.035
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.175,
+        "y": 2.3
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E11_Casa05/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.9825,
+        "y": -0.11
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.425,
+        "y": 1.25
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E11_Casa05/Colisoes/Obstaculo_3",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.895,
+        "y": 1.415
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 3.85,
+        "y": 0.8
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E11_Casa05/Colisoes/Obstaculo_4",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 2.08,
+        "y": 1.065
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.3,
+        "y": 0.9
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "MoradoresFerrovale/tacio",
+      "type": "CircleCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 1.38,
+        "y": -0.449000031
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.4,
+        "y": 1.4
+      },
+      "size": null,
+      "radius": 0.13,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

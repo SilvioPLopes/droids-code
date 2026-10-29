@@ -1,0 +1,273 @@
+{
+  "scene": "Interior_E16_Civico",
+  "path": "Assets/Scenes/Interiores/Interior_E16_Civico.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e16-prefeitura-domo.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.0,
+      "y": -1.655
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.0,
+          "y": -1.035
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E16_Civico/Portas/saida_Porta_Prefeitura",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "City",
+      "arrival": {
+        "x": -0.867883563,
+        "y": -3.48266625
+      },
+      "position": {
+        "x": 0.0,
+        "y": -1.76
+      },
+      "pixel": {
+        "x": 724.0,
+        "y": 895.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -1.76
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E16_Civico/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": 3.05,
+          "y": -0.06
+        },
+        {
+          "x": 2.99139524,
+          "y": -0.45018065
+        },
+        {
+          "x": 2.81783271,
+          "y": -0.8253668
+        },
+        {
+          "x": 2.53598213,
+          "y": -1.17114043
+        },
+        {
+          "x": 2.15667534,
+          "y": -1.4742136
+        },
+        {
+          "x": 1.69448912,
+          "y": -1.72293913
+        },
+        {
+          "x": 1.16718447,
+          "y": -1.90775907
+        },
+        {
+          "x": 0.5950253,
+          "y": -2.02157044
+        },
+        {
+          "x": 0.0,
+          "y": -2.06
+        },
+        {
+          "x": -0.5950253,
+          "y": -2.02157044
+        },
+        {
+          "x": -1.16718447,
+          "y": -1.90775907
+        },
+        {
+          "x": -1.69448912,
+          "y": -1.72293913
+        },
+        {
+          "x": -2.15667582,
+          "y": -1.4742136
+        },
+        {
+          "x": -2.53598237,
+          "y": -1.17114043
+        },
+        {
+          "x": -2.81783247,
+          "y": -0.8253668
+        },
+        {
+          "x": -2.991395,
+          "y": -0.45018065
+        },
+        {
+          "x": -3.05,
+          "y": -0.06
+        },
+        {
+          "x": -2.991395,
+          "y": 0.330180675
+        },
+        {
+          "x": -2.81783247,
+          "y": 0.70536685
+        },
+        {
+          "x": -2.53598237,
+          "y": 1.05114043
+        },
+        {
+          "x": -2.15667582,
+          "y": 1.3542136
+        },
+        {
+          "x": -1.69448912,
+          "y": 1.60293925
+        },
+        {
+          "x": -1.16718447,
+          "y": 1.78775907
+        },
+        {
+          "x": -0.5950253,
+          "y": 1.90157056
+        },
+        {
+          "x": 0.0,
+          "y": 1.94
+        },
+        {
+          "x": 0.5950253,
+          "y": 1.90157056
+        },
+        {
+          "x": 1.16718447,
+          "y": 1.78775907
+        },
+        {
+          "x": 1.69448912,
+          "y": 1.60293925
+        },
+        {
+          "x": 2.15667534,
+          "y": 1.3542136
+        },
+        {
+          "x": 2.53598213,
+          "y": 1.05114043
+        },
+        {
+          "x": 2.81783271,
+          "y": 0.70536685
+        },
+        {
+          "x": 2.99139524,
+          "y": 0.330180675
+        },
+        {
+          "x": 3.05,
+          "y": -0.06
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E16_Civico/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.02,
+        "y": -0.16
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.4,
+        "y": 1.1
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E16_Civico/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.03,
+        "y": 1.4025
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 2.0,
+        "y": 0.675
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

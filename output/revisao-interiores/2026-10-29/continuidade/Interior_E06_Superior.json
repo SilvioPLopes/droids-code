@@ -1,0 +1,207 @@
+{
+  "scene": "Interior_E06_Superior",
+  "path": "Assets/Scenes/Interiores/Interior_E06_Superior.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e06-casa01-superior-v2.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.005,
+      "y": -1.955
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.005,
+          "y": -1.335
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E06_Superior/Portas/escada_E06_Terreo",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "Interior_E06_Terreo",
+      "arrival": {
+        "x": 2.63,
+        "y": -0.38
+      },
+      "position": {
+        "x": 2.63,
+        "y": 0.965
+      },
+      "pixel": {
+        "x": 1250.0,
+        "y": 350.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 2.63,
+            "y": 0.965
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.120000005
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E06_Superior/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E06_Superior/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -2.67,
+        "y": 0.74
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 0.8,
+        "y": 1.75
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E06_Superior/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.445,
+        "y": 1.24
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.85,
+        "y": 1.05
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E06_Superior/Colisoes/Obstaculo_3",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.695,
+        "y": -0.385
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 2.35,
+        "y": 1.2
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E06_Superior/Colisoes/Obstaculo_4",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 2.68,
+        "y": -0.285
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 0.8,
+        "y": 2.1
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

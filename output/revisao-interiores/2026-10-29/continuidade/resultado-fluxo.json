@@ -1,0 +1,1101 @@
+{
+  "sceneCount": 32,
+  "physicalTransitions": 44,
+  "dialogueVisits": 1,
+  "invalidInteriorTargets": [],
+  "cityEmptyTargets": [
+    "SaidaSuperior_Pendente"
+  ],
+  "unreachablePortalContacts": [
+    {
+      "scene": "Interior_E03_Terreo",
+      "portal": "E03_Terreo/Portas/saida_Porta_Mansao_Provisoria",
+      "reason": "nenhum contato no piso livre da grade"
+    }
+  ],
+  "arrivalsWithoutRouteToCity": [
+    {
+      "scene": "Interior_E03_Superior",
+      "source": "Interior_E03_Terreo/E03_Terreo/Portas/escada_E03_Superior",
+      "foot": [
+        2.63,
+        0.41499999199999993
+      ],
+      "component": 1,
+      "routeToCity": false
+    },
+    {
+      "scene": "Interior_E03_Terreo",
+      "source": "City/Porta_Mansao_Provisoria",
+      "foot": [
+        -1.495,
+        0.54
+      ],
+      "component": 0,
+      "routeToCity": false
+    },
+    {
+      "scene": "Interior_E03_Terreo",
+      "source": "Interior_E03_Superior/E03_Superior/Portas/escada_E03_Terreo",
+      "foot": [
+        2.63,
+        0.54
+      ],
+      "component": 1,
+      "routeToCity": false
+    },
+    {
+      "scene": "Interior_E05_Principal",
+      "source": "City/Porta_Casa02",
+      "foot": [
+        2.005,
+        -0.9599999199999998
+      ],
+      "component": null,
+      "routeToCity": false
+    },
+    {
+      "scene": "Interior_E09_Superior",
+      "source": "Interior_E09_Terreo/E09_Terreo/Portas/escada_E09_Superior",
+      "foot": [
+        0.28,
+        0.4900000000000001
+      ],
+      "component": 1,
+      "routeToCity": false
+    },
+    {
+      "scene": "Interior_E09_Terreo",
+      "source": "Interior_E09_Superior/E09_Superior/Portas/escada_E09_Terreo",
+      "foot": [
+        2.38,
+        0.7900000170000001
+      ],
+      "component": 3,
+      "routeToCity": false
+    }
+  ],
+  "rooms": {
+    "Interior_E00_Apartamento01": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        2302
+      ],
+      "portalComponents": {
+        "E00_Apartamento01/Portas/retorno_patamar": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E00_Patamar/E00_Patamar/Portas/apartamento",
+          "foot": [
+            0.0,
+            -1.085
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E00_Hall": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        4976
+      ],
+      "portalComponents": {
+        "E00_Hall/Portas/escada_E00_Patamar": [
+          0
+        ],
+        "E00_Hall/Portas/saida_Porta_Casa07": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa07",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E00_Patamar/E00_Patamar/Portas/escada_E00_Hall",
+          "foot": [
+            2.63,
+            0.21500000000000008
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E00_Patamar": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        5253
+      ],
+      "portalComponents": {
+        "E00_Patamar/Portas/escada_E00_Hall": [
+          0
+        ],
+        "E00_Patamar/Portas/apartamento": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E00_Apartamento01/E00_Apartamento01/Portas/retorno_patamar",
+          "foot": [
+            -1.87,
+            0.2900000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E00_Hall/E00_Hall/Portas/escada_E00_Patamar",
+          "foot": [
+            2.055,
+            0.04000000000000015
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E01_Apartamento01": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2254,
+        23
+      ],
+      "portalComponents": {
+        "E01_Apartamento01/Portas/retorno_patamar": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E01_Patamar/E01_Patamar/Portas/apartamento",
+          "foot": [
+            0.0,
+            -1.085
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E01_Hall": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        4816,
+        12
+      ],
+      "portalComponents": {
+        "E01_Hall/Portas/escada_E01_Patamar": [
+          0
+        ],
+        "E01_Hall/Portas/saida_Porta_Casa08": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa08",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E01_Patamar/E01_Patamar/Portas/escada_E01_Hall",
+          "foot": [
+            2.63,
+            0.21500000000000008
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E01_Patamar": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        5253
+      ],
+      "portalComponents": {
+        "E01_Patamar/Portas/escada_E01_Hall": [
+          0
+        ],
+        "E01_Patamar/Portas/apartamento": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E01_Apartamento01/E01_Apartamento01/Portas/retorno_patamar",
+          "foot": [
+            -1.87,
+            0.2900000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E01_Hall/E01_Hall/Portas/escada_E01_Patamar",
+          "foot": [
+            2.055,
+            0.04000000000000015
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E02_Garagem": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2779,
+        12
+      ],
+      "portalComponents": {
+        "E02_Garagem/Portas/saida_Porta_Garagem": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Garagem",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E02_Principal": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        1112,
+        558
+      ],
+      "portalComponents": {
+        "E02_Principal/Portas/saida_Porta_Casa09": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa09",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E03_Superior": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        791,
+        1159
+      ],
+      "portalComponents": {
+        "E03_Superior/Portas/escada_E03_Terreo": [
+          1
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E03_Terreo/E03_Terreo/Portas/escada_E03_Superior",
+          "foot": [
+            2.63,
+            0.41499999199999993
+          ],
+          "component": 1,
+          "routeToCity": false
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": false
+    },
+    "Interior_E03_Terreo": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        477,
+        494
+      ],
+      "portalComponents": {
+        "E03_Terreo/Portas/escada_E03_Superior": [
+          1
+        ],
+        "E03_Terreo/Portas/saida_Porta_Mansao_Provisoria": []
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Mansao_Provisoria",
+          "foot": [
+            -1.495,
+            0.54
+          ],
+          "component": 0,
+          "routeToCity": false
+        },
+        {
+          "source": "Interior_E03_Superior/E03_Superior/Portas/escada_E03_Terreo",
+          "foot": [
+            2.63,
+            0.54
+          ],
+          "component": 1,
+          "routeToCity": false
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": false
+    },
+    "Interior_E04_UnidadeA": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2254,
+        23
+      ],
+      "portalComponents": {
+        "E04_UnidadeA/Portas/saida_Porta_GeminadoAzul_A": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_GeminadoAzul_A",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E04_UnidadeB": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        673,
+        1852
+      ],
+      "portalComponents": {
+        "E04_UnidadeB/Portas/saida_Porta_GeminadoAzul_B": [
+          1
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_GeminadoAzul_B",
+          "foot": [
+            0.13,
+            -0.8349999
+          ],
+          "component": 1,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 1,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E05_Principal": {
+      "radius": 0.3,
+      "components": 3,
+      "sizes": [
+        2181,
+        241,
+        17
+      ],
+      "portalComponents": {
+        "E05_Principal/Portas/saida_Porta_Casa02": [
+          0
+        ],
+        "E05_Principal/Portas/saida_Porta_Casa02_Esquerda": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa02",
+          "foot": [
+            2.005,
+            -0.9599999199999998
+          ],
+          "component": null,
+          "routeToCity": false
+        },
+        {
+          "source": "City/Porta_Casa02_Esquerda",
+          "foot": [
+            -1.87,
+            -1.085
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E06_Anexo": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        3029,
+        32
+      ],
+      "portalComponents": {
+        "E06_Anexo/Portas/voltar_casa": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E06_Terreo/MoradoresFerrovale/fv_mecanico_01",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E06_Superior": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2121,
+        92
+      ],
+      "portalComponents": {
+        "E06_Superior/Portas/escada_E06_Terreo": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E06_Terreo/E06_Terreo/Portas/escada_E06_Superior",
+          "foot": [
+            1.88,
+            0.2900000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E06_Terreo": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2696,
+        128
+      ],
+      "portalComponents": {
+        "E06_Terreo/Portas/escada_E06_Superior": [
+          0
+        ],
+        "E06_Terreo/Portas/saida_Porta_Casa01": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa01",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E06_Anexo/E06_Anexo/Portas/voltar_casa",
+          "foot": [
+            1.38,
+            -1.46
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E06_Superior/E06_Superior/Portas/escada_E06_Terreo",
+          "foot": [
+            2.63,
+            0.2400000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {
+        "MoradoresFerrovale/fv_mecanico_01": [
+          0
+        ]
+      },
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E08_Principal": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2647,
+        10
+      ],
+      "portalComponents": {
+        "E08_Principal/Portas/escada_E08_Superior": [
+          0
+        ],
+        "E08_Principal/Portas/saida_Porta_PredioPlaca_A": [
+          0
+        ],
+        "E08_Principal/Portas/saida_Porta_PredioPlaca_B": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_PredioPlaca_A",
+          "foot": [
+            -1.12,
+            -1.085
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "City/Porta_PredioPlaca_B",
+          "foot": [
+            1.08,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E08_Superior/E08_Superior/Portas/escada_E08_Principal",
+          "foot": [
+            2.63,
+            0.2400000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E08_Superior": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        1997,
+        7
+      ],
+      "portalComponents": {
+        "E08_Superior/Portas/escada_E08_Principal": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E08_Principal/E08_Principal/Portas/escada_E08_Superior",
+          "foot": [
+            2.63,
+            0.24000008000000006
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E09_Superior": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        31,
+        872
+      ],
+      "portalComponents": {
+        "E09_Superior/Portas/escada_E09_Terreo": [
+          1
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E09_Terreo/E09_Terreo/Portas/escada_E09_Superior",
+          "foot": [
+            0.28,
+            0.4900000000000001
+          ],
+          "component": 1,
+          "routeToCity": false
+        }
+      ],
+      "defaultSpawnComponent": 1,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": false
+    },
+    "Interior_E09_Terreo": {
+      "radius": 0.3,
+      "components": 4,
+      "sizes": [
+        83,
+        179,
+        10,
+        201
+      ],
+      "portalComponents": {
+        "E09_Terreo/Portas/escada_E09_Superior": [
+          3
+        ],
+        "E09_Terreo/Portas/saida_Porta_CasaMaior": [
+          1
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaMaior",
+          "foot": [
+            0.005,
+            -1.085
+          ],
+          "component": 1,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E09_Superior/E09_Superior/Portas/escada_E09_Terreo",
+          "foot": [
+            2.38,
+            0.7900000170000001
+          ],
+          "component": 3,
+          "routeToCity": false
+        }
+      ],
+      "defaultSpawnComponent": 1,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E10_Casa03": {
+      "radius": 0.3,
+      "components": 4,
+      "sizes": [
+        379,
+        21,
+        2142,
+        20
+      ],
+      "portalComponents": {
+        "Casa03Interior/Portas/Saida": [
+          2
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa03_Provisoria",
+          "foot": [
+            0.0,
+            -1.0350000000000001
+          ],
+          "component": 2,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 2,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E10_Casa04": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2329,
+        30
+      ],
+      "portalComponents": {
+        "E10_Casa04/Portas/saida_Porta_Casa04": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa04",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E11_Casa05": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        2398
+      ],
+      "portalComponents": {
+        "E11_Casa05/Portas/saida_Porta_Casa05": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa05",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E11_Casa06": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        2156
+      ],
+      "portalComponents": {
+        "E11_Casa06/Portas/saida_Porta_Casa06": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa06",
+          "foot": [
+            0.505,
+            -1.085
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E13_Apartamento01": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        673,
+        1849
+      ],
+      "portalComponents": {
+        "E13_Apartamento01/Portas/retorno_patamar": [
+          1
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E13_Patamar/E13_Patamar/Portas/apartamento",
+          "foot": [
+            0.255,
+            -1.08499998
+          ],
+          "component": 1,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 1,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E13_Hall": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        4283
+      ],
+      "portalComponents": {
+        "E13_Hall/Portas/escada_E13_Patamar": [
+          0
+        ],
+        "E13_Hall/Portas/saida_Porta_Casa10": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Casa10",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E13_Patamar/E13_Patamar/Portas/escada_E13_Hall",
+          "foot": [
+            2.63,
+            0.21500000000000008
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E13_Patamar": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        5253
+      ],
+      "portalComponents": {
+        "E13_Patamar/Portas/escada_E13_Hall": [
+          0
+        ],
+        "E13_Patamar/Portas/apartamento": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "Interior_E13_Apartamento01/E13_Apartamento01/Portas/retorno_patamar",
+          "foot": [
+            -1.87,
+            0.2900000000000001
+          ],
+          "component": 0,
+          "routeToCity": true
+        },
+        {
+          "source": "Interior_E13_Hall/E13_Hall/Portas/escada_E13_Patamar",
+          "foot": [
+            2.055,
+            0.04000000000000015
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E14_Porao": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        3252
+      ],
+      "portalComponents": {
+        "E14_Porao/Portas/saida_Porta_Porao": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Porao",
+          "foot": [
+            0.0,
+            -0.5349999800000002
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E14_UnidadeA": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        1237
+      ],
+      "portalComponents": {
+        "E14_UnidadeA/Portas/saida_Porta_CasaPorao_Esquerda": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaPorao_Esquerda",
+          "foot": [
+            0.005,
+            -1.21
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E14_UnidadeB": {
+      "radius": 0.3,
+      "components": 2,
+      "sizes": [
+        2283,
+        42
+      ],
+      "portalComponents": {
+        "E14_UnidadeB/Portas/saida_Porta_CasaPorao_Direita": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_CasaPorao_Direita",
+          "foot": [
+            0.005,
+            -1.21
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    },
+    "Interior_E16_Civico": {
+      "radius": 0.3,
+      "components": 1,
+      "sizes": [
+        3672
+      ],
+      "portalComponents": {
+        "E16_Civico/Portas/saida_Porta_Prefeitura": [
+          0
+        ]
+      },
+      "arrivals": [
+        {
+          "source": "City/Porta_Prefeitura",
+          "foot": [
+            0.0,
+            -1.035
+          ],
+          "component": 0,
+          "routeToCity": true
+        }
+      ],
+      "defaultSpawnComponent": 0,
+      "visitComponents": {},
+      "unsupported": [],
+      "defaultSpawnRouteToCity": true
+    }
+  },
+  "limits": "Geometria estática de instâncias de cena; grade0.05; inclui NPCs imóveis e dimensões reais de triggers. CasaLip só topologia, pois puzzle/colisões antigos fora desta grade. Rotas de visita dependem de interação. Não simula movimento nem aprovação visual.",
+  "logicalRoomsWithoutReturn": [],
+  "interiorConnectionsWithoutReverse": [],
+  "arrivalsOverlappingTriggers": []
+}

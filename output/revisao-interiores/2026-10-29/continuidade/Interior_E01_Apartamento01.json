@@ -1,0 +1,227 @@
+{
+  "scene": "Interior_E01_Apartamento01",
+  "path": "Assets/Scenes/Interiores/Interior_E01_Apartamento01.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e01-apartamento-metal.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.0,
+      "y": -1.655
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.0,
+          "y": -1.035
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E01_Apartamento01/Portas/retorno_patamar",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "Interior_E01_Patamar",
+      "arrival": {
+        "x": -1.87,
+        "y": -0.33
+      },
+      "position": {
+        "x": 0.0,
+        "y": -1.76
+      },
+      "pixel": {
+        "x": 724.0,
+        "y": 895.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -1.76
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E01_Apartamento01/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E01_Apartamento01/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 2.155,
+        "y": -0.135
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.15,
+        "y": 2.1
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E01_Apartamento01/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.88,
+        "y": 0.015
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.3,
+        "y": 1.2
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E01_Apartamento01/Colisoes/Obstaculo_3",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -1.82,
+        "y": 1.0525
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.5,
+        "y": 1.125
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E01_Apartamento01/Colisoes/Obstaculo_4",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.38,
+        "y": 1.4025
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 2.0,
+        "y": 0.775
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "MoradoresFerrovale/fv_hacker_01",
+      "type": "CircleCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -1.37,
+        "y": -0.349
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.4,
+        "y": 1.4
+      },
+      "size": null,
+      "radius": 0.13,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

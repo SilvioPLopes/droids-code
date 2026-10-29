@@ -1,0 +1,266 @@
+{
+  "scene": "Interior_E09_Terreo",
+  "path": "Assets/Scenes/Interiores/Interior_E09_Terreo.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e09-casa-maior-terreo.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.005,
+      "y": -1.705
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.005,
+          "y": -1.085
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E09_Terreo/Portas/escada_E09_Superior",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "Interior_E09_Superior",
+      "arrival": {
+        "x": 0.28,
+        "y": -0.13
+      },
+      "position": {
+        "x": 2.63,
+        "y": 1.165
+      },
+      "pixel": {
+        "x": 1250.0,
+        "y": 310.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 2.63,
+            "y": 1.165
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    },
+    {
+      "path": "E09_Terreo/Portas/saida_Porta_CasaMaior",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "City",
+      "arrival": {
+        "x": 11.170805,
+        "y": -3.15004134
+      },
+      "position": {
+        "x": 0.0,
+        "y": -1.76
+      },
+      "pixel": {
+        "x": 724.0,
+        "y": 895.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -1.76
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E09_Terreo/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 0.465
+        },
+        {
+          "x": 0.505,
+          "y": 0.465
+        },
+        {
+          "x": 0.505,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E09_Terreo/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -1.345,
+        "y": 0.315
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 2.45,
+        "y": 1.6
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E09_Terreo/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -1.445,
+        "y": -1.3225
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.65,
+        "y": 0.875
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E09_Terreo/Colisoes/Obstaculo_3",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.655,
+        "y": 1.365
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.75,
+        "y": 0.8
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "MoradoresFerrovale/mestra_guilda",
+      "type": "CircleCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.13,
+        "y": -0.248999983
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.4,
+        "y": 1.4
+      },
+      "size": null,
+      "radius": 0.13,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "MoradoresFerrovale/fv_operario_01",
+      "type": "CircleCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.495,
+        "y": -0.373999983
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.4,
+        "y": 1.4
+      },
+      "size": null,
+      "radius": 0.13,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

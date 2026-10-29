@@ -4,7 +4,7 @@ Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → somente 
 
 ## Retomada
 
-Regressões relatadas no teste dos interiores: [revisão de diálogos, colisões e escadas](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md). Checkpoint `49857b4` em branch própria antes do diagnóstico; soft lock da mansão sustentado por análise geométrica, correções ainda pendentes.
+Regressões relatadas no teste dos interiores: [revisão de diálogos, colisões e escadas](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md). Checkpoint `49857b4` antes do diagnóstico. Revisão ampliada:32 ambientes/30 imagens, fluxo lógico e geométrico, falhas prioritárias na mansão/casa de Sula/casa maior; correções ainda pendentes.
 
 Montagem atual dos interiores/NPCs: [lote de 29/10](planos-implementacao/2026-10-29-montagem-cidade-interiores-npcs.md). Estrutura salva e conferida; input, circulação e alinhamento aguardam teste manual. Imagem nova do corredor ficou excluída da montagem.
 

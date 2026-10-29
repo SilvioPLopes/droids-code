@@ -1,0 +1,204 @@
+{
+  "scene": "Interior_E02_Garagem",
+  "path": "Assets/Scenes/Interiores/Interior_E02_Garagem.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/e02-garagem.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.0,
+      "y": -1.655
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.0,
+          "y": -1.035
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E02_Garagem/Portas/saida_Porta_Garagem",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "City",
+      "arrival": {
+        "x": -15.5669594,
+        "y": -3.046633
+      },
+      "position": {
+        "x": 0.0,
+        "y": -1.76
+      },
+      "pixel": {
+        "x": 724.0,
+        "y": 895.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -1.76
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.119999886
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E02_Garagem/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E02_Garagem/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -0.195,
+        "y": 1.315
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 4.85,
+        "y": 1.0
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E02_Garagem/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -2.47,
+        "y": -0.285
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.2,
+        "y": 2.0
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E02_Garagem/Colisoes/Obstaculo_3",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 2.755,
+        "y": -0.335
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 0.75,
+        "y": 2.4
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "MoradoresFerrovale/ferreiro",
+      "type": "CircleCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 1.03,
+        "y": -0.199000031
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.4,
+        "y": 1.4
+      },
+      "size": null,
+      "radius": 0.13,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

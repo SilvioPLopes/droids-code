@@ -1,0 +1,526 @@
+{
+  "scene": "City",
+  "doors": [
+    {
+      "name": "SaidaCidade",
+      "target": "Game",
+      "enabled": true,
+      "active": true,
+      "trancada": true,
+      "arrival": {
+        "x": -18.0,
+        "y": 6.0
+      },
+      "position": {
+        "x": -0.91,
+        "y": -11.83
+      }
+    },
+    {
+      "name": "Entrada_CasaLip",
+      "target": "CasaLip",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -4.0
+      },
+      "position": {
+        "x": 8.89,
+        "y": -7.65
+      }
+    },
+    {
+      "name": "Porta_Prefeitura",
+      "target": "Interior_E16_Civico",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -0.867883563,
+        "y": -2.16266632
+      }
+    },
+    {
+      "name": "Porta_Casa01",
+      "target": "Interior_E06_Terreo",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -10.6832466,
+        "y": -7.46946
+      }
+    },
+    {
+      "name": "Porta_Casa02",
+      "target": "Interior_E05_Principal",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 2.005,
+        "y": -1.57999992
+      },
+      "position": {
+        "x": -4.21609449,
+        "y": -8.0443
+      }
+    },
+    {
+      "name": "Porta_Casa03_Provisoria",
+      "target": "Interior_E10_Casa03",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": 2.56479287,
+        "y": -8.043213
+      }
+    },
+    {
+      "name": "Porta_Casa04",
+      "target": "Interior_E10_Casa04",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": 4.51828432,
+        "y": -8.046645
+      }
+    },
+    {
+      "name": "Porta_Casa05",
+      "target": "Interior_E11_Casa05",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": 12.7419319,
+        "y": -7.9331
+      }
+    },
+    {
+      "name": "Porta_Casa06",
+      "target": "Interior_E11_Casa06",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.505,
+        "y": -1.705
+      },
+      "position": {
+        "x": 14.4418612,
+        "y": -7.834571
+      }
+    },
+    {
+      "name": "Porta_Casa07",
+      "target": "Interior_E00_Hall",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -6.47336149,
+        "y": -1.799619
+      }
+    },
+    {
+      "name": "Porta_Casa08",
+      "target": "Interior_E01_Hall",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -11.0676937,
+        "y": -1.79938734
+      }
+    },
+    {
+      "name": "Porta_Casa09",
+      "target": "Interior_E02_Principal",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -14.0627422,
+        "y": -1.72661746
+      }
+    },
+    {
+      "name": "Porta_Casa10",
+      "target": "Interior_E13_Hall",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": 4.29137468,
+        "y": 4.47631359
+      }
+    },
+    {
+      "name": "Porta_CasaMaior",
+      "target": "Interior_E09_Terreo",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.005,
+        "y": -1.705
+      },
+      "position": {
+        "x": 11.170805,
+        "y": -1.83004129
+      }
+    },
+    {
+      "name": "Porta_Garagem",
+      "target": "Interior_E02_Garagem",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -15.5669594,
+        "y": -1.726633
+      }
+    },
+    {
+      "name": "Porta_Mansao_Provisoria",
+      "target": "Interior_E03_Terreo",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": -1.495,
+        "y": -0.07999998
+      },
+      "position": {
+        "x": -14.0299911,
+        "y": 4.429911
+      }
+    },
+    {
+      "name": "Porta_PredioPlaca_A",
+      "target": "Interior_E08_Principal",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": -1.12,
+        "y": -1.705
+      },
+      "position": {
+        "x": 5.66625643,
+        "y": -1.8142947
+      }
+    },
+    {
+      "name": "Porta_PredioPlaca_B",
+      "target": "Interior_E08_Principal",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 1.08,
+        "y": -1.655
+      },
+      "position": {
+        "x": 6.96430874,
+        "y": -1.81914032
+      }
+    },
+    {
+      "name": "Porta_GeminadoAzul_A",
+      "target": "Interior_E04_UnidadeA",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.655
+      },
+      "position": {
+        "x": -6.594374,
+        "y": 4.314411
+      }
+    },
+    {
+      "name": "Porta_GeminadoAzul_B",
+      "target": "Interior_E04_UnidadeB",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.13,
+        "y": -1.45499992
+      },
+      "position": {
+        "x": -4.39387,
+        "y": 4.327174
+      }
+    },
+    {
+      "name": "Porta_CasaPorao_Esquerda",
+      "target": "Interior_E14_UnidadeA",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.005,
+        "y": -1.83
+      },
+      "position": {
+        "x": 8.790816,
+        "y": 4.537815
+      }
+    },
+    {
+      "name": "Porta_Porao",
+      "target": "Interior_E14_Porao",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": -1.155
+      },
+      "position": {
+        "x": 9.983611,
+        "y": 4.520485
+      }
+    },
+    {
+      "name": "Porta_CasaPorao_Direita",
+      "target": "Interior_E14_UnidadeB",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.005,
+        "y": -1.83
+      },
+      "position": {
+        "x": 10.9776068,
+        "y": 4.50608253
+      }
+    },
+    {
+      "name": "SaidaSuperior_Pendente",
+      "target": "",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "position": {
+        "x": -1.052097,
+        "y": 10.3100891
+      }
+    },
+    {
+      "name": "Porta_Casa02_Esquerda",
+      "target": "Interior_E05_Principal",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "arrival": {
+        "x": -1.87,
+        "y": -1.705
+      },
+      "position": {
+        "x": -6.11609459,
+        "y": -8.0443
+      }
+    }
+  ],
+  "build": [
+    {
+      "path": "Assets/Scenes/MainMenu.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Game.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Battle.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/City.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/CasaLip.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E10_Casa03.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E06_Terreo.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E06_Superior.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E06_Anexo.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E05_Principal.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E10_Casa04.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E11_Casa05.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E11_Casa06.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E09_Terreo.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E09_Superior.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E08_Principal.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E08_Superior.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E16_Civico.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E00_Hall.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E00_Patamar.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E00_Apartamento01.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E01_Hall.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E01_Apartamento01.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E01_Patamar.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E02_Principal.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E02_Garagem.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E03_Terreo.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E03_Superior.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E04_UnidadeA.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E04_UnidadeB.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E13_Hall.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E13_Apartamento01.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E13_Patamar.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E14_UnidadeA.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E14_Porao.unity",
+      "enabled": true
+    },
+    {
+      "path": "Assets/Scenes/Interiores/Interior_E14_UnidadeB.unity",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "scene": "CasaLip",
+  "path": "Assets/Scenes/CasaLip.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/LipCasa.jpg",
+    "width": 896.0,
+    "height": 1152.0,
+    "ppu": 100.0,
+    "position": {
+      "x": -0.03,
+      "y": -1.19
+    },
+    "scale": {
+      "x": 1.6,
+      "y": 1.5
+    }
+  },
+  "player": {
+    "position": {
+      "x": -0.568143368,
+      "y": -0.0290758163
+    },
+    "foot": [
+      {
+        "position": {
+          "x": -0.568143368,
+          "y": 1.21092415
+        },
+        "radius": 0.6,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "PortaDeSaidaCasa",
+      "enabled": true,
+      "active": true,
+      "trancada": true,
+      "target": "City",
+      "arrival": {
+        "x": 8.89,
+        "y": -9.0
+      },
+      "position": {
+        "x": 0.0,
+        "y": -4.0
+      },
+      "pixel": {
+        "x": 449.875,
+        "y": 763.3333
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 0.0,
+            "y": -4.0
+          },
+          "size": {
+            "x": 1.0,
+            "y": 1.0
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "GameObject",
+      "type": "PolygonCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.4,
+        "y": -0.65135
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": [
+        [
+          {
+            "x": 1.40764964,
+            "y": 0.365168929
+          },
+          {
+            "x": -1.17877257,
+            "y": 0.401015043
+          },
+          {
+            "x": -1.194518,
+            "y": -1.234654
+          },
+          {
+            "x": -1.11284053,
+            "y": -1.72466862
+          },
+          {
+            "x": -0.7724378,
+            "y": -1.325489
+          },
+          {
+            "x": 1.07354391,
+            "y": -1.4043951
+          },
+          {
+            "x": 1.3512001,
+            "y": -1.65859318
+          },
+          {
+            "x": 1.48320711,
+            "y": -1.23435068
+          }
+        ]
+      ]
+    },
+    {
+      "path": "GameObject (1)",
+      "type": "PolygonCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 5.19,
+        "y": -0.65135
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": [
+        [
+          {
+            "x": 6.00815,
+            "y": 0.58912313
+          },
+          {
+            "x": 5.74168634,
+            "y": 1.56705356
+          },
+          {
+            "x": 4.62988758,
+            "y": 2.13174653
+          },
+          {
+            "x": 3.94603324,
+            "y": 1.57195
+          },
+          {
+            "x": 3.83518147,
+            "y": 0.7283325
+          },
+          {
+            "x": 3.83666348,
+            "y": -1.18297219
+          },
+          {
+            "x": 4.00447655,
+            "y": -2.482667
+          },
+          {
+            "x": 4.189834,
+            "y": -2.03180575
+          },
+          {
+            "x": 5.863544,
+            "y": -2.09348464
+          },
+          {
+            "x": 5.91724539,
+            "y": -2.48550057
+          },
+          {
+            "x": 6.273207,
+            "y": -1.23435068
+          }
+        ]
+      ]
+    },
+    {
+      "path": "GameObject (2)",
+      "type": "PolygonCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -5.6,
+        "y": -1.09819
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": [
+        [
+          {
+            "x": -5.37005472,
+            "y": -0.5836299
+          },
+          {
+            "x": -6.55105639,
+            "y": -0.6358762
+          },
+          {
+            "x": -6.3921814,
+            "y": -3.82341719
+          },
+          {
+            "x": -5.39545727,
+            "y": -3.79786777
+          },
+          {
+            "x": -5.28768,
+            "y": -1.70895386
+          }
+        ]
+      ]
+    },
+    {
+      "path": "GameObject (3)",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -6.94,
+        "y": -3.98
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -6.82591772,
+          "y": 4.003062
+        },
+        {
+          "x": -6.63652372,
+          "y": -4.06533575
+        },
+        {
+          "x": 6.20048571,
+          "y": -3.97653675
+        },
+        {
+          "x": 6.164973,
+          "y": 3.95608473
+        },
+        {
+          "x": -6.60019541,
+          "y": 4.003062
+        }
+      ],
+      "polygon": null
+    }
+  ],
+  "special": [],
+  "visits": []
+}

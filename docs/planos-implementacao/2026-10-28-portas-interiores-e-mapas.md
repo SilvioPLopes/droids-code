@@ -4,6 +4,8 @@
 **Objetivo:** materializar os acessos coletados na City e coordenar interiores coerentes com CasaLip e melhoria real dos mapas City/Game/Battle para apresentação no zoom de jogo, avaliando versões 4K/8K.
 **Orquestração:** [índice de trabalho](../indice-trabalho.md) → [plano de desenvolvimento](../plano-desenvolvimento.md) → este plano. O plano geral continua sendo o orquestrador; não criar outro backlog concorrente. A [coleta de entradas](2026-10-17-auditoria-cenas.md#coleta-de-entradas-da-city--28102026) é a fonte única das coordenadas e das evidências; não copiá-las aqui.
 
+**Retomada de29/10 — continuidade:** a [revisão de colisões e acessos](2026-10-29-revisao-interiores-dialogos-colisoes.md#resultado-da-ampliação--32-ambientes-e-30-imagens-distintas) agora cobre32 ambientes/30 imagens. Destinos válidos não encerram o aceite: mansão, casa de Sula e casa maior têm falhas geométricas prioritárias; há portais deslocados e escadas/quartos sem continuação montada. Análise documental, sem correção dos assets.
+
 ## Escopo e preservação, registrados antes da edição
 
 **Permitido nesta execução:** criar este plano; atualizar referências no índice, plano geral e auditoria; criar somente o grupo `PortasMapeadas` e suas instâncias de `Assets/Prefabs/PortaTransicao.prefab` em `Assets/Scenes/City.unity`. Alvos: 21 acessos de prédios coletados e uma saída superior, total esperado 22 instâncias novas. As duas transições existentes (`Entrada_CasaLip` e `SaidaCidade`) permanecem intactas; nenhuma instância nova será conectada a destino fictício. Destino vazio mantém a montagem pendente, sem teleporte, conforme guarda existente em `TransicaoDeCena`.

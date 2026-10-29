@@ -1,0 +1,203 @@
+{
+  "scene": "Interior_E01_Patamar",
+  "path": "Assets/Scenes/Interiores/Interior_E01_Patamar.unity",
+  "background": {
+    "path": "Assets/sprites/Mapas/Interiores/matriz-predio-corredor-v1.png",
+    "width": 1448.0,
+    "height": 1086.0,
+    "ppu": 200.0,
+    "position": {
+      "x": 0.0,
+      "y": 0.0
+    },
+    "scale": {
+      "x": 1.0,
+      "y": 1.0
+    }
+  },
+  "player": {
+    "position": {
+      "x": 0.0,
+      "y": -1.655
+    },
+    "foot": [
+      {
+        "position": {
+          "x": 0.0,
+          "y": -1.035
+        },
+        "radius": 0.3,
+        "isTrigger": false
+      }
+    ]
+  },
+  "portals": [
+    {
+      "path": "E01_Patamar/Portas/escada_E01_Hall",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "Interior_E01_Hall",
+      "arrival": {
+        "x": 2.63,
+        "y": -0.405
+      },
+      "position": {
+        "x": 2.055,
+        "y": 0.765
+      },
+      "pixel": {
+        "x": 1135.0,
+        "y": 390.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": 2.055,
+            "y": 0.765
+          },
+          "size": {
+            "x": 0.75,
+            "y": 0.120000005
+          }
+        }
+      ]
+    },
+    {
+      "path": "E01_Patamar/Portas/apartamento",
+      "enabled": true,
+      "active": true,
+      "trancada": false,
+      "target": "Interior_E01_Apartamento01",
+      "arrival": {
+        "x": 0.0,
+        "y": -1.705
+      },
+      "position": {
+        "x": -1.87,
+        "y": 1.015
+      },
+      "pixel": {
+        "x": 350.0,
+        "y": 340.0
+      },
+      "colliders": [
+        {
+          "type": "BoxCollider2D",
+          "enabled": true,
+          "isTrigger": true,
+          "center": {
+            "x": -1.86999989,
+            "y": 1.015
+          },
+          "size": {
+            "x": 0.7499999,
+            "y": 0.119999945
+          }
+        }
+      ]
+    }
+  ],
+  "colliders": [
+    {
+      "path": "E01_Patamar/Colisoes/LimitesDoPiso",
+      "type": "EdgeCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": null,
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": [
+        {
+          "x": -3.145,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": 1.565
+        },
+        {
+          "x": 3.13,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": -1.885
+        },
+        {
+          "x": -3.145,
+          "y": 1.565
+        }
+      ],
+      "polygon": null
+    },
+    {
+      "path": "E01_Patamar/Colisoes/Obstaculo_1",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": -2.62,
+        "y": -1.11
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 0.9,
+        "y": 1.15
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    },
+    {
+      "path": "E01_Patamar/Colisoes/Obstaculo_2",
+      "type": "BoxCollider2D",
+      "enabled": true,
+      "active": true,
+      "center": {
+        "x": 0.48,
+        "y": 1.5025
+      },
+      "rotation": 0.0,
+      "scale": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "size": {
+        "x": 1.45,
+        "y": 1.575
+      },
+      "radius": 0.0,
+      "edgeRadius": 0.0,
+      "points": null,
+      "polygon": null
+    }
+  ],
+  "special": [
+    {
+      "path": "EscadaSuperiorReservada",
+      "pixel": {
+        "x": 820.0,
+        "y": 440.0
+      }
+    }
+  ],
+  "visits": []
+}
