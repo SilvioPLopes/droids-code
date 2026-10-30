@@ -1,0 +1,12 @@
+{
+  "Width": 1263,
+  "Height": 1246,
+  "PixelFormat": "Format32bppArgb",
+  "CornerAlpha": 0,
+  "RightBottomAlpha": 0,
+  "TorsoAlpha": 253,
+  "Frames": 1,
+  "Directions": 1,
+  "Facing": "three-quarter-left",
+  "Integrated": false
+}

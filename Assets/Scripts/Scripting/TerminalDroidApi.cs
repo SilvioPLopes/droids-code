@@ -9,11 +9,74 @@ namespace DroidsCode.Scripting
     public class TerminalDroidApi
     {
         private readonly Droid _droid;
+        private readonly GerenciadorDeEstado _estado;
+        private Dictionary<string, int> inventarioAntes;
+        private Dictionary<TipoDePeca, DroidPart> pecasAntes;
+        private int hpAntes;
         private readonly List<string> _logDaSessao = new List<string>();
 
-        public TerminalDroidApi(Droid droid)
+        public TerminalDroidApi(Droid droid, GerenciadorDeEstado estado = null)
         {
             _droid = droid;
+            _estado = estado;
+        }
+
+        public bool Equipar(string idItem)
+        {
+            if (_estado == null || _estado.DroidDoJogador != _droid) { Registrar("Inventário indisponível neste terminal."); return false; }
+            bool sucesso = ServicoDeEquipamento.TentarEquipar(_estado, idItem, out var mensagem);
+            Registrar(mensagem); return sucesso;
+        }
+
+        public bool Desequipar(string nomeSlot)
+        {
+            if (_estado == null || _estado.DroidDoJogador != _droid) { Registrar("Inventário indisponível neste terminal."); return false; }
+            string normalizado = (nomeSlot ?? "").Replace("ç", "c").Replace("Ç", "C");
+            if (!System.Enum.TryParse<TipoDePeca>(normalizado, true, out var slot) || !System.Enum.IsDefined(typeof(TipoDePeca), slot))
+            { Registrar("Slot inválido. Use cabeca, tronco, braco ou perna."); return false; }
+            bool sucesso = ServicoDeEquipamento.TentarDesequipar(_estado, slot, out var mensagem);
+            Registrar(mensagem); return sucesso;
+        }
+
+        public string ListarPecas()
+        {
+            var texto = new System.Text.StringBuilder("Peças disponíveis (ID | nome | slot | quantidade):\n");
+            if (_estado != null && _estado.DroidDoJogador == _droid)
+                foreach (var kv in _estado.Inventario)
+                {
+                    var item = CatalogoDeItens.Obter(kv.Key);
+                    if (kv.Value > 0 && item != null && item.Tipo == TipoDeItem.Equipavel)
+                        texto.AppendLine($"{item.Id} | {item.Nome} | {item.SlotDePeca} | x{kv.Value}");
+                }
+            texto.AppendLine("Instaladas:");
+            foreach (TipoDePeca slot in System.Enum.GetValues(typeof(TipoDePeca)))
+            {
+                var p = _droid.ObterPeca(slot);
+                texto.AppendLine($"{slot}: {(p == null ? "Vazio" : p.Nome + " [" + p.IdItem + "]")}");
+            }
+            var resultado = texto.ToString(); Registrar(resultado); return resultado;
+        }
+
+        internal void IniciarExecucaoEquipamentos()
+        {
+            if (_estado == null || _estado.DroidDoJogador != _droid) return;
+            inventarioAntes = new Dictionary<string, int>();
+            foreach (var kv in _estado.Inventario) inventarioAntes[kv.Key] = kv.Value;
+            pecasAntes = new Dictionary<TipoDePeca, DroidPart>();
+            foreach (TipoDePeca slot in System.Enum.GetValues(typeof(TipoDePeca))) pecasAntes[slot] = _droid.ObterPeca(slot);
+            hpAntes = _droid.Hp;
+        }
+
+        internal void ConcluirExecucaoEquipamentos(bool sucesso)
+        {
+            if (!sucesso && inventarioAntes != null)
+            {
+                _estado.CarregarInventario(inventarioAntes);
+                foreach (var kv in pecasAntes) _droid.EquiparPeca(kv.Key, kv.Value);
+                _droid.Hp = System.Math.Min(hpAntes, _droid.HpMax);
+                Registrar("Execução interrompida: alterações de equipamento e inventário desfeitas.");
+            }
+            inventarioAntes = null; pecasAntes = null;
         }
 
         // Ex. Lua: droid.subirAtributo("For", 1)

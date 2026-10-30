@@ -38,4 +38,4 @@
 
 **Estado final:** DroidsCode, City limpa e ativa, fora de Play, compilação parada/sem falha, zero objetos temporários da fixture. Backups em `output/menu-mundo-ilustrado/backup/`. Próximo passo: usuário avaliar apresentação e input real; preservar captura/reavaliar causa se rejeitar. Não executar migração novamente para gerar prévia.
 
-Método: [interfaces sobre imagens](../guias/interfaces-sobre-imagens.md); referência/análise: [artes disponíveis](2026-10-23-aproveitamento-artes-menus.md).
+Método: [interfaces sobre imagens](../guias/interfaces-sobre-imagens.md); referência/análise: [artes disponíveis](../historico/2026-10-23-aproveitamento-artes-menus.md).

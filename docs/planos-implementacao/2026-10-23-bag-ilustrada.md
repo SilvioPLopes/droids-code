@@ -28,7 +28,7 @@ Aceite: ícones/quantidades dentro dos slots, detalhe e ação legíveis, retorn
 
 **Escopo antes de editar:** criar somente imagem irmã em `Assets/UI/BagIlustrada/bag-conceito.png`, este plano e link no índice. Preservar originais/metas, cenas, prefab Canvas, scripts, demais menus e saves. Sem teste de uso de itens ou operação do Unity. Reversão: desreferenciar/remover somente os novos arquivos próprios se solicitado; nenhuma substituição de imagem aprovada.
 
-**Fontes necessárias:** [análise das artes](2026-10-23-aproveitamento-artes-menus.md), [método visual](../guias/interfaces-sobre-imagens.md), `Assets/Scripts/Menus/BagUIManager.cs` para identificar conteúdo existente; referência de acabamento em `Assets/UI/LojaIlustrada/loja-fundo.png` e menu novo. Não usar a imagem da loja como composição final da Bag.
+**Fontes necessárias:** [análise das artes](../historico/2026-10-23-aproveitamento-artes-menus.md), [método visual](../guias/interfaces-sobre-imagens.md), `Assets/Scripts/Menus/BagUIManager.cs` para identificar conteúdo existente; referência de acabamento em `Assets/UI/LojaIlustrada/loja-fundo.png` e menu novo. Não usar a imagem da loja como composição final da Bag.
 
 ## Análise
 

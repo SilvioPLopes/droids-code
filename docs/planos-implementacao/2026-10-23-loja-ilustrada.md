@@ -66,4 +66,4 @@ Usuário escolheu executar a ideia da loja e forneceu capturas: lista e botões 
 
 **Próximo passo:** usuário abrir a loja no jogo para avaliar aparência e input real. Se rejeitar, preservar a evidência e reavaliar a causa antes de ajustes. Não salvar novamente a City de modo amplo sem conferir serializações externas, nem reexecutar a montagem para obter prévia.
 
-Método: [guia](../guias/interfaces-sobre-imagens.md); referências: [análise](2026-10-23-aproveitamento-artes-menus.md). Autorização de liberdade criativa recebida; execução local por um agente.
+Método: [guia](../guias/interfaces-sobre-imagens.md); referências: [análise](../historico/2026-10-23-aproveitamento-artes-menus.md). Autorização de liberdade criativa recebida; execução local por um agente.

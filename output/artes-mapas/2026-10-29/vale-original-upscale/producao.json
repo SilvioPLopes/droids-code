@@ -1,0 +1,13 @@
+{
+  "outputSha256": "C6AB58530A385FBE0CCFF75E46725FE36BB31D412A833CC83F885273139FD20F",
+  "source": "Assets/sprites/Mapas/ferrovale.jpg",
+  "tool": "upscayl-ncnn",
+  "release": "20251207-174704",
+  "threads": "1:1:1",
+  "scale": 4,
+  "height": 3072,
+  "model": "realesr-animevideov3-x4",
+  "tile": 128,
+  "sourceSha256": "C5A77485E7693DAE32F1C688AC55F355557DC41737A7DA7CCF23F25A1FA0E919",
+  "width": 5376
+}

@@ -80,7 +80,7 @@ Usuário pediu visualizar a imagem proposta. Escopo autorizado nesta rodada: cri
 
 **Escopo desta etapa, antes de editar:** somente este plano e seu link em `docs/indice-trabalho.md`. Nenhum script, sprite, meta, cena, prefab, save ou balanceamento será alterado. Reversão documental: retirar apenas os trechos próprios se solicitado, preservando trabalho anterior. Não gerar imagem ainda: pedido atual é analisar com o usuário.
 
-**Fontes necessárias:** [análise das artes](2026-10-23-aproveitamento-artes-menus.md), [interface compartilhada](../contextos/sistemas/interface.md), `TelaDeStatusManager`, `TelaDeDroidManager`, `Droid`, `TabelaDeCombate`, `TerminalDroidApi`, `SistemaDeProgressao`, `ProgressaoDeNivel`, `PontosDeProgressao`, inicialização em `GerenciadorDeEstado` e chamadas em `CombatEngine`/`BattleManager`.
+**Fontes necessárias:** [análise das artes](../historico/2026-10-23-aproveitamento-artes-menus.md), [interface compartilhada](../contextos/sistemas/interface.md), `TelaDeStatusManager`, `TelaDeDroidManager`, `Droid`, `TabelaDeCombate`, `TerminalDroidApi`, `SistemaDeProgressao`, `ProgressaoDeNivel`, `PontosDeProgressao`, inicialização em `GerenciadorDeEstado` e chamadas em `CombatEngine`/`BattleManager`.
 
 ## Conteúdo atual e função demonstrada no código
 

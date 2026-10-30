@@ -1,0 +1,7 @@
+Game : somente blocos permitidos 114:450786053; geometria e demais objetos preservados.
+Battle : somente blocos permitidos 114:164412323, 114:211052730; geometria e demais objetos preservados.
+Assets/Prefabs/VisualInimigoBattle.prefab : referências locais fechadas e meta presente: True.
+Assets/Prefabs/ZonaEncontro.prefab : referências locais fechadas e meta presente: True.
+B-v2 referenciada por GUID na cena/prefab, com meta Single/Point/sem mipmap/NPOT.
+Hashes protegidos de City/CasaLip/Canvas/Bag/Status/catálogo/terminal preservados.
+Somente conferência estrutural de arquivos; NÃO compila C#, importa assets ou testa comportamento no Unity.

@@ -1,54 +1,59 @@
 # Índice de trabalho
 
-Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → somente os subcontextos necessários. Use os links para pesquisar; não leia todos os documentos em sequência.
+Leia [AGENTS.md](../AGENTS.md) → este índice → plano da tarefa → apenas os subcontextos necessários. Andamento e evidências ficam nas fontes vinculadas; histórico é consulta sob demanda.
+
+## Como a IA deve pesquisar
+
+1. Identifique o alvo, o resultado pedido e as restrições. Escolha a entrada correspondente na tabela abaixo; os links são alternativas de consulta, não uma lista obrigatória de leitura.
+2. Abra o plano da tarefa e localize escopo, estado, aceite e próximo passo. Leia apenas o contrato de cena/sistema necessário. Instruções já disponíveis na sessão não precisam ser relidas sem mudança.
+3. Se faltar informação, formule a dúvida e procure o termo/ID em caminhos delimitados, por exemplo: `rg -n 'presença|rotina' docs/planos-implementacao/2026-10-28-moradores-e-rotinas-ferrovale.md`. Abra a seção pertinente, sem despejar toda a pasta docs no contexto.
+4. Abra o trecho encontrado e seu contexto suficiente para distinguir proposta, execução e teste. Não siga todos os links em cadeia. Amplie a busca somente quando a fonte escolhida não responder à dúvida, registrando o que falta.
+5. Se houver conflito, a instrução atual do usuário delimita a tarefa; compare datas e escopos dos registros. Uma seção chamada “retomada vigente” ou um checkbox isolado não prova o estado atual. Para corrigir comportamento, confira a evidência necessária no alvo real antes de editar.
+6. Pare a pesquisa documental quando souber o escopo, contrato aplicável, pendência e validação mínima; correções também exigem causa sustentada. Ao terminar, atualize o plano existente com resultado, limite da validação e próximo passo. Não replique a narrativa em vários documentos.
+
+## Semáforo de consulta
+
+| Sinal | Fontes / situação | Conduta |
+|---|---|---|
+| **VERDE — entrada da tarefa** | Este índice, plano específico e contrato pertinente | Consultar o necessário para executar o pedido; verde não certifica que todas as seções estejam atualizadas. |
+| **AMARELO — referência dirigida** | Guias, melhorias/backlog, outros planos, problemas | Abrir para uma dúvida concreta. Checklists e propostas precisam ser conciliados com entregas posteriores. |
+| **VERMELHO — fora da carga inicial** | `historico/`, `revisoes/`, `contextos/analises/`, backups e versões anteriores | Consultar somente para evidência, regressão, proveniência ou reversão. Não repetir ações antigas como tarefas novas. |
+| **VERMELHO — instrução possivelmente superada** | Premissas antigas, propostas não aprovadas, validações de outra data/condição, estados contraditórios | Suspender o uso daquele trecho como ordem; localizar a decisão/evidência que resolve o conflito. Não concluir que o arquivo inteiro é inútil. |
+
+Alertas concretos e classificação dos **65 documentos fora de enredo** estão no [plano documental](planos-implementacao/2026-10-29-refatoracao-documentacao.md#riscos-de-consulta-confirmados). Essa matriz é ferramenta de limpeza, não leitura obrigatória em tarefas de jogo. Enredo ficou fora desta revisão; consulte-o apenas quando a tarefa narrativa exigir.
 
 ## Retomada
 
-Regressões relatadas no teste dos interiores: [revisão de diálogos, colisões e escadas](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md). Checkpoint `49857b4` antes do diagnóstico. Revisão ampliada:32 ambientes/30 imagens, fluxo lógico e geométrico, falhas prioritárias na mansão/casa de Sula/casa maior; correções ainda pendentes.
+Organização documental: [inventário completo, riscos e consolidações propostas](planos-implementacao/2026-10-29-refatoracao-documentacao.md). Para casas e NPCs, começar pela [matriz de identidade e nomenclatura](planos-implementacao/2026-10-29-refatoracao-nomenclatura-ferrovale.md).
 
-Montagem atual dos interiores/NPCs: [lote de 29/10](planos-implementacao/2026-10-29-montagem-cidade-interiores-npcs.md). Estrutura salva e conferida; input, circulação e alinhamento aguardam teste manual. Imagem nova do corredor ficou excluída da montagem.
-
-Portas coletadas, interiores e mapas em alta resolução: seguir o [plano de portas, interiores e mapas](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md), coordenado pelo [plano de desenvolvimento](plano-desenvolvimento.md). A coleta de coordenadas permanece na auditoria; artes novas e melhoria de City/vale/Battle têm etapas e aceite visual próprios.
-
-A reorganização documental foi aplicada em17/10; revisão leve de retomada em23/10. Para menus/equipamentos, seguir o plano específico abaixo; para prefabs e próximos trabalhos de Game/vale e Battle, seguir a [atualização da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) e o [plano de desenvolvimento](plano-desenvolvimento.md). Gameplay da CasaLip continua no [plano da casa](planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente). Ler somente o recorte necessário; entregas novas não encerram automaticamente as pendências históricas.
+Interiores: [revisão de diálogos, colisões e circulação](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md). O registro da montagem fica vinculado no histórico; não repetir o lote nem considerar circulação aprovada.
 
 ## Navegação por necessidade
 
-| Necessidade | Fonte | Chaves de busca |
-|---|---|---|
-| Auditoria das cinco cenas e objetos | [Plano da auditoria](planos-implementacao/2026-10-17-auditoria-cenas.md) | `montagem`, `referências`, `integração` |
-| Portas da City, interiores e melhoria dos mapas para 4K/8K | [Plano de portas, interiores e mapas](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md) | `PortasMapeadas`, `geminadas`, `CasaLip`, `4K`, `8K`, `VIS-002` |
-| Interiores da cidade por fachada; materiais e condição econômica | [Concepção de Ferrovale](planos-implementacao/2026-10-28-concepcao-interiores-ferrovale.md) | `15 conjuntos`, `22 entradas`, `E16`, `metal`, `azulejo`, `terraço` |
-| Moradores por casa, serviços, rotinas e geração LPC | [Moradores de Ferrovale](planos-implementacao/2026-10-28-moradores-e-rotinas-ferrovale.md), [guia LPC](guias/criacao-sprites-personagens-lpc.md) | `Sula`, `Nilce`, `Ivo`, `Benta`, `Zeca`, `receita`, `Generic` |
-| Prefabs disponíveis; próximos trabalhos do vale e Battle | [Atualização de reutilização](planos-implementacao/2026-10-17-auditoria-cenas.md#atualização-documental-e-reutilização--23102026) | `PREFAB-001`, `Game`, `MetaValle`, `UI-004`, `COM-003` |
-| Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) | `Ambiente e relações`, `Subcontextos` |
-| Contrato da casa | [CasaLip](contextos/cenas/casalip.md) | `ControlePuzzleAgua`, `p_agua_casa` |
-| Configuração específica da cidade | [City](contextos/cenas/city.md) | `1.33`, `NomeNPC`, `miniatura`, `AreaDialogo` |
-| Documentar configuração de outra cena | [Modelo de contexto de cena](contextos/cenas/_modelo-cena.md) | `atores`, `interface`, `integração` |
-| UI compartilhada | [Interface](contextos/sistemas/interface.md) | `Canvas`, `Runner`, `origem` |
-| Apresentação visual das telas e menus | [Plano da apresentação](planos-implementacao/2026-10-24-apresentacao-telas.md) | `PowerPoint`, `slides`, `capturas` |
-| Terminal sobre a arte do usuário | [Plano do terminal](planos-implementacao/2026-10-22-terminal-ilustrado.md), [contrato](contextos/sistemas/interface.md#terminal-ilustrado) | `ApresentacaoTerminalIlustrado`, `1536`, `PainelTerminal` |
-| Repetir o método visual em outras interfaces | [Interfaces sobre imagens](guias/interfaces-sobre-imagens.md) | `legibilidade`, `arte`, `controles`, `ficha reutilizável` |
-| Artes disponíveis para loja, status e Droid | [Análise de aproveitamento](planos-implementacao/2026-10-23-aproveitamento-artes-menus.md) | `novos`, `ícones`, `molduras`, `combinações` |
-| Loja ilustrada na City | [Plano e retomada](planos-implementacao/2026-10-23-loja-ilustrada.md) | `LojaUIManager`, `seleção`, `Gold`, `compra`, `venda` |
-| Menu do mundo ilustrado com oito opções | [Plano e validação](planos-implementacao/2026-10-23-menu-mundo-ilustrado.md) | `PainelMenuMundo`, `duas colunas`, `Carregar`, `Opções` |
-| Bag ilustrada: montagem e referências | [Plano e estado da integração](planos-implementacao/2026-10-23-bag-ilustrada.md) | `grade`, `paginação`, `ApresentacaoBagIlustrada`, `bag-conceito` |
-| Status: atributos e proposta visual | [Análise do Status](planos-implementacao/2026-10-23-status-ilustrado.md) | `Droid`, `seis atributos`, `10.jfif`, `técnicas`, `pontos` |
-| Menu do Droid: peças e aparência em camadas | [Análise e estrutura proposta](planos-implementacao/2026-10-23-droid-ilustrado.md) | `equipamentos`, `sobreposição`, `gabarito`, `perfil de corpo`, `persistência` |
-| Equipar/desequipar Apollo, IDs e localização das artes | [Guia de equipamentos](guias/equipamentos-apollo.md) | `droid.equipar`, `droid.desequipar`, `v7`, `Assets/UI` |
-| Localizar ou trocar a sprite de um item | [Guia de ícones](guias/icones-de-itens.md), [plano](planos-implementacao/2026-10-23-sprites-unicas-itens.md) | `ID`, `CatalogoVisualDeItens`, `VisuaisDeItens`, `Recortes` |
-| Mensagens na caixa de diálogo e falha de carregar | [Diagnóstico vigente](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md), [diretriz de interface](contextos/sistemas/interface.md#diretriz-de-mensagens-ao-jogador--definida-em-22102026) | `Salvar`, `Carregar`, `primeira tentativa`, `bloqueio` |
-| Persistência | [Estado e save](contextos/sistemas/estado-e-save.md) | `MigrarDados`, `ato1_casa_resolvida` |
-| Batalha e checkpoint de exploração | [Combate](contextos/sistemas/combate.md) | `TentarPrepararBatalha`, `FinalizarBatalha` |
-| Operar o conector | [MCP](guias/operacao-mcp.md) | `timeout`, `dry-run`, `Segurança` |
-| Prioridades | [Plano de desenvolvimento](plano-desenvolvimento.md) | `INT-001`, `UI-003`, `TER-001` |
-| Backlog detalhado de melhorias | [Plano de melhorias e atualizações](planos-implemnentação/melhorias/README.md) | `EST-01`, `INV-01`, `COM-04`, `COM-05`, `energia`, `recarga` |
-| Iniciar uma tarefa | [Modelo](planos-implementacao/_modelo-tarefa.md) | `escopo`, `aceite`, `retomada` |
-| Configuração e percursos | [Montagem](guias/montagem-ato-1.md), [validação](guias/validacao-jogo.md) | Pesquisar apenas cena/sistema envolvido; há etapas herdadas |
-| Evidências da correção | [Revisão de 17/10](revisoes/casalip-validacao-2026-10-17.md) | `C01` a `C10`, `Atualização` |
-| Diagnóstico anterior | [Revisão da casa](revisoes/casalip.md), [porta](problemas/casalip-retorno-porta-trancada.md), [apresentação](problemas/casalip-apresentacao-dialogo.md) | Consultar para reprodução ou decisão anterior |
-| Narrativa | [Enredo](enredo/TCC_-_ENREDO_v2.md), [adendo](enredo/TCC_-_ENREDO_v2_ADENDO.md) | O adendo prevalece |
-| Assets de personagens | [Catálogo visual](../Assets/sprites/Entities/Characters/Documentation/character-catalog.md) | `idle`, `walk`, `placeholder` |
-| Histórico e inventários antigos | [Índice histórico](historico/README.md), [contexto anterior](historico/2026-10-17-contexto-antes-hierarquia.md) | Consulta sob demanda; não usar como estado atual |
+| Necessidade | Fonte de entrada |
+|---|---|
+| Prioridades e backlog | [Plano de desenvolvimento](plano-desenvolvimento.md), [melhorias por tema](planos-implementacao/melhorias/README.md) |
+| Arquitetura e relações entre sistemas | [Contexto do projeto](contexto-projeto.md) |
+| Casas, NPCs, identidade e presença única | [Matriz e plano de Ferrovale](planos-implementacao/2026-10-29-refatoracao-nomenclatura-ferrovale.md) |
+| Portas e qualidade dos mapas City/vale/Battle | [Plano de mapas e interiores](planos-implementacao/2026-10-28-portas-interiores-e-mapas.md) |
+| Fachadas, materiais e ocupação | [Concepção](planos-implementacao/2026-10-28-concepcao-interiores-ferrovale.md), [moradores e vínculos](planos-implementacao/2026-10-28-moradores-e-rotinas-ferrovale.md) |
+| Colisões, escadas e diálogos dos interiores | [Revisão vigente](planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md) |
+| CasaLip: contrato e correções | [Contexto](contextos/cenas/casalip.md), [retomada da tarefa](planos-implementacao/2026-10-16-correcao-casalip.md#retomada-vigente) |
+| City: montagem e interação | [Contrato City](contextos/cenas/city.md) |
+| Auditoria de cenas e reutilização de prefabs | [Auditoria e pendências](planos-implementacao/2026-10-17-auditoria-cenas.md) |
+| UI compartilhada e método de composição | [Contrato](contextos/sistemas/interface.md), [interfaces sobre imagens](guias/interfaces-sobre-imagens.md) |
+| Menus de exploração: escolher só o painel envolvido | [Terminal](planos-implementacao/2026-10-22-terminal-ilustrado.md), [mundo](planos-implementacao/2026-10-23-menu-mundo-ilustrado.md), [loja](planos-implementacao/2026-10-23-loja-ilustrada.md), [Bag](planos-implementacao/2026-10-23-bag-ilustrada.md), [Status](planos-implementacao/2026-10-23-status-ilustrado.md), [Droid](planos-implementacao/2026-10-23-droid-ilustrado.md) |
+| Equipamentos e ícones | [Equipamentos Apollo](guias/equipamentos-apollo.md), [ícones de itens](guias/icones-de-itens.md), [aceite dos ícones](planos-implementacao/2026-10-23-sprites-unicas-itens.md) |
+| Salvar/carregar e mensagens | [Estado e save](contextos/sistemas/estado-e-save.md), [diagnóstico/retomada](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md) |
+| Batalha e sua interface | [Contrato de combate](contextos/sistemas/combate.md), [artes e menus Battle](planos-implementacao/2026-10-29-battle-artes-menus.md) |
+| Evento do boss no vale | [Lógica, prefab e técnicas](planos-implementacao/2026-10-29-evento-boss-vale.md) |
+| Sprites de personagens | [Guia LPC](guias/criacao-sprites-personagens-lpc.md), [catálogo visual](../Assets/sprites/Entities/Characters/Documentation/character-catalog.md) |
+| Direção visual de robôs, chefe e inimigos | [Guia de arte e prompts](guias/direcao-arte-robos-e-inimigos.md), [revisão e proposta do Ato 1](planos-implementacao/2026-10-29-direcao-visual-inimigos-ato1.md) |
+| Narrativa | [Enredo](enredo/TCC_-_ENREDO_v2.md), [adendo](enredo/TCC_-_ENREDO_v2_ADENDO.md); o adendo prevalece |
+| Montagem e validação por percurso | [Guia de montagem](guias/montagem-ato-1.md), [validação](guias/validacao-jogo.md); conferir a época de cada etapa |
+| Apresentação das telas | [Plano da apresentação](planos-implementacao/2026-10-24-apresentacao-telas.md) |
+| Operar o conector | [Procedimento MCP](guias/operacao-mcp.md) |
+| Iniciar tarefa ou contexto de cena | [Modelo de tarefa](planos-implementacao/_modelo-tarefa.md), [modelo de cena](contextos/cenas/_modelo-cena.md) |
+| Evidências e histórico | [Índice histórico](historico/README.md), [validação CasaLip](revisoes/casalip-validacao-2026-10-17.md) |
 
-Andamento fica no plano da tarefa. Evidências detalhadas ficam em revisões; este índice mantém caminhos, sem copiar resultados. A City tem contrato próprio; ideias de NPCs andando ainda não são implementação autorizada.
+Planos em `planos-implementacao/` podem conter propostas ou testes pendentes; estar nessa pasta não comprova implementação nem aprovação visual. Rotinas de NPCs dependem do escopo do plano correspondente.

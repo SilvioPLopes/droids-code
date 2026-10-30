@@ -1,0 +1,225 @@
+🎮 Droids Code — Criação e organização de sprites dos personagens
+
+1. Contexto do projeto
+
+Estou desenvolvendo um jogo chamado Droids Code, um RPG educativo com combates por turnos, ambientado em um universo de ficção científica com elementos de Industrial Sci-Fi, Cyberpunk e Tech-Noir.
+
+Vou fornecer dois recursos:
+
+1. O documento com o enredo completo do jogo, que contém informações sobre os personagens, suas personalidades, características físicas, histórias e relações.
+2. O Universal LPC Spritesheet Character Generator, disponível em:
+   https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/#sex=male&body=Body_Color_light&head=Human_Male_light&expression=Neutral_light
+
+O gerador utiliza peças modulares de pixel art para construir personagens, permitindo combinar diferentes elementos visuais, como corpo, cabeça, cabelo, roupas e outros componentes disponíveis.
+
+2. Objetivo principal
+
+Sua missão é transformar todos os personagens identificados no enredo em personagens visuais construídos com os recursos do Universal LPC Character Generator.
+
+A relação deve ser direta:
+
+- Personagem descrito no enredo → personagem visual correspondente no gerador.
+- Características físicas descritas → seleção das peças visuais mais compatíveis.
+- Vestimentas descritas → combinação das roupas e acessórios disponíveis.
+- Identidade e personalidade → preservação dos elementos visuais que diferenciam cada personagem.
+
+Não quero apenas uma lista de sugestões. Quero que você realize o trabalho de identificação, montagem, organização e documentação dos personagens.
+
+3. Etapa 1 — Análise completa do enredo
+
+Leia integralmente o documento do enredo antes de começar a montar os personagens.
+
+Identifique todos os personagens mencionados, incluindo:
+
+- Protagonistas.
+- Personagens secundários.
+- NPCs.
+- Aliados.
+- Antagonistas.
+- Personagens que aparecem em missões específicas.
+- Personagens mencionados em diálogos ou acontecimentos importantes.
+
+Para cada personagem, extraia as seguintes informações:
+
+- Nome.
+- Função narrativa.
+- Idade ou faixa etária, caso informada.
+- Aparência física.
+- Tom de pele.
+- Tipo e cor do cabelo.
+- Formato e características do rosto.
+- Vestimentas.
+- Acessórios.
+- Características visuais marcantes.
+- Personalidade e como ela pode ser representada visualmente.
+- Localização ou contexto em que aparece.
+- Informações que ainda não foram definidas no enredo.
+
+Não invente informações como se fossem fatos estabelecidos pela história. Quando uma característica não estiver especificada, identifique-a como uma decisão de design necessária.
+
+4. Etapa 2 — Mapeamento dos personagens para o gerador
+
+Utilize o Universal LPC Character Generator como referência para montar cada personagem.
+
+Repositório e ferramenta:
+https://liberatedpixelcup.github.io/Universal-LPC-Spritesheet-Character-Generator/
+
+Para cada personagem, procure os elementos disponíveis que melhor correspondam à descrição original.
+
+Considere, conforme os recursos disponíveis:
+
+- Sexo ou apresentação visual do personagem.
+- Tipo de corpo.
+- Tom de pele.
+- Cabeça e características faciais.
+- Expressão.
+- Cabelo e barba.
+- Camisas, calças e outras roupas.
+- Calçados.
+- Armaduras, equipamentos e acessórios.
+- Armas e objetos visuais, quando aplicáveis.
+
+Nem todas as categorias necessariamente estarão disponíveis para todas as combinações. Verifique as opções reais do gerador antes de definir a composição.
+
+Crie uma tabela de correspondência com estas colunas:
+
+Personagem do enredo| Característica original| Peça visual selecionada| Justificativa
+Nome do personagem| Cabelo castanho| Cabelo castanho disponível| Preserva a aparência descrita
+Nome do personagem| Roupa de mecânico| Roupa mais próxima disponível| Representa sua profissão
+Nome do personagem| Expressão séria| Expressão compatível disponível| Reforça sua apresentação visual
+
+Os exemplos acima são apenas ilustrativos. Utilize as informações reais do enredo.
+
+5. Etapa 3 — Construção efetiva dos personagens
+
+Quero que você vá além da análise textual.
+
+Para cada personagem:
+
+1. Configure os elementos correspondentes no gerador.
+2. Combine as peças disponíveis para produzir a aparência mais fiel possível.
+3. Verifique se os elementos escolhidos funcionam juntos.
+4. Preserve as diferenças visuais entre personagens.
+5. Utilize o mesmo padrão de proporções e estilo pixel art em todo o elenco.
+6. Registre a configuração final utilizada em cada montagem.
+7. Exporte ou salve os sprites finais quando a ferramenta e o ambiente de execução permitirem.
+
+Importante: não se limite a me ensinar a usar o site. Tente realizar as montagens efetivamente utilizando os recursos disponíveis no seu ambiente.
+
+Se for possível automatizar a interação com o gerador, faça isso de maneira controlada. Caso o ambiente não permita acessar ou manipular diretamente o site, identifique a limitação e utilize uma alternativa técnica viável, como trabalhar com os arquivos de spritesheet disponíveis publicamente no projeto, respeitando suas licenças.
+
+Não afirme que um personagem foi montado ou exportado se isso não tiver sido realizado e verificado.
+
+6. Etapa 4 — Fidelidade visual ao enredo
+
+A história é a fonte principal de referência.
+
+Siga estas prioridades:
+
+1. Fidelidade às características físicas explicitamente descritas.
+2. Fidelidade às roupas e aos acessórios estabelecidos.
+3. Coerência com a função narrativa e o universo do jogo.
+4. Consistência com o estilo visual dos demais personagens.
+5. Aproximação estética quando não existir uma peça idêntica no gerador.
+
+Se uma peça exata não estiver disponível, escolha a alternativa mais próxima e registre a diferença.
+
+Não altere a aparência de um personagem apenas para deixá-lo mais bonito ou genérico.
+
+Caso o enredo não forneça informações suficientes para uma escolha importante, apresente uma proposta de design identificada como sugestão, sem confundi-la com uma informação canônica.
+
+7. Etapa 5 — Organização dos arquivos
+
+Organize os resultados de maneira adequada para o desenvolvimento do Droids Code.
+
+Utilize, se compatível com a estrutura existente, uma organização semelhante a esta:
+
+DroidsCode/
+└── Assets/
+    └── Characters/
+        ├── Protagonist/
+        │   ├── sprite.png
+        │   ├── spritesheet.png
+        │   └── character-config.md
+        ├── NPCs/
+        │   └── NomeDoPersonagem/
+        │       ├── sprite.png
+        │       ├── spritesheet.png
+        │       └── character-config.md
+        ├── Antagonists/
+        └── Documentation/
+            ├── character-catalog.md
+            └── sprite-mapping.md
+
+Adapte a estrutura caso o projeto já possua uma organização de pastas definida.
+
+Para cada personagem, quando os recursos permitirem, gere:
+
+- Um sprite individual ou imagem de referência.
+- O spritesheet completo, se disponível.
+- A configuração das peças utilizadas.
+- O nome e a identificação do personagem.
+- Uma descrição das características visuais.
+- Uma lista de elementos aproximados ou ainda pendentes.
+- A fonte dos recursos utilizados e suas respectivas licenças.
+
+Não sobrescreva arquivos existentes sem verificar seu conteúdo.
+
+8. Etapa 6 — Consistência para uso no jogo
+
+Considere que os personagens serão utilizados em um RPG com movimentação e combates por turnos.
+
+Verifique:
+
+- Dimensões consistentes entre personagens equivalentes.
+- Proporções e alinhamento dos sprites.
+- Fundo transparente quando apropriado.
+- Preservação da estética de pixel art.
+- Compatibilidade dos spritesheets com a estrutura de animação planejada.
+- Disponibilidade das direções e animações necessárias, quando suportadas.
+- Nomenclatura consistente dos arquivos.
+
+Não invente animações ou direções que não existam nos arquivos exportados. Documente quais recursos estão disponíveis e quais precisarão ser produzidos posteriormente.
+
+9. Etapa 7 — Catálogo final
+
+Ao concluir o trabalho, produza um catálogo completo com:
+
+A. Lista de personagens
+
+Todos os personagens identificados no enredo, agrupados por importância ou função narrativa.
+
+B. Correspondência visual
+
+Para cada personagem, explique quais peças do gerador foram utilizadas e por que foram escolhidas.
+
+C. Arquivos gerados
+
+Informe os caminhos reais dos sprites, imagens, configurações e documentos produzidos.
+
+D. Pendências
+
+Liste os personagens que não puderam ser montados completamente, as peças ausentes e as limitações encontradas.
+
+E. Próximas etapas
+
+Indique o que ainda precisa ser feito para integrar os sprites ao jogo, sem executar alterações destrutivas no projeto.
+
+10. Regras obrigatórias
+
+- Analise todo o enredo antes de iniciar a montagem.
+- Não ignore personagens secundários.
+- Não substitua personagens específicos por modelos genéricos sem justificar.
+- Não invente opções inexistentes no gerador.
+- Não declare que gerou arquivos que não existem.
+- Preserve a consistência visual do universo de Droids Code.
+- Não altere o enredo para justificar escolhas estéticas.
+- Registre as decisões de design que não estiverem definidas na história.
+- Respeite as licenças e os créditos dos recursos utilizados.
+- Priorize a execução real do trabalho em vez de fornecer apenas instruções teóricas.
+
+11. Resultado esperado
+
+Ao final, quero ter um elenco visual organizado do Droids Code, no qual cada personagem do enredo tenha um equivalente visual construído com as peças do Universal LPC Character Generator, acompanhado de sua configuração e dos arquivos gerados quando tecnicamente possível.
+
+Comece lendo o enredo completo. Em seguida, identifique o elenco, crie o mapeamento visual e execute a montagem dos personagens em etapas verificáveis.

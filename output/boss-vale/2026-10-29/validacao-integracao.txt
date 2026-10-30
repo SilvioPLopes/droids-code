@@ -1,0 +1,1 @@
+System.String: "OK: Battle escolheu DroidDoIvo, HP200, arte v2 e fuga bloqueada em cena de prévia; sem turnos/saves."

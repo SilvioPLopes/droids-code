@@ -1,0 +1,45 @@
+{
+    "versao": 7,
+    "droid": {
+        "nome": "Heroi",
+        "hp": 30,
+        "hpMaxBase": 30,
+        "energiaAtual": 100,
+        "energiaMaxima": 100,
+        "statsFor": 5,
+        "statsAgi": 0,
+        "statsVit": 3,
+        "statsInt": 0,
+        "statsDex": 0,
+        "statsLuk": 0,
+        "pontosDisponiveis": 0,
+        "nivel": 1,
+        "experiencia": 0,
+        "tecnicas": [
+            {
+                "nome": "Ataque Basico",
+                "nivelDeDano": 1,
+                "efeitosDeAtributo": [],
+                "efeitosDeDanoPorTurno": []
+            }
+        ],
+        "pecas": []
+    },
+    "posicaoX": 0.0,
+    "posicaoY": -1.9199999570846558,
+    "posicaoZ": 0.0,
+    "cena": "Interior_E10_Casa03",
+    "flagsDeHistoria": [],
+    "itens": [
+        {
+            "id": "pocao_pequena",
+            "quantidade": 3
+        },
+        {
+            "id": "pocao_media",
+            "quantidade": 1
+        }
+    ],
+    "gold": 0,
+    "contadores": []
+}

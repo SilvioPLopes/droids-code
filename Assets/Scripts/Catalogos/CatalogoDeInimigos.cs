@@ -194,8 +194,10 @@ namespace DroidsCode.Combat
                 {
                     Id = IdDroidDoIvo,
                     Nome = "Droid Improvisado",
-                    HpMax = 95, Ataque = 13, Defesa = 5,
-                    Hit = 14, Flee = 6, ChanceCritica = 8f, ChanceDeResistirEfeito = 5f,
+                    // Boss de contenção: robusto, mas com carga e descanso anunciados.
+                    // Balanceamento inicial para upgrades/técnicas; ver plano evento-boss-vale.
+                    HpMax = 200, Ataque = 18, Defesa = 10,
+                    Hit = 22, Flee = 4, ChanceCritica = 5f, ChanceDeResistirEfeito = 25f,
                     RecompensaXp = 300, GoldMinimo = 20, GoldMaximo = 40,
                     EhChefe = true, EhUnico = true, PermiteFugir = false,
                     Descricao = "Partes de um droid industrial antigo, soldadas com placas da própria estação. Não é um droid de guerra de verdade. É pior — é algo feito por desespero, sem nenhuma das salvaguardas que um projeto de combate teria.",

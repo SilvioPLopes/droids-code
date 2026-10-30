@@ -42,4 +42,4 @@
 
 **Último estado verificado:** City limpa e ativa, fora de Play, compilação parada e sem falha, zero objetos temporários da loja/galeria; catálogo visual selecionado no Inspector. Hashes de City, CatalogoDeItens e LojaUIManager iguais ao início desta rodada. Diff sem erros de whitespace. Sem commit/push.
 
-Referências: [análise das artes](2026-10-23-aproveitamento-artes-menus.md), [loja](2026-10-23-loja-ilustrada.md). Aceite visual do novo conjunto ainda não recebido.
+Referências: [análise das artes](../historico/2026-10-23-aproveitamento-artes-menus.md), [loja](2026-10-23-loja-ilustrada.md). Aceite visual do novo conjunto ainda não recebido.

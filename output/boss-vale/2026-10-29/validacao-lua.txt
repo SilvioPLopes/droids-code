@@ -1,0 +1,1 @@
+System.String: "OK: Lua real aplicou upgrades e técnica nível3 da build simulada; consumiu60 pontos sintéticos; sem estado pessoal/saves."

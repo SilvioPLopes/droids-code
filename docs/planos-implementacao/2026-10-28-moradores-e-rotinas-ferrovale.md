@@ -1,87 +1,53 @@
-# Moradores, serviços e preparação de rotinas de Ferrovale
+# Moradores, vínculos e rotinas de Ferrovale
 
-## Objetivo e escopo
+**Estado documental:** referência de distribuição/narrativa consolidada em 29/10/2026. A distribuição foi autorizada e usada na montagem; relógio, deslocamento e seleção de presença por identidade continuam pendentes.
+**Objetivo:** conservar o motivo das ocupações, relações e exceções sem manter uma segunda descrição do estado instalado.
 
-**Atualização de 29/10:** a distribuição foi autorizada para montagem. Seguir o [plano de execução vigente](2026-10-29-montagem-cidade-interiores-npcs.md) para cenas/portas/NPCs salvos e limites do teste. Este documento conserva a origem das escolhas; as declarações abaixo de “não implantado” descrevem a análise anterior. Benta/Zeca e variantes infantis foram produzidos no lote seguinte; relógio e rotinas de caminhada continuam pendentes.
+## Fontes responsáveis
 
-Antes de remarcar as portas sobre a imagem editada da City, cruzar diálogos de história/quests, catálogo de NPCs/locais, enredo pertinente e sprites existentes para propor quem ocupa cada edifício. A atribuição a um prédio é proposta de design quando a fonte só define um lugar abstrato. Diferenciar moradia, trabalho/serviço, visita e personagem de outra região; não transformar todo NPC em morador da cidade.
+- [Matriz de edifícios, ambientes e identidades](2026-10-29-refatoracao-nomenclatura-ferrovale.md): entrada para localizar quem é quem e preparar nomenclatura/presença única.
+- [Montagem de 29/10](../historico/2026-10-29-montagem-cidade-interiores-npcs.md): representações e interações instaladas; [revisão vigente](2026-10-29-revisao-interiores-dialogos-colisoes.md): defeitos e validações pendentes.
+- [Concepção dos interiores](2026-10-28-concepcao-interiores-ferrovale.md): fachadas, materiais e arquitetura; [contrato City](../contextos/cenas/city.md): interação e propostas de fala.
+- [Proposta de ocupação por ambiente](../../output/moradores-ferrovale/2026-10-28/proposta-ocupacao.json), [inventário de elenco](../../output/moradores-ferrovale/2026-10-28/inventario-elenco.json) e [mapa visual de ocupação](../../output/moradores-ferrovale/2026-10-28/ocupacao-proposta.html): evidência datada do estudo; o JSON de proposta não é consumido pelo jogo.
+- [Guia LPC](../guias/criacao-sprites-personagens-lpc.md): criação, receitas e limites; [cópia integral anterior](../../output/backups/2026-10-29-refatoracao-documentacao/lote-02/antes/docs/planos-implementacao/2026-10-28-moradores-e-rotinas-ferrovale.md): medições e cronologia.
 
-Arquivos permitidos nesta rodada: este plano; novo `docs/guias/criacao-sprites-personagens-lpc.md`; apontadores em `docs/indice-trabalho.md` e no plano de portas/interiores; inventário e evidência de leitura em `output/moradores-ferrovale/2026-10-28/`. As fontes consultadas, os catálogos C#, sprites/receitas/metas, cenas, prefabs, mapas e saves ficam em leitura. Não mover portas, atribuir componentes/rotinas no Unity, gerar ou substituir personagens nesta análise. Se faltar arte, registrar a necessidade e a receita candidata antes de uma produção específica.
+## Distribuição: origem das escolhas
 
-Dependências: tabela de edifícios E00…E16 e seus acessos na [concepção de interiores](2026-10-28-concepcao-interiores-ferrovale.md); diálogos, quests e locais em `Assets/Scripts/Catalogos/`; elenco LPC em `Assets/sprites/Entities/Characters/`; modelos anteriores em `Assets/sprites/Entities/Npc's/`. O texto anexado pelo usuário é referência do método de criação, não autorização para apagar ou regenerar o acervo inteiro.
+A tabela completa casa→ambiente→pessoa fica na matriz de identidade. As fachadas atribuídas são escolhas de design, exceto o vínculo existente Lip/Apollo–CasaLip; biografia e quest não determinam automaticamente o número da casa. Condição econômica não foi deduzida da aparência dos moradores.
 
-Aceite: cobertura dos 15 edifícios com atribuições justificadas, residentes/não residentes separados, relação real de sprites e lacunas, coerência entre família/quests/localização, preferências do usuário preservadas e guia de criação com comandos/limitações reais. Validação mínima: referências locais e contagens, cruzamento dos IDs existentes e conferência visual do mapa ativo. Aprovação das novas atribuições e implementação das rotinas ficam pendentes; uma rotina declarada no catálogo não comprova movimentação no jogo.
-
-Estado anterior e reversão: somente novos documentos/inventários e links, sem mutação do Editor. Remover apenas os arquivos novos e apontadores desta rodada se solicitado; nunca substituir as fontes ou restaurar um mapa antigo por causa deste planejamento. Assets e instruções existentes devem permanecer preservados.
-
-## Referência capturada antes da remarcação
-
-Consulta MCP em leitura em 28/10/2026, 23:53:51 de São Paulo (UTC 29/10, 02:53:51): projeto correto, City limpa em Play. Player em **(2.56479287, -8.663213, 0)**, indicado pelo usuário como referência visual atual da entrada da Casa 3. Porta_Casa03_Provisoria permanece em **(2.55934167, -8.62464, 0)**, destino Interior_E10_Casa03 e chegada (0,-1.92).
-
-Mapa ativo consultado: `Assets/sprites/Mapas/metavalle-original-upscale-8k.png`, textura 7680×4320. Isso substitui a imagem ativa vista no piloto anterior; não reutilizar uma marcação de pixels da versão 4K sem reconciliar Transform/rect/PPU. A referência do Player não é automaticamente o centro do trigger: o collider do personagem possui offset e deve entrar no cálculo quando a remarcação for executada. Nenhuma porta foi movida nesta rodada.
-
-## Sequência de trabalho
-
-1. Registrar posição sem alterar Play/Player e inspecionar o mapa vigente.
-2. Extrair elenco, serviços, relações, horários e gatilhos dos catálogos de diálogo/quest/NPC/local.
-3. Conferir sprites específicos e genéricos, receitas, cobertura de animações e ferramenta LPC existente.
-4. Propor ocupação dos 15 edifícios, incluindo serviços e espaços reservados; identificar mudanças de interior necessárias para quests.
-5. Documentar criação modular reutilizável para NPCs e limites para inimigos/droids; verificar arquivos/links e entregar decisões para avaliação.
-
-## Resultado do cruzamento
-
-[Inventário verificável](../../output/moradores-ferrovale/2026-10-28/inventario-elenco.json): 16 definições em CatalogoDeNpcs, 18 montagens específicas e 12 genéricas. As 18 não representam 18 moradores: incluem Lip com mochila, Célia para referência, Apollo provisório e pessoas de outras regiões. Todos os 30 conjuntos têm sprite64×64 e walk576×256; dez específicos não têm idle nativo. Conferência de dimensões e arquivos não é teste de todos os quadros ou Animator.
-
-Faltam sprites próprias de **Benta** e **Zeca** no acervo inspecionado. medico_01 e guarda_01 são modelos genéricos, não identidade aprovada dos dois. As duas outras crianças da família de Sula podem permanecer fora de quadro; se aparecerem, preparar variantes individuais, sem criar três Pipos idênticos. Não falta figurante para iniciar o piloto.
-
-Leitura atual da City: Tácio usa idle de Ivo; Homem da Fila usa idle de morador_01; Dara usa arte própria. Há modelos específicos de Tácio/Homem da Fila disponíveis. Essa divergência de montagem foi registrada, sem trocar sprites.
-
-## Distribuição proposta por edifício
-
-**Estado: proposta para avaliação; nenhum morador ou rotina implantado.** Todos os vínculos de fachada abaixo são escolhas de design do agente, exceto Lip/Apollo na CasaLip existente. A história sustenta relações e locais de trabalho, mas não a numeração das casas. A condição econômica não foi inferida da aparência física dos moradores.
-
-A proposta aproveita edifícios grandes para funções já presentes nas fontes e preserva casas comuns para figurantes. As artes aprovadas continuam bases: nomear um serviço não transforma automaticamente uma sala de estar em oficina ou pousada.
-
-| Edifício / coleta | Ocupação proposta | Justificativa |
-|---|---|---|
-| E06 — Casa 1 e anexo | Mecânico genérico | Torre compacta e anexo de metal combinam com manutenção; distribui um figurante sem inventar parentesco. |
-| E05 — Casa 2 | Sula, Pipo e duas crianças sem nome | Catálogo afirma quatro pessoas na casa de Sula e Pipo morando com ela. Duas entradas podem servir a uma só moradia. |
-| E10 — Casas 3 e 4 | Casa 3: operário; Casa 4: Homem da Fila | Mantém duas moradias independentes. O piloto da Casa 3 serve a um morador sem quest; Homem da Fila continua encontrado no poço. |
-| E12 — Casa do protagonista | Lip e Apollo (vínculo existente) | CasaLip tem ligação existente na City e contrato de história próprio. |
-| E11 — Casas 5 e 6 | Casa 5: Tácio; Casa 6: idoso genérico | Duas moradias independentes; Tácio trabalha no mercado e visita a oficina à noite. Não confundir idoso genérico com Onofre. |
-| E09 — Casa maior em L | Guilda: Bruna e operário da Casa 3 | Maior área para triagem, quadro de tarefas e oficina; cria percurso de trabalho com destino real. |
-| E08 — Prédio com placa e duas entradas | Estalagem: Nilce; Zeca como hóspede de manhã | Placa, dois volumes e proposta de piso superior favorecem recepção e quartos. Fonte já liga Zeca à estalagem. |
-| E16 — Domo / prefeitura | Uso comunitário; sem prefeito ou morador fixo | Usuário identifica o domo como prefeitura; enredo diz que Ferrovale não tem prefeito. Conservar prédio cívico sem criar governante. |
-| E00 — Casa 7 / torre alaranjada | Vendedor genérico | Reserva residência urbana ao figurante sem duplicar a identidade de Tácio ou Sula. |
-| E01 — Casa 8 / torre azul | Pessoa técnica genérica, modelo hacker | Metal e apartamento compacto combinam com bancada/eletrônica; profissão visual não cria quest automaticamente. |
-| E02 — Casa 9 e garagem | Quirino: casa e oficina/garagem | Garagem e ferramentas favorecem oficina; catálogo coloca Quirino nos fundos do mercado. |
-| E03 — Casa grande / possível mansão | Antiga casa de Ivo/Célia, vazia | Diálogos da Sessão 2 exigem casa vazia com foto, registros e bilhete. Isso dá função à casa-chave sem inventar novo personagem rico. |
-| E04 — Geminado azul | Dara e vizinha em unidades separadas | Vizinhança física sustenta a terceira parte da cota; duas entradas justificam duas moradias. |
-| E13 — Casa 10 / torre azul e ocre | Morador técnico genérico, modelo cientista | Preenche uma torre sem deslocar personagem que pertence à Cratera ou Prumo. |
-| E14 — Duas unidades e porão | Benta e vigia genérico; porão comum | Permite ocupações distintas preservando as três entradas; Benta trabalha junto à estalagem, não neste porão. |
-
-[Detalhamento por ambiente](../../output/moradores-ferrovale/2026-10-28/proposta-ocupacao.json) guarda IDs, vínculos e pendências. IDs fv_... ainda não existem no catálogo C#; o JSON não é consumido pelo jogo. O mapa-integracao.json do piloto não foi alterado.
+| Núcleo | Justificativa e limite a preservar |
+|---|---|
+| E06 — mecânico | Torre e anexo de metal favorecem manutenção; figurante sem parentesco inventado |
+| E05 — Sula/Pipo/crianças | Catálogo estabelece quatro pessoas, três crianças; duas portas servem à mesma família, sem duplicá-la |
+| E10 — operário/Homem da fila | Casas3/4 independentes; operário ligado ao trabalho na Guilda, Homem da fila mantém encontro necessário no poço |
+| E12 — Lip/Apollo | Vínculo pré-existente; não redesenhar o puzzle por causa da distribuição |
+| E11 — Tácio/idoso | Casas5/6 independentes; Tácio tem comércio e visita Quirino; idoso genérico não é Onofre |
+| E09 — Guilda | Espaço de triagem/tarefas/oficina para Bruna e operário; superior não vira residência canônica de Bruna |
+| E08 — estalagem | Nilce e Zeca hóspede de manhã têm apoio nas fontes; quarto de Zeca indefinido e diferente do3 |
+| E16 — edifício cívico | Usuário identifica prefeitura; enredo não define prefeito. Não inventar governante nem transferir assembleia da praça |
+| E00/E01/E13 — torres | Reservadas a vendedor e moradores técnicos genéricos; modelos hacker/cientista não criam quest ou profissão funcional |
+| E02 — Quirino | Casa/oficina com acessos externos independentes; relação espacial com o mercado ainda precisa de correspondência no mapa |
+| E03 — casa vazia de Ivo | Foto, cadernos e bilhete são exigidos pelos diálogos; não colocar Ivo/Célia vivos para preencher a casa |
+| E04 — Dara/vizinha | Duas moradias; terceira parte da cota é divisão de água, não terceiro apartamento |
+| E14 — Benta/vigia | Duas unidades e porão comum; posto de Benta é junto à estalagem, não consultório subterrâneo. Vigia não é Zeca |
 
 ### Fontes e implicações para os interiores
 
-- **E03 / casa vazia de Ivo:** diálogos CityS2CasaIvoCadernos/Foto/Bilhete, em [CatalogoDeDialogos](../../Assets/Scripts/Catalogos/CatalogoDeDialogos.cs), exigem foto, registros/cadernos e bilhete. Ivo continua na Estação 7. A fachada grande é uma proposta de localização, não prova de riqueza. Célia é foto/memória, nunca NPC vivo. O hall aprovado precisa de ambientação própria; a cama citada em uma narração não justifica colocar camas em todas as casas.
-- **E08 / estalagem:** [CatalogoDeLocais](../../Assets/Scripts/Catalogos/CatalogoDeLocais.cs), IdEstalagem, descreve prédio de dois andares com seis portas no superior. [Quest q_nilce_quarto](../../Assets/Scripts/Catalogos/CatalogoDeQuests.cs) exige quarto3 e bomba de reserva. Adaptar recepção/corredor e preservar a porta3; não gerar seis apartamentos completos só para representar seis portas. Zeca dorme ali de manhã, segundo o catálogo, em quarto ainda não escolhido e diferente do3.
-- **E09 / Guilda:** Bruna e tarefas têm suporte em [CatalogoDeNpcs](../../Assets/Scripts/Catalogos/CatalogoDeNpcs.cs) e nas quests da Guilda. A arte de sala precisa de adaptação para quadro, triagem e forja. O superior não se torna residência canônica de Bruna; alojamento anexo é só possibilidade.
-- **E04 / Dara e vizinha:** o enredo IV.6 descreve divisão da cota entre Dara, vizinha e uma parte guardada. q_dara_terceira fala de água, cisterna e Emílio. Não criar um terceiro apartamento por causa da expressão “terceira parte”. IdCasaDaDara descreve três áreas internas; isso não substitui o significado da quest. Duas unidades geminadas são a proposta física.
-- **E05 / Sula e crianças:** o catálogo afirma quatro pessoas na casa de Sula, três delas crianças, e que Pipo mora com ela. Esse vínculo vem da biografia, não de falas já implantadas. Duas portas podem servir à mesma moradia; não criar duas famílias automaticamente.
-- **E02 / Quirino:** IdOficinaDoQuirino fica nos fundos do mercado. Posicionar o setor de mercado de modo coerente ainda é pendência: não foi identificado um viaduto pronto na imagem atual. Casa e garagem continuam com acessos externos independentes, sem inventar porta interna.
-- **E16 / domo:** usuário identifica como prefeitura; enredo III.5 afirma que Ferrovale não tem prefeito. Usar prédio comunitário sem inventar governante. A praça da assembleia, IdPracaDaAssembleia, é externa; não transferir a Sessão7 para o domo por conveniência. Interior metálico/radial já concebido preservado.
-- **E14 / Benta:** a esquerda seria sua residência; IdPostoDaBenta é um toldo ao lado da estalagem E08. O porão não vira consultório subterrâneo. Vigia genérico da direita não substitui Zeca.
+- **Ivo:** `CityS2CasaIvoCadernos/Foto/Bilhete` no [catálogo de diálogos](../../Assets/Scripts/Catalogos/CatalogoDeDialogos.cs) sustentam os pontos de história. Ivo permanece vinculado à Estação7; Célia é memória. Menção a cama não obriga equipar todas as casas como quartos.
+- **Nilce:** [local estalagem](../../Assets/Scripts/Catalogos/CatalogoDeLocais.cs) descreve dois andares/seis portas; [q_nilce_quarto](../../Assets/Scripts/Catalogos/CatalogoDeQuests.cs) exige quarto3 e bomba. Reservar o ponto não comprova seis quartos funcionais.
+- **Bruna:** [catálogo de NPCs](../../Assets/Scripts/Catalogos/CatalogoDeNpcs.cs) e quests sustentam Guilda/triagem/forja. Decoração e moradia privada continuam questões distintas.
+- **Dara:** terceira parte, cisterna e Emílio pertencem à quest/enredo; não ampliar unidades ou reescrever a ausência por conveniência.
+- **Quirino:** oficina é descrita nos fundos do mercado; viaduto/mercado não foram inteiramente reconhecidos na arte. Não resolver essa lacuna com coordenadas inventadas.
+- **Prefeitura:** praça da assembleia é externa; domo comunitário não transfere automaticamente a Sessão7.
+- **Benta:** morar em E14 não desloca o toldo junto à E08. Modelo médico não a transforma em médica nem cria cura.
 
 ### Quem permanece fora dessas moradias
 
-Rasha e Teodoro: Cratera/acampamento. Nadir e carregadores: visitantes conforme a história. Ivo: Estação7, mantendo casa vazia em Ferrovale. Onofre: dorme sob o viaduto, conforme catálogo; não lhe atribuir apartamento por obrigação. Célia/Emílio: memória e ausência, sem ator residente vivo. Artemis não recebe corpo/casa porque há espaço disponível. A filha de Tácio não é deslocada de Prumo para preencher apartamento.
-
-Genéricos usados: mecanico_01, operario_01, idoso_01, idosa_01 (vizinha de Dara), vendedor_01, hacker_01, cientista_01, guarda_01. Reserva: morador_01, moradora_01, medico_01, crianca_01. Não é necessário usar todos os arquivos.
+Rasha/Teodoro pertencem à Cratera/acampamento. Nadir e carregadores são visitantes conforme evento. Onofre dorme sob o viaduto; não lhe atribuir apartamento por obrigação. Célia/Emílio são memória/ausência, sem ator residente vivo. Artemis não recebe corpo/casa para ocupar espaço. A filha de Tácio não é transferida de Prumo para preencher unidade.
 
 ## Preparação das rotinas
 
-O catálogo declara Madrugada/Manhã/Tarde/Noite e locais; isso é dado de design, não evidência de deslocamento ou relógio funcional. A atividade escrita não contém coordenadas/pathfinding.
+O catálogo declara períodos e locais, sem demonstrar relógio, coordenadas, pathfinding ou travessia de cenas. Moradia, trabalho e visita são vínculos distintos. A mesma pessoa não pode permanecer representada em casa e no trabalho sem uma decisão de presença coerente.
 
 | Pessoa | Base proposta | Percurso a preparar, sem XY inventado |
 |---|---|---|
@@ -98,9 +64,9 @@ O catálogo declara Madrugada/Manhã/Tarde/Noite e locais; isso é dado de desig
 | Operário genérico | Casa3 | Sequência curta própria dentro da casa; depois, porta → Guilda → casa |
 | Outros genéricos | Tabela | Pequenos ciclos diferentes, com pausas/orientação; roupa não cria loja, profissão funcional ou puzzle |
 
-Primeira implementação recomendada: **um genérico na Casa3**, com pontos próprios e pausas. Pontos explícitos por NPC dão mais controle que caminhada aleatória irrestrita. Pequenas variações de tempo podem vir depois. Relógio, presença única por ID e travessia de cenas exigem contrato próprio; não clonar o mesmo morador permanentemente dentro e fora.
+Primeira fatia candidata: operário genérico na Casa3, pontos explícitos, pausas e orientação; depois percurso para Guilda. Isso continua proposta, não rotina pronta. Pontos próprios oferecem controle; variação de tempo pode vir depois de validar passagem e interação.
 
-Antes das rotinas externas, remarcar os acessos afetados pela imagem e definir pontos de trabalho/espaços comuns ainda ausentes. Um horário não deve tornar a progressão de quest inacessível. Não implantar relógio/navmesh/controlador global como efeito desta análise.
+Antes de movimento externo, conferir acessos e postos reais e a disponibilidade de quest/loja. Mudança de estado não deve remover interlocutor durante conversa, compra ou entrega. Relógio/navmesh/controlador global precisam de escopo próprio; seleção inicial de presença está no plano de identidade.
 
 ## Divergências preservadas
 
@@ -112,17 +78,21 @@ Antes das rotinas externas, remarcar os acessos afetados pela imagem e definir p
 | Primeiro avistamento de Nadir | Catálogo menciona Zeca; enredo/diálogos dão o aviso a Pipo | Zeca pode vigiar; não substituir o evento de Pipo |
 | Arte ativa | Tácio/Ivo e Homem da Fila/genérico diferem do elenco específico disponível | Corrigir apenas no recorte de montagem, preservando preferências do usuário |
 
-O adendo prevalece onde altera expressamente o cânone. Onde ele diverge de falas existentes, registrar incerteza; distribuir moradias não autoriza reescrever quests, história ou datas. Foram consultados recortes narrativos pertinentes, não o roteiro integral. Nenhuma nova montagem visual foi iniciada; a instrução fornecida exige leitura integral antes dessa produção.
+A divergência de arte registra o estudo de 28/10; confirmar o vínculo persistente atual no inventário de identidade antes de trocar sprite. O adendo prevalece onde altera expressamente o cânone; divergência com falas existentes exige revisão do recorte, sem reescrita automática de história/quests/datas.
 
-## Criação de sprites e retomada
+## Sprites e identidades
 
-[Mapa visual com a proposta de moradores](../../output/moradores-ferrovale/2026-10-28/ocupacao-proposta.html): imagem atual, 15 fachadas identificadas e miniaturas dos personagens existentes. Áreas desenhadas servem para reconhecer edifícios; não são nova coleta de portas ou prova de alinhamento geométrico.
+O inventário inicial encontrou 16 definições no catálogo e 30 conjuntos LPC (18 específicos e 12 genéricos). Não são 30 moradores: incluem variantes de Lip, Célia de referência, Apollo provisório e pessoas de outras regiões. Dimensões conferidas não comprovam Animator ou todos os quadros.
 
-Verificação documental: 30 conjuntos com dimensões de referência/walk conferidas, 15 IDs de edifício únicos, 41 referências locais/âncoras do catálogo válidas e nove fontes com hashes preservados após a análise. Guia e plano com links locais existentes. Revisão independente de coerência: sem bloqueadores; relação espacial do mercado/oficina de Quirino permanece pendência explícita. Nada foi testado em comportamento ou aprovado visualmente como consequência dessa revisão documental.
+A lacuna inicial de Benta/Zeca foi sucedida pela produção registrada na montagem, junto de duas variantes infantis de Sula. As crianças são identidades distintas; não criar três Pipos idênticos. São derivações LPC com origem/receita, sem declarar desenhos originais do zero; aproximações de acessórios ficam no registro da montagem.
 
-Método, receitas e situação real da automação no [guia LPC](../guias/criacao-sprites-personagens-lpc.md). Identidade de NPC, receita visual e moradia são registros distintos. Benta/Zeca são lacunas; mais genéricos não são necessários para começar. O compositor histórico precisa de adaptação de caminhos, dependências e metadados, sem executar sua limpeza em lote.
+Genéricos selecionados no estudo: mecanico_01, operario_01, idoso_01, idosa_01 (vizinha), vendedor_01, hacker_01, cientista_01 e guarda_01. Reserva: morador_01, moradora_01, medico_01 e crianca_01. Disponibilidade de pasta não autoriza usar todos ou substituir pessoa nomeada por genérico.
 
-Decisões a avaliar: E03 como casa vazia de Ivo, E09 como Guilda, E08 como estalagem e a distribuição doméstica. Depois: remarcação, morador piloto, orientação/colisão/diálogo e expansão das rotinas. Nada disso é declarado implantado por este documento.
+Receita visual, nome exibido, ID técnico e moradia são registros distintos. Não apagar walk/idle/poses como “NPC duplicado”; investigar representações ativas por identidade. Conservar originais, créditos e proveniência do RuntimeFerrovale.
 
-Estado: documentos/inventários salvos; nenhum NPC, sprite, diálogo, cena, prefab, porta ou save alterado. Referência inicial do Player preservada mesmo que ele se mova depois. A visualização direta da imagem8K excedeu o limite de transporte; foi criada uma prévia JPEG de leitura em output, sem mudar o original. Última consulta do Unity: City em Play, sem mutação de modo. Saves não foram acessados; nenhum backup novo de save ou limpeza pendente. Backups do piloto anterior preservados.
+## Retomada
 
+- Próximo passo: completar inventário da matriz de identidade, incluindo pontos externos/internos e escolha de presença; não redistribuir moradores por esta consolidação.
+- Pendentes: rotina/horário, circulação e disponibilidade por estado; correspondência mercado/oficina/viaduto; decisões narrativas da tabela de divergências.
+- Consolidação salva somente em documentação; não houve input, teste por API, inspeção nova ou aprovação visual de cenas.
+- Unity não operado, cena/Play atuais desconhecidos; nenhum save ou backup de gameplay alterado. Registro anterior no backup vinculado; evidências existentes preservadas.

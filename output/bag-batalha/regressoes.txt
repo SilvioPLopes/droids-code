@@ -1,0 +1,3 @@
+OK 1280x720: quatro comandos/enquadramento/raycast; HUD real; log extenso rolável;18 opções de golpes/Voltar/energia; itens/Voltar sem consumo; Status/retorno. Sem turnos, Play, transição ou saves.
+OK 844x475: quatro comandos/enquadramento/raycast; HUD real; log extenso rolável;18 opções de golpes/Voltar/energia; itens/Voltar sem consumo; Status/retorno. Sem turnos, Play, transição ou saves.
+OK 844×475: arte vinculada, 14 itens acessíveis, seleção sem consumo, retorno/reabertura e bag vazia. Sem saves. Canvas local; zoom Game View não envolvido.

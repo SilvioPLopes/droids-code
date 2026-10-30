@@ -1,0 +1,1 @@
+System.String: "OK: ciclo, carga/stun, ações inválidas, dano/efeitos/resistência, prefab e arte; 200 seeds: inicial=0/200, preparado=152/200 (sem itens)."

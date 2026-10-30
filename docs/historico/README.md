@@ -4,6 +4,18 @@
 
 ## Registros preservados
 
+### Organização de 29/10/2026
+
+Estes registros saíram da fila de planos; a classificação e o mapa de movimentos estão no [plano documental](../planos-implementacao/2026-10-29-refatoracao-documentacao.md). Arquivamento não encerra validações de produto.
+
+| Registro | Tratamento | Fonte para continuar |
+|---|---|---|
+| [City HD de 22/10](2026-10-22-cidade-hd.md) | **Candidato à exclusão**, ainda preservado; histórico opcional da integração antiga | [Portas e mapas](../planos-implementacao/2026-10-28-portas-interiores-e-mapas.md) |
+| [Análise inicial das artes de menus](2026-10-23-aproveitamento-artes-menus.md) | **Conservar** como referência das imagens | Planos dos painéis pelo [índice](../indice-trabalho.md) |
+| [Montagem dos interiores/NPCs](2026-10-29-montagem-cidade-interiores-npcs.md) | **Conservar** como evidência do lote e seus limites | [Revisão de interiores](../planos-implementacao/2026-10-29-revisao-interiores-dialogos-colisoes.md) e [identidade/presença](../planos-implementacao/2026-10-29-refatoracao-nomenclatura-ferrovale.md) |
+
+### Consolidação anterior
+
 | Arquivo | Origem e uso |
 |---|---|
 | [Bugs da CasaLip, 14/09](2026-09-14-bugs-casalip.md) | Original de `bugs de desenvolvimento/BUG_PUZZLE_AGUA_CASALIP.md`. Mantém duas resoluções relatadas e uma pendência secundária do log. O problema atual de retorno tem relato próprio. |

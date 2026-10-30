@@ -9,8 +9,8 @@ using DroidsCode.DroidCore;
 ///   - UsarItemForaDeBatalha virou um switch por TipoDeItem em vez de
 ///     hard-coded pra cura. Cura mantem o comportamento antigo; Equipavel
 ///     e ForaDeBatalha sao novos (ver EquiparItem/UsarAcaoForaDeBatalha).
-///   - Buff/Debuff nao aparecem aqui (UsavelForaDeBatalha=false no
-///     catalogo) -- so existem em batalha (ver BattleManager).
+///   - Exploração filtra UsavelForaDeBatalha; o modo EmBatalha mostra
+///     todos os itens e encaminha usos permitidos ao BattleManager.
 /// </summary>
 public class BagUIManager : MonoBehaviour
 {
@@ -28,6 +28,9 @@ public class BagUIManager : MonoBehaviour
     public Sprite arteBag;
     private ApresentacaoBagIlustrada apresentacao;
     private bool inicializado, aberto;
+    private BattleManager contextoBatalha;
+    public bool EmBatalha { get; private set; }
+    public bool EstaAberta => aberto;
 
     public System.Action AoFechar;
 
@@ -57,6 +60,21 @@ public class BagUIManager : MonoBehaviour
     // rebuild de layout no frame seguinte.
     public void Mostrar()
     {
+        EmBatalha = false;
+        contextoBatalha = null;
+        Abrir();
+    }
+
+    public void MostrarEmBatalha(BattleManager batalha)
+    {
+        if (batalha == null) return;
+        EmBatalha = true;
+        contextoBatalha = batalha;
+        Abrir();
+    }
+
+    void Abrir()
+    {
         Inicializar();
         aberto = true;
         if (painel != null) painel.SetActive(true);
@@ -83,8 +101,12 @@ public class BagUIManager : MonoBehaviour
     {
         aberto = false;
         if (painel != null) painel.SetActive(false);
+        EmBatalha = false;
+        contextoBatalha = null;
         AoFechar?.Invoke();
     }
+
+    public bool ItemVisivel(DefinicaoDeItem item) => item != null && (EmBatalha || item.UsavelForaDeBatalha);
 
     void AtualizarLista()
     {
@@ -109,7 +131,7 @@ public class BagUIManager : MonoBehaviour
         {
             if (kv.Value <= 0) continue;
             var def = CatalogoDeItens.Obter(kv.Key);
-            if (def == null || !def.UsavelForaDeBatalha) continue;
+            if (!ItemVisivel(def)) continue;
             itensComEstoque.Add(def);
         }
 
@@ -130,7 +152,7 @@ public class BagUIManager : MonoBehaviour
             if (texto != null) texto.text = DescreverItem(item, quantidade);
 
             DefinicaoDeItem itemCapturado = item;
-            botao.onClick.AddListener(() => UsarItemForaDeBatalha(itemCapturado));
+            botao.onClick.AddListener(() => ConfirmarItemDaBag(itemCapturado.Id));
         }
     }
 
@@ -184,9 +206,22 @@ public class BagUIManager : MonoBehaviour
     // O apresentador seleciona sem consumir; somente a ação explícita chega aqui.
     public void ConfirmarItemDaBag(string id)
     {
+        if (!aberto) return;
         var item = CatalogoDeItens.Obter(id);
-        if (item == null || !item.UsavelForaDeBatalha ||
+        if (item == null ||
             GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(id) <= 0) return;
+        if (EmBatalha)
+        {
+            if (!item.UsavelEmBatalha)
+            {
+                MostrarMensagem("Este item não pode ser usado durante uma batalha.");
+                return;
+            }
+            if (contextoBatalha == null || !contextoBatalha.TentarUsarItemDaBag(id))
+                MostrarMensagem("Não é possível usar itens neste momento.");
+            return;
+        }
+        if (!item.UsavelForaDeBatalha) return;
         UsarItemForaDeBatalha(item);
     }
 

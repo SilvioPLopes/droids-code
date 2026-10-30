@@ -1,0 +1,7 @@
+DroidsCode - imagens do projeto
+
+01 a 04: artes de fundo dos mapas (sem atores ou interface).
+05 a 07: retratos originais dos NPCs ampliados por vizinho mais próximo.
+08: prévia existente de Tácio no mapa, sem nova captura do Unity.
+
+Arquivos originais do projeto preservados.

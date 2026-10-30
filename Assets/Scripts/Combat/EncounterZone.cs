@@ -1,3 +1,4 @@
+using DroidsCode.Combat;
 using UnityEngine;
 
 /// <summary>
@@ -19,7 +20,7 @@ using UnityEngine;
 public class EncounterZone : MonoBehaviour
 {
     [Header("Configuração do encontro")]
-    [Tooltip("Chance de batalha a cada 'passo' (0 a 1). Ex: 0.15 = 15%.")]
+    [Tooltip("Chance por passo quando a tabela de encontros está vazia. Ex: 0.15 = 15%.")]
     [Range(0f, 1f)]
     public float chanceDeEncontro = 0.15f;
 
@@ -32,6 +33,18 @@ public class EncounterZone : MonoBehaviour
     [Header("Inimigo (Ato 1 — opcional)")]
     [Tooltip("Id no CatalogoDeInimigos gerado por esta zona (ex: \"droid_selvagem\"). Vazio = a cena Battle usa o que estiver no Inspector dela.")]
     public string idDoInimigo = "";
+
+    [System.Serializable]
+    public class EntradaEncontro
+    {
+        public string idDoInimigo;
+        [Tooltip("Chance absoluta por tentativa. A soma da tabela não pode passar de 1; o restante não gera batalha.")]
+        [Range(0f, 1f)] public float chance;
+    }
+
+    [Header("Variação de inimigos (opcional)")]
+    [Tooltip("Se preenchida, substitui a chance e o ID únicos acima. Ex: A=0.15, B=0.05, sem encontro=0.80.")]
+    public EntradaEncontro[] encontros;
 
     [Header("Condições de história (Ato 1 — opcional)")]
     [Tooltip("A zona só sorteia encontro se TODAS estiverem ativas.")]
@@ -96,13 +109,49 @@ public class EncounterZone : MonoBehaviour
 
         float sorteio = Random.value; // valor entre 0.0 e 1.0
 
-        if (sorteio <= chanceDeEncontro)
+        if (TentarSelecionarInimigo(sorteio, out string idSelecionado))
         {
-            IniciarBatalha(player);
+            IniciarBatalha(player, idSelecionado);
         }
     }
 
-    void IniciarBatalha(GameObject player)
+    /// <summary>Seleciona sem consumir RNG nem alterar estado. Amostra entre 0 e 1.</summary>
+    public bool TentarSelecionarInimigo(float amostra, out string idSelecionado)
+    {
+        idSelecionado = null;
+        if (float.IsNaN(amostra) || amostra < 0f || amostra > 1f) return false;
+
+        if (encontros == null || encontros.Length == 0)
+        {
+            if (float.IsNaN(chanceDeEncontro) || chanceDeEncontro <= 0f || chanceDeEncontro > 1f || amostra > chanceDeEncontro) return false;
+            idSelecionado = idDoInimigo;
+            return true;
+        }
+
+        float total = 0f;
+        foreach (var entrada in encontros)
+        {
+            if (entrada == null || float.IsNaN(entrada.chance) || entrada.chance < 0f || entrada.chance > 1f) return false;
+            total += entrada.chance;
+        }
+        // Configuração inválida não é normalizada: evita modificar as chances silenciosamente.
+        if (total > 1f) return false;
+
+        float limite = 0f;
+        foreach (var entrada in encontros)
+        {
+            limite += entrada.chance;
+            if (entrada.chance <= 0f || !(amostra < limite || (amostra == 1f && limite == 1f))) continue;
+            var definicao = CatalogoDeInimigos.Obter(entrada.idDoInimigo);
+            // Uma entrada indisponível mantém sua faixa sem encontro; não aumenta as demais.
+            if (definicao == null || definicao.EhChefe || definicao.EhUnico) return false;
+            idSelecionado = definicao.Id;
+            return true;
+        }
+        return false;
+    }
+
+    void IniciarBatalha(GameObject player, string idSelecionado)
     {
         if (batalhaDisparada || player == null) return;
         if (string.IsNullOrWhiteSpace(nomeCenaBatalha) || !Application.CanStreamedLevelBeLoaded(nomeCenaBatalha))
@@ -112,7 +161,7 @@ public class EncounterZone : MonoBehaviour
         }
         string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         if (!GerenciadorDeEstado.Instancia.TentarPrepararBatalha(cenaAtual, player.transform.position,
-            idDoInimigo, null, new SalvamentoJson(), out string erro))
+            idSelecionado, null, new SalvamentoJson(), out string erro))
         {
             Debug.LogWarning(erro);
             return;

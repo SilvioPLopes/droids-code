@@ -1,0 +1,23 @@
+{
+  "checksPassed": true,
+  "assetFilesWithMetas": [
+    "Assets/Prefabs/Interiores/InteriorBase.prefab",
+    "Assets/Prefabs/Interiores/Casa03Interior.prefab",
+    "Assets/Scenes/Interiores/Interior_E10_Casa03.unity",
+    "Assets/sprites/Mapas/Interiores/Casa03.png"
+  ],
+  "runtimeEvidence": [
+    "colisoes.json",
+    "entrada.json",
+    "estado-final-runtime.json",
+    "retorno-save-menu.json",
+    "save-escrita-leitura.json"
+  ],
+  "cityOnlyChangedInstance": 708079542,
+  "buildAddedScenes": 1,
+  "originalArtPreserved": true,
+  "finalVisualAcceptance": "pending_user_door_adjustment",
+  "realKeyboardMovement": "confirmed_by_user",
+  "persistentGameplayScriptsChanged": false,
+  "independentStaticReview": "no_blockers"
+}

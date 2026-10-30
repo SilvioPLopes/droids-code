@@ -602,7 +602,12 @@ MonoBehaviour:
   chanceDeEncontro: 0.15
   distanciaPorPasso: 1
   nomeCenaBatalha: Battle
-  idDoInimigo: 
+  idDoInimigo: sucata_captura
+  encontros:
+  - idDoInimigo: sucata_captura
+    chance: 0.15
+  - idDoInimigo: sucata_reforcada
+    chance: 0.05
   flagsNecessarias: []
   flagsQueImpedem: []
 --- !u!61 &450786054

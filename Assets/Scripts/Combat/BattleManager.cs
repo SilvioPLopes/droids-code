@@ -66,6 +66,8 @@ public class BattleManager : MonoBehaviour
     public Button botaoFugir;
     public Button botaoStatus;
     public TelaDeStatusManager telaDeStatus;
+    [Header("Bag compartilhada (opcional; sem referência mantém lista antiga)")]
+    public BagUIManager bagDeBatalha;
 
     [Header("Lista de golpes (novo)")]
     [Tooltip("Painel vazio, desativado por padrão, que recebe os botões de cada golpe.")]
@@ -128,6 +130,8 @@ public class BattleManager : MonoBehaviour
 
     private Droid droid;
     private InimigoFixo inimigo;
+    private DefinicaoDeInimigo definicaoInimigo;
+    public bool PermiteFugir => definicaoInimigo == null || definicaoInimigo.PermiteFugir;
     private CombatEngine engine;
     private bool turnoDoJogador = true;
     private bool batalhaEncerrada = false;
@@ -158,15 +162,29 @@ public class BattleManager : MonoBehaviour
         // esta vazio -- a cena Battle antiga continua funcionando igual.
         AplicarInimigoDoCatalogo();
 
-        inimigo = new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo, recompensaXpInimigo);
+        inimigo = definicaoInimigo != null && definicaoInimigo.Id == CatalogoDeInimigos.IdDroidDoIvo
+            ? new DroidDoIvo(definicaoInimigo)
+            : new InimigoFixo(nomeInimigo, hpMaxInimigo, atkInimigo, defInimigo, recompensaXpInimigo);
+        if (definicaoInimigo != null)
+        {
+            inimigo.Hit = definicaoInimigo.Hit;
+            inimigo.Flee = definicaoInimigo.Flee;
+            inimigo.ChanceCritica = definicaoInimigo.ChanceCritica;
+            inimigo.ChanceDeResistirEfeito = definicaoInimigo.ChanceDeResistirEfeito;
+        }
         engine = new CombatEngine();
 
         botaoAtacar.onClick.AddListener(AoClicarAtacar);
         botaoItem.onClick.AddListener(AoClicarItem);
         botaoFugir.onClick.AddListener(AoClicarFugir);
+        botaoFugir.interactable = PermiteFugir;
         if (botaoStatus != null && telaDeStatus != null)
         {
-            botaoStatus.onClick.AddListener(() => telaDeStatus.Mostrar());
+            botaoStatus.onClick.AddListener(() =>
+            {
+                if (bagDeBatalha != null && bagDeBatalha.EstaAberta) bagDeBatalha.Fechar();
+                telaDeStatus.Mostrar();
+            });
         }
 
         if (painelListaDeAtaques != null)
@@ -181,7 +199,9 @@ public class BattleManager : MonoBehaviour
         sliderInimigo.maxValue = 1;
 
         AtualizarBarras();
-        MostrarMensagem($"Um {nomeInimigo} selvagem apareceu!");
+        MostrarMensagem(inimigo is DroidDoIvo chefe
+            ? $"{nomeInimigo} bloqueia o caminho. Próxima ação: {chefe.ProximaAcao}."
+            : $"Um {nomeInimigo} selvagem apareceu!");
     }
 
     // NOVO (13/09/2026): ESC fecha o painel de Ataque ou Item que estiver
@@ -191,6 +211,11 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         if (!Input.GetKeyDown(KeyCode.Escape)) return;
+        if (bagDeBatalha != null && bagDeBatalha.EstaAberta)
+        {
+            bagDeBatalha.Fechar();
+            return;
+        }
 
         // CORRECAO (15/09/2026): o comentario acima dizia "assume que esta
         // cena nao convive com o Menu do Mundo -- confirmar se algum dia as
@@ -218,6 +243,7 @@ public class BattleManager : MonoBehaviour
     void AoClicarAtacar()
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
+        if (bagDeBatalha != null && bagDeBatalha.EstaAberta) return;
 
         var acoes = new List<string>(droid.ObterAcoesDisponiveis());
 
@@ -310,8 +336,28 @@ public class BattleManager : MonoBehaviour
     void AoClicarItem()
     {
         if (!turnoDoJogador || batalhaEncerrada) return;
+        if (bagDeBatalha != null)
+        {
+            if (bagDeBatalha.EstaAberta) return;
+            if (painelListaDeAtaques != null) painelListaDeAtaques.gameObject.SetActive(false);
+            if (painelListaDeItens != null) painelListaDeItens.gameObject.SetActive(false);
+            bagDeBatalha.MostrarEmBatalha(this);
+            return;
+        }
 
         AbrirListaDeItens();
+    }
+
+    public bool TentarUsarItemDaBag(string id)
+    {
+        if (!turnoDoJogador || batalhaEncerrada || bagDeBatalha == null ||
+            !bagDeBatalha.EstaAberta || !bagDeBatalha.EmBatalha) return false;
+        var item = CatalogoDeItens.Obter(id);
+        if (item == null || !item.UsavelEmBatalha ||
+            GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(id) <= 0) return false;
+        bagDeBatalha.Fechar();
+        UsarItem(item);
+        return true;
     }
 
     // REFATORACAO (Estagio 2 — 13/09/2026): antes lia ItensDeBatalha.Disponiveis
@@ -562,6 +608,7 @@ public class BattleManager : MonoBehaviour
     // Id desconhecido cai no passo 3 com um aviso, nunca quebra a cena.
     void AplicarInimigoDoCatalogo()
     {
+        definicaoInimigo = null;
         var gerenciador = GerenciadorDeEstado.Instancia;
 
         string id = !string.IsNullOrEmpty(gerenciador.ProximoInimigoId)
@@ -578,6 +625,7 @@ public class BattleManager : MonoBehaviour
         }
 
         nomeInimigo = definicao.Nome;
+        definicaoInimigo = definicao;
         hpMaxInimigo = definicao.HpMax;
         atkInimigo = definicao.Ataque;
         defInimigo = definicao.Defesa;
@@ -621,7 +669,8 @@ public class BattleManager : MonoBehaviour
 
     void AoClicarFugir()
     {
-        if (!turnoDoJogador || batalhaEncerrada) return;
+        if (!turnoDoJogador || batalhaEncerrada || !PermiteFugir) return;
+        if (bagDeBatalha != null && bagDeBatalha.EstaAberta) return;
 
         if (Random.value <= chanceDeFugir)
         {
@@ -677,6 +726,7 @@ public class BattleManager : MonoBehaviour
         if (batalhaEncerrada) yield break;
         batalhaEncerrada = true;
         turnoDoJogador = false;
+        if (bagDeBatalha != null) bagDeBatalha.Fechar();
         DefinirBotoesInterativos(false);
         if (painelListaDeAtaques != null) painelListaDeAtaques.gameObject.SetActive(false);
         if (painelListaDeItens != null) painelListaDeItens.gameObject.SetActive(false);
@@ -752,6 +802,6 @@ public class BattleManager : MonoBehaviour
     {
         botaoAtacar.interactable = ativo;
         botaoItem.interactable = ativo;
-        botaoFugir.interactable = ativo;
+        botaoFugir.interactable = ativo && PermiteFugir;
     }
 }

@@ -1,0 +1,13 @@
+{
+  "threads": "1:1:1",
+  "source": "Assets/sprites/Mapas/metavalle.jpg",
+  "outputSha256": "3E1034F89B353B5657FA78531068C77D56B2F4D1B9FCE39A19736E73827890D8",
+  "tile": 128,
+  "height": 4320,
+  "release": "20251207-174704",
+  "tool": "upscayl-ncnn",
+  "model": "realesr-animevideov3-x4",
+  "width": 7680,
+  "assetGuid": "0f65d76c51c04ff1a00acf11e34dd6cd",
+  "scale": 4
+}

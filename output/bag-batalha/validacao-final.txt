@@ -1,0 +1,2 @@
+OK 1280x720: flag, 27 itens/páginas, proibido sem efeito/turno, permitido com consumo único/turno, bloqueio fora do turno, Voltar e modo exploração; zero IO de save. Consumo apenas em estado sintético.
+OK 844x475: flag, 27 itens/páginas, proibido sem efeito/turno, permitido com consumo único/turno, bloqueio fora do turno, Voltar e modo exploração; zero IO de save. Consumo apenas em estado sintético.

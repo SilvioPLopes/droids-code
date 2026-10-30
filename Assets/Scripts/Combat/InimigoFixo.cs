@@ -48,12 +48,12 @@ namespace DroidsCode.Combat
             RecompensaXp = recompensaXp;
         }
 
-        public IEnumerable<string> ObterAcoesDisponiveis()
+        public virtual IEnumerable<string> ObterAcoesDisponiveis()
         {
             yield return NomeAcaoUnica;
         }
 
-        public ResultadoAcao ExecutarAcao(string nomeAcao, IParticipanteDeCombate alvo)
+        public virtual ResultadoAcao ExecutarAcao(string nomeAcao, IParticipanteDeCombate alvo)
         {
             // Estagio 1: mesmo roll de acerto que o Droid usa (Hit do inimigo
             // vs Flee do alvo) -- ver Droid.RolarAcerto.

@@ -1,0 +1,4 @@
+OK A 1280x720: A/B por ID, contexto/padrão/fallback, uma imagem visível, enquadramento/filtroPoint, nome/HP corretos, sem alteração de stats ou saves.
+OK B 1280x720: A/B por ID, contexto/padrão/fallback, uma imagem visível, enquadramento/filtroPoint, nome/HP corretos, sem alteração de stats ou saves.
+OK A 844x475: A/B por ID, contexto/padrão/fallback, uma imagem visível, enquadramento/filtroPoint, nome/HP corretos, sem alteração de stats ou saves.
+OK B 844x475: A/B por ID, contexto/padrão/fallback, uma imagem visível, enquadramento/filtroPoint, nome/HP corretos, sem alteração de stats ou saves.

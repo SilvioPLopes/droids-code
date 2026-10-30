@@ -128,7 +128,7 @@ public sealed class ApresentacaoBagIlustrada : MonoBehaviour
         foreach (var kv in GerenciadorDeEstado.Instancia.Inventario)
         {
             var item = CatalogoDeItens.Obter(kv.Key);
-            if (kv.Value > 0 && item != null && item.UsavelForaDeBatalha) itens.Add(item);
+            if (kv.Value > 0 && bag.ItemVisivel(item)) itens.Add(item);
         }
         pagina = Mathf.Clamp(pagina, 0, Mathf.Max(0, (itens.Count - 1) / PorPagina));
         if (!itens.Exists(i => i.Id == selecionado)) selecionado = null;
@@ -166,7 +166,7 @@ public sealed class ApresentacaoBagIlustrada : MonoBehaviour
         rolagemDescricao.verticalNormalizedPosition = 1;
         previa.sprite = atual == null ? null : CatalogoVisualDeItens.Obter(atual.Id);
         previa.enabled = previa.sprite != null;
-        bool equipamento = atual != null && atual.Tipo == TipoDeItem.Equipavel;
+        bool equipamento = atual != null && atual.Tipo == TipoDeItem.Equipavel && !bag.EmBatalha;
         acao.interactable = atual != null && !equipamento;
         rotuloAcao.text = equipamento ? "NO TERMINAL" : "USAR";
         if (equipamento)
