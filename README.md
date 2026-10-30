@@ -195,8 +195,8 @@ Os nomes dos integrantes e suas responsabilidades serão incluídos pelos autore
 
 ## Documentação adicional
 
-- [Página inicial da wiki preparada neste repositório](docs/wiki/Home.md).
-- [Endereço da Wiki no GitHub](https://github.com/SilvioPLopes/droids-code/wiki) — publicação ainda não confirmada.
+- [Wiki do projeto no GitHub](https://github.com/SilvioPLopes/droids-code/wiki).
+- [Fontes das páginas da wiki neste repositório](docs/wiki/Home.md).
 - [Índice da documentação técnica](docs/indice-trabalho.md).
 - [Contexto e arquitetura do projeto](docs/contexto-projeto.md).
 - [Roteiro técnico de validação](docs/guias/validacao-jogo.md).

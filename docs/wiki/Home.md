@@ -10,7 +10,7 @@ Esta documentação complementa o README e reúne referências para avaliação 
 - [Visão técnica do projeto](https://github.com/SilvioPLopes/droids-code/wiki/Visao-tecnica).
 - [Como publicar estas páginas no GitHub Wiki](https://github.com/SilvioPLopes/droids-code/wiki/Publicar-a-wiki).
 
-Antes da publicação, os arquivos correspondentes podem ser abertos diretamente nesta pasta: `Guia-do-professor.md`, `Visao-tecnica.md` e `Publicar-a-wiki.md`.
+As fontes destas páginas também ficam na pasta `docs/wiki/` do repositório principal.
 
 ## Proposta educativa
 
@@ -22,4 +22,4 @@ O público-alvo é quem está iniciando o aprendizado de lógica de programaçã
 
 O jogo está em desenvolvimento. O roteiro de avaliação começa no menu, passa pela casa e segue para a exploração da cidade. A continuidade até o vale depende dos requisitos de história, técnica e pontos; o README registra esse limite.
 
-As páginas desta pasta estão preparadas localmente. Sua existência no repositório principal não significa que tenham sido publicadas na aba **Wiki**.
+Esta wiki reúne o guia de avaliação, a visão técnica e os links para a documentação do jogo. As fontes em `docs/wiki/` e a aba **Wiki** são mantidas em repositórios Git separados.

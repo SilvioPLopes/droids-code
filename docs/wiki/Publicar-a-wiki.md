@@ -58,6 +58,15 @@ Use a branch padrão da wiki, obtida pelo clone normal. O GitHub publica as pág
 
 Abra novamente a aba **Wiki**, confira as páginas, os links e a barra lateral. Só então altere o status de publicação no README e na Home. O README do repositório principal também precisa ser enviado na branch usada para a entrega.
 
-**Diagnóstico desta preparação:** a consulta Git retornou `Repository not found`. Essa mensagem não distingue uma wiki ainda não inicializada de um problema de acesso; não houve publicação remota nesta etapa.
+## Atualizar uma wiki já publicada
+
+Se o clone em `output/wiki-publicacao` já existir, confira se não há alterações locais e atualize a branch padrão antes de copiar novas versões:
+
+```powershell
+git -C output/wiki-publicacao status --short
+git -C output/wiki-publicacao pull --ff-only
+```
+
+Depois compare as páginas existentes, copie somente as que deseja atualizar e siga os passos de revisão, commit e push acima. Preserve alterações feitas diretamente no GitHub.
 
 Referência: [documentação oficial do GitHub sobre páginas da wiki](https://docs.github.com/en/communities/documenting-your-project-with-wikis/adding-or-editing-wiki-pages).
