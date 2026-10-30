@@ -1,0 +1,1 @@
+[Início da wiki](https://github.com/SilvioPLopes/droids-code/wiki) · [Índice de personagens](https://github.com/SilvioPLopes/droids-code/wiki/Personagens) · [Estado do projeto](https://github.com/SilvioPLopes/droids-code/wiki/Estado-do-projeto) · [Repositório](https://github.com/SilvioPLopes/droids-code)

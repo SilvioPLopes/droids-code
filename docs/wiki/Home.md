@@ -1,25 +1,40 @@
-# Droids Code — Wiki
+# Droids Code — a Wiki do jogo
 
-Droids Code é um RPG educativo em 2D sobre lógica de programação. Lip explora Ferrovale com seu Droid Apollo, conversa com moradores e usa Lua para resolver desafios e preparar técnicas de combate.
+**Uma cidade sem água. Um garoto que conserta máquinas. Um Droid que aprendeu a ser companhia.**
 
-Esta documentação complementa o README e reúne referências para avaliação e consulta técnica.
+Droids Code é um RPG educativo em 2D no qual explorar, conversar, preparar Apollo e resolver problemas por programação fazem parte da mesma aventura. Esta wiki reúne os personagens, as motivações, os lugares e os sistemas que dão forma ao mundo de Ferrovale.
 
-## Por onde começar
+<img src="https://raw.githubusercontent.com/wiki/SilvioPLopes/droids-code/images/lip.png" alt="Lip" width="120"> <img src="https://raw.githubusercontent.com/wiki/SilvioPLopes/droids-code/images/apollo.png" alt="Apollo" width="120">
 
-- [Como executar e jogar as etapas iniciais](https://github.com/SilvioPLopes/droids-code/wiki/Guia-do-professor).
-- [Visão técnica do projeto](https://github.com/SilvioPLopes/droids-code/wiki/Visao-tecnica).
-- [Como publicar estas páginas no GitHub Wiki](https://github.com/SilvioPLopes/droids-code/wiki/Publicar-a-wiki).
+## Explore a enciclopédia
 
-As fontes destas páginas também ficam na pasta `docs/wiki/` do repositório principal.
+| Quero conhecer… | Por onde começar |
+|---|---|
+| A premissa, o passado e o conflito | [História](https://github.com/SilvioPLopes/droids-code/wiki/Historia) |
+| A cidade e os lugares da aventura | [Mundo e locais](https://github.com/SilvioPLopes/droids-code/wiki/Mundo-e-locais) |
+| Lip, Apollo e o elenco | [Personagens](https://github.com/SilvioPLopes/droids-code/wiki/Personagens) |
+| As organizações e suas escolhas | [Facções](https://github.com/SilvioPLopes/droids-code/wiki/Faccoes) |
+| Os objetivos e as recompensas | [Missões](https://github.com/SilvioPLopes/droids-code/wiki/Missoes) e [Guilda dos Sucateiros](https://github.com/SilvioPLopes/droids-code/wiki/Guilda-dos-Sucateiros) |
+| O inventário, as peças e os consumíveis | [Itens e equipamentos](https://github.com/SilvioPLopes/droids-code/wiki/Itens) |
+| As máquinas inimigas e o chefe | [Bestiário](https://github.com/SilvioPLopes/droids-code/wiki/Bestiario) e [Droid do Ivo](https://github.com/SilvioPLopes/droids-code/wiki/Boss-Droid-do-Ivo) |
+| Como o jogo funciona | [Sistemas do jogo](https://github.com/SilvioPLopes/droids-code/wiki/Sistemas-do-jogo) e [Desafios](https://github.com/SilvioPLopes/droids-code/wiki/Desafios) |
+| As revelações e os finais previstos | [Campanha e finais — spoilers](https://github.com/SilvioPLopes/droids-code/wiki/Campanha-e-finais) |
+| As sprites e as artes existentes | [Galeria](https://github.com/SilvioPLopes/droids-code/wiki/Galeria) |
 
-## Proposta educativa
+## Para jogar ou apresentar
 
-O terminal aproxima programação e resultado no jogo: o jogador escreve código, executa e observa a mudança de estado. O primeiro desafio trabalha variável, laço `while` e condição de parada ao elevar `nivel_agua` até 100. A preparação do Apollo também introduz chamadas de funções e uso de recursos limitados.
+- [Guia do professor](https://github.com/SilvioPLopes/droids-code/wiki/Guia-do-professor): abrir o jogo no Unity, controles e etapas iniciais.
+- [Sobre o projeto](https://github.com/SilvioPLopes/droids-code/wiki/Sobre-o-projeto): proposta educativa e roteiro de apresentação.
+- [Visão técnica](https://github.com/SilvioPLopes/droids-code/wiki/Visao-tecnica): cenas, sistemas, dados e responsabilidades.
+- [Estado do projeto](https://github.com/SilvioPLopes/droids-code/wiki/Estado-do-projeto): o que significa estar no roteiro, no catálogo ou na implementação.
+- [Lua — em construção](https://github.com/SilvioPLopes/droids-code/wiki/Lua).
 
-O público-alvo é quem está iniciando o aprendizado de lógica de programação. O projeto é um TCC do curso de Sistemas para Internet da FATEC Baixada Santista — Rubens Lara.
+## Como ler a wiki
 
-## Estado da entrega
+As páginas de personagens e missões contêm spoilers, sinalizados no início. A campanha completa descrita no enredo é mais extensa que o recorte atual de jogo. Um objeto cadastrado não significa que todos os seus usos já estejam disponíveis em uma partida. Números de combate e recompensas representam os catálogos consultados, sujeitos a balanceamento.
 
-O jogo está em desenvolvimento. O roteiro de avaliação começa no menu, passa pela casa e segue para a exploração da cidade. A continuidade até o vale depende dos requisitos de história, técnica e pontos; o README registra esse limite.
+As biografias seguem o enredo e seu adendo; as regras e estatísticas seguem os arquivos do projeto. Veja [Fontes e critérios](https://github.com/SilvioPLopes/droids-code/wiki/Fontes-e-criterios) para entender a precedência e as diferenças entre documentos.
 
-Esta wiki reúne o guia de avaliação, a visão técnica e os links para a documentação do jogo. As fontes em `docs/wiki/` e a aba **Wiki** são mantidas em repositórios Git separados.
+## Manutenção
+
+As fontes ficam em `docs/wiki/` no [repositório principal](https://github.com/SilvioPLopes/droids-code). A aba Wiki possui repositório próprio. O [procedimento de publicação](https://github.com/SilvioPLopes/droids-code/wiki/Publicar-a-wiki) explica como manter as duas versões sincronizadas.

@@ -196,6 +196,7 @@ Os nomes dos integrantes e suas responsabilidades serão incluídos pelos autore
 ## Documentação adicional
 
 - [Wiki do projeto no GitHub](https://github.com/SilvioPLopes/droids-code/wiki).
+- Enciclopédia do jogo: [história](https://github.com/SilvioPLopes/droids-code/wiki/Historia), [personagens](https://github.com/SilvioPLopes/droids-code/wiki/Personagens), [missões](https://github.com/SilvioPLopes/droids-code/wiki/Missoes), [itens](https://github.com/SilvioPLopes/droids-code/wiki/Itens) e [bestiário](https://github.com/SilvioPLopes/droids-code/wiki/Bestiario).
 - [Fontes das páginas da wiki neste repositório](docs/wiki/Home.md).
 - [Índice da documentação técnica](docs/indice-trabalho.md).
 - [Contexto e arquitetura do projeto](docs/contexto-projeto.md).

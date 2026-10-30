@@ -1,6 +1,6 @@
 # README para avaliação e wiki
 
-**Estado/data:** README e documentos na main; páginas e sidebar da Wiki publicadas por Git, 29/10/2026. Aprovação visual remota não presumida.
+**Estado/data:** Wiki expandida publicada por Git em 29/10/2026; fontes e README preparados para sincronização na main. Aprovação visual remota não presumida.
 **Objetivo:** adaptar o modelo anexado para o professor abrir o projeto Unity e jogar o início; preparar a wiki e verificar a possibilidade de publicação.
 **Arquivos permitidos:** `README.md`, este plano e novas páginas em `docs/wiki/`. Não criar outro `readme.md`, pois o repositório já usa `README.md`.
 **Preservar:** todas as alterações existentes; código, cenas, pacotes, saves e documentação de outras tarefas. Não iniciar Unity/Play nem gerar builds.
@@ -58,3 +58,31 @@
 - Verificação: diff documental sem erros; commit remoto confirmado. Consulta web para renderização retornou `Cache miss`, portanto não há aprovação visual por navegador. Não repetir essa consulta sem evidência nova.
 - Estado do Unity/saves inalterado. Clone de manutenção mantido em `output/wiki-publicacao`; nenhuma limpeza ou backup removido.
 - Próximo passo: conferir visualmente a Wiki pelo navegador e preencher integrantes/responsabilidades da equipe se necessário. Atualizações futuras exigem sincronizar fontes em `docs/wiki/` e repositório separado da Wiki.
+
+## Expansão para enciclopédia do jogo — pedido vigente
+
+**Objetivo:** ampliar e publicar a Wiki como referência de jogo/apresentação: mundo, enredo, NPCs principais, motivações, antagonistas, boss, facções, missões, itens, puzzles e mecânicas; incluir Lua, origem brasileira e visão técnica legível. Não transcrever diálogos.
+**Autorização:** usuário pediu conteúdo abrangente e liberdade editorial; manter a publicação já autorizada em main e no repositório da Wiki. Trabalho em um agente, sem alterar o jogo.
+**Escopo permitido:** `docs/wiki/**`, README somente para navegação se necessário, este plano; clone `output/wiki-publicacao/**` e arquivos auxiliares de preparação em `output/wiki-preparacao/`. Imagens existentes podem ser copiadas para a Wiki ou vinculadas à versão publicada, sem editar assets originais.
+**Preservar:** cenas, scripts, catálogos, GUIDs, metas, saves, demais documentos e conteúdo remoto posterior de terceiros. Não usar Unity/MCP nem criar novas artes.
+**Fontes:** enredo v2 + adendo (adendo prevalece); catálogos Npcs/Locais/Quests/Itens/Inimigos/Puzzles/Licoes/visual; contratos de combate, estado e interface quando necessários; matriz de nomenclatura para divergências atuais; documentação primária do Lua para história e sintaxe.
+**Critérios de aceite:** navegação por temas e personagens, texto acessível e substancial, spoilers sinalizados, fichas e tabelas sem dump de diálogo; referências rastreáveis; separar cânone narrativo, conteúdo cadastrado, implementação e montagem validada; imagens identificadas sem prometer aparência aprovada. Não inventar estatísticas, recompensas ou biografias.
+**Validação mínima:** consistência contra fontes, cobertura de IDs dos catálogos, links e caminhos de imagens, diff somente no escopo; publicação verificada por hashes remotos. Verificação visual remota somente se navegador estiver disponível.
+**Baseline/reversão:** main em `70a8e4c`, Wiki em `628d108`; registrar estado remoto antes do envio. Novas páginas removíveis isoladamente se solicitado; páginas existentes reversíveis por commit/hunks, preservando edições posteriores. Nenhum save tocado.
+**Decisão editorial:** usar o enredo para biografias e o adendo para origem do Apollo/atos finais. Catálogos possuem idades e cronologia divergentes: omitir idades contraditórias e registrar a precedência em uma página de fontes, sem corrigir código. Missões/itens cadastrados não serão anunciados como todos acessíveis em uma partida.
+**Próximo passo:** extrair dados dos catálogos, ler trechos narrativos necessários, organizar e escrever as páginas, validar e publicar.
+
+**Ajuste explícito do usuário durante a execução:** priorizar exclusivamente os dados do jogo; página de Lua ficará em construção. Não produzir tutorial, história da linguagem nem ampliar pesquisa sobre Lua. A consulta primária já iniciada não será incorporada à wiki nesta rodada.
+
+**Baseline remoto confirmado:** Wiki sem novas alterações, `pull --ff-only` sem atualizações; origin/main ainda em `70a8e4c`. Fontes copiadas sem alteração: onze PNGs de retratos/inimigos/folhas de itens para `docs/wiki/images/`, com procedência na galeria. Sem recortes, geração ou edição de imagens.
+
+### Resultado da expansão
+
+- Wiki publicada em `ea6e363bc5152d9a2209daef9b73bc4af2a556b5`, avançando a master de `628d108` por push normal. `ls-remote` confirmou o hash; clone limpo após publicação.
+- Conteúdo: 29 páginas, sidebar e footer; onze imagens copiadas sem alteração; cerca de 19,8 mil palavras. Universo, cronologia, campanha/finais com spoilers, sete fichas centrais, elenco completo, facções/Guilda, mecânicas, apresentação e arquitetura. Lua ficou apenas em construção, conforme correção explícita do usuário.
+- Cobertura conferida por ID, sem duplicação: 27 itens, 18 missões, 19 locais, oito inimigos (incluindo teste) e dez puzzles. Dezesseis NPCs catalogados representados no índice/fichas. Sem transcrição de diálogos.
+- Estatísticas seguem fonte atual: boss com 200 HP e ciclo de quatro ações. A origem do Apollo segue o adendo (431 núcleos). Divergências de idades, Célia, Tácio, locais e final Ramificar explicitadas na página de fontes, sem mudar o jogo.
+- Verificação documental: 207 destinos de links/fontes/imagens existentes; blocos e tabelas conferidos; diff staged da Wiki sem erros após remover espaços finais em três linhas de itens. Hashes dos 42 arquivos da fonte e do clone são iguais.
+- README recebeu links diretos aos principais temas. Guia de publicação atualizado para todas as páginas, imagens e rodapé. Auxiliares de extração/verificação permanecem somente em `output/wiki-preparacao/`, fora dos commits; clone em `output/wiki-publicacao/`, sem remoção de backups.
+- Não executados: Unity, gameplay, saves, builds ou comparação visual no navegador. Sem nova tentativa da interface bloqueada. Publicação comprovada por Git, com inspeção visual pelo usuário pendente.
+- Próximo passo: publicar as mesmas fontes e este registro na main; depois a manutenção editorial ocorre por tema, conciliando dados novos com a fonte correspondente. Não há correção de gameplay autorizada nesta tarefa.

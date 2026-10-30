@@ -24,7 +24,9 @@ Para uma publicação sem terminal, use **New Page**, crie cada título abaixo e
 | Visao-tecnica | `Visao-tecnica.md` |
 | Publicar-a-wiki | `Publicar-a-wiki.md` |
 
-Salve cada página. Para a navegação lateral personalizada, use a opção de adicionar uma barra lateral e cole `_Sidebar.md`.
+Salve cada página. A expansão da enciclopédia acrescenta os temas listados em `_Sidebar.md`: use o nome de cada arquivo Markdown como título, sem a extensão `.md`. Para a navegação lateral personalizada, use a opção de adicionar uma barra lateral e cole `_Sidebar.md`; para o rodapé, use `_Footer.md`.
+
+As imagens ficam em `images/`. Para publicar o conjunto completo de páginas e imagens com os mesmos caminhos, prefira o fluxo Git abaixo.
 
 ## 3. Alternativa: publicar por Git
 
@@ -40,6 +42,8 @@ Antes de copiar, compare as páginas que já estiverem na wiki. Em uma wiki rec�
 
 ```powershell
 Copy-Item -Path docs/wiki/*.md -Destination output/wiki-publicacao/
+New-Item -ItemType Directory -Path output/wiki-publicacao/images -Force
+Copy-Item -Path docs/wiki/images/*.png -Destination output/wiki-publicacao/images/
 git -C output/wiki-publicacao status --short
 git -C output/wiki-publicacao diff
 ```
@@ -47,7 +51,7 @@ git -C output/wiki-publicacao diff
 Revise o conteúdo. Depois faça o commit somente destas páginas e publique:
 
 ```powershell
-git -C output/wiki-publicacao add -- Home.md Guia-do-professor.md Visao-tecnica.md Publicar-a-wiki.md _Sidebar.md
+git -C output/wiki-publicacao add -- '*.md' images
 git -C output/wiki-publicacao commit -m "Documenta execução e avaliação inicial do Droids Code"
 git -C output/wiki-publicacao push origin HEAD
 ```

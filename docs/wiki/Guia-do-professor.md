@@ -2,6 +2,8 @@
 
 O guia principal fica no [README do projeto](https://github.com/SilvioPLopes/droids-code#readme), para manter uma única versão dos passos, controles e solução de apoio.
 
+Para conhecer o universo antes da demonstração, consulte [Sobre o projeto](https://github.com/SilvioPLopes/droids-code/wiki/Sobre-o-projeto), [Personagens](https://github.com/SilvioPLopes/droids-code/wiki/Personagens) e [Galeria](https://github.com/SilvioPLopes/droids-code/wiki/Galeria). As páginas de campanha e de motivações podem conter spoilers.
+
 ## Percurso de avaliação
 
 1. Adicionar a pasta do projeto ao Unity Hub e usar **Unity 6000.5.8f1**.
