@@ -1,6 +1,6 @@
 # README para avaliação e wiki
 
-**Estado/data:** Wiki expandida publicada por Git em 29/10/2026; fontes e README preparados para sincronização na main. Aprovação visual remota não presumida.
+**Estado/data:** Wiki expandida e fontes/README na main publicados por Git; encerramento em 30/10/2026. Aprovação visual remota não presumida.
 **Objetivo:** adaptar o modelo anexado para o professor abrir o projeto Unity e jogar o início; preparar a wiki e verificar a possibilidade de publicação.
 **Arquivos permitidos:** `README.md`, este plano e novas páginas em `docs/wiki/`. Não criar outro `readme.md`, pois o repositório já usa `README.md`.
 **Preservar:** todas as alterações existentes; código, cenas, pacotes, saves e documentação de outras tarefas. Não iniciar Unity/Play nem gerar builds.
@@ -85,4 +85,5 @@
 - Verificação documental: 207 destinos de links/fontes/imagens existentes; blocos e tabelas conferidos; diff staged da Wiki sem erros após remover espaços finais em três linhas de itens. Hashes dos 42 arquivos da fonte e do clone são iguais.
 - README recebeu links diretos aos principais temas. Guia de publicação atualizado para todas as páginas, imagens e rodapé. Auxiliares de extração/verificação permanecem somente em `output/wiki-preparacao/`, fora dos commits; clone em `output/wiki-publicacao/`, sem remoção de backups.
 - Não executados: Unity, gameplay, saves, builds ou comparação visual no navegador. Sem nova tentativa da interface bloqueada. Publicação comprovada por Git, com inspeção visual pelo usuário pendente.
-- Próximo passo: publicar as mesmas fontes e este registro na main; depois a manutenção editorial ocorre por tema, conciliando dados novos com a fonte correspondente. Não há correção de gameplay autorizada nesta tarefa.
+- Fontes e README publicados na main em `6ff9cf0d1b2449210b8657219def27f65d2f4178`, confirmados por `ls-remote`; push normal desde `70a8e4c`. Apenas os 44 arquivos do escopo entraram nesse commit; código/cenas preservados. Checkout e clone da Wiki limpos na conferência pós-envio, antes deste registro final.
+- Próximo passo: usuário conferir a apresentação visual da Wiki. Manutenção editorial por tema, conciliando novos dados com as fontes e sincronizando a Wiki. Lua continua em construção; gameplay e novas artes fora desta tarefa. Nenhuma limpeza de saves/backups pendente.
