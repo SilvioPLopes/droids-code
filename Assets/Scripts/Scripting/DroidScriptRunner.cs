@@ -1,79 +1,136 @@
+﻿using System;
 using MoonSharp.Interpreter;
 
 namespace DroidsCode.Scripting
 {
     public class DroidScriptRunner
     {
-        private readonly Script _vm;
+        private Script _vm;
+        private Coroutine _coroutine;
         private readonly TerminalDroidApi _api;
+        private LimitesDeExecucao _limites;
+        private int _retomadas;
+        private bool _cicloEquipamentosAberto;
+
+        public EstadoExecucao EstadoAtual { get; private set; } = EstadoExecucao.Concluida;
+        public ResultadoExecucao UltimoResultado { get; private set; }
+        public const string MensagemLimiteInstrucoes = "Execução interrompida: limite de instruções atingido. Confira a condição de parada e o incremento do laço. As variáveis desta sessão foram reiniciadas. Você pode editar e executar novamente.";
 
         public DroidScriptRunner(TerminalDroidApi api)
         {
-            _api = api;
-            // Sandbox: remove io, os (exceto tempo), load, require, dofile.
-            // O Lua digitado pelo jogador não deveria ter acesso a sistema de
-            // arquivos/SO — sem isso, new Script() carrega todos os módulos
-            // padrão, incluindo esses, o que é uma porta aberta desnecessária
-            // num terminal exposto ao jogador dentro do jogo.
-            _vm = new Script(CoreModules.Preset_SoftSandbox);
-
+            _api = api ?? throw new ArgumentNullException(nameof(api));
             UserData.RegisterType<TerminalDroidApi>();
-            // So a fachada e exposta — Droid.cs nunca e registrado diretamente.
-            _vm.Globals["droid"] = api;
         }
 
-        public ResultadoExecucao ExecutarCodigo(string codigoLua)
+        private void CriarVm()
         {
-            _api.IniciarExecucaoEquipamentos();
-            // TODO: sem protecao contra loop infinito ainda (ex: "while true do end"
-            // travaria o jogo). Pendência conhecida, fora do escopo desta correção.
+            // Somente módulos sem execução reentrante de callbacks Lua sem yield.
+            _vm = new Script(CoreModules.Basic | CoreModules.GlobalConsts |
+                CoreModules.TableIterators | CoreModules.Math | CoreModules.Bit32);
+            _vm.Options.DebugPrint = _api.RegistrarSaida;
+            _vm.Globals["droid"] = _api;
+        }
+
+        // false significa concorrência recusada: o job e seu resultado são preservados.
+        public bool IniciarExecucao(string codigo, LimitesDeExecucao limites)
+        {
+            if (EstadoAtual == EstadoExecucao.Executando) return false;
+            _limites = (limites ?? new LimitesDeExecucao()).CopiarValidado();
+            _api.ConfigurarSaida(_limites);
+            _retomadas = 0;
+            UltimoResultado = null;
+            EstadoAtual = EstadoExecucao.Executando;
+            codigo = codigo ?? "";
+            if (codigo.Length > _limites.MaximoDeCaracteres)
+            {
+                Terminar(EstadoExecucao.LimiteExcedido, "Execução interrompida: limite de tamanho do código atingido. As variáveis desta sessão foram reiniciadas. Reduza o código e execute novamente.");
+                return true;
+            }
+            if (codigo.StartsWith("MoonSharp_dump_b64::", StringComparison.Ordinal))
+            {
+                Terminar(EstadoExecucao.Falhou, "O terminal aceita somente código-fonte Lua, não bytecode.");
+                return true;
+            }
             try
             {
-                _vm.DoString(codigoLua);
-                _api.ConcluirExecucaoEquipamentos(true);
-                return new ResultadoExecucao { Sucesso = true, MensagemErro = null };
+                if (_vm == null) CriarVm();
+                _api.IniciarExecucaoEquipamentos();
+                _cicloEquipamentosAberto = true;
+                DynValue funcao = _vm.LoadString(codigo);
+                _coroutine = _vm.CreateCoroutine(funcao).Coroutine;
+                _coroutine.AutoYieldCounter = _limites.InstrucoesPorRetomada;
             }
-            catch (ScriptRuntimeException ex)
+            catch (InterpreterException ex) { Terminar(EstadoExecucao.Falhou, ex.DecoratedMessage, true); }
+            catch (Exception ex) { Terminar(EstadoExecucao.Falhou, "Falha ao iniciar execução: " + ex.Message); }
+            return true;
+        }
+
+        // Cada chamada realiza no máximo um Resume, sempre no thread do Unity.
+        public EstadoExecucao AvancarExecucao()
+        {
+            if (EstadoAtual != EstadoExecucao.Executando) return EstadoAtual;
+            try
             {
-                _api.ConcluirExecucaoEquipamentos(false);
-                return new ResultadoExecucao { Sucesso = false, MensagemErro = ex.DecoratedMessage };
+                _retomadas++;
+                _coroutine.Resume();
+                if (_coroutine.State == CoroutineState.Dead)
+                    Terminar(EstadoExecucao.Concluida, null);
+                else if (_coroutine.State != CoroutineState.ForceSuspended)
+                    Terminar(EstadoExecucao.Falhou, "Execução suspensa em estado não permitido.");
+                else if (_retomadas >= _limites.MaximoDeRetomadas)
+                    Terminar(EstadoExecucao.LimiteExcedido, MensagemLimiteInstrucoes);
             }
-            catch (SyntaxErrorException ex)
+            catch (InterpreterException ex) { Terminar(EstadoExecucao.Falhou, ex.DecoratedMessage, true); }
+            catch (Exception ex) { Terminar(EstadoExecucao.Falhou, "Falha durante execução: " + ex.Message); }
+            return EstadoAtual;
+        }
+
+        public void CancelarExecucao()
+        {
+            if (EstadoAtual == EstadoExecucao.Executando)
+                Terminar(EstadoExecucao.Cancelada, "Execução cancelada. As variáveis desta sessão foram reiniciadas. Você pode editar e executar novamente.");
+        }
+
+        private void Terminar(EstadoExecucao estado, string mensagem, bool erroDeLua = false)
+        {
+            bool sucesso = estado == EstadoExecucao.Concluida;
+            try
             {
-                _api.ConcluirExecucaoEquipamentos(false);
-                return new ResultadoExecucao { Sucesso = false, MensagemErro = ex.DecoratedMessage };
+                if (_cicloEquipamentosAberto)
+                {
+                    _cicloEquipamentosAberto = false;
+                    _api.ConcluirExecucaoEquipamentos(sucesso);
+                }
             }
-            catch
+            finally
             {
-                _api.ConcluirExecucaoEquipamentos(false);
-                throw;
+                _coroutine = null;
+                if (!sucesso) _vm = null;
+                EstadoAtual = estado;
+                if (!sucesso && _api.HouveAlteracoesNoDroid)
+                    mensagem += " Comandos já aplicados ao Droid podem ter efeitos parciais em atributos, pontos e técnicas; não há reversão integral dessas alterações.";
+                UltimoResultado = new ResultadoExecucao
+                {
+                    Sucesso = sucesso, MensagemErro = mensagem, Estado = estado, ErroDeLua = erroDeLua
+                };
             }
         }
 
-        // ADICIONADO (cena de abertura — puzzle de casa, 14/09/2026): leitura
-        // pura de uma variável global Lua depois da execução, usada pra
-        // avaliar puzzles que não passam por droid.* nenhum (ex: "nivel_agua"
-        // da Sessão 1 do Enredo). Retorna null se a variável não existir
-        // ainda ou não for numérica — quem chama decide o que fazer com isso
-        // (ver VerificadorDePuzzle.VerificarVitoria / PuzzleAguaCasaChecker).
+        // Compatibilidade para fixtures/consumidores síncronos; usa as mesmas quotas.
+        public ResultadoExecucao ExecutarCodigo(string codigoLua)
+        {
+            if (!IniciarExecucao(codigoLua, new LimitesDeExecucao()))
+                return new ResultadoExecucao { Sucesso = false, Estado = EstadoExecucao.Executando, MensagemErro = "Já existe uma execução em andamento." };
+            while (EstadoAtual == EstadoExecucao.Executando) AvancarExecucao();
+            return UltimoResultado;
+        }
+
         public double? ObterVariavelNumerica(string nomeDaVariavel)
         {
+            // Não expor atribuições parciais aos verificadores de vitória.
+            if (_vm == null || EstadoAtual != EstadoExecucao.Concluida) return null;
             DynValue valor = _vm.Globals.Get(nomeDaVariavel);
-
-            // REMOVIDO (15/09/2026): o Debug.Log temporario que imprimia todas
-            // as chaves globais do Lua a cada leitura. O bug que motivou ele
-            // (puzzle da agua) esta confirmado corrigido e testado desde
-            // 14/09; o log so poluia o Console a cada execucao de codigo --
-            // item 7 dos "Proximos passos imediatos" do CHECKLIST.
-            // Quem precisar de depuracao de puzzle agora tem o campo
-            // "logDeDepuracao" no VerificadorDePuzzle, que e ligavel por
-            // instancia no Inspector em vez de global e sempre ligado.
-
-            if (valor.Type != DataType.Number)
-            {
-                return null;
-            }
-            return valor.Number;
+            return valor.Type == DataType.Number ? (double?)valor.Number : null;
         }
     }
 
@@ -81,5 +138,7 @@ namespace DroidsCode.Scripting
     {
         public bool Sucesso { get; set; }
         public string MensagemErro { get; set; }
+        public EstadoExecucao Estado { get; set; }
+        public bool ErroDeLua { get; set; }
     }
 }

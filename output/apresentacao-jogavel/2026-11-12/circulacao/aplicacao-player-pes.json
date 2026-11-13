@@ -1,0 +1,250 @@
+{
+  "antes": {
+    "radius": 0.15,
+    "offsetY": 0.31
+  },
+  "depois": {
+    "radius": 0.065,
+    "offsetY": 0.215
+  },
+  "arquivos": [
+    {
+      "path": "Assets\\Scenes\\CasaLip.unity",
+      "colliderFileID": 1520590131,
+      "playerGameObjectFileID": "1520590129",
+      "antesSHA256": "3b9fd00ab93be7a6449dbf3091fea14e10e702e319bdb59a75c6948baa8c636d",
+      "depoisSHA256": "b82935531ddae5830d06d78f3ca1a1a5d22328d56e9db96db7f577dc6f892f66"
+    },
+    {
+      "path": "Assets\\Scenes\\City.unity",
+      "colliderFileID": 978994982,
+      "playerGameObjectFileID": "978994980",
+      "antesSHA256": "e2f04ea610bcf8a613f410d7d6a6f77afce90db719161b9d8dc8dab60373f6d1",
+      "depoisSHA256": "19208754855ead47fa60e4bbe9f3451f92b12add09d705b6b6027bc13a4d1c6e"
+    },
+    {
+      "path": "Assets\\Scenes\\Game.unity",
+      "colliderFileID": 896406762,
+      "playerGameObjectFileID": "896406756",
+      "antesSHA256": "7347c15c261ad1901fe251cf79e1d163892719d5aa08db733e8f44b4f3cd868b",
+      "depoisSHA256": "5066bff50a725f3d8c5bce5256d6882b0049f306835d95e541ab52da431e243e"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E00_Apartamento01.unity",
+      "colliderFileID": 1367697649,
+      "playerGameObjectFileID": "1367697646",
+      "antesSHA256": "589395e1b9e9499a11390ceb1fa5fd43799ed2c9c02463a6278748d181522303",
+      "depoisSHA256": "23ed263ca6df7cf4bdee181749605c53e4ecb80476c98a3b0e4204e6027f8e39"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E00_Hall.unity",
+      "colliderFileID": 1877777426,
+      "playerGameObjectFileID": "1877777423",
+      "antesSHA256": "6bebd8cebb210caa3482fb56b59e03b717a5d04a265f3a00ecd4c548815d6356",
+      "depoisSHA256": "17f78b254ca3f3da6e438a706fa7f7c62a457c67081e36b9618762f257076ab0"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E00_Patamar.unity",
+      "colliderFileID": 1599437708,
+      "playerGameObjectFileID": "1599437705",
+      "antesSHA256": "9d02584b584ec7108b5ff0f82216b52b0679568e3bc32b5851d649716906b292",
+      "depoisSHA256": "9beca86269db5eddd9ef31313ddeaaf078c03257190735fec99853c511821093"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E01_Apartamento01.unity",
+      "colliderFileID": 1454484341,
+      "playerGameObjectFileID": "1454484338",
+      "antesSHA256": "33abf0098a612fee7a5f6a347106e0c168d562ff87bcf3382192cf588fb1c765",
+      "depoisSHA256": "ea84cfc93a2313b0a34184eee9284783c6bf4ef49253301e2cb33266db56cfca"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E01_Hall.unity",
+      "colliderFileID": 1484604388,
+      "playerGameObjectFileID": "1484604385",
+      "antesSHA256": "6994265ad5be3632ef61d5b4d0d7abc7d2d3afaed931cea72bba210b84f0a365",
+      "depoisSHA256": "ede31364fe7f619058903f842ab9cbdb132ee167ecfb0920160482e865a477b4"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E01_Patamar.unity",
+      "colliderFileID": 337698511,
+      "playerGameObjectFileID": "337698508",
+      "antesSHA256": "be85035679d9ec2425cda2bfd58001d975d6b5ad44ebbd2d8821f626b2ff03b2",
+      "depoisSHA256": "aca9e8aaf173e3e94b0ea8b979796373224c20fd1b684455acb48b01308e0e8e"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E02_Garagem.unity",
+      "colliderFileID": 2066784188,
+      "playerGameObjectFileID": "2066784185",
+      "antesSHA256": "23d544d59a4087abffe28d7bd2ce7b1acbdf96b046a3d0fd794f1329cbb710d5",
+      "depoisSHA256": "cc08c641ad8e525d81fca0a02f33455d38efb5802b616ab6fe403ab0e6ac699c"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E02_Principal.unity",
+      "colliderFileID": 1450883459,
+      "playerGameObjectFileID": "1450883456",
+      "antesSHA256": "cb349f8d16b4c2afbdccb319e36a0848e7d6d950b93d7858050d6191483991ba",
+      "depoisSHA256": "8203446579f6416e8f45852762b6282dc8f5e0ad7ab80355e1455271e26c94f0"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E03_Superior.unity",
+      "colliderFileID": 1847323586,
+      "playerGameObjectFileID": "1847323583",
+      "antesSHA256": "58fe3e59c6711e4e7b382405ecd530367b98ebc74bb1d523cf27baa0f7aee4c7",
+      "depoisSHA256": "a0a0f6dceaba1144186936ae7f1ca38a9fc4fa8ff3da02b6ade40d318377d3b5"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E03_Terreo.unity",
+      "colliderFileID": 1572314595,
+      "playerGameObjectFileID": "1572314592",
+      "antesSHA256": "0714bd564c287ba6a9ce1f8f6232fa22e33a1b5e23dc6f8205d235ad3b8689f7",
+      "depoisSHA256": "6840c9c202ac66b8eee6d00ab7425b62822772721942c17ecb13e3502d6b7bc6"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E04_UnidadeA.unity",
+      "colliderFileID": 1757106549,
+      "playerGameObjectFileID": "1757106546",
+      "antesSHA256": "0266fb46e2b833c2893c1065b68df34420b6436130940feaa814c6257b09914c",
+      "depoisSHA256": "2edf13c51e91d162db8fcaaa2b4b816662dee9e1eb005bc797ca4a4990505f5e"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E04_UnidadeB.unity",
+      "colliderFileID": 1126439544,
+      "playerGameObjectFileID": "1126439541",
+      "antesSHA256": "0762a26e7057a7f46dc9c0d2ccf5bfec5a357a8de048d9ab0bde43d080cc71ee",
+      "depoisSHA256": "5016062b62b05b589a5d336ad6f1823882e20d9f72b98c8cd4fcadebba2421c9"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E05_Principal.unity",
+      "colliderFileID": 1722429360,
+      "playerGameObjectFileID": "1722429357",
+      "antesSHA256": "6fb3a7c6eacf5565e70d6e93873e6eca37b8280134036526eec733481b175feb",
+      "depoisSHA256": "7b70592c94174cbe72969144868b7cee4345cdc61a5f51e7d1e0ff40dff4c055"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E06_Anexo.unity",
+      "colliderFileID": 1492250003,
+      "playerGameObjectFileID": "1492250000",
+      "antesSHA256": "2df111b6cefdc276aee8e5c206de4fb65c14af1adcec7219b1c8f38f3a782355",
+      "depoisSHA256": "52c2e3ef69af29768d991614ed558649da81959bdc25a28147e2b3b3d26a8771"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E06_Superior.unity",
+      "colliderFileID": 61300820,
+      "playerGameObjectFileID": "61300817",
+      "antesSHA256": "231e307e977fb8c55c84b12a9de21d65c00017126737685a1119cd94cb06ce0c",
+      "depoisSHA256": "bcdddcb4da2ea5f561dd91e7e2e48a9263c0662c899be913500a9094e072fd51"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E06_Terreo.unity",
+      "colliderFileID": 1209079375,
+      "playerGameObjectFileID": "1209079372",
+      "antesSHA256": "98d132b2d5718cef5e9e0590ae399d961becde81b9764e40ed06f405a0ad5eca",
+      "depoisSHA256": "4bcf78559977eb10e1b82fe7c8d84c26e02350f6f6fcd652540354ca22272889"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E08_Principal.unity",
+      "colliderFileID": 2087355322,
+      "playerGameObjectFileID": "2087355319",
+      "antesSHA256": "2edd67d3d776f6546ace88b3859ca0437119ed74bb87a01a2e874503a2963811",
+      "depoisSHA256": "3bf56c0eb35e06c02a184f3335c21bd28b1966fac32073034509dc718276bd95"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E08_Superior.unity",
+      "colliderFileID": 1634011820,
+      "playerGameObjectFileID": "1634011817",
+      "antesSHA256": "f249aa2b1253434faa6931953e1b541713dc9fd5426bb8d5497b5d1e90ccc9c4",
+      "depoisSHA256": "c764a2711eb995bca3f25d688a52e86894b52bd0dcf74cd5c8c92aaca9734335"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E09_Superior.unity",
+      "colliderFileID": 378909333,
+      "playerGameObjectFileID": "378909330",
+      "antesSHA256": "c3b3c814b647ad069da6c0b2bf967955af66f66739ab7dcae228be93b32dfcbd",
+      "depoisSHA256": "ebe1b6bcbe124c6e32ded156d19bc98f5666e78b22f602c9971590437ecc755b"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E09_Terreo.unity",
+      "colliderFileID": 2103911679,
+      "playerGameObjectFileID": "2103911676",
+      "antesSHA256": "766b0210908cd50dbc3adec37febfb5520bcdec04350aa7ed30e82b967060372",
+      "depoisSHA256": "9e19e26d0c56e6fab6e07de49c06e34efdea24d7f71dcfd3b6fe58bdc5dc7437"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E10_Casa03.unity",
+      "colliderFileID": 1682398489,
+      "playerGameObjectFileID": "1682398486",
+      "antesSHA256": "3f452efa547cbca8352a42dd69813419d6fd1a45bc914bf20a95878c2d785d76",
+      "depoisSHA256": "a5336ac93865c3d4f12880b48205ac98ecfb5276b6fc119c1282dcc8e4c9e0a4"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E10_Casa04.unity",
+      "colliderFileID": 995357862,
+      "playerGameObjectFileID": "995357859",
+      "antesSHA256": "a63d97d8d15bec2f064032e9be125852aa6c8b502f26fa6df94b3b67ff9f652c",
+      "depoisSHA256": "ac2a14945da0ac508344b4dbd147df0ef244ec81900694213120c41443636954"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E11_Casa05.unity",
+      "colliderFileID": 1750186888,
+      "playerGameObjectFileID": "1750186885",
+      "antesSHA256": "80b856eb17ddf640ad6209a863028612232c6b545d2500a640471c2c3f955209",
+      "depoisSHA256": "a643d112930da8f403d98dced85e05a8cf44d2b7144203a4b46c7014251cadd3"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E11_Casa06.unity",
+      "colliderFileID": 454379839,
+      "playerGameObjectFileID": "454379836",
+      "antesSHA256": "fcf1264cca1ec000573f9aa30445fcf00379d2b5d26ca4ca36798b1e14103037",
+      "depoisSHA256": "3df5936d1ad4182fa07990e26c2480d9f263ba763c7f4289c15cc196c3babd92"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E13_Apartamento01.unity",
+      "colliderFileID": 1250499415,
+      "playerGameObjectFileID": "1250499412",
+      "antesSHA256": "24eb06f96ec7fdeb7319f45c627f583d6b3ff3d723838aebf07e681158ab4a84",
+      "depoisSHA256": "4c7b94ca78a389299454fd232f8319b946a47cd31dfd36c0f87ce9f32eeda7c9"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E13_Hall.unity",
+      "colliderFileID": 1160452990,
+      "playerGameObjectFileID": "1160452987",
+      "antesSHA256": "11098971c3fe4aad6bc17fe9aee3a1a9b56dd5265f15aa0899b676ec32ef169e",
+      "depoisSHA256": "6fd7f01a137f3d858f4ceb31498a38bba723bc5082f5eb9e03d079145c0aaa50"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E13_Patamar.unity",
+      "colliderFileID": 1241280288,
+      "playerGameObjectFileID": "1241280285",
+      "antesSHA256": "30c408b10d0a3dd0ebe829c78587f46b793f91b556748dcbe92be27bcc367398",
+      "depoisSHA256": "5d1707ecf599b5db26e667be10319e57158e4d598df82aedd08c72b9a210f8e1"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E14_Porao.unity",
+      "colliderFileID": 709810836,
+      "playerGameObjectFileID": "709810833",
+      "antesSHA256": "0a55375aaddd2f1d295d9d7f552615fd811fef27471da3ab257e784202faf388",
+      "depoisSHA256": "181d7e3c95b9e86f5d70b1eeaa102e5dc268f85a6aca48ba207fad13721e070e"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E14_UnidadeA.unity",
+      "colliderFileID": 56614748,
+      "playerGameObjectFileID": "56614745",
+      "antesSHA256": "0d5aee2b70cd474c63b6d35032372e241a2f7ff757bdbd5b97cd4f72c3af7bad",
+      "depoisSHA256": "fbb837b1bafd6be384db694be3de49ae4fabacac4180c703a50c73b1215e4411"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E14_UnidadeB.unity",
+      "colliderFileID": 1509514864,
+      "playerGameObjectFileID": "1509514861",
+      "antesSHA256": "024a969bc608c9ebcd61dd7654a712d53fc4e5fb8fe6523492a5faf88f41002a",
+      "depoisSHA256": "f369667090fddd150c7be91a100dffdfc518974ba5bef619e5b0a3f01c398c0a"
+    },
+    {
+      "path": "Assets\\Scenes\\Interiores\\Interior_E16_Civico.unity",
+      "colliderFileID": 2052165890,
+      "playerGameObjectFileID": "2052165887",
+      "antesSHA256": "7a9dcca9cbd5660cf2dd73f48c529a9f8b4584474c5b02de0ffb05fd08166d07",
+      "depoisSHA256": "a90166f085f1c83d1c7b0df56b42157e0c2c093694f5d68da9f5f265185c4608"
+    }
+  ]
+}

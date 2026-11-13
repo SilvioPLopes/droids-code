@@ -396,11 +396,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7414705728600983385, guid: 358cb37094803434889a3a3fd4e44e49, type: 3}
       propertyPath: pontoDeChegada.x
-      value: 2.38
+      value: 1.85500014
       objectReference: {fileID: 0}
     - target: {fileID: 7414705728600983385, guid: 358cb37094803434889a3a3fd4e44e49, type: 3}
       propertyPath: pontoDeChegada.y
-      value: 0.17000002
+      value: 0.395000041
       objectReference: {fileID: 0}
     - target: {fileID: 7770880418480243930, guid: 358cb37094803434889a3a3fd4e44e49, type: 3}
       propertyPath: m_Size.x

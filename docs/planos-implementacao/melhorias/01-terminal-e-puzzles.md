@@ -6,7 +6,7 @@
 **Arquitetura:** manter MoonSharp encapsulado em `DroidScriptRunner`, a fachada em `TerminalDroidApi` e a UI em `TerminalUIManager`; separar execução, avaliação pedagógica e aplicação de consequências persistentes.
 **Tecnologias:** Unity 6000.5.8f1, C#, MoonSharp já instalado, uGUI/TMP, salvamento JSON existente. Não atualizar pacotes.
 **Especificação:** [plano principal](README.md), decisões D-TER-01 a D-TER-03 deste documento e [adendo narrativo, parte D](../../enredo/TCC_-_ENREDO_v2_ADENDO.md).
-**Estado:** proposta, não implementada. Responsável futuro por cada tarefa deve registrar seu nome e recorte antes de editar.
+**Estado:** documento de propostas por tarefa. TER-01 recebeu implementação delimitada em30/10 (motor/UI limitados e testes finitos); estado, diferenças e aceite no [lote de estabilidade](../2026-10-30-estabilidade-lua-loja-game-over.md). Adaptador síncrono foi preservado com as mesmas quotas; fechar cancela sem botão novo. TER-02 e a reformulação pedagógica permanecem propostas, não resolvidas pela guarda.
 
 ## Escopo, evidência e consumidores
 

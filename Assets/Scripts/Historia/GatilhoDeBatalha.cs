@@ -84,6 +84,9 @@ public class GatilhoDeBatalha : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Unity entrega triggers até a componentes desabilitados. Nesses
+        // encontros o MoradorInterativo é a origem explícita da interação.
+        if (!isActiveAndEnabled) return;
         if (!other.CompareTag(tagDoPlayer)) return;
 
         _playerPerto = true;
@@ -102,9 +105,9 @@ public class GatilhoDeBatalha : MonoBehaviour
         if (indicadorDeInteracao != null) indicadorDeInteracao.SetActive(false);
     }
 
-    bool PodeDisparar()
+    public bool PodeDisparar()
     {
-        if (_disparada) return false;
+        if (_disparada || GerenciadorDeEstado.Instancia.MenuAberto) return false;
 
         // A propria flag de vitoria funciona como "ja fiz essa luta" — sem
         // isso, o player voltaria da batalha, encostaria no mesmo trigger e
@@ -119,7 +122,7 @@ public class GatilhoDeBatalha : MonoBehaviour
 
     public void Disparar()
     {
-        if (_disparada) return;
+        if (!PodeDisparar()) return;
         if (string.IsNullOrWhiteSpace(nomeCenaBatalha) || !Application.CanStreamedLevelBeLoaded(nomeCenaBatalha))
         {
             Debug.LogWarning($"GatilhoDeBatalha '{gameObject.name}': cena de batalha indisponível.");

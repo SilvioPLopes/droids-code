@@ -256,6 +256,34 @@ bool Entregar(string idQuest);  // transação local de quest; nenhuma gravaçã
 
 **Aceite/reversão:** NPC permanece encontrável e interagível; nenhuma missão fica impossível pelo período. Reverter componente e posições registradas; rotas completas e pathfinding exigem outro escopo.
 
+## Refinamentos de interiores solicitados em 13/11/2026
+
+Estas propostas complementam o backlog original; não estão implementadas. O trabalho atual continua em circulação, conforme o [plano de apresentação jogável](../2026-11-12-apresentacao-jogavel.md). Não executar junto com o agente responsável pelas identidades visuais.
+
+### Prédios com 3–4 pavimentos
+
+Pedido: expandir um ou dois prédios hoje pouco exploráveis para uma experiência vertical semelhante à loja de vários andares citada pelo usuário. Referência de escopo: 3–4 pavimentos realmente acessíveis; proposta inicial de quatro no total (térreo + três), com seleção das fachadas antes da montagem.
+
+Candidatos mapeados: E00, E01 e E13 possuem Hall → Patamar → Apartamento01; a escada superior reservada não representa outro andar implementado. Isso é um conjunto candidato, não a decisão de expandir os três. Confirmar fachada, função e o estado atual quando esta entrega for selecionada.
+
+- [ ] Selecionar um ou dois prédios e registrar imagem da fachada, função e quantidade final de pavimentos.
+- [ ] Definir cenas/IDs próprios por andar, conexões recíprocas e chegadas seguras. Reutilizar uma matriz visual com variações de uso; não duplicar a mesma cena como se fossem níveis distintos.
+- [ ] Definir conteúdo mínimo por andar e sinalização de piso, evitando pavimentos vazios criados apenas para contar andares.
+- [ ] Testar rua → todos os andares → rua, ida e volta, com volume integral do jogador, sem laços de escada ou chegadas sobrepostas a portais.
+
+Aceite: os 3–4 pavimentos escolhidos existem no grafo, podem ser percorridos e reconhecidos pelo jogador. Mensagem de escada reservada não comprova expansão.
+
+### Enquadramento do diálogo e das escolhas
+
+Relato atual: diálogo e opções estão mal enquadrados e visualmente inadequados. Usuário pediu **registrar agora e corrigir em outra etapa**, mantendo o foco atual nas movimentações. O diagnóstico anterior está na [revisão de interiores](../2026-10-29-revisao-interiores-dialogos-colisoes.md); não é prova de aparência atual.
+
+- [ ] Coordenar propriedade com o agente de identidade visual antes de editar painéis, templates ou cenas compartilhadas.
+- [ ] Registrar captura atual, resolução renderizada, zoom da Game View e configuração efetiva de Canvas/Scaler.
+- [ ] Trabalhar no painel/template de escolhas correspondente, com consumidores identificados; evitar ajuste global de Canvas/Scaler para resolver um painel.
+- [ ] Validar textos longos, várias missões, retrato, escolhas curtas/longas e fechamento sem prender movimento.
+
+Aceite visível: texto e opções legíveis, enquadrados, sem cortes/sobreposições, com hierarquia coerente e preservação dos outros painéis. Sem alteração visual nesta retomada de circulação.
+
 ## Ordem, evidência e retomada
 
 1. Fechar contratos de EST/PUZ/combate e preparar NAR-01 para a fatia selecionada; alinhar invariantes com ECO sem colocar a loja no caminho obrigatório das missões.

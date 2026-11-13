@@ -731,12 +731,22 @@ public class BattleManager : MonoBehaviour
         if (painelListaDeAtaques != null) painelListaDeAtaques.gameObject.SetActive(false);
         if (painelListaDeItens != null) painelListaDeItens.gameObject.SetActive(false);
 
+        if (droid != null)
+        {
+            // Efeitos do encontro não acompanham o jogador na exploração nem no próximo combate.
+            droid.EfeitosAtivos.Clear();
+            droid.EfeitosDeDanoAtivos.Clear();
+            droid.Hp = System.Math.Min(droid.Hp, droid.HpMax);
+        }
+
         if (vitoria)
         {
             SistemaDeProgressao.GanharExperiencia(droid, inimigo.RecompensaXp);
             MostrarMensagem($"Você ganhou {inimigo.RecompensaXp} de XP!");
             GravarFlagDeVitoria();
             AplicarRecompensas();
+            if (definicaoInimigo != null)
+                GerenciadorDeQuests.RegistrarProgresso(TipoDeObjetivo.Derrotar, definicaoInimigo.Id, persistir: false);
         }
         MostrarMensagem(fuga ? "Você fugiu com segurança!" : vitoria ? $"Você derrotou o {nomeInimigo}!" : "Você foi derrotado...");
         float espera = fuga ? 1.5f : 2f;
@@ -753,6 +763,14 @@ public class BattleManager : MonoBehaviour
             }
         }
         GerenciadorDeEstado.Instancia.LimparBatalhaPendente();
+        if (!vitoria && !fuga)
+        {
+            // Derrota nunca consolida o Droid morto nem retorna ao mundo.
+            // Continuar recupera exclusivamente o checkpoint anterior em disco.
+            yield return new WaitForSeconds(espera);
+            SceneManager.LoadScene("GameOver");
+            yield break;
+        }
         yield return VoltarParaOMundo(espera);
     }
 

@@ -77,6 +77,7 @@ public class LojaUIManager : MonoBehaviour
     public void Mostrar()
     {
         Inicializar();
+        if (apresentacao != null) apresentacao.LimparRecusaVenda();
         selecionado = null;
         if (textoMensagem != null) textoMensagem.text = "Selecione um produto para consultar.";
         if (painel != null) painel.SetActive(true);
@@ -86,12 +87,14 @@ public class LojaUIManager : MonoBehaviour
 
     public void Fechar()
     {
+        if (apresentacao != null) apresentacao.LimparRecusaVenda();
         if (painel != null) painel.SetActive(false);
         AoFechar?.Invoke();
     }
 
     void MudarAba(Aba aba)
     {
+        if (apresentacao != null) apresentacao.LimparRecusaVenda();
         selecionado = null;
         _abaAtual = aba;
         AtualizarListaComRebuild();
@@ -185,12 +188,12 @@ public class LojaUIManager : MonoBehaviour
             botao.gameObject.SetActive(true);
 
             var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
-            if (texto != null) texto.text = $"{item.Nome} x{quantidade} — {item.Preco} Gold cada";
+            if (texto != null) texto.text = $"{item.Nome} x{quantidade} — {item.PrecoDeVendaReal} Gold cada";
 
             DefinicaoDeItem itemCapturado = item;
             botao.onClick.RemoveAllListeners();
             botao.onClick.AddListener(() => Selecionar(itemCapturado));
-            if (apresentacao != null) apresentacao.PrepararProduto(botao, item, item.Preco, quantidade, true);
+            if (apresentacao != null) apresentacao.PrepararProduto(botao, item, item.PrecoDeVendaReal, quantidade, true);
         }
     }
 
@@ -213,13 +216,23 @@ public class LojaUIManager : MonoBehaviour
     {
         var gerenciador = GerenciadorDeEstado.Instancia;
 
-        if (!gerenciador.TentarRemoverItem(item.Id, 1))
+        // A seleção pode estar desatualizada; a decisão comercial é do catálogo vigente.
+        item = CatalogoDeItens.Obter(item?.Id);
+        if (!CatalogoDeItens.PodeSerVendido(item))
         {
-            MostrarMensagem("sem_item", item);
+            var fala = CatalogoDeDialogos.RecusaDeCompraDaLoja();
+            if (apresentacao != null) apresentacao.MostrarRecusaVenda(fala.falante, fala.texto);
             return;
         }
 
-        gerenciador.AdicionarGold(item.Preco);
+        if (!gerenciador.TentarRemoverItem(item.Id, 1))
+        {
+            MostrarMensagem("sem_item", item);
+            AtualizarListaComRebuild();
+            return;
+        }
+
+        gerenciador.AdicionarGold(item.PrecoDeVendaReal);
         MostrarMensagem("venda", item);
         AtualizarListaComRebuild();
     }
@@ -242,6 +255,7 @@ public class LojaUIManager : MonoBehaviour
 
     void Selecionar(DefinicaoDeItem item)
     {
+        if (apresentacao != null) apresentacao.LimparRecusaVenda();
         selecionado = item;
         if (botaoAcao != null) botaoAcao.interactable = true;
         if (apresentacao != null) apresentacao.MostrarSelecao(item, Vendendo);
@@ -255,7 +269,9 @@ public class LojaUIManager : MonoBehaviour
 
     void MostrarMensagem(string motivo, DefinicaoDeItem item)
     {
-        var aviso = CatalogoDeDialogos.AvisoDaLoja(motivo, item.Nome, item.Preco);
+        if (apresentacao != null) apresentacao.LimparRecusaVenda();
+        int preco = motivo == "venda" ? item.PrecoDeVendaReal : item.Preco;
+        var aviso = CatalogoDeDialogos.AvisoDaLoja(motivo, item.Nome, preco);
         if (textoMensagem != null) textoMensagem.text = aviso[0].texto;
     }
 }

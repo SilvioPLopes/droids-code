@@ -153,6 +153,8 @@ public class MenuMundoManager : MonoBehaviour
 
     bool MenuBloqueadoNestaCena()
     {
+        // Obrigatório mesmo nas instâncias com array serializado antigo/vazio.
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "GameOver") return true;
         if (cenasBloqueadas == null || cenasBloqueadas.Length == 0) return false;
 
         string cenaAtual = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

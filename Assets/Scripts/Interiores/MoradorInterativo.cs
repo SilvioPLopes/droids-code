@@ -11,6 +11,9 @@ public class MoradorInterativo : MonoBehaviour
     public string nome;
     [TextArea] public string saudacao = "Entre. Podemos conversar um pouco.";
     public GatilhoDeDialogo[] historia = Array.Empty<GatilhoDeDialogo>();
+    [Tooltip("Batalha roteirizada após os diálogos disponíveis. Desabilite o input próprio do gatilho para manter uma única origem de interação.")]
+    public GatilhoDeBatalha batalha;
+    public GameObject indicadorDeProximidade;
     public bool negociar;
     public string flagParaMissoes;
     public string destinoDeVisita;
@@ -21,10 +24,16 @@ public class MoradorInterativo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) { if (other.CompareTag("Player")) jogadores.Add(other); }
     void OnTriggerExit2D(Collider2D other) { jogadores.Remove(other); }
-    void OnDisable() { jogadores.Clear(); }
+    void OnDisable()
+    {
+        jogadores.Clear();
+        if (indicadorDeProximidade != null) indicadorDeProximidade.SetActive(false);
+    }
     void Update()
     {
         jogadores.RemoveWhere(p => p == null);
+        if (indicadorDeProximidade != null)
+            indicadorDeProximidade.SetActive(jogadores.Count > 0 && !GerenciadorDeEstado.Instancia.MenuAberto);
         if (jogadores.Count == 0 || !Input.GetKeyDown(tecla)) return;
         // Nas casas compartilhadas os raios se sobrepoem: somente o morador mais proximo recebe E.
         var jogador = jogadores.FirstOrDefault();
@@ -65,6 +74,11 @@ public class MoradorInterativo : MonoBehaviour
             };
             gatilho.Disparar();
             if (!painel.EstaAberto) gatilho.AoConcluirDialogoExterno = anterior;
+            return;
+        }
+        if (batalha != null && batalha.PodeDisparar())
+        {
+            batalha.Disparar();
             return;
         }
         MostrarOpcoes(painel);
@@ -149,7 +163,11 @@ public class MoradorInterativo : MonoBehaviour
         {
             frameFechamento = Time.frameCount;
             if (escolha == entregar && GerenciadorDeQuests.Entregar(q.Id))
-                DialogoUIManager.Instancia?.Mostrar(Fala(q.TextoDeEntrega), () => { frameFechamento = Time.frameCount; });
+            {
+                string texto = string.IsNullOrWhiteSpace(q.TextoDeEntrega)
+                    ? "Missão concluída: " + q.Titulo + "\n" + GerenciadorDeQuests.DescreverRecompensas(q) : q.TextoDeEntrega;
+                DialogoUIManager.Instancia?.Mostrar(Fala(texto), () => { frameFechamento = Time.frameCount; });
+            }
         });
     }
 

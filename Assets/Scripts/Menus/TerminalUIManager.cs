@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,7 +67,7 @@ public class TerminalUIManager : MonoBehaviour
     public DroidScriptRunner Runner => runner;
     public bool EstaAberto => aberto;
 
-    // Invocado ao final de AoClicarExecutar(), sempre (sucesso ou erro).
+    // Invocado somente ao concluir com sucesso, sem variáveis parciais de puzzle.
     // O terminal geral não sabe nem precisa saber o que os ouvintes fazem
     // com isso -- ex.: checar se uma variável Lua chegou num valor-alvo.
     public System.Action AoExecutarCodigo;
@@ -78,6 +78,7 @@ public class TerminalUIManager : MonoBehaviour
     private bool inicializado;
     private bool aberto;
     private string idDoContextoPuzzle;
+    private string codigoEmExecucao;
     private readonly HashSet<string> contextosApresentados = new HashSet<string>();
 
     private readonly List<string> historicoDeComandos = new List<string>();
@@ -129,6 +130,16 @@ public class TerminalUIManager : MonoBehaviour
     void Update()
     {
         if (!aberto) return;
+        if (painelTerminal == null || !painelTerminal.activeInHierarchy)
+        {
+            Fechar();
+            return;
+        }
+        if (runner != null && runner.EstadoAtual == EstadoExecucao.Executando)
+        {
+            // Uma única retomada por frame, mesmo sem foco no campo de entrada.
+            if (runner.AvancarExecucao() != EstadoExecucao.Executando) ApresentarResultado();
+        }
         if (campoDeCodigo == null || !campoDeCodigo.isFocused) return;
 
         bool ctrlSegurado = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
@@ -212,9 +223,10 @@ public class TerminalUIManager : MonoBehaviour
     {
         if (!aberto) return;
 
+        CancelarExecucaoAtual();
         aberto = false;
         if (painelTerminal != null) painelTerminal.SetActive(false);
-        GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
+        if (GerenciadorDeEstado.Instancia != null) GerenciadorDeEstado.Instancia.RegistrarMenuFechado();
         AoFechar?.Invoke();
     }
 
@@ -222,6 +234,7 @@ public class TerminalUIManager : MonoBehaviour
     {
         if (CatalogoDePuzzles.Obter(idDoPuzzle) == null || idDoContextoPuzzle == idDoPuzzle) return;
 
+        ReiniciarContextoDeExecucao();
         idDoContextoPuzzle = idDoPuzzle;
         Inicializar();
         AtualizarAjuda();
@@ -231,6 +244,7 @@ public class TerminalUIManager : MonoBehaviour
     {
         if (idDoContextoPuzzle != idDoPuzzle) return;
 
+        ReiniciarContextoDeExecucao();
         idDoContextoPuzzle = null;
         AtualizarAjuda();
     }
@@ -243,66 +257,80 @@ public class TerminalUIManager : MonoBehaviour
         textoAjuda.text = puzzle != null
             ? $"{puzzle.Titulo}\n{puzzle.Enunciado}"
             : TextoAjudaPadrao;
+        textoAjuda.text += "\n\nLua: variáveis, funções, tabelas, if, while, for, print, pairs/ipairs, math e bit32. " +
+            "Sem bibliotecas string/table/coroutine, metatables, pcall/xpcall, load/require, io/os/debug. " +
+            "Código e saída têm limites. Fechar cancela a execução. " +
+            "Interromper reinicia variáveis; alterações em atributos, pontos e técnicas podem permanecer.";
     }
 
     void AoClicarExecutar()
     {
-        if (runner == null || campoDeCodigo == null) return;
-
+        if (!aberto || runner == null || campoDeCodigo == null || runner.EstadoAtual == EstadoExecucao.Executando) return;
         string codigo = campoDeCodigo.text;
         if (string.IsNullOrWhiteSpace(codigo)) return;
-
-        AdicionarLinhaDeLog($"> {codigo.Replace("\n", " / ")}");
-
-        api.LimparLog();
+        // Echo limitado; o código original fica disponível no campo para correção.
+        string resumo = codigo.Length <= 512 ? codigo : codigo.Substring(0, 512) + "…";
+        AdicionarLinhaDeLog($"> {resumo.Replace("\n", " / ")}");
+        codigoEmExecucao = codigo;
         EstadoVisual = EstadoDoTerminal.Executando;
+        if (botaoExecutar != null) botaoExecutar.interactable = false;
         if (depuracaoAtiva) AdicionarLinhaDeLog("[Depuração] Iniciando execução.");
-        ResultadoExecucao resultado = runner.ExecutarCodigo(codigo);
-        EstadoVisual = resultado.Sucesso ? EstadoDoTerminal.Pronto : EstadoDoTerminal.Erro;
-        if (depuracaoAtiva)
-            AdicionarLinhaDeLog(resultado.Sucesso ? "[Depuração] Execução concluída." : "[Depuração] Execução interrompida por erro.");
+        runner.IniciarExecucao(codigo, new LimitesDeExecucao());
+        // Parsing/validação podem encerrar sem nenhuma retomada.
+        if (runner.EstadoAtual != EstadoExecucao.Executando) ApresentarResultado();
+    }
 
+    void ApresentarResultado()
+    {
+        ResultadoExecucao resultado = runner.UltimoResultado;
+        if (resultado == null) return;
+        EstadoVisual = resultado.Sucesso || resultado.Estado == EstadoExecucao.Cancelada
+            ? EstadoDoTerminal.Pronto : EstadoDoTerminal.Erro;
+        if (botaoExecutar != null) botaoExecutar.interactable = true;
+        foreach (string linha in api.ObterLogDaSessao()) AdicionarLinhaDeLog(linha);
         if (resultado.Sucesso)
         {
-            foreach (string linha in api.ObterLogDaSessao())
-            {
-                AdicionarLinhaDeLog(linha);
-            }
-
-            if (api.ObterLogDaSessao().Count == 0)
-            {
-                AdicionarLinhaDeLog("(código executado, nenhuma ação de droid chamada)");
-            }
+            if (api.ObterLogDaSessao().Count == 0) AdicionarLinhaDeLog("(código executado, nenhuma saída)");
         }
         else
         {
-            // Mesmo em falha, o Lua pode ter executado alguns comandos com
-            // sucesso ANTES do erro. Mostra o log acumulado antes do "ERRO".
-            foreach (string linha in api.ObterLogDaSessao())
-            {
-                AdicionarLinhaDeLog(linha);
-            }
-
-            AdicionarLinhaDeLog($"ERRO: {resultado.MensagemErro}");
-
-            // NOVO (15/09/2026 — Apollo Dica): alem da mensagem crua do
-            // MoonSharp, o Apollo traduz o erro numa explicacao conceitual.
-            // Este e o primeiro degrau do "Apollo Debugger" prometido no
-            // readme -- NAO destaca linha no editor nem e reativo enquanto o
-            // jogador digita; so explica o erro que ja aconteceu. Ver
-            // ApolloDica.cs pro escopo exato e como adicionar novas dicas.
-            if (mostrarDicasDoApollo)
+            AdicionarLinhaDeLog(resultado.ErroDeLua ? $"ERRO: {resultado.MensagemErro}" : resultado.MensagemErro);
+            if (mostrarDicasDoApollo && resultado.ErroDeLua)
             {
                 string linhaDoErro = ApolloDica.ExtrairLinha(resultado.MensagemErro);
                 string dica = ApolloDica.Traduzir(resultado.MensagemErro);
                 AdicionarLinhaDeLog(string.IsNullOrEmpty(linhaDoErro) ? dica : $"{dica} {linhaDoErro}");
             }
         }
-
-        AdicionarAoHistorico(codigo);
+        if (depuracaoAtiva) AdicionarLinhaDeLog("[Depuração] Resultado: " + resultado.Estado);
+        if (codigoEmExecucao != null)
+        {
+            AdicionarAoHistorico(codigoEmExecucao);
+            codigoEmExecucao = null;
+        }
         AtualizarPontos();
+        if (resultado.Sucesso) AoExecutarCodigo?.Invoke();
+    }
 
-        AoExecutarCodigo?.Invoke();
+    void CancelarExecucaoAtual()
+    {
+        if (runner == null || runner.EstadoAtual != EstadoExecucao.Executando) return;
+        runner.CancelarExecucao();
+        ApresentarResultado();
+    }
+
+    void ReiniciarContextoDeExecucao()
+    {
+        CancelarExecucaoAtual();
+        // Um novo puzzle não herda globais de uma sessão anterior bem sucedida.
+        if (api != null) runner = new DroidScriptRunner(api);
+    }
+
+    void OnDisable()
+    {
+        // Inclui fechamento externo/desativação da montagem.
+        if (aberto) Fechar();
+        else CancelarExecucaoAtual();
     }
 
     void AoClicarLimpar()
@@ -314,8 +342,7 @@ public class TerminalUIManager : MonoBehaviour
     {
         historicoDeComandos.Add(codigo);
         indiceHistorico = historicoDeComandos.Count; // volta pra posicao "livre"
-        textoEsperadoPeloHistorico = "";
-        if (campoDeCodigo != null) campoDeCodigo.text = "";
+        textoEsperadoPeloHistorico = campoDeCodigo != null ? campoDeCodigo.text : "";
     }
 
     // CORRECAO (12/09/2026): duas mudancas em relacao a versao antiga:

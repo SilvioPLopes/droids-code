@@ -1,0 +1,33 @@
+{
+  "limite": "Predicao offline aproximada de um portal; nao e teste fisico nem aprova setor",
+  "nos": 26,
+  "encontrou": true,
+  "ticks": 2,
+  "inicio": [
+    -2.5885002613,
+    0.3735530972
+  ],
+  "passo": 0.1,
+  "rota": [
+    {
+      "posicaoPrevista": [
+        -2.6592109394186547,
+        0.30284241908134524
+      ],
+      "comando": [
+        -0.7071067811865475,
+        -0.7071067811865475
+      ]
+    },
+    {
+      "posicaoPrevista": [
+        -2.5592109394186546,
+        0.30284241908134524
+      ],
+      "comando": [
+        1.0,
+        0.0
+      ]
+    }
+  ]
+}

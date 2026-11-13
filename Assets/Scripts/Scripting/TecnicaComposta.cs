@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace DroidsCode.DroidCore
@@ -11,19 +12,56 @@ namespace DroidsCode.DroidCore
 
         public int CustoTotal()
         {
-            int custo = NivelDeDano * TabelaDeCustos.CustoDanoPorNivel;
-
-            foreach (EfeitoDeAtributo efeito in EfeitosDeAtributo)
-            {
-                custo += efeito.CalcularCusto();
-            }
-
-            foreach (EfeitoDeDanoPorTurno efeito in EfeitosDeDanoPorTurno)
-            {
-                custo += efeito.CalcularCusto();
-            }
-
+            if (!TentarCalcularCusto(out int custo))
+                throw new InvalidOperationException("Não foi possível calcular um custo válido para a técnica.");
             return custo;
+        }
+
+        public bool TentarCalcularCusto(out int custo) =>
+            TentarCalcularCusto(NivelDeDano, out custo);
+
+        public bool TentarCalcularCusto(int nivelDeDano, out int custo)
+        {
+            custo = 0;
+            if (nivelDeDano < 0 || EfeitosDeAtributo == null || EfeitosDeDanoPorTurno == null)
+                return false;
+
+            try
+            {
+                long total = checked((long)nivelDeDano * TabelaDeCustos.CustoDanoPorNivel);
+
+                foreach (EfeitoDeAtributo efeito in EfeitosDeAtributo)
+                {
+                    if (efeito == null || string.IsNullOrEmpty(efeito.NomeExibicao) ||
+                        efeito.DuracaoEmTurnos <= 0 ||
+                        !TabelaDeCustos.CustoPorTurnoDeEfeito.TryGetValue(efeito.NomeExibicao, out int custoPorTurno) ||
+                        custoPorTurno < 0)
+                        return false;
+
+                    total = checked(total + checked((long)custoPorTurno * efeito.DuracaoEmTurnos));
+                }
+
+                foreach (EfeitoDeDanoPorTurno efeito in EfeitosDeDanoPorTurno)
+                {
+                    if (efeito == null || string.IsNullOrEmpty(efeito.NomeExibicao) ||
+                        efeito.DuracaoEmTurnos <= 0 || efeito.DanoPorTurno <= 0 ||
+                        !TabelaDeCustos.CustoPorTurnoDeEfeito.TryGetValue(efeito.NomeExibicao, out int custoPorTurno) ||
+                        custoPorTurno < 0)
+                        return false;
+
+                    total = checked(total + checked((long)custoPorTurno * efeito.DuracaoEmTurnos));
+                }
+
+                if (total < 0 || total > int.MaxValue)
+                    return false;
+
+                custo = (int)total;
+                return true;
+            }
+            catch (OverflowException)
+            {
+                return false;
+            }
         }
     }
 
@@ -51,7 +89,7 @@ namespace DroidsCode.DroidCore
                 return 0; // TODO: decidir se efeito desconhecido na tabela deveria ser erro
             }
 
-            return custoPorTurno * DuracaoEmTurnos;
+            return checked(custoPorTurno * DuracaoEmTurnos);
         }
     }
 
@@ -71,7 +109,7 @@ namespace DroidsCode.DroidCore
             }
 
             // TODO: nao confirmado se Envenenamento escala por turno como Stun.
-            return custoPorTurno * DuracaoEmTurnos;
+            return checked(custoPorTurno * DuracaoEmTurnos);
         }
     }
 }

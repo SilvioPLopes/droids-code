@@ -1,0 +1,186 @@
+{
+    "executando": false,
+    "resultado": "PASSOU: todas as 18 quests entregues e Ato1 preservado",
+    "etapa": "Toda terça",
+    "cena": "City",
+    "erro": "",
+    "inicio": "2026-11-13T02:55:57.9984484Z",
+    "fim": "2026-11-13T03:01:35.6745179Z",
+    "etapasConcluidas": 11,
+    "etapasExecutadas": 11,
+    "retomadaDeEtapa": 0,
+    "idExecucao": "20261113-025557-998",
+    "escopo": "todas as opcionais",
+    "questsNoCheckpoint": [
+        "q_main_agua",
+        "q_main_estacao",
+        "q_main_partida",
+        "q_agua_dara",
+        "q_dara_terceira",
+        "q_perna_apollo",
+        "q_limpeza_borda",
+        "q_pipo_peca",
+        "q_onofre_provas",
+        "q_sula_divida",
+        "q_guilda_1_iniciacao"
+    ],
+    "missoes": [
+        {
+            "id": "q_main_agua",
+            "titulo": "A cota cortada",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Falar com a Dara na fila do poço",
+                "entregue: Falar com o homem da fila",
+                "entregue: Falar com o Senhor Tácio"
+            ]
+        },
+        {
+            "id": "q_main_estacao",
+            "titulo": "A estação de captação",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Decidir sobre Rasha e Teodoro",
+                "entregue: Religar o painel de energia da Cratera",
+                "entregue: Enfrentar o droid do Ivo"
+            ]
+        },
+        {
+            "id": "q_main_partida",
+            "titulo": "O nome na lista",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Ver a água voltar na praça",
+                "entregue: Ouvir a proposta da Intermediária",
+                "entregue: Ver como Ferrovale responde",
+                "entregue: Preparar a mochila, receber o cantil e partir ao amanhecer"
+            ]
+        },
+        {
+            "id": "q_agua_dara",
+            "titulo": "Um filtro para a Dara",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Conseguir um Filtro de Água"
+            ]
+        },
+        {
+            "id": "q_dara_terceira",
+            "titulo": "A terceira parte",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Juntar 4 de Sucata Limpa pra consertar a cisterna do beco",
+                "entregue: Perguntar pra quem é a terceira parte"
+            ]
+        },
+        {
+            "id": "q_cobre_tacio",
+            "titulo": "Cobre é moeda",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Entregar 5 Fios de Cobre"
+            ]
+        },
+        {
+            "id": "q_tacio_linha",
+            "titulo": "Dezoito quilômetros",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Trazer mais 10 Fios de Cobre",
+                "entregue: Contar o rolo emendado com o terminal"
+            ]
+        },
+        {
+            "id": "q_perna_apollo",
+            "titulo": "A perna do Apollo",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Recuperar o servo da perna",
+                "entregue: Juntar 3 de Sucata Limpa pro reparo",
+                "entregue: Levar tudo pro Quirino"
+            ]
+        },
+        {
+            "id": "q_limpeza_borda",
+            "titulo": "Limpeza da borda",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Derrotar 3 Sucatas de Captura"
+            ]
+        },
+        {
+            "id": "q_pipo_peca",
+            "titulo": "A peça que o Pipo viu",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Ir com o Pipo até a \"peça boa\""
+            ]
+        },
+        {
+            "id": "q_onofre_provas",
+            "titulo": "O que tinha antes da Cratera",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Encontrar as três marcas na Cratera"
+            ]
+        },
+        {
+            "id": "q_nilce_quarto",
+            "titulo": "O quarto que não está quebrado",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Religar a bomba de reserva da estalagem"
+            ]
+        },
+        {
+            "id": "q_ivo_terca",
+            "titulo": "Toda terça",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Calibrar a bomba dois pelo terminal"
+            ]
+        },
+        {
+            "id": "q_sula_divida",
+            "titulo": "O que a Sula vendeu",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Perguntar pra Sula"
+            ]
+        },
+        {
+            "id": "q_guilda_1_iniciacao",
+            "titulo": "Guilda I — Ferro velho e gente velha",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Entregar 5 de Sucata Limpa"
+            ]
+        },
+        {
+            "id": "q_guilda_2_cacada",
+            "titulo": "Guilda II — O que anda na Cratera",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Derrotar 5 Droids Selvagens",
+                "entregue: Trazer 3 Fios de Cobre da Cratera"
+            ]
+        },
+        {
+            "id": "q_guilda_3_alfa",
+            "titulo": "Guilda III — O Alfa",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Derrotar o Selvagem Alfa",
+                "entregue: Trazer o sensor óptico dele"
+            ]
+        },
+        {
+            "id": "q_guilda_4_verdade",
+            "titulo": "Guilda IV — O que a Guilda sabe",
+            "estado": "entregue",
+            "objetivos": [
+                "entregue: Ouvir o que a Mestra tem a dizer"
+            ]
+        }
+    ]
+}

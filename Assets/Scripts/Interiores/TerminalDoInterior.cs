@@ -14,14 +14,19 @@ public class TerminalDoInterior : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) { if (other.CompareTag("Player")) perto = false; }
     void Update()
     {
-        if (frameFechamento == Time.frameCount || !perto || !Input.GetKeyDown(KeyCode.E) || GerenciadorDeEstado.Instancia.MenuAberto) return;
+        if (Input.GetKeyDown(KeyCode.E)) TentarInteragir();
+    }
+
+    public bool TentarInteragir()
+    {
+        if (frameFechamento == Time.frameCount || !perto || GerenciadorDeEstado.Instancia.MenuAberto) return false;
         if (!string.IsNullOrWhiteSpace(flagNecessaria) && !GerenciadorDeEstado.Instancia.ObterFlag(flagNecessaria))
         {
             DialogoUIManager.Instancia?.Mostrar(new[] { new FalaDeDialogo { falante = "", texto = "Antes de usar este equipamento, preciso conversar com a pessoa responsável." } }, () => { frameFechamento = Time.frameCount; });
-            return;
+            return false;
         }
         terminal = FindAnyObjectByType<TerminalUIManager>(FindObjectsInactive.Include);
-        if (terminal == null) return;
+        if (terminal == null) return false;
         terminal.DefinirContextoPuzzle(idPuzzle);
         if (verificadorAtivo != null && verificadorAtivo != verificador) verificadorAtivo.enabled = false;
         if (verificador != null)
@@ -31,6 +36,7 @@ public class TerminalDoInterior : MonoBehaviour
             verificadorAtivo = verificador;
         }
         terminal.Abrir();
+        return terminal.EstaAberto;
     }
     void OnDisable()
     {

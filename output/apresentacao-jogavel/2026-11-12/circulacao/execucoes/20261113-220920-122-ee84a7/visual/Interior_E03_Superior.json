@@ -1,0 +1,206 @@
+{
+    "cena": "Interior_E03_Superior",
+    "instante": "2026-11-13T22:11:40.9541057Z",
+    "imagem": "C:\\Users\\silve\\DroidsCode\\output\\apresentacao-jogavel\\2026-11-12\\circulacao\\execucoes\\20261113-220920-122-ee84a7\\visual\\Interior_E03_Superior.png",
+    "execucao": "20261113-220920-122-ee84a7",
+    "largura": 3840,
+    "altura": 2160,
+    "cameraOrtho": 2.7149999141693117,
+    "cameraPosicao": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -10.0
+    },
+    "playerRoot": {
+        "x": 1.1471586227416993,
+        "y": -0.18784281611442567,
+        "z": 0.0
+    },
+    "colisores": [
+        {
+            "caminho": "E03_Superior/Colisoes/LimitesDoPiso",
+            "tipo": "EdgeCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1917.0166015625,
+                "y": 1016.3536376953125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 668.9501953125,
+                    "y": 1702.5413818359375
+                },
+                {
+                    "x": 3165.082763671875,
+                    "y": 1702.5413818359375
+                },
+                {
+                    "x": 3165.082763671875,
+                    "y": 330.16571044921877
+                },
+                {
+                    "x": 668.9501953125,
+                    "y": 330.16571044921877
+                },
+                {
+                    "x": 668.9501953125,
+                    "y": 1702.5413818359375
+                }
+            ]
+        },
+        {
+            "caminho": "E03_Superior/Colisoes/Obstaculo_1",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1774.806640625,
+                "y": 1790.05517578125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 1474.47509765625,
+                    "y": 1630.9393310546875
+                },
+                {
+                    "x": 2075.13818359375,
+                    "y": 1630.9393310546875
+                },
+                {
+                    "x": 2075.13818359375,
+                    "y": 1949.1712646484375
+                },
+                {
+                    "x": 1474.47509765625,
+                    "y": 1949.1712646484375
+                }
+            ]
+        },
+        {
+            "caminho": "E03_Superior/Colisoes/Obstaculo_2",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1426.7403564453125,
+                "y": 1262.9833984375
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 1108.50830078125,
+                    "y": 1008.3978271484375
+                },
+                {
+                    "x": 1744.9722900390625,
+                    "y": 1008.3978271484375
+                },
+                {
+                    "x": 1744.9722900390625,
+                    "y": 1517.569091796875
+                },
+                {
+                    "x": 1108.50830078125,
+                    "y": 1517.569091796875
+                }
+            ]
+        },
+        {
+            "caminho": "E03_Superior/Colisoes/Obstaculo_3",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1303.425537109375,
+                "y": 692.1547241210938
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 857.9005126953125,
+                    "y": 517.1271362304688
+                },
+                {
+                    "x": 1748.9503173828125,
+                    "y": 517.1271362304688
+                },
+                {
+                    "x": 1748.9503173828125,
+                    "y": 867.1823120117188
+                },
+                {
+                    "x": 857.9005126953125,
+                    "y": 867.1823120117188
+                }
+            ]
+        },
+        {
+            "caminho": "E03_Superior/Portas/escada_E03_Terreo",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 2966.18798828125,
+                "y": 1533.4805908203125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 2817.016845703125,
+                    "y": 1509.61328125
+                },
+                {
+                    "x": 3115.359130859375,
+                    "y": 1509.61328125
+                },
+                {
+                    "x": 3115.359130859375,
+                    "y": 1557.3480224609375
+                },
+                {
+                    "x": 2817.016845703125,
+                    "y": 1557.3480224609375
+                }
+            ]
+        },
+        {
+            "caminho": "Player",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 2376.328369140625,
+                "y": 1176.3277587890625
+            },
+            "raioPixel": 51.71270751953125,
+            "contornoPixel": []
+        },
+        {
+            "caminho": "FotoDeCelia",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 1394.9171142578125,
+                "y": 1473.812255859375
+            },
+            "raioPixel": 218.78456115722657,
+            "contornoPixel": []
+        },
+        {
+            "caminho": "BilheteDoIvo",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 2468.9501953125,
+                "y": 1404.1988525390625
+            },
+            "raioPixel": 218.78456115722657,
+            "contornoPixel": []
+        }
+    ]
+}

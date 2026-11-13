@@ -120,14 +120,16 @@ public static class CatalogoDeQuests
                 {
                     new ObjetivoDeQuest { Tipo = TipoDeObjetivo.AlcancarFlag, Alvo = "ato1_agua_voltou", Quantidade = 1, Descricao = "Ver a água voltar na praça" },
                     new ObjetivoDeQuest { Tipo = TipoDeObjetivo.Conversar, Alvo = CatalogoDeNpcs.IdNadir, Quantidade = 1, Descricao = "Ouvir a proposta da Intermediária" },
-                    new ObjetivoDeQuest { Tipo = TipoDeObjetivo.AlcancarFlag, Alvo = "ato1_cidade_respondeu", Quantidade = 1, Descricao = "Ver como Ferrovale responde" }
+                    new ObjetivoDeQuest { Tipo = TipoDeObjetivo.AlcancarFlag, Alvo = "ato1_cidade_respondeu", Quantidade = 1, Descricao = "Ver como Ferrovale responde" },
+                    new ObjetivoDeQuest { Tipo = TipoDeObjetivo.AlcancarFlag, Alvo = "ato1_concluido", Quantidade = 1, Descricao = "Preparar a mochila, receber o cantil e partir ao amanhecer" }
                 },
                 XpRecompensa = 500, GoldRecompensa = 0,
                 ItensRecompensa = new List<RecompensaDeItem>
                 {
                     new RecompensaDeItem { IdItem = CatalogoDeItens.IdKitDeAcampamento, Quantidade = 1 }
                 },
-                FlagAoConcluir = "ato1_concluido",
+                // O marco pertence à partida, depois da mochila e do cantil.
+                FlagAoConcluir = "",
                 Curiosidade = "A Nadir não mentiu em nenhum momento da assembleia. O número era verdadeiro, o prazo era verdadeiro, e ela teria cumprido. É exatamente por isso que funciona."
             },
 
@@ -227,10 +229,10 @@ public static class CatalogoDeQuests
             {
                 Id = IdAPernaDoApollo,
                 Titulo = "A perna do Apollo",
-                NpcQueOferece = CatalogoDeNpcs.IdApollo,
-                FlagNecessaria = "ato1_sessao6",
+                NpcQueOferece = CatalogoDeNpcs.IdFerreiro,
+                FlagNecessaria = "ato1_agua_voltou",
                 Resumo = "Sete anos mancando. O servo que caiu do droid do Ivo é o primeiro sobressalente compatível que aparece.",
-                TextoDeOferta = "— Não é urgente. Nunca foi urgente. — Ele diz isso do mesmo jeito que diz tudo. — Mas se você quiser, agora dá.",
+                TextoDeOferta = "— Esse servo serve. Traz ele e três pedaços de sucata limpa. Eu instalo, como prometi. — Quirino já está abrindo espaço na bancada.",
                 TextoDeEntrega = "O Apollo dá três passos. Depois mais três. Não diz nada por um tempo longo demais pra um droid.",
                 Objetivos = new List<ObjetivoDeQuest>
                 {
@@ -346,7 +348,8 @@ public static class CatalogoDeQuests
                     new ObjetivoDeQuest { Tipo = TipoDeObjetivo.ResolverPuzzle, Alvo = CatalogoDePuzzles.IdCalibragemDoBraco, Quantidade = 1, Descricao = "Calibrar a bomba dois pelo terminal" }
                 },
                 XpRecompensa = 130, GoldRecompensa = 35,
-                Repetivel = true,
+                // A demo oferece a primeira manutenção; novas rodadas exigem outro puzzle executável.
+                Repetivel = false,
                 FlagAoConcluir = "quest_ivo_terca_ok",
                 Curiosidade = "Manutenção não é heroísmo e por isso ninguém escreve música sobre. A cidade bebeu por dezenove anos porque um velho foi até lá toda terça-feira, inclusive nas terças em que ele não queria ir."
             },

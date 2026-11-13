@@ -41,6 +41,11 @@ using System.Collections.Generic;
 /// </summary>
 public static class CatalogoDeDialogos
 {
+    public static FalaDeDialogo RecusaDeCompraDaLoja()
+    {
+        return new FalaDeDialogo { falante = "Lojista", texto = "Não posso comprar esse item." };
+    }
+
     public static List<FalaDeDialogo> AvisoDePersistencia(string resultado)
     {
         string texto = resultado switch
@@ -291,6 +296,7 @@ public static class CatalogoDeDialogos
             ),
             [CityS2Quirino] = Falas(
                 F("Quirino", "Peça eu tenho. Garantia eu não dou."),
+                F("Quirino", "Essa placa do peito é liga aeronáutica. Peça boa. Valeria dinheiro."),
                 F("Quirino", "Esse teu droid aí — a perna tá emperrada faz tempo. Servo travado."),
                 F("Quirino", "Precisa de sobressalente compatível e eu não tenho."),
                 F("Quirino", "Se achar um, traz. Eu instalo de graça, só pra ver funcionar.")
@@ -522,12 +528,13 @@ public static class CatalogoDeDialogos
                 A("O painel de acesso dessa unidade abre pelo lado esquerdo. Por baixo da placa de ombro."),
                 L("Como é que você sabe disso?"),
                 N("Três segundos. Uma eternidade, para uma máquina que responde em milissegundos."),
-                A("Não sei. E não gostei de descobrir que sei.")
+                A("São sete anos vendo você programar e abrir carcaça. Alguma coisa eu tinha que aprender.")
             ),
             [GameS5UnidadePainel] = Falas(
                 N("O painel abre pelo lado esquerdo, por baixo da placa de ombro. Abre fácil demais."),
                 N("Dentro, o berço de um núcleo. Vazio."),
                 N("Do tamanho exato do que está dentro do peito do Apollo."),
+                A("Encaixe de manutenção padrão. Fabricavam milhares."),
                 A("...")
             ),
 
@@ -580,12 +587,13 @@ public static class CatalogoDeDialogos
                 F("Ivo", "Escreveu, rasgou, escreveu de novo. Arrancou as onze páginas do meu caderno de registro pra ter papel, porque não tinha papel."),
                 F("Ivo", "Aí vieram buscar ela. Não foi violento. Foi organizado."),
                 F("Ivo", "Essa é a pior parte, e é a parte que eu nunca consigo explicar pra ninguém."),
-                F("Ivo", "Antes de subir o remendo, ela fez uma cópia da versão velha. A que ainda tinha a trava."),
-                F("Ivo", "Botou num núcleo de manutenção e tirou do prédio. Ela achou que um dia alguém ia precisar saber como era antes."),
-                F("Ivo", "Eu procuro esse núcleo há dezenove anos. Mercado, sucata, ferro-velho, cada caixa que passa nessa região."),
+                F("Ivo", "Ela tirou núcleos do prédio, misturados com descarte. Achei que ainda pudesse existir algum registro do que ela tentou desfazer."),
+                F("Ivo", "Não sei quantos. Não sei em qual caixa. Nunca soube."),
+                F("Ivo", "Eu procuro esse lote há dezenove anos. Mercado, sucata, ferro-velho, cada caixa que passa nessa região."),
                 F("Ivo", "Foi pra isso que eu montei aquilo ali, com as três lentes. Pra ler núcleo. Pra achar o dela."),
                 N("E então o Apollo fala. Com a entonação levemente errada de quem pronuncia um nome pela primeira vez sem saber que já sabia."),
                 A("Célia Ferraz Rangel. Estação 7. Continuidade três ponto quatro."),
+                A("Está escrito no caderno, Ivo. Estou lendo daqui."),
                 N("O barulho que Ivo faz não é palavra.")
             ),
             [GameS6IvoApex] = Falas(
@@ -597,24 +605,25 @@ public static class CatalogoDeDialogos
                 L("Censo de quê?"),
                 F("Ivo", "De unidade autônoma não registrada."),
                 N("Ele olha para Apollo."),
-                F("Ivo", "Eles não querem droid. Eles querem UM droid. Eles sabem o número de série que estão procurando."),
+                F("Ivo", "Querem unidades sem registro. Fazem a mesma busca em cada povoado. Não disseram o que esperam encontrar."),
                 F("Ivo", "Eu fechei a estação pra ganhar tempo. Pra achar o núcleo antes deles."),
                 F("Ivo", "Porque se eu achasse primeiro eu podia trocar o núcleo por ela— por qualquer coisa, sei lá, eu não sei mais o que eu ia fazer, eu só—"),
                 N("Ele para. Olha para o peito remendado com placas de três cores."),
                 N("E as três lentes do droid improvisado, atrás dele, acendem sozinhas."),
                 F("Ivo", "Não. Não, não, eu não mandei—"),
                 A("Ele está executando a última instrução que você deu."),
-                A("Você mandou ele procurar. Ele achou."),
+                A("Você mandou prender unidades sem registro. Ele está cumprindo."),
                 F("Ivo", "Eu não consigo mais controlar ele direito! Eu programei com pressa, sem testar limite!"),
                 F("Ivo", "Ele só sabe procurar e prender. Eu não sei fazer parar—"),
-                A("Lip. Esse tem alguém pensando do outro lado. Vai reagir aos seus padrões."),
-                A("Não repita a mesma sequência duas vezes seguidas.")
+                A("Lip. Ele alterna leitura e captura. Presta atenção no que as lentes anunciam."),
+                A("Prepara a próxima ação antes da captura.")
             ),
             [GameS6Preco] = Falas(
                 N("As três lentes travam em Apollo e ficam brancas."),
                 A("Leitura profunda."),
                 N("A voz sai com um erro de amplitude. Um tremor curto que não deveria existir."),
                 A("Ele está lendo meu setor de arquivo."),
+                A("O escâner vai ler tudo. Tem setor meu que eu não consigo ler, e se eu não consigo ler, eu não sei o que ele diz. Eu não vou deixar que a primeira pessoa a ler isso seja ela."),
                 L("Bloqueia."),
                 A("Não dá pra bloquear leitura. Só dá pra não ter o que ser lido."),
                 L("O que isso significa?"),
@@ -786,10 +795,10 @@ public static class CatalogoDeDialogos
             [CityS7ApolloRevelacao] = Falas(
                 N("Na soleira de casa, o gerador zunindo baixo ao fundo, como sempre."),
                 A("Antes da luta, quando eu escaneei o droid do Ivo..."),
-                A("Encontrei um resquício de assinatura de rede. Fraco, quase apagado. Não era protocolo comum da Apex."),
-                A("Era rastreamento direto. Do tipo que a Artemis usa pra localizar unidades específicas, não genéricas."),
-                A("Não estavam procurando \"um droid offline\". Estavam procurando um número de série."),
-                A("O número é o meu."),
+                A("Encontrei o pedido do censo. O mesmo formulário que usam em outros lugares."),
+                A("Unidades sem registro. Eu entro nessa lista. Não sei o que eles querem ler."),
+                A("Tenho setor que não abre desde a montagem. Sempre achei que fosse defeito meu."),
+                A("Ainda pode ser."),
                 L("A Nadir disse \"consta uma\"."),
                 A("Consta uma."),
                 N("Ao longe, além da cerca, a torre pisca sua luz vermelha fraca — como sempre. Só que agora, pela primeira vez, ela parece estar olhando de volta."),

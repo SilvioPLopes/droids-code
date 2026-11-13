@@ -11,6 +11,11 @@ namespace DroidsCode.DroidCore
         public const int CustoDanoPorNivel = 1;
         public const int CustoResistenciaPorNivel = 1;
 
+        public const int NivelDeDanoMaximo = 10;
+        public const int DanoPorTurnoMaximo = 3;
+        public const int DuracaoVenenoMaxima = 3;
+        public const int DuracaoStunMaxima = 1;
+
         public static readonly Dictionary<string, int> CustoPorTurnoDeEfeito = new Dictionary<string, int>
         {
             { "Stun", 3 },          // por turno: 1 turno = 3, 2 turnos = 6

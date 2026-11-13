@@ -13,6 +13,7 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
     [HideInInspector] public Sprite[] icones; // Legado serializado; não define mais a aparência por categoria.
     public LojaUIManager loja;
     bool ajustando;
+    BalaoDaLoja recusaVenda;
     static readonly Color Claro = new Color(.94f,.87f,.68f);
     static readonly Color Selecionado = new Color(.34f,.28f,.15f,.98f);
 
@@ -66,6 +67,26 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
 
     public void MostrarVazio(string texto) { if(vazio!=null) vazio.text=texto; }
 
+    public void MostrarRecusaVenda(string falante, string texto)
+    {
+        if (recusaVenda == null)
+        {
+            var objeto = new GameObject("RecusaVenda", typeof(RectTransform), typeof(BalaoDaLoja));
+            objeto.layer = gameObject.layer;
+            objeto.transform.SetParent(transform, false);
+            recusaVenda = objeto.GetComponent<BalaoDaLoja>();
+            recusaVenda.Preparar(descricao.font);
+        }
+        recusaVenda.Mostrar(falante, texto);
+        if (loja.textoMensagem != null) loja.textoMensagem.gameObject.SetActive(false);
+    }
+
+    public void LimparRecusaVenda()
+    {
+        if (recusaVenda != null) recusaVenda.gameObject.SetActive(false);
+        if (loja != null && loja.textoMensagem != null) loja.textoMensagem.gameObject.SetActive(true);
+    }
+
     /// <summary>Reutiliza o rodapé existente; confirmação local não abre conversa.</summary>
     public TextMeshProUGUI PrepararMensagem()
     {
@@ -85,7 +106,7 @@ public sealed class ApresentacaoLojaIlustrada : MonoBehaviour
         bool tem=item!=null;
         nomeItem.text=tem?item.Nome:"Selecione um item";
         descricao.text=tem?item.Descricao:"Escolha um produto para ver os detalhes antes de confirmar a operação.";
-        preco.text=tem?$"{item.Preco} Gold":"";
+        preco.text=tem?$"{(vendendo?item.PrecoDeVendaReal:item.Preco)} Gold":"";
         estoque.text=tem?$"Na mochila: {GerenciadorDeEstado.Instancia.ObterQuantidadeDeItem(item.Id)}":"";
         iconeItem.gameObject.SetActive(tem);
         if(tem) iconeItem.sprite=Icone(item);

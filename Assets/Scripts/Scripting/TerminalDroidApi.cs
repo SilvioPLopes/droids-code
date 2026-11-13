@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DroidsCode.DroidCore;
+using MoonSharp.Interpreter;
 
 namespace DroidsCode.Scripting
 {
@@ -14,6 +15,10 @@ namespace DroidsCode.Scripting
         private Dictionary<TipoDePeca, DroidPart> pecasAntes;
         private int hpAntes;
         private readonly List<string> _logDaSessao = new List<string>();
+        private int maximoLinhas = 100;
+        private int maximoCaracteres = 512;
+        private bool saidaTruncada;
+        internal bool HouveAlteracoesNoDroid { get; private set; }
 
         public TerminalDroidApi(Droid droid, GerenciadorDeEstado estado = null)
         {
@@ -25,6 +30,7 @@ namespace DroidsCode.Scripting
         {
             if (_estado == null || _estado.DroidDoJogador != _droid) { Registrar("Inventário indisponível neste terminal."); return false; }
             bool sucesso = ServicoDeEquipamento.TentarEquipar(_estado, idItem, out var mensagem);
+            HouveAlteracoesNoDroid |= sucesso;
             Registrar(mensagem); return sucesso;
         }
 
@@ -35,6 +41,7 @@ namespace DroidsCode.Scripting
             if (!System.Enum.TryParse<TipoDePeca>(normalizado, true, out var slot) || !System.Enum.IsDefined(typeof(TipoDePeca), slot))
             { Registrar("Slot inválido. Use cabeca, tronco, braco ou perna."); return false; }
             bool sucesso = ServicoDeEquipamento.TentarDesequipar(_estado, slot, out var mensagem);
+            HouveAlteracoesNoDroid |= sucesso;
             Registrar(mensagem); return sucesso;
         }
 
@@ -126,6 +133,7 @@ namespace DroidsCode.Scripting
 
             _droid.Pontos.TentarGastar(custo); // saldo ja validado acima — sempre bem-sucedido aqui
             AplicarUpgrade(atributo, quantidade);
+            HouveAlteracoesNoDroid = true;
             Registrar($"Sucesso: {nomeAtributo} +{quantidade} (custou {custo} pontos).");
             return true;
         }
@@ -133,9 +141,10 @@ namespace DroidsCode.Scripting
         // Ex. Lua: droid.aprenderTecnica("Soco de Sobrecarga", 3)
         public bool AprenderTecnica(string nome, int nivelDeDano)
         {
-            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0)
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 ||
+                nivelDeDano > TabelaDeCustos.NivelDeDanoMaximo)
             {
-                Registrar("Falha: nome ou nível de dano inválido.");
+                Registrar($"Falha: nome ou nível de dano inválido (máximo {TabelaDeCustos.NivelDeDanoMaximo}).");
                 return false;
             }
 
@@ -157,9 +166,12 @@ namespace DroidsCode.Scripting
         // nivelDeDano = dano direto do golpe; danoPorTurno/duracaoEmTurnos = o Envenenamento aplicado no alvo.
         public bool AprenderTecnicaComVeneno(string nome, int nivelDeDano, int danoPorTurno, int duracaoEmTurnos)
         {
-            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 || danoPorTurno <= 0 || duracaoEmTurnos <= 0)
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 ||
+                nivelDeDano > TabelaDeCustos.NivelDeDanoMaximo ||
+                danoPorTurno <= 0 || danoPorTurno > TabelaDeCustos.DanoPorTurnoMaximo ||
+                duracaoEmTurnos <= 0 || duracaoEmTurnos > TabelaDeCustos.DuracaoVenenoMaxima)
             {
-                Registrar("Falha: nome, nível de dano, dano por turno ou duração inválidos.");
+                Registrar($"Falha: use nível de dano 1–{TabelaDeCustos.NivelDeDanoMaximo}, dano por turno 1–{TabelaDeCustos.DanoPorTurnoMaximo} e duração 1–{TabelaDeCustos.DuracaoVenenoMaxima}.");
                 return false;
             }
 
@@ -186,9 +198,11 @@ namespace DroidsCode.Scripting
         // nivelDeDano = dano direto do golpe; duracaoEmTurnos = por quantos turnos o alvo perde a ação.
         public bool AprenderTecnicaComStun(string nome, int nivelDeDano, int duracaoEmTurnos)
         {
-            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 || duracaoEmTurnos <= 0)
+            if (string.IsNullOrWhiteSpace(nome) || nivelDeDano <= 0 ||
+                nivelDeDano > TabelaDeCustos.NivelDeDanoMaximo ||
+                duracaoEmTurnos <= 0 || duracaoEmTurnos > TabelaDeCustos.DuracaoStunMaxima)
             {
-                Registrar("Falha: nome, nível de dano ou duração inválidos.");
+                Registrar($"Falha: use nível de dano 1–{TabelaDeCustos.NivelDeDanoMaximo} e duração de Stun 1.");
                 return false;
             }
 
@@ -235,7 +249,12 @@ namespace DroidsCode.Scripting
                 return false;
             }
 
-            int custo = tecnica.CustoTotal();
+            if (!tecnica.TentarCalcularCusto(out int custo))
+            {
+                Registrar($"Falha: o custo da técnica '{tecnica.Nome}' é inválido ou excede o limite.");
+                return false;
+            }
+
             if (!_droid.Pontos.TentarGastar(custo))
             {
                 Registrar($"Falha: '{tecnica.Nome}' custaria {custo} pontos, você só tem {_droid.Pontos.PontosDisponiveis}.");
@@ -243,6 +262,7 @@ namespace DroidsCode.Scripting
             }
 
             _droid.TecnicasConfiguradas[tecnica.Nome] = tecnica;
+            HouveAlteracoesNoDroid = true;
             Registrar($"Sucesso: técnica '{tecnica.Nome}' aprendida (custou {custo} pontos).");
             return true;
         }
@@ -277,21 +297,36 @@ namespace DroidsCode.Scripting
                 return false;
             }
 
-            int custoAntigo = tecnica.CustoTotal();
             int nivelAntigo = tecnica.NivelDeDano;
-            tecnica.NivelDeDano += nivelDeDanoAdicional; // aplicado direto no objeto ja em TecnicasConfiguradas
-            int custoNovo = tecnica.CustoTotal();
+            long nivelNovoLong = (long)nivelAntigo + nivelDeDanoAdicional;
+            if (nivelAntigo <= 0 || nivelNovoLong > TabelaDeCustos.NivelDeDanoMaximo)
+            {
+                Registrar($"Falha: o nível de dano máximo é {TabelaDeCustos.NivelDeDanoMaximo}.");
+                return false;
+            }
+
+            if (!tecnica.TentarCalcularCusto(out int custoAntigo) ||
+                !tecnica.TentarCalcularCusto((int)nivelNovoLong, out int custoNovo))
+            {
+                Registrar($"Falha: o custo da técnica '{nome}' é inválido ou excede o limite.");
+                return false;
+            }
+
             int diferenca = custoNovo - custoAntigo;
+            if (diferenca <= 0)
+            {
+                Registrar($"Falha: a melhoria de '{nome}' não produz um custo positivo.");
+                return false;
+            }
 
             if (!_droid.Pontos.TentarGastar(diferenca))
             {
-                // Reverte o aumento de nivel -- sem pontos suficientes, a
-                // tecnica nao pode ficar num estado "melhorada mas nao paga".
-                tecnica.NivelDeDano = nivelAntigo;
                 Registrar($"Falha: melhorar '{nome}' de nível {nivelAntigo} para {nivelAntigo + nivelDeDanoAdicional} custaria {diferenca} pontos (diferença), você só tem {_droid.Pontos.PontosDisponiveis}.");
                 return false;
             }
 
+            tecnica.NivelDeDano = (int)nivelNovoLong;
+            HouveAlteracoesNoDroid = true;
             Registrar($"Sucesso: técnica '{nome}' melhorada de nível {nivelAntigo} para {tecnica.NivelDeDano} (custou {diferenca} pontos de diferença).");
             return true;
         }
@@ -309,6 +344,7 @@ namespace DroidsCode.Scripting
         public void TesteAdicionarPontos(int quantidade)
         {
             _droid.Pontos.DefinirPontos(_droid.Pontos.PontosDisponiveis + quantidade);
+            HouveAlteracoesNoDroid = true;
             Registrar($"[TESTE] +{quantidade} pontos (total agora: {_droid.Pontos.PontosDisponiveis}).");
         }
 
@@ -352,22 +388,67 @@ namespace DroidsCode.Scripting
                 return false;
             }
 
-            int reembolso = tecnica.CustoTotal();
+            if (!tecnica.TentarCalcularCusto(out int reembolso))
+            {
+                Registrar($"Falha: o custo da técnica '{nome}' é inválido; ela não foi removida.");
+                return false;
+            }
+
             _droid.TecnicasConfiguradas.Remove(nome);
             _droid.Pontos.DefinirPontos(_droid.Pontos.PontosDisponiveis + reembolso);
+            HouveAlteracoesNoDroid = true;
             Registrar($"Sucesso: técnica '{nome}' esquecida ({reembolso} pontos devolvidos).");
             return true;
         }
 
         // --- Adicionados para o terminal com histórico (TerminalUIManager) ---
 
+        [MoonSharpHidden]
         public IReadOnlyList<string> ObterLogDaSessao() => _logDaSessao;
 
-        public void LimparLog() => _logDaSessao.Clear();
+        [MoonSharpHidden]
+        public void LimparLog()
+        {
+            _logDaSessao.Clear();
+            saidaTruncada = false;
+        }
+
+        internal void ConfigurarSaida(LimitesDeExecucao limites)
+        {
+            maximoLinhas = limites.MaximoDeLinhasDeSaida;
+            maximoCaracteres = limites.MaximoDeCaracteresPorLinha;
+            HouveAlteracoesNoDroid = false;
+            LimparLog();
+        }
+
+        internal void RegistrarSaida(string mensagem) => Registrar(mensagem);
 
         private void Registrar(string mensagem)
         {
-            _logDaSessao.Add(mensagem);
+            if (saidaTruncada) return;
+            mensagem = mensagem ?? "";
+            int inicio = 0;
+            do
+            {
+                if (_logDaSessao.Count >= maximoLinhas) { AvisarTruncamento(); return; }
+                // Não dividir/alocar o texto inteiro: examinar somente a linha permitida.
+                int fim = inicio;
+                while (fim < mensagem.Length && mensagem[fim] != '\n' && fim - inicio < maximoCaracteres) fim++;
+                int comprimento = fim - inicio;
+                if (comprimento > 0 && mensagem[inicio + comprimento - 1] == '\r') comprimento--;
+                _logDaSessao.Add(mensagem.Substring(inicio, comprimento));
+                if (fim < mensagem.Length && mensagem[fim] != '\n') { AvisarTruncamento(); return; }
+                inicio = fim + 1;
+            } while (inicio < mensagem.Length);
+        }
+
+        private void AvisarTruncamento()
+        {
+            saidaTruncada = true;
+            const string aviso = "[Saída truncada: limite de linhas/caracteres atingido.]";
+            string linha = aviso.Length <= maximoCaracteres ? aviso : aviso.Substring(0, maximoCaracteres);
+            if (_logDaSessao.Count >= maximoLinhas) _logDaSessao[maximoLinhas - 1] = linha;
+            else _logDaSessao.Add(linha);
         }
 
         // CORRECAO/REFATORACAO (Estagio 1 — 12/09/2026): HpMax virou calculado

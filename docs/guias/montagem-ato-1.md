@@ -89,7 +89,7 @@ Padrão de apresentação para todos os NPCs: reutilizar a montagem de diálogo 
 
 ### Primeiro combate
 
-1. Usar um gatilho de fala com Id `game_s3_apollo_golpes`, aposentando o conteúdo de teste `casa_intro_apollo` em `falaqualquer` quando a nova montagem estiver pronta.
+1. Criar/configurar um novo gatilho de fala com Id `game_s3_apollo_golpes`. O objeto de teste `falaqualquer`, que usava `casa_intro_apollo`, foi removido de `Game.unity` em 31/10/2026; não reutilizar nem referenciar esse objeto na montagem narrativa futura.
 2. Criar um trigger com GatilhoDeBatalha: `idDoInimigo: sucata_captura`, `nomeCenaBatalha: Battle`, `flagsNecessarias: ato1_sessao2`, `flagDeVitoria: ato1_sessao3` e `exigirTecla: false`.
 3. Validar vitória, fuga e retorno à posição. A flag de vitória já bloqueia repetição no gatilho; o catálogo sozinho não implementa todas as restrições de encontro.
 

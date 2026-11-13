@@ -1,0 +1,218 @@
+{
+    "cena": "Interior_E08_Superior",
+    "instante": "2026-11-13T22:11:58.9100679Z",
+    "imagem": "C:\\Users\\silve\\DroidsCode\\output\\apresentacao-jogavel\\2026-11-12\\circulacao\\execucoes\\20261113-220920-122-ee84a7\\visual\\Interior_E08_Superior.png",
+    "execucao": "20261113-220920-122-ee84a7",
+    "largura": 3840,
+    "altura": 2160,
+    "cameraOrtho": 2.7149999141693117,
+    "cameraPosicao": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -10.0
+    },
+    "playerRoot": {
+        "x": -0.3821300268173218,
+        "y": 0.09071049094200134,
+        "z": 0.0
+    },
+    "colisores": [
+        {
+            "caminho": "E08_Superior/Colisoes/LimitesDoPiso",
+            "tipo": "EdgeCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1917.0166015625,
+                "y": 1016.3536376953125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 668.9501953125,
+                    "y": 1702.5413818359375
+                },
+                {
+                    "x": 3165.082763671875,
+                    "y": 1702.5413818359375
+                },
+                {
+                    "x": 3165.082763671875,
+                    "y": 330.16571044921877
+                },
+                {
+                    "x": 668.9501953125,
+                    "y": 330.16571044921877
+                },
+                {
+                    "x": 668.9501953125,
+                    "y": 1702.5413818359375
+                }
+            ]
+        },
+        {
+            "caminho": "E08_Superior/Colisoes/Obstaculo_1",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1583.8673095703125,
+                "y": 1583.204345703125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 1215.91162109375,
+                    "y": 1364.4197998046875
+                },
+                {
+                    "x": 1951.8232421875,
+                    "y": 1364.4197998046875
+                },
+                {
+                    "x": 1951.8232421875,
+                    "y": 1801.989013671875
+                },
+                {
+                    "x": 1215.91162109375,
+                    "y": 1801.989013671875
+                }
+            ]
+        },
+        {
+            "caminho": "E08_Superior/Colisoes/Obstaculo_2",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 2409.28173828125,
+                "y": 1598.12158203125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 2170.607666015625,
+                    "y": 1414.1435546875
+                },
+                {
+                    "x": 2647.9560546875,
+                    "y": 1414.1435546875
+                },
+                {
+                    "x": 2647.9560546875,
+                    "y": 1782.0994873046875
+                },
+                {
+                    "x": 2170.607666015625,
+                    "y": 1782.0994873046875
+                }
+            ]
+        },
+        {
+            "caminho": "E08_Superior/Colisoes/Obstaculo_3",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1394.9171142578125,
+                "y": 885.0828857421875
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 857.9005126953125,
+                    "y": 684.1989135742188
+                },
+                {
+                    "x": 1931.9337158203125,
+                    "y": 684.1989135742188
+                },
+                {
+                    "x": 1931.9337158203125,
+                    "y": 1085.9669189453125
+                },
+                {
+                    "x": 857.9005126953125,
+                    "y": 1085.9669189453125
+                }
+            ]
+        },
+        {
+            "caminho": "E08_Superior/Portas/escada_E08_Principal",
+            "tipo": "BoxCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 2966.18798828125,
+                "y": 1463.8673095703125
+            },
+            "raioPixel": 0.0,
+            "contornoPixel": [
+                {
+                    "x": 2817.016845703125,
+                    "y": 1439.9998779296875
+                },
+                {
+                    "x": 3115.359130859375,
+                    "y": 1439.9998779296875
+                },
+                {
+                    "x": 3115.359130859375,
+                    "y": 1487.73486328125
+                },
+                {
+                    "x": 2817.016845703125,
+                    "y": 1487.73486328125
+                }
+            ]
+        },
+        {
+            "caminho": "Player",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 1767.992431640625,
+                "y": 1287.1334228515625
+            },
+            "raioPixel": 51.71270751953125,
+            "contornoPixel": []
+        },
+        {
+            "caminho": "MoradoresFerrovale/zeca_cerca",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 2667.84521484375,
+                "y": 801.9447631835938
+            },
+            "raioPixel": 361.98895263671877,
+            "contornoPixel": []
+        },
+        {
+            "caminho": "MoradoresFerrovale/zeca_cerca",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": false,
+            "centroPixel": {
+                "x": 2667.84521484375,
+                "y": 801.9447631835938
+            },
+            "raioPixel": 72.39781188964844,
+            "contornoPixel": []
+        },
+        {
+            "caminho": "QuartoTresReservado",
+            "tipo": "CircleCollider2D",
+            "enabled": true,
+            "trigger": true,
+            "centroPixel": {
+                "x": 1573.922607421875,
+                "y": 1443.9779052734375
+            },
+            "raioPixel": 218.78456115722657,
+            "contornoPixel": []
+        }
+    ]
+}

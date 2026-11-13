@@ -1,0 +1,14 @@
+{
+  "E05": "Obstaculos2e4 restaurados ao offset/size original, enabled1; nao reduzir moveis corretos",
+  "E03Retorno": {
+    "antes": [
+      2.63,
+      -0.07999998
+    ],
+    "depois": [
+      1.85500014,
+      0.25
+    ],
+    "backup": "output\\apresentacao-jogavel\\2026-11-12\\circulacao\\baseline\\chegada-e03-final"
+  }
+}

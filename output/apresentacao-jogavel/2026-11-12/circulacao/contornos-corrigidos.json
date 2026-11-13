@@ -1,0 +1,17 @@
+{
+  "criterio": "Retangulos em pixels da imagem original, origem superior esquerda. Mover somente offset/size dos BoxCollider2D indicados; todos habilitados.",
+  "alvos": [
+    {"cena":"Interior_E03_Terreo","nome":"Obstaculo_1","pixels":[548,140,900,354],"objeto":"mesa de recepcao e cadeira; liberar piso abaixo"},
+    {"cena":"Interior_E03_Terreo","nome":"Obstaculo_2","pixels":[168,470,530,700],"objeto":"conjunto esquerdo de sofa/mesa/poltronas; excluir tapete"},
+    {"cena":"Interior_E03_Terreo","nome":"Obstaculo_3","pixels":[920,470,1276,700],"objeto":"conjunto direito; liberar corredor central e piso inferior"},
+    {"cena":"Interior_E03_Superior","nome":"Obstaculo_1","pixels":[500,106,802,266],"objeto":"estante superior; excluir piso abaixo e a direita"},
+    {"cena":"Interior_E03_Superior","nome":"Obstaculo_2","pixels":[316,323,636,579],"objeto":"mesa e cadeiras; excluir tapete a direita"},
+    {"cena":"Interior_E03_Superior","nome":"Obstaculo_3","pixels":[190,650,638,826],"objeto":"poltronas e mesa inferior; excluir corredor direito"},
+    {"cena":"Interior_E09_Terreo","nome":"Obstaculo_1","pixels":[162,230,659,500],"objeto":"sofa, duas poltronas e mesa; excluir tapete a direita/abaixo"},
+    {"cena":"Interior_E09_Terreo","nome":"Obstaculo_2","pixels":[244,608,514,878],"objeto":"mesa e quatro cadeiras; liberar acesso direito desde soleira"},
+    {"cena":"Interior_E09_Terreo","nome":"Obstaculo_3","pixels":[694,86,906,230],"objeto":"armario superior; excluir faixa de piso abaixo"},
+    {"cena":"Interior_E08_Superior","nome":"Obstaculo_3","pixels":[190,540,730,742],"objeto":"poltronas e mesa; excluir piso a direita do tapete"},
+    {"cena":"Interior_E05_Principal","nome":"Obstaculo_2","pixels":[390,382,500,568],"objeto":"nucleo da poltrona; excluir moldura/overhang para passagem junto a mesa"},
+    {"cena":"Interior_E05_Principal","nome":"Obstaculo_4","pixels":[138,508,248,722],"objeto":"nucleo da mesa e cadeiras; liberar faixa lateral sem deslocar NPC ou chegada"}
+  ]
+}

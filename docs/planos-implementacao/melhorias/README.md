@@ -40,6 +40,8 @@ Os planos nasceram de análise estática de 20–21/10. A expressão antiga “i
 
 ## Como retomar uma entrega
 
+Pedido de 13/11/2026: [expansão de prédios para 3–4 pavimentos e enquadramento de diálogos/escolhas](04-missoes-mundo-e-narrativa.md#refinamentos-de-interiores-solicitados-em-13112026) registrados como propostas adicionais aos 37 IDs originais. A circulação vem primeiro; mudanças visuais dependem de coordenação com o agente dessa frente.
+
 1. Consultar prioridade e estado atual nas fontes acima; escolher um único recorte.
 2. Conferir no plano temático seus pré-requisitos e decisões abertas. Arquivos compartilhados exigem consumidores identificados e um dono por alteração.
 3. Registrar no plano da tarefa arquivos/objetos/propriedades, estado anterior, backup/reversão, aceite e validação mínima.

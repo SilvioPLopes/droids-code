@@ -207,7 +207,7 @@ public class SalvamentoJson : ISistemaDeSalvamento
 
     static void ValidarDestino(string cena, Vector3 posicao)
     {
-        if (cena == "Battle")
+        if (cena == "Battle" || cena == "GameOver")
             throw new InvalidOperationException("Este save de batalha não possui um checkpoint de exploração. O arquivo foi preservado; use um backup de exploração para recuperar o progresso.");
         if (string.IsNullOrWhiteSpace(cena) || float.IsNaN(posicao.x) || float.IsInfinity(posicao.x)
             || float.IsNaN(posicao.y) || float.IsInfinity(posicao.y) || float.IsNaN(posicao.z) || float.IsInfinity(posicao.z))
@@ -269,6 +269,11 @@ public class SalvamentoJson : ISistemaDeSalvamento
         var pecas = ReconstruirPecas(dados.droid.pecas);
         if (gerenciador == null || gerenciador.DroidDoJogador == null) throw new InvalidOperationException("Sessão do jogador indisponível.");
         Droid droid = gerenciador.DroidDoJogador;
+
+        // Efeitos de turno pertencem à batalha anterior, não ao checkpoint.
+        // Limpar antes de recalcular HP evita truncá-lo por debuffs herdados.
+        droid.EfeitosAtivos.Clear();
+        droid.EfeitosDeDanoAtivos.Clear();
 
         droid.Nome = dados.droid.nome;
         droid.RestaurarEnergia(dados.droid.energiaAtual, dados.droid.energiaMaxima);

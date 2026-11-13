@@ -14,7 +14,7 @@ namespace DroidsCode.DroidCore
 
         public bool TentarGastar(int quantidade)
         {
-            if (quantidade > PontosDisponiveis)
+            if (quantidade <= 0 || quantidade > PontosDisponiveis)
             {
                 return false;
             }

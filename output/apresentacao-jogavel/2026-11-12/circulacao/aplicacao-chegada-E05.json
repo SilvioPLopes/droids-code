@@ -1,0 +1,16 @@
+{
+  "caso": "E05",
+  "arquivo": "Assets/Scenes/City.unity",
+  "prefabInstance": "129796394",
+  "antesSHA256": "12BC6E4B76CD3733194580FF45F5B7EE67BCB77B6A8E70BCFF07C3108C5AC0A1",
+  "depoisSHA256": "C250200237629709295E391272CB098250A22E0AA0F2ED90F75C73B980AFEECE",
+  "mudancas": [
+    {
+      "campo": "pontoDeChegada.x",
+      "antes": 2.005,
+      "depois": 2.16200018
+    }
+  ],
+  "backup": "output\\apresentacao-jogavel\\2026-11-12\\circulacao\\baseline\\chegadas\\E05\\Assets\\Scenes\\City.unity",
+  "estado": "EDITADO_SALVO_SEM_TESTE_DE_MOVIMENTO"
+}

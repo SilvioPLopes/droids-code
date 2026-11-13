@@ -1,5 +1,7 @@
 # Loja ilustrada — City
 
+**Exceção posterior,30/10:** venda proibida recebe balão local da Lojista, sem diálogo modal nem fechamento. Preços/autosave e demais mensagens no rodapé preservados. Estado e aceite no [lote de estabilidade](2026-10-30-estabilidade-lua-loja-game-over.md); não repetir a montagem da loja.
+
 ## Retomada vigente — retorno de transações dentro da loja (23/10/2026)
 
 **Pedido novo e prioridade:** usuário rejeitou a confirmação abrindo a conversa; compra/venda e falhas de transação devem informar no próprio menu, mantendo a loja aberta. Exceção explícita à diretriz anterior de diálogo, que permanece para mensagens fora da loja. Captura mostra “Vendeu Poção Pequena por 8 Gold.” no diálogo; não é falha econômica.

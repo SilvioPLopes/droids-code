@@ -1,0 +1,500 @@
+{
+  "diagnosticoSomenteLeitura": true,
+  "inventarioPath": "output/apresentacao-jogavel/2026-11-12/circulacao/inventario-simplificado/inventario.json",
+  "inventarioSHA256": "59623F93CE6ABD78AB509849E0B6D8B606CF4B8B70D90E88AB149C81BD422EC5",
+  "imagemPath": "Assets/sprites/Mapas/metavalle-original-upscale-8k.png",
+  "fundo": {
+    "caminho": "metavalle_0",
+    "prefabSourcePath": "",
+    "spriteAssetPath": "Assets/sprites/Mapas/metavalle-original-upscale-8k.png",
+    "textureAssetPath": "Assets/sprites/Mapas/metavalle-original-upscale-8k.png",
+    "textureWidth": 7680,
+    "textureHeight": 4320,
+    "rectXPixels": 60.0,
+    "rectYPixels": 0.0,
+    "rectWidthPixels": 7560.0,
+    "rectHeightPixels": 4320.0,
+    "pivotXPixels": 3780.0,
+    "pivotYPixels": 2160.0,
+    "pixelsPerUnit": 562.5,
+    "minX": -20.561616897583008,
+    "minY": -11.734332084655762,
+    "maxX": 19.75838279724121,
+    "maxY": 11.30566692352295,
+    "flipX": false,
+    "flipY": false,
+    "enabled": true,
+    "active": true,
+    "drawMode": "Simple",
+    "cornersWorld": [
+      {
+        "x": -20.561616897583008,
+        "y": -11.734332084655762
+      },
+      {
+        "x": 19.75838279724121,
+        "y": -11.734332084655762
+      },
+      {
+        "x": 19.75838279724121,
+        "y": 11.30566692352295
+      },
+      {
+        "x": -20.561616897583008,
+        "y": 11.30566692352295
+      }
+    ]
+  },
+  "cropWorld": {
+    "minX": 6.8,
+    "maxX": 11.0,
+    "minY": -9.5,
+    "maxY": -5.3
+  },
+  "cropPixels": {
+    "x": 5190.303207127277,
+    "y": 3113.5626821925734,
+    "width": 787.5000059604646,
+    "height": 787.5000339001433
+  },
+  "contextWorld": {
+    "minX": 1.0,
+    "maxX": 11.0,
+    "minY": -10.0,
+    "maxY": -4.0
+  },
+  "contextPixels": {
+    "x": 4102.803198896159,
+    "y": 2869.812671699672,
+    "width": 1875.0000141915823,
+    "height": 1125.0000484287762
+  },
+  "poligonos": [
+    {
+      "caminho": "GameObject (12)",
+      "pathsWorld": [
+        {
+          "indice": 0,
+          "pontos": [
+            {
+              "x": 9.63970947265625,
+              "y": -4.634039878845215
+            },
+            {
+              "x": 9.616500854492188,
+              "y": -4.3232221603393555
+            },
+            {
+              "x": 9.045965194702148,
+              "y": -4.297808647155762
+            },
+            {
+              "x": 8.27931022644043,
+              "y": -4.271902084350586
+            },
+            {
+              "x": 8.255227088928223,
+              "y": -4.6648268699646
+            },
+            {
+              "x": 8.047141075134277,
+              "y": -4.713684558868408
+            },
+            {
+              "x": 8.164058685302734,
+              "y": -7.745505332946777
+            },
+            {
+              "x": 9.864846229553223,
+              "y": -7.724496364593506
+            },
+            {
+              "x": 9.870969772338867,
+              "y": -4.7156782150268555
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caminho": "GameObject (10)",
+      "pathsWorld": [
+        {
+          "indice": 0,
+          "pontos": [
+            {
+              "x": 4.513808250427246,
+              "y": -7.73713493347168
+            },
+            {
+              "x": 5.264164924621582,
+              "y": -7.676252365112305
+            },
+            {
+              "x": 5.151469707489014,
+              "y": -4.84657096862793
+            },
+            {
+              "x": 3.621748924255371,
+              "y": -4.858818054199219
+            },
+            {
+              "x": 3.597665548324585,
+              "y": -4.641289710998535
+            },
+            {
+              "x": 1.7299110889434814,
+              "y": -4.556611061096191
+            },
+            {
+              "x": 1.7544772624969482,
+              "y": -7.665128707885742
+            },
+            {
+              "x": 3.4960598945617676,
+              "y": -7.7393083572387695
+            },
+            {
+              "x": 3.733353853225708,
+              "y": -7.613318920135498
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "triggerAtual": {
+    "caminho": "Entrada_CasaLip",
+    "colliderPath": "Entrada_CasaLip/BoxCollider2D[0]",
+    "nome": "Entrada_CasaLip",
+    "prefabSourcePath": "",
+    "tipo": "BoxCollider2D",
+    "enabled": true,
+    "active": true,
+    "activeSelf": true,
+    "isTrigger": true,
+    "eDoPlayer": false,
+    "obstaculoNumerado": false,
+    "layer": 0,
+    "layerName": "Default",
+    "boundsDisponivel": true,
+    "x": 8.890000343322754,
+    "y": -7.650000095367432,
+    "width": 0.5,
+    "height": 0.10000038146972656,
+    "minX": 8.640000343322754,
+    "minY": -7.700000286102295,
+    "maxX": 9.140000343322754,
+    "maxY": -7.599999904632568,
+    "offsetLocalX": 0.0,
+    "offsetLocalY": 0.0,
+    "centroGeometriaWorldX": 8.890000343322754,
+    "centroGeometriaWorldY": -7.650000095367432,
+    "raioWorld": 0.0,
+    "edgeRadiusWorld": 0.0,
+    "geometriaDetalhada": true,
+    "cornersWorld": [
+      {
+        "x": 8.640000343322754,
+        "y": -7.700000286102295
+      },
+      {
+        "x": 9.140000343322754,
+        "y": -7.700000286102295
+      },
+      {
+        "x": 9.140000343322754,
+        "y": -7.599999904632568
+      },
+      {
+        "x": 8.640000343322754,
+        "y": -7.599999904632568
+      }
+    ],
+    "pointsWorld": [],
+    "pathsWorld": []
+  },
+  "triggerProposto": {
+    "x": 8.890000343322754,
+    "y": -7.886538142793474,
+    "minX": 8.640000343322754,
+    "maxX": 9.140000343322754,
+    "minY": -7.936538142793474,
+    "maxY": -7.836538142793474
+  },
+  "fachadaYNoXPortal": -7.736538142793474,
+  "passoFisico": 0.1,
+  "arrivals": [
+    {
+      "nome": "atual",
+      "rootX": 8.890000343322754,
+      "rootY": -9.0,
+      "centerX": 8.890000343322754,
+      "centerY": -8.379999995231628,
+      "raioWorld": 0.30000001192092896,
+      "offsetY": 0.6200000047683716,
+      "folgasSolidos": [
+        {
+          "caminho": "GameObject (12)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 0.3434127551060432
+        },
+        {
+          "caminho": "GameObject (11)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 2.7441993857478058
+        },
+        {
+          "caminho": "GameObject (15)",
+          "tipo": "EdgeCollider2D",
+          "folgaCorpo": 3.1038882753295147
+        },
+        {
+          "caminho": "GameObject (10)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 3.3935001180921276
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/benta",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 4.947250262708195
+        },
+        {
+          "caminho": "GameObject (8)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 6.680439592510725
+        },
+        {
+          "caminho": "GameObject (9)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 6.728666230615233
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/nadir",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 9.561204732464752
+        },
+        {
+          "caminho": "GameObject (16)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 10.331583646735007
+        },
+        {
+          "caminho": "GameObject (5)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 12.146516597023956
+        },
+        {
+          "caminho": "GameObject (14)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 12.91997401631681
+        },
+        {
+          "caminho": "GameObject (13)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 13.39809630111365
+        },
+        {
+          "caminho": "GameObject",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 15.796878040116571
+        },
+        {
+          "caminho": "GameObject (4)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 17.67272071912946
+        },
+        {
+          "caminho": "GameObject (6)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 18.550457019583686
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/zeca_cerca",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 19.518379262049454
+        },
+        {
+          "caminho": "GameObject (1)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 20.058484924101254
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/velho_viaduto",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 21.755517147037164
+        },
+        {
+          "caminho": "GameObject (7)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 22.35669897423604
+        },
+        {
+          "caminho": "GameObject (2)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 23.23895396876459
+        },
+        {
+          "caminho": "GameObject (3)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 24.535220842189176
+        }
+      ],
+      "livreDosSolidosJSON": true,
+      "gapTriggerProposto": 0.14346184051722588,
+      "gapTriggerAtual": 0.37999969720840454
+    },
+    {
+      "nome": "proposta",
+      "rootX": 8.890000343322754,
+      "rootY": -8.956538159482774,
+      "centerX": 8.890000343322754,
+      "centerY": -8.336538154714402,
+      "raioWorld": 0.30000001192092896,
+      "offsetY": 0.6200000047683716,
+      "folgasSolidos": [
+        {
+          "caminho": "GameObject (12)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 0.2999542300026281
+        },
+        {
+          "caminho": "GameObject (11)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 2.728322155501515
+        },
+        {
+          "caminho": "GameObject (15)",
+          "tipo": "EdgeCollider2D",
+          "folgaCorpo": 3.147349991029425
+        },
+        {
+          "caminho": "GameObject (10)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 3.3854660111836616
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/benta",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 4.909541084973646
+        },
+        {
+          "caminho": "GameObject (8)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 6.637710731858299
+        },
+        {
+          "caminho": "GameObject (9)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 6.686163574552956
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/nadir",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 9.544771637716442
+        },
+        {
+          "caminho": "GameObject (16)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 10.30159160490856
+        },
+        {
+          "caminho": "GameObject (5)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 12.144435304260728
+        },
+        {
+          "caminho": "GameObject (14)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 12.876516737370478
+        },
+        {
+          "caminho": "GameObject (13)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 13.356316936002182
+        },
+        {
+          "caminho": "GameObject",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 15.778308026043483
+        },
+        {
+          "caminho": "GameObject (4)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 17.64126712183212
+        },
+        {
+          "caminho": "GameObject (6)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 18.547782212788096
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/zeca_cerca",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 19.479456231125923
+        },
+        {
+          "caminho": "GameObject (1)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 20.043805316280245
+        },
+        {
+          "caminho": "MoradoresFerrovale_Externos/velho_viaduto",
+          "tipo": "CircleCollider2D",
+          "folgaCorpo": 21.747904738471675
+        },
+        {
+          "caminho": "GameObject (7)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 22.35338690730346
+        },
+        {
+          "caminho": "GameObject (2)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 23.226142802054962
+        },
+        {
+          "caminho": "GameObject (3)",
+          "tipo": "PolygonCollider2D",
+          "folgaCorpo": 24.512275361081713
+        }
+      ],
+      "livreDosSolidosJSON": true,
+      "gapTriggerProposto": 0.09999999999999964,
+      "gapTriggerAtual": 0.3365378566911783
+    }
+  ],
+  "referenciasYaml": {
+    "CasaLip.PortaDeSaidaCasa": {
+      "scenePath": "Assets/Scenes/CasaLip.unity",
+      "sceneGUID": "4ffc30afc6682a448b7ea395833ca582",
+      "gameObjectFileID": "811581694",
+      "transformFileID": "811581695",
+      "boxColliderFileID": "811581697",
+      "transicaoFileID": "811581696",
+      "transicaoScriptGUID": "6e953b7ed53c5014a889a39113200ca3",
+      "pontoDeChegadaYaml": "{x: 8.89, y: -9}",
+      "pontoDeChegadaLinha": 1161,
+      "nomeCenaDestino": "City",
+      "transformLocalPositionYaml": "{x: 0, y: -4, z: 0}",
+      "colliderSizeYaml": "{x: 1, y: 1}",
+      "colliderOffsetYaml": "{x: 0, y: 0}"
+    },
+    "City.Entrada_CasaLip": {
+      "scenePath": "Assets/Scenes/City.unity",
+      "sceneGUID": "81e091b8babbb9c4e99abbce39667c03",
+      "gameObjectFileID": "1292165765",
+      "transformFileID": "1292165768",
+      "boxColliderFileID": "1292165767",
+      "transicaoFileID": "1292165766",
+      "transicaoScriptGUID": "6e953b7ed53c5014a889a39113200ca3",
+      "pontoDeChegadaYaml": "{x: 0, y: -4}",
+      "pontoDeChegadaLinha": 6863,
+      "nomeCenaDestino": "CasaLip",
+      "transformLocalPositionYaml": "{x: 8.89, y: -7.65, z: 0}",
+      "colliderSizeYaml": "{x: 0.5, y: 0.1}",
+      "colliderOffsetYaml": "{x: 0, y: 0}"
+    }
+  },
+  "nota": "GameObject (10) esta fora do crop principal: maxX=5.26416. Visivel apenas no contexto lateral. Medidas por JSON, sem prova nativa Physics2D."
+}

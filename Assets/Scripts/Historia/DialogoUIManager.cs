@@ -400,7 +400,20 @@ public class DialogoUIManager : MonoBehaviour
             botao.gameObject.SetActive(true);
 
             var texto = botao.GetComponentInChildren<TextMeshProUGUI>();
-            if (texto != null) texto.text = escolha.texto;
+            if (texto != null)
+            {
+                texto.text = escolha.texto;
+                texto.enableAutoSizing = false;
+                texto.fontSize = 44f;
+                texto.color = new Color(0.08f, 0.06f, 0.04f, 1f);
+            }
+            // Só a instância do diálogo: o template também atende loja/Bag.
+            var areaDoBotao = botao.GetComponent<RectTransform>();
+            areaDoBotao.sizeDelta = new Vector2(1000f, 64f);
+            var medida = botao.GetComponent<LayoutElement>() ?? botao.gameObject.AddComponent<LayoutElement>();
+            medida.minWidth = medida.preferredWidth = 1000f;
+            medida.minHeight = medida.preferredHeight = 64f;
+            medida.flexibleWidth = medida.flexibleHeight = 0f;
 
             EscolhaDeDialogo capturada = escolha; // evita captura errada da variavel de loop
             botao.onClick.AddListener(() => AoClicarEscolha(capturada));

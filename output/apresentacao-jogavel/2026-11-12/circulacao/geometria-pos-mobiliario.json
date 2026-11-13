@@ -1,0 +1,1888 @@
+{
+    "data": "2026-11-13T07:27:58.6664636Z",
+    "limite": "Conectividade geometrica fora de Play; nao comprova input nem movimento.",
+    "cenas": 32,
+    "chegadas": 45,
+    "aprovados": 115,
+    "reprovados": 10,
+    "casos": [
+        {
+            "cena": "CasaLip",
+            "origem": "City/Entrada_CasaLip",
+            "alvo": "Apollo",
+            "erro": "",
+            "x": 0.0,
+            "y": -4.0,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 914,
+            "pontos": 38,
+            "bloqueadores": [
+                "PortaDeSaidaCasa",
+                "GameObject",
+                "GameObject (3)",
+                "GameObject (1)",
+                "GameObject (2)"
+            ]
+        },
+        {
+            "cena": "CasaLip",
+            "origem": "City/Entrada_CasaLip",
+            "alvo": "PortaDeSaidaCasa",
+            "erro": "",
+            "x": 0.0,
+            "y": -4.0,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 10,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "CasaLip",
+            "origem": "City/Entrada_CasaLip",
+            "alvo": "TerminalCasa",
+            "erro": "",
+            "x": 0.0,
+            "y": -4.0,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 792,
+            "pontos": 35,
+            "bloqueadores": [
+                "PortaDeSaidaCasa",
+                "GameObject",
+                "GameObject (3)",
+                "GameObject (1)"
+            ]
+        },
+        {
+            "cena": "Interior_E10_Casa03",
+            "origem": "City/Porta_Casa03_Provisoria",
+            "alvo": "Casa03Interior/Portas/Saida",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 58,
+            "pontos": 7,
+            "bloqueadores": [
+                "Casa03Interior/Colisoes/Mesa_Centro",
+                "MoradoresFerrovale/fv_operario_01",
+                "Casa03Interior/Colisoes/Parede_Sul_Direita"
+            ]
+        },
+        {
+            "cena": "Interior_E10_Casa03",
+            "origem": "City/Porta_Casa03_Provisoria",
+            "alvo": "MoradoresFerrovale/fv_operario_01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "City/Porta_Casa01",
+            "alvo": "E06_Terreo/Portas/escada_E06_Superior",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 864,
+            "pontos": 30,
+            "bloqueadores": [
+                "E06_Terreo/Portas/saida_Porta_Casa01",
+                "MoradoresFerrovale/fv_mecanico_01",
+                "E06_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "City/Porta_Casa01",
+            "alvo": "E06_Terreo/Portas/saida_Porta_Casa01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "City/Porta_Casa01",
+            "alvo": "MoradoresFerrovale/fv_mecanico_01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 17,
+            "pontos": 3,
+            "bloqueadores": [
+                "E06_Terreo/Portas/saida_Porta_Casa01"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Superior/escada_E06_Terreo",
+            "alvo": "E06_Terreo/Portas/escada_E06_Superior",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 5,
+            "bloqueadores": [
+                "E06_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Superior/escada_E06_Terreo",
+            "alvo": "E06_Terreo/Portas/saida_Porta_Casa01",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 532,
+            "pontos": 31,
+            "bloqueadores": [
+                "E06_Terreo/Colisoes/LimitesDoPiso",
+                "E06_Terreo/Portas/escada_E06_Superior",
+                "MoradoresFerrovale/fv_mecanico_01"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Superior/escada_E06_Terreo",
+            "alvo": "MoradoresFerrovale/fv_mecanico_01",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 25,
+            "pontos": 4,
+            "bloqueadores": [
+                "E06_Terreo/Colisoes/LimitesDoPiso",
+                "E06_Terreo/Portas/escada_E06_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Anexo/voltar_casa",
+            "alvo": "E06_Terreo/Portas/escada_E06_Superior",
+            "erro": "",
+            "x": 1.3799999952316285,
+            "y": -2.0799999237060549,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 380,
+            "pontos": 22,
+            "bloqueadores": [
+                "E06_Terreo/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/fv_mecanico_01",
+                "E06_Terreo/Portas/saida_Porta_Casa01"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Anexo/voltar_casa",
+            "alvo": "E06_Terreo/Portas/saida_Porta_Casa01",
+            "erro": "",
+            "x": 1.3799999952316285,
+            "y": -2.0799999237060549,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 59,
+            "pontos": 8,
+            "bloqueadores": [
+                "E06_Terreo/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/fv_mecanico_01"
+            ]
+        },
+        {
+            "cena": "Interior_E06_Terreo",
+            "origem": "Interior_E06_Anexo/voltar_casa",
+            "alvo": "MoradoresFerrovale/fv_mecanico_01",
+            "erro": "",
+            "x": 1.3799999952316285,
+            "y": -2.0799999237060549,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E06_Superior",
+            "origem": "Interior_E06_Terreo/escada_E06_Superior",
+            "alvo": "E06_Superior/Portas/escada_E06_Terreo",
+            "erro": "",
+            "x": 1.8799999952316285,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 37,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E06_Anexo",
+            "origem": "Interior_E06_Terreo/visita/Mecanico",
+            "alvo": "E06_Anexo/Portas/voltar_casa",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E06_Anexo",
+            "origem": "Interior_E06_Terreo/visita/Mecanico",
+            "alvo": "MoradoresFerrovale/fv_mecanico_01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "E05_Principal/Portas/saida_Porta_Casa02",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "MoradoresFerrovale/crianca_rua",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "MoradoresFerrovale/fv_crianca_sula_02",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "MoradoresFerrovale/fv_crianca_sula_03",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02",
+            "alvo": "MoradoresFerrovale/vendedora_pecas",
+            "erro": "CHEGADA_OCUPADA: ORIGEM_OCUPADA",
+            "x": 2.005000114440918,
+            "y": -1.5799999237060547,
+            "chegadaLivre": false,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "E05_Principal/Portas/saida_Porta_Casa02",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 635,
+            "pontos": 40,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_03",
+                "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+                "E05_Principal/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/crianca_rua",
+                "MoradoresFerrovale/vendedora_pecas",
+                "MoradoresFerrovale/fv_crianca_sula_02"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 12,
+            "pontos": 4,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_03"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "MoradoresFerrovale/crianca_rua",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 170,
+            "pontos": 16,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_03",
+                "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+                "E05_Principal/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "MoradoresFerrovale/fv_crianca_sula_02",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 456,
+            "pontos": 29,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_03",
+                "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+                "E05_Principal/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/crianca_rua"
+            ]
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "MoradoresFerrovale/fv_crianca_sula_03",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E05_Principal",
+            "origem": "City/Porta_Casa02_Esquerda",
+            "alvo": "MoradoresFerrovale/vendedora_pecas",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 423,
+            "pontos": 27,
+            "bloqueadores": [
+                "MoradoresFerrovale/fv_crianca_sula_03",
+                "E05_Principal/Portas/saida_Porta_Casa02_Esquerda",
+                "E05_Principal/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/crianca_rua"
+            ]
+        },
+        {
+            "cena": "Interior_E10_Casa04",
+            "origem": "City/Porta_Casa04",
+            "alvo": "E10_Casa04/Portas/saida_Porta_Casa04",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E10_Casa04",
+            "origem": "City/Porta_Casa04",
+            "alvo": "MoradoresFerrovale/homem_fila",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 10,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E11_Casa05",
+            "origem": "City/Porta_Casa05",
+            "alvo": "E11_Casa05/Portas/saida_Porta_Casa05",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E11_Casa05",
+            "origem": "City/Porta_Casa05",
+            "alvo": "MoradoresFerrovale/tacio",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 18,
+            "pontos": 3,
+            "bloqueadores": [
+                "E11_Casa05/Portas/saida_Porta_Casa05"
+            ]
+        },
+        {
+            "cena": "Interior_E11_Casa05",
+            "origem": "City/Porta_Casa05",
+            "alvo": "RoloDeCobre",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 411,
+            "pontos": 18,
+            "bloqueadores": [
+                "E11_Casa05/Portas/saida_Porta_Casa05",
+                "MoradoresFerrovale/tacio",
+                "E11_Casa05/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E11_Casa06",
+            "origem": "City/Porta_Casa06",
+            "alvo": "E11_Casa06/Portas/saida_Porta_Casa06",
+            "erro": "",
+            "x": 0.5049999952316284,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 26,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E11_Casa06",
+            "origem": "City/Porta_Casa06",
+            "alvo": "MoradoresFerrovale/fv_idoso_01",
+            "erro": "",
+            "x": 0.5049999952316284,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "City/Porta_CasaMaior",
+            "alvo": "E09_Terreo/Portas/escada_E09_Superior",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 549,
+            "pontos": 50,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/saida_Porta_CasaMaior",
+                "MoradoresFerrovale/mestra_guilda",
+                "MoradoresFerrovale/fv_operario_01"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "City/Porta_CasaMaior",
+            "alvo": "E09_Terreo/Portas/saida_Porta_CasaMaior",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 20,
+            "pontos": 4,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "MoradoresFerrovale/mestra_guilda"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "City/Porta_CasaMaior",
+            "alvo": "MoradoresFerrovale/fv_operario_01",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "City/Porta_CasaMaior",
+            "alvo": "MoradoresFerrovale/mestra_guilda",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "City/Porta_CasaMaior",
+            "alvo": "TriagemDaGuilda",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 482,
+            "pontos": 37,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/saida_Porta_CasaMaior",
+                "MoradoresFerrovale/mestra_guilda",
+                "MoradoresFerrovale/fv_operario_01"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "Interior_E09_Superior/escada_E09_Terreo",
+            "alvo": "E09_Terreo/Portas/escada_E09_Superior",
+            "erro": "",
+            "x": 2.380000114440918,
+            "y": 0.17000001668930055,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 1,
+            "pontos": 2,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "Interior_E09_Superior/escada_E09_Terreo",
+            "alvo": "E09_Terreo/Portas/saida_Porta_CasaMaior",
+            "erro": "ORIGEM_SEM_CONEXAO",
+            "x": 2.380000114440918,
+            "y": 0.17000001668930055,
+            "chegadaLivre": true,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/escada_E09_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "Interior_E09_Superior/escada_E09_Terreo",
+            "alvo": "MoradoresFerrovale/fv_operario_01",
+            "erro": "ORIGEM_SEM_CONEXAO",
+            "x": 2.380000114440918,
+            "y": 0.17000001668930055,
+            "chegadaLivre": true,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/escada_E09_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "Interior_E09_Superior/escada_E09_Terreo",
+            "alvo": "MoradoresFerrovale/mestra_guilda",
+            "erro": "ORIGEM_SEM_CONEXAO",
+            "x": 2.380000114440918,
+            "y": 0.17000001668930055,
+            "chegadaLivre": true,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/escada_E09_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Terreo",
+            "origem": "Interior_E09_Superior/escada_E09_Terreo",
+            "alvo": "TriagemDaGuilda",
+            "erro": "ORIGEM_SEM_CONEXAO",
+            "x": 2.380000114440918,
+            "y": 0.17000001668930055,
+            "chegadaLivre": true,
+            "sucesso": false,
+            "visitados": 0,
+            "pontos": 0,
+            "bloqueadores": [
+                "E09_Terreo/Colisoes/LimitesDoPiso",
+                "E09_Terreo/Portas/escada_E09_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E09_Superior",
+            "origem": "Interior_E09_Terreo/escada_E09_Superior",
+            "alvo": "E09_Superior/Portas/escada_E09_Terreo",
+            "erro": "",
+            "x": 0.2800000011920929,
+            "y": -0.12999999523162843,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 38,
+            "pontos": 5,
+            "bloqueadores": [
+                "E09_Superior/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_A",
+            "alvo": "BombaDeReserva",
+            "erro": "",
+            "x": -1.1200000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 702,
+            "pontos": 27,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+                "MoradoresFerrovale/estalajadeira"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_A",
+            "alvo": "E08_Principal/Portas/escada_E08_Superior",
+            "erro": "",
+            "x": -1.1200000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 918,
+            "pontos": 39,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+                "MoradoresFerrovale/estalajadeira"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_A",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+            "erro": "",
+            "x": -1.1200000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 23,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_A",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+            "erro": "",
+            "x": -1.1200000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 398,
+            "pontos": 17,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+                "E08_Principal/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_A",
+            "alvo": "MoradoresFerrovale/estalajadeira",
+            "erro": "",
+            "x": -1.1200000047683716,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 363,
+            "pontos": 16,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_B",
+            "alvo": "BombaDeReserva",
+            "erro": "",
+            "x": 1.0800000429153443,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 125,
+            "pontos": 10,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+                "MoradoresFerrovale/estalajadeira",
+                "E08_Principal/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_B",
+            "alvo": "E08_Principal/Portas/escada_E08_Superior",
+            "erro": "",
+            "x": 1.0800000429153443,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 514,
+            "pontos": 22,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+                "MoradoresFerrovale/estalajadeira",
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_A"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_B",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+            "erro": "",
+            "x": 1.0800000429153443,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 324,
+            "pontos": 16,
+            "bloqueadores": [
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+                "MoradoresFerrovale/estalajadeira",
+                "E08_Principal/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_B",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+            "erro": "",
+            "x": 1.0800000429153443,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 24,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "City/Porta_PredioPlaca_B",
+            "alvo": "MoradoresFerrovale/estalajadeira",
+            "erro": "",
+            "x": 1.0800000429153443,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "Interior_E08_Superior/escada_E08_Principal",
+            "alvo": "BombaDeReserva",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 32,
+            "pontos": 5,
+            "bloqueadores": [
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/escada_E08_Superior"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "Interior_E08_Superior/escada_E08_Principal",
+            "alvo": "E08_Principal/Portas/escada_E08_Superior",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 5,
+            "bloqueadores": [
+                "E08_Principal/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "Interior_E08_Superior/escada_E08_Principal",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_A",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 703,
+            "pontos": 39,
+            "bloqueadores": [
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/escada_E08_Superior",
+                "MoradoresFerrovale/estalajadeira",
+                "E08_Principal/Portas/saida_Porta_PredioPlaca_B"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "Interior_E08_Superior/escada_E08_Principal",
+            "alvo": "E08_Principal/Portas/saida_Porta_PredioPlaca_B",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 329,
+            "pontos": 22,
+            "bloqueadores": [
+                "E08_Principal/Colisoes/LimitesDoPiso",
+                "E08_Principal/Portas/escada_E08_Superior",
+                "MoradoresFerrovale/estalajadeira"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Principal",
+            "origem": "Interior_E08_Superior/escada_E08_Principal",
+            "alvo": "MoradoresFerrovale/estalajadeira",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E08_Superior",
+            "origem": "Interior_E08_Principal/escada_E08_Superior",
+            "alvo": "E08_Superior/Portas/escada_E08_Principal",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 5,
+            "bloqueadores": [
+                "E08_Superior/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E08_Superior",
+            "origem": "Interior_E08_Principal/escada_E08_Superior",
+            "alvo": "MoradoresFerrovale/zeca_cerca",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 0,
+            "pontos": 1,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E08_Superior",
+            "origem": "Interior_E08_Principal/escada_E08_Superior",
+            "alvo": "QuartoTresReservado",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.3799999952316284,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 380,
+            "pontos": 25,
+            "bloqueadores": [
+                "E08_Superior/Colisoes/LimitesDoPiso",
+                "E08_Superior/Portas/escada_E08_Principal",
+                "MoradoresFerrovale/zeca_cerca"
+            ]
+        },
+        {
+            "cena": "Interior_E16_Civico",
+            "origem": "City/Porta_Prefeitura",
+            "alvo": "E16_Civico/Portas/saida_Porta_Prefeitura",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E00_Hall",
+            "origem": "City/Porta_Casa07",
+            "alvo": "E00_Hall/Portas/escada_E00_Patamar",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 914,
+            "pontos": 30,
+            "bloqueadores": [
+                "E00_Hall/Portas/saida_Porta_Casa07",
+                "E00_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Hall",
+            "origem": "City/Porta_Casa07",
+            "alvo": "E00_Hall/Portas/saida_Porta_Casa07",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E00_Hall",
+            "origem": "Interior_E00_Patamar/escada_E00_Hall",
+            "alvo": "E00_Hall/Portas/escada_E00_Patamar",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 20,
+            "pontos": 4,
+            "bloqueadores": [
+                "E00_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Hall",
+            "origem": "Interior_E00_Patamar/escada_E00_Hall",
+            "alvo": "E00_Hall/Portas/saida_Porta_Casa07",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 575,
+            "pontos": 31,
+            "bloqueadores": [
+                "E00_Hall/Colisoes/LimitesDoPiso",
+                "E00_Hall/Portas/escada_E00_Patamar"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Hall/escada_E00_Patamar",
+            "alvo": "E00_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 694,
+            "pontos": 32,
+            "bloqueadores": [
+                "E00_Patamar/Portas/escada_E00_Hall",
+                "E00_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Hall/escada_E00_Patamar",
+            "alvo": "E00_Patamar/Portas/escada_E00_Hall",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Hall/escada_E00_Patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 87,
+            "pontos": 8,
+            "bloqueadores": [
+                "E00_Patamar/Portas/escada_E00_Hall",
+                "E00_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Apartamento01/retorno_patamar",
+            "alvo": "E00_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Apartamento01/retorno_patamar",
+            "alvo": "E00_Patamar/Portas/escada_E00_Hall",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 645,
+            "pontos": 28,
+            "bloqueadores": [
+                "E00_Patamar/Portas/apartamento",
+                "E00_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Patamar",
+            "origem": "Interior_E00_Apartamento01/retorno_patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 228,
+            "pontos": 13,
+            "bloqueadores": [
+                "E00_Patamar/Portas/apartamento",
+                "E00_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E00_Apartamento01",
+            "origem": "Interior_E00_Patamar/apartamento",
+            "alvo": "E00_Apartamento01/Portas/retorno_patamar",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 23,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E00_Apartamento01",
+            "origem": "Interior_E00_Patamar/apartamento",
+            "alvo": "MoradoresFerrovale/fv_vendedor_01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 190,
+            "pontos": 11,
+            "bloqueadores": [
+                "E00_Apartamento01/Portas/retorno_patamar",
+                "E00_Apartamento01/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Hall",
+            "origem": "City/Porta_Casa08",
+            "alvo": "E01_Hall/Portas/escada_E01_Patamar",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 914,
+            "pontos": 30,
+            "bloqueadores": [
+                "E01_Hall/Portas/saida_Porta_Casa08",
+                "E01_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Hall",
+            "origem": "City/Porta_Casa08",
+            "alvo": "E01_Hall/Portas/saida_Porta_Casa08",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E01_Hall",
+            "origem": "Interior_E01_Patamar/escada_E01_Hall",
+            "alvo": "E01_Hall/Portas/escada_E01_Patamar",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 20,
+            "pontos": 4,
+            "bloqueadores": [
+                "E01_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Hall",
+            "origem": "Interior_E01_Patamar/escada_E01_Hall",
+            "alvo": "E01_Hall/Portas/saida_Porta_Casa08",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 575,
+            "pontos": 31,
+            "bloqueadores": [
+                "E01_Hall/Colisoes/LimitesDoPiso",
+                "E01_Hall/Portas/escada_E01_Patamar"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Apartamento01",
+            "origem": "Interior_E01_Patamar/apartamento",
+            "alvo": "E01_Apartamento01/Portas/retorno_patamar",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 23,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E01_Apartamento01",
+            "origem": "Interior_E01_Patamar/apartamento",
+            "alvo": "MoradoresFerrovale/fv_hacker_01",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 28,
+            "pontos": 4,
+            "bloqueadores": [
+                "E01_Apartamento01/Portas/retorno_patamar"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Hall/escada_E01_Patamar",
+            "alvo": "E01_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 694,
+            "pontos": 32,
+            "bloqueadores": [
+                "E01_Patamar/Portas/escada_E01_Hall",
+                "E01_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Hall/escada_E01_Patamar",
+            "alvo": "E01_Patamar/Portas/escada_E01_Hall",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Hall/escada_E01_Patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 87,
+            "pontos": 8,
+            "bloqueadores": [
+                "E01_Patamar/Portas/escada_E01_Hall",
+                "E01_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Apartamento01/retorno_patamar",
+            "alvo": "E01_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Apartamento01/retorno_patamar",
+            "alvo": "E01_Patamar/Portas/escada_E01_Hall",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 645,
+            "pontos": 28,
+            "bloqueadores": [
+                "E01_Patamar/Portas/apartamento",
+                "E01_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E01_Patamar",
+            "origem": "Interior_E01_Apartamento01/retorno_patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 228,
+            "pontos": 13,
+            "bloqueadores": [
+                "E01_Patamar/Portas/apartamento",
+                "E01_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E02_Principal",
+            "origem": "City/Porta_Casa09",
+            "alvo": "DemoAto1/Bancada do filtro",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 50,
+            "pontos": 6,
+            "bloqueadores": [
+                "E02_Principal/Portas/saida_Porta_Casa09"
+            ]
+        },
+        {
+            "cena": "Interior_E02_Principal",
+            "origem": "City/Porta_Casa09",
+            "alvo": "E02_Principal/Portas/saida_Porta_Casa09",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E02_Principal",
+            "origem": "City/Porta_Casa09",
+            "alvo": "MoradoresFerrovale/ferreiro",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 11,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E02_Garagem",
+            "origem": "City/Porta_Garagem",
+            "alvo": "E02_Garagem/Portas/saida_Porta_Garagem",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E02_Garagem",
+            "origem": "City/Porta_Garagem",
+            "alvo": "MoradoresFerrovale/ferreiro",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 3,
+            "pontos": 2,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "City/Porta_Mansao_Provisoria",
+            "alvo": "CadernosDoIvo",
+            "erro": "",
+            "x": -1.4950000047683716,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 477,
+            "pontos": 19,
+            "bloqueadores": [
+                "E03_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "City/Porta_Mansao_Provisoria",
+            "alvo": "E03_Terreo/Portas/escada_E03_Superior",
+            "erro": "",
+            "x": -1.4950000047683716,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 801,
+            "pontos": 31,
+            "bloqueadores": [
+                "E03_Terreo/Colisoes/LimitesDoPiso",
+                "E03_Terreo/Portas/saida_Porta_Mansao_Provisoria"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "City/Porta_Mansao_Provisoria",
+            "alvo": "E03_Terreo/Portas/saida_Porta_Mansao_Provisoria",
+            "erro": "",
+            "x": -1.4950000047683716,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 643,
+            "pontos": 24,
+            "bloqueadores": [
+                "E03_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "Interior_E03_Superior/escada_E03_Terreo",
+            "alvo": "CadernosDoIvo",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 10,
+            "pontos": 3,
+            "bloqueadores": [
+                "E03_Terreo/Portas/escada_E03_Superior",
+                "E03_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "Interior_E03_Superior/escada_E03_Terreo",
+            "alvo": "E03_Terreo/Portas/escada_E03_Superior",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 14,
+            "pontos": 3,
+            "bloqueadores": [
+                "E03_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Terreo",
+            "origem": "Interior_E03_Superior/escada_E03_Terreo",
+            "alvo": "E03_Terreo/Portas/saida_Porta_Mansao_Provisoria",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.07999998331069946,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 626,
+            "pontos": 34,
+            "bloqueadores": [
+                "E03_Terreo/Portas/escada_E03_Superior",
+                "E03_Terreo/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Superior",
+            "origem": "Interior_E03_Terreo/escada_E03_Superior",
+            "alvo": "BilheteDoIvo",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.20500001311302186,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 34,
+            "pontos": 5,
+            "bloqueadores": [
+                "E03_Superior/Colisoes/LimitesDoPiso",
+                "E03_Superior/Portas/escada_E03_Terreo"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Superior",
+            "origem": "Interior_E03_Terreo/escada_E03_Superior",
+            "alvo": "E03_Superior/Portas/escada_E03_Terreo",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.20500001311302186,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 24,
+            "pontos": 4,
+            "bloqueadores": [
+                "E03_Superior/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E03_Superior",
+            "origem": "Interior_E03_Terreo/escada_E03_Superior",
+            "alvo": "FotoDeCelia",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.20500001311302186,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 483,
+            "pontos": 28,
+            "bloqueadores": [
+                "E03_Superior/Colisoes/LimitesDoPiso",
+                "E03_Superior/Portas/escada_E03_Terreo"
+            ]
+        },
+        {
+            "cena": "Interior_E04_UnidadeA",
+            "origem": "City/Porta_GeminadoAzul_A",
+            "alvo": "E04_UnidadeA/Portas/saida_Porta_GeminadoAzul_A",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E04_UnidadeA",
+            "origem": "City/Porta_GeminadoAzul_A",
+            "alvo": "MoradoresFerrovale/dara",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 2,
+            "pontos": 2,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E04_UnidadeB",
+            "origem": "City/Porta_GeminadoAzul_B",
+            "alvo": "E04_UnidadeB/Portas/saida_Porta_GeminadoAzul_B",
+            "erro": "",
+            "x": 0.12999999523162843,
+            "y": -1.4549999237060547,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 59,
+            "pontos": 6,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E04_UnidadeB",
+            "origem": "City/Porta_GeminadoAzul_B",
+            "alvo": "MoradoresFerrovale/fv_vizinha_dara_01",
+            "erro": "",
+            "x": 0.12999999523162843,
+            "y": -1.4549999237060547,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 15,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E13_Hall",
+            "origem": "City/Porta_Casa10",
+            "alvo": "E13_Hall/Portas/escada_E13_Patamar",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 914,
+            "pontos": 30,
+            "bloqueadores": [
+                "E13_Hall/Portas/saida_Porta_Casa10",
+                "E13_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Hall",
+            "origem": "City/Porta_Casa10",
+            "alvo": "E13_Hall/Portas/saida_Porta_Casa10",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.6549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E13_Hall",
+            "origem": "Interior_E13_Patamar/escada_E13_Hall",
+            "alvo": "E13_Hall/Portas/escada_E13_Patamar",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 20,
+            "pontos": 4,
+            "bloqueadores": [
+                "E13_Hall/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Hall",
+            "origem": "Interior_E13_Patamar/escada_E13_Hall",
+            "alvo": "E13_Hall/Portas/saida_Porta_Casa10",
+            "erro": "",
+            "x": 2.630000114440918,
+            "y": -0.4050000011920929,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 575,
+            "pontos": 31,
+            "bloqueadores": [
+                "E13_Hall/Colisoes/LimitesDoPiso",
+                "E13_Hall/Portas/escada_E13_Patamar"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Apartamento01",
+            "origem": "Interior_E13_Patamar/apartamento",
+            "alvo": "E13_Apartamento01/Portas/retorno_patamar",
+            "erro": "",
+            "x": 0.2549999952316284,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 23,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E13_Apartamento01",
+            "origem": "Interior_E13_Patamar/apartamento",
+            "alvo": "MoradoresFerrovale/fv_cientista_01",
+            "erro": "",
+            "x": 0.2549999952316284,
+            "y": -1.7050000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 15,
+            "pontos": 3,
+            "bloqueadores": [
+                "E13_Apartamento01/Portas/retorno_patamar"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Hall/escada_E13_Patamar",
+            "alvo": "E13_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 694,
+            "pontos": 32,
+            "bloqueadores": [
+                "E13_Patamar/Portas/escada_E13_Hall",
+                "E13_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Hall/escada_E13_Patamar",
+            "alvo": "E13_Patamar/Portas/escada_E13_Hall",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 31,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Hall/escada_E13_Patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": 2.055000066757202,
+            "y": -0.5799999833106995,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 87,
+            "pontos": 8,
+            "bloqueadores": [
+                "E13_Patamar/Portas/escada_E13_Hall",
+                "E13_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Apartamento01/retorno_patamar",
+            "alvo": "E13_Patamar/Portas/apartamento",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Apartamento01/retorno_patamar",
+            "alvo": "E13_Patamar/Portas/escada_E13_Hall",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 645,
+            "pontos": 28,
+            "bloqueadores": [
+                "E13_Patamar/Portas/apartamento",
+                "E13_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E13_Patamar",
+            "origem": "Interior_E13_Apartamento01/retorno_patamar",
+            "alvo": "EscadaSuperiorReservada",
+            "erro": "",
+            "x": -1.8700000047683716,
+            "y": -0.33000001311302187,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 228,
+            "pontos": 13,
+            "bloqueadores": [
+                "E13_Patamar/Portas/apartamento",
+                "E13_Patamar/Colisoes/LimitesDoPiso"
+            ]
+        },
+        {
+            "cena": "Interior_E14_UnidadeA",
+            "origem": "City/Porta_CasaPorao_Esquerda",
+            "alvo": "E14_UnidadeA/Portas/saida_Porta_CasaPorao_Esquerda",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.8300000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 11,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E14_UnidadeA",
+            "origem": "City/Porta_CasaPorao_Esquerda",
+            "alvo": "MoradoresFerrovale/benta",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.8300000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 54,
+            "pontos": 6,
+            "bloqueadores": [
+                "E14_UnidadeA/Portas/saida_Porta_CasaPorao_Esquerda"
+            ]
+        },
+        {
+            "cena": "Interior_E14_Porao",
+            "origem": "City/Porta_Porao",
+            "alvo": "E14_Porao/Portas/saida_Porta_Porao",
+            "erro": "",
+            "x": 0.0,
+            "y": -1.1549999713897706,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 27,
+            "pontos": 4,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E14_UnidadeB",
+            "origem": "City/Porta_CasaPorao_Direita",
+            "alvo": "E14_UnidadeB/Portas/saida_Porta_CasaPorao_Direita",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.8300000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 11,
+            "pontos": 3,
+            "bloqueadores": []
+        },
+        {
+            "cena": "Interior_E14_UnidadeB",
+            "origem": "City/Porta_CasaPorao_Direita",
+            "alvo": "MoradoresFerrovale/fv_guarda_01",
+            "erro": "",
+            "x": 0.004999999888241291,
+            "y": -1.8300000429153443,
+            "chegadaLivre": true,
+            "sucesso": true,
+            "visitados": 63,
+            "pontos": 7,
+            "bloqueadores": [
+                "E14_UnidadeB/Portas/saida_Porta_CasaPorao_Direita"
+            ]
+        }
+    ]
+}

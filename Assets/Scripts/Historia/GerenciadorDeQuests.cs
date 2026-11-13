@@ -184,9 +184,9 @@ public static class GerenciadorDeQuests
     /// <summary>
     /// Registra um evento de jogo em TODAS as quests ativas que esperam por
     /// ele. Seguro chamar com alvo desconhecido -- simplesmente nao casa
-    /// com nada.
+    /// com nada. Em Battle, adie a gravação para o checkpoint único da origem.
     /// </summary>
-    public static void RegistrarProgresso(TipoDeObjetivo tipo, string alvo, int quantidade = 1)
+    public static void RegistrarProgresso(TipoDeObjetivo tipo, string alvo, int quantidade = 1, bool persistir = true)
     {
         if (string.IsNullOrEmpty(alvo) || quantidade <= 0) return;
 
@@ -217,7 +217,7 @@ public static class GerenciadorDeQuests
 
         if (mudou)
         {
-            Salvamento.Salvar();
+            if (persistir) Salvamento.Salvar();
             AoMudarQuests?.Invoke();
         }
     }

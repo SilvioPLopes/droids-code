@@ -1,0 +1,21 @@
+{
+  "caso": "E09",
+  "arquivo": "Assets/Prefabs/Interiores/E09_Superior.prefab",
+  "prefabInstance": "4832129328522173717",
+  "antesSHA256": "CF270EC31F2E2CD124D21222CEAEA5158DC7FF1943F2F73C5513E1CFCE06E48B",
+  "depoisSHA256": "AE24790EB2D2ACB6B70028EED9C475C481619D938FDB934A47F50616D05FE4E5",
+  "mudancas": [
+    {
+      "campo": "pontoDeChegada.x",
+      "antes": 2.38,
+      "depois": 1.85500014
+    },
+    {
+      "campo": "pontoDeChegada.y",
+      "antes": 0.17000002,
+      "depois": 0.395000041
+    }
+  ],
+  "backup": "output\\apresentacao-jogavel\\2026-11-12\\circulacao\\baseline\\chegadas\\E09\\Assets\\Prefabs\\Interiores\\E09_Superior.prefab",
+  "estado": "EDITADO_SALVO_SEM_TESTE_DE_MOVIMENTO"
+}

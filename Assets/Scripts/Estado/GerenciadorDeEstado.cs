@@ -115,6 +115,8 @@ public class GerenciadorDeEstado : MonoBehaviour
     // Retorna false se nao houver estoque suficiente (nao deixa ficar negativo).
     public bool TentarRemoverItem(string idItem, int quantidade = 1)
     {
+        if (quantidade <= 0) return false;
+
         int atual = ObterQuantidadeDeItem(idItem);
         if (atual < quantidade) return false;
 

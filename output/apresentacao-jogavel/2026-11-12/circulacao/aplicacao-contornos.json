@@ -1,0 +1,439 @@
+{
+  "alvos": [
+    {
+      "cena": "Interior_E03_Terreo",
+      "nome": "Obstaculo_1",
+      "pixels": [
+        548,
+        140,
+        900,
+        354
+      ],
+      "objeto": "mesa de recepcao e cadeira; liberar piso abaixo",
+      "path": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "componentFileID": "597308521775106000",
+      "antes": {
+        "size": [
+          2.2,
+          1.1
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.759999906213246,
+          1.0700000589400478
+        ],
+        "offset": [
+          0.019999980493026214,
+          0.614999996994321
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E03_Terreo",
+      "nome": "Obstaculo_2",
+      "pixels": [
+        168,
+        470,
+        530,
+        700
+      ],
+      "objeto": "conjunto esquerdo de sofa/mesa/poltronas; excluir tapete",
+      "path": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "componentFileID": "3405837698733323604",
+      "antes": {
+        "size": [
+          2.65,
+          1.55
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.8099998776417903,
+          1.1499999990227006
+        ],
+        "offset": [
+          -0.5299998930409504,
+          0.4499999871038955
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E03_Terreo",
+      "nome": "Obstaculo_3",
+      "pixels": [
+        920,
+        470,
+        1276,
+        700
+      ],
+      "objeto": "conjunto direito; liberar corredor central e piso inferior",
+      "path": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "componentFileID": "3219559728632870907",
+      "antes": {
+        "size": [
+          2.4,
+          1.525
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.7799998729971063,
+          1.1499999816235653
+        ],
+        "offset": [
+          0.3899999063120405,
+          0.4374999920210425
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E03_Superior",
+      "nome": "Obstaculo_1",
+      "pixels": [
+        500,
+        106,
+        802,
+        266
+      ],
+      "objeto": "estante superior; excluir piso abaixo e a direita",
+      "path": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "componentFileID": "5754663939271721577",
+      "antes": {
+        "size": [
+          2.6,
+          0.8
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.5100000076500655,
+          0.8000000223929067
+        ],
+        "offset": [
+          -0.29499994682951347,
+          0.4199999590670839
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E03_Superior",
+      "nome": "Obstaculo_2",
+      "pixels": [
+        316,
+        323,
+        636,
+        579
+      ],
+      "objeto": "mesa e cadeiras; excluir tapete a direita",
+      "path": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "componentFileID": "2788917153424343459",
+      "antes": {
+        "size": [
+          2.9,
+          1.15
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.5999998968018683,
+          1.2799999860717273
+        ],
+        "offset": [
+          -1.3199999603059647,
+          0.32000000639715465
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E03_Superior",
+      "nome": "Obstaculo_3",
+      "pixels": [
+        190,
+        650,
+        638,
+        826
+      ],
+      "objeto": "poltronas e mesa inferior; excluir corredor direito",
+      "path": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "componentFileID": "9222416218420634059",
+      "antes": {
+        "size": [
+          4.1,
+          1.0
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          2.239999981288912,
+          0.8799999721801084
+        ],
+        "offset": [
+          -1.0799999475100006,
+          0.2600000451282898
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E09_Terreo",
+      "nome": "Obstaculo_1",
+      "pixels": [
+        162,
+        230,
+        659,
+        500
+      ],
+      "objeto": "sofa, duas poltronas e mesa; excluir tapete a direita/abaixo",
+      "path": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "componentFileID": "5383038813212253067",
+      "antes": {
+        "size": [
+          2.45,
+          1.6
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          2.4849996312509925,
+          1.3499999372051905
+        ],
+        "offset": [
+          -0.22249989585284108,
+          0.5749999656799917
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E09_Terreo",
+      "nome": "Obstaculo_2",
+      "pixels": [
+        244,
+        608,
+        514,
+        878
+      ],
+      "objeto": "mesa e quatro cadeiras; liberar acesso direito desde soleira",
+      "path": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "componentFileID": "7992765164847357490",
+      "antes": {
+        "size": [
+          1.65,
+          0.875
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.3500000743636114,
+          1.3499999573217571
+        ],
+        "offset": [
+          -0.27999991728994117,
+          0.32250002207677
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E09_Terreo",
+      "nome": "Obstaculo_3",
+      "pixels": [
+        694,
+        86,
+        906,
+        230
+      ],
+      "objeto": "armario superior; excluir faixa de piso abaixo",
+      "path": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "componentFileID": "2016174554079614999",
+      "antes": {
+        "size": [
+          1.75,
+          0.8
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          1.059999966489676,
+          0.7200000201536159
+        ],
+        "offset": [
+          -0.2749999834029051,
+          0.5599999629858426
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E08_Superior",
+      "nome": "Obstaculo_3",
+      "pixels": [
+        190,
+        540,
+        730,
+        742
+      ],
+      "objeto": "poltronas e mesa; excluir piso a direita do tapete",
+      "path": "Assets/Prefabs/Interiores/E08_Superior.prefab",
+      "componentFileID": "400323775070296190",
+      "antes": {
+        "size": [
+          3.5,
+          1.25
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          2.6999999146435143,
+          1.0099999680703518
+        ],
+        "offset": [
+          -1.0499999773436488,
+          -0.08000001788797961
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E05_Principal",
+      "nome": "Obstaculo_2",
+      "pixels": [
+        390,
+        382,
+        500,
+        568
+      ],
+      "objeto": "nucleo da poltrona; excluir moldura/overhang para passagem junto a mesa",
+      "path": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+      "componentFileID": "1076239662264195889",
+      "antes": {
+        "size": [
+          0.76,
+          1.11
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          0.5499999895141581,
+          0.929999958614067
+        ],
+        "offset": [
+          0.0450001018859868,
+          0.005000010644639927
+        ]
+      },
+      "enabled": 1
+    },
+    {
+      "cena": "Interior_E05_Principal",
+      "nome": "Obstaculo_4",
+      "pixels": [
+        138,
+        508,
+        248,
+        722
+      ],
+      "objeto": "nucleo da mesa e cadeiras; liberar faixa lateral sem deslocar NPC ou chegada",
+      "path": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+      "componentFileID": "7285256194244169484",
+      "antes": {
+        "size": [
+          0.805,
+          1.3
+        ],
+        "offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "depois": {
+        "size": [
+          0.5500000998967597,
+          1.0700000054209071
+        ],
+        "offset": [
+          -0.062499958004089376,
+          0.015000011931061534
+        ]
+      },
+      "enabled": 1
+    }
+  ],
+  "hashes": [
+    {
+      "path": "Assets\\Prefabs\\Interiores\\E03_Terreo.prefab",
+      "antes": "e904b6aedeb441a744bccdf4676bc30f4b94f009c098c8abad316fb36128215c",
+      "depois": "ed62c59df60f76a97e656de5230f84b8da081cf7b09ee777b6c2f2ee1bcc9d56"
+    },
+    {
+      "path": "Assets\\Prefabs\\Interiores\\E03_Superior.prefab",
+      "antes": "6558051e1d23cad572d4b7bc7536f31161276614ab3d1233f742a6088c8c8b1a",
+      "depois": "fc65a81eaabb838d32e6415579cebd181d4eb734aa5022e3dcc4d3a499c1a51d"
+    },
+    {
+      "path": "Assets\\Prefabs\\Interiores\\E09_Terreo.prefab",
+      "antes": "773e68078cc8dd791b840f38bfaccc0d1bb2e80a8aabb828000e8e4f789048ee",
+      "depois": "a82d9ff2c2a7eaefa2f3b138d767c848177a2922eddb5d062a08cc2633032c00"
+    },
+    {
+      "path": "Assets\\Prefabs\\Interiores\\E08_Superior.prefab",
+      "antes": "c202b8afda666513375d1c4dcebdb0d701c61fbd93e4db74c4f024df347c20c0",
+      "depois": "42e8f96b9d9c9d3238063fa7e713dc1ab8ccafcb89358344e9c4fd7fa8cbc03e"
+    },
+    {
+      "path": "Assets\\Prefabs\\Interiores\\E05_Principal.prefab",
+      "antes": "2c126111ed294ac7101a8ffd17e4784d8fc491980640059052f5b7ec70f143f0",
+      "depois": "97b983552537516b0676b3c4fa27ed92015724c0e9665503b7f90b0310d6cb81"
+    }
+  ]
+}

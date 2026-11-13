@@ -1,0 +1,648 @@
+{
+    "versao": 7,
+    "droid": {
+        "nome": "Heroi",
+        "hp": 30,
+        "hpMaxBase": 30,
+        "energiaAtual": 30,
+        "energiaMaxima": 100,
+        "statsFor": 20,
+        "statsAgi": 0,
+        "statsVit": 13,
+        "statsInt": 0,
+        "statsDex": 5,
+        "statsLuk": 0,
+        "pontosDisponiveis": 22,
+        "nivel": 12,
+        "experiencia": 905,
+        "tecnicas": [
+            {
+                "nome": "Ataque Basico",
+                "nivelDeDano": 1,
+                "efeitosDeAtributo": [],
+                "efeitosDeDanoPorTurno": []
+            },
+            {
+                "nome": "Soco de Sobrecarga",
+                "nivelDeDano": 3,
+                "efeitosDeAtributo": [],
+                "efeitosDeDanoPorTurno": []
+            }
+        ],
+        "pecas": [
+            {
+                "slot": 2,
+                "idItem": "placa_de_blindagem",
+                "nome": "Placa de Blindagem",
+                "raridade": 0,
+                "atributoPrincipal": 0,
+                "temBonus": true,
+                "atributoBonificado": 2,
+                "valorDoBonus": 6
+            }
+        ]
+    },
+    "posicaoX": -1.0,
+    "posicaoY": -9.0,
+    "posicaoZ": 0.0,
+    "cena": "City",
+    "flagsDeHistoria": [
+        {
+            "chave": "ato1_falou_apollo_casa",
+            "valor": true
+        },
+        {
+            "chave": "ato1_casa_resolvida",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_dara",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_agua_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_falou_fila",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_tacio",
+            "valor": true
+        },
+        {
+            "chave": "ato1_apollo_conclusao",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_agua_concluida",
+            "valor": true
+        },
+        {
+            "chave": "ato1_sessao2",
+            "valor": true
+        },
+        {
+            "chave": "ato1_sino",
+            "valor": true
+        },
+        {
+            "chave": "ato1_apollo_recusou",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_agua_dara_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_filtro_pronto",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_quirino",
+            "valor": true
+        },
+        {
+            "chave": "ato1_filtro_recolhido",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_agua_dara_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_dara_filtro_ok",
+            "valor": true
+        },
+        {
+            "chave": "ato1_apollo_explicou",
+            "valor": true
+        },
+        {
+            "chave": "ato1_sessao3",
+            "valor": true
+        },
+        {
+            "chave": "ato1_apos_primeiro_combate",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_estacao_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_faccao_desgarrado",
+            "valor": true
+        },
+        {
+            "chave": "ato1_faccao_escolhida",
+            "valor": true
+        },
+        {
+            "chave": "ato1_chegou_cratera",
+            "valor": true
+        },
+        {
+            "chave": "ato1_modulo_recebido",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_onofre",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_onofre_provas_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_falou_bruna",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_limpeza_borda_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_marca_placa",
+            "valor": true
+        },
+        {
+            "chave": "ato1_marca_degrau",
+            "valor": true
+        },
+        {
+            "chave": "ato1_cratera_verdade",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_onofre_provas_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_onofre_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_limpeza_borda_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_limpeza_borda_ok",
+            "valor": true
+        },
+        {
+            "chave": "ato1_leu_painel",
+            "valor": true
+        },
+        {
+            "chave": "ato1_puzzle_energia",
+            "valor": true
+        },
+        {
+            "chave": "ato1_viu_unidade",
+            "valor": true
+        },
+        {
+            "chave": "ato1_ivo_reconheceu",
+            "valor": true
+        },
+        {
+            "chave": "ato1_ivo_celia",
+            "valor": true
+        },
+        {
+            "chave": "ato1_ivo_confessou",
+            "valor": true
+        },
+        {
+            "chave": "ato1_sessao6",
+            "valor": true
+        },
+        {
+            "chave": "ato1_preco_pago",
+            "valor": true
+        },
+        {
+            "chave": "ato1_ivo_resolvido",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_partida_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_caderno_2060",
+            "valor": true
+        },
+        {
+            "chave": "ato1_agua_voltou",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_estacao_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_perna_apollo_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_perna_apollo_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_apollo_perna_ok",
+            "valor": true
+        },
+        {
+            "chave": "ato1_perna_reparada",
+            "valor": true
+        },
+        {
+            "chave": "ato1_nadir",
+            "valor": true
+        },
+        {
+            "chave": "ato1_ouviu_nadir",
+            "valor": true
+        },
+        {
+            "chave": "ato1_assembleia",
+            "valor": true
+        },
+        {
+            "chave": "ato1_dara_falou_assembleia",
+            "valor": true
+        },
+        {
+            "chave": "ato1_cidade_respondeu",
+            "valor": true
+        },
+        {
+            "chave": "ato1_conversa_noturna",
+            "valor": true
+        },
+        {
+            "chave": "ato1_mochila_pronta",
+            "valor": true
+        },
+        {
+            "chave": "ato1_cantil_recebido",
+            "valor": true
+        },
+        {
+            "chave": "ato1_concluido",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_main_partida_concluida",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_pipo",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_pipo_peca_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_pipo_peca_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_pipo_ok",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_sula",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_sula_divida_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_sula_divida_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_sula_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_dara_terceira_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_dara_terceira_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_dara_terceira_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_guilda_1_iniciacao_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_guilda_1_iniciacao_concluida",
+            "valor": true
+        },
+        {
+            "chave": "guilda_membro",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_guilda_2_cacada_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_cobre_tacio_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_guilda_2_cacada_concluida",
+            "valor": true
+        },
+        {
+            "chave": "guilda_cacada_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_guilda_3_alfa_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_alfa_derrotado",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_guilda_3_alfa_concluida",
+            "valor": true
+        },
+        {
+            "chave": "guilda_alfa_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_guilda_4_verdade_ativa",
+            "valor": false
+        },
+        {
+            "chave": "quest_q_guilda_4_verdade_concluida",
+            "valor": true
+        },
+        {
+            "chave": "guilda_verdade_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_cobre_tacio_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_tacio_cobre_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_tacio_linha_ativa",
+            "valor": false
+        },
+        {
+            "chave": "fv_p_contador_sucata_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_tacio_linha_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_tacio_linha_ok",
+            "valor": true
+        },
+        {
+            "chave": "ato1_falou_nilce",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_nilce_quarto_ativa",
+            "valor": false
+        },
+        {
+            "chave": "fv_p_bomba_reserva_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_nilce_quarto_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_nilce_ok",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_ivo_terca_ativa",
+            "valor": false
+        },
+        {
+            "chave": "ato1_calibragem_feita",
+            "valor": true
+        },
+        {
+            "chave": "quest_q_ivo_terca_concluida",
+            "valor": true
+        },
+        {
+            "chave": "quest_ivo_terca_ok",
+            "valor": true
+        }
+    ],
+    "itens": [
+        {
+            "id": "pocao_media",
+            "quantidade": 12
+        },
+        {
+            "id": "emblema_da_guilda",
+            "quantidade": 1
+        },
+        {
+            "id": "pocao_grande",
+            "quantidade": 3
+        },
+        {
+            "id": "kit_de_acampamento",
+            "quantidade": 2
+        },
+        {
+            "id": "servo_motor",
+            "quantidade": 1
+        },
+        {
+            "id": "sinalizador_de_retorno",
+            "quantidade": 1
+        },
+        {
+            "id": "disruptor_emp",
+            "quantidade": 2
+        },
+        {
+            "id": "oleo_de_precisao",
+            "quantidade": 1
+        },
+        {
+            "id": "pocao_pequena",
+            "quantidade": 28
+        },
+        {
+            "id": "reparo_completo",
+            "quantidade": 1
+        },
+        {
+            "id": "sensor_optico",
+            "quantidade": 1
+        },
+        {
+            "id": "granada_de_acido",
+            "quantidade": 2
+        },
+        {
+            "id": "giroscopio",
+            "quantidade": 1
+        },
+        {
+            "id": "chave_de_acesso",
+            "quantidade": 1
+        }
+    ],
+    "gold": 837,
+    "contadores": [
+        {
+            "chave": "quest_q_main_agua_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_agua_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_agua_obj_2",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_agua_dara_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_estacao_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_estacao_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_estacao_obj_2",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_onofre_provas_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_limpeza_borda_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_partida_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_partida_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_partida_obj_2",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_main_partida_obj_3",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_perna_apollo_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_perna_apollo_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_perna_apollo_obj_2",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_pipo_peca_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_sula_divida_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_dara_terceira_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_dara_terceira_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_1_iniciacao_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_2_cacada_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_2_cacada_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_cobre_tacio_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_3_alfa_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_3_alfa_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_guilda_4_verdade_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_tacio_linha_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_tacio_linha_obj_1",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_nilce_quarto_obj_0",
+            "valor": 0
+        },
+        {
+            "chave": "quest_q_ivo_terca_obj_0",
+            "valor": 0
+        }
+    ]
+}

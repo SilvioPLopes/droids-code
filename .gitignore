@@ -20,3 +20,9 @@
 *.pdb
 *.opendb
 *.VC.db
+
+# Dependencias e artefatos locais gerados (arquivos ja rastreados sao preservados).
+**/node_modules/
+/output/
+/.codex-remote-attachments/
+/Assets/_Recovery/

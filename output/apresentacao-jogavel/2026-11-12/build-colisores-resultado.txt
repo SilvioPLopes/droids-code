@@ -1,0 +1,6 @@
+Resultado=Succeeded
+Erros=0
+Avisos=489
+Bytes=410749729
+Duracao=00:02:18.3474780
+Arquivo=C:/Users/silve/DroidsCode/output/apresentacao-jogavel/2026-11-12/Windows/DroidsCode.exe

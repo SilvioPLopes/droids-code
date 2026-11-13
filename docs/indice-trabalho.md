@@ -46,12 +46,14 @@ Interiores: [revisão de diálogos, colisões e circulação](planos-implementac
 | Equipamentos e ícones | [Equipamentos Apollo](guias/equipamentos-apollo.md), [ícones de itens](guias/icones-de-itens.md), [aceite dos ícones](planos-implementacao/2026-10-23-sprites-unicas-itens.md) |
 | Salvar/carregar e mensagens | [Estado e save](contextos/sistemas/estado-e-save.md), [diagnóstico/retomada](planos-implementacao/2026-10-22-diagnostico-avisos-e-carregamento.md) |
 | Batalha e sua interface | [Contrato de combate](contextos/sistemas/combate.md), [artes e menus Battle](planos-implementacao/2026-10-29-battle-artes-menus.md) |
+| Estabilidade Lua, venda protegida e Game Over do boss | [Plano das três frentes](planos-implementacao/2026-10-30-estabilidade-lua-loja-game-over.md) |
 | Evento do boss no vale | [Lógica, prefab e técnicas](planos-implementacao/2026-10-29-evento-boss-vale.md) |
 | Sprites de personagens | [Guia LPC](guias/criacao-sprites-personagens-lpc.md), [catálogo visual](../Assets/sprites/Entities/Characters/Documentation/character-catalog.md) |
 | Direção visual de robôs, chefe e inimigos | [Guia de arte e prompts](guias/direcao-arte-robos-e-inimigos.md), [revisão e proposta do Ato 1](planos-implementacao/2026-10-29-direcao-visual-inimigos-ato1.md) |
 | Narrativa | [Enredo](enredo/TCC_-_ENREDO_v2.md), [adendo](enredo/TCC_-_ENREDO_v2_ADENDO.md); o adendo prevalece |
 | Montagem e validação por percurso | [Guia de montagem](guias/montagem-ato-1.md), [validação](guias/validacao-jogo.md); conferir a época de cada etapa |
 | Apresentação das telas | [Plano da apresentação](planos-implementacao/2026-10-24-apresentacao-telas.md) |
+| Apresentação jogável, TesterPlayer e todas as quests | [Plano e estado vigente](planos-implementacao/2026-11-12-apresentacao-jogavel.md) |
 | Operar o conector | [Procedimento MCP](guias/operacao-mcp.md) |
 | Iniciar tarefa ou contexto de cena | [Modelo de tarefa](planos-implementacao/_modelo-tarefa.md), [modelo de cena](contextos/cenas/_modelo-cena.md) |
 | Evidências e histórico | [Índice histórico](historico/README.md), [validação CasaLip](revisoes/casalip-validacao-2026-10-17.md) |

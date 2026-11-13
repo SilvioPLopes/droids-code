@@ -1,0 +1,186 @@
+{
+  "alteracao": "enabled0->1; geometria preservada",
+  "componentes": 98,
+  "arquivos": [
+    {
+      "path": "Assets/Prefabs/Interiores/E00_Apartamento01.prefab",
+      "componentes": 4,
+      "antesSHA256": "822dce65d1a707e9257c11a3e64ec761b52056ab3b8ba0e654efe150fb3c1871",
+      "depoisSHA256": "562345cfde84eef7faf3531fca6d001d812b524e250314748d9bd8243135c455"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E00_Hall.prefab",
+      "componentes": 2,
+      "antesSHA256": "28067281e3e3005daf3b5a1a0323bc694762dcea45540e18a104c5977ccaa5b7",
+      "depoisSHA256": "78c58a12b7dccdd0a917dfc6e8640a7ff65da14780708da05222e9d897e7977e"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E00_Patamar.prefab",
+      "componentes": 2,
+      "antesSHA256": "8281173469ee4f52925f588bab7980da7e63757f09efaf3aab9683a946235948",
+      "depoisSHA256": "1ded24ef2be275b6ba156d89aaa525a4018671c0b140af6adc03c263a9a18a64"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E01_Apartamento01.prefab",
+      "componentes": 4,
+      "antesSHA256": "da55c669c9a7003d7fdaf02f5169b4ac52435660c1fbfb29de7841ddaa1c7093",
+      "depoisSHA256": "bc1f6185dbed88313e2288c4bf30510d12547245f5f90beb3790cb3411d45bfd"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E01_Hall.prefab",
+      "componentes": 2,
+      "antesSHA256": "bc6d6d6654d7770f56747436e59ca2b1426719ccd1c0fbfe75e090801a4d8364",
+      "depoisSHA256": "45a8eeb519bd28f38e163064968853e363af8e63eecf545e9441a71ded3274dd"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E01_Patamar.prefab",
+      "componentes": 2,
+      "antesSHA256": "c4d940ecf505e8833b123324dfd23e325332dbbda21dd942aa675df49976d66d",
+      "depoisSHA256": "da4982a6eb884a18be5e3934b8eca61cc8a6f137b07f88f99ff188ca0e1f6567"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E02_Garagem.prefab",
+      "componentes": 3,
+      "antesSHA256": "29876385202892f8299057e307c69608f7602e0a184c992c650f731c1d16088e",
+      "depoisSHA256": "313e73e0186b2415b1902500eb070505d3985dc090a8eacea960a9be2871382d"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E02_Principal.prefab",
+      "componentes": 3,
+      "antesSHA256": "efe09f5ba810b6690a57001c9966f1f4567061c3487db1c78c4403367fc6c541",
+      "depoisSHA256": "631575cdac94d1402b63a9e90a1d5d9f17b0b450d5f4b55bbf43912743b6fd1d"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E03_Superior.prefab",
+      "componentes": 3,
+      "antesSHA256": "2541ccf987370ce505aba61aabd4e691d78e84f87401aac4c7224ecc40f3b053",
+      "depoisSHA256": "6558051e1d23cad572d4b7bc7536f31161276614ab3d1233f742a6088c8c8b1a"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E03_Terreo.prefab",
+      "componentes": 3,
+      "antesSHA256": "d0c34e9c00ed913070638e8ab8d04da1345a90162fb757ed2a3fed16c43dce4e",
+      "depoisSHA256": "e904b6aedeb441a744bccdf4676bc30f4b94f009c098c8abad316fb36128215c"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E04_UnidadeA.prefab",
+      "componentes": 4,
+      "antesSHA256": "1e70a9d7d6406a7e1629d846cfee2bfbf4a22fd6fa0bf44b61ac96539a0d8d03",
+      "depoisSHA256": "7c3bf8e45e612084ffc806edb7de4926c38849b3f92fef5ee09b89264c836699"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E04_UnidadeB.prefab",
+      "componentes": 4,
+      "antesSHA256": "17b5207d1b4507236c778026e52bd8d8c2d0f79eb7112c26adca1c384d2e4416",
+      "depoisSHA256": "751bbf12df325acb85873ec682b7c05f50ae4c9a2f7ea4deb3f8121f9d42e780"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E05_Principal.prefab",
+      "componentes": 6,
+      "antesSHA256": "71e9eb97f7f34f979c4941f6530bffa47e9b51e096e15eeb17523f14de386dcb",
+      "depoisSHA256": "2c126111ed294ac7101a8ffd17e4784d8fc491980640059052f5b7ec70f143f0"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E06_Anexo.prefab",
+      "componentes": 3,
+      "antesSHA256": "5a844b865a20324af12310000ea1dd659e16a332a7c077e70d04e4c9532f7806",
+      "depoisSHA256": "2db3dc5d0077c8a71cf02a29100e78ce91e9e3e8e69284c2f7ceefc74ac8a44b"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E06_Superior.prefab",
+      "componentes": 4,
+      "antesSHA256": "127360454f2fb55e33055ec245f1158579a6fc14792f3ea2a87c5b03d0198b07",
+      "depoisSHA256": "7f012efe7b1a3da56887e9516d578ae29a3bd703cea61f376af161696c978705"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E06_Terreo.prefab",
+      "componentes": 3,
+      "antesSHA256": "3c1c013ba73b226293e384345051d9a898d8c6f6f943b83d992d23994c9ae384",
+      "depoisSHA256": "523bd61b232a801135efff21fd3c24a97d8780e2e6a8be649f3bc61d95320938"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E08_Principal.prefab",
+      "componentes": 5,
+      "antesSHA256": "e6882c26572459ab196543575ce692cd52e44a4959e303b51bd8cdc699a9c62c",
+      "depoisSHA256": "cbd627ef0bf24d113304878c474747b157cccfd5a5ea0537b8c5a5f6362245cc"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E08_Superior.prefab",
+      "componentes": 3,
+      "antesSHA256": "79faab98321d4acccf2d3fb369e558ec97c15f50bbcbeb6728a437244fb4c9e7",
+      "depoisSHA256": "c202b8afda666513375d1c4dcebdb0d701c61fbd93e4db74c4f024df347c20c0"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E09_Superior.prefab",
+      "componentes": 3,
+      "antesSHA256": "ae24790eb2d2acb6b70028eed9c475c481619d938fdb934a47f50616d05fe4e5",
+      "depoisSHA256": "8f29a812382329999e93e561fb9f0e3bcbf1be2cf57c9679cdb1e61af3f659a3"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E09_Terreo.prefab",
+      "componentes": 3,
+      "antesSHA256": "1408edb291876a5f56b660e519864960cf91a12aada8e49513918eeaf67aad55",
+      "depoisSHA256": "773e68078cc8dd791b840f38bfaccc0d1bb2e80a8aabb828000e8e4f789048ee"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E10_Casa04.prefab",
+      "componentes": 4,
+      "antesSHA256": "657bb9c08693b0882e6833a0c8b9910fb74cad63fccd5c11f962fc0ff61f3c07",
+      "depoisSHA256": "fc15d77338a1c7d65ebfc33a29daf866906b41695bb80df5a9132c6c8268ccca"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E11_Casa05.prefab",
+      "componentes": 4,
+      "antesSHA256": "a4f0b834731132a6b60aa3bf2cd7b3ce5be03f6377956c12ecccbba1f8b57cc5",
+      "depoisSHA256": "a34c3f7d9f444625ef51ca962c86976059b0eac3f8b466dc6c678db1df030709"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E11_Casa06.prefab",
+      "componentes": 4,
+      "antesSHA256": "99710f28161454892dee4785ca6487a6dbd49fdbc9369480e1570ef5b5b3c40a",
+      "depoisSHA256": "4a0ed78b9ca4ca38854d64f4335ee8174bdd987b96553912c9eea3f6f7e9cc90"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E13_Apartamento01.prefab",
+      "componentes": 4,
+      "antesSHA256": "91fbb3c5735cbff60aa8eefc4a304c4c76833c5ee5aa4dd2a411cbb065a85a41",
+      "depoisSHA256": "87bd6553664b73db2e63b43322554b1f12f979e3c7882975dcfef616ef2a983b"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E13_Hall.prefab",
+      "componentes": 2,
+      "antesSHA256": "52b86198ab9ebdbfead00f9f34b4cd6ed264a698af48af3feabc0de7e9b18024",
+      "depoisSHA256": "73186e61fa015f849dfb617910cb66ae687cd8a482b4069a9bb2889d8d9259da"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E13_Patamar.prefab",
+      "componentes": 2,
+      "antesSHA256": "837f4e502f5144a5becea518914eeb2c3b4e28c501469322bf4985d0ba1a380a",
+      "depoisSHA256": "299b4d44f6709725d310cbb403a90792c5ca692cd869b2ab0aa217f9f35dd8e5"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E14_Porao.prefab",
+      "componentes": 4,
+      "antesSHA256": "eb4b12095a3df4f5c77a93e33042694a06ed29b6cfb52094dd736218c7ad3994",
+      "depoisSHA256": "a9c7ed36c95914e2c556746c1b4699bb14e9d29097b84d2d11c273e61a2e686b"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E14_UnidadeA.prefab",
+      "componentes": 3,
+      "antesSHA256": "947cf4c32ec1409a558f5beb211d197cf4da17f4465ae2306b2c8ad7c3ed5a9e",
+      "depoisSHA256": "bea0bffe209c626d0cfacc20be3ea16df19921f40850b8792a2e2f95ce103687"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E14_UnidadeB.prefab",
+      "componentes": 3,
+      "antesSHA256": "b1c0095a86c99fa1ac090b5b308c4daaa70952adbad8aabfc19507ecc941c09b",
+      "depoisSHA256": "b01d07c42dd350d7e088885823ec1bd9b51f310ae5817da064f6a064e11f6553"
+    },
+    {
+      "path": "Assets/Prefabs/Interiores/E16_Civico.prefab",
+      "componentes": 2,
+      "antesSHA256": "0df6b25dc1908efe78f835ae3bd164a33b698d6e68ce8d9fc7d8a03645089f59",
+      "depoisSHA256": "f23659695cf41056141138a1954a9d0a0e3f012dc6dc36d2e708e11040a8cb85"
+    }
+  ]
+}
