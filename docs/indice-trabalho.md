@@ -30,7 +30,7 @@ Interiores: [revisão de diálogos, colisões e circulação](planos-implementac
 
 ## Navegação por necessidade
 
-**Para jogar até 100%:** [roteiro da versão da banca — 18 quests, puzzles e boss](guias/roteiro-100-por-cento.md), com mapa numerado e checklist.
+**Para jogar até 100%:** [roteiro da versão da banca — 18 quests, puzzles e boss](guias/roteiro-100-por-cento.md), com atlas dos 34 mapas, entradas/escadas dos 32 interiores, guia de todos os menus e checklist.
 
 | Necessidade | Fonte de entrada |
 |---|---|
