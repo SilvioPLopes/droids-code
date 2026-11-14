@@ -459,4 +459,10 @@ Usuário disse «Liberado». MCP confirmou DroidsCode/MainMenu limpa,foraPlay/co
 
 ## Publicacao GitHub solicitada
 
+Push confirmado em origin/main:0bef1979756931fb868bc4ef06ce20d0ff8337e6, sem force. Consulta remota confirmou o mesmoSHA.
+
+**Guia100% solicitado:** criar docs/guias/roteiro-100-por-cento.md e mapa numerado em docs/guias/imagens/, gerador offline de mapa e ponteiro no índice. Fontes: catálogos atuais, TesterPlayer principal/opcionais já aprovados e inventário físico vigente. Escopo documental; nenhum acesso/mutaçãoUnity/save. Aceite:18quests identificadas, ordem de pré-requisitos, soluções dos7puzzles montados, preparo/combate/epílogo e checklist; distinguir escolhas exclusivas e conteúdo apenas catalogado de conteúdo jogável. Publicar o guia na mesma main autorizada.
+
+Guia escrito e conferido:52passos,18/18títulos coincidem comCatalogoDeQuests,links locais válidos,blocosLua fechados. Mapa11pontos gerado do inventárioCity e imagem original; visualmente inspecionado, marcador da saída ajustado para ficar integralmente no quadro. Sete puzzles montados; os três restantes aparecem apenas emCatalogoDePuzzles nas buscas de consumidores e não são exigidos como locais jogáveis. Não foi executada nova partida manual do guia; base são os percursos automatizados já registrados. Nenhuma mudança de gameplay/build/save para produzir o documento.
+
 Usuario autorizou commit e push das alteracoes atuais, inclusive trabalho paralelo salvo. Main local e origin/main alinhadas antes do commit; push normal, sem necessidade de forca. Escopo: Assets (exceto Recovery), Packages, ProjectSettings, docs, .gitignore e evidencias essenciais selecionadas de output. Dependencias node_modules, builds e backups locais ficam fora do historicoGit; arquivos permanecem no disco. Validacao desta entrega ja registrada acima; envio nao altera gameplay. Conferir SHA remoto apos push.

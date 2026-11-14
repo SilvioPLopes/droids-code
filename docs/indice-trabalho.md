@@ -30,6 +30,8 @@ Interiores: [revisão de diálogos, colisões e circulação](planos-implementac
 
 ## Navegação por necessidade
 
+**Para jogar até 100%:** [roteiro da versão da banca — 18 quests, puzzles e boss](guias/roteiro-100-por-cento.md), com mapa numerado e checklist.
+
 | Necessidade | Fonte de entrada |
 |---|---|
 | Prioridades e backlog | [Plano de desenvolvimento](plano-desenvolvimento.md), [melhorias por tema](planos-implementacao/melhorias/README.md) |
