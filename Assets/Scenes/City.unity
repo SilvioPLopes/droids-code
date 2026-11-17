@@ -6002,7 +6002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4dec413241413f418f0f5606601cd49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  velocidade: 5
+  velocidade: 4
   usarEspelhamentoHorizontal: 0
 --- !u!50 &978994984
 Rigidbody2D:
