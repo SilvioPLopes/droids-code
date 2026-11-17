@@ -103,7 +103,7 @@ public class MoradorInterativo : MonoBehaviour
         var acoes = new Dictionary<EscolhaDeDialogo, Action>();
         void Opcao(string titulo, Action acao)
         {
-            var escolha = new EscolhaDeDialogo { texto = titulo, falanteDaResposta = nome };
+            var escolha = new EscolhaDeDialogo { texto = titulo, falanteDaResposta = nome, idRetratoDaResposta = idNpc };
             escolhas.Add(escolha); acoes.Add(escolha, acao);
         }
         bool liberado = string.IsNullOrWhiteSpace(flagParaMissoes) || GerenciadorDeEstado.Instancia.ObterFlag(flagParaMissoes);
@@ -141,7 +141,7 @@ public class MoradorInterativo : MonoBehaviour
         });
     }
 
-    List<FalaDeDialogo> Fala(string texto) => new List<FalaDeDialogo> { new FalaDeDialogo { falante = nome, texto = texto } };
+    List<FalaDeDialogo> Fala(string texto) => new List<FalaDeDialogo> { new FalaDeDialogo { falante = nome, idRetrato = idNpc, texto = texto } };
 
     void MostrarOferta(DefinicaoDeQuest q)
     {

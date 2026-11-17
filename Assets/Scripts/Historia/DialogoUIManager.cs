@@ -36,14 +36,15 @@ using TMPro;
 /// tamanho de texto sem precisar ser quebrada em varias Falas na mao.
 ///
 /// RETRATO DINAMICO: imagemRetrato mostra o personagem que esta falando,
-/// resolvido pelo nome em "fala.falante". Caminho principal (pensado pra
+/// resolvido pelo ID opcional em "fala.idRetrato", depois pelo nome em
+/// "fala.falante". Caminho principal (pensado pra
 /// dezenas de NPCs sem cadastro manual): arquivo em
 /// Assets/Resources/Retratos/<NomeDoFalante>.png, carregado sob demanda via
 /// Resources.Load e cacheado. A lista retratosConhecidos no Inspector e so
 /// pra excecao pontual. Se nao achar em nenhum dos dois, usa retratoPadrao;
 /// se retratoPadrao tambem estiver vazio, esconde a Image (deixando so a
-/// moldura de fundo visivel). Nao precisa mexer em CatalogoDeDialogos nem em
-/// FalaDeDialogo -- funciona igual pra falas digitadas no Inspector e pras
+/// moldura de fundo visivel). O ID e opcional -- funciona tambem para falas
+/// digitadas no Inspector e para as
 /// que vem do catalogo por Id.
 ///
 /// DEBUG TEMPORARIO: o Debug.Log no inicio de Mostrar() (marcado com
@@ -273,10 +274,14 @@ public class DialogoUIManager : MonoBehaviour
 
         if (imagemRetrato != null)
         {
-            Sprite retrato = ObterRetrato(fala.falante);
+            Sprite retrato = ObterRetrato(fala.falante, fala.idRetrato);
             bool temRetrato = retrato != null;
             imagemRetrato.gameObject.SetActive(temRetrato);
-            if (temRetrato) imagemRetrato.sprite = retrato;
+            if (temRetrato)
+            {
+                imagemRetrato.sprite = retrato;
+                imagemRetrato.preserveAspect = true;
+            }
         }
 
         textoFala.text = fala.texto;
@@ -298,7 +303,9 @@ public class DialogoUIManager : MonoBehaviour
     private Dictionary<string, Sprite> _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
 
     /// <summary>
-    /// Resolve o sprite de retrato pra um nome de falante. Ordem de busca:
+    /// Resolve o sprite de retrato. Ordem de busca:
+    ///   0) cinco retratos dedicados em Resources/Retratos/Dialogo, por ID canonico
+    ///      ou, quando nao ha ID explicito, por nome; depois recurso pelo ID opcional;
     ///   1) retratosConhecidos (lista manual do Inspector) -- serve como
     ///      EXCECAO pontual, nao e mais o caminho principal;
     ///   2) convencao por nome de arquivo em Assets/Resources/Retratos/,
@@ -311,8 +318,23 @@ public class DialogoUIManager : MonoBehaviour
     /// inclusive) com o texto usado no campo "Falante" das falas, senao
     /// funciona no Editor e quebra so na build WebGL.
     /// </summary>
-    private Sprite ObterRetrato(string nomeFalante)
+    private Sprite ObterRetrato(string nomeFalante, string idRetrato = null)
     {
+        // Identidade precede o nome visivel: dois moradores podem se chamar Crianca.
+        if (!string.IsNullOrWhiteSpace(idRetrato))
+        {
+            string principal = NomePrincipalPorId(idRetrato);
+            Sprite dedicado = principal == null ? null : CarregarRetrato("Dialogo/" + principal);
+            if (dedicado != null) return dedicado;
+            Sprite porId = CarregarRetrato(idRetrato);
+            if (porId != null) return porId;
+        }
+        else
+        {
+            string principal = NomePrincipalPorFalante(nomeFalante);
+            Sprite dedicado = principal == null ? null : CarregarRetrato("Dialogo/" + principal);
+            if (dedicado != null) return dedicado;
+        }
         if (string.IsNullOrWhiteSpace(nomeFalante)) return retratoPadrao;
 
         foreach (RetratoPersonagem entrada in retratosConhecidos)
@@ -323,18 +345,56 @@ public class DialogoUIManager : MonoBehaviour
             }
         }
 
+        // O catalogo narrativo usa o nome curto; a identidade do NPC usa o completo.
+        string nomeDoRecurso = string.Equals(nomeFalante, "Nadir", StringComparison.Ordinal)
+            ? "Nadir Quintela" : nomeFalante;
+        Sprite retrato = CarregarRetrato(nomeDoRecurso);
+        return retrato != null ? retrato : retratoPadrao;
+    }
+
+    private static string NomePrincipalPorId(string id)
+    {
+        switch (id)
+        {
+            case "apollo": return "Apollo";
+            case "lip": return "Lip";
+            case "dara": return "Dara";
+            case "tacio": return "Senhor Tácio";
+            case "homem_fila": return "Homem da fila";
+            default: return null;
+        }
+    }
+
+    private static string NomePrincipalPorFalante(string nome)
+    {
+        switch (nome)
+        {
+            case "Apollo": return "Apollo";
+            case "Lip": return "Lip";
+            case "Dara": return "Dara";
+            case "Senhor Tácio":
+            case "Senhor Tacio":
+            case "Tácio":
+            case "Tacio": return "Senhor Tácio";
+            case "Homem da fila": return "Homem da fila";
+            default: return null;
+        }
+    }
+
+    private Sprite CarregarRetrato(string chave)
+    {
         // Copias/recargas de componentes podem deixar esse estado nao serializado nulo.
         // A ausencia do cache nao pode interromper a atualizacao do retrato e da fala.
         if (_cacheDeRetratosPorConvencao == null)
             _cacheDeRetratosPorConvencao = new Dictionary<string, Sprite>();
 
-        if (!_cacheDeRetratosPorConvencao.TryGetValue(nomeFalante, out Sprite retrato))
+        if (!_cacheDeRetratosPorConvencao.TryGetValue(chave, out Sprite retrato))
         {
-            retrato = Resources.Load<Sprite>($"Retratos/{nomeFalante}");
-            _cacheDeRetratosPorConvencao[nomeFalante] = retrato;
+            retrato = Resources.Load<Sprite>($"Retratos/{chave}");
+            _cacheDeRetratosPorConvencao[chave] = retrato;
         }
 
-        return retrato != null ? retrato : retratoPadrao;
+        return retrato;
     }
 
     public void Avancar()
@@ -403,11 +463,17 @@ public class DialogoUIManager : MonoBehaviour
             if (texto != null)
             {
                 texto.text = escolha.texto;
-                texto.enableAutoSizing = false;
+                texto.enableAutoSizing = true;
+                texto.fontSizeMin = 28f;
+                texto.fontSizeMax = 44f;
                 texto.fontSize = 44f;
-                texto.color = new Color(0.08f, 0.06f, 0.04f, 1f);
+                texto.color = new Color(0.98f, 0.91f, 0.72f, 1f);
+                texto.margin = new Vector4(24f, 6f, 24f, 6f);
+                texto.alignment = TextAlignmentOptions.Center;
+                texto.raycastTarget = false;
             }
             // Só a instância do diálogo: o template também atende loja/Bag.
+            EstilizarEscolha(botao);
             var areaDoBotao = botao.GetComponent<RectTransform>();
             areaDoBotao.sizeDelta = new Vector2(1000f, 64f);
             var medida = botao.GetComponent<LayoutElement>() ?? botao.gameObject.AddComponent<LayoutElement>();
@@ -420,6 +486,48 @@ public class DialogoUIManager : MonoBehaviour
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(painelDeEscolhas.GetComponent<RectTransform>());
+    }
+
+    private static void EstilizarEscolha(Button botao)
+    {
+        var fundo = botao.GetComponent<Image>() ?? botao.gameObject.AddComponent<Image>();
+        fundo.sprite = null;
+        fundo.type = Image.Type.Simple;
+        fundo.color = Color.white;
+        botao.targetGraphic = fundo;
+        botao.transition = Selectable.Transition.ColorTint;
+        var cores = botao.colors;
+        cores.normalColor = new Color(0.12f, 0.14f, 0.13f, 1f);
+        cores.highlightedColor = new Color(0.32f, 0.27f, 0.17f, 1f);
+        cores.selectedColor = cores.highlightedColor;
+        cores.pressedColor = new Color(0.48f, 0.35f, 0.16f, 1f);
+        cores.disabledColor = new Color(0.16f, 0.16f, 0.15f, 0.65f);
+        cores.colorMultiplier = 1f;
+        cores.fadeDuration = 0.12f;
+        botao.colors = cores;
+        // Outline no mesmo Graphic recebe o ColorTint do fundo e escurece o ouro.
+        // Quatro imagens filhas mantem a borda independente, dentro do mesmo retangulo.
+        var contornoDoTemplate = botao.GetComponent<Outline>();
+        if (contornoDoTemplate != null) contornoDoTemplate.enabled = false;
+        CriarBordaEscolha(botao.transform, "Esquerda", new Vector2(0f, 0f), new Vector2(0f, 1f), new Vector2(2f, 0f), new Vector2(1f, 0f));
+        CriarBordaEscolha(botao.transform, "Direita", new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(2f, 0f), new Vector2(-1f, 0f));
+        CriarBordaEscolha(botao.transform, "Superior", new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, 2f), new Vector2(0f, -1f));
+        CriarBordaEscolha(botao.transform, "Inferior", new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 2f), new Vector2(0f, 1f));
+    }
+
+    private static void CriarBordaEscolha(Transform pai, string lado, Vector2 ancoraMin, Vector2 ancoraMax, Vector2 tamanho, Vector2 posicao)
+    {
+        var go = new GameObject("BordaEscolha" + lado, typeof(RectTransform), typeof(Image));
+        go.layer = pai.gameObject.layer;
+        var area = (RectTransform)go.transform;
+        area.SetParent(pai, false);
+        area.anchorMin = ancoraMin;
+        area.anchorMax = ancoraMax;
+        area.sizeDelta = tamanho;
+        area.anchoredPosition = posicao;
+        var imagem = go.GetComponent<Image>();
+        imagem.color = new Color(0.72f, 0.56f, 0.29f, 1f);
+        imagem.raycastTarget = false;
     }
 
     void AoClicarEscolha(EscolhaDeDialogo escolha)
@@ -440,6 +548,7 @@ public class DialogoUIManager : MonoBehaviour
             _falas.Add(new FalaDeDialogo
             {
                 falante = escolha.falanteDaResposta,
+                idRetrato = escolha.idRetratoDaResposta,
                 texto = escolha.respostaAposEscolher
             });
             _indiceDaFala = 0;
@@ -528,6 +637,9 @@ public class FalaDeDialogo
     [Tooltip("Quem fala. Deixe vazio pra narracao (o campo de nome some).")]
     public string falante = "Apollo";
 
+    [Tooltip("Id opcional do arquivo em Resources/Retratos. Se ausente, usa o nome do falante.")]
+    public string idRetrato;
+
     [TextArea(2, 6)]
     public string texto;
 }
@@ -552,6 +664,9 @@ public class EscolhaDeDialogo
 
     [Tooltip("Nome de quem responde depois da escolha. Opcional.")]
     public string falanteDaResposta = "Apollo";
+
+    [Tooltip("Id opcional de retrato para a resposta; distingue personagens com o mesmo nome.")]
+    public string idRetratoDaResposta;
 
     [TextArea(2, 5)]
     [Tooltip("Fala mostrada logo apos a escolha. Deixe vazio pra fechar o dialogo direto.")]
