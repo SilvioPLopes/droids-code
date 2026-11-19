@@ -23,6 +23,7 @@ Droids Code é um RPG educativo em 2D no qual explorar, conversar, preparar Apol
 
 ## Para jogar ou apresentar
 
+- [Passo a passo 100% da versão da banca — spoilers](https://github.com/SilvioPLopes/droids-code/wiki/Guia-100-por-cento): 18 missões, sete puzzles, boss, mapas e checklist.
 - [Guia do professor](https://github.com/SilvioPLopes/droids-code/wiki/Guia-do-professor): abrir o jogo no Unity, controles e etapas iniciais.
 - [Sobre o projeto](https://github.com/SilvioPLopes/droids-code/wiki/Sobre-o-projeto): proposta educativa e roteiro de apresentação.
 - [Visão técnica](https://github.com/SilvioPLopes/droids-code/wiki/Visao-tecnica): cenas, sistemas, dados e responsabilidades.

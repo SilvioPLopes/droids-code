@@ -1,5 +1,15 @@
 # README para avaliação e wiki
 
+## Complemento — acesso ao roteiro 100% (19/11/2026)
+
+**Objetivo/escopo:** deixar o passo a passo já existente em `docs/guias/roteiro-100-por-cento.md` legível também na Wiki e fácil de localizar. Arquivos permitidos: este plano, `README.md`, `docs/wiki/Home.md`, `docs/wiki/Guia-do-professor.md`, `docs/wiki/_Sidebar.md`, nova página `docs/wiki/Guia-100-por-cento.md` e as cópias correspondentes no clone `output/wiki-publicacao/`. O guia canônico e arquivos de jogo são somente leitura. Dependência compartilhada: o clone da Wiki é repositório separado; sincronizar apenas páginas desta tarefa após conferir o estado remoto.
+
+**Aceite/validação mínima:** ambos os lugares mostram o mesmo roteiro com 18 missões, sete puzzles, boss e atlas; links e imagens da cópia Wiki resolvem para as fontes da main; navegação por Home, barra lateral, guia do professor e README. Conferir diff, alvos dos links e publicação remota; gameplay e aprovação visual não são inferidos.
+
+**Valores anteriores/reversão:** Home, barra lateral e guia do professor da Wiki não mencionavam o roteiro 100%; README apontava à Wiki e ao índice, mas não diretamente ao roteiro. Todos os arquivos alvo estão limpos no Git antes da edição. Reverter somente os hunks desta seção e remover a nova página se solicitado; no repositório Wiki, reverter o commit específico sem tocar páginas alheias. Não há saves, Unity nem backups a alterar.
+
+**Resultado documental:** roteiro canônico já existia no repositório principal e na main remota; sua cópia integral foi criada para a Wiki, com 152 links de arquivos/imagens apontando à main e sem destino local ausente. Home, barra lateral, guia do professor e README receberam ponteiros diretos. O clone da Wiki estava limpo e `git pull --ff-only` retornou atualizado; `main` local e remota coincidiam antes da publicação. Nenhum arquivo de jogo, Unity ou save foi alterado; backups não se aplicam. Próximo passo: publicar somente esses documentos nos dois repositórios e conferir as páginas remotas. Gameplay manual e aprovação visual continuam fora desta validação.
+
 **Estado/data:** Wiki expandida e fontes/README na main publicados por Git; encerramento em 30/10/2026. Aprovação visual remota não presumida.
 **Objetivo:** adaptar o modelo anexado para o professor abrir o projeto Unity e jogar o início; preparar a wiki e verificar a possibilidade de publicação.
 **Arquivos permitidos:** `README.md`, este plano e novas páginas em `docs/wiki/`. Não criar outro `readme.md`, pois o repositório já usa `README.md`.
