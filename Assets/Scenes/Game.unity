@@ -131,13 +131,14 @@ GameObject:
   - component: {fileID: 39606446}
   - component: {fileID: 39606445}
   - component: {fileID: 39606444}
+  - component: {fileID: 2147000003}
   m_Layer: 0
   m_Name: Sucata da borda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &39606443
 Transform:
   m_ObjectHideFlags: 0
@@ -170,9 +171,32 @@ MonoBehaviour:
   idDoInimigo: sucata_captura
   nomeCenaBatalha: Battle
   flagsNecessarias:
-  - ato1_sessao3
+  - ato1_chegou_cratera
   flagsQueImpedem: []
   flagDeVitoria: 
+  tagDoPlayer: Player
+  exigirTecla: 0
+  teclaDeInteracao: 101
+  indicadorDeInteracao: {fileID: 0}
+--- !u!114 &2147000003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39606442}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab07523ee648c348a0dd3d35156289e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::GatilhoDeBatalha
+  idDoInimigo: sucata_captura
+  nomeCenaBatalha: Battle
+  flagsNecessarias:
+  - ato1_sessao3
+  flagsQueImpedem:
+  - ato1_apos_primeiro_combate
+  flagDeVitoria: ato1_segunda_sucata_vencida
   tagDoPlayer: Player
   exigirTecla: 0
   teclaDeInteracao: 101
@@ -624,7 +648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &234058871
 Transform:
   m_ObjectHideFlags: 0
@@ -635,7 +659,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.5, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 974579342}
@@ -1329,7 +1353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &449900517
 Transform:
   m_ObjectHideFlags: 0
@@ -1467,7 +1491,8 @@ MonoBehaviour:
     chance: 0.15
   - idDoInimigo: sucata_reforcada
     chance: 0.05
-  flagsNecessarias: []
+  flagsNecessarias:
+  - ato1_faccao_escolhida
   flagsQueImpedem: []
 --- !u!61 &450786054
 BoxCollider2D:
@@ -1687,6 +1712,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509054204}
+  - component: {fileID: 2147000001}
+  - component: {fileID: 2147000002}
   m_Layer: 0
   m_Name: DemoAto1
   m_TagString: Untagged
@@ -1974,7 +2001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &535670256
 Transform:
   m_ObjectHideFlags: 0
@@ -2091,7 +2118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &557249255
 Transform:
   m_ObjectHideFlags: 0
@@ -2221,7 +2248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &592615064
 Transform:
   m_ObjectHideFlags: 0
@@ -2232,7 +2259,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.5, y: 4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 862063048}
@@ -3043,7 +3070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &782562011
 Transform:
   m_ObjectHideFlags: 0
@@ -3752,7 +3779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &941406156
 Transform:
   m_ObjectHideFlags: 0
@@ -4139,7 +4166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &999906146
 Transform:
   m_ObjectHideFlags: 0
@@ -4520,7 +4547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1090167664
 Transform:
   m_ObjectHideFlags: 0
@@ -5377,7 +5404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1303934561
 Transform:
   m_ObjectHideFlags: 0
@@ -5714,7 +5741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1378021329
 Transform:
   m_ObjectHideFlags: 0
@@ -5725,7 +5752,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -14, y: 7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1594705971}
@@ -8711,7 +8738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1460676834
 Transform:
   m_ObjectHideFlags: 0
@@ -8745,7 +8772,7 @@ MonoBehaviour:
   teclaDeInteracao: 101
   tagDoPlayer: Player
   flagsNecessarias:
-  - ato1_sessao3
+  - ato1_segunda_sucata_vencida
   flagsQueImpedem:
   - ato1_apos_primeiro_combate
   idDoDialogo: game_s3_apos_combate
@@ -9713,7 +9740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1640194712
 Transform:
   m_ObjectHideFlags: 0
@@ -10069,7 +10096,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1568627, y: 2.1568627, z: 2.1568627}
+  m_LocalScale: {x: 0.176, y: 0.176, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1303934561}
@@ -10123,7 +10150,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 20
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4298345892085953899, guid: 7205513fb758ab74cba2ab8df91913ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02ed76ae86333de439c1ab72aaf3fd91, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10967,7 +10994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2023872326
 Transform:
   m_ObjectHideFlags: 0
@@ -11461,6 +11488,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086313638}
   m_CullTransparentMesh: 1
+--- !u!114 &2147000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509054203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da72e1f67e5f8144812228e7ac25cbd, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::CondicaoDeHistoria
+  regras:
+  - descricao: Apollo junto ao painel ate explicar a energia
+    alvos:
+    - {fileID: 234058870}
+    flagsNecessarias:
+    - ato1_modulo_recebido
+    flagsQueImpedem:
+    - ato1_leu_painel
+    inverter: 0
+  - descricao: Rasha e Teodoro
+    alvos:
+    - {fileID: 1378021328}
+    flagsNecessarias:
+    - ato1_apos_primeiro_combate
+    flagsQueImpedem:
+    - ato1_modulo_recebido
+    inverter: 0
+  - descricao: Painel de energia
+    alvos:
+    - {fileID: 1640194711}
+    flagsNecessarias:
+    - ato1_leu_painel
+    flagsQueImpedem: []
+    inverter: 0
+  - descricao: "Unidade de manuten\xE7\xE3o"
+    alvos:
+    - {fileID: 1303934560}
+    flagsNecessarias:
+    - ato1_puzzle_energia
+    flagsQueImpedem:
+    - ato1_examinou_unidade
+    inverter: 0
+  - descricao: Ivo
+    alvos:
+    - {fileID: 592615063}
+    flagsNecessarias:
+    - ato1_viu_unidade
+    flagsQueImpedem: []
+    inverter: 0
+  - descricao: Calibragem da bomba dois
+    alvos:
+    - {fileID: 941406155}
+    flagsNecessarias:
+    - quest_q_ivo_terca_ativa
+    flagsQueImpedem: []
+    inverter: 0
+  - descricao: Placa da rua
+    alvos:
+    - {fileID: 557249254}
+    flagsNecessarias:
+    - ato1_faccao_escolhida
+    flagsQueImpedem:
+    - ato1_marca_placa
+    inverter: 0
+  - descricao: Degrau antigo
+    alvos:
+    - {fileID: 782562010}
+    flagsNecessarias:
+    - ato1_marca_placa
+    flagsQueImpedem:
+    - ato1_marca_degrau
+    inverter: 0
+  - descricao: "Canaliza\xE7\xE3o"
+    alvos:
+    - {fileID: 999906145}
+    flagsNecessarias:
+    - ato1_marca_degrau
+    flagsQueImpedem:
+    - ato1_cratera_verdade
+    inverter: 0
+  reavaliarContinuamente: 1
+  intervaloDeReavaliacao: 0.2
+--- !u!114 &2147000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509054203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2352c3fab8934ef9ae4fdde7731f90ab, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::InteracoesDoVale
+  apolloDaEntrada: {fileID: 1460676837}
+  sucataDaBorda: {fileID: 39606445}
+  segundaLuta: {fileID: 2147000003}
+  encontros:
+  - {fileID: 1090167666}
+  - {fileID: 2023872328}
+  - {fileID: 535670258}
+  - {fileID: 39606445}
+  - {fileID: 449900519}
 --- !u!1001 &5614145447121649645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11469,6 +11601,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48876640708438205, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 569398148755410435, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 585237593281582291, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 606712893759937691, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278588444
+      objectReference: {fileID: 0}
+    - target: {fileID: 606712893759937691, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 717611931127626923, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 846049885899580798, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 846049885899580798, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648217472893852152, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4286232678
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648217472893852152, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689810178003715216, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689810178003715216, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1871609205070737804, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
     - target: {fileID: 1901727140999412486, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -11505,6 +11689,38 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 2037963603296241022, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278388747
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074872338607457873, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089046112418383017, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334796357029664890, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334796357029664890, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494431930853327197, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4284074495
+      objectReference: {fileID: 0}
+    - target: {fileID: 2494431930853327197, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603029029396905085, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
     - target: {fileID: 3040452809028199313, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11521,9 +11737,53 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3048899180404824515, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402131046858550635, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402131046858550635, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864219176165804846, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864219176165804846, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940113195582002447, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990959544512619139, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844603996417933246, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278785567
+      objectReference: {fileID: 0}
+    - target: {fileID: 5844603996417933246, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 5901678028776138053, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278522135
+      objectReference: {fileID: 0}
+    - target: {fileID: 6087428880880209074, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 6165343741352253487, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
       objectReference: {fileID: 0}
     - target: {fileID: 6587612345305431074, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_Name
@@ -11532,6 +11792,18 @@ PrefabInstance:
     - target: {fileID: 6587612345305431074, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874459191213467347, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881866403585282576, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881866403585282576, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 6961725177219403349, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11556,6 +11828,26 @@ PrefabInstance:
     - target: {fileID: 7210185915904586268, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276951107923094532, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4284578559
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276951107923094532, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463326465486767407, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290963701
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557515626585610499, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4290445229
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557515626585610499, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 7572682992760351043, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11588,6 +11880,10 @@ PrefabInstance:
     - target: {fileID: 7572682992760351043, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8181818
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334404294965304650, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 2795093900
       objectReference: {fileID: 0}
     - target: {fileID: 8726609893904178479, guid: 69e38ec182414fb4f8b024d51a9fb2a5, type: 3}
       propertyPath: m_Pivot.x

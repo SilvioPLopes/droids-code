@@ -360,19 +360,38 @@ public static partial class TesterPlayer
         Application.logMessageReceived+=observar;
         try
         {
-            await Interagir(nome);
+            await AbordarEncontro(nome);
             if(!string.IsNullOrEmpty(aviso))
             {
                 Exigir(SceneManager.GetActiveScene().name==origem && !G.MenuAberto && Morador(nome).batalha.PodeDisparar(),"Estado ambiguo apos recusa de checkpoint; nao repetir.");
                 Exigir(repeticoesCheckpoint++==0,"Nova falha de checkpoint apos recuperacao; interrompendo. "+aviso);
                 Debug.LogWarning("[TesterPlayer] Checkpoint recusado antes da batalha; estado consultado, uma repeticao autorizada: "+aviso);
-                await Task.Delay(300); ConferirCancelamento(); await Interagir(nome);
+                await Task.Delay(300); ConferirCancelamento(); await AbordarEncontro(nome);
                 if(SceneManager.GetActiveScene().name==origem && Morador(nome).batalha.PodeDisparar())
                     throw new InvalidOperationException("Checkpoint continuou recusado; sem terceira tentativa. "+aviso);
             }
             await Lutar();
         }
         finally { Application.logMessageReceived-=observar; }
+    }
+    static async Task AbordarEncontro(string nome)
+    {
+        var ponto = Morador(nome);
+        var vale = ponto.GetComponentInParent<InteracoesDoVale>();
+        if (vale == null || Array.IndexOf(vale.encontros, ponto) < 0)
+        {
+            await Interagir(nome);
+            return;
+        }
+        var area = ponto.GetComponent<CircleCollider2D>();
+        if (area.Distance(ColPlayer).isOverlapped)
+        {
+            Vector2 direcao = (Vector2)(ColPlayer.bounds.center - area.bounds.center);
+            if (direcao.sqrMagnitude < .0001f) direcao = Vector2.down;
+            await Mover(Alvo(area) + direcao.normalized *
+                (area.bounds.extents.x + ColPlayer.bounds.extents.x + .35f));
+        }
+        await AproximarTrigger(area, cenaDestino: "Battle");
     }
     static async Task CurarFora(bool completo=false)
     {
@@ -496,6 +515,7 @@ public static partial class TesterPlayer
             await Etapa("Primeiro combate e rota Desgarrado", async () =>
             {
                 await FalarAte("Apollo", "ato1_apollo_explicou"); await Encontro("Sucata de Captura");
+                await CurarFora(); await Encontro("Sucata da borda");
                 await FalarAte("Apollo", "ato1_apos_primeiro_combate");
                 await FalarAte("Rasha e Teodoro", "ato1_faccao_escolhida", "Seguir sem facção");
                 await FalarAte("Rasha e Teodoro", "ato1_chegou_cratera"); await FalarAte("Rasha e Teodoro", "ato1_modulo_recebido");

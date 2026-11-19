@@ -7,6 +7,8 @@ public class TerminalDoInterior : MonoBehaviour
     public string flagNecessaria;
     public VerificadorDePuzzle verificador;
     private bool perto;
+    internal bool entradaPeloVale;
+    internal bool JogadorPerto => perto;
     private TerminalUIManager terminal;
     private static VerificadorDePuzzle verificadorAtivo;
     private int frameFechamento = -1;
@@ -14,7 +16,7 @@ public class TerminalDoInterior : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) { if (other.CompareTag("Player")) perto = false; }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) TentarInteragir();
+        if (!entradaPeloVale && Input.GetKeyDown(KeyCode.E)) TentarInteragir();
     }
 
     public bool TentarInteragir()

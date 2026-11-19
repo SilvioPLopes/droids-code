@@ -21,6 +21,8 @@ public class MoradorInterativo : MonoBehaviour
     public KeyCode tecla = KeyCode.E;
     private readonly HashSet<Collider2D> jogadores = new HashSet<Collider2D>();
     private int frameFechamento = -1;
+    internal bool entradaPeloVale;
+    internal bool JogadorPerto => jogadores.Any(c => c != null);
 
     void OnTriggerEnter2D(Collider2D other) { if (other.CompareTag("Player")) jogadores.Add(other); }
     void OnTriggerExit2D(Collider2D other) { jogadores.Remove(other); }
@@ -31,6 +33,7 @@ public class MoradorInterativo : MonoBehaviour
     }
     void Update()
     {
+        if (entradaPeloVale) return;
         jogadores.RemoveWhere(p => p == null);
         if (indicadorDeProximidade != null)
             indicadorDeProximidade.SetActive(jogadores.Count > 0 && !GerenciadorDeEstado.Instancia.MenuAberto);

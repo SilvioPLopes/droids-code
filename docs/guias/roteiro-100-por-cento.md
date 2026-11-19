@@ -94,7 +94,7 @@ No vale/Cratera, procure os nomes de interação: **Apollo**, **Sucata de Captur
 
 **Conferência:** a quest **A cota cortada** deve estar entregue; você deve conseguir sair para a Cratera e usar o golpe aprendido.
 
-## Parte 2 — filtro, primeiro combate e facção
+## Parte 2 — filtro, dois combates e escolha de facção
 
 9. Antes de seguir longe, aceite **Um filtro para a Dara** com Dara.
 10. Vá à oficina de Quirino, nº 5. Na **Bancada do filtro**, execute:
@@ -112,9 +112,9 @@ No vale/Cratera, procure os nomes de interação: **Apollo**, **Sucata de Captur
 
 11. Fale com Quirino e escolha **Levar o filtro para Dara**. Resolver a bancada não recolhe o filtro sozinho.
 12. Volte a Dara, entregue o filtro e receba as curas.
-13. No vale, converse com Apollo e enfrente a primeira **Sucata de Captura**, pressionando E no encontro. Em combate, use **Atacar** e escolha um golpe; use **Item/Bag** para se curar.
-14. Após vencer, volte ao Apollo da chegada e conclua a conversa pós-combate.
-15. Fale com **Rasha e Teodoro** e escolha **Seguir sem facção**.
+13. No vale, conclua a conversa com Apollo. Ele sai e a **Sucata de Captura** aparece. Aproxime-se do droid para entrar na batalha. Use **Atacar** para escolher um golpe e **Item/Bag** para se curar.
+14. A primeira vitória libera a **Sucata da borda**. Aproxime-se dela e vença a segunda luta. Apollo reaparece na entrada do vale. Converse com ele.
+15. **Rasha e Teodoro** aparecem. Converse com eles e escolha **Seguir sem facção** para esta rota. A escolha libera o **Droid Selvagem**. Nas caçadas repetíveis, afaste-se e aproxime-se de novo para iniciar outra batalha.
 16. Interaja novamente com eles para ouvir a explicação da Cratera e concluir a etapa do ponto vazio. Nessa rota não há módulo para recolher.
 
 **Outras escolhas:** Flor de Ferro exige vencer a prova de Rasha, voltar, escolher **Continuar a luta** e depois **Receber o Núcleo de Sobrecarga**. Lótus Branca exige responder ao dilema de Teodoro e terminar a conversa do Módulo de Ressonância. São rotas alternativas; para ver todas as variações, faça partidas separadas.
