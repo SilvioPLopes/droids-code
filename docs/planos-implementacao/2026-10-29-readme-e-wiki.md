@@ -1,5 +1,15 @@
 # README para avaliação e wiki
 
+## Correção — fonte única do roteiro 100% (19/11/2026)
+
+**Decisão/escopo autorizado:** o usuário esclareceu que precisa localizar o guia, sem duas cópias idênticas. Manter `docs/guias/roteiro-100-por-cento.md` como fonte única; remover exclusivamente `docs/wiki/Guia-100-por-cento.md` e sua cópia no repositório separado da Wiki; trocar os links dessa página em `docs/wiki/Home.md`, `docs/wiki/_Sidebar.md`, `docs/wiki/Guia-do-professor.md` e `README.md` por links diretos para o guia canônico. Este plano registra a correção. Nenhum código, cena, save ou outro documento entra no escopo.
+
+**Dependências/aceite/validação:** Home e barra lateral da Wiki devem mostrar “Roteiro 100%” em lugar evidente; Guia do professor e README devem distinguir o percurso inicial do roteiro completo. Todos os links devem abrir o arquivo canônico na main, sem página duplicada. Conferir diff, ausência de referências ao slug removido e estado remoto dos dois repositórios. A renderização visual e o gameplay não foram reservados como prova desta mudança documental.
+
+**Estado anterior/reversão:** `main` contém a cópia integral adicionada no commit `fdb1739`; Wiki `master` contém a mesma página e os links adicionados em `04f8e7d`. Os dois checkouts estavam limpos quanto a esta tarefa; há alterações preexistentes em NuGet/Packages fora do escopo no projeto principal. Reversão possível por commit próprio desta correção em cada repositório, sem tocar o guia canônico nem alterações alheias. Unity não foi aberto; backups de save não se aplicam.
+
+**Resultado:** cópia integral removida das fontes locais e da Wiki remota (`84fedcb`); Home e barra lateral da Wiki agora apontam diretamente ao roteiro canônico, assim como o Guia do professor e README. `docs/indice-trabalho.md` já tinha esse ponteiro e permaneceu intacto. Conferidos diff sem erros de whitespace, ausência do slug duplicado nos pontos de navegação e push da Wiki. Próximo passo: publicar esta atualização documental na `main` e confirmar os dois refs remotos. Nenhum teste de gameplay ou aprovação visual foi feito; Unity continuou fechado e saves/backups intocados.
+
 ## Complemento — acesso ao roteiro 100% (19/11/2026)
 
 **Objetivo/escopo:** deixar o passo a passo já existente em `docs/guias/roteiro-100-por-cento.md` legível também na Wiki e fácil de localizar. Arquivos permitidos: este plano, `README.md`, `docs/wiki/Home.md`, `docs/wiki/Guia-do-professor.md`, `docs/wiki/_Sidebar.md`, nova página `docs/wiki/Guia-100-por-cento.md` e as cópias correspondentes no clone `output/wiki-publicacao/`. O guia canônico e arquivos de jogo são somente leitura. Dependência compartilhada: o clone da Wiki é repositório separado; sincronizar apenas páginas desta tarefa após conferir o estado remoto.

@@ -2,7 +2,7 @@
 
 O guia principal fica no [README do projeto](https://github.com/SilvioPLopes/droids-code#readme), para manter uma única versão dos passos, controles e solução de apoio.
 
-Para percorrer toda a versão da banca, consulte o [passo a passo 100%](https://github.com/SilvioPLopes/droids-code/wiki/Guia-100-por-cento), com missões, puzzles, boss, mapas e checklist.
+Para percorrer toda a versão da banca, consulte o [roteiro 100% do Ato 1](https://github.com/SilvioPLopes/droids-code/blob/main/docs/guias/roteiro-100-por-cento.md), com missões, puzzles, boss, mapas e checklist.
 
 Para conhecer o universo antes da demonstração, consulte [Sobre o projeto](https://github.com/SilvioPLopes/droids-code/wiki/Sobre-o-projeto), [Personagens](https://github.com/SilvioPLopes/droids-code/wiki/Personagens) e [Galeria](https://github.com/SilvioPLopes/droids-code/wiki/Galeria). As páginas de campanha e de motivações podem conter spoilers.
 

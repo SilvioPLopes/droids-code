@@ -2,7 +2,7 @@
 
 - [Início](https://github.com/SilvioPLopes/droids-code/wiki)
 - [Como jogar](https://github.com/SilvioPLopes/droids-code/wiki/Guia-do-professor)
-- [Passo a passo 100% — spoilers](https://github.com/SilvioPLopes/droids-code/wiki/Guia-100-por-cento)
+- [Roteiro 100% — missões e puzzles](https://github.com/SilvioPLopes/droids-code/blob/main/docs/guias/roteiro-100-por-cento.md)
 
 ### Universo
 
